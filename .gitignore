@@ -10,13 +10,20 @@ _book/
 _site/
 _temp/
 _freeze/
+_manuscript/
+*_cache/
+/index_files/
 /site_libs/
-/04-results_files/
-docs/
 *.tex
 
 # Management
-deploy.sh
 adm/
-!adm/README.md
 /.quarto/
+**/*.quarto_ipynb
+
+# Agent artifacts
+.agents/
+PLAN.md
+SKILL.md
+**/SKILL.md
+skills-lock.json
