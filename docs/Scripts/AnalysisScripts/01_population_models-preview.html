@@ -315,25 +315,15 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'quantreg' was built under R version 4.5.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: SparseM</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'SparseM' was built under R version 4.5.3</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"models.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"models.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="population-model-meta-analytic-lin-yao-2022" class="level2">
 <h2 class="anchored" data-anchor-id="population-model-meta-analytic-lin-yao-2022">Population model — Meta-analytic (Lin &amp; Yao, 2022)</h2>
-<p>The primary population model uses factor loadings derived from the meta-analysis by Lin and Yao (2022). Four factors: Psychological (6 items), Physical (7 items), Social (3 items), Environment (8 items). Interfactor correlations are set at the upper bound (0.3) reported in the meta-analysis (range: 0.08–0.30). Residual variances follow the formula 1 − λ², except for Q3 and Q4 which share a correlated residual (0.3).</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(popModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(popModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # Factor loadings from Lin and Yao (2022) meta-analysis
@@ -382,10 +372,9 @@ Attaching package: 'dplyr'</code></pre>
 </section>
 <section id="naive-model-minimally-acceptable-scenario" class="level2">
 <h2 class="anchored" data-anchor-id="naive-model-minimally-acceptable-scenario">Naive model — Minimally acceptable scenario</h2>
-<p>All factor loadings set to 0.5 (minimum acceptable for CFA), residual variances = 0.75 (i.e., 1 − 0.5²), and small interfactor correlations (0.3). This represents a <strong>pessimistic</strong> scenario.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(naiveModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(naiveModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # All loadings = 0.5
@@ -434,10 +423,9 @@ Attaching package: 'dplyr'</code></pre>
 </section>
 <section id="optimistic-model-best-case-scenario" class="level2">
 <h2 class="anchored" data-anchor-id="optimistic-model-best-case-scenario">Optimistic model — Best-case scenario</h2>
-<p>All factor loadings set to 0.7 (strong loadings), residual variances = 0.51 (1 − 0.7²), and moderate interfactor correlations (0.5). This represents an <strong>optimistic</strong> scenario.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(optModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(optModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # All loadings = 0.7
@@ -486,10 +474,9 @@ Attaching package: 'dplyr'</code></pre>
 </section>
 <section id="analysis-model-free-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-model-free-parameters">Analysis model — Free parameters</h2>
-<p>This is the model the researcher fits to data. All parameters are freely estimated (no fixed values), matching the structure of the population models.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(analyzeModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(analyzeModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   psycho =~ Q5_P + Q6_P + Q7_P + Q11_P + Q19_P + Q26_P
@@ -503,20 +490,22 @@ Attaching package: 'dplyr'</code></pre>
 <section id="comparison-table" class="level2">
 <h2 class="anchored" data-anchor-id="comparison-table">Comparison table</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>pop_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Model =</span> <span class="fu">c</span>(<span class="st">"Meta-analytic (popModel)"</span>,</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Naive (naiveModel)"</span>,</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Optimistic (optModel)"</span>),</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Loading Range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.37–0.94"</span>, <span class="st">"0.50"</span>, <span class="st">"0.70"</span>),</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Mean Loading</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.74"</span>, <span class="st">"0.50"</span>, <span class="st">"0.70"</span>),</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Factor Correlations</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.30"</span>, <span class="st">"0.30"</span>, <span class="st">"0.50"</span>),</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Residual Range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.12–0.86"</span>, <span class="st">"0.75"</span>, <span class="st">"0.51"</span>),</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Q3–Q4 Covariance</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.30"</span>, <span class="st">"0.30"</span>, <span class="st">"0.50"</span>),</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(pop_summary, <span class="at">align =</span> <span class="st">"lccccc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>pop_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Model =</span> <span class="fu">c</span>(</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Meta-analytic (popModel)"</span>,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Naive (naiveModel)"</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Optimistic (optModel)"</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Loading Range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.37–0.94"</span>, <span class="st">"0.50"</span>, <span class="st">"0.70"</span>),</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Mean Loading</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.74"</span>, <span class="st">"0.50"</span>, <span class="st">"0.70"</span>),</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Factor Correlations</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.30"</span>, <span class="st">"0.30"</span>, <span class="st">"0.50"</span>),</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Residual Range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.12–0.86"</span>, <span class="st">"0.75"</span>, <span class="st">"0.51"</span>),</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Q3–Q4 Covariance</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.30"</span>, <span class="st">"0.30"</span>, <span class="st">"0.50"</span>),</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(pop_summary, <span class="at">align =</span> <span class="st">"lccccc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="tbl-pop-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pop-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

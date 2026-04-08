@@ -1,0 +1,53 @@
+---
+title: "Post Hoc Power Analysis"
+execute:
+  echo: false
+---
+
+## Setup
+
+```{r}
+#| label: setup
+#| include: false
+
+library(here)
+source(here("Scripts", "DataAppendixScripts", "helpers.R"))
+source(here("Scripts", "DataAppendixScripts", "models.R"))
+```
+
+## Post hoc power analysis: Achieved power with N = 1047
+
+### With semPower
+
+```{r}
+#| label: posthoc-sempower
+
+df_model <- semPower::semPower.getDf(analyzeModel)
+
+ph_sempower <- semPower::semPower.postHoc(
+    effect         = 0.05,
+    effect.measure = "RMSEA",
+    alpha          = ALPHA,
+    N              = N_EMPIRICAL,
+    df             = df_model
+)
+
+summary(ph_sempower)
+```
+
+### With semTools
+
+```{r}
+#| label: posthoc-semtools
+
+power_semtools <- semTools::findRMSEApower(
+    rmsea0 = 0.05,
+    rmseaA = 0,
+    df     = df_model,
+    n      = N_EMPIRICAL,
+    alpha  = ALPHA
+)
+
+cat("Achieved power (semTools):", round(power_semtools, 4), "\n")
+```
+

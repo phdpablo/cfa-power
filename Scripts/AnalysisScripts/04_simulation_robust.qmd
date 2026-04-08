@@ -130,7 +130,7 @@ summary(sim_naive_vary)
 #| label: sim-naive-power
 
 naive_power <- getPower(sim_naive_vary, alpha = ALPHA)
-findPower(naive_power, "N", POWER_TARGET)
+findPower(naive_power, "N", POWER)
 ```
 
 ## Scenario D — Sensitivity: Optimistic population model
@@ -155,7 +155,7 @@ summary(sim_opt_vary)
 #| label: sim-opt-power
 
 opt_power <- getPower(sim_opt_vary, alpha = ALPHA)
-findPower(opt_power, "N", POWER_TARGET)
+findPower(opt_power, "N", POWER)
 ```
 
 ## Comparison across scenarios

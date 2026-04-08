@@ -3,7 +3,7 @@
 # =============================================================================
 
 # --- Population model — Meta-analytic (Lin & Yao, 2022) -----------------------
-popModel <- '
+popModel <- "
   # Factor loadings from Lin and Yao (2022) meta-analysis
   psycho =~ 0.92*Q5_P + 0.81*Q6_P + 0.94*Q7_P +
             0.73*Q11_P + 0.75*Q19_P + 0.63*Q26_P
@@ -45,10 +45,10 @@ popModel <- '
   Q23_A ~~ 0.44*Q23_A
   Q24_A ~~ 0.59*Q24_A
   Q25_A ~~ 0.47*Q25_A
-'
+"
 
 # --- Naive model — Minimally acceptable scenario ------------------------------
-naiveModel <- '
+naiveModel <- "
   # All loadings = 0.5
   psycho =~ 0.5*Q5_P + 0.5*Q6_P + 0.5*Q7_P +
             0.5*Q11_P + 0.5*Q19_P + 0.5*Q26_P
@@ -58,6 +58,7 @@ naiveModel <- '
   environment =~ 0.5*Q8_A + 0.5*Q9_A + 0.5*Q12_A + 0.5*Q13_A +
                  0.5*Q14_A + 0.5*Q23_A + 0.5*Q24_A + 0.5*Q25_A
 
+  # Correlated residual between Q3 and Q4
   Q4_F ~~ 0.3*Q3_F
 
   psycho ~~ 1*psycho + 0.3*physical + 0.3*social + 0.3*environment
@@ -90,10 +91,10 @@ naiveModel <- '
   Q23_A ~~ 0.75*Q23_A
   Q24_A ~~ 0.75*Q24_A
   Q25_A ~~ 0.75*Q25_A
-'
+"
 
 # --- Optimistic model — Best-case scenario ------------------------------------
-optModel <- '
+optModel <- "
   # All loadings = 0.7
   psycho =~ 0.7*Q5_P + 0.7*Q6_P + 0.7*Q7_P +
             0.7*Q11_P + 0.7*Q19_P + 0.7*Q26_P
@@ -103,6 +104,7 @@ optModel <- '
   environment =~ 0.7*Q8_A + 0.7*Q9_A + 0.7*Q12_A + 0.7*Q13_A +
                  0.7*Q14_A + 0.7*Q23_A + 0.7*Q24_A + 0.7*Q25_A
 
+  # Correlated residual between Q3 and Q4
   Q4_F ~~ 0.5*Q3_F
 
   psycho ~~ 1*psycho + 0.5*physical + 0.5*social + 0.5*environment
@@ -135,13 +137,47 @@ optModel <- '
   Q23_A ~~ 0.51*Q23_A
   Q24_A ~~ 0.51*Q24_A
   Q25_A ~~ 0.51*Q25_A
-'
+"
 
 # --- Analysis model — Free parameters -----------------------------------------
-analyzeModel <- '
+analyzeModel <- "
+  # Factor loadings estimated freely
   psycho =~ Q5_P + Q6_P + Q7_P + Q11_P + Q19_P + Q26_P
   physical =~ Q3_F + Q4_F + Q10_F + Q15_F + Q16_F + Q17_F + Q18_F
   social =~ Q20_S + Q21_S + Q22_S
   environment =~ Q8_A + Q9_A + Q12_A + Q13_A + Q14_A + Q23_A + Q24_A + Q25_A
   Q4_F ~~ Q3_F
-'
+
+# Factor variances fixed to 1 and free correlations between factors
+  psycho ~~ 1*psycho + physical + social + environment
+  physical ~~ 1*physical + social + environment
+  social ~~ 1*social + environment
+  environment ~~ 1*environment
+
+  # Correlated residual between Q3 and Q4
+  Q4_F ~~ Q3_F
+
+  # Residual variances
+  Q5_P ~~ Q5_P
+  Q6_P ~~ Q6_P
+  Q7_P ~~ Q7_P
+  Q11_P ~~ Q11_P
+  Q19_P ~~ Q19_P
+  Q26_P ~~ Q26_P
+  Q10_F ~~ Q10_F
+  Q15_F ~~ Q15_F
+  Q16_F ~~ Q16_F
+  Q17_F ~~ Q17_F
+  Q18_F ~~ Q18_F
+  Q20_S ~~ Q20_S
+  Q21_S ~~ Q21_S
+  Q22_S ~~ Q22_S
+  Q8_A ~~ Q8_A
+  Q9_A ~~ Q9_A
+  Q12_A ~~ Q12_A
+  Q13_A ~~ Q13_A
+  Q14_A ~~ Q14_A
+  Q23_A ~~ Q23_A
+  Q24_A ~~ Q24_A
+  Q25_A ~~ Q25_A
+"

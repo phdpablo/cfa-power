@@ -182,28 +182,34 @@ window.Quarto = {
    
   <ul>
   <li><a href="#sec-intro" id="toc-sec-intro" class="nav-link active" data-scroll-target="#sec-intro"><span class="header-section-number">1</span> Introduction</a></li>
-  <li><a href="#sec-popmodel" id="toc-sec-popmodel" class="nav-link" data-scroll-target="#sec-popmodel"><span class="header-section-number">2</span> The Running Example: WHOQOL-BREF Population CFA Model</a></li>
-  <li><a href="#sec-df" id="toc-sec-df" class="nav-link" data-scroll-target="#sec-df"><span class="header-section-number">3</span> Model Degrees of Freedom</a></li>
-  <li><a href="#sec-analytical" id="toc-sec-analytical" class="nav-link" data-scroll-target="#sec-analytical"><span class="header-section-number">4</span> Analytical Power Analysis</a>
+  <li><a href="#sec-popmodel" id="toc-sec-popmodel" class="nav-link" data-scroll-target="#sec-popmodel"><span class="header-section-number">2</span> The Running Example: WHOQOL-BREF Population CFA Model</a>
   <ul class="collapse">
-  <li><a href="#sec-apriori" id="toc-sec-apriori" class="nav-link" data-scroll-target="#sec-apriori"><span class="header-section-number">4.1</span> A Priori: How Many Observations?</a></li>
-  <li><a href="#sec-posthoc-analytical" id="toc-sec-posthoc-analytical" class="nav-link" data-scroll-target="#sec-posthoc-analytical"><span class="header-section-number">4.2</span> Post Hoc: Achieved Power</a></li>
-  <li><a href="#sec-power-curves" id="toc-sec-power-curves" class="nav-link" data-scroll-target="#sec-power-curves"><span class="header-section-number">4.3</span> Power Curves</a></li>
+  <li><a href="#population-model" id="toc-population-model" class="nav-link" data-scroll-target="#population-model"><span class="header-section-number">2.1</span> Population model</a></li>
+  <li><a href="#naive-model" id="toc-naive-model" class="nav-link" data-scroll-target="#naive-model"><span class="header-section-number">2.2</span> Naive model</a></li>
+  <li><a href="#optimistic-model" id="toc-optimistic-model" class="nav-link" data-scroll-target="#optimistic-model"><span class="header-section-number">2.3</span> Optimistic model</a></li>
+  <li><a href="#comparison-table" id="toc-comparison-table" class="nav-link" data-scroll-target="#comparison-table"><span class="header-section-number">2.4</span> Comparison table</a></li>
+  <li><a href="#analysis-model" id="toc-analysis-model" class="nav-link" data-scroll-target="#analysis-model"><span class="header-section-number">2.5</span> Analysis model</a></li>
   </ul></li>
-  <li><a href="#sec-sim-ideal" id="toc-sec-sim-ideal" class="nav-link" data-scroll-target="#sec-sim-ideal"><span class="header-section-number">5</span> Monte Carlo Simulation: Ideal Conditions</a></li>
-  <li><a href="#sec-sim-robust" id="toc-sec-sim-robust" class="nav-link" data-scroll-target="#sec-sim-robust"><span class="header-section-number">6</span> Monte Carlo Simulation: Realistic Scenarios</a>
+  <li><a href="#sec-analytical" id="toc-sec-analytical" class="nav-link" data-scroll-target="#sec-analytical"><span class="header-section-number">3</span> Analytical Power Analysis</a>
   <ul class="collapse">
-  <li><a href="#sec-nonnormal" id="toc-sec-nonnormal" class="nav-link" data-scroll-target="#sec-nonnormal"><span class="header-section-number">6.1</span> Non-Normality</a></li>
-  <li><a href="#sec-missing" id="toc-sec-missing" class="nav-link" data-scroll-target="#sec-missing"><span class="header-section-number">6.2</span> Missing Data (MCAR)</a></li>
-  <li><a href="#sec-sensitivity" id="toc-sec-sensitivity" class="nav-link" data-scroll-target="#sec-sensitivity"><span class="header-section-number">6.3</span> Sensitivity Across Population Models</a></li>
-  <li><a href="#sec-scenarios-comparison" id="toc-sec-scenarios-comparison" class="nav-link" data-scroll-target="#sec-scenarios-comparison"><span class="header-section-number">6.4</span> Comparison</a></li>
+  <li><a href="#sec-df" id="toc-sec-df" class="nav-link" data-scroll-target="#sec-df"><span class="header-section-number">3.1</span> Model Degrees of Freedom</a></li>
+  <li><a href="#sec-apriori" id="toc-sec-apriori" class="nav-link" data-scroll-target="#sec-apriori"><span class="header-section-number">3.2</span> A Priori: How Many Observations?</a></li>
+  <li><a href="#sec-power-curves" id="toc-sec-power-curves" class="nav-link" data-scroll-target="#sec-power-curves"><span class="header-section-number">3.3</span> Power Curves</a></li>
   </ul></li>
-  <li><a href="#sec-null-vs-alt" id="toc-sec-null-vs-alt" class="nav-link" data-scroll-target="#sec-null-vs-alt"><span class="header-section-number">7</span> Population Model vs.&nbsp;Empirical Model</a></li>
-  <li><a href="#sec-dfi" id="toc-sec-dfi" class="nav-link" data-scroll-target="#sec-dfi"><span class="header-section-number">8</span> Supplementary: Dynamic Fit Index</a></li>
-  <li><a href="#sec-synthesis" id="toc-sec-synthesis" class="nav-link" data-scroll-target="#sec-synthesis"><span class="header-section-number">9</span> When to Use What: Analytical vs.&nbsp;Simulation</a></li>
+  <li><a href="#sec-sim-ideal" id="toc-sec-sim-ideal" class="nav-link" data-scroll-target="#sec-sim-ideal"><span class="header-section-number">4</span> Monte Carlo Simulation: Ideal Conditions</a></li>
+  <li><a href="#sec-sim-robust" id="toc-sec-sim-robust" class="nav-link" data-scroll-target="#sec-sim-robust"><span class="header-section-number">5</span> Monte Carlo Simulation: Realistic Scenarios</a>
+  <ul class="collapse">
+  <li><a href="#sec-nonnormal" id="toc-sec-nonnormal" class="nav-link" data-scroll-target="#sec-nonnormal"><span class="header-section-number">5.1</span> Non-Normality</a></li>
+  <li><a href="#sec-missing" id="toc-sec-missing" class="nav-link" data-scroll-target="#sec-missing"><span class="header-section-number">5.2</span> Missing Data (MCAR)</a></li>
+  <li><a href="#sec-sensitivity" id="toc-sec-sensitivity" class="nav-link" data-scroll-target="#sec-sensitivity"><span class="header-section-number">5.3</span> Sensitivity Across Population Models</a></li>
+  <li><a href="#sec-scenarios-comparison" id="toc-sec-scenarios-comparison" class="nav-link" data-scroll-target="#sec-scenarios-comparison"><span class="header-section-number">5.4</span> Comparison</a></li>
+  </ul></li>
+  <li><a href="#sec-null-vs-alt" id="toc-sec-null-vs-alt" class="nav-link" data-scroll-target="#sec-null-vs-alt"><span class="header-section-number">6</span> Population Model vs.&nbsp;Empirical Model</a></li>
+  <li><a href="#sec-posthoc-analytical" id="toc-sec-posthoc-analytical" class="nav-link" data-scroll-target="#sec-posthoc-analytical"><span class="header-section-number">7</span> Post Hoc: Achieved Power</a></li>
+  <li><a href="#sec-synthesis" id="toc-sec-synthesis" class="nav-link" data-scroll-target="#sec-synthesis"><span class="header-section-number">8</span> When to Use What: Analytical vs.&nbsp;Simulation</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-<div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="Scripts\AnalysisScripts\02_analytical_power-preview.html"><i class="bi bi-journal-code"></i>Analytical Power Analysis</a></li><li><a href="Scripts\AnalysisScripts\05_model_comparison-preview.html"><i class="bi bi-journal-code"></i>Model Comparison (Null vs Alternative)</a></li><li><a href="Scripts\AnalysisScripts\01_population_models-preview.html"><i class="bi bi-journal-code"></i>Population Models</a></li><li><a href="Scripts\AnalysisScripts\03_simulation_ideal-preview.html"><i class="bi bi-journal-code"></i>Simulation — Ideal Conditions</a></li><li><a href="Scripts\AnalysisScripts\04_simulation_robust-preview.html"><i class="bi bi-journal-code"></i>Simulation — Realistic Scenarios</a></li><li><a href="Scripts\AnalysisScripts\06_extras-preview.html"><i class="bi bi-journal-code"></i>Supplementary Methods</a></li></ul></div></nav>
+<div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="Scripts\AnalysisScripts\02_analytical_power-preview.html"><i class="bi bi-journal-code"></i>Analytical Power Analysis</a></li><li><a href="Scripts\AnalysisScripts\05_model_comparison-preview.html"><i class="bi bi-journal-code"></i>Model Comparison (Null vs Alternative)</a></li><li><a href="Scripts\AnalysisScripts\01_population_models-preview.html"><i class="bi bi-journal-code"></i>Population Models</a></li><li><a href="Scripts\AnalysisScripts\06_posthoc-preview.html"><i class="bi bi-journal-code"></i>Post Hoc Power Analysis</a></li><li><a href="Scripts\AnalysisScripts\03_simulation_ideal-preview.html"><i class="bi bi-journal-code"></i>Simulation — Ideal Conditions</a></li><li><a href="Scripts\AnalysisScripts\04_simulation_robust-preview.html"><i class="bi bi-journal-code"></i>Simulation — Realistic Scenarios</a></li></ul></div></nav>
 </div>
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
@@ -217,7 +223,11 @@ window.Quarto = {
 <section id="sec-intro" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="sec-intro"><span class="header-section-number">1</span> Introduction</h2>
 <p>Statistical power in Confirmatory Factor Analysis (CFA) reflects the probability of correctly rejecting an incorrectly specified model, or detecting a parameter of interest when it is truly non-zero in the population <span class="citation" data-cites="maccallum1996">(<a href="#ref-maccallum1996" role="doc-biblioref">MacCallum et al., 1996</a>)</span>. Power analysis is critical when planning a CFA study; however, researchers often rely on arbitrary rules of thumb mapping required sample sizes to the number of measured variables or parameters, rather than formal prospective calculations.</p>
-<p>There are two main paradigms to power analysis in CFA: 1. <strong>Analytical methods</strong>: Rely on asymptotic statistical theory (e.g., the non-central <span class="math inline">\(\chi^2\)</span> distribution) to calculate the required sample size for detecting global model misfit based on established fit indices like the RMSEA <span class="citation" data-cites="moshagen_sempower_2024">(<a href="#ref-moshagen_sempower_2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>. 2. <strong>Simulation-based methods</strong>: Use Monte Carlo data generation to repeatedly establish how the model behaves under assumed population models, allowing the estimation of power, bias, and coverage for specific parameters or overall fit indices across varying sample sizes <span class="citation" data-cites="pornprasertmanit_simsem_2021">(<a href="#ref-pornprasertmanit_simsem_2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<p>There are two main paradigms to power analysis in CFA:</p>
+<ol type="1">
+<li><strong>Analytical methods</strong>: Rely on asymptotic statistical theory (e.g., the non-central <span class="math inline">\(\chi^2\)</span> distribution) to calculate the required sample size for detecting global model misfit based on established fit indices like the RMSEA <span class="citation" data-cites="moshagen_sempower_2024">(<a href="#ref-moshagen_sempower_2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</li>
+<li><strong>Simulation-based methods</strong>: Use Monte Carlo data generation to repeatedly establish how the model behaves under assumed population models, allowing the estimation of power, bias, and coverage for specific parameters or overall fit indices across varying sample sizes <span class="citation" data-cites="pornprasertmanit_simsem_2021">(<a href="#ref-pornprasertmanit_simsem_2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</li>
+</ol>
 <p>This document provides a comprehensive tutorial covering both analytical methods using the <code>semPower</code> and <code>semTools</code> packages, and Monte Carlo methods using the <code>simsem</code> package.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -236,7 +246,15 @@ window.Quarto = {
 <section id="sec-popmodel" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="sec-popmodel"><span class="header-section-number">2</span> The Running Example: WHOQOL-BREF Population CFA Model</h2>
 <p>To anchor our power analyses, we use the WHOQOL-BREF measurement instrument. Meaningful power analysis requires the definition of a population model—the “true” state of the world from which we believe our data are generated. By simulating from a meta-analytically derived population model rather than a purely arbitrary one, researchers can ensure that tests reflect realistic boundaries <span class="citation" data-cites="lin2022">(<a href="#ref-lin2022" role="doc-biblioref">Lin &amp; Yao, 2022</a>)</span>.</p>
-<p>We specify three population variations to perform sensitivity analyses: 1. <strong>Meta-analytic</strong>: Loadings and residual variances closely matching <span class="citation" data-cites="lin2022">Lin &amp; Yao (<a href="#ref-lin2022" role="doc-biblioref">2022</a>)</span>. 2. <strong>Naive</strong>: A pessimistic baseline where all factor loadings are weak (<span class="math inline">\(\lambda = 0.5\)</span>). 3. <strong>Optimistic</strong>: A best-case scenario with stronger factor loadings (<span class="math inline">\(\lambda = 0.7\)</span>).</p>
+<p>We specify three population variations to perform sensitivity analyses:</p>
+<ol type="1">
+<li><strong>Meta-analytic</strong>: Loadings and residual variances closely matching <span class="citation" data-cites="lin2022">Lin &amp; Yao (<a href="#ref-lin2022" role="doc-biblioref">2022</a>)</span>.</li>
+<li><strong>Naive</strong>: A pessimistic baseline where all factor loadings are weak (<span class="math inline">\(\lambda = 0.5\)</span>).</li>
+<li><strong>Optimistic</strong>: A best-case scenario with stronger factor loadings (<span class="math inline">\(\lambda = 0.7\)</span>).</li>
+</ol>
+<section id="population-model" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="population-model"><span class="header-section-number">2.1</span> Population model</h3>
+<p>The primary population model uses factor loadings derived from the meta-analysis by Lin and Yao (2022). Four factors: Psychological (6 items), Physical (7 items), Social (3 items), Environment (8 items). Interfactor correlations are set at the upper bound (0.3) reported in the meta-analysis (range: 0.08–0.30). Residual variances follow the formula 1 − λ², except for Q3 and Q4 which share a correlated residual (0.3).</p>
 <div class="quarto-embed-nb-cell">
 <div id="pop-model" class="cell">
 <div class="cell-output cell-output-stdout">
@@ -285,6 +303,10 @@ window.Quarto = {
 </div>
 </div>
 </div>
+</section>
+<section id="naive-model" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="naive-model"><span class="header-section-number">2.2</span> Naive model</h3>
+<p>All factor loadings set to 0.5 (minimum acceptable for CFA), residual variances = 0.75 (i.e., 1 − 0.5²), and small interfactor correlations (0.3). This represents a <strong>pessimistic</strong> scenario.</p>
 <div class="quarto-embed-nb-cell">
 <div id="naive-model" class="cell">
 <div class="cell-output cell-output-stdout">
@@ -333,6 +355,10 @@ window.Quarto = {
 </div>
 </div>
 </div>
+</section>
+<section id="optimistic-model" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="optimistic-model"><span class="header-section-number">2.3</span> Optimistic model</h3>
+<p>All factor loadings set to 0.7 (strong loadings), residual variances = 0.51 (1 − 0.7²), and moderate interfactor correlations (0.5). This represents an <strong>best-case</strong> scenario.</p>
 <div class="quarto-embed-nb-cell">
 <div id="opt-model" class="cell">
 <div class="cell-output cell-output-stdout">
@@ -381,18 +407,10 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div class="quarto-embed-nb-cell">
-<div id="analysis-model" class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  psycho =~ Q5_P + Q6_P + Q7_P + Q11_P + Q19_P + Q26_P
-  physical =~ Q3_F + Q4_F + Q10_F + Q15_F + Q16_F + Q17_F + Q18_F
-  social =~ Q20_S + Q21_S + Q22_S
-  environment =~ Q8_A + Q9_A + Q12_A + Q13_A + Q14_A + Q23_A + Q24_A + Q25_A
-  Q4_F ~~ Q3_F</code></pre>
-</div>
-</div>
-</div>
+</section>
+<section id="comparison-table" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="comparison-table"><span class="header-section-number">2.4</span> Comparison table</h3>
+<p>Below is a summary of the three population models.</p>
 <div class="quarto-embed-nb-cell">
 <div class="cell">
 <div id="tbl-pop-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -455,41 +473,60 @@ Table&nbsp;1: Summary of population model variants used for sensitivity analysis
 </div>
 </div>
 </section>
-<section id="sec-df" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="sec-df"><span class="header-section-number">3</span> Model Degrees of Freedom</h2>
-<p>Analytical calculations depend crucially on model degrees of freedom (<span class="math inline">\(df\)</span>), the difference between the number of available pieces of information (unique variances/covariances) and the number of freely estimated parameters. Knowing this allows tools to parameterize the non-central <span class="math inline">\(\chi^2\)</span> distribution.</p>
+<section id="analysis-model" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="analysis-model"><span class="header-section-number">2.5</span> Analysis model</h3>
+<p>This is the model we will fit to data. All parameters are freely estimated (no fixed values), matching the structure of the population models.</p>
 <div class="quarto-embed-nb-cell">
-<div id="compute-df" class="cell">
+<div id="analysis-model" class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Model degrees of freedom (via lavaan): 245 Unique covariance elements: 300 Model df: 245 </code></pre>
+<pre><code>
+  psycho =~ Q5_P + Q6_P + Q7_P + Q11_P + Q19_P + Q26_P
+  physical =~ Q3_F + Q4_F + Q10_F + Q15_F + Q16_F + Q17_F + Q18_F
+  social =~ Q20_S + Q21_S + Q22_S
+  environment =~ Q8_A + Q9_A + Q12_A + Q13_A + Q14_A + Q23_A + Q24_A + Q25_A
+  Q4_F ~~ Q3_F</code></pre>
 </div>
 </div>
 </div>
 </section>
-<section id="sec-analytical" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="sec-analytical"><span class="header-section-number">4</span> Analytical Power Analysis</h2>
+</section>
+<section id="sec-analytical" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-analytical"><span class="header-section-number">3</span> Analytical Power Analysis</h2>
 <p>Analytical power usually asks: “How large must <span class="math inline">\(N\)</span> be to reject the hypothesis that the model fits perfectly (or adequately) when the true misfit in the population is of a certain magnitude?” A common formulation sets the alternative hypothesis to RMSEA = 0.05 <span class="citation" data-cites="maccallum1996">(<a href="#ref-maccallum1996" role="doc-biblioref">MacCallum et al., 1996</a>)</span>.</p>
-<section id="sec-apriori" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="sec-apriori"><span class="header-section-number">4.1</span> A Priori: How Many Observations?</h3>
+<section id="sec-df" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="sec-df"><span class="header-section-number">3.1</span> Model Degrees of Freedom</h3>
+<p>Analytical calculations depend crucially on model degrees of freedom (<span class="math inline">\(df\)</span>), the difference between the number of available pieces of information (unique variances/covariances) and the number of freely estimated parameters. Knowing this allows tools to parameterize the non-central <span class="math inline">\(\chi^2\)</span> distribution. This calculation is necessary for both a priori and post hoc power analyses in analytical methods for global fit.</p>
+<div class="quarto-embed-nb-cell">
+<div id="compute-df" class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Model degrees of freedom (via semPower): 249 </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-apriori" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="sec-apriori"><span class="header-section-number">3.2</span> A Priori: How Many Observations?</h3>
 <div class="quarto-embed-nb-cell">
 <div id="cell-apriori-rmsea" class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
  semPower: A priori power analysis
                                    
- F0                        0.612500
+ F0                        0.622500
  RMSEA                     0.050000
- Mc                        0.736203
+ Mc                        0.732531
+ GFI                       0.950683
+ AGFI                      0.940582
                                    
- df                        245     
- Required Num Observations 100     
+ df                        249     
+ Required Num Observations 99      
                                    
- Critical Chi-Square       282.5114
- NCP                       60.63750
+ Critical Chi-Square       286.8077
+ NCP                       61.00500
  Alpha                     0.050000
- Beta                      0.198392
- Power (1 - Beta)          0.801608
- Implied Alpha/Beta Ratio  0.252026</code></pre>
+ Beta                      0.199217
+ Power (1 - Beta)          0.800783
+ Implied Alpha/Beta Ratio  0.250983</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -501,64 +538,46 @@ Table&nbsp;1: Summary of population model variants used for sensitivity analysis
 </div>
 </div>
 <div class="quarto-embed-nb-cell">
-<div id="apriori-semtools" class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Required N (semTools): 102 </code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="sec-posthoc-analytical" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="sec-posthoc-analytical"><span class="header-section-number">4.2</span> Post Hoc: Achieved Power</h3>
-<p>For the empirical WHOQOL-BREF dataset, <span class="math inline">\(N = 1,047\)</span>. What is our achieved power if true RMSEA is 0.05?</p>
-<div class="quarto-embed-nb-cell">
-<div id="cell-posthoc-sempower" class="cell">
+<div id="cell-apriori-popmodel" class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
- semPower: Post hoc power analysis
-                                      
- F0                       0.612500    
- RMSEA                    0.050000    
- Mc                       0.736203    
-                                      
- df                       245         
- Num Observations         1047        
- NCP                      640.6750    
-                                      
- Critical Chi-Square      282.5114    
- Alpha                    0.050000    
- Beta                     3.070697e-47
- Power (1 - Beta)         &gt; 0.9999    
- Implied Alpha/Beta Ratio 1.628295e+45</code></pre>
+ semPower: A priori power analysis
+                                   
+ F0                        0.285805
+ RMSEA                     0.033879
+ Mc                        0.866838
+                                   
+ df                        249     
+ Required Num Observations 215     
+                                   
+ Critical Chi-Square       286.8077
+ NCP                       61.16236
+ Alpha                     0.050000
+ Beta                      0.197630
+ Power (1 - Beta)          0.802370
+ Implied Alpha/Beta Ratio  0.252998</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-posthoc-sempower-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-posthoc-sempower-output-2.png" id="posthoc-sempower" width="672" height="480" class="figure-img"></a></p>
+<p><a href="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-apriori-popmodel-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-apriori-popmodel-output-2.png" id="apriori-popmodel" width="672" height="480" class="figure-img"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<div class="quarto-embed-nb-cell">
-<div id="posthoc-semtools" class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Achieved power (semTools): 1 </code></pre>
-</div>
-</div>
-</div>
 </section>
-<section id="sec-power-curves" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="sec-power-curves"><span class="header-section-number">4.3</span> Power Curves</h3>
+<section id="sec-power-curves" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="sec-power-curves"><span class="header-section-number">3.3</span> Power Curves</h3>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-power-by-n" class="cell" data-fig-width="8" data-fig-height="5">
+<div id="cell-fig-power-rmsea" class="cell" data-fig-width="8" data-fig-height="5">
 <div class="cell-output cell-output-display">
-<div id="fig-power-by-n" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-power-rmsea" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-power-by-n-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-fig-power-by-n-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;1: Power as a function of sample size for RMSEA ≥ 0.05"><img src="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-fig-power-by-n-output-1.png" width="768" height="480" class="figure-img"></a>
+<div aria-describedby="fig-power-rmsea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-fig-power-rmsea-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;1: Power as a function of sample size for RMSEA ≥ 0.05"><img src="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-fig-power-rmsea-output-1.png" width="768" height="480" class="figure-img"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-by-n-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-rmsea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Power as a function of sample size for RMSEA ≥ 0.05
 </figcaption>
 </figure>
@@ -567,15 +586,15 @@ Figure&nbsp;1: Power as a function of sample size for RMSEA ≥ 0.05
 </div>
 </div>
 <div class="quarto-embed-nb-cell">
-<div id="cell-fig-power-by-effect" class="cell" data-fig-width="8" data-fig-height="5">
+<div id="cell-fig-power-popmodel" class="cell" data-fig-width="8" data-fig-height="5">
 <div class="cell-output cell-output-display">
-<div id="fig-power-by-effect" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-power-popmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-power-by-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-fig-power-by-effect-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;2: Power as a function of RMSEA magnitude with N = 1047"><img src="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-fig-power-by-effect-output-1.png" width="768" height="480" class="figure-img"></a>
+<div aria-describedby="fig-power-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-fig-power-popmodel-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;2: Power as a function of sample size for the population model (popModel)"><img src="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-fig-power-popmodel-output-1.png" width="768" height="480" class="figure-img"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-by-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Power as a function of RMSEA magnitude with N = 1047
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Power as a function of sample size for the population model (popModel)
 </figcaption>
 </figure>
 </div>
@@ -592,38 +611,40 @@ Table&nbsp;2: Summary of analytical power analysis results
 <div aria-describedby="tbl-analytical-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display cell-output-markdown">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 7%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Method</th>
-<th style="text-align: center;">N Required</th>
+<th>N Required</th>
 <th style="text-align: center;">Power</th>
+<th style="text-align: center;">Implied RMSEA</th>
+<th style="text-align: center;">Implied Fmin</th>
 <th style="text-align: center;">df</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">semPower a priori (RMSEA ≥ .05)</td>
-<td style="text-align: center;">100</td>
-<td style="text-align: center;">NA</td>
-<td style="text-align: center;">245</td>
+<td style="text-align: left;">Model-free a priori (RMSEA ≥ .05)</td>
+<td>99</td>
+<td style="text-align: center;">0.8008</td>
+<td style="text-align: center;">0.0500</td>
+<td style="text-align: center;">0.6225</td>
+<td style="text-align: center;">249</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">semTools a priori (RMSEA ≥ .05)</td>
-<td style="text-align: center;">102</td>
-<td style="text-align: center;">0.8</td>
-<td style="text-align: center;">245</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">semPower post hoc (N = 1047)</td>
-<td style="text-align: center;">1047</td>
-<td style="text-align: center;">1.0</td>
-<td style="text-align: center;">245</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">semTools post hoc (N = 1047)</td>
-<td style="text-align: center;">1047</td>
-<td style="text-align: center;">1.0</td>
-<td style="text-align: center;">245</td>
+<td style="text-align: left;">Model-based a priori (Population Model)</td>
+<td>215</td>
+<td style="text-align: center;">0.8024</td>
+<td style="text-align: center;">0.0339</td>
+<td style="text-align: center;">0.2858</td>
+<td style="text-align: center;">249</td>
 </tr>
 </tbody>
 </table>
@@ -648,8 +669,8 @@ Table&nbsp;2: Summary of analytical power analysis results
 </div>
 </section>
 </section>
-<section id="sec-sim-ideal" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="sec-sim-ideal"><span class="header-section-number">5</span> Monte Carlo Simulation: Ideal Conditions</h2>
+<section id="sec-sim-ideal" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-sim-ideal"><span class="header-section-number">4</span> Monte Carlo Simulation: Ideal Conditions</h2>
 <p>Given the limitations above, Monte Carlo simulation stands as a highly flexible strategy. We generate many synthetic datasets from the defined <code>popModel</code>, apply our <code>analyzeModel</code>, and record the parameter estimates and standard errors.</p>
 <p>Under strictly ideal conditions (multivariate normal continuous data, no missing values), simulation results should match analytical calculations, validating both implementations. Notice that varying sample sizes gives us empirical power curves.</p>
 <div class="quarto-embed-nb-cell">
@@ -694,14 +715,18 @@ environment=~Q23_A               0.768       0.042      0.044
 environment=~Q24_A               0.638       0.068      0.046
 environment=~Q25_A               0.717       0.058      0.043
 Q3_F~~Q4_F                       0.296       0.059      0.057
+psycho~~physical                 0.306       0.049      0.049
+psycho~~social                   0.287       0.058      0.048
+psycho~~environment              0.310       0.061      0.048
+physical~~social                 0.286       0.054      0.050
+physical~~environment            0.314       0.062      0.050
+social~~environment              0.307       0.039      0.049
 Q5_P~~Q5_P                       0.142       0.018      0.015
 Q6_P~~Q6_P                       0.337       0.023      0.026
 Q7_P~~Q7_P                       0.127       0.017      0.015
 Q11_P~~Q11_P                     0.471       0.024      0.035
 Q19_P~~Q19_P                     0.441       0.043      0.033
 Q26_P~~Q26_P                     0.603       0.050      0.044
-Q3_F~~Q3_F                       0.984       0.075      0.076
-Q4_F~~Q4_F                       1.006       0.092      0.076
 Q10_F~~Q10_F                     0.595       0.056      0.045
 Q15_F~~Q15_F                     0.503       0.030      0.041
 Q16_F~~Q16_F                     0.556       0.046      0.044
@@ -718,12 +743,8 @@ Q14_A~~Q14_A                     0.404       0.037      0.033
 Q23_A~~Q23_A                     0.434       0.039      0.036
 Q24_A~~Q24_A                     0.606       0.046      0.046
 Q25_A~~Q25_A                     0.466       0.035      0.037
-psycho~~physical                 0.306       0.049      0.049
-psycho~~social                   0.287       0.058      0.048
-psycho~~environment              0.310       0.061      0.048
-physical~~social                 0.286       0.054      0.050
-physical~~environment            0.314       0.062      0.050
-social~~environment              0.307       0.039      0.049
+Q3_F~~Q3_F                       0.984       0.075      0.076
+Q4_F~~Q4_F                       1.006       0.092      0.076
                       Power (Not equal 0) Std Est Std Est SD Std Ave SE
 psycho=~Q5_P                        1.000   0.926      0.010      0.009
 psycho=~Q6_P                        1.000   0.818      0.020      0.017
@@ -750,14 +771,18 @@ environment=~Q23_A                  1.000   0.759      0.017      0.024
 environment=~Q24_A                  1.000   0.632      0.049      0.033
 environment=~Q25_A                  1.000   0.723      0.034      0.027
 Q3_F~~Q4_F                          1.000   0.297      0.050      0.049
+psycho~~physical                    1.000   0.306      0.049      0.049
+psycho~~social                      0.947   0.287      0.058      0.048
+psycho~~environment                 1.000   0.310      0.061      0.048
+physical~~social                    1.000   0.286      0.054      0.050
+physical~~environment               1.000   0.314      0.062      0.050
+social~~environment                 1.000   0.307      0.039      0.049
 Q5_P~~Q5_P                          1.000   0.142      0.018      0.017
 Q6_P~~Q6_P                          1.000   0.331      0.032      0.029
 Q7_P~~Q7_P                          1.000   0.125      0.020      0.016
 Q11_P~~Q11_P                        1.000   0.473      0.029      0.036
 Q19_P~~Q19_P                        1.000   0.430      0.028      0.034
 Q26_P~~Q26_P                        1.000   0.583      0.039      0.038
-Q3_F~~Q3_F                          1.000   0.570      0.047      0.041
-Q4_F~~Q4_F                          1.000   0.587      0.050      0.041
 Q10_F~~Q10_F                        1.000   0.592      0.049      0.041
 Q15_F~~Q15_F                        1.000   0.491      0.040      0.039
 Q16_F~~Q16_F                        1.000   0.537      0.033      0.040
@@ -774,12 +799,8 @@ Q14_A~~Q14_A                        1.000   0.404      0.043      0.035
 Q23_A~~Q23_A                        1.000   0.424      0.026      0.036
 Q24_A~~Q24_A                        1.000   0.599      0.057      0.040
 Q25_A~~Q25_A                        1.000   0.477      0.047      0.038
-psycho~~physical                    1.000   0.306      0.049      0.049
-psycho~~social                      0.947   0.287      0.058      0.048
-psycho~~environment                 1.000   0.310      0.061      0.048
-physical~~social                    1.000   0.286      0.054      0.050
-physical~~environment               1.000   0.314      0.062      0.050
-social~~environment                 1.000   0.307      0.039      0.049
+Q3_F~~Q3_F                          1.000   0.570      0.047      0.041
+Q4_F~~Q4_F                          1.000   0.587      0.050      0.041
                       Average Param Average Bias Coverage r_coef.n r_se.n
 psycho=~Q5_P                   0.92        0.009    0.947   -0.384 -0.883
 psycho=~Q6_P                   0.81        0.018    0.947   -0.545 -0.881
@@ -806,14 +827,18 @@ environment=~Q23_A             0.75        0.018    0.947    0.151 -0.890
 environment=~Q24_A             0.64       -0.002    0.895    0.206 -0.902
 environment=~Q25_A             0.73       -0.013    0.895    0.406 -0.911
 Q3_F~~Q4_F                     0.30       -0.004    1.000    0.142 -0.896
+psycho~~physical               0.30        0.006    0.947   -0.312 -0.879
+psycho~~social                 0.30       -0.013    1.000   -0.008 -0.859
+psycho~~environment            0.30        0.010    0.842   -0.201 -0.873
+physical~~social               0.30       -0.014    1.000   -0.102 -0.875
+physical~~environment          0.30        0.014    0.842   -0.419 -0.870
+social~~environment            0.30        0.007    1.000   -0.311 -0.894
 Q5_P~~Q5_P                     0.15       -0.008    0.947    0.260 -0.858
 Q6_P~~Q6_P                     0.34       -0.003    1.000    0.225 -0.860
 Q7_P~~Q7_P                     0.12        0.007    0.895   -0.120 -0.872
 Q11_P~~Q11_P                   0.47        0.001    1.000   -0.279 -0.890
 Q19_P~~Q19_P                   0.44        0.001    0.895   -0.356 -0.847
 Q26_P~~Q26_P                   0.60        0.003    0.947   -0.116 -0.859
-Q3_F~~Q3_F                     1.00       -0.016    0.947    0.166 -0.875
-Q4_F~~Q4_F                     1.00        0.006    0.947    0.380 -0.898
 Q10_F~~Q10_F                   0.60       -0.005    0.947   -0.024 -0.856
 Q15_F~~Q15_F                   0.50        0.003    1.000   -0.384 -0.867
 Q16_F~~Q16_F                   0.54        0.016    0.947   -0.270 -0.859
@@ -830,12 +855,8 @@ Q14_A~~Q14_A                   0.41       -0.006    1.000    0.486 -0.903
 Q23_A~~Q23_A                   0.44       -0.006    1.000   -0.183 -0.879
 Q24_A~~Q24_A                   0.59        0.016    1.000   -0.431 -0.880
 Q25_A~~Q25_A                   0.47       -0.004    1.000   -0.179 -0.898
-psycho~~physical               0.30        0.006    0.947   -0.312 -0.879
-psycho~~social                 0.30       -0.013    1.000   -0.008 -0.859
-psycho~~environment            0.30        0.010    0.842   -0.201 -0.873
-physical~~social               0.30       -0.014    1.000   -0.102 -0.875
-physical~~environment          0.30        0.014    0.842   -0.419 -0.870
-social~~environment            0.30        0.007    1.000   -0.311 -0.894
+Q3_F~~Q3_F                     1.00       -0.016    0.947    0.166 -0.875
+Q4_F~~Q4_F                     1.00        0.006    0.947    0.380 -0.898
 ========= Correlation between Fit Indices ============
        chisq    aic    bic  rmsea    cfi    tli   srmr      n
 chisq  1.000 -0.355 -0.355  0.861 -0.708 -0.823  0.555 -0.354
@@ -1450,6 +1471,126 @@ Table&nbsp;3: Parameter estimates summary — Ideal conditions, fixed N = 500
 <td style="text-align: right;">0.010</td>
 </tr>
 <tr class="even">
+<td>psycho~~physical</td>
+<td style="text-align: right;">0.305</td>
+<td style="text-align: right;">0.051</td>
+<td style="text-align: right;">0.044</td>
+<td style="text-align: right;">1</td>
+<td>0.305</td>
+<td>0.051</td>
+<td>0.044</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.90</td>
+<td>0.017</td>
+<td>0.103</td>
+<td style="text-align: right;">-0.121</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.174</td>
+<td style="text-align: right;">0.006</td>
+</tr>
+<tr class="odd">
+<td>psycho~~social</td>
+<td style="text-align: right;">0.297</td>
+<td style="text-align: right;">0.047</td>
+<td style="text-align: right;">0.044</td>
+<td style="text-align: right;">1</td>
+<td>0.297</td>
+<td>0.047</td>
+<td>0.044</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">0.96</td>
+<td>-0.009</td>
+<td>-0.058</td>
+<td style="text-align: right;">-0.079</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.171</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td>psycho~~environment</td>
+<td style="text-align: right;">0.307</td>
+<td style="text-align: right;">0.048</td>
+<td style="text-align: right;">0.044</td>
+<td style="text-align: right;">1</td>
+<td>0.307</td>
+<td>0.048</td>
+<td>0.044</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.94</td>
+<td>0.024</td>
+<td>0.154</td>
+<td style="text-align: right;">-0.072</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.173</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="odd">
+<td>physical~~social</td>
+<td style="text-align: right;">0.301</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">0.045</td>
+<td style="text-align: right;">1</td>
+<td>0.301</td>
+<td>0.043</td>
+<td>0.045</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.96</td>
+<td>0.003</td>
+<td>0.023</td>
+<td style="text-align: right;">0.054</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.177</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td>physical~~environment</td>
+<td style="text-align: right;">0.311</td>
+<td style="text-align: right;">0.052</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">1</td>
+<td>0.311</td>
+<td>0.052</td>
+<td>0.046</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.94</td>
+<td>0.036</td>
+<td>0.209</td>
+<td style="text-align: right;">-0.121</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.179</td>
+<td style="text-align: right;">0.006</td>
+</tr>
+<tr class="odd">
+<td>social~~environment</td>
+<td style="text-align: right;">0.292</td>
+<td style="text-align: right;">0.047</td>
+<td style="text-align: right;">0.045</td>
+<td style="text-align: right;">1</td>
+<td>0.292</td>
+<td>0.047</td>
+<td>0.045</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">-0.008</td>
+<td style="text-align: right;">0.94</td>
+<td>-0.026</td>
+<td>-0.165</td>
+<td style="text-align: right;">-0.028</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.177</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
 <td>Q5_P~~Q5_P</td>
 <td style="text-align: right;">0.148</td>
 <td style="text-align: right;">0.013</td>
@@ -1568,46 +1709,6 @@ Table&nbsp;3: Parameter estimates summary — Ideal conditions, fixed N = 500
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">0.156</td>
 <td style="text-align: right;">0.009</td>
-</tr>
-<tr class="even">
-<td>Q3_F~~Q3_F</td>
-<td style="text-align: right;">0.998</td>
-<td style="text-align: right;">0.066</td>
-<td style="text-align: right;">0.070</td>
-<td style="text-align: right;">1</td>
-<td>0.589</td>
-<td>0.036</td>
-<td>0.038</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">-0.002</td>
-<td style="text-align: right;">0.96</td>
-<td>-0.002</td>
-<td>-0.027</td>
-<td style="text-align: right;">0.050</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.273</td>
-<td style="text-align: right;">0.016</td>
-</tr>
-<tr class="odd">
-<td>Q4_F~~Q4_F</td>
-<td style="text-align: right;">1.007</td>
-<td style="text-align: right;">0.057</td>
-<td style="text-align: right;">0.070</td>
-<td style="text-align: right;">1</td>
-<td>0.591</td>
-<td>0.035</td>
-<td>0.038</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.98</td>
-<td>0.007</td>
-<td>0.130</td>
-<td style="text-align: right;">0.221</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.275</td>
-<td style="text-align: right;">0.014</td>
 </tr>
 <tr class="even">
 <td>Q10_F~~Q10_F</td>
@@ -1930,124 +2031,44 @@ Table&nbsp;3: Parameter estimates summary — Ideal conditions, fixed N = 500
 <td style="text-align: right;">0.009</td>
 </tr>
 <tr class="even">
-<td>psycho~~physical</td>
-<td style="text-align: right;">0.305</td>
-<td style="text-align: right;">0.051</td>
-<td style="text-align: right;">0.044</td>
+<td>Q3_F~~Q3_F</td>
+<td style="text-align: right;">0.998</td>
+<td style="text-align: right;">0.066</td>
+<td style="text-align: right;">0.070</td>
 <td style="text-align: right;">1</td>
-<td>0.305</td>
-<td>0.051</td>
-<td>0.044</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.005</td>
-<td style="text-align: right;">0.90</td>
-<td>0.017</td>
-<td>0.103</td>
-<td style="text-align: right;">-0.121</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.174</td>
-<td style="text-align: right;">0.006</td>
-</tr>
-<tr class="odd">
-<td>psycho~~social</td>
-<td style="text-align: right;">0.297</td>
-<td style="text-align: right;">0.047</td>
-<td style="text-align: right;">0.044</td>
-<td style="text-align: right;">1</td>
-<td>0.297</td>
-<td>0.047</td>
-<td>0.044</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">-0.003</td>
-<td style="text-align: right;">0.96</td>
-<td>-0.009</td>
-<td>-0.058</td>
-<td style="text-align: right;">-0.079</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.171</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td>psycho~~environment</td>
-<td style="text-align: right;">0.307</td>
-<td style="text-align: right;">0.048</td>
-<td style="text-align: right;">0.044</td>
-<td style="text-align: right;">1</td>
-<td>0.307</td>
-<td>0.048</td>
-<td>0.044</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.94</td>
-<td>0.024</td>
-<td>0.154</td>
-<td style="text-align: right;">-0.072</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.173</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="odd">
-<td>physical~~social</td>
-<td style="text-align: right;">0.301</td>
-<td style="text-align: right;">0.043</td>
-<td style="text-align: right;">0.045</td>
-<td style="text-align: right;">1</td>
-<td>0.301</td>
-<td>0.043</td>
-<td>0.045</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.96</td>
-<td>0.003</td>
-<td>0.023</td>
-<td style="text-align: right;">0.054</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.177</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td>physical~~environment</td>
-<td style="text-align: right;">0.311</td>
-<td style="text-align: right;">0.052</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">1</td>
-<td>0.311</td>
-<td>0.052</td>
-<td>0.046</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.011</td>
-<td style="text-align: right;">0.94</td>
+<td>0.589</td>
 <td>0.036</td>
-<td>0.209</td>
-<td style="text-align: right;">-0.121</td>
-<td style="text-align: right;">0.06</td>
+<td>0.038</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">-0.002</td>
+<td style="text-align: right;">0.96</td>
+<td>-0.002</td>
+<td>-0.027</td>
+<td style="text-align: right;">0.050</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.179</td>
-<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.273</td>
+<td style="text-align: right;">0.016</td>
 </tr>
 <tr class="odd">
-<td>social~~environment</td>
-<td style="text-align: right;">0.292</td>
-<td style="text-align: right;">0.047</td>
-<td style="text-align: right;">0.045</td>
+<td>Q4_F~~Q4_F</td>
+<td style="text-align: right;">1.007</td>
+<td style="text-align: right;">0.057</td>
+<td style="text-align: right;">0.070</td>
 <td style="text-align: right;">1</td>
-<td>0.292</td>
-<td>0.047</td>
-<td>0.045</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">-0.008</td>
-<td style="text-align: right;">0.94</td>
-<td>-0.026</td>
-<td>-0.165</td>
-<td style="text-align: right;">-0.028</td>
+<td>0.591</td>
+<td>0.035</td>
+<td>0.038</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.98</td>
+<td>0.007</td>
+<td>0.130</td>
+<td style="text-align: right;">0.221</td>
 <td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.177</td>
-<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.275</td>
+<td style="text-align: right;">0.014</td>
 </tr>
 </tbody>
 </table>
@@ -2082,12 +2103,12 @@ Table&nbsp;4: Convergence check — Analytical vs.&nbsp;simulation N requirement
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">semPower a priori (RMSEA ≥ .05)</td>
-<td style="text-align: left;">See <a href="#sec-apriori" class="quarto-xref">Section&nbsp;4.1</a></td>
+<td style="text-align: left;">See <a href="#sec-apriori" class="quarto-xref">Section&nbsp;3.2</a></td>
 <td style="text-align: left;">Model-free, RMSEA-based</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">semTools a priori (RMSEA ≥ .05)</td>
-<td style="text-align: left;">See <a href="#sec-apriori" class="quarto-xref">Section&nbsp;4.1</a></td>
+<td style="text-align: left;">See <a href="#sec-apriori" class="quarto-xref">Section&nbsp;3.2</a></td>
 <td style="text-align: left;">Same underlying math</td>
 </tr>
 <tr class="odd">
@@ -2122,11 +2143,11 @@ Table&nbsp;4: Convergence check — Analytical vs.&nbsp;simulation N requirement
 </div>
 </div>
 </section>
-<section id="sec-sim-robust" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="sec-sim-robust"><span class="header-section-number">6</span> Monte Carlo Simulation: Realistic Scenarios</h2>
+<section id="sec-sim-robust" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-sim-robust"><span class="header-section-number">5</span> Monte Carlo Simulation: Realistic Scenarios</h2>
 <p>Most applied survey data violate the ideal assumptions. Simulating how analytical robustness deteriorates helps us adjust the planned sample sizes to offset the expected penalty.</p>
-<section id="sec-nonnormal" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="sec-nonnormal"><span class="header-section-number">6.1</span> Non-Normality</h3>
+<section id="sec-nonnormal" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="sec-nonnormal"><span class="header-section-number">5.1</span> Non-Normality</h3>
 <p>Applying continuous but non-normal (e.g., highly skewed or kurtotic) generation exposes the vulnerability of unadjusted normal-theory ML tests, emphasizing the necessity of robust estimators (e.g., MLR).</p>
 <div class="quarto-embed-nb-cell">
 <div id="sim-nonnormal-vary" class="cell" data-cache="true">
@@ -2170,14 +2191,18 @@ environment=~Q23_A               0.768       0.042      0.044
 environment=~Q24_A               0.638       0.068      0.046
 environment=~Q25_A               0.717       0.058      0.043
 Q3_F~~Q4_F                       0.296       0.059      0.057
+psycho~~physical                 0.306       0.049      0.049
+psycho~~social                   0.287       0.058      0.048
+psycho~~environment              0.310       0.061      0.048
+physical~~social                 0.286       0.054      0.050
+physical~~environment            0.314       0.062      0.050
+social~~environment              0.307       0.039      0.049
 Q5_P~~Q5_P                       0.142       0.018      0.015
 Q6_P~~Q6_P                       0.337       0.023      0.026
 Q7_P~~Q7_P                       0.127       0.017      0.015
 Q11_P~~Q11_P                     0.471       0.024      0.035
 Q19_P~~Q19_P                     0.441       0.043      0.033
 Q26_P~~Q26_P                     0.603       0.050      0.044
-Q3_F~~Q3_F                       0.984       0.075      0.076
-Q4_F~~Q4_F                       1.006       0.092      0.076
 Q10_F~~Q10_F                     0.595       0.056      0.045
 Q15_F~~Q15_F                     0.503       0.030      0.041
 Q16_F~~Q16_F                     0.556       0.046      0.044
@@ -2194,12 +2219,8 @@ Q14_A~~Q14_A                     0.404       0.037      0.033
 Q23_A~~Q23_A                     0.434       0.039      0.036
 Q24_A~~Q24_A                     0.606       0.046      0.046
 Q25_A~~Q25_A                     0.466       0.035      0.037
-psycho~~physical                 0.306       0.049      0.049
-psycho~~social                   0.287       0.058      0.048
-psycho~~environment              0.310       0.061      0.048
-physical~~social                 0.286       0.054      0.050
-physical~~environment            0.314       0.062      0.050
-social~~environment              0.307       0.039      0.049
+Q3_F~~Q3_F                       0.984       0.075      0.076
+Q4_F~~Q4_F                       1.006       0.092      0.076
                       Power (Not equal 0) Std Est Std Est SD Std Ave SE
 psycho=~Q5_P                        1.000   0.926      0.010      0.009
 psycho=~Q6_P                        1.000   0.818      0.020      0.017
@@ -2226,14 +2247,18 @@ environment=~Q23_A                  1.000   0.759      0.017      0.024
 environment=~Q24_A                  1.000   0.632      0.049      0.033
 environment=~Q25_A                  1.000   0.723      0.034      0.027
 Q3_F~~Q4_F                          1.000   0.297      0.050      0.049
+psycho~~physical                    1.000   0.306      0.049      0.049
+psycho~~social                      0.947   0.287      0.058      0.048
+psycho~~environment                 1.000   0.310      0.061      0.048
+physical~~social                    1.000   0.286      0.054      0.050
+physical~~environment               1.000   0.314      0.062      0.050
+social~~environment                 1.000   0.307      0.039      0.049
 Q5_P~~Q5_P                          1.000   0.142      0.018      0.017
 Q6_P~~Q6_P                          1.000   0.331      0.032      0.029
 Q7_P~~Q7_P                          1.000   0.125      0.020      0.016
 Q11_P~~Q11_P                        1.000   0.473      0.029      0.036
 Q19_P~~Q19_P                        1.000   0.430      0.028      0.034
 Q26_P~~Q26_P                        1.000   0.583      0.039      0.038
-Q3_F~~Q3_F                          1.000   0.570      0.047      0.041
-Q4_F~~Q4_F                          1.000   0.587      0.050      0.041
 Q10_F~~Q10_F                        1.000   0.592      0.049      0.041
 Q15_F~~Q15_F                        1.000   0.491      0.040      0.039
 Q16_F~~Q16_F                        1.000   0.537      0.033      0.040
@@ -2250,12 +2275,8 @@ Q14_A~~Q14_A                        1.000   0.404      0.043      0.035
 Q23_A~~Q23_A                        1.000   0.424      0.026      0.036
 Q24_A~~Q24_A                        1.000   0.599      0.057      0.040
 Q25_A~~Q25_A                        1.000   0.477      0.047      0.038
-psycho~~physical                    1.000   0.306      0.049      0.049
-psycho~~social                      0.947   0.287      0.058      0.048
-psycho~~environment                 1.000   0.310      0.061      0.048
-physical~~social                    1.000   0.286      0.054      0.050
-physical~~environment               1.000   0.314      0.062      0.050
-social~~environment                 1.000   0.307      0.039      0.049
+Q3_F~~Q3_F                          1.000   0.570      0.047      0.041
+Q4_F~~Q4_F                          1.000   0.587      0.050      0.041
                       Average Param Average Bias Coverage r_coef.n r_se.n
 psycho=~Q5_P                   0.92        0.009    0.947   -0.384 -0.883
 psycho=~Q6_P                   0.81        0.018    0.947   -0.545 -0.881
@@ -2282,14 +2303,18 @@ environment=~Q23_A             0.75        0.018    0.947    0.151 -0.890
 environment=~Q24_A             0.64       -0.002    0.895    0.206 -0.902
 environment=~Q25_A             0.73       -0.013    0.895    0.406 -0.911
 Q3_F~~Q4_F                     0.30       -0.004    1.000    0.142 -0.896
+psycho~~physical               0.30        0.006    0.947   -0.312 -0.879
+psycho~~social                 0.30       -0.013    1.000   -0.008 -0.859
+psycho~~environment            0.30        0.010    0.842   -0.201 -0.873
+physical~~social               0.30       -0.014    1.000   -0.102 -0.875
+physical~~environment          0.30        0.014    0.842   -0.419 -0.870
+social~~environment            0.30        0.007    1.000   -0.311 -0.894
 Q5_P~~Q5_P                     0.15       -0.008    0.947    0.260 -0.858
 Q6_P~~Q6_P                     0.34       -0.003    1.000    0.225 -0.860
 Q7_P~~Q7_P                     0.12        0.007    0.895   -0.120 -0.872
 Q11_P~~Q11_P                   0.47        0.001    1.000   -0.279 -0.890
 Q19_P~~Q19_P                   0.44        0.001    0.895   -0.356 -0.847
 Q26_P~~Q26_P                   0.60        0.003    0.947   -0.116 -0.859
-Q3_F~~Q3_F                     1.00       -0.016    0.947    0.166 -0.875
-Q4_F~~Q4_F                     1.00        0.006    0.947    0.380 -0.898
 Q10_F~~Q10_F                   0.60       -0.005    0.947   -0.024 -0.856
 Q15_F~~Q15_F                   0.50        0.003    1.000   -0.384 -0.867
 Q16_F~~Q16_F                   0.54        0.016    0.947   -0.270 -0.859
@@ -2306,12 +2331,8 @@ Q14_A~~Q14_A                   0.41       -0.006    1.000    0.486 -0.903
 Q23_A~~Q23_A                   0.44       -0.006    1.000   -0.183 -0.879
 Q24_A~~Q24_A                   0.59        0.016    1.000   -0.431 -0.880
 Q25_A~~Q25_A                   0.47       -0.004    1.000   -0.179 -0.898
-psycho~~physical               0.30        0.006    0.947   -0.312 -0.879
-psycho~~social                 0.30       -0.013    1.000   -0.008 -0.859
-psycho~~environment            0.30        0.010    0.842   -0.201 -0.873
-physical~~social               0.30       -0.014    1.000   -0.102 -0.875
-physical~~environment          0.30        0.014    0.842   -0.419 -0.870
-social~~environment            0.30        0.007    1.000   -0.311 -0.894
+Q3_F~~Q3_F                     1.00       -0.016    0.947    0.166 -0.875
+Q4_F~~Q4_F                     1.00        0.006    0.947    0.380 -0.898
 ========= Correlation between Fit Indices ============
        chisq    aic    bic  rmsea    cfi    tli   srmr      n
 chisq  1.000 -0.355 -0.355  0.861 -0.708 -0.823  0.555 -0.354
@@ -2336,8 +2357,8 @@ NOTE: The sample size is varying.</code></pre>
 </div>
 </div>
 </section>
-<section id="sec-missing" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="sec-missing"><span class="header-section-number">6.2</span> Missing Data (MCAR)</h3>
+<section id="sec-missing" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="sec-missing"><span class="header-section-number">5.2</span> Missing Data (MCAR)</h3>
 <p>Missing data effectively shrinks <span class="math inline">\(N\)</span> through a loss of information, meaning empirical sample sizes must often be adjusted proportionately. This simulation evaluates the explicit power penalty of <span class="math inline">\(10\%\)</span> Missing Completely at Random strings.</p>
 <div class="quarto-embed-nb-cell">
 <div id="sim-missing-vary" class="cell" data-cache="true">
@@ -2381,14 +2402,18 @@ environment=~Q23_A               0.770       0.042      0.046
 environment=~Q24_A               0.637       0.071      0.049
 environment=~Q25_A               0.720       0.063      0.045
 Q3_F~~Q4_F                       0.296       0.068      0.064
+psycho~~physical                 0.310       0.050      0.049
+psycho~~social                   0.288       0.057      0.049
+psycho~~environment              0.311       0.061      0.049
+physical~~social                 0.283       0.056      0.051
+physical~~environment            0.313       0.065      0.051
+social~~environment              0.303       0.038      0.050
 Q5_P~~Q5_P                       0.142       0.020      0.017
 Q6_P~~Q6_P                       0.339       0.022      0.028
 Q7_P~~Q7_P                       0.127       0.024      0.017
 Q11_P~~Q11_P                     0.471       0.033      0.037
 Q19_P~~Q19_P                     0.443       0.050      0.036
 Q26_P~~Q26_P                     0.599       0.046      0.046
-Q3_F~~Q3_F                       0.983       0.082      0.082
-Q4_F~~Q4_F                       1.001       0.083      0.081
 Q10_F~~Q10_F                     0.581       0.045      0.047
 Q15_F~~Q15_F                     0.504       0.029      0.044
 Q16_F~~Q16_F                     0.550       0.043      0.046
@@ -2405,12 +2430,8 @@ Q14_A~~Q14_A                     0.402       0.041      0.036
 Q23_A~~Q23_A                     0.434       0.043      0.038
 Q24_A~~Q24_A                     0.608       0.045      0.049
 Q25_A~~Q25_A                     0.462       0.034      0.039
-psycho~~physical                 0.310       0.050      0.049
-psycho~~social                   0.288       0.057      0.049
-psycho~~environment              0.311       0.061      0.049
-physical~~social                 0.283       0.056      0.051
-physical~~environment            0.313       0.065      0.051
-social~~environment              0.303       0.038      0.050
+Q3_F~~Q3_F                       0.983       0.082      0.082
+Q4_F~~Q4_F                       1.001       0.083      0.081
 Q5_P~1                          -0.012       0.060      0.050
 Q6_P~1                          -0.023       0.078      0.051
 Q7_P~1                          -0.011       0.062      0.050
@@ -2461,14 +2482,18 @@ environment=~Q23_A                  1.000   0.760      0.021      0.026
 environment=~Q24_A                  1.000   0.630      0.050      0.035
 environment=~Q25_A                  1.000   0.725      0.041      0.029
 Q3_F~~Q4_F                          0.947   0.298      0.060      0.054
+psycho~~physical                    1.000   0.310      0.050      0.049
+psycho~~social                      0.947   0.288      0.057      0.049
+psycho~~environment                 1.000   0.311      0.061      0.049
+physical~~social                    1.000   0.283      0.056      0.051
+physical~~environment               1.000   0.313      0.065      0.051
+social~~environment                 1.000   0.303      0.038      0.050
 Q5_P~~Q5_P                          1.000   0.142      0.021      0.019
 Q6_P~~Q6_P                          1.000   0.333      0.029      0.030
 Q7_P~~Q7_P                          1.000   0.125      0.026      0.018
 Q11_P~~Q11_P                        1.000   0.471      0.032      0.037
 Q19_P~~Q19_P                        1.000   0.429      0.031      0.036
 Q26_P~~Q26_P                        1.000   0.581      0.040      0.041
-Q3_F~~Q3_F                          1.000   0.565      0.050      0.044
-Q4_F~~Q4_F                          1.000   0.585      0.049      0.044
 Q10_F~~Q10_F                        1.000   0.582      0.047      0.044
 Q15_F~~Q15_F                        1.000   0.492      0.044      0.042
 Q16_F~~Q16_F                        1.000   0.532      0.039      0.043
@@ -2485,12 +2510,8 @@ Q14_A~~Q14_A                        1.000   0.405      0.044      0.038
 Q23_A~~Q23_A                        1.000   0.423      0.031      0.039
 Q24_A~~Q24_A                        1.000   0.600      0.059      0.043
 Q25_A~~Q25_A                        1.000   0.473      0.056      0.041
-psycho~~physical                    1.000   0.310      0.050      0.049
-psycho~~social                      0.947   0.288      0.057      0.049
-psycho~~environment                 1.000   0.311      0.061      0.049
-physical~~social                    1.000   0.283      0.056      0.051
-physical~~environment               1.000   0.313      0.065      0.051
-social~~environment                 1.000   0.303      0.038      0.050
+Q3_F~~Q3_F                          1.000   0.565      0.050      0.044
+Q4_F~~Q4_F                          1.000   0.585      0.049      0.044
 Q5_P~1                              0.000  -0.011      0.059      0.050
 Q6_P~1                              0.053  -0.022      0.074      0.050
 Q7_P~1                              0.053  -0.011      0.061      0.050
@@ -2541,14 +2562,18 @@ environment=~Q23_A           0.084   0.017   -0.009 -0.894
 environment=~Q24_A           0.099   0.027    0.231 -0.894
 environment=~Q25_A           0.085   0.022    0.345 -0.903
 Q3_F~~Q4_F                   0.183   0.032   -0.024 -0.878
+psycho~~physical             0.028   0.006   -0.395 -0.877
+psycho~~social               0.028   0.011   -0.041 -0.858
+psycho~~environment          0.024   0.007   -0.221 -0.873
+physical~~social             0.038   0.013   -0.137 -0.875
+physical~~environment        0.032   0.009   -0.413 -0.869
+social~~environment          0.034   0.015   -0.230 -0.886
 Q5_P~~Q5_P                   0.189   0.020    0.247 -0.872
 Q6_P~~Q6_P                   0.136   0.021    0.285 -0.880
 Q7_P~~Q7_P                   0.195   0.029   -0.063 -0.878
 Q11_P~~Q11_P                 0.120   0.013   -0.284 -0.888
 Q19_P~~Q19_P                 0.125   0.027   -0.306 -0.860
 Q26_P~~Q26_P                 0.111   0.018   -0.087 -0.849
-Q3_F~~Q3_F                   0.133   0.047   -0.022 -0.855
-Q4_F~~Q4_F                   0.125   0.022    0.287 -0.885
 Q10_F~~Q10_F                 0.126   0.022    0.188 -0.864
 Q15_F~~Q15_F                 0.141   0.025   -0.506 -0.855
 Q16_F~~Q16_F                 0.134   0.024   -0.142 -0.873
@@ -2565,12 +2590,8 @@ Q14_A~~Q14_A                 0.146   0.032    0.479 -0.894
 Q23_A~~Q23_A                 0.140   0.023   -0.160 -0.878
 Q24_A~~Q24_A                 0.123   0.023   -0.396 -0.889
 Q25_A~~Q25_A                 0.127   0.021   -0.196 -0.883
-psycho~~physical             0.028   0.006   -0.395 -0.877
-psycho~~social               0.028   0.011   -0.041 -0.858
-psycho~~environment          0.024   0.007   -0.221 -0.873
-physical~~social             0.038   0.013   -0.137 -0.875
-physical~~environment        0.032   0.009   -0.413 -0.869
-social~~environment          0.034   0.015   -0.230 -0.886
+Q3_F~~Q3_F                   0.133   0.047   -0.022 -0.855
+Q4_F~~Q4_F                   0.125   0.022    0.287 -0.885
 Q5_P~1                       0.023   0.005    0.157 -0.875
 Q6_P~1                       0.041   0.008    0.294 -0.885
 Q7_P~1                       0.023   0.004    0.221 -0.910
@@ -2620,8 +2641,8 @@ NOTE: The data generation model is not the same as the analysis  model. See the 
 </div>
 </div>
 </section>
-<section id="sec-sensitivity" class="level3" data-number="6.3">
-<h3 data-number="6.3" class="anchored" data-anchor-id="sec-sensitivity"><span class="header-section-number">6.3</span> Sensitivity Across Population Models</h3>
+<section id="sec-sensitivity" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="sec-sensitivity"><span class="header-section-number">5.3</span> Sensitivity Across Population Models</h3>
 <p>A robust power analysis examines boundaries. How drastically does necessary <span class="math inline">\(N\)</span> shift when our assumption about structural quality is overly naive, or overly optimistic?</p>
 <div class="quarto-embed-nb-cell">
 <div id="sim-sensitivity-naive" class="cell" data-cache="true">
@@ -2665,14 +2686,18 @@ environment=~Q23_A               0.507       0.055      0.054
 environment=~Q24_A               0.522       0.053      0.054
 environment=~Q25_A               0.488       0.069      0.053
 Q3_F~~Q4_F                       0.300       0.041      0.049
+psycho~~physical                 0.287       0.062      0.067
+psycho~~social                   0.334       0.100      0.076
+psycho~~environment              0.305       0.077      0.065
+physical~~social                 0.317       0.074      0.076
+physical~~environment            0.307       0.098      0.064
+social~~environment              0.312       0.070      0.075
 Q5_P~~Q5_P                       0.732       0.050      0.060
 Q6_P~~Q6_P                       0.728       0.062      0.061
 Q7_P~~Q7_P                       0.740       0.060      0.061
 Q11_P~~Q11_P                     0.744       0.075      0.060
 Q19_P~~Q19_P                     0.743       0.048      0.061
 Q26_P~~Q26_P                     0.720       0.058      0.058
-Q3_F~~Q3_F                       0.752       0.049      0.062
-Q4_F~~Q4_F                       0.756       0.052      0.062
 Q10_F~~Q10_F                     0.742       0.061      0.060
 Q15_F~~Q15_F                     0.746       0.053      0.060
 Q16_F~~Q16_F                     0.750       0.079      0.062
@@ -2689,12 +2714,8 @@ Q14_A~~Q14_A                     0.748       0.065      0.060
 Q23_A~~Q23_A                     0.756       0.061      0.060
 Q24_A~~Q24_A                     0.740       0.057      0.060
 Q25_A~~Q25_A                     0.748       0.064      0.059
-psycho~~physical                 0.287       0.062      0.067
-psycho~~social                   0.334       0.100      0.076
-psycho~~environment              0.305       0.077      0.065
-physical~~social                 0.317       0.074      0.076
-physical~~environment            0.307       0.098      0.064
-social~~environment              0.312       0.070      0.075
+Q3_F~~Q3_F                       0.752       0.049      0.062
+Q4_F~~Q4_F                       0.756       0.052      0.062
                       Power (Not equal 0) Std Est Std Est SD Std Ave SE
 psycho=~Q5_P                        1.000   0.501      0.041      0.049
 psycho=~Q6_P                        1.000   0.523      0.033      0.048
@@ -2721,14 +2742,18 @@ environment=~Q23_A                  1.000   0.502      0.038      0.046
 environment=~Q24_A                  1.000   0.518      0.041      0.045
 environment=~Q25_A                  1.000   0.490      0.062      0.046
 Q3_F~~Q4_F                          1.000   0.397      0.042      0.047
+psycho~~physical                    0.947   0.287      0.062      0.067
+psycho~~social                      0.947   0.334      0.100      0.076
+psycho~~environment                 0.947   0.305      0.077      0.065
+physical~~social                    0.895   0.317      0.074      0.076
+physical~~environment               0.947   0.307      0.098      0.064
+social~~environment                 0.947   0.312      0.070      0.075
 Q5_P~~Q5_P                          1.000   0.747      0.042      0.049
 Q6_P~~Q6_P                          1.000   0.725      0.035      0.050
 Q7_P~~Q7_P                          1.000   0.741      0.047      0.049
 Q11_P~~Q11_P                        1.000   0.750      0.066      0.048
 Q19_P~~Q19_P                        1.000   0.746      0.055      0.048
 Q26_P~~Q26_P                        1.000   0.746      0.064      0.049
-Q3_F~~Q3_F                          1.000   0.744      0.053      0.049
-Q4_F~~Q4_F                          1.000   0.748      0.057      0.048
 Q10_F~~Q10_F                        1.000   0.746      0.058      0.047
 Q15_F~~Q15_F                        1.000   0.750      0.042      0.047
 Q16_F~~Q16_F                        1.000   0.741      0.057      0.047
@@ -2745,12 +2770,8 @@ Q14_A~~Q14_A                        1.000   0.730      0.048      0.047
 Q23_A~~Q23_A                        1.000   0.746      0.039      0.046
 Q24_A~~Q24_A                        1.000   0.730      0.042      0.047
 Q25_A~~Q25_A                        1.000   0.756      0.056      0.044
-psycho~~physical                    0.947   0.287      0.062      0.067
-psycho~~social                      0.947   0.334      0.100      0.076
-psycho~~environment                 0.947   0.305      0.077      0.065
-physical~~social                    0.895   0.317      0.074      0.076
-physical~~environment               0.947   0.307      0.098      0.064
-social~~environment                 0.947   0.312      0.070      0.075
+Q3_F~~Q3_F                          1.000   0.744      0.053      0.049
+Q4_F~~Q4_F                          1.000   0.748      0.057      0.048
                       Average Param Average Bias Coverage r_coef.n r_se.n
 psycho=~Q5_P                   0.50       -0.003    0.947   -0.266 -0.902
 psycho=~Q6_P                   0.50        0.024    1.000   -0.083 -0.877
@@ -2777,14 +2798,18 @@ environment=~Q23_A             0.50        0.007    0.947    0.110 -0.875
 environment=~Q24_A             0.50        0.022    0.947   -0.322 -0.865
 environment=~Q25_A             0.50       -0.012    0.947    0.239 -0.905
 Q3_F~~Q4_F                     0.30        0.000    0.947    0.008 -0.871
+psycho~~physical               0.30       -0.013    0.947   -0.056 -0.899
+psycho~~social                 0.30        0.034    0.842   -0.232 -0.915
+psycho~~environment            0.30        0.005    0.842   -0.476 -0.865
+physical~~social               0.30        0.017    0.947   -0.038 -0.896
+physical~~environment          0.30        0.007    0.895   -0.318 -0.864
+social~~environment            0.30        0.012    0.895   -0.110 -0.895
 Q5_P~~Q5_P                     0.75       -0.018    0.947   -0.246 -0.899
 Q6_P~~Q6_P                     0.75       -0.022    0.947   -0.384 -0.846
 Q7_P~~Q7_P                     0.75       -0.010    0.947   -0.025 -0.893
 Q11_P~~Q11_P                   0.75       -0.006    0.895    0.282 -0.906
 Q19_P~~Q19_P                   0.75       -0.007    1.000   -0.175 -0.890
 Q26_P~~Q26_P                   0.75       -0.030    1.000    0.518 -0.881
-Q3_F~~Q3_F                     0.75        0.002    1.000    0.034 -0.887
-Q4_F~~Q4_F                     0.75        0.006    1.000    0.092 -0.862
 Q10_F~~Q10_F                   0.75       -0.008    1.000    0.327 -0.881
 Q15_F~~Q15_F                   0.75       -0.004    1.000   -0.072 -0.926
 Q16_F~~Q16_F                   0.75        0.000    0.895   -0.254 -0.841
@@ -2801,12 +2826,8 @@ Q14_A~~Q14_A                   0.75       -0.002    0.947    0.037 -0.864
 Q23_A~~Q23_A                   0.75        0.006    1.000   -0.308 -0.853
 Q24_A~~Q24_A                   0.75       -0.010    0.895   -0.081 -0.839
 Q25_A~~Q25_A                   0.75       -0.002    0.947   -0.230 -0.908
-psycho~~physical               0.30       -0.013    0.947   -0.056 -0.899
-psycho~~social                 0.30        0.034    0.842   -0.232 -0.915
-psycho~~environment            0.30        0.005    0.842   -0.476 -0.865
-physical~~social               0.30        0.017    0.947   -0.038 -0.896
-physical~~environment          0.30        0.007    0.895   -0.318 -0.864
-social~~environment            0.30        0.012    0.895   -0.110 -0.895
+Q3_F~~Q3_F                     0.75        0.002    1.000    0.034 -0.887
+Q4_F~~Q4_F                     0.75        0.006    1.000    0.092 -0.862
 ========= Correlation between Fit Indices ============
        chisq    aic    bic  rmsea    cfi    tli   srmr      n
 chisq  1.000 -0.302 -0.302  0.885 -0.742 -0.858  0.443 -0.301
@@ -2872,14 +2893,18 @@ environment=~Q23_A               0.698       0.060      0.044
 environment=~Q24_A               0.699       0.035      0.045
 environment=~Q25_A               0.714       0.032      0.045
 Q3_F~~Q4_F                       0.502       0.032      0.042
+psycho~~physical                 0.499       0.043      0.045
+psycho~~social                   0.525       0.056      0.047
+psycho~~environment              0.506       0.055      0.043
+physical~~social                 0.512       0.053      0.048
+physical~~environment            0.504       0.063      0.043
+social~~environment              0.510       0.049      0.048
 Q5_P~~Q5_P                       0.504       0.049      0.041
 Q6_P~~Q6_P                       0.508       0.048      0.041
 Q7_P~~Q7_P                       0.496       0.053      0.040
 Q11_P~~Q11_P                     0.510       0.037      0.042
 Q19_P~~Q19_P                     0.509       0.037      0.041
 Q26_P~~Q26_P                     0.511       0.034      0.042
-Q3_F~~Q3_F                       0.511       0.033      0.042
-Q4_F~~Q4_F                       0.512       0.032      0.042
 Q10_F~~Q10_F                     0.494       0.033      0.041
 Q15_F~~Q15_F                     0.498       0.038      0.041
 Q16_F~~Q16_F                     0.508       0.034      0.042
@@ -2896,12 +2921,8 @@ Q14_A~~Q14_A                     0.494       0.042      0.039
 Q23_A~~Q23_A                     0.490       0.043      0.039
 Q24_A~~Q24_A                     0.519       0.042      0.041
 Q25_A~~Q25_A                     0.510       0.032      0.040
-psycho~~physical                 0.499       0.043      0.045
-psycho~~social                   0.525       0.056      0.047
-psycho~~environment              0.506       0.055      0.043
-physical~~social                 0.512       0.053      0.048
-physical~~environment            0.504       0.063      0.043
-social~~environment              0.510       0.049      0.048
+Q3_F~~Q3_F                       0.511       0.033      0.042
+Q4_F~~Q4_F                       0.512       0.032      0.042
                       Power (Not equal 0) Std Est Std Est SD Std Ave SE
 psycho=~Q5_P                            1   0.703      0.025      0.029
 psycho=~Q6_P                            1   0.701      0.029      0.029
@@ -2928,14 +2949,18 @@ environment=~Q23_A                      1   0.705      0.038      0.028
 environment=~Q24_A                      1   0.696      0.020      0.029
 environment=~Q25_A                      1   0.707      0.019      0.028
 Q3_F~~Q4_F                              1   0.980      0.002      0.002
+psycho~~physical                        1   0.499      0.043      0.045
+psycho~~social                          1   0.525      0.056      0.047
+psycho~~environment                     1   0.506      0.055      0.043
+physical~~social                        1   0.512      0.053      0.048
+physical~~environment                   1   0.504      0.063      0.043
+social~~environment                     1   0.510      0.049      0.048
 Q5_P~~Q5_P                              1   0.505      0.035      0.041
 Q6_P~~Q6_P                              1   0.508      0.041      0.041
 Q7_P~~Q7_P                              1   0.497      0.061      0.040
 Q11_P~~Q11_P                            1   0.503      0.040      0.041
 Q19_P~~Q19_P                            1   0.520      0.033      0.041
 Q26_P~~Q26_P                            1   0.508      0.042      0.041
-Q3_F~~Q3_F                              1   0.506      0.043      0.041
-Q4_F~~Q4_F                              1   0.507      0.043      0.041
 Q10_F~~Q10_F                            1   0.491      0.046      0.041
 Q15_F~~Q15_F                            1   0.500      0.045      0.041
 Q16_F~~Q16_F                            1   0.496      0.039      0.041
@@ -2952,12 +2977,8 @@ Q14_A~~Q14_A                            1   0.501      0.056      0.039
 Q23_A~~Q23_A                            1   0.502      0.053      0.039
 Q24_A~~Q24_A                            1   0.515      0.028      0.040
 Q25_A~~Q25_A                            1   0.500      0.027      0.039
-psycho~~physical                        1   0.499      0.043      0.045
-psycho~~social                          1   0.525      0.056      0.047
-psycho~~environment                     1   0.506      0.055      0.043
-physical~~social                        1   0.512      0.053      0.048
-physical~~environment                   1   0.504      0.063      0.043
-social~~environment                     1   0.510      0.049      0.048
+Q3_F~~Q3_F                              1   0.506      0.043      0.041
+Q4_F~~Q4_F                              1   0.507      0.043      0.041
                       Average Param Average Bias Coverage r_coef.n r_se.n
 psycho=~Q5_P                   0.70        0.003    1.000   -0.309 -0.899
 psycho=~Q6_P                   0.70        0.001    0.947   -0.191 -0.905
@@ -2984,14 +3005,18 @@ environment=~Q23_A             0.70       -0.002    0.895    0.181 -0.897
 environment=~Q24_A             0.70       -0.001    1.000   -0.237 -0.860
 environment=~Q25_A             0.70        0.014    1.000   -0.050 -0.886
 Q3_F~~Q4_F                     0.50        0.002    1.000    0.073 -0.881
+psycho~~physical               0.50       -0.001    0.947   -0.209 -0.881
+psycho~~social                 0.50        0.025    0.895   -0.371 -0.915
+psycho~~environment            0.50        0.006    0.895   -0.458 -0.836
+physical~~social               0.50        0.012    0.947   -0.182 -0.878
+physical~~environment          0.50        0.004    0.895   -0.383 -0.826
+social~~environment            0.50        0.010    0.895   -0.218 -0.868
 Q5_P~~Q5_P                     0.51       -0.006    0.895   -0.086 -0.879
 Q6_P~~Q6_P                     0.51       -0.002    0.947    0.085 -0.883
 Q7_P~~Q7_P                     0.51       -0.014    0.895    0.384 -0.888
 Q11_P~~Q11_P                   0.51        0.000    1.000    0.107 -0.893
 Q19_P~~Q19_P                   0.51       -0.001    1.000    0.210 -0.917
 Q26_P~~Q26_P                   0.51        0.001    0.895   -0.121 -0.891
-Q3_F~~Q3_F                     0.51        0.001    1.000    0.065 -0.884
-Q4_F~~Q4_F                     0.51        0.002    1.000    0.084 -0.878
 Q10_F~~Q10_F                   0.51       -0.016    0.895    0.006 -0.862
 Q15_F~~Q15_F                   0.51       -0.012    0.895   -0.006 -0.875
 Q16_F~~Q16_F                   0.51       -0.002    1.000    0.297 -0.893
@@ -3008,12 +3033,8 @@ Q14_A~~Q14_A                   0.51       -0.016    0.842   -0.083 -0.852
 Q23_A~~Q23_A                   0.51       -0.020    0.895   -0.055 -0.868
 Q24_A~~Q24_A                   0.51        0.009    1.000   -0.399 -0.817
 Q25_A~~Q25_A                   0.51        0.000    0.947   -0.162 -0.869
-psycho~~physical               0.50       -0.001    0.947   -0.209 -0.881
-psycho~~social                 0.50        0.025    0.895   -0.371 -0.915
-psycho~~environment            0.50        0.006    0.895   -0.458 -0.836
-physical~~social               0.50        0.012    0.947   -0.182 -0.878
-physical~~environment          0.50        0.004    0.895   -0.383 -0.826
-social~~environment            0.50        0.010    0.895   -0.218 -0.868
+Q3_F~~Q3_F                     0.51        0.001    1.000    0.065 -0.884
+Q4_F~~Q4_F                     0.51        0.002    1.000    0.084 -0.878
 ========= Correlation between Fit Indices ============
        chisq    aic    bic  rmsea    cfi    tli   srmr      n
 chisq  1.000 -0.294 -0.294  0.876 -0.728 -0.834  0.524 -0.294
@@ -3038,8 +3059,8 @@ NOTE: The sample size is varying.</code></pre>
 </div>
 </div>
 </section>
-<section id="sec-scenarios-comparison" class="level3" data-number="6.4">
-<h3 data-number="6.4" class="anchored" data-anchor-id="sec-scenarios-comparison"><span class="header-section-number">6.4</span> Comparison</h3>
+<section id="sec-scenarios-comparison" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="sec-scenarios-comparison"><span class="header-section-number">5.4</span> Comparison</h3>
 <div class="quarto-embed-nb-cell">
 <div id="cell-fig-scenarios-overlay" class="cell" data-fig-width="10" data-fig-height="6">
 <div class="cell-output cell-output-display">
@@ -3084,7 +3105,7 @@ Table&nbsp;5: Required N for 80% power across all analysis scenarios
 <tr class="odd">
 <td style="text-align: left;">Analytical (semPower, RMSEA ≥ .05)</td>
 <td style="text-align: left;">Analytical</td>
-<td style="text-align: left;">See <a href="#sec-apriori" class="quarto-xref">Section&nbsp;4.1</a></td>
+<td style="text-align: left;">See <a href="#sec-apriori" class="quarto-xref">Section&nbsp;3.2</a></td>
 <td style="text-align: left;">Continuous, normal, ML</td>
 </tr>
 <tr class="even">
@@ -3121,8 +3142,8 @@ Table&nbsp;5: Required N for 80% power across all analysis scenarios
 </div>
 </section>
 </section>
-<section id="sec-null-vs-alt" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="sec-null-vs-alt"><span class="header-section-number">7</span> Population Model vs.&nbsp;Empirical Model</h2>
+<section id="sec-null-vs-alt" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-null-vs-alt"><span class="header-section-number">6</span> Population Model vs.&nbsp;Empirical Model</h2>
 <p>Consider an epistemological question driving CFA: can we statistically distinguish the theorized population structure from an empirically estimated model with trivial incidental misspecifications that are ubiquitous in real-life sample covariance matrices? In this section, we compare empirical power distributions generated under a “Null” (empirical sample parameters representing noise) and an “Alternative” (our clean meta-analytic population model).</p>
 <div class="quarto-embed-nb-cell">
 <div id="sim-null-model" class="cell" data-cache="true">
@@ -3599,28 +3620,48 @@ Table&nbsp;6: Post hoc power to distinguish empirical from population model (N =
 </div>
 </div>
 </section>
-<section id="sec-dfi" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="sec-dfi"><span class="header-section-number">8</span> Supplementary: Dynamic Fit Index</h2>
-<p>Monte Carlo sampling serves another major purpose: deriving model-specific fit index categorizations, as rule-of-thumb boundaries are demonstrably insensitive to model traits like indicator-to-factor ratios. The Dynamic Fit Index (DFI) procedure computes tailored, objective boundaries <span class="citation" data-cites="mcneish2021">(<a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>)</span>.</p>
+<section id="sec-posthoc-analytical" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-posthoc-analytical"><span class="header-section-number">7</span> Post Hoc: Achieved Power</h2>
+<p>For the empirical WHOQOL-BREF dataset, <span class="math inline">\(N = 1,047\)</span>. What is our achieved power if true RMSEA is 0.05?</p>
 <div class="quarto-embed-nb-cell">
-
+<div id="cell-posthoc-sempower" class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ semPower: Post hoc power analysis
+                                      
+ F0                       0.622500    
+ RMSEA                    0.050000    
+ Mc                       0.732531    
+                                      
+ df                       249         
+ Num Observations         1047        
+ NCP                      651.1350    
+                                      
+ Critical Chi-Square      286.8077    
+ Alpha                    0.050000    
+ Beta                     4.771426e-48
+ Power (1 - Beta)         &gt; 0.9999    
+ Implied Alpha/Beta Ratio 1.047905e+46</code></pre>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>For a Full DFI Tutorial
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-posthoc-sempower-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-posthoc-sempower-output-2.png" id="posthoc-sempower" width="672" height="480" class="figure-img"></a></p>
+</figure>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>See the companion manuscript on CFA best practices handling ordinal constraints and empirical estimation decisions: <a href="../cfa-brm/">cfa-brm</a>.</p>
+</div>
+</div>
+<div class="quarto-embed-nb-cell">
+<div id="posthoc-semtools" class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Achieved power (semTools): 1 </code></pre>
+</div>
 </div>
 </div>
 </section>
-<section id="sec-synthesis" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="sec-synthesis"><span class="header-section-number">9</span> When to Use What: Analytical vs.&nbsp;Simulation</h2>
+<section id="sec-synthesis" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-synthesis"><span class="header-section-number">8</span> When to Use What: Analytical vs.&nbsp;Simulation</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -3679,9 +3720,6 @@ Lin, L.-C., &amp; Yao, G. (2022). Validation of the factor structure of the <spa
 </div>
 <div id="ref-maccallum1996" class="csl-entry" role="listitem">
 MacCallum, R. C., Browne, M. W., &amp; Sugawara, H. M. (1996). Power analysis and determination of sample size for covariance structure modeling. <em>Psychological Methods</em>, <em>1</em>(2), 130–149. <a href="https://doi.org/10.1037/1082-989X.1.2.130">https://doi.org/10.1037/1082-989X.1.2.130</a>
-</div>
-<div id="ref-mcneish2021" class="csl-entry" role="listitem">
-McNeish, D., &amp; Wolf, M. G. (2021). Dynamic fit index cutoffs for confirmatory factor analysis models. <em>Psychological Methods</em>, <em>28</em>(1), 61–88. <a href="https://doi.org/10.1037/met0000425">https://doi.org/10.1037/met0000425</a>
 </div>
 <div id="ref-moshagen_sempower_2024" class="csl-entry" role="listitem">
 Moshagen, M., &amp; Bader, M. (2024). <span class="nocase">semPower</span>: <span>General Power Analysis</span> for <span>Structural Equation Models</span>. <em>Behavior Research Methods</em>, <em>56</em>, 2901–2922. <a href="https://doi.org/10.3758/s13428-023-02254-7">https://doi.org/10.3758/s13428-023-02254-7</a>

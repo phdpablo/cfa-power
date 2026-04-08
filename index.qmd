@@ -27,6 +27,7 @@ number-sections: true
 Statistical power in Confirmatory Factor Analysis (CFA) reflects the probability of correctly rejecting an incorrectly specified model, or detecting a parameter of interest when it is truly non-zero in the population [@maccallum1996]. Power analysis is critical when planning a CFA study; however, researchers often rely on arbitrary rules of thumb mapping required sample sizes to the number of measured variables or parameters, rather than formal prospective calculations. 
 
 There are two main paradigms to power analysis in CFA:
+
 1.  **Analytical methods**: Rely on asymptotic statistical theory (e.g., the non-central $\chi^2$ distribution) to calculate the required sample size for detecting global model misfit based on established fit indices like the RMSEA [@moshagen_sempower_2024].
 2.  **Simulation-based methods**: Use Monte Carlo data generation to repeatedly establish how the model behaves under assumed population models, allowing the estimation of power, bias, and coverage for specific parameters or overall fit indices across varying sample sizes [@pornprasertmanit_simsem_2021].
 
@@ -43,49 +44,72 @@ For local development and computational convenience across this pedagogical docu
 To anchor our power analyses, we use the WHOQOL-BREF measurement instrument. Meaningful power analysis requires the definition of a population model—the "true" state of the world from which we believe our data are generated. By simulating from a meta-analytically derived population model rather than a purely arbitrary one, researchers can ensure that tests reflect realistic boundaries [@lin2022].
 
 We specify three population variations to perform sensitivity analyses:
+
 1.  **Meta-analytic**: Loadings and residual variances closely matching @lin2022.
 2.  **Naive**: A pessimistic baseline where all factor loadings are weak ($\lambda = 0.5$).
 3.  **Optimistic**: A best-case scenario with stronger factor loadings ($\lambda = 0.7$).
 
+### Population model
+
+The primary population model uses factor loadings derived from the
+meta-analysis by Lin and Yao (2022). Four factors: Psychological (6 items),
+Physical (7 items), Social (3 items), Environment (8 items). Interfactor
+correlations are set at the upper bound (0.3) reported in the meta-analysis
+(range: 0.08–0.30). Residual variances follow the formula 1 − λ², except
+for Q3 and Q4 which share a correlated residual (0.3).
+
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#pop-model >}}
+
+### Naive model
+
+All factor loadings set to 0.5 (minimum acceptable for CFA), residual
+variances = 0.75 (i.e., 1 − 0.5²), and small interfactor correlations (0.3).
+This represents a **pessimistic** scenario.
 
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#naive-model >}}
 
+### Optimistic model
+
+All factor loadings set to 0.7 (strong loadings), residual variances = 0.51
+(1 − 0.7²), and moderate interfactor correlations (0.5). This represents an
+**best-case** scenario.
+
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#opt-model >}}
 
-{{< embed Scripts/AnalysisScripts/01_population_models.qmd#analysis-model >}}
+### Comparison table
+
+Below is a summary of the three population models.
 
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#tbl-pop-comparison >}}
 
-## Model Degrees of Freedom {#sec-df}
+### Analysis model
 
-Analytical calculations depend crucially on model degrees of freedom ($df$), the difference between the number of available pieces of information (unique variances/covariances) and the number of freely estimated parameters. Knowing this allows tools to parameterize the non-central $\chi^2$ distribution.
+This is the model we will fit to data. All parameters are freely
+estimated (no fixed values), matching the structure of the population models.
 
-{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#compute-df >}}
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#analysis-model >}}
 
 ## Analytical Power Analysis {#sec-analytical}
 
 Analytical power usually asks: "How large must $N$ be to reject the hypothesis that the model fits perfectly (or adequately) when the true misfit in the population is of a certain magnitude?" A common formulation sets the alternative hypothesis to RMSEA = 0.05 [@maccallum1996].
 
+### Model Degrees of Freedom {#sec-df}
+
+Analytical calculations depend crucially on model degrees of freedom ($df$), the difference between the number of available pieces of information (unique variances/covariances) and the number of freely estimated parameters. Knowing this allows tools to parameterize the non-central $\chi^2$ distribution. This calculation is necessary for both a priori and post hoc power analyses in analytical methods for global fit.
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#compute-df >}}
+
 ### A Priori: How Many Observations? {#sec-apriori}
 
 {{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#apriori-rmsea >}}
 
-{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#apriori-semtools >}}
-
-### Post Hoc: Achieved Power {#sec-posthoc-analytical}
-
-For the empirical WHOQOL-BREF dataset, $N = 1,047$. What is our achieved power if true RMSEA is 0.05?
-
-{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#posthoc-sempower >}}
-
-{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#posthoc-semtools >}}
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#apriori-popmodel >}}
 
 ### Power Curves {#sec-power-curves}
 
-{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-power-by-n >}}
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-power-rmsea >}}
 
-{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-power-by-effect >}}
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-power-popmodel >}}
 
 {{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#tbl-analytical-summary >}}
 
@@ -157,16 +181,13 @@ Consider an epistemological question driving CFA: can we statistically distingui
 
 {{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#tbl-posthoc-fit >}}
 
-## Supplementary: Dynamic Fit Index {#sec-dfi}
+## Post Hoc: Achieved Power {#sec-posthoc-analytical}
 
-Monte Carlo sampling serves another major purpose: deriving model-specific fit index categorizations, as rule-of-thumb boundaries are demonstrably insensitive to model traits like indicator-to-factor ratios. The Dynamic Fit Index (DFI) procedure computes tailored, objective boundaries [@mcneish2021].
+For the empirical WHOQOL-BREF dataset, $N = 1,047$. What is our achieved power if true RMSEA is 0.05?
 
-{{< embed Scripts/AnalysisScripts/06_extras.qmd#dfi-example >}}
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#posthoc-sempower >}}
 
-::: {.callout-note}
-## For a Full DFI Tutorial
-See the companion manuscript on CFA best practices handling ordinal constraints and empirical estimation decisions: [cfa-brm](../cfa-brm/).
-:::
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#posthoc-semtools >}}
 
 ## When to Use What: Analytical vs. Simulation {#sec-synthesis}
 

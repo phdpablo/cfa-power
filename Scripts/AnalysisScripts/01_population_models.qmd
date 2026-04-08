@@ -17,13 +17,6 @@ source(here("Scripts", "DataAppendixScripts", "models.R"))
 
 ## Population model — Meta-analytic (Lin & Yao, 2022)
 
-The primary population model uses factor loadings derived from the
-meta-analysis by Lin and Yao (2022). Four factors: Psychological (6 items),
-Physical (7 items), Social (3 items), Environment (8 items). Interfactor
-correlations are set at the upper bound (0.3) reported in the meta-analysis
-(range: 0.08–0.30). Residual variances follow the formula 1 − λ², except
-for Q3 and Q4 which share a correlated residual (0.3).
-
 ```{r}
 #| label: pop-model
 
@@ -31,10 +24,6 @@ cat(popModel)
 ```
 
 ## Naive model — Minimally acceptable scenario
-
-All factor loadings set to 0.5 (minimum acceptable for CFA), residual
-variances = 0.75 (i.e., 1 − 0.5²), and small interfactor correlations (0.3).
-This represents a **pessimistic** scenario.
 
 ```{r}
 #| label: naive-model
@@ -44,10 +33,6 @@ cat(naiveModel)
 
 ## Optimistic model — Best-case scenario
 
-All factor loadings set to 0.7 (strong loadings), residual variances = 0.51
-(1 − 0.7²), and moderate interfactor correlations (0.5). This represents an
-**optimistic** scenario.
-
 ```{r}
 #| label: opt-model
 
@@ -55,9 +40,6 @@ cat(optModel)
 ```
 
 ## Analysis model — Free parameters
-
-This is the model the researcher fits to data. All parameters are freely
-estimated (no fixed values), matching the structure of the population models.
 
 ```{r}
 #| label: analysis-model
@@ -72,15 +54,17 @@ cat(analyzeModel)
 #| tbl-cap: "Summary of population model variants used for sensitivity analysis"
 
 pop_summary <- data.frame(
-  Model = c("Meta-analytic (popModel)",
-            "Naive (naiveModel)",
-            "Optimistic (optModel)"),
-  `Loading Range` = c("0.37–0.94", "0.50", "0.70"),
-  `Mean Loading` = c("0.74", "0.50", "0.70"),
-  `Factor Correlations` = c("0.30", "0.30", "0.50"),
-  `Residual Range` = c("0.12–0.86", "0.75", "0.51"),
-  `Q3–Q4 Covariance` = c("0.30", "0.30", "0.50"),
-  check.names = FALSE
+    Model = c(
+        "Meta-analytic (popModel)",
+        "Naive (naiveModel)",
+        "Optimistic (optModel)"
+    ),
+    `Loading Range` = c("0.37–0.94", "0.50", "0.70"),
+    `Mean Loading` = c("0.74", "0.50", "0.70"),
+    `Factor Correlations` = c("0.30", "0.30", "0.50"),
+    `Residual Range` = c("0.12–0.86", "0.75", "0.51"),
+    `Q3–Q4 Covariance` = c("0.30", "0.30", "0.50"),
+    check.names = FALSE
 )
 
 kable(pop_summary, align = "lccccc")

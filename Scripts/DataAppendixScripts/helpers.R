@@ -31,7 +31,10 @@ SEED <- 123456
 ALPHA <- 0.05
 
 #' Target power level for a priori analyses.
-POWER_TARGET <- 0.80
+POWER <- 0.80
+
+#' Number of observed indicators in the CFA model (p).
+P <- 24
 
 #' Sample size in the WHOQOL-BREF empirical dataset (Rogers, 2022).
 N_EMPIRICAL <- 1047

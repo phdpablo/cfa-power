@@ -60,7 +60,7 @@ summary(sim_ideal_vary)
 ideal_power <- getPower(sim_ideal_vary, alpha = ALPHA)
 
 # Find the minimum N for 80% power across all parameters
-findPower(ideal_power, "N", POWER_TARGET)
+findPower(ideal_power, "N", POWER)
 ```
 
 ## Power to detect good fit (fit index cutoffs)

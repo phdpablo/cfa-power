@@ -27,8 +27,8 @@ manuscript: # https://quarto.org/docs/manuscripts/authoring/rstudio.html
       title: "Simulation — Realistic Scenarios"
     - notebook: Scripts/AnalysisScripts/05_model_comparison.qmd
       title: "Model Comparison (Null vs Alternative)"
-    - notebook: Scripts/AnalysisScripts/06_extras.qmd
-      title: "Supplementary Methods"
+    - notebook: Scripts/AnalysisScripts/06_posthoc.qmd
+      title: "Post Hoc Power Analysis"
 
 bibliography: references.bib # https://quarto.org/docs/authoring/citations.html
 # File containing the bibliographic references in BibTeX format.
