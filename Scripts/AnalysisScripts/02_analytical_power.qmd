@@ -1,0 +1,189 @@
+---
+title: "Analytical Power Analysis"
+execute:
+  echo: false
+---
+
+## Setup
+
+```{r}
+#| label: setup
+#| include: false
+
+library(here)
+source(here("Scripts", "DataAppendixScripts", "helpers.R"))
+source(here("Scripts", "DataAppendixScripts", "models.R"))
+```
+
+
+## Computing model degrees of freedom
+
+The degrees of freedom are critical for the analytical approach because
+power is computed from the central and non-central χ² distributions,
+both parameterized by df.
+
+```{r}
+#| label: compute-df
+
+# Method 1: Generate data from the population model and fit the analysis model
+sim_data <- lavaan::simulateData(popModel, sample.nobs = 500)
+fit_temp <- lavaan::cfa(analyzeModel, data = sim_data, std.lv = TRUE)
+df_model <- lavaan::fitMeasures(fit_temp, "df")
+
+cat("Model degrees of freedom (via lavaan):", df_model, "\n")
+
+# Method 2: Compute df directly with semPower (no data needed)
+# p = 24 indicators, q = free parameters
+# df = p(p+1)/2 - q
+p <- 24
+n_unique <- p * (p + 1) / 2  # 300 unique elements in covariance matrix
+cat("Unique covariance elements:", n_unique, "\n")
+cat("Model df:", df_model, "\n")
+```
+
+## A priori power analysis: Determine N
+
+### Model-free approach (RMSEA-based) with semPower
+
+Given the model df and a target RMSEA of 0.05, how many observations are
+needed for 80% power to detect misfit?
+
+```{r}
+#| label: apriori-rmsea
+
+ap_rmsea <- semPower::semPower.aPriori(
+  effect         = 0.05,
+  effect.measure = "RMSEA",
+  alpha          = ALPHA,
+  power          = POWER_TARGET,
+  df             = df_model
+)
+
+summary(ap_rmsea)
+```
+
+### A priori N with semTools
+
+Cross-validation: semTools uses the same underlying χ² approach and should
+yield concordant results.
+
+```{r}
+#| label: apriori-semtools
+
+n_semtools <- semTools::findRMSEAsamplesize(
+  rmsea0 = 0.05,    # RMSEA under H1 (the effect to detect)
+  rmseaA = 0,       # RMSEA under H0 (perfect fit)
+  df     = df_model,
+  power  = POWER_TARGET,
+  alpha  = ALPHA
+)
+
+cat("Required N (semTools):", n_semtools, "\n")
+```
+
+## Post hoc power analysis: Achieved power with N = 1047
+
+### With semPower
+
+```{r}
+#| label: posthoc-sempower
+
+ph_sempower <- semPower::semPower.postHoc(
+  effect         = 0.05,
+  effect.measure = "RMSEA",
+  alpha          = ALPHA,
+  N              = N_EMPIRICAL,
+  df             = df_model
+)
+
+summary(ph_sempower)
+```
+
+### With semTools
+
+```{r}
+#| label: posthoc-semtools
+
+power_semtools <- semTools::findRMSEApower(
+  rmsea0 = 0.05,
+  rmseaA = 0,
+  df     = df_model,
+  n      = N_EMPIRICAL,
+  alpha  = ALPHA
+)
+
+cat("Achieved power (semTools):", round(power_semtools, 4), "\n")
+```
+
+## Power curves
+
+### Power by sample size
+
+```{r}
+#| label: fig-power-by-n
+#| fig-cap: "Power as a function of sample size for RMSEA ≥ 0.05"
+#| fig-width: 8
+#| fig-height: 5
+
+semPower::semPower.powerPlot.byN(
+  effect         = 0.05,
+  effect.measure = "RMSEA",
+  alpha          = ALPHA,
+  df             = df_model,
+  power.min      = 0.05,
+  power.max      = 0.99
+)
+```
+
+### Power by effect size
+
+```{r}
+#| label: fig-power-by-effect
+#| fig-cap: "Power as a function of RMSEA magnitude with N = 1047"
+#| fig-width: 8
+#| fig-height: 5
+
+semPower::semPower.powerPlot.byEffect(
+  effect.measure = "RMSEA",
+  alpha          = ALPHA,
+  N              = N_EMPIRICAL,
+  df             = df_model,
+  effect.min     = 0.001,
+  effect.max     = 0.10
+)
+```
+
+## Summary table
+
+```{r}
+#| label: tbl-analytical-summary
+#| tbl-cap: "Summary of analytical power analysis results"
+
+# Helper to ensure length-1 numeric
+safe_num <- function(x) if(length(x) == 0 || is.null(x)) NA else as.numeric(x)[1]
+
+analytical_summary <- data.frame(
+  Method = c(
+    "semPower a priori (RMSEA ≥ .05)",
+    "semTools a priori (RMSEA ≥ .05)",
+    "semPower post hoc (N = 1047)",
+    "semTools post hoc (N = 1047)"
+  ),
+  `N Required` = c(
+    safe_num(ap_rmsea$requiredN),
+    safe_num(n_semtools),
+    N_EMPIRICAL,
+    N_EMPIRICAL
+  ),
+  `Power` = c(
+    round(safe_num(ap_rmsea$power), 4),
+    POWER_TARGET,
+    round(safe_num(ph_sempower$power), 4),
+    round(safe_num(power_semtools), 4)
+  ),
+  df = rep(safe_num(df_model), 4),
+  check.names = FALSE
+)
+
+kable(analytical_summary, align = "lccc")
+```

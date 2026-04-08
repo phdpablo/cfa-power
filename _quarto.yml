@@ -7,20 +7,28 @@ project: # https://quarto.org/docs/manuscripts/
     - "!docker/" # Exclude the 'docker' directory and its contents from rendering.
 
 execute: # https://quarto.org/docs/computations/execution-options.html
-  #freeze: auto # Automatically manage code execution based on changes
-  #cache: true # Enable caching of code chunks to speed up rendering on subsequent runs
+  freeze: auto # Automatically manage code execution based on changes.
+  cache: true # Enable caching of code chunks to speed up rendering.
   warning: false # Prevent R code chunk warnings from appearing in the output.
   message: false # Prevent R code chunk messages from appearing in the output.
-  echo: false # Do not include the R code chunks in Article.
+  echo: false # Do not include the R code chunks in Article view.
 
 manuscript: # https://quarto.org/docs/manuscripts/authoring/rstudio.html
   article: index.qmd # Main manuscript file.
   meca-bundle: false # Generate MECA bundle for journal submission.
-  #notebooks:
-    - notebook: Scripts/ProcessingScripts/01_procedural.qmd
-      title: "Procedural Exclusions"
-    - notebook: Scripts/ProcessingScripts/02_posthoc.qmd
-      title: "Post-hoc C/IER Indicators"
+  notebooks:
+    - notebook: Scripts/AnalysisScripts/01_population_models.qmd
+      title: "Population Models"
+    - notebook: Scripts/AnalysisScripts/02_analytical_power.qmd
+      title: "Analytical Power Analysis"
+    - notebook: Scripts/AnalysisScripts/03_simulation_ideal.qmd
+      title: "Simulation — Ideal Conditions"
+    - notebook: Scripts/AnalysisScripts/04_simulation_robust.qmd
+      title: "Simulation — Realistic Scenarios"
+    - notebook: Scripts/AnalysisScripts/05_model_comparison.qmd
+      title: "Model Comparison (Null vs Alternative)"
+    - notebook: Scripts/AnalysisScripts/06_extras.qmd
+      title: "Supplementary Methods"
 
 bibliography: references.bib # https://quarto.org/docs/authoring/citations.html
 # File containing the bibliographic references in BibTeX format.

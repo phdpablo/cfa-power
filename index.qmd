@@ -1,5 +1,6 @@
 ---
-title: Confirmatory Factor Analysis (CFA) Power Analysis: A Tutorial
+title: "Power Analysis for Confirmatory Factor Analysis: A Practical Tutorial"
+subtitle: "Analytical and Simulation-Based Approaches"
 author:
   - name: Pablo Rogers
     orcid: 0000-0002-0093-3834
@@ -8,18 +9,179 @@ author:
     affiliations:
       - Universidade Federal de Uberlândia
 keywords:
-  - Careless Responding
-  - Insufficient Effort Responding
-  - Laz.R
-  - Longstring
-  - Mahalanobis Distance
-  - IRV
+  - Power Analysis
+  - Confirmatory Factor Analysis
+  - Structural Equation Modeling
+  - Monte Carlo Simulation
+  - semPower
+  - simsem
 abstract: |
-  This notebook presents a tutorial on confirmatory factor analysis (CFA) power analysis. We use a real database from the WHOQOL-Bref scale as an example (n = 1,546), and we demonstrate how to conduct CFA power analysis using various R packages. We also discuss the importance of power analysis in the design and interpretation of CFA studies.
-date: 04/03/2026
+  This notebook presents a pedagogical tutorial on statistical power analysis in Confirmatory Factor Analysis (CFA). Proper planning of sample sizes requires assessing the power to detect overall model misfit by analytical approach or simulation-based approach. Standard analytical tools typically rely on asymptotic normal theory, which may break down when confronted with non-normality or missing data. This tutorial demonstrates both analytical strategies (using semPower and semTools) and Monte Carlo simulations (using simsem) side-by-side using the WHOQOL-BREF 4-factor model as a unifying case study. We illustrate how simulation can complement analytical calculations, allowing researchers to evaluate parameter-level power, coverage, and relative bias under realistic scenarios involving varying degrees of model misspecification, missing data, and continuous non-normal indicators. Ultimately, we argue that analytical methods are ideal for initial planning, while simulations constitute the gold standard for robust confirmation.
+date: last-modified
 bibliography: references.bib
 number-sections: true
 ---
 
-## Contextualization
+## Introduction {#sec-intro}
 
+Statistical power in Confirmatory Factor Analysis (CFA) reflects the probability of correctly rejecting an incorrectly specified model, or detecting a parameter of interest when it is truly non-zero in the population [@maccallum1996]. Power analysis is critical when planning a CFA study; however, researchers often rely on arbitrary rules of thumb mapping required sample sizes to the number of measured variables or parameters, rather than formal prospective calculations. 
+
+There are two main paradigms to power analysis in CFA:
+1.  **Analytical methods**: Rely on asymptotic statistical theory (e.g., the non-central $\chi^2$ distribution) to calculate the required sample size for detecting global model misfit based on established fit indices like the RMSEA [@moshagen_sempower_2024].
+2.  **Simulation-based methods**: Use Monte Carlo data generation to repeatedly establish how the model behaves under assumed population models, allowing the estimation of power, bias, and coverage for specific parameters or overall fit indices across varying sample sizes [@pornprasertmanit_simsem_2021].
+
+This document provides a comprehensive tutorial covering both analytical methods using the `semPower` and `semTools` packages, and Monte Carlo methods using the `simsem` package.
+
+
+::: {.callout-note}
+## Reproducibility Note
+For local development and computational convenience across this pedagogical document, simulations use `N_REP = 50`. For production-quality applied research, you must increase this to `N_REP ≥ 1,000`. The results throughout this tutorial will thus show more sampling variability than you would expect in a final study. All analytical and simulation parameters are centrally defined in `helpers.R` and `models.R`.
+:::
+
+## The Running Example: WHOQOL-BREF Population CFA Model {#sec-popmodel}
+
+To anchor our power analyses, we use the WHOQOL-BREF measurement instrument. Meaningful power analysis requires the definition of a population model—the "true" state of the world from which we believe our data are generated. By simulating from a meta-analytically derived population model rather than a purely arbitrary one, researchers can ensure that tests reflect realistic boundaries [@lin2022].
+
+We specify three population variations to perform sensitivity analyses:
+1.  **Meta-analytic**: Loadings and residual variances closely matching @lin2022.
+2.  **Naive**: A pessimistic baseline where all factor loadings are weak ($\lambda = 0.5$).
+3.  **Optimistic**: A best-case scenario with stronger factor loadings ($\lambda = 0.7$).
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#pop-model >}}
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#naive-model >}}
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#opt-model >}}
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#analysis-model >}}
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#tbl-pop-comparison >}}
+
+## Model Degrees of Freedom {#sec-df}
+
+Analytical calculations depend crucially on model degrees of freedom ($df$), the difference between the number of available pieces of information (unique variances/covariances) and the number of freely estimated parameters. Knowing this allows tools to parameterize the non-central $\chi^2$ distribution.
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#compute-df >}}
+
+## Analytical Power Analysis {#sec-analytical}
+
+Analytical power usually asks: "How large must $N$ be to reject the hypothesis that the model fits perfectly (or adequately) when the true misfit in the population is of a certain magnitude?" A common formulation sets the alternative hypothesis to RMSEA = 0.05 [@maccallum1996].
+
+### A Priori: How Many Observations? {#sec-apriori}
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#apriori-rmsea >}}
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#apriori-semtools >}}
+
+### Post Hoc: Achieved Power {#sec-posthoc-analytical}
+
+For the empirical WHOQOL-BREF dataset, $N = 1,047$. What is our achieved power if true RMSEA is 0.05?
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#posthoc-sempower >}}
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#posthoc-semtools >}}
+
+### Power Curves {#sec-power-curves}
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-power-by-n >}}
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-power-by-effect >}}
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#tbl-analytical-summary >}}
+
+::: {.callout-important}
+## Limitations of the Analytical Approach
+The RMSEA/$\chi^2$-based analytical method classically assumes continuous, multivariate normal data and Maximum Likelihood estimation. It can yield severely biased optimal sample sizes when distributions are non-normal, data are ordinal, or missingness induces efficiency losses. Furthermore, it measures power regarding *global misfit*, telling us nothing about whether $N$ is adequate to detect a specific weak loading or structural path.
+:::
+
+## Monte Carlo Simulation: Ideal Conditions {#sec-sim-ideal}
+
+Given the limitations above, Monte Carlo simulation stands as a highly flexible strategy. We generate many synthetic datasets from the defined `popModel`, apply our `analyzeModel`, and record the parameter estimates and standard errors.
+
+Under strictly ideal conditions (multivariate normal continuous data, no missing values), simulation results should match analytical calculations, validating both implementations. Notice that varying sample sizes gives us empirical power curves.
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#sim-ideal-vary >}}
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#sim-ideal-fit-power >}}
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-sim-ideal-fit >}}
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-sim-param >}}
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-convergence >}}
+
+::: {.callout-tip}
+## Convergence Check
+If the simulation-based $N$ requirement closely matches the analytical estimate (or is slightly larger to account for sampling error), you have correctly operationalized the model in the simulation structure. This serves as a vital sanity check before introducing complex non-ideal conditions.
+:::
+
+## Monte Carlo Simulation: Realistic Scenarios {#sec-sim-robust}
+
+Most applied survey data violate the ideal assumptions. Simulating how analytical robustness deteriorates helps us adjust the planned sample sizes to offset the expected penalty.
+
+### Non-Normality {#sec-nonnormal}
+
+Applying continuous but non-normal (e.g., highly skewed or kurtotic) generation exposes the vulnerability of unadjusted normal-theory ML tests, emphasizing the necessity of robust estimators (e.g., MLR).
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#sim-nonnormal-vary >}}
+
+### Missing Data (MCAR) {#sec-missing}
+
+Missing data effectively shrinks $N$ through a loss of information, meaning empirical sample sizes must often be adjusted proportionately. This simulation evaluates the explicit power penalty of $10\%$ Missing Completely at Random strings.
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#sim-missing-vary >}}
+
+### Sensitivity Across Population Models {#sec-sensitivity}
+
+A robust power analysis examines boundaries. How drastically does necessary $N$ shift when our assumption about structural quality is overly naive, or overly optimistic?
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#sim-sensitivity-naive >}}
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#sim-sensitivity-opt >}}
+
+### Comparison {#sec-scenarios-comparison}
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#fig-scenarios-overlay >}}
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#tbl-n-requirements >}}
+
+## Population Model vs. Empirical Model {#sec-null-vs-alt}
+
+Consider an epistemological question driving CFA: can we statistically distinguish the theorized population structure from an empirically estimated model with trivial incidental misspecifications that are ubiquitous in real-life sample covariance matrices? In this section, we compare empirical power distributions generated under a "Null" (empirical sample parameters representing noise) and an "Alternative" (our clean meta-analytic population model).
+
+{{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#sim-null-model >}}
+
+{{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#sim-alt-model >}}
+
+{{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#fig-null-vs-alt >}}
+
+{{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#tbl-posthoc-fit >}}
+
+## Supplementary: Dynamic Fit Index {#sec-dfi}
+
+Monte Carlo sampling serves another major purpose: deriving model-specific fit index categorizations, as rule-of-thumb boundaries are demonstrably insensitive to model traits like indicator-to-factor ratios. The Dynamic Fit Index (DFI) procedure computes tailored, objective boundaries [@mcneish2021].
+
+{{< embed Scripts/AnalysisScripts/06_extras.qmd#dfi-example >}}
+
+::: {.callout-note}
+## For a Full DFI Tutorial
+See the companion manuscript on CFA best practices handling ordinal constraints and empirical estimation decisions: [cfa-brm](../cfa-brm/).
+:::
+
+## When to Use What: Analytical vs. Simulation {#sec-synthesis}
+
+| Feature | Analytical (`semPower`/`semTools`) | Simulation (`simsem`) |
+| :--- | :--- | :--- |
+| **Speed** | Instantaneous | Minutes to hours |
+| **Handles non-normality effectively** | No | Yes |
+| **Handles missing data mechanism** | No | Yes |
+| **Parameter-level power targeting** | Very Limited | Comprehensive |
+| **Coverage / relative bias diagnostics** | No | Yes |
+| **Primary Use-Case** | Grant planning, quick rough parameterization bounds | Pre-registration confirmation, sensitivity checks, final reporting |
+
+> **Best Practice Recommendation:** Define theoretical bounds mapping an expected scenario utilizing fast analytical approximations. Validate robust tolerance to observed/anticipated data flaws (e.g., missingness, skew, differing distributions) iteratively through explicit simulation runs before finalizing sample specifications.
+
+## References {.unnumbered}
+
+::: {#refs}
+:::

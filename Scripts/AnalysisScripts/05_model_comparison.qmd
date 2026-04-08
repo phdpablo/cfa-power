@@ -1,0 +1,158 @@
+---
+title: "Model Comparison (Null vs Alternative)"
+execute:
+  echo: true
+---
+
+## Setup
+
+```{r}
+#| label: setup
+#| include: false
+
+library(here)
+source(here("Scripts", "DataAppendixScripts", "helpers.R"))
+source(here("Scripts", "DataAppendixScripts", "models.R"))
+```
+
+
+## Load empirical data and fit the "null" model
+
+The "null" model here is the empirically estimated CFA model from the
+WHOQOL-BREF dataset (Rogers, 2022). The "alternative" is the meta-analytic
+population model. The question: can we distinguish between data generated
+from the estimated model vs. data generated from the population model?
+
+```{r}
+#| label: fit-empirical-model
+#| cache: true
+
+# Load WHOQOL-BREF data
+url_data <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/b58a7054-4978-4239-81db-00f9efd86e44/WHOQOL_Data.dat"
+url_labels <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/ae2a5c01-2fc2-43e5-b31c-8db8cc5bff8a/WHOQOL_Labels.txt"
+
+df0 <- read.table(url_data)
+column_labels <- read.table(url_labels)$V1
+names(df0) <- column_labels
+
+# Fit the CFA model to empirical data (continuous, ML for comparability)
+myModel <- cfa(
+  analyzeModel,
+  data   = df0,
+  std.lv = TRUE
+)
+
+cat("Empirical model fit:\n")
+format_fit(myModel) |> kable()
+```
+
+## Null distribution: Data generated from the fitted model
+
+Simulate data from the estimated (empirical) model. This represents "what
+the world looks like if the sample-estimated parameters are the truth."
+
+```{r}
+#| label: sim-null-model
+#| cache: true
+
+sim_null <- run_sim(
+  nRep     = N_REP,
+  n        = N_EMPIRICAL,
+  model    = analyzeModel,
+  generate = myModel       # generate from the fitted lavaan object
+)
+
+cat("Null model simulation summary:\n")
+summary(sim_null)
+```
+
+## Alternative distribution: Data from the population model
+
+Simulate data from the meta-analytic population model. This represents
+"what the world looks like if the meta-analytic population is the truth."
+
+```{r}
+#| label: sim-alt-model
+#| cache: true
+
+sim_alt <- run_sim(
+  nRep     = N_REP,
+  n        = N_EMPIRICAL,
+  model    = analyzeModel,
+  generate = popModel      # generate from the population model
+)
+
+cat("Alternative model simulation summary:\n")
+summary(sim_alt)
+```
+
+## Power to distinguish null from alternative
+
+Use the cutoffs derived from the null distribution to compute power in the
+alternative distribution. This tells us: if the true population follows
+the meta-analytic model, can we detect the difference from the empirical
+model with N = 1047?
+
+```{r}
+#| label: posthoc-comparison
+
+# Get cutoffs from the null (empirical) distribution at alpha = 0.05
+cutoff_null <- getCutoff(sim_null, alpha = ALPHA)
+cat("Cutoffs from null distribution:\n")
+print(cutoff_null)
+
+# Power to detect the alternative using null-derived cutoffs
+cat("\nPower (alternative vs. null-derived cutoffs):\n")
+getPowerFit(sim_alt, cutoff = cutoff_null)
+```
+
+## Visualization: Null vs. Alternative fit distributions
+
+```{r}
+#| label: fig-null-vs-alt
+#| fig-cap: "Fit index distributions — Null (empirical) vs. Alternative (population)"
+#| fig-width: 10
+#| fig-height: 8
+
+plotPowerFit(sim_alt, sim_null, alpha = ALPHA)
+```
+
+```{r}
+#| label: fig-null-vs-alt-selected
+#| fig-cap: "Selected fit indices — RMSEA, CFI, SRMR"
+#| fig-width: 10
+#| fig-height: 6
+
+plotPowerFit(
+  sim_alt,
+  sim_null,
+  alpha   = ALPHA,
+  usedFit = c("rmsea", "srmr", "cfi")
+)
+```
+
+## Summary
+
+```{r}
+#| label: tbl-posthoc-fit
+#| tbl-cap: "Post hoc power to distinguish empirical from population model (N = 1047)"
+
+posthoc_summary <- data.frame(
+  `Fit Index` = c("RMSEA", "CFI", "TLI", "SRMR"),
+  `Null Cutoff (α = .05)` = c(
+    "From cutoff_null above",
+    "From cutoff_null above",
+    "From cutoff_null above",
+    "From cutoff_null above"
+  ),
+  `Power` = c(
+    "From getPowerFit above",
+    "From getPowerFit above",
+    "From getPowerFit above",
+    "From getPowerFit above"
+  ),
+  check.names = FALSE
+)
+
+kable(posthoc_summary, align = "lcc")
+```

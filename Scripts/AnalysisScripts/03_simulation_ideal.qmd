@@ -1,0 +1,141 @@
+---
+title: "Simulation — Ideal Conditions"
+execute:
+  echo: false
+---
+
+## Setup
+
+```{r}
+#| label: setup
+#| include: false
+
+library(here)
+source(here("Scripts", "DataAppendixScripts", "helpers.R"))
+source(here("Scripts", "DataAppendixScripts", "models.R"))
+```
+
+
+## Fixed-N simulation (continuous data, ML)
+
+Under ideal conditions: continuous multivariate normal data, ML estimator.
+This should converge with the analytical results from semPower/semTools.
+
+```{r}
+#| label: sim-ideal-fixed
+#| cache: true
+
+sim_ideal_fixed <- run_sim(
+  nRep     = N_REP,
+  n        = 500,
+  model    = analyzeModel,
+  generate = popModel
+)
+
+summary(sim_ideal_fixed)
+```
+
+## Varying-N simulation — Power curve
+
+```{r}
+#| label: sim-ideal-vary
+#| cache: true
+
+sim_ideal_vary <- run_sim(
+  nRep     = NULL,
+  n        = N_SEQ,
+  model    = analyzeModel,
+  generate = popModel
+)
+
+summary(sim_ideal_vary)
+```
+
+## Power for parameters
+
+```{r}
+#| label: sim-ideal-power
+
+# Extract power for each parameter across N values
+ideal_power <- getPower(sim_ideal_vary, alpha = ALPHA)
+
+# Find the minimum N for 80% power across all parameters
+findPower(ideal_power, "N", POWER_TARGET)
+```
+
+## Power to detect good fit (fit index cutoffs)
+
+```{r}
+#| label: sim-ideal-fit-power
+
+# Power that fit indices fall within rule-of-thumb cutoffs at selected N values
+cat("--- Power at N = 300 ---\n")
+getPowerFit(sim_ideal_vary, cutoff = RULE_OF_THUMB, nVal = 300)
+
+cat("\n--- Power at N = 500 ---\n")
+getPowerFit(sim_ideal_vary, cutoff = RULE_OF_THUMB, nVal = 500)
+
+cat("\n--- Power at N = 1000 ---\n")
+getPowerFit(sim_ideal_vary, cutoff = RULE_OF_THUMB, nVal = 1000)
+```
+
+## Fit index sampling distributions
+
+```{r}
+#| label: fig-sim-ideal-fit
+#| fig-cap: "Sampling distributions of fit indices across varying N (ideal conditions)"
+#| fig-width: 10
+#| fig-height: 8
+
+plotCutoff(sim_ideal_vary, alpha = ALPHA)
+```
+
+```{r}
+#| label: fig-sim-ideal-power-fit
+#| fig-cap: "Power to achieve acceptable fit across varying N (ideal conditions)"
+#| fig-width: 10
+#| fig-height: 6
+
+plotPowerFit(sim_ideal_vary, cutoff = RULE_OF_THUMB, logistic = FALSE)
+```
+
+## Parameter-level summary
+
+```{r}
+#| label: tbl-sim-param
+#| tbl-cap: "Parameter estimates summary — Ideal conditions, fixed N = 500"
+
+param_summary <- summaryParam(sim_ideal_fixed, detail = TRUE, digits = 3)
+kable(param_summary)
+```
+
+## Convergence: Analytical vs. Simulation
+
+```{r}
+#| label: tbl-convergence
+#| tbl-cap: "Convergence check — Analytical vs. simulation N requirements"
+
+# Note: fill in analytical_n after running 03_analytical_power.qmd
+# For now, use placeholder that will be replaced by the embed output
+convergence_table <- data.frame(
+  Approach = c("semPower a priori (RMSEA ≥ .05)",
+               "semTools a priori (RMSEA ≥ .05)",
+               "simsem (parameter power, max N)",
+               "simsem (fit power at SRMR < .06)"),
+  `N for 80% Power` = c(
+    "See @sec-apriori",
+    "See @sec-apriori",
+    "From findPower() above",
+    "From getPowerFit() above"
+  ),
+  Notes = c(
+    "Model-free, RMSEA-based",
+    "Same underlying math",
+    "Continuous/ML, population model",
+    "Continuous/ML, population model"
+  ),
+  check.names = FALSE
+)
+
+kable(convergence_table, align = "lll")
+```
