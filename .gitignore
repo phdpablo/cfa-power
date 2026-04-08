@@ -20,6 +20,7 @@ _manuscript/
 adm/
 /.quarto/
 **/*.quarto_ipynb
+testes.R
 
 # Agent artifacts
 .agents/

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-    <title>Population Models</title>
+    <title>Supplementary Methods</title>
     <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -54,7 +54,27 @@
       @media screen {
       pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
       }
-    </style>
+      /* CSS for citations */
+      div.csl-bib-body { }
+      div.csl-entry {
+        clear: both;
+        margin-bottom: 0em;
+      }
+      .hanging-indent div.csl-entry {
+        margin-left:2em;
+        text-indent:-2em;
+      }
+      div.csl-left-margin {
+        min-width:2em;
+        float:left;
+      }
+      div.csl-right-inline {
+        margin-left:2em;
+        padding-left:1em;
+      }
+      div.csl-indent {
+        margin-left: 2em;
+      }    </style>
 
     <style>
       body.hypothesis-enabled #quarto-embed-header {
@@ -171,15 +191,15 @@
     <div id="quarto-embed-header" class="headroom fixed-top bg-primary">
       
       <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link" href=""><i class="bi bi-caret-left"></i> Back to Article</a>
-      <h6><i class="bi bi-journal-code"></i> Population Models</h6>
+      <h6><i class="bi bi-journal-code"></i> Supplementary Methods</h6>
 
-            <a href="../../Scripts/AnalysisScripts/01_population_models.out.ipynb" class="btn btn-primary quarto-download-embed" download="01_population_models.qmd">Download Source</a>
+            <a href="../../Scripts/AnalysisScripts/06_extras.out.ipynb" class="btn btn-primary quarto-download-embed" download="06_extras.qmd">Download Source</a>
           </div>
 
      <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Population Models</h1>
+      <h1 class="title">Supplementary Methods</h1>
           </div>
 
     
@@ -208,11 +228,7 @@
    
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#population-model-meta-analytic-lin-yao-2022" id="toc-population-model-meta-analytic-lin-yao-2022" class="nav-link" data-scroll-target="#population-model-meta-analytic-lin-yao-2022">Population model — Meta-analytic (Lin &amp; Yao, 2022)</a></li>
-  <li><a href="#naive-model-minimally-acceptable-scenario" id="toc-naive-model-minimally-acceptable-scenario" class="nav-link" data-scroll-target="#naive-model-minimally-acceptable-scenario">Naive model — Minimally acceptable scenario</a></li>
-  <li><a href="#optimistic-model-best-case-scenario" id="toc-optimistic-model-best-case-scenario" class="nav-link" data-scroll-target="#optimistic-model-best-case-scenario">Optimistic model — Best-case scenario</a></li>
-  <li><a href="#analysis-model-free-parameters" id="toc-analysis-model-free-parameters" class="nav-link" data-scroll-target="#analysis-model-free-parameters">Analysis model — Free parameters</a></li>
-  <li><a href="#comparison-table" id="toc-comparison-table" class="nav-link" data-scroll-target="#comparison-table">Comparison table</a></li>
+  <li><a href="#dynamic-fit-index-dfi-brief-example" id="toc-dynamic-fit-index-dfi-brief-example" class="nav-link" data-scroll-target="#dynamic-fit-index-dfi-brief-example">Dynamic Fit Index (DFI) — Brief Example</a></li>
   </ul>
 </nav>
 </div>
@@ -324,257 +340,44 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'SparseM' was built under R version 4.5.3</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"models.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
-<section id="population-model-meta-analytic-lin-yao-2022" class="level2">
-<h2 class="anchored" data-anchor-id="population-model-meta-analytic-lin-yao-2022">Population model — Meta-analytic (Lin &amp; Yao, 2022)</h2>
-<p>The primary population model uses factor loadings derived from the meta-analysis by Lin and Yao (2022). Four factors: Psychological (6 items), Physical (7 items), Social (3 items), Environment (8 items). Interfactor correlations are set at the upper bound (0.3) reported in the meta-analysis (range: 0.08–0.30). Residual variances follow the formula 1 − λ², except for Q3 and Q4 which share a correlated residual (0.3).</p>
+<section id="dynamic-fit-index-dfi-brief-example" class="level2">
+<h2 class="anchored" data-anchor-id="dynamic-fit-index-dfi-brief-example">Dynamic Fit Index (DFI) — Brief Example</h2>
+<p>Traditional fit index cutoffs (e.g., RMSEA &lt; .06, CFI &gt; .95) are generic rules of thumb that do not account for model-specific characteristics such as the number of factors and indicators, the magnitude of loadings, or the degree of model misspecification. The Dynamic Fit Index (DFI) approach <span class="citation" data-cites="mcneish2021">(<a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>)</span> generates model-specific cutoffs via simulation.</p>
+<p>The <code>dynamic</code> package implements this method. Below is a brief demonstration using a simplified version of our WHOQOL-BREF model.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(popModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  # Factor loadings from Lin and Yao (2022) meta-analysis
-  psycho =~ 0.92*Q5_P + 0.81*Q6_P + 0.94*Q7_P +
-            0.73*Q11_P + 0.75*Q19_P + 0.63*Q26_P
-  physical =~ 0.84*Q3_F + 0.83*Q4_F + 0.63*Q10_F +
-              0.71*Q15_F + 0.68*Q16_F + 0.89*Q17_F + 0.61*Q18_F
-  social =~ 0.94*Q20_S + 0.89*Q21_S + 0.78*Q22_S
-  environment =~ 0.37*Q8_A + 0.49*Q9_A + 0.79*Q12_A + 0.81*Q13_A +
-                 0.77*Q14_A + 0.75*Q23_A + 0.64*Q24_A + 0.73*Q25_A
-
-  # Correlated residual between Q3 and Q4
-  Q4_F ~~ 0.3*Q3_F
-
-  # Factor variances fixed to 1; interfactor correlations = 0.3
-  psycho ~~ 1*psycho + 0.3*physical + 0.3*social + 0.3*environment
-  physical ~~ 1*physical + 0.3*social + 0.3*environment
-  social ~~ 1*social + 0.3*environment
-  environment ~~ 1*environment
-
-  # Residual variances = 1 - lambda^2
-  Q5_P ~~ 0.15*Q5_P
-  Q6_P ~~ 0.34*Q6_P
-  Q7_P ~~ 0.12*Q7_P
-  Q11_P ~~ 0.47*Q11_P
-  Q19_P ~~ 0.44*Q19_P
-  Q26_P ~~ 0.60*Q26_P
-  Q10_F ~~ 0.60*Q10_F
-  Q15_F ~~ 0.50*Q15_F
-  Q16_F ~~ 0.54*Q16_F
-  Q17_F ~~ 0.21*Q17_F
-  Q18_F ~~ 0.63*Q18_F
-  Q20_S ~~ 0.12*Q20_S
-  Q21_S ~~ 0.21*Q21_S
-  Q22_S ~~ 0.39*Q22_S
-  Q8_A ~~ 0.86*Q8_A
-  Q9_A ~~ 0.76*Q9_A
-  Q12_A ~~ 0.38*Q12_A
-  Q13_A ~~ 0.34*Q13_A
-  Q14_A ~~ 0.41*Q14_A
-  Q23_A ~~ 0.44*Q23_A
-  Q24_A ~~ 0.59*Q24_A
-  Q25_A ~~ 0.47*Q25_A</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Install dynamic if needed:</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("dynamic")</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dynamic)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple DFI example using a 2-factor subset (for speed)</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># In practice, you would use the full model</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>dfi_model <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="st">  psycho =~ Q5_P + Q6_P + Q7_P + Q11_P + Q19_P + Q26_P</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="st">  physical =~ Q3_F + Q4_F + Q10_F + Q15_F + Q16_F + Q17_F + Q18_F</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co"># cfaHB generates model-specific cutoffs for continuous indicators</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co"># n = target sample size; plot = TRUE for visualization</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>dfi_result <span class="ot">&lt;-</span> dynamic<span class="sc">::</span><span class="fu">cfaHB</span>(</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">model  =</span> dfi_model,</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">n      =</span> <span class="dv">500</span>,</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot   =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">manual =</span> <span class="cn">TRUE</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Display DFI-derived cutoffs</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dfi_result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-</section>
-<section id="naive-model-minimally-acceptable-scenario" class="level2">
-<h2 class="anchored" data-anchor-id="naive-model-minimally-acceptable-scenario">Naive model — Minimally acceptable scenario</h2>
-<p>All factor loadings set to 0.5 (minimum acceptable for CFA), residual variances = 0.75 (i.e., 1 − 0.5²), and small interfactor correlations (0.3). This represents a <strong>pessimistic</strong> scenario.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(naiveModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  # All loadings = 0.5
-  psycho =~ 0.5*Q5_P + 0.5*Q6_P + 0.5*Q7_P +
-            0.5*Q11_P + 0.5*Q19_P + 0.5*Q26_P
-  physical =~ 0.5*Q3_F + 0.5*Q4_F + 0.5*Q10_F +
-              0.5*Q15_F + 0.5*Q16_F + 0.5*Q17_F + 0.5*Q18_F
-  social =~ 0.5*Q20_S + 0.5*Q21_S + 0.5*Q22_S
-  environment =~ 0.5*Q8_A + 0.5*Q9_A + 0.5*Q12_A + 0.5*Q13_A +
-                 0.5*Q14_A + 0.5*Q23_A + 0.5*Q24_A + 0.5*Q25_A
-
-  Q4_F ~~ 0.3*Q3_F
-
-  psycho ~~ 1*psycho + 0.3*physical + 0.3*social + 0.3*environment
-  physical ~~ 1*physical + 0.3*social + 0.3*environment
-  social ~~ 1*social + 0.3*environment
-  environment ~~ 1*environment
-
-  # Residual variances = 1 - 0.5^2 = 0.75
-  Q5_P ~~ 0.75*Q5_P
-  Q6_P ~~ 0.75*Q6_P
-  Q7_P ~~ 0.75*Q7_P
-  Q11_P ~~ 0.75*Q11_P
-  Q19_P ~~ 0.75*Q19_P
-  Q26_P ~~ 0.75*Q26_P
-  Q3_F ~~ 0.75*Q3_F
-  Q4_F ~~ 0.75*Q4_F
-  Q10_F ~~ 0.75*Q10_F
-  Q15_F ~~ 0.75*Q15_F
-  Q16_F ~~ 0.75*Q16_F
-  Q17_F ~~ 0.75*Q17_F
-  Q18_F ~~ 0.75*Q18_F
-  Q20_S ~~ 0.75*Q20_S
-  Q21_S ~~ 0.75*Q21_S
-  Q22_S ~~ 0.75*Q22_S
-  Q8_A ~~ 0.75*Q8_A
-  Q9_A ~~ 0.75*Q9_A
-  Q12_A ~~ 0.75*Q12_A
-  Q13_A ~~ 0.75*Q13_A
-  Q14_A ~~ 0.75*Q14_A
-  Q23_A ~~ 0.75*Q23_A
-  Q24_A ~~ 0.75*Q24_A
-  Q25_A ~~ 0.75*Q25_A</code></pre>
-</div>
-</div></div>
-</section>
-<section id="optimistic-model-best-case-scenario" class="level2">
-<h2 class="anchored" data-anchor-id="optimistic-model-best-case-scenario">Optimistic model — Best-case scenario</h2>
-<p>All factor loadings set to 0.7 (strong loadings), residual variances = 0.51 (1 − 0.7²), and moderate interfactor correlations (0.5). This represents an <strong>optimistic</strong> scenario.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(optModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  # All loadings = 0.7
-  psycho =~ 0.7*Q5_P + 0.7*Q6_P + 0.7*Q7_P +
-            0.7*Q11_P + 0.7*Q19_P + 0.7*Q26_P
-  physical =~ 0.7*Q3_F + 0.7*Q4_F + 0.7*Q10_F +
-              0.7*Q15_F + 0.7*Q16_F + 0.7*Q17_F + 0.7*Q18_F
-  social =~ 0.7*Q20_S + 0.7*Q21_S + 0.7*Q22_S
-  environment =~ 0.7*Q8_A + 0.7*Q9_A + 0.7*Q12_A + 0.7*Q13_A +
-                 0.7*Q14_A + 0.7*Q23_A + 0.7*Q24_A + 0.7*Q25_A
-
-  Q4_F ~~ 0.5*Q3_F
-
-  psycho ~~ 1*psycho + 0.5*physical + 0.5*social + 0.5*environment
-  physical ~~ 1*physical + 0.5*social + 0.5*environment
-  social ~~ 1*social + 0.5*environment
-  environment ~~ 1*environment
-
-  # Residual variances = 1 - 0.7^2 = 0.51
-  Q5_P ~~ 0.51*Q5_P
-  Q6_P ~~ 0.51*Q6_P
-  Q7_P ~~ 0.51*Q7_P
-  Q11_P ~~ 0.51*Q11_P
-  Q19_P ~~ 0.51*Q19_P
-  Q26_P ~~ 0.51*Q26_P
-  Q3_F ~~ 0.51*Q3_F
-  Q4_F ~~ 0.51*Q4_F
-  Q10_F ~~ 0.51*Q10_F
-  Q15_F ~~ 0.51*Q15_F
-  Q16_F ~~ 0.51*Q16_F
-  Q17_F ~~ 0.51*Q17_F
-  Q18_F ~~ 0.51*Q18_F
-  Q20_S ~~ 0.51*Q20_S
-  Q21_S ~~ 0.51*Q21_S
-  Q22_S ~~ 0.51*Q22_S
-  Q8_A ~~ 0.51*Q8_A
-  Q9_A ~~ 0.51*Q9_A
-  Q12_A ~~ 0.51*Q12_A
-  Q13_A ~~ 0.51*Q13_A
-  Q14_A ~~ 0.51*Q14_A
-  Q23_A ~~ 0.51*Q23_A
-  Q24_A ~~ 0.51*Q24_A
-  Q25_A ~~ 0.51*Q25_A</code></pre>
-</div>
-</div></div>
-</section>
-<section id="analysis-model-free-parameters" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-model-free-parameters">Analysis model — Free parameters</h2>
-<p>This is the model the researcher fits to data. All parameters are freely estimated (no fixed values), matching the structure of the population models.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(analyzeModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  psycho =~ Q5_P + Q6_P + Q7_P + Q11_P + Q19_P + Q26_P
-  physical =~ Q3_F + Q4_F + Q10_F + Q15_F + Q16_F + Q17_F + Q18_F
-  social =~ Q20_S + Q21_S + Q22_S
-  environment =~ Q8_A + Q9_A + Q12_A + Q13_A + Q14_A + Q23_A + Q24_A + Q25_A
-  Q4_F ~~ Q3_F</code></pre>
-</div>
-</div></div>
-</section>
-<section id="comparison-table" class="level2">
-<h2 class="anchored" data-anchor-id="comparison-table">Comparison table</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>pop_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Model =</span> <span class="fu">c</span>(<span class="st">"Meta-analytic (popModel)"</span>,</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Naive (naiveModel)"</span>,</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Optimistic (optModel)"</span>),</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Loading Range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.37–0.94"</span>, <span class="st">"0.50"</span>, <span class="st">"0.70"</span>),</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Mean Loading</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.74"</span>, <span class="st">"0.50"</span>, <span class="st">"0.70"</span>),</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Factor Correlations</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.30"</span>, <span class="st">"0.30"</span>, <span class="st">"0.50"</span>),</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Residual Range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.12–0.86"</span>, <span class="st">"0.75"</span>, <span class="st">"0.51"</span>),</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Q3–Q4 Covariance</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.30"</span>, <span class="st">"0.30"</span>, <span class="st">"0.50"</span>),</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(pop_summary, <span class="at">align =</span> <span class="st">"lccccc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="tbl-pop-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pop-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Summary of population model variants used for sensitivity analysis
-</figcaption>
-<div aria-describedby="tbl-pop-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 22%">
-<col style="width: 13%">
-<col style="width: 12%">
-<col style="width: 19%">
-<col style="width: 14%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Model</th>
-<th style="text-align: center;">Loading Range</th>
-<th style="text-align: center;">Mean Loading</th>
-<th style="text-align: center;">Factor Correlations</th>
-<th style="text-align: center;">Residual Range</th>
-<th style="text-align: center;">Q3–Q4 Covariance</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Meta-analytic (popModel)</td>
-<td style="text-align: center;">0.37–0.94</td>
-<td style="text-align: center;">0.74</td>
-<td style="text-align: center;">0.30</td>
-<td style="text-align: center;">0.12–0.86</td>
-<td style="text-align: center;">0.30</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Naive (naiveModel)</td>
-<td style="text-align: center;">0.50</td>
-<td style="text-align: center;">0.50</td>
-<td style="text-align: center;">0.30</td>
-<td style="text-align: center;">0.75</td>
-<td style="text-align: center;">0.30</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Optimistic (optModel)</td>
-<td style="text-align: center;">0.70</td>
-<td style="text-align: center;">0.70</td>
-<td style="text-align: center;">0.50</td>
-<td style="text-align: center;">0.51</td>
-<td style="text-align: center;">0.50</td>
-</tr>
-</tbody>
-</table>
+<p>The DFI cutoffs are <strong>specific to this model and sample size</strong>. They will typically be more stringent than the generic rules of thumb for models with few indicators per factor or weak loadings, and more lenient for models with many strong indicators.</p>
+<p>For a complete DFI tutorial with the full WHOQOL-BREF model (including ordinal indicators and the <code>catHB()</code> function for categorical data), see the companion manuscript: <a href="../cfa-brm/">CFA Best Practices with the WHOQOL-BREF</a>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-mcneish2021" class="csl-entry" role="listitem">
+McNeish, D., &amp; Wolf, M. G. (2021). Dynamic fit index cutoffs for confirmatory factor analysis models. <em>Psychological Methods</em>, <em>28</em>(1), 61–88. <a href="https://doi.org/10.1037/met0000425">https://doi.org/10.1037/met0000425</a>
 </div>
 </div>
-</figure>
-</div></div>
-</div></div>
 </section>
      </main>
 <!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">

@@ -16,6 +16,7 @@ library(ggplot2)
 library(dplyr)
 library(here)
 library(knitr)
+library(quantreg)
 
 # --- Configuration -----------------------------------------------------------
 
