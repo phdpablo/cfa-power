@@ -356,7 +356,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>sim_nonnormal_vary <span class="ot">&lt;-</span> <span class="fu">invisible</span>(<span class="fu">capture.output</span>(</span>
 <span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>  simsem<span class="sc">::</span><span class="fu">sim</span>(</span>
 <span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">nRep      =</span> <span class="cn">NULL</span>,</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">n         =</span> N_SEQ,</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">n         =</span> SEQ,</span>
 <span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">model     =</span> analyzeModel,</span>
 <span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">generate  =</span> popModel,</span>
 <span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
@@ -381,7 +381,7 @@ To set a RNG seed using the previous RNGkind(), you can use
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># If the datafun approach is unavailable, use this pattern:</span></span>
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>sim_nonnormal_vary_alt <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> <span class="cn">NULL</span>,</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> N_SEQ,</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> SEQ,</span>
 <span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
 <span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> popModel</span>
 <span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -393,209 +393,195 @@ To set a RNG seed using the previous RNGkind(), you can use
 <pre><code>RESULT OBJECT
 Model Type
 [1] "lavaan"
-========= Fit Indices Cutoffs ============</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     N   chisq       aic       bic rmsea   cfi   tli  srmr
-1  100 314.747  5839.741  6005.252 0.040 0.968 0.964 0.068
-2  325 297.720 18610.406 18811.685 0.031 0.976 0.973 0.056
-3  550 280.694 31381.072 31618.118 0.022 0.984 0.983 0.045
-4  775 263.668 44151.738 44424.551 0.012 0.992 0.992 0.033
-5 1000 246.641 56922.404 57230.984 0.003 1.000 1.002 0.022
+========= Fit Indices Cutoffs ============
+    N   chisq       aic       bic rmsea   cfi   tli  srmr
+1 100 298.104  5878.811  6042.462 0.038 0.975 0.972 0.065
+2 225 292.468 12628.755 12813.149 0.031 0.981 0.979 0.055
+3 350 286.833 19378.698 19583.836 0.024 0.987 0.985 0.046
+4 475 281.197 26128.641 26354.523 0.017 0.993 0.992 0.036
+5 600 275.561 32878.585 33125.209 0.010 0.999 0.999 0.026
 ========= Parameter Estimates and Standard Errors ============
                       Estimate Average Estimate SD Average SE
-psycho=~Q5_P                     0.929       0.043      0.038
-psycho=~Q6_P                     0.828       0.050      0.041
-psycho=~Q7_P                     0.944       0.039      0.038
-psycho=~Q11_P                    0.724       0.037      0.043
-psycho=~Q19_P                    0.765       0.048      0.043
-psycho=~Q26_P                    0.656       0.046      0.045
-physical=~Q3_F                   0.862       0.071      0.060
-physical=~Q4_F                   0.840       0.071      0.060
-physical=~Q10_F                  0.640       0.046      0.046
-physical=~Q15_F                  0.724       0.051      0.045
-physical=~Q16_F                  0.692       0.036      0.046
-physical=~Q17_F                  0.891       0.034      0.041
-physical=~Q18_F                  0.608       0.042      0.047
-social=~Q20_S                    0.928       0.044      0.038
-social=~Q21_S                    0.885       0.048      0.039
-social=~Q22_S                    0.773       0.034      0.042
-environment=~Q8_A                0.383       0.048      0.049
-environment=~Q9_A                0.497       0.035      0.047
-environment=~Q12_A               0.797       0.035      0.042
-environment=~Q13_A               0.819       0.036      0.042
-environment=~Q14_A               0.773       0.050      0.043
-environment=~Q23_A               0.768       0.042      0.044
-environment=~Q24_A               0.638       0.068      0.046
-environment=~Q25_A               0.717       0.058      0.043
-Q3_F~~Q4_F                       0.296       0.059      0.057
-psycho~~physical                 0.306       0.049      0.049
-psycho~~social                   0.287       0.058      0.048
-psycho~~environment              0.310       0.061      0.048
-physical~~social                 0.286       0.054      0.050
-physical~~environment            0.314       0.062      0.050
-social~~environment              0.307       0.039      0.049
-Q5_P~~Q5_P                       0.142       0.018      0.015
-Q6_P~~Q6_P                       0.337       0.023      0.026
-Q7_P~~Q7_P                       0.127       0.017      0.015
-Q11_P~~Q11_P                     0.471       0.024      0.035
-Q19_P~~Q19_P                     0.441       0.043      0.033
-Q26_P~~Q26_P                     0.603       0.050      0.044
-Q10_F~~Q10_F                     0.595       0.056      0.045
-Q15_F~~Q15_F                     0.503       0.030      0.041
-Q16_F~~Q16_F                     0.556       0.046      0.044
-Q17_F~~Q17_F                     0.211       0.026      0.027
-Q18_F~~Q18_F                     0.637       0.043      0.047
-Q20_S~~Q20_S                     0.117       0.022      0.023
-Q21_S~~Q21_S                     0.199       0.028      0.024
-Q22_S~~Q22_S                     0.387       0.034      0.031
-Q8_A~~Q8_A                       0.845       0.059      0.059
-Q9_A~~Q9_A                       0.739       0.066      0.052
-Q12_A~~Q12_A                     0.375       0.032      0.032
-Q13_A~~Q13_A                     0.328       0.047      0.030
-Q14_A~~Q14_A                     0.404       0.037      0.033
-Q23_A~~Q23_A                     0.434       0.039      0.036
-Q24_A~~Q24_A                     0.606       0.046      0.046
-Q25_A~~Q25_A                     0.466       0.035      0.037
-Q3_F~~Q3_F                       0.984       0.075      0.076
-Q4_F~~Q4_F                       1.006       0.092      0.076
+psycho=~Q5                       0.918       0.049      0.045
+psycho=~Q6                       0.819       0.054      0.049
+psycho=~Q7                       0.944       0.048      0.044
+psycho=~Q11                      0.742       0.057      0.051
+psycho=~Q19                      0.749       0.044      0.050
+psycho=~Q26                      0.630       0.060      0.053
+physical=~Q3                     0.827       0.055      0.048
+physical=~Q4                     0.827       0.057      0.049
+physical=~Q10                    0.625       0.057      0.054
+physical=~Q15                    0.699       0.060      0.053
+physical=~Q16                    0.681       0.053      0.052
+physical=~Q17                    0.894       0.053      0.047
+physical=~Q18                    0.611       0.050      0.054
+social=~Q20                      0.930       0.052      0.045
+social=~Q21                      0.886       0.050      0.047
+social=~Q22                      0.768       0.043      0.050
+environment=~Q8                  0.369       0.056      0.059
+environment=~Q9                  0.491       0.061      0.057
+environment=~Q12                 0.787       0.055      0.050
+environment=~Q13                 0.800       0.056      0.050
+environment=~Q14                 0.772       0.046      0.051
+environment=~Q23                 0.747       0.047      0.052
+environment=~Q24                 0.626       0.064      0.054
+environment=~Q25                 0.737       0.047      0.052
+psycho~~physical                 0.211       0.063      0.060
+psycho~~social                   0.209       0.060      0.059
+psycho~~environment              0.217       0.071      0.060
+physical~~social                 0.204       0.061      0.060
+physical~~environment            0.194       0.069      0.062
+social~~environment              0.214       0.061      0.061
+Q3~~Q4                           0.087       0.026      0.026
+Q5~~Q5                           0.154       0.018      0.019
+Q6~~Q6                           0.342       0.036      0.032
+Q7~~Q7                           0.118       0.020      0.017
+Q11~~Q11                         0.470       0.038      0.041
+Q19~~Q19                         0.437       0.032      0.039
+Q26~~Q26                         0.605       0.039      0.052
+Q3~~Q3                           0.281       0.032      0.032
+Q4~~Q4                           0.313       0.036      0.035
+Q10~~Q10                         0.603       0.043      0.053
+Q15~~Q15                         0.510       0.052      0.046
+Q16~~Q16                         0.527       0.054      0.047
+Q17~~Q17                         0.202       0.025      0.027
+Q18~~Q18                         0.620       0.057      0.054
+Q20~~Q20                         0.117       0.032      0.028
+Q21~~Q21                         0.204       0.030      0.030
+Q22~~Q22                         0.392       0.032      0.037
+Q8~~Q8                           0.866       0.073      0.073
+Q9~~Q9                           0.758       0.070      0.065
+Q12~~Q12                         0.373       0.040      0.038
+Q13~~Q13                         0.342       0.038      0.036
+Q14~~Q14                         0.411       0.042      0.041
+Q23~~Q23                         0.435       0.039      0.042
+Q24~~Q24                         0.586       0.044      0.052
+Q25~~Q25                         0.458       0.042      0.044
                       Power (Not equal 0) Std Est Std Est SD Std Ave SE
-psycho=~Q5_P                        1.000   0.926      0.010      0.009
-psycho=~Q6_P                        1.000   0.818      0.020      0.017
-psycho=~Q7_P                        1.000   0.935      0.011      0.009
-psycho=~Q11_P                       1.000   0.725      0.020      0.025
-psycho=~Q19_P                       1.000   0.755      0.019      0.023
-psycho=~Q26_P                       1.000   0.645      0.030      0.030
-physical=~Q3_F                      1.000   0.654      0.036      0.031
-physical=~Q4_F                      1.000   0.641      0.039      0.032
-physical=~Q10_F                     1.000   0.638      0.039      0.032
-physical=~Q15_F                     1.000   0.713      0.029      0.028
-physical=~Q16_F                     1.000   0.680      0.025      0.030
-physical=~Q17_F                     1.000   0.889      0.015      0.017
-physical=~Q18_F                     1.000   0.605      0.032      0.034
-social=~Q20_S                       1.000   0.938      0.013      0.013
-social=~Q21_S                       1.000   0.892      0.019      0.015
-social=~Q22_S                       1.000   0.779      0.023      0.022
-environment=~Q8_A                   1.000   0.384      0.041      0.044
-environment=~Q9_A                   1.000   0.501      0.024      0.039
-environment=~Q12_A                  1.000   0.793      0.018      0.022
-environment=~Q13_A                  1.000   0.819      0.023      0.020
-environment=~Q14_A                  1.000   0.772      0.027      0.023
-environment=~Q23_A                  1.000   0.759      0.017      0.024
-environment=~Q24_A                  1.000   0.632      0.049      0.033
-environment=~Q25_A                  1.000   0.723      0.034      0.027
-Q3_F~~Q4_F                          1.000   0.297      0.050      0.049
-psycho~~physical                    1.000   0.306      0.049      0.049
-psycho~~social                      0.947   0.287      0.058      0.048
-psycho~~environment                 1.000   0.310      0.061      0.048
-physical~~social                    1.000   0.286      0.054      0.050
-physical~~environment               1.000   0.314      0.062      0.050
-social~~environment                 1.000   0.307      0.039      0.049
-Q5_P~~Q5_P                          1.000   0.142      0.018      0.017
-Q6_P~~Q6_P                          1.000   0.331      0.032      0.029
-Q7_P~~Q7_P                          1.000   0.125      0.020      0.016
-Q11_P~~Q11_P                        1.000   0.473      0.029      0.036
-Q19_P~~Q19_P                        1.000   0.430      0.028      0.034
-Q26_P~~Q26_P                        1.000   0.583      0.039      0.038
-Q10_F~~Q10_F                        1.000   0.592      0.049      0.041
-Q15_F~~Q15_F                        1.000   0.491      0.040      0.039
-Q16_F~~Q16_F                        1.000   0.537      0.033      0.040
-Q17_F~~Q17_F                        1.000   0.210      0.027      0.029
-Q18_F~~Q18_F                        1.000   0.633      0.039      0.041
-Q20_S~~Q20_S                        1.000   0.120      0.025      0.025
-Q21_S~~Q21_S                        1.000   0.203      0.034      0.027
-Q22_S~~Q22_S                        1.000   0.393      0.035      0.034
-Q8_A~~Q8_A                          1.000   0.851      0.033      0.034
-Q9_A~~Q9_A                          1.000   0.749      0.024      0.040
-Q12_A~~Q12_A                        1.000   0.371      0.029      0.034
-Q13_A~~Q13_A                        1.000   0.328      0.038      0.032
-Q14_A~~Q14_A                        1.000   0.404      0.043      0.035
-Q23_A~~Q23_A                        1.000   0.424      0.026      0.036
-Q24_A~~Q24_A                        1.000   0.599      0.057      0.040
-Q25_A~~Q25_A                        1.000   0.477      0.047      0.038
-Q3_F~~Q3_F                          1.000   0.570      0.047      0.041
-Q4_F~~Q4_F                          1.000   0.587      0.050      0.041
+psycho=~Q5                          1.000   0.919      0.013      0.012
+psycho=~Q6                          1.000   0.813      0.023      0.021
+psycho=~Q7                          1.000   0.940      0.010      0.010
+psycho=~Q11                         1.000   0.733      0.032      0.028
+psycho=~Q19                         1.000   0.749      0.023      0.027
+psycho=~Q26                         1.000   0.628      0.042      0.037
+physical=~Q3                        1.000   0.841      0.023      0.022
+physical=~Q4                        1.000   0.827      0.026      0.023
+physical=~Q10                       1.000   0.626      0.040      0.038
+physical=~Q15                       1.000   0.698      0.039      0.033
+physical=~Q16                       1.000   0.683      0.040      0.034
+physical=~Q17                       1.000   0.893      0.016      0.017
+physical=~Q18                       1.000   0.613      0.039      0.039
+social=~Q20                         1.000   0.938      0.018      0.016
+social=~Q21                         1.000   0.891      0.017      0.018
+social=~Q22                         1.000   0.774      0.025      0.026
+environment=~Q8                     1.000   0.368      0.053      0.053
+environment=~Q9                     1.000   0.490      0.054      0.047
+environment=~Q12                    1.000   0.789      0.028      0.026
+environment=~Q13                    1.000   0.806      0.024      0.025
+environment=~Q14                    1.000   0.769      0.025      0.028
+environment=~Q23                    1.000   0.749      0.022      0.029
+environment=~Q24                    1.000   0.631      0.039      0.039
+environment=~Q25                    1.000   0.736      0.029      0.030
+psycho~~physical                    0.941   0.211      0.063      0.060
+psycho~~social                      0.961   0.209      0.060      0.059
+psycho~~environment                 0.922   0.217      0.071      0.060
+physical~~social                    0.863   0.204      0.061      0.060
+physical~~environment               0.824   0.194      0.069      0.062
+social~~environment                 0.961   0.214      0.061      0.061
+Q3~~Q4                              0.902   0.292      0.069      0.070
+Q5~~Q5                              1.000   0.155      0.024      0.022
+Q6~~Q6                              1.000   0.338      0.038      0.035
+Q7~~Q7                              1.000   0.117      0.020      0.019
+Q11~~Q11                            1.000   0.461      0.046      0.042
+Q19~~Q19                            1.000   0.438      0.034      0.041
+Q26~~Q26                            1.000   0.604      0.051      0.046
+Q3~~Q3                              1.000   0.292      0.038      0.036
+Q4~~Q4                              1.000   0.315      0.043      0.038
+Q10~~Q10                            1.000   0.607      0.049      0.048
+Q15~~Q15                            1.000   0.511      0.054      0.045
+Q16~~Q16                            1.000   0.532      0.055      0.046
+Q17~~Q17                            1.000   0.203      0.028      0.030
+Q18~~Q18                            1.000   0.623      0.048      0.048
+Q20~~Q20                            0.902   0.120      0.034      0.030
+Q21~~Q21                            1.000   0.206      0.030      0.033
+Q22~~Q22                            1.000   0.400      0.039      0.041
+Q8~~Q8                              1.000   0.862      0.039      0.039
+Q9~~Q9                              1.000   0.757      0.053      0.046
+Q12~~Q12                            1.000   0.377      0.044      0.041
+Q13~~Q13                            1.000   0.349      0.040      0.040
+Q14~~Q14                            1.000   0.408      0.038      0.043
+Q23~~Q23                            1.000   0.438      0.033      0.044
+Q24~~Q24                            1.000   0.600      0.049      0.048
+Q25~~Q25                            1.000   0.458      0.043      0.045
                       Average Param Average Bias Coverage r_coef.n r_se.n
-psycho=~Q5_P                   0.92        0.009    0.947   -0.384 -0.883
-psycho=~Q6_P                   0.81        0.018    0.947   -0.545 -0.881
-psycho=~Q7_P                   0.94        0.004    0.947   -0.203 -0.897
-psycho=~Q11_P                  0.73       -0.006    0.947   -0.067 -0.892
-psycho=~Q19_P                  0.75        0.015    0.947   -0.138 -0.886
-psycho=~Q26_P                  0.63        0.026    0.947   -0.290 -0.886
-physical=~Q3_F                 0.84        0.022    0.895   -0.102 -0.886
-physical=~Q4_F                 0.83        0.010    0.895   -0.115 -0.913
-physical=~Q10_F                0.63        0.010    0.895    0.012 -0.890
-physical=~Q15_F                0.71        0.014    0.947   -0.030 -0.880
-physical=~Q16_F                0.68        0.012    1.000    0.017 -0.873
-physical=~Q17_F                0.89        0.001    1.000   -0.266 -0.894
-physical=~Q18_F                0.61       -0.002    1.000   -0.131 -0.898
-social=~Q20_S                  0.94       -0.012    0.947   -0.015 -0.886
-social=~Q21_S                  0.89       -0.005    1.000    0.032 -0.885
-social=~Q22_S                  0.78       -0.007    0.895   -0.318 -0.877
-environment=~Q8_A              0.37        0.013    0.895    0.031 -0.902
-environment=~Q9_A              0.49        0.007    1.000    0.329 -0.930
-environment=~Q12_A             0.79        0.007    1.000    0.225 -0.894
-environment=~Q13_A             0.81        0.009    1.000   -0.054 -0.886
-environment=~Q14_A             0.77        0.003    0.947   -0.294 -0.895
-environment=~Q23_A             0.75        0.018    0.947    0.151 -0.890
-environment=~Q24_A             0.64       -0.002    0.895    0.206 -0.902
-environment=~Q25_A             0.73       -0.013    0.895    0.406 -0.911
-Q3_F~~Q4_F                     0.30       -0.004    1.000    0.142 -0.896
-psycho~~physical               0.30        0.006    0.947   -0.312 -0.879
-psycho~~social                 0.30       -0.013    1.000   -0.008 -0.859
-psycho~~environment            0.30        0.010    0.842   -0.201 -0.873
-physical~~social               0.30       -0.014    1.000   -0.102 -0.875
-physical~~environment          0.30        0.014    0.842   -0.419 -0.870
-social~~environment            0.30        0.007    1.000   -0.311 -0.894
-Q5_P~~Q5_P                     0.15       -0.008    0.947    0.260 -0.858
-Q6_P~~Q6_P                     0.34       -0.003    1.000    0.225 -0.860
-Q7_P~~Q7_P                     0.12        0.007    0.895   -0.120 -0.872
-Q11_P~~Q11_P                   0.47        0.001    1.000   -0.279 -0.890
-Q19_P~~Q19_P                   0.44        0.001    0.895   -0.356 -0.847
-Q26_P~~Q26_P                   0.60        0.003    0.947   -0.116 -0.859
-Q10_F~~Q10_F                   0.60       -0.005    0.947   -0.024 -0.856
-Q15_F~~Q15_F                   0.50        0.003    1.000   -0.384 -0.867
-Q16_F~~Q16_F                   0.54        0.016    0.947   -0.270 -0.859
-Q17_F~~Q17_F                   0.21        0.001    1.000    0.110 -0.880
-Q18_F~~Q18_F                   0.63        0.007    0.947    0.231 -0.887
-Q20_S~~Q20_S                   0.12       -0.003    0.947   -0.479 -0.823
-Q21_S~~Q21_S                   0.21       -0.011    0.895    0.206 -0.817
-Q22_S~~Q22_S                   0.39       -0.003    0.947    0.175 -0.811
-Q8_A~~Q8_A                     0.86       -0.015    0.947    0.508 -0.896
-Q9_A~~Q9_A                     0.76       -0.021    0.947    0.441 -0.934
-Q12_A~~Q12_A                   0.38       -0.005    0.895   -0.016 -0.872
-Q13_A~~Q13_A                   0.34       -0.012    0.789   -0.380 -0.878
-Q14_A~~Q14_A                   0.41       -0.006    1.000    0.486 -0.903
-Q23_A~~Q23_A                   0.44       -0.006    1.000   -0.183 -0.879
-Q24_A~~Q24_A                   0.59        0.016    1.000   -0.431 -0.880
-Q25_A~~Q25_A                   0.47       -0.004    1.000   -0.179 -0.898
-Q3_F~~Q3_F                     1.00       -0.016    0.947    0.166 -0.875
-Q4_F~~Q4_F                     1.00        0.006    0.947    0.380 -0.898
+psycho=~Q5                    0.920       -0.002    0.922   -0.234 -0.934
+psycho=~Q6                    0.810        0.009    0.922   -0.337 -0.928
+psycho=~Q7                    0.940        0.004    0.902   -0.227 -0.935
+psycho=~Q11                   0.730        0.012    0.902   -0.414 -0.926
+psycho=~Q19                   0.750       -0.001    0.980   -0.190 -0.931
+psycho=~Q26                   0.630        0.000    0.922   -0.130 -0.936
+physical=~Q3                  0.840       -0.013    0.961    0.172 -0.919
+physical=~Q4                  0.830       -0.003    0.941    0.141 -0.919
+physical=~Q10                 0.630       -0.005    0.922    0.023 -0.935
+physical=~Q15                 0.710       -0.011    0.941    0.091 -0.913
+physical=~Q16                 0.680        0.001    0.961   -0.116 -0.941
+physical=~Q17                 0.890        0.004    0.941   -0.036 -0.913
+physical=~Q18                 0.610        0.001    0.941   -0.167 -0.938
+social=~Q20                   0.940       -0.010    0.902   -0.071 -0.938
+social=~Q21                   0.890       -0.004    0.961   -0.075 -0.919
+social=~Q22                   0.780       -0.012    1.000    0.203 -0.929
+environment=~Q8               0.370       -0.001    0.980    0.002 -0.923
+environment=~Q9               0.490        0.001    0.980   -0.098 -0.932
+environment=~Q12              0.790       -0.003    0.980   -0.190 -0.925
+environment=~Q13              0.810       -0.010    0.961   -0.242 -0.925
+environment=~Q14              0.770        0.002    1.000   -0.244 -0.923
+environment=~Q23              0.750       -0.003    0.941   -0.268 -0.927
+environment=~Q24              0.640       -0.014    0.902   -0.020 -0.946
+environment=~Q25              0.730        0.007    0.980   -0.179 -0.935
+psycho~~physical              0.200        0.011    0.941   -0.059 -0.945
+psycho~~social                0.200        0.009    0.941   -0.113 -0.944
+psycho~~environment           0.200        0.017    0.902   -0.098 -0.929
+physical~~social              0.200        0.004    0.922   -0.126 -0.938
+physical~~environment         0.200       -0.006    0.902   -0.050 -0.939
+social~~environment           0.200        0.014    0.922   -0.098 -0.932
+Q3~~Q4                        0.091       -0.003    0.980   -0.107 -0.901
+Q5~~Q5                        0.154        0.000    0.961   -0.213 -0.895
+Q6~~Q6                        0.344       -0.002    0.922    0.080 -0.861
+Q7~~Q7                        0.116        0.001    0.922   -0.226 -0.896
+Q11~~Q11                      0.467        0.003    0.941    0.055 -0.898
+Q19~~Q19                      0.438        0.000    0.980    0.006 -0.885
+Q26~~Q26                      0.603        0.002    0.980    0.068 -0.912
+Q3~~Q3                        0.294       -0.014    0.941    0.164 -0.879
+Q4~~Q4                        0.311        0.002    0.980   -0.261 -0.895
+Q10~~Q10                      0.603        0.000    0.980    0.069 -0.916
+Q15~~Q15                      0.496        0.015    0.961   -0.114 -0.853
+Q16~~Q16                      0.538       -0.011    0.922    0.270 -0.908
+Q17~~Q17                      0.208       -0.006    0.941    0.183 -0.915
+Q18~~Q18                      0.628       -0.008    0.902   -0.003 -0.903
+Q20~~Q20                      0.116        0.000    0.941    0.071 -0.909
+Q21~~Q21                      0.208       -0.004    0.961   -0.166 -0.884
+Q22~~Q22                      0.392        0.001    0.980   -0.097 -0.895
+Q8~~Q8                        0.863        0.003    0.980    0.075 -0.874
+Q9~~Q9                        0.760       -0.002    0.961    0.033 -0.882
+Q12~~Q12                      0.376       -0.002    0.980   -0.010 -0.875
+Q13~~Q13                      0.344       -0.002    0.922    0.022 -0.863
+Q14~~Q14                      0.407        0.004    0.941    0.095 -0.870
+Q23~~Q23                      0.438       -0.002    0.961   -0.166 -0.894
+Q24~~Q24                      0.590       -0.005    1.000   -0.035 -0.932
+Q25~~Q25                      0.467       -0.009    0.922   -0.120 -0.912
 ========= Correlation between Fit Indices ============
        chisq    aic    bic  rmsea    cfi    tli   srmr      n
-chisq  1.000 -0.355 -0.355  0.861 -0.708 -0.823  0.555 -0.354
-aic   -0.355  1.000  1.000 -0.594  0.557  0.398 -0.867  1.000
-bic   -0.355  1.000  1.000 -0.594  0.557  0.399 -0.867  1.000
-rmsea  0.861 -0.594 -0.594  1.000 -0.937 -0.937  0.829 -0.594
-cfi   -0.708  0.557  0.557 -0.937  1.000  0.955 -0.847  0.557
-tli   -0.823  0.398  0.399 -0.937  0.955  1.000 -0.740  0.398
-srmr   0.555 -0.867 -0.867  0.829 -0.847 -0.740  1.000 -0.866
-n     -0.354  1.000  1.000 -0.594  0.557  0.398 -0.866  1.000
+chisq  1.000 -0.375 -0.375  0.885 -0.787 -0.895  0.550 -0.373
+aic   -0.375  1.000  1.000 -0.649  0.642  0.540 -0.912  1.000
+bic   -0.375  1.000  1.000 -0.650  0.643  0.540 -0.912  1.000
+rmsea  0.885 -0.649 -0.650  1.000 -0.942 -0.950  0.785 -0.648
+cfi   -0.787  0.642  0.643 -0.942  1.000  0.950 -0.774  0.640
+tli   -0.895  0.540  0.540 -0.950  0.950  1.000 -0.731  0.537
+srmr   0.550 -0.912 -0.912  0.785 -0.774 -0.731  1.000 -0.911
+n     -0.373  1.000  1.000 -0.648  0.640  0.537 -0.911  1.000
 ================== Replications =====================
-Number of replications = 19 
-Number of converged replications = 19 
+Number of replications = 51 
+Number of converged replications = 51 
 Number of nonconverged replications: 
    1. Nonconvergent Results = 0 
    2. Nonconvergent results from multiple imputation = 0 
@@ -610,346 +596,326 @@ NOTE: The sample size is varying.</code></pre>
 <h2 class="anchored" data-anchor-id="scenario-b-missing-data-mcar-10">Scenario B — Missing data (MCAR 10%)</h2>
 <p>Introduce 10% missing completely at random (MCAR). This demonstrates the power cost of attrition / item non-response.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>sim_missing_vary <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> <span class="cn">NULL</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> SEQ,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> popModel,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pmMCAR   =</span> <span class="fl">0.10</span>           <span class="co"># 10% MCAR missing data</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: lavaan-&gt;lav_object_post_check():  
+   some estimated ov variances are negative
+Warning: lavaan-&gt;lav_object_post_check():  
+   some estimated ov variances are negative</code></pre>
+</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>sim_missing_vary <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> <span class="cn">NULL</span>,</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> N_SEQ,</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> popModel,</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pmMCAR   =</span> <span class="fl">0.10</span>           <span class="co"># 10% MCAR missing data</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_missing_vary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_missing_vary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RESULT OBJECT
 Model Type
 [1] "lavaan"
-========= Fit Indices Cutoffs ============</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     N   chisq       aic       bic rmsea   cfi   tli  srmr
-1  100 312.298  5301.554  6038.158 0.052 0.938 0.930 0.074
-2  325 299.574 17024.929 17563.472 0.041 0.954 0.948 0.061
-3  550 286.849 28748.304 29088.787 0.029 0.969 0.965 0.048
-4  775 274.125 40471.678 40614.102 0.018 0.984 0.983 0.035
-5 1000 261.400 52195.053 52139.417 0.007 1.000 1.000 0.023
+========= Fit Indices Cutoffs ============
+    N   chisq       aic       bic rmsea   cfi   tli  srmr
+1 100 317.703  5245.664  5479.987 0.045 0.961 0.956 0.068
+2 225 307.632 11468.803 11733.948 0.037 0.970 0.967 0.058
+3 350 297.562 17691.942 17987.909 0.029 0.980 0.977 0.048
+4 475 287.491 23915.081 24241.870 0.021 0.989 0.988 0.038
+5 600 277.421 30138.219 30495.831 0.013 0.999 0.999 0.028
 ========= Parameter Estimates and Standard Errors ============
                       Estimate Average Estimate SD Average SE
-psycho=~Q5_P                     0.927       0.045      0.039
-psycho=~Q6_P                     0.826       0.047      0.043
-psycho=~Q7_P                     0.944       0.042      0.039
-psycho=~Q11_P                    0.728       0.038      0.045
-psycho=~Q19_P                    0.766       0.050      0.045
-psycho=~Q26_P                    0.657       0.047      0.048
-physical=~Q3_F                   0.870       0.078      0.063
-physical=~Q4_F                   0.843       0.082      0.063
-physical=~Q10_F                  0.646       0.055      0.048
-physical=~Q15_F                  0.723       0.060      0.048
-physical=~Q16_F                  0.695       0.040      0.048
-physical=~Q17_F                  0.893       0.035      0.042
-physical=~Q18_F                  0.606       0.043      0.050
-social=~Q20_S                    0.928       0.047      0.040
-social=~Q21_S                    0.887       0.046      0.041
-social=~Q22_S                    0.771       0.038      0.044
-environment=~Q8_A                0.383       0.050      0.052
-environment=~Q9_A                0.496       0.042      0.050
-environment=~Q12_A               0.796       0.040      0.045
-environment=~Q13_A               0.816       0.033      0.043
-environment=~Q14_A               0.769       0.051      0.045
-environment=~Q23_A               0.770       0.042      0.046
-environment=~Q24_A               0.637       0.071      0.049
-environment=~Q25_A               0.720       0.063      0.045
-Q3_F~~Q4_F                       0.296       0.068      0.064
-psycho~~physical                 0.310       0.050      0.049
-psycho~~social                   0.288       0.057      0.049
-psycho~~environment              0.311       0.061      0.049
-physical~~social                 0.283       0.056      0.051
-physical~~environment            0.313       0.065      0.051
-social~~environment              0.303       0.038      0.050
-Q5_P~~Q5_P                       0.142       0.020      0.017
-Q6_P~~Q6_P                       0.339       0.022      0.028
-Q7_P~~Q7_P                       0.127       0.024      0.017
-Q11_P~~Q11_P                     0.471       0.033      0.037
-Q19_P~~Q19_P                     0.443       0.050      0.036
-Q26_P~~Q26_P                     0.599       0.046      0.046
-Q10_F~~Q10_F                     0.581       0.045      0.047
-Q15_F~~Q15_F                     0.504       0.029      0.044
-Q16_F~~Q16_F                     0.550       0.043      0.046
-Q17_F~~Q17_F                     0.213       0.032      0.031
-Q18_F~~Q18_F                     0.641       0.043      0.051
-Q20_S~~Q20_S                     0.118       0.031      0.026
-Q21_S~~Q21_S                     0.197       0.030      0.027
-Q22_S~~Q22_S                     0.382       0.037      0.033
-Q8_A~~Q8_A                       0.849       0.061      0.063
-Q9_A~~Q9_A                       0.741       0.062      0.056
-Q12_A~~Q12_A                     0.379       0.036      0.035
-Q13_A~~Q13_A                     0.326       0.049      0.032
-Q14_A~~Q14_A                     0.402       0.041      0.036
-Q23_A~~Q23_A                     0.434       0.043      0.038
-Q24_A~~Q24_A                     0.608       0.045      0.049
-Q25_A~~Q25_A                     0.462       0.034      0.039
-Q3_F~~Q3_F                       0.983       0.082      0.082
-Q4_F~~Q4_F                       1.001       0.083      0.081
-Q5_P~1                          -0.012       0.060      0.050
-Q6_P~1                          -0.023       0.078      0.051
-Q7_P~1                          -0.011       0.062      0.050
-Q11_P~1                         -0.008       0.063      0.051
-Q19_P~1                         -0.009       0.044      0.051
-Q26_P~1                         -0.015       0.051      0.052
-Q3_F~1                          -0.033       0.071      0.067
-Q4_F~1                          -0.044       0.072      0.066
-Q10_F~1                          0.009       0.058      0.051
-Q15_F~1                         -0.027       0.052      0.052
-Q16_F~1                         -0.016       0.047      0.052
-Q17_F~1                         -0.032       0.049      0.051
-Q18_F~1                         -0.017       0.043      0.051
-Q20_S~1                          0.009       0.049      0.050
-Q21_S~1                         -0.008       0.073      0.049
-Q22_S~1                          0.000       0.054      0.050
-Q8_A~1                           0.004       0.056      0.051
-Q9_A~1                           0.005       0.060      0.050
-Q12_A~1                          0.011       0.049      0.050
-Q13_A~1                          0.002       0.037      0.050
-Q14_A~1                         -0.003       0.059      0.050
-Q23_A~1                          0.012       0.071      0.051
-Q24_A~1                          0.026       0.052      0.051
-Q25_A~1                          0.013       0.049      0.050
+psycho=~Q5                       0.919       0.051      0.046
+psycho=~Q6                       0.821       0.056      0.051
+psycho=~Q7                       0.943       0.050      0.046
+psycho=~Q11                      0.740       0.059      0.054
+psycho=~Q19                      0.750       0.047      0.052
+psycho=~Q26                      0.631       0.062      0.056
+physical=~Q3                     0.825       0.060      0.049
+physical=~Q4                     0.825       0.055      0.051
+physical=~Q10                    0.629       0.063      0.057
+physical=~Q15                    0.703       0.063      0.055
+physical=~Q16                    0.676       0.054      0.055
+physical=~Q17                    0.895       0.056      0.049
+physical=~Q18                    0.612       0.052      0.057
+social=~Q20                      0.931       0.056      0.047
+social=~Q21                      0.888       0.048      0.049
+social=~Q22                      0.766       0.050      0.052
+environment=~Q8                  0.370       0.060      0.063
+environment=~Q9                  0.491       0.058      0.060
+environment=~Q12                 0.786       0.059      0.053
+environment=~Q13                 0.801       0.056      0.052
+environment=~Q14                 0.767       0.049      0.054
+environment=~Q23                 0.748       0.051      0.054
+environment=~Q24                 0.625       0.065      0.057
+environment=~Q25                 0.734       0.054      0.055
+psycho~~physical                 0.210       0.065      0.060
+psycho~~social                   0.209       0.063      0.060
+psycho~~environment              0.217       0.073      0.061
+physical~~social                 0.207       0.060      0.061
+physical~~environment            0.193       0.068      0.063
+social~~environment              0.213       0.065      0.062
+Q3~~Q4                           0.091       0.027      0.029
+Q5~~Q5                           0.151       0.021      0.021
+Q6~~Q6                           0.341       0.033      0.034
+Q7~~Q7                           0.118       0.022      0.020
+Q11~~Q11                         0.470       0.041      0.044
+Q19~~Q19                         0.435       0.036      0.041
+Q26~~Q26                         0.602       0.046      0.055
+Q3~~Q3                           0.282       0.034      0.034
+Q4~~Q4                           0.316       0.038      0.038
+Q10~~Q10                         0.599       0.047      0.056
+Q15~~Q15                         0.509       0.048      0.050
+Q16~~Q16                         0.530       0.048      0.050
+Q17~~Q17                         0.199       0.027      0.030
+Q18~~Q18                         0.617       0.057      0.057
+Q20~~Q20                         0.116       0.035      0.033
+Q21~~Q21                         0.203       0.035      0.034
+Q22~~Q22                         0.393       0.032      0.040
+Q8~~Q8                           0.869       0.073      0.077
+Q9~~Q9                           0.756       0.069      0.068
+Q12~~Q12                         0.378       0.043      0.042
+Q13~~Q13                         0.342       0.038      0.039
+Q14~~Q14                         0.413       0.048      0.044
+Q23~~Q23                         0.429       0.038      0.045
+Q24~~Q24                         0.586       0.049      0.056
+Q25~~Q25                         0.452       0.044      0.047
+Q5~1                            -0.009       0.063      0.059
+Q6~1                            -0.007       0.052      0.060
+Q7~1                            -0.009       0.062      0.059
+Q11~1                           -0.004       0.070      0.061
+Q19~1                           -0.003       0.066      0.060
+Q26~1                            0.000       0.057      0.060
+Q3~1                            -0.008       0.063      0.058
+Q4~1                            -0.012       0.060      0.059
+Q10~1                           -0.018       0.058      0.060
+Q15~1                           -0.004       0.065      0.060
+Q16~1                           -0.020       0.069      0.060
+Q17~1                           -0.010       0.061      0.059
+Q18~1                            0.001       0.071      0.060
+Q20~1                            0.004       0.059      0.059
+Q21~1                           -0.002       0.054      0.059
+Q22~1                            0.014       0.072      0.059
+Q8~1                            -0.012       0.061      0.061
+Q9~1                            -0.004       0.064      0.061
+Q12~1                           -0.005       0.075      0.060
+Q13~1                           -0.018       0.064      0.059
+Q14~1                           -0.009       0.057      0.060
+Q23~1                            0.005       0.060      0.060
+Q24~1                           -0.014       0.065      0.060
+Q25~1                           -0.005       0.070      0.060
                       Power (Not equal 0) Std Est Std Est SD Std Ave SE
-psycho=~Q5_P                        1.000   0.926      0.011      0.010
-psycho=~Q6_P                        1.000   0.817      0.018      0.019
-psycho=~Q7_P                        1.000   0.935      0.014      0.010
-psycho=~Q11_P                       1.000   0.727      0.022      0.026
-psycho=~Q19_P                       1.000   0.755      0.020      0.024
-psycho=~Q26_P                       1.000   0.646      0.031      0.031
-physical=~Q3_F                      1.000   0.658      0.038      0.033
-physical=~Q4_F                      1.000   0.643      0.038      0.034
-physical=~Q10_F                     1.000   0.645      0.037      0.034
-physical=~Q15_F                     1.000   0.712      0.031      0.030
-physical=~Q16_F                     1.000   0.683      0.028      0.032
-physical=~Q17_F                     1.000   0.888      0.019      0.018
-physical=~Q18_F                     1.000   0.603      0.034      0.037
-social=~Q20_S                       1.000   0.937      0.019      0.015
-social=~Q21_S                       1.000   0.894      0.018      0.016
-social=~Q22_S                       1.000   0.780      0.027      0.023
-environment=~Q8_A                   1.000   0.383      0.042      0.047
-environment=~Q9_A                   1.000   0.499      0.029      0.042
-environment=~Q12_A                  1.000   0.791      0.022      0.024
-environment=~Q13_A                  1.000   0.819      0.024      0.021
-environment=~Q14_A                  1.000   0.771      0.028      0.024
-environment=~Q23_A                  1.000   0.760      0.021      0.026
-environment=~Q24_A                  1.000   0.630      0.050      0.035
-environment=~Q25_A                  1.000   0.725      0.041      0.029
-Q3_F~~Q4_F                          0.947   0.298      0.060      0.054
-psycho~~physical                    1.000   0.310      0.050      0.049
-psycho~~social                      0.947   0.288      0.057      0.049
-psycho~~environment                 1.000   0.311      0.061      0.049
-physical~~social                    1.000   0.283      0.056      0.051
-physical~~environment               1.000   0.313      0.065      0.051
-social~~environment                 1.000   0.303      0.038      0.050
-Q5_P~~Q5_P                          1.000   0.142      0.021      0.019
-Q6_P~~Q6_P                          1.000   0.333      0.029      0.030
-Q7_P~~Q7_P                          1.000   0.125      0.026      0.018
-Q11_P~~Q11_P                        1.000   0.471      0.032      0.037
-Q19_P~~Q19_P                        1.000   0.429      0.031      0.036
-Q26_P~~Q26_P                        1.000   0.581      0.040      0.041
-Q10_F~~Q10_F                        1.000   0.582      0.047      0.044
-Q15_F~~Q15_F                        1.000   0.492      0.044      0.042
-Q16_F~~Q16_F                        1.000   0.532      0.039      0.043
-Q17_F~~Q17_F                        1.000   0.211      0.034      0.032
-Q18_F~~Q18_F                        1.000   0.635      0.041      0.044
-Q20_S~~Q20_S                        1.000   0.122      0.035      0.028
-Q21_S~~Q21_S                        1.000   0.201      0.033      0.029
-Q22_S~~Q22_S                        1.000   0.391      0.042      0.036
-Q8_A~~Q8_A                          1.000   0.852      0.034      0.036
-Q9_A~~Q9_A                          1.000   0.751      0.029      0.042
-Q12_A~~Q12_A                        1.000   0.374      0.034      0.037
-Q13_A~~Q13_A                        1.000   0.328      0.039      0.035
-Q14_A~~Q14_A                        1.000   0.405      0.044      0.038
-Q23_A~~Q23_A                        1.000   0.423      0.031      0.039
-Q24_A~~Q24_A                        1.000   0.600      0.059      0.043
-Q25_A~~Q25_A                        1.000   0.473      0.056      0.041
-Q3_F~~Q3_F                          1.000   0.565      0.050      0.044
-Q4_F~~Q4_F                          1.000   0.585      0.049      0.044
-Q5_P~1                              0.000  -0.011      0.059      0.050
-Q6_P~1                              0.053  -0.022      0.074      0.050
-Q7_P~1                              0.053  -0.011      0.061      0.050
-Q11_P~1                             0.000  -0.008      0.063      0.051
-Q19_P~1                             0.000  -0.008      0.043      0.050
-Q26_P~1                             0.000  -0.015      0.049      0.051
-Q3_F~1                              0.105  -0.026      0.053      0.051
-Q4_F~1                              0.053  -0.033      0.055      0.051
-Q10_F~1                             0.053   0.008      0.058      0.051
-Q15_F~1                             0.053  -0.026      0.050      0.051
-Q16_F~1                             0.000  -0.016      0.046      0.051
-Q17_F~1                             0.053  -0.032      0.049      0.050
-Q18_F~1                             0.000  -0.017      0.043      0.051
-Q20_S~1                             0.053   0.008      0.049      0.050
-Q21_S~1                             0.158  -0.009      0.075      0.050
-Q22_S~1                             0.053  -0.001      0.055      0.050
-Q8_A~1                              0.105   0.004      0.056      0.051
-Q9_A~1                              0.105   0.003      0.064      0.052
-Q12_A~1                             0.053   0.011      0.050      0.050
-Q13_A~1                             0.000   0.002      0.037      0.050
-Q14_A~1                             0.053  -0.004      0.060      0.051
-Q23_A~1                             0.105   0.012      0.071      0.051
-Q24_A~1                             0.053   0.024      0.051      0.051
-Q25_A~1                             0.000   0.012      0.051      0.051
+psycho=~Q5                          1.000   0.921      0.014      0.013
+psycho=~Q6                          1.000   0.814      0.023      0.023
+psycho=~Q7                          1.000   0.939      0.011      0.011
+psycho=~Q11                         1.000   0.732      0.034      0.030
+psycho=~Q19                         1.000   0.750      0.026      0.029
+psycho=~Q26                         1.000   0.629      0.044      0.039
+physical=~Q3                        1.000   0.839      0.026      0.023
+physical=~Q4                        1.000   0.825      0.025      0.025
+physical=~Q10                       1.000   0.629      0.044      0.040
+physical=~Q15                       1.000   0.700      0.039      0.035
+physical=~Q16                       1.000   0.679      0.037      0.036
+physical=~Q17                       1.000   0.894      0.018      0.018
+physical=~Q18                       1.000   0.614      0.039      0.041
+social=~Q20                         1.000   0.938      0.020      0.019
+social=~Q21                         1.000   0.892      0.019      0.020
+social=~Q22                         1.000   0.772      0.029      0.028
+environment=~Q8                     1.000   0.369      0.057      0.057
+environment=~Q9                     1.000   0.491      0.052      0.050
+environment=~Q12                    1.000   0.787      0.029      0.028
+environment=~Q13                    1.000   0.807      0.025      0.027
+environment=~Q14                    1.000   0.766      0.027      0.030
+environment=~Q23                    1.000   0.752      0.027      0.031
+environment=~Q24                    1.000   0.631      0.040      0.041
+environment=~Q25                    1.000   0.736      0.033      0.033
+psycho~~physical                    0.902   0.210      0.065      0.060
+psycho~~social                      0.961   0.209      0.063      0.060
+psycho~~environment                 0.922   0.217      0.073      0.061
+physical~~social                    0.882   0.207      0.060      0.061
+physical~~environment               0.843   0.193      0.068      0.063
+social~~environment                 0.961   0.213      0.065      0.062
+Q3~~Q4                              0.922   0.301      0.072      0.077
+Q5~~Q5                              1.000   0.152      0.025      0.023
+Q6~~Q6                              1.000   0.337      0.037      0.037
+Q7~~Q7                              1.000   0.118      0.021      0.021
+Q11~~Q11                            1.000   0.463      0.049      0.044
+Q19~~Q19                            1.000   0.437      0.039      0.043
+Q26~~Q26                            1.000   0.602      0.054      0.048
+Q3~~Q3                              1.000   0.295      0.043      0.039
+Q4~~Q4                              1.000   0.318      0.041      0.041
+Q10~~Q10                            1.000   0.603      0.055      0.050
+Q15~~Q15                            1.000   0.508      0.054      0.048
+Q16~~Q16                            1.000   0.537      0.050      0.049
+Q17~~Q17                            1.000   0.200      0.032      0.033
+Q18~~Q18                            1.000   0.622      0.049      0.051
+Q20~~Q20                            0.941   0.119      0.038      0.035
+Q21~~Q21                            1.000   0.205      0.033      0.036
+Q22~~Q22                            1.000   0.403      0.045      0.044
+Q8~~Q8                              1.000   0.861      0.043      0.042
+Q9~~Q9                              1.000   0.756      0.052      0.049
+Q12~~Q12                            1.000   0.380      0.045      0.044
+Q13~~Q13                            1.000   0.348      0.040      0.043
+Q14~~Q14                            1.000   0.413      0.042      0.046
+Q23~~Q23                            1.000   0.434      0.040      0.047
+Q24~~Q24                            1.000   0.601      0.050      0.051
+Q25~~Q25                            1.000   0.457      0.049      0.048
+Q5~1                                0.078  -0.008      0.062      0.059
+Q6~1                                0.039  -0.007      0.052      0.059
+Q7~1                                0.078  -0.008      0.061      0.059
+Q11~1                               0.039  -0.003      0.069      0.060
+Q19~1                               0.020  -0.002      0.066      0.060
+Q26~1                               0.039   0.000      0.057      0.060
+Q3~1                                0.078  -0.007      0.064      0.059
+Q4~1                                0.098  -0.012      0.060      0.059
+Q10~1                               0.039  -0.017      0.058      0.060
+Q15~1                               0.059  -0.003      0.065      0.060
+Q16~1                               0.118  -0.020      0.070      0.060
+Q17~1                               0.078  -0.011      0.060      0.059
+Q18~1                               0.098   0.001      0.071      0.060
+Q20~1                               0.059   0.004      0.060      0.059
+Q21~1                               0.039  -0.002      0.055      0.059
+Q22~1                               0.098   0.014      0.073      0.060
+Q8~1                                0.039  -0.011      0.061      0.061
+Q9~1                                0.020  -0.004      0.064      0.061
+Q12~1                               0.059  -0.006      0.074      0.060
+Q13~1                               0.059  -0.020      0.068      0.060
+Q14~1                               0.039  -0.010      0.058      0.060
+Q23~1                               0.000   0.005      0.060      0.060
+Q24~1                               0.098  -0.014      0.068      0.060
+Q25~1                               0.078  -0.005      0.070      0.060
                       Average FMI1 SD FMI1 r_coef.n r_se.n
-psycho=~Q5_P                 0.048   0.011   -0.308 -0.878
-psycho=~Q6_P                 0.067   0.014   -0.544 -0.887
-psycho=~Q7_P                 0.045   0.010   -0.196 -0.907
-psycho=~Q11_P                0.076   0.012   -0.145 -0.899
-psycho=~Q19_P                0.081   0.018   -0.307 -0.892
-psycho=~Q26_P                0.088   0.023   -0.263 -0.873
-physical=~Q3_F               0.084   0.023   -0.071 -0.868
-physical=~Q4_F               0.092   0.027   -0.051 -0.902
-physical=~Q10_F              0.104   0.025   -0.137 -0.886
-physical=~Q15_F              0.086   0.028   -0.007 -0.874
-physical=~Q16_F              0.096   0.021    0.141 -0.878
-physical=~Q17_F              0.082   0.020   -0.404 -0.881
-physical=~Q18_F              0.105   0.020   -0.104 -0.899
-social=~Q20_S                0.075   0.022    0.004 -0.886
-social=~Q21_S                0.076   0.032   -0.059 -0.878
-social=~Q22_S                0.081   0.026   -0.167 -0.871
-environment=~Q8_A            0.112   0.031    0.048 -0.899
-environment=~Q9_A            0.105   0.023    0.412 -0.928
-environment=~Q12_A           0.083   0.022    0.394 -0.885
-environment=~Q13_A           0.076   0.015    0.069 -0.893
-environment=~Q14_A           0.084   0.021   -0.207 -0.895
-environment=~Q23_A           0.084   0.017   -0.009 -0.894
-environment=~Q24_A           0.099   0.027    0.231 -0.894
-environment=~Q25_A           0.085   0.022    0.345 -0.903
-Q3_F~~Q4_F                   0.183   0.032   -0.024 -0.878
-psycho~~physical             0.028   0.006   -0.395 -0.877
-psycho~~social               0.028   0.011   -0.041 -0.858
-psycho~~environment          0.024   0.007   -0.221 -0.873
-physical~~social             0.038   0.013   -0.137 -0.875
-physical~~environment        0.032   0.009   -0.413 -0.869
-social~~environment          0.034   0.015   -0.230 -0.886
-Q5_P~~Q5_P                   0.189   0.020    0.247 -0.872
-Q6_P~~Q6_P                   0.136   0.021    0.285 -0.880
-Q7_P~~Q7_P                   0.195   0.029   -0.063 -0.878
-Q11_P~~Q11_P                 0.120   0.013   -0.284 -0.888
-Q19_P~~Q19_P                 0.125   0.027   -0.306 -0.860
-Q26_P~~Q26_P                 0.111   0.018   -0.087 -0.849
-Q10_F~~Q10_F                 0.126   0.022    0.188 -0.864
-Q15_F~~Q15_F                 0.141   0.025   -0.506 -0.855
-Q16_F~~Q16_F                 0.134   0.024   -0.142 -0.873
-Q17_F~~Q17_F                 0.185   0.018    0.264 -0.858
-Q18_F~~Q18_F                 0.121   0.013    0.134 -0.887
-Q20_S~~Q20_S                 0.222   0.025   -0.437 -0.826
-Q21_S~~Q21_S                 0.203   0.038    0.423 -0.796
-Q22_S~~Q22_S                 0.149   0.023    0.205 -0.798
-Q8_A~~Q8_A                   0.102   0.024    0.402 -0.890
-Q9_A~~Q9_A                   0.117   0.022    0.446 -0.939
-Q12_A~~Q12_A                 0.135   0.011   -0.262 -0.864
-Q13_A~~Q13_A                 0.143   0.021   -0.329 -0.884
-Q14_A~~Q14_A                 0.146   0.032    0.479 -0.894
-Q23_A~~Q23_A                 0.140   0.023   -0.160 -0.878
-Q24_A~~Q24_A                 0.123   0.023   -0.396 -0.889
-Q25_A~~Q25_A                 0.127   0.021   -0.196 -0.883
-Q3_F~~Q3_F                   0.133   0.047   -0.022 -0.855
-Q4_F~~Q4_F                   0.125   0.022    0.287 -0.885
-Q5_P~1                       0.023   0.005    0.157 -0.875
-Q6_P~1                       0.041   0.008    0.294 -0.885
-Q7_P~1                       0.023   0.004    0.221 -0.910
-Q11_P~1                      0.052   0.009    0.351 -0.895
-Q19_P~1                      0.052   0.011    0.145 -0.895
-Q26_P~1                      0.064   0.010   -0.132 -0.877
-Q3_F~1                       0.057   0.008   -0.065 -0.870
-Q4_F~1                       0.060   0.012    0.170 -0.906
-Q10_F~1                      0.068   0.009   -0.212 -0.882
-Q15_F~1                      0.060   0.012    0.382 -0.867
-Q16_F~1                      0.064   0.008    0.140 -0.873
-Q17_F~1                      0.040   0.006    0.503 -0.893
-Q18_F~1                      0.071   0.010    0.310 -0.899
-Q20_S~1                      0.031   0.009   -0.018 -0.893
-Q21_S~1                      0.032   0.008    0.263 -0.892
-Q22_S~1                      0.046   0.007    0.206 -0.894
-Q8_A~1                       0.083   0.014   -0.033 -0.897
-Q9_A~1                       0.085   0.017    0.460 -0.924
-Q12_A~1                      0.045   0.008    0.053 -0.890
-Q13_A~1                      0.042   0.009    0.079 -0.889
-Q14_A~1                      0.052   0.009    0.004 -0.888
-Q23_A~1                      0.054   0.009    0.136 -0.884
-Q24_A~1                      0.069   0.013   -0.099 -0.909
-Q25_A~1                      0.056   0.012    0.008 -0.910
+psycho=~Q5                   0.046   0.013   -0.224 -0.925
+psycho=~Q6                   0.067   0.019   -0.386 -0.925
+psycho=~Q7                   0.047   0.015   -0.163 -0.935
+psycho=~Q11                  0.079   0.026   -0.351 -0.922
+psycho=~Q19                  0.074   0.021   -0.145 -0.931
+psycho=~Q26                  0.087   0.023   -0.161 -0.922
+physical=~Q3                 0.066   0.020    0.191 -0.924
+physical=~Q4                 0.068   0.025    0.131 -0.914
+physical=~Q10                0.094   0.021   -0.006 -0.940
+physical=~Q15                0.087   0.020    0.046 -0.908
+physical=~Q16                0.084   0.029   -0.080 -0.929
+physical=~Q17                0.073   0.022   -0.062 -0.915
+physical=~Q18                0.094   0.035   -0.271 -0.942
+social=~Q20                  0.077   0.022   -0.076 -0.934
+social=~Q21                  0.072   0.023   -0.065 -0.919
+social=~Q22                  0.078   0.023    0.216 -0.925
+environment=~Q8              0.104   0.032   -0.038 -0.913
+environment=~Q9              0.098   0.028   -0.137 -0.931
+environment=~Q12             0.079   0.026   -0.120 -0.910
+environment=~Q13             0.079   0.019   -0.205 -0.931
+environment=~Q14             0.090   0.028   -0.210 -0.916
+environment=~Q23             0.083   0.028   -0.297 -0.931
+environment=~Q24             0.092   0.025    0.022 -0.939
+environment=~Q25             0.094   0.028   -0.132 -0.924
+psycho~~physical             0.021   0.008   -0.035 -0.945
+psycho~~social               0.025   0.008   -0.099 -0.940
+psycho~~environment          0.023   0.008   -0.115 -0.928
+physical~~social             0.030   0.011   -0.129 -0.938
+physical~~environment        0.024   0.011   -0.038 -0.938
+social~~environment          0.031   0.011   -0.073 -0.933
+Q3~~Q4                       0.190   0.034   -0.244 -0.912
+Q5~~Q5                       0.178   0.024   -0.103 -0.875
+Q6~~Q6                       0.139   0.023    0.125 -0.880
+Q7~~Q7                       0.193   0.033   -0.282 -0.891
+Q11~~Q11                     0.121   0.021   -0.027 -0.884
+Q19~~Q19                     0.125   0.022   -0.008 -0.889
+Q26~~Q26                     0.113   0.025    0.197 -0.877
+Q3~~Q3                       0.157   0.031    0.096 -0.886
+Q4~~Q4                       0.154   0.025   -0.329 -0.893
+Q10~~Q10                     0.121   0.024    0.166 -0.916
+Q15~~Q15                     0.128   0.024   -0.124 -0.867
+Q16~~Q16                     0.118   0.027    0.257 -0.905
+Q17~~Q17                     0.171   0.023    0.184 -0.897
+Q18~~Q18                     0.118   0.020    0.077 -0.912
+Q20~~Q20                     0.230   0.038    0.059 -0.894
+Q21~~Q21                     0.211   0.038   -0.110 -0.882
+Q22~~Q22                     0.147   0.039   -0.135 -0.899
+Q8~~Q8                       0.111   0.031    0.069 -0.881
+Q9~~Q9                       0.117   0.025    0.097 -0.893
+Q12~~Q12                     0.149   0.032   -0.137 -0.853
+Q13~~Q13                     0.157   0.037    0.072 -0.880
+Q14~~Q14                     0.146   0.029    0.041 -0.855
+Q23~~Q23                     0.140   0.022    0.016 -0.892
+Q24~~Q24                     0.121   0.019   -0.066 -0.924
+Q25~~Q25                     0.143   0.039   -0.049 -0.908
+Q5~1                         0.024   0.005    0.170 -0.928
+Q6~1                         0.040   0.008    0.196 -0.928
+Q7~1                         0.022   0.005    0.135 -0.932
+Q11~1                        0.051   0.011    0.086 -0.923
+Q19~1                        0.051   0.010    0.099 -0.937
+Q26~1                        0.065   0.010    0.192 -0.924
+Q3~1                         0.032   0.008   -0.024 -0.908
+Q4~1                         0.034   0.008   -0.043 -0.907
+Q10~1                        0.068   0.011    0.301 -0.929
+Q15~1                        0.061   0.012    0.058 -0.900
+Q16~1                        0.059   0.014    0.181 -0.920
+Q17~1                        0.033   0.009    0.060 -0.902
+Q18~1                        0.069   0.013    0.083 -0.935
+Q20~1                        0.030   0.007   -0.222 -0.931
+Q21~1                        0.034   0.007   -0.034 -0.922
+Q22~1                        0.046   0.010   -0.099 -0.925
+Q8~1                         0.090   0.014    0.085 -0.922
+Q9~1                         0.083   0.018   -0.139 -0.939
+Q12~1                        0.050   0.012   -0.219 -0.916
+Q13~1                        0.047   0.011    0.034 -0.935
+Q14~1                        0.055   0.011   -0.254 -0.925
+Q23~1                        0.053   0.011   -0.271 -0.924
+Q24~1                        0.067   0.013   -0.265 -0.937
+Q25~1                        0.057   0.012   -0.117 -0.926
 ========= Correlation between Fit Indices ============
        chisq    aic    bic  rmsea    cfi    tli   srmr      n
-chisq  1.000 -0.389 -0.390  0.943 -0.812 -0.859  0.643 -0.387
-aic   -0.389  1.000  1.000 -0.531  0.452  0.401 -0.870  1.000
-bic   -0.390  1.000  1.000 -0.532  0.453  0.401 -0.870  1.000
-rmsea  0.943 -0.531 -0.532  1.000 -0.936 -0.954  0.803 -0.530
-cfi   -0.812  0.452  0.453 -0.936  1.000  0.991 -0.771  0.452
-tli   -0.859  0.401  0.401 -0.954  0.991  1.000 -0.737  0.400
-srmr   0.643 -0.870 -0.870  0.803 -0.771 -0.737  1.000 -0.869
-n     -0.387  1.000  1.000 -0.530  0.452  0.400 -0.869  1.000
+chisq  1.000 -0.309 -0.310  0.929 -0.787 -0.860  0.509 -0.307
+aic   -0.309  1.000  1.000 -0.470  0.466  0.437 -0.910  1.000
+bic   -0.310  1.000  1.000 -0.470  0.466  0.437 -0.910  1.000
+rmsea  0.929 -0.470 -0.470  1.000 -0.906 -0.938  0.637 -0.468
+cfi   -0.787  0.466  0.466 -0.906  1.000  0.984 -0.644  0.464
+tli   -0.860  0.437  0.437 -0.938  0.984  1.000 -0.641  0.435
+srmr   0.509 -0.910 -0.910  0.637 -0.644 -0.641  1.000 -0.908
+n     -0.307  1.000  1.000 -0.468  0.464  0.435 -0.908  1.000
 ================== Replications =====================
-Number of replications = 19 
-Number of converged replications = 19 
+Number of replications = 51 
+Number of converged replications = 50 
 Number of nonconverged replications: 
    1. Nonconvergent Results = 0 
    2. Nonconvergent results from multiple imputation = 0 
    3. At least one SE were negative or NA = 0 
    4. Nonpositive-definite latent or observed (residual) covariance matrix 
-      (e.g., Heywood case or linear dependency) = 0 
+      (e.g., Heywood case or linear dependency) = 1 
 NOTE: The sample size is varying.
 NOTE: The data generation model is not the same as the analysis  model. See the summary of the population underlying data  generation by the summaryPopulation function.</code></pre>
 </div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--- Power at N = 300 (10% MCAR) ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--- Power at N = 300 (10% MCAR) ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>--- Power at N = 300 (10% MCAR) ---</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(sim_missing_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">nVal =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(sim_missing_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">nVal =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
+<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     cfi      tli    rmsea     srmr 
-"&lt; 0.48"  "&lt; 0.5" "&lt; 0.46" "&lt; 0.44" </code></pre>
+"&lt; 0.44" "&lt; 0.48" "&lt; 0.48" "&lt; 0.32" </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">--- Power at N = 500 (10% MCAR) ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">--- Power at N = 500 (10% MCAR) ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 --- Power at N = 500 (10% MCAR) ---</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(sim_missing_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">nVal =</span> <span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(sim_missing_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">nVal =</span> <span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
+<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     cfi      tli    rmsea     srmr 
-"&lt; 0.48"  "&lt; 0.5" "&lt; 0.46" "&lt; 0.44" </code></pre>
+"&lt; 0.44" "&lt; 0.48"  "&lt; 0.3" "&lt; 0.32" </code></pre>
 </div>
 </div></div>
 </section>
@@ -957,222 +923,208 @@ Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pr
 <h2 class="anchored" data-anchor-id="scenario-c-sensitivity-naive-population-model">Scenario C — Sensitivity: Naive population model</h2>
 <p>Use the pessimistic population model (all loadings = 0.5) as the generating model to assess the worst-case power scenario.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>sim_naive_vary <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> <span class="cn">NULL</span>,</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> N_SEQ,</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> naiveModel</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_naive_vary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>sim_naive_vary <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> <span class="cn">NULL</span>,</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> SEQ,</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> naiveModel</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_naive_vary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RESULT OBJECT
 Model Type
 [1] "lavaan"
-========= Fit Indices Cutoffs ============</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     N   chisq       aic       bic rmsea   cfi   tli  srmr
-1  100 304.405  6683.676  6849.187 0.033 0.927 0.918 0.079
-2  325 288.104 21383.339 21584.617 0.025 0.946 0.939 0.066
-3  550 271.802 36083.001 36320.047 0.017 0.964 0.960 0.052
-4  775 255.501 50782.664 51055.477 0.008 0.982 0.981 0.039
-5 1000 239.200 65482.326 65790.907 0.000 1.000 1.002 0.025
+========= Fit Indices Cutoffs ============
+    N   chisq       aic       bic rmsea   cfi   tli  srmr
+1 100 305.230  6919.921  7083.572 0.038 0.896 0.883 0.074
+2 225 297.615 14983.600 15167.995 0.031 0.921 0.911 0.064
+3 350 290.001 23047.280 23252.418 0.025 0.945 0.938 0.053
+4 475 282.386 31110.959 31336.840 0.019 0.969 0.965 0.042
+5 600 274.772 39174.638 39421.263 0.013 0.994 0.993 0.032
 ========= Parameter Estimates and Standard Errors ============
                       Estimate Average Estimate SD Average SE
-psycho=~Q5_P                     0.497       0.053      0.055
-psycho=~Q6_P                     0.524       0.038      0.056
-psycho=~Q7_P                     0.508       0.057      0.056
-psycho=~Q11_P                    0.494       0.070      0.055
-psycho=~Q19_P                    0.501       0.063      0.056
-psycho=~Q26_P                    0.494       0.072      0.055
-physical=~Q3_F                   0.506       0.060      0.056
-physical=~Q4_F                   0.502       0.062      0.056
-physical=~Q10_F                  0.500       0.065      0.055
-physical=~Q15_F                  0.498       0.054      0.055
-physical=~Q16_F                  0.508       0.064      0.056
-physical=~Q17_F                  0.489       0.047      0.054
-physical=~Q18_F                  0.538       0.077      0.056
-social=~Q20_S                    0.517       0.067      0.067
-social=~Q21_S                    0.521       0.081      0.067
-social=~Q22_S                    0.519       0.064      0.067
-environment=~Q8_A                0.505       0.079      0.054
-environment=~Q9_A                0.487       0.066      0.054
-environment=~Q12_A               0.506       0.053      0.053
-environment=~Q13_A               0.485       0.047      0.054
-environment=~Q14_A               0.525       0.057      0.054
-environment=~Q23_A               0.507       0.055      0.054
-environment=~Q24_A               0.522       0.053      0.054
-environment=~Q25_A               0.488       0.069      0.053
-Q3_F~~Q4_F                       0.300       0.041      0.049
-psycho~~physical                 0.287       0.062      0.067
-psycho~~social                   0.334       0.100      0.076
-psycho~~environment              0.305       0.077      0.065
-physical~~social                 0.317       0.074      0.076
-physical~~environment            0.307       0.098      0.064
-social~~environment              0.312       0.070      0.075
-Q5_P~~Q5_P                       0.732       0.050      0.060
-Q6_P~~Q6_P                       0.728       0.062      0.061
-Q7_P~~Q7_P                       0.740       0.060      0.061
-Q11_P~~Q11_P                     0.744       0.075      0.060
-Q19_P~~Q19_P                     0.743       0.048      0.061
-Q26_P~~Q26_P                     0.720       0.058      0.058
-Q10_F~~Q10_F                     0.742       0.061      0.060
-Q15_F~~Q15_F                     0.746       0.053      0.060
-Q16_F~~Q16_F                     0.750       0.079      0.062
-Q17_F~~Q17_F                     0.742       0.057      0.059
-Q18_F~~Q18_F                     0.741       0.069      0.062
-Q20_S~~Q20_S                     0.725       0.061      0.072
-Q21_S~~Q21_S                     0.746       0.077      0.073
-Q22_S~~Q22_S                     0.720       0.074      0.071
-Q8_A~~Q8_A                       0.756       0.076      0.060
-Q9_A~~Q9_A                       0.771       0.080      0.061
-Q12_A~~Q12_A                     0.732       0.053      0.058
-Q13_A~~Q13_A                     0.767       0.067      0.060
-Q14_A~~Q14_A                     0.748       0.065      0.060
-Q23_A~~Q23_A                     0.756       0.061      0.060
-Q24_A~~Q24_A                     0.740       0.057      0.060
-Q25_A~~Q25_A                     0.748       0.064      0.059
-Q3_F~~Q3_F                       0.752       0.049      0.062
-Q4_F~~Q4_F                       0.756       0.052      0.062
+psycho=~Q5                       0.545       0.068      0.064
+psycho=~Q6                       0.522       0.055      0.064
+psycho=~Q7                       0.549       0.056      0.065
+psycho=~Q11                      0.522       0.055      0.064
+psycho=~Q19                      0.514       0.064      0.065
+psycho=~Q26                      0.519       0.064      0.065
+physical=~Q3                     0.486       0.078      0.068
+physical=~Q4                     0.467       0.080      0.069
+physical=~Q10                    0.477       0.073      0.067
+physical=~Q15                    0.471       0.068      0.067
+physical=~Q16                    0.485       0.080      0.067
+physical=~Q17                    0.474       0.092      0.067
+physical=~Q18                    0.493       0.060      0.067
+social=~Q20                      0.596       0.077      0.071
+social=~Q21                      0.590       0.078      0.070
+social=~Q22                      0.598       0.077      0.071
+environment=~Q8                  0.474       0.082      0.065
+environment=~Q9                  0.489       0.078      0.064
+environment=~Q12                 0.481       0.052      0.065
+environment=~Q13                 0.484       0.073      0.064
+environment=~Q14                 0.478       0.064      0.064
+environment=~Q23                 0.493       0.049      0.064
+environment=~Q24                 0.474       0.066      0.064
+environment=~Q25                 0.482       0.054      0.065
+psycho~~physical                 0.317       0.079      0.079
+psycho~~social                   0.302       0.092      0.082
+psycho~~environment              0.295       0.087      0.077
+physical~~social                 0.321       0.092      0.083
+physical~~environment            0.315       0.081      0.078
+social~~environment              0.312       0.099      0.081
+Q3~~Q4                           0.236       0.058      0.058
+Q5~~Q5                           0.694       0.082      0.069
+Q6~~Q6                           0.711       0.074      0.069
+Q7~~Q7                           0.708       0.071      0.071
+Q11~~Q11                         0.715       0.065      0.069
+Q19~~Q19                         0.729       0.072      0.071
+Q26~~Q26                         0.731       0.064      0.071
+Q3~~Q3                           0.772       0.067      0.075
+Q4~~Q4                           0.787       0.063      0.076
+Q10~~Q10                         0.764       0.069      0.073
+Q15~~Q15                         0.773       0.072      0.073
+Q16~~Q16                         0.756       0.072      0.073
+Q17~~Q17                         0.774       0.072      0.074
+Q18~~Q18                         0.768       0.075      0.074
+Q20~~Q20                         0.641       0.086      0.078
+Q21~~Q21                         0.611       0.096      0.076
+Q22~~Q22                         0.632       0.102      0.078
+Q8~~Q8                           0.774       0.086      0.072
+Q9~~Q9                           0.758       0.071      0.071
+Q12~~Q12                         0.768       0.067      0.071
+Q13~~Q13                         0.758       0.075      0.071
+Q14~~Q14                         0.765       0.067      0.071
+Q23~~Q23                         0.744       0.063      0.070
+Q24~~Q24                         0.759       0.073      0.071
+Q25~~Q25                         0.765       0.070      0.071
                       Power (Not equal 0) Std Est Std Est SD Std Ave SE
-psycho=~Q5_P                        1.000   0.501      0.041      0.049
-psycho=~Q6_P                        1.000   0.523      0.033      0.048
-psycho=~Q7_P                        1.000   0.507      0.045      0.049
-psycho=~Q11_P                       1.000   0.496      0.063      0.049
-psycho=~Q19_P                       1.000   0.501      0.055      0.049
-psycho=~Q26_P                       1.000   0.500      0.061      0.048
-physical=~Q3_F                      1.000   0.503      0.052      0.048
-physical=~Q4_F                      1.000   0.499      0.055      0.049
-physical=~Q10_F                     1.000   0.501      0.058      0.048
-physical=~Q15_F                     1.000   0.498      0.041      0.048
-physical=~Q16_F                     1.000   0.505      0.060      0.048
-physical=~Q17_F                     1.000   0.493      0.038      0.048
-physical=~Q18_F                     1.000   0.528      0.064      0.046
-social=~Q20_S                       1.000   0.517      0.055      0.060
-social=~Q21_S                       1.000   0.514      0.075      0.060
-social=~Q22_S                       1.000   0.521      0.055      0.061
-environment=~Q8_A                   1.000   0.500      0.077      0.046
-environment=~Q9_A                   1.000   0.484      0.061      0.047
-environment=~Q12_A                  1.000   0.508      0.041      0.045
-environment=~Q13_A                  1.000   0.485      0.044      0.047
-environment=~Q14_A                  1.000   0.518      0.045      0.045
-environment=~Q23_A                  1.000   0.502      0.038      0.046
-environment=~Q24_A                  1.000   0.518      0.041      0.045
-environment=~Q25_A                  1.000   0.490      0.062      0.046
-Q3_F~~Q4_F                          1.000   0.397      0.042      0.047
-psycho~~physical                    0.947   0.287      0.062      0.067
-psycho~~social                      0.947   0.334      0.100      0.076
-psycho~~environment                 0.947   0.305      0.077      0.065
-physical~~social                    0.895   0.317      0.074      0.076
-physical~~environment               0.947   0.307      0.098      0.064
-social~~environment                 0.947   0.312      0.070      0.075
-Q5_P~~Q5_P                          1.000   0.747      0.042      0.049
-Q6_P~~Q6_P                          1.000   0.725      0.035      0.050
-Q7_P~~Q7_P                          1.000   0.741      0.047      0.049
-Q11_P~~Q11_P                        1.000   0.750      0.066      0.048
-Q19_P~~Q19_P                        1.000   0.746      0.055      0.048
-Q26_P~~Q26_P                        1.000   0.746      0.064      0.049
-Q10_F~~Q10_F                        1.000   0.746      0.058      0.047
-Q15_F~~Q15_F                        1.000   0.750      0.042      0.047
-Q16_F~~Q16_F                        1.000   0.741      0.057      0.047
-Q17_F~~Q17_F                        1.000   0.756      0.036      0.047
-Q18_F~~Q18_F                        1.000   0.717      0.073      0.050
-Q20_S~~Q20_S                        1.000   0.730      0.057      0.063
-Q21_S~~Q21_S                        1.000   0.730      0.076      0.062
-Q22_S~~Q22_S                        1.000   0.726      0.058      0.064
-Q8_A~~Q8_A                          1.000   0.744      0.066      0.044
-Q9_A~~Q9_A                          1.000   0.762      0.056      0.044
-Q12_A~~Q12_A                        1.000   0.740      0.042      0.046
-Q13_A~~Q13_A                        1.000   0.763      0.043      0.045
-Q14_A~~Q14_A                        1.000   0.730      0.048      0.047
-Q23_A~~Q23_A                        1.000   0.746      0.039      0.046
-Q24_A~~Q24_A                        1.000   0.730      0.042      0.047
-Q25_A~~Q25_A                        1.000   0.756      0.056      0.044
-Q3_F~~Q3_F                          1.000   0.744      0.053      0.049
-Q4_F~~Q4_F                          1.000   0.748      0.057      0.048
+psycho=~Q5                          1.000   0.547      0.056      0.054
+psycho=~Q6                          1.000   0.526      0.052      0.055
+psycho=~Q7                          1.000   0.546      0.045      0.054
+psycho=~Q11                         1.000   0.524      0.043      0.055
+psycho=~Q19                         1.000   0.515      0.054      0.055
+psycho=~Q26                         1.000   0.517      0.054      0.055
+physical=~Q3                        1.000   0.482      0.068      0.060
+physical=~Q4                        1.000   0.463      0.068      0.061
+physical=~Q10                       1.000   0.477      0.062      0.059
+physical=~Q15                       1.000   0.471      0.059      0.059
+physical=~Q16                       1.000   0.485      0.067      0.059
+physical=~Q17                       0.980   0.471      0.077      0.059
+physical=~Q18                       1.000   0.489      0.053      0.058
+social=~Q20                         1.000   0.595      0.068      0.060
+social=~Q21                         1.000   0.601      0.073      0.061
+social=~Q22                         1.000   0.600      0.073      0.060
+environment=~Q8                     1.000   0.472      0.070      0.057
+environment=~Q9                     1.000   0.488      0.068      0.056
+environment=~Q12                    1.000   0.480      0.048      0.056
+environment=~Q13                    1.000   0.484      0.061      0.056
+environment=~Q14                    1.000   0.478      0.049      0.056
+environment=~Q23                    1.000   0.496      0.047      0.055
+environment=~Q24                    1.000   0.477      0.058      0.057
+environment=~Q25                    1.000   0.482      0.049      0.056
+psycho~~physical                    0.961   0.317      0.079      0.079
+psycho~~social                      0.922   0.302      0.092      0.082
+psycho~~environment                 0.941   0.295      0.087      0.077
+physical~~social                    0.941   0.321      0.092      0.083
+physical~~environment               1.000   0.315      0.081      0.078
+social~~environment                 0.863   0.312      0.099      0.081
+Q3~~Q4                              0.980   0.301      0.065      0.061
+Q5~~Q5                              1.000   0.698      0.061      0.059
+Q6~~Q6                              1.000   0.720      0.055      0.057
+Q7~~Q7                              1.000   0.700      0.050      0.059
+Q11~~Q11                            1.000   0.724      0.044      0.058
+Q19~~Q19                            1.000   0.732      0.056      0.056
+Q26~~Q26                            1.000   0.730      0.053      0.056
+Q3~~Q3                              1.000   0.763      0.064      0.058
+Q4~~Q4                              1.000   0.781      0.060      0.056
+Q10~~Q10                            1.000   0.769      0.061      0.056
+Q15~~Q15                            1.000   0.775      0.055      0.056
+Q16~~Q16                            1.000   0.760      0.066      0.057
+Q17~~Q17                            1.000   0.772      0.073      0.055
+Q18~~Q18                            1.000   0.758      0.051      0.057
+Q20~~Q20                            1.000   0.641      0.080      0.071
+Q21~~Q21                            0.980   0.633      0.089      0.074
+Q22~~Q22                            1.000   0.635      0.087      0.072
+Q8~~Q8                              1.000   0.772      0.067      0.053
+Q9~~Q9                              1.000   0.757      0.067      0.054
+Q12~~Q12                            1.000   0.767      0.045      0.054
+Q13~~Q13                            1.000   0.762      0.063      0.054
+Q14~~Q14                            1.000   0.769      0.048      0.054
+Q23~~Q23                            1.000   0.752      0.045      0.055
+Q24~~Q24                            1.000   0.769      0.052      0.053
+Q25~~Q25                            1.000   0.765      0.048      0.054
                       Average Param Average Bias Coverage r_coef.n r_se.n
-psycho=~Q5_P                   0.50       -0.003    0.947   -0.266 -0.902
-psycho=~Q6_P                   0.50        0.024    1.000   -0.083 -0.877
-psycho=~Q7_P                   0.50        0.008    0.947    0.352 -0.904
-psycho=~Q11_P                  0.50       -0.006    0.842   -0.223 -0.906
-psycho=~Q19_P                  0.50        0.001    1.000   -0.073 -0.895
-psycho=~Q26_P                  0.50       -0.006    0.895   -0.122 -0.889
-physical=~Q3_F                 0.50        0.006    1.000   -0.118 -0.896
-physical=~Q4_F                 0.50        0.002    0.895   -0.014 -0.882
-physical=~Q10_F                0.50        0.000    1.000    0.033 -0.899
-physical=~Q15_F                0.50       -0.002    1.000    0.210 -0.922
-physical=~Q16_F                0.50        0.008    0.947    0.118 -0.879
-physical=~Q17_F                0.50       -0.011    0.947    0.047 -0.945
-physical=~Q18_F                0.50        0.038    0.842   -0.392 -0.881
-social=~Q20_S                  0.50        0.017    1.000   -0.363 -0.881
-social=~Q21_S                  0.50        0.021    0.895   -0.152 -0.928
-social=~Q22_S                  0.50        0.019    0.947   -0.063 -0.925
-environment=~Q8_A              0.50        0.005    0.895    0.158 -0.883
-environment=~Q9_A              0.50       -0.013    1.000    0.394 -0.851
-environment=~Q12_A             0.50        0.006    1.000   -0.181 -0.878
-environment=~Q13_A             0.50       -0.015    0.947    0.236 -0.901
-environment=~Q14_A             0.50        0.025    0.947   -0.286 -0.879
-environment=~Q23_A             0.50        0.007    0.947    0.110 -0.875
-environment=~Q24_A             0.50        0.022    0.947   -0.322 -0.865
-environment=~Q25_A             0.50       -0.012    0.947    0.239 -0.905
-Q3_F~~Q4_F                     0.30        0.000    0.947    0.008 -0.871
-psycho~~physical               0.30       -0.013    0.947   -0.056 -0.899
-psycho~~social                 0.30        0.034    0.842   -0.232 -0.915
-psycho~~environment            0.30        0.005    0.842   -0.476 -0.865
-physical~~social               0.30        0.017    0.947   -0.038 -0.896
-physical~~environment          0.30        0.007    0.895   -0.318 -0.864
-social~~environment            0.30        0.012    0.895   -0.110 -0.895
-Q5_P~~Q5_P                     0.75       -0.018    0.947   -0.246 -0.899
-Q6_P~~Q6_P                     0.75       -0.022    0.947   -0.384 -0.846
-Q7_P~~Q7_P                     0.75       -0.010    0.947   -0.025 -0.893
-Q11_P~~Q11_P                   0.75       -0.006    0.895    0.282 -0.906
-Q19_P~~Q19_P                   0.75       -0.007    1.000   -0.175 -0.890
-Q26_P~~Q26_P                   0.75       -0.030    1.000    0.518 -0.881
-Q10_F~~Q10_F                   0.75       -0.008    1.000    0.327 -0.881
-Q15_F~~Q15_F                   0.75       -0.004    1.000   -0.072 -0.926
-Q16_F~~Q16_F                   0.75        0.000    0.895   -0.254 -0.841
-Q17_F~~Q17_F                   0.75       -0.008    1.000    0.093 -0.967
-Q18_F~~Q18_F                   0.75       -0.009    0.947    0.460 -0.849
-Q20_S~~Q20_S                   0.75       -0.025    0.947    0.197 -0.831
-Q21_S~~Q21_S                   0.75       -0.004    0.947    0.261 -0.921
-Q22_S~~Q22_S                   0.75       -0.030    0.895    0.327 -0.910
-Q8_A~~Q8_A                     0.75        0.006    0.947   -0.111 -0.865
-Q9_A~~Q9_A                     0.75        0.021    0.947   -0.295 -0.805
-Q12_A~~Q12_A                   0.75       -0.018    0.947    0.319 -0.859
-Q13_A~~Q13_A                   0.75        0.017    1.000   -0.188 -0.896
-Q14_A~~Q14_A                   0.75       -0.002    0.947    0.037 -0.864
-Q23_A~~Q23_A                   0.75        0.006    1.000   -0.308 -0.853
-Q24_A~~Q24_A                   0.75       -0.010    0.895   -0.081 -0.839
-Q25_A~~Q25_A                   0.75       -0.002    0.947   -0.230 -0.908
-Q3_F~~Q3_F                     0.75        0.002    1.000    0.034 -0.887
-Q4_F~~Q4_F                     0.75        0.006    1.000    0.092 -0.862
+psycho=~Q5                    0.533        0.013    0.941   -0.448 -0.888
+psycho=~Q6                    0.533       -0.010    0.961   -0.030 -0.928
+psycho=~Q7                    0.533        0.017    0.980   -0.235 -0.908
+psycho=~Q11                   0.533       -0.011    0.961   -0.219 -0.941
+psycho=~Q19                   0.533       -0.019    0.941    0.171 -0.917
+psycho=~Q26                   0.533       -0.014    0.980    0.083 -0.936
+physical=~Q3                  0.476        0.010    0.961   -0.256 -0.933
+physical=~Q4                  0.476       -0.009    0.961   -0.111 -0.940
+physical=~Q10                 0.476        0.001    0.941   -0.065 -0.918
+physical=~Q15                 0.476       -0.005    0.961   -0.116 -0.937
+physical=~Q16                 0.476        0.009    0.941   -0.067 -0.925
+physical=~Q17                 0.476       -0.002    0.882   -0.177 -0.931
+physical=~Q18                 0.476        0.017    0.980   -0.311 -0.937
+social=~Q20                   0.602       -0.006    0.941   -0.072 -0.897
+social=~Q21                   0.602       -0.011    0.922    0.017 -0.882
+social=~Q22                   0.602       -0.004    0.941    0.003 -0.905
+environment=~Q8               0.483       -0.009    0.941    0.034 -0.919
+environment=~Q9               0.483        0.006    0.961   -0.051 -0.948
+environment=~Q12              0.483       -0.003    0.961    0.153 -0.943
+environment=~Q13              0.483        0.001    0.922   -0.147 -0.936
+environment=~Q14              0.483       -0.005    0.961   -0.019 -0.922
+environment=~Q23              0.483        0.010    0.961   -0.287 -0.937
+environment=~Q24              0.483       -0.009    0.980    0.234 -0.923
+environment=~Q25              0.483       -0.001    0.941    0.076 -0.931
+psycho~~physical              0.300        0.017    0.941    0.043 -0.923
+psycho~~social                0.300        0.002    0.902   -0.084 -0.923
+psycho~~environment           0.300       -0.005    0.941    0.023 -0.919
+physical~~social              0.300        0.021    0.941   -0.210 -0.929
+physical~~environment         0.300        0.015    0.902   -0.162 -0.938
+social~~environment           0.300        0.012    0.882   -0.004 -0.933
+Q3~~Q4                        0.232        0.003    0.980    0.141 -0.925
+Q5~~Q5                        0.716       -0.022    0.902    0.080 -0.816
+Q6~~Q6                        0.716       -0.006    0.961    0.195 -0.890
+Q7~~Q7                        0.716       -0.008    0.922    0.019 -0.859
+Q11~~Q11                      0.716       -0.001    1.000   -0.014 -0.918
+Q19~~Q19                      0.716        0.013    0.980   -0.330 -0.874
+Q26~~Q26                      0.716        0.015    0.961   -0.351 -0.914
+Q3~~Q3                        0.774       -0.002    0.961    0.127 -0.903
+Q4~~Q4                        0.774        0.014    0.980   -0.357 -0.925
+Q10~~Q10                      0.774       -0.010    1.000   -0.007 -0.876
+Q15~~Q15                      0.774       -0.001    0.961    0.071 -0.906
+Q16~~Q16                      0.774       -0.018    0.941    0.191 -0.881
+Q17~~Q17                      0.774        0.001    0.961    0.072 -0.889
+Q18~~Q18                      0.774       -0.006    0.961    0.178 -0.906
+Q20~~Q20                      0.638        0.003    0.941   -0.062 -0.840
+Q21~~Q21                      0.638       -0.027    0.961    0.151 -0.792
+Q22~~Q22                      0.638       -0.006    0.922   -0.059 -0.855
+Q8~~Q8                        0.766        0.008    0.902    0.071 -0.861
+Q9~~Q9                        0.766       -0.009    0.961    0.035 -0.922
+Q12~~Q12                      0.766        0.001    0.941   -0.064 -0.920
+Q13~~Q13                      0.766       -0.008    0.941    0.273 -0.893
+Q14~~Q14                      0.766       -0.002    0.980    0.119 -0.872
+Q23~~Q23                      0.766       -0.023    0.980    0.058 -0.914
+Q24~~Q24                      0.766       -0.008    0.941   -0.242 -0.877
+Q25~~Q25                      0.766       -0.002    0.922   -0.111 -0.892
 ========= Correlation between Fit Indices ============
        chisq    aic    bic  rmsea    cfi    tli   srmr      n
-chisq  1.000 -0.302 -0.302  0.885 -0.742 -0.858  0.443 -0.301
-aic   -0.302  1.000  1.000 -0.575  0.602  0.371 -0.882  1.000
-bic   -0.302  1.000  1.000 -0.575  0.602  0.371 -0.883  1.000
-rmsea  0.885 -0.575 -0.575  1.000 -0.956 -0.943  0.771 -0.576
-cfi   -0.742  0.602  0.602 -0.956  1.000  0.939 -0.853  0.603
-tli   -0.858  0.371  0.371 -0.943  0.939  1.000 -0.659  0.371
-srmr   0.443 -0.882 -0.883  0.771 -0.853 -0.659  1.000 -0.883
-n     -0.301  1.000  1.000 -0.576  0.603  0.371 -0.883  1.000
+chisq  1.000 -0.351 -0.351  0.886 -0.785 -0.902  0.517 -0.350
+aic   -0.351  1.000  1.000 -0.646  0.652  0.508 -0.926  1.000
+bic   -0.351  1.000  1.000 -0.647  0.652  0.508 -0.926  1.000
+rmsea  0.886 -0.646 -0.647  1.000 -0.946 -0.943  0.791 -0.645
+cfi   -0.785  0.652  0.652 -0.946  1.000  0.934 -0.800  0.650
+tli   -0.902  0.508  0.508 -0.943  0.934  1.000 -0.708  0.505
+srmr   0.517 -0.926 -0.926  0.791 -0.800 -0.708  1.000 -0.926
+n     -0.350  1.000  1.000 -0.645  0.650  0.505 -0.926  1.000
 ================== Replications =====================
-Number of replications = 19 
-Number of converged replications = 19 
+Number of replications = 51 
+Number of converged replications = 51 
 Number of nonconverged replications: 
    1. Nonconvergent Results = 0 
    2. Nonconvergent results from multiple imputation = 0 
@@ -1183,47 +1135,47 @@ NOTE: The sample size is varying.</code></pre>
 </div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>naive_power <span class="ot">&lt;-</span> <span class="fu">getPower</span>(sim_naive_vary, <span class="at">alpha =</span> ALPHA)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">findPower</span>(naive_power, <span class="st">"N"</span>, POWER)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>naive_power <span class="ot">&lt;-</span> <span class="fu">getPower</span>(sim_naive_vary, <span class="at">alpha =</span> ALPHA)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">findPower</span>(naive_power, <span class="st">"N"</span>, POWER)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         psycho=~Q5_P          psycho=~Q6_P          psycho=~Q7_P 
+<pre><code>           psycho=~Q5            psycho=~Q6            psycho=~Q7 
                   Inf                   Inf                   Inf 
-        psycho=~Q11_P         psycho=~Q19_P         psycho=~Q26_P 
+          psycho=~Q11           psycho=~Q19           psycho=~Q26 
                   Inf                   Inf                   Inf 
-       physical=~Q3_F        physical=~Q4_F       physical=~Q10_F 
+         physical=~Q3          physical=~Q4         physical=~Q10 
                   Inf                   Inf                   Inf 
-      physical=~Q15_F       physical=~Q16_F       physical=~Q17_F 
+        physical=~Q15         physical=~Q16         physical=~Q17 
+                  Inf                   Inf                   115 
+        physical=~Q18           social=~Q20           social=~Q21 
                   Inf                   Inf                   Inf 
-      physical=~Q18_F         social=~Q20_S         social=~Q21_S 
+          social=~Q22       environment=~Q8       environment=~Q9 
                   Inf                   Inf                   Inf 
-        social=~Q22_S     environment=~Q8_A     environment=~Q9_A 
+     environment=~Q12      environment=~Q13      environment=~Q14 
                   Inf                   Inf                   Inf 
-   environment=~Q12_A    environment=~Q13_A    environment=~Q14_A 
+     environment=~Q23      environment=~Q24      environment=~Q25 
                   Inf                   Inf                   Inf 
-   environment=~Q23_A    environment=~Q24_A    environment=~Q25_A 
+     psycho~~physical        psycho~~social   psycho~~environment 
+                  119                   137                   155 
+     physical~~social physical~~environment   social~~environment 
+                  100                   Inf                   237 
+               Q3~~Q4                Q5~~Q5                Q6~~Q6 
+                  114                   Inf                   Inf 
+               Q7~~Q7              Q11~~Q11              Q19~~Q19 
                   Inf                   Inf                   Inf 
-           Q3_F~~Q4_F      psycho~~physical        psycho~~social 
-                  Inf                   127                   175 
-  psycho~~environment      physical~~social physical~~environment 
-                  127                   274                   127 
-  social~~environment            Q5_P~~Q5_P            Q6_P~~Q6_P 
-                  127                   Inf                   Inf 
-           Q7_P~~Q7_P          Q11_P~~Q11_P          Q19_P~~Q19_P 
+             Q26~~Q26                Q3~~Q3                Q4~~Q4 
                   Inf                   Inf                   Inf 
-         Q26_P~~Q26_P          Q10_F~~Q10_F          Q15_F~~Q15_F 
+             Q10~~Q10              Q15~~Q15              Q16~~Q16 
                   Inf                   Inf                   Inf 
-         Q16_F~~Q16_F          Q17_F~~Q17_F          Q18_F~~Q18_F 
+             Q17~~Q17              Q18~~Q18              Q20~~Q20 
                   Inf                   Inf                   Inf 
-         Q20_S~~Q20_S          Q21_S~~Q21_S          Q22_S~~Q22_S 
+             Q21~~Q21              Q22~~Q22                Q8~~Q8 
+                  106                   Inf                   Inf 
+               Q9~~Q9              Q12~~Q12              Q13~~Q13 
                   Inf                   Inf                   Inf 
-           Q8_A~~Q8_A            Q9_A~~Q9_A          Q12_A~~Q12_A 
+             Q14~~Q14              Q23~~Q23              Q24~~Q24 
                   Inf                   Inf                   Inf 
-         Q13_A~~Q13_A          Q14_A~~Q14_A          Q23_A~~Q23_A 
-                  Inf                   Inf                   Inf 
-         Q24_A~~Q24_A          Q25_A~~Q25_A            Q3_F~~Q3_F 
-                  Inf                   Inf                   Inf 
-           Q4_F~~Q4_F 
+             Q25~~Q25 
                   Inf </code></pre>
 </div>
 </div></div>
@@ -1232,222 +1184,208 @@ NOTE: The sample size is varying.</code></pre>
 <h2 class="anchored" data-anchor-id="scenario-d-sensitivity-optimistic-population-model">Scenario D — Sensitivity: Optimistic population model</h2>
 <p>Use the optimistic model (all loadings = 0.7, correlations = 0.5).</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>sim_opt_vary <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> <span class="cn">NULL</span>,</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> N_SEQ,</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> optModel</span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_opt_vary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>sim_opt_vary <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> <span class="cn">NULL</span>,</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> SEQ,</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> optModel</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_opt_vary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RESULT OBJECT
 Model Type
 [1] "lavaan"
-========= Fit Indices Cutoffs ============</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     N   chisq       aic       bic rmsea   cfi   tli  srmr
-1  100 312.967  5788.754  5865.234 0.040 0.969 0.966 0.066
-2  325 296.819 18226.819 18383.582 0.030 0.977 0.974 0.054
-3  550 280.672 30664.884 30901.929 0.020 0.985 0.983 0.043
-4  775 264.524 43102.948 43420.276 0.011 0.992 0.992 0.031
-5 1000 248.376 55541.013 55938.624 0.001 1.000 1.001 0.020
+========= Fit Indices Cutoffs ============
+    N   chisq       aic       bic rmsea   cfi   tli  srmr
+1 100 326.336  6401.706  6565.357 0.041 0.953 0.947 0.069
+2 225 312.106 13816.069 14000.463 0.034 0.965 0.960 0.059
+3 350 297.875 21230.432 21435.570 0.027 0.976 0.973 0.049
+4 475 283.644 28644.795 28870.676 0.020 0.988 0.987 0.038
+5 600 269.413 36059.157 36305.782 0.012 1.000 1.000 0.028
 ========= Parameter Estimates and Standard Errors ============
                       Estimate Average Estimate SD Average SE
-psycho=~Q5_P                     0.703       0.033      0.045
-psycho=~Q6_P                     0.701       0.040      0.045
-psycho=~Q7_P                     0.709       0.058      0.045
-psycho=~Q11_P                    0.710       0.036      0.046
-psycho=~Q19_P                    0.686       0.043      0.045
-psycho=~Q26_P                    0.705       0.048      0.046
-physical=~Q3_F                   0.707       0.047      0.046
-physical=~Q4_F                   0.706       0.048      0.046
-physical=~Q10_F                  0.718       0.065      0.045
-physical=~Q15_F                  0.706       0.047      0.045
-physical=~Q16_F                  0.720       0.047      0.046
-physical=~Q17_F                  0.683       0.062      0.045
-physical=~Q18_F                  0.712       0.050      0.045
-social=~Q20_S                    0.715       0.045      0.050
-social=~Q21_S                    0.728       0.074      0.050
-social=~Q22_S                    0.712       0.041      0.049
-environment=~Q8_A                0.695       0.055      0.045
-environment=~Q9_A                0.706       0.044      0.045
-environment=~Q12_A               0.717       0.037      0.046
-environment=~Q13_A               0.709       0.046      0.044
-environment=~Q14_A               0.702       0.063      0.044
-environment=~Q23_A               0.698       0.060      0.044
-environment=~Q24_A               0.699       0.035      0.045
-environment=~Q25_A               0.714       0.032      0.045
-Q3_F~~Q4_F                       0.502       0.032      0.042
-psycho~~physical                 0.499       0.043      0.045
-psycho~~social                   0.525       0.056      0.047
-psycho~~environment              0.506       0.055      0.043
-physical~~social                 0.512       0.053      0.048
-physical~~environment            0.504       0.063      0.043
-social~~environment              0.510       0.049      0.048
-Q5_P~~Q5_P                       0.504       0.049      0.041
-Q6_P~~Q6_P                       0.508       0.048      0.041
-Q7_P~~Q7_P                       0.496       0.053      0.040
-Q11_P~~Q11_P                     0.510       0.037      0.042
-Q19_P~~Q19_P                     0.509       0.037      0.041
-Q26_P~~Q26_P                     0.511       0.034      0.042
-Q10_F~~Q10_F                     0.494       0.033      0.041
-Q15_F~~Q15_F                     0.498       0.038      0.041
-Q16_F~~Q16_F                     0.508       0.034      0.042
-Q17_F~~Q17_F                     0.520       0.045      0.042
-Q18_F~~Q18_F                     0.501       0.035      0.041
-Q20_S~~Q20_S                     0.524       0.054      0.051
-Q21_S~~Q21_S                     0.497       0.077      0.050
-Q22_S~~Q22_S                     0.502       0.045      0.049
-Q8_A~~Q8_A                       0.512       0.051      0.040
-Q9_A~~Q9_A                       0.512       0.033      0.040
-Q12_A~~Q12_A                     0.526       0.032      0.042
-Q13_A~~Q13_A                     0.491       0.028      0.039
-Q14_A~~Q14_A                     0.494       0.042      0.039
-Q23_A~~Q23_A                     0.490       0.043      0.039
-Q24_A~~Q24_A                     0.519       0.042      0.041
-Q25_A~~Q25_A                     0.510       0.032      0.040
-Q3_F~~Q3_F                       0.511       0.033      0.042
-Q4_F~~Q4_F                       0.512       0.032      0.042
+psycho=~Q5                       0.693       0.047      0.054
+psycho=~Q6                       0.703       0.044      0.054
+psycho=~Q7                       0.712       0.055      0.054
+psycho=~Q11                      0.690       0.055      0.053
+psycho=~Q19                      0.707       0.048      0.054
+psycho=~Q26                      0.711       0.053      0.053
+physical=~Q3                     0.697       0.062      0.055
+physical=~Q4                     0.682       0.058      0.056
+physical=~Q10                    0.697       0.056      0.055
+physical=~Q15                    0.682       0.061      0.054
+physical=~Q16                    0.680       0.055      0.055
+physical=~Q17                    0.689       0.051      0.055
+physical=~Q18                    0.691       0.055      0.055
+social=~Q20                      0.762       0.046      0.056
+social=~Q21                      0.742       0.064      0.055
+social=~Q22                      0.763       0.063      0.056
+environment=~Q8                  0.648       0.053      0.056
+environment=~Q9                  0.647       0.062      0.056
+environment=~Q12                 0.641       0.051      0.056
+environment=~Q13                 0.637       0.059      0.056
+environment=~Q14                 0.641       0.047      0.056
+environment=~Q23                 0.635       0.064      0.056
+environment=~Q24                 0.645       0.063      0.055
+environment=~Q25                 0.644       0.067      0.056
+psycho~~physical                 0.086       0.069      0.067
+psycho~~social                   0.075       0.084      0.069
+psycho~~environment              0.075       0.069      0.067
+physical~~social                 0.085       0.064      0.069
+physical~~environment            0.091       0.076      0.067
+social~~environment              0.086       0.075      0.069
+Q3~~Q4                           0.161       0.045      0.041
+Q5~~Q5                           0.499       0.048      0.049
+Q6~~Q6                           0.501       0.041      0.050
+Q7~~Q7                           0.493       0.049      0.049
+Q11~~Q11                         0.494       0.051      0.049
+Q19~~Q19                         0.498       0.060      0.050
+Q26~~Q26                         0.476       0.040      0.048
+Q3~~Q3                           0.532       0.048      0.053
+Q4~~Q4                           0.543       0.046      0.054
+Q10~~Q10                         0.523       0.041      0.051
+Q15~~Q15                         0.522       0.049      0.050
+Q16~~Q16                         0.530       0.059      0.051
+Q17~~Q17                         0.525       0.051      0.051
+Q18~~Q18                         0.534       0.047      0.052
+Q20~~Q20                         0.410       0.065      0.054
+Q21~~Q21                         0.403       0.059      0.052
+Q22~~Q22                         0.410       0.056      0.054
+Q8~~Q8                           0.586       0.058      0.055
+Q9~~Q9                           0.588       0.067      0.055
+Q12~~Q12                         0.591       0.056      0.055
+Q13~~Q13                         0.586       0.060      0.055
+Q14~~Q14                         0.592       0.069      0.056
+Q23~~Q23                         0.588       0.059      0.055
+Q24~~Q24                         0.570       0.061      0.054
+Q25~~Q25                         0.582       0.057      0.055
                       Power (Not equal 0) Std Est Std Est SD Std Ave SE
-psycho=~Q5_P                            1   0.703      0.025      0.029
-psycho=~Q6_P                            1   0.701      0.029      0.029
-psycho=~Q7_P                            1   0.708      0.043      0.029
-psycho=~Q11_P                           1   0.705      0.028      0.029
-psycho=~Q19_P                           1   0.693      0.024      0.030
-psycho=~Q26_P                           1   0.701      0.030      0.029
-physical=~Q3_F                          1   0.702      0.031      0.029
-physical=~Q4_F                          1   0.701      0.031      0.029
-physical=~Q10_F                         1   0.713      0.033      0.029
-physical=~Q15_F                         1   0.706      0.032      0.029
-physical=~Q16_F                         1   0.710      0.027      0.029
-physical=~Q17_F                         1   0.686      0.034      0.031
-physical=~Q18_F                         1   0.708      0.029      0.029
-social=~Q20_S                           1   0.702      0.032      0.035
-social=~Q21_S                           1   0.717      0.047      0.034
-social=~Q22_S                           1   0.709      0.022      0.034
-environment=~Q8_A                       1   0.696      0.041      0.029
-environment=~Q9_A                       1   0.702      0.026      0.028
-environment=~Q12_A                      1   0.703      0.019      0.028
-environment=~Q13_A                      1   0.710      0.029      0.027
-environment=~Q14_A                      1   0.705      0.042      0.028
-environment=~Q23_A                      1   0.705      0.038      0.028
-environment=~Q24_A                      1   0.696      0.020      0.029
-environment=~Q25_A                      1   0.707      0.019      0.028
-Q3_F~~Q4_F                              1   0.980      0.002      0.002
-psycho~~physical                        1   0.499      0.043      0.045
-psycho~~social                          1   0.525      0.056      0.047
-psycho~~environment                     1   0.506      0.055      0.043
-physical~~social                        1   0.512      0.053      0.048
-physical~~environment                   1   0.504      0.063      0.043
-social~~environment                     1   0.510      0.049      0.048
-Q5_P~~Q5_P                              1   0.505      0.035      0.041
-Q6_P~~Q6_P                              1   0.508      0.041      0.041
-Q7_P~~Q7_P                              1   0.497      0.061      0.040
-Q11_P~~Q11_P                            1   0.503      0.040      0.041
-Q19_P~~Q19_P                            1   0.520      0.033      0.041
-Q26_P~~Q26_P                            1   0.508      0.042      0.041
-Q10_F~~Q10_F                            1   0.491      0.046      0.041
-Q15_F~~Q15_F                            1   0.500      0.045      0.041
-Q16_F~~Q16_F                            1   0.496      0.039      0.041
-Q17_F~~Q17_F                            1   0.528      0.045      0.041
-Q18_F~~Q18_F                            1   0.498      0.042      0.041
-Q20_S~~Q20_S                            1   0.506      0.045      0.048
-Q21_S~~Q21_S                            1   0.484      0.067      0.048
-Q22_S~~Q22_S                            1   0.497      0.031      0.048
-Q8_A~~Q8_A                              1   0.514      0.054      0.039
-Q9_A~~Q9_A                              1   0.507      0.037      0.040
-Q12_A~~Q12_A                            1   0.506      0.027      0.040
-Q13_A~~Q13_A                            1   0.495      0.041      0.039
-Q14_A~~Q14_A                            1   0.501      0.056      0.039
-Q23_A~~Q23_A                            1   0.502      0.053      0.039
-Q24_A~~Q24_A                            1   0.515      0.028      0.040
-Q25_A~~Q25_A                            1   0.500      0.027      0.039
-Q3_F~~Q3_F                              1   0.506      0.043      0.041
-Q4_F~~Q4_F                              1   0.507      0.043      0.041
+psycho=~Q5                          1.000   0.700      0.029      0.035
+psycho=~Q6                          1.000   0.704      0.026      0.035
+psycho=~Q7                          1.000   0.711      0.035      0.034
+psycho=~Q11                         1.000   0.700      0.038      0.036
+psycho=~Q19                         1.000   0.707      0.034      0.035
+psycho=~Q26                         1.000   0.717      0.030      0.034
+physical=~Q3                        1.000   0.689      0.039      0.037
+physical=~Q4                        1.000   0.678      0.038      0.038
+physical=~Q10                       1.000   0.693      0.036      0.036
+physical=~Q15                       1.000   0.685      0.037      0.036
+physical=~Q16                       1.000   0.682      0.037      0.037
+physical=~Q17                       1.000   0.689      0.034      0.036
+physical=~Q18                       1.000   0.686      0.036      0.036
+social=~Q20                         1.000   0.765      0.033      0.037
+social=~Q21                         1.000   0.758      0.045      0.037
+social=~Q22                         1.000   0.765      0.040      0.037
+environment=~Q8                     1.000   0.645      0.041      0.039
+environment=~Q9                     1.000   0.644      0.048      0.040
+environment=~Q12                    1.000   0.640      0.036      0.040
+environment=~Q13                    1.000   0.638      0.038      0.040
+environment=~Q14                    1.000   0.640      0.036      0.040
+environment=~Q23                    1.000   0.636      0.045      0.040
+environment=~Q24                    1.000   0.648      0.042      0.039
+environment=~Q25                    1.000   0.643      0.050      0.040
+psycho~~physical                    0.333   0.086      0.069      0.067
+psycho~~social                      0.235   0.075      0.084      0.069
+psycho~~environment                 0.235   0.075      0.069      0.067
+physical~~social                    0.196   0.085      0.064      0.069
+physical~~environment               0.294   0.091      0.076      0.067
+social~~environment                 0.275   0.086      0.075      0.069
+Q3~~Q4                              0.941   0.298      0.070      0.062
+Q5~~Q5                              1.000   0.510      0.041      0.049
+Q6~~Q6                              1.000   0.504      0.036      0.049
+Q7~~Q7                              1.000   0.493      0.050      0.049
+Q11~~Q11                            1.000   0.509      0.051      0.049
+Q19~~Q19                            1.000   0.499      0.048      0.049
+Q26~~Q26                            1.000   0.485      0.043      0.049
+Q3~~Q3                              1.000   0.524      0.054      0.051
+Q4~~Q4                              1.000   0.539      0.051      0.051
+Q10~~Q10                            1.000   0.519      0.050      0.050
+Q15~~Q15                            1.000   0.529      0.051      0.050
+Q16~~Q16                            1.000   0.534      0.050      0.050
+Q17~~Q17                            1.000   0.525      0.046      0.050
+Q18~~Q18                            1.000   0.528      0.049      0.050
+Q20~~Q20                            1.000   0.413      0.051      0.056
+Q21~~Q21                            1.000   0.423      0.067      0.056
+Q22~~Q22                            1.000   0.414      0.061      0.056
+Q8~~Q8                              1.000   0.583      0.054      0.051
+Q9~~Q9                              1.000   0.583      0.061      0.051
+Q12~~Q12                            1.000   0.590      0.045      0.051
+Q13~~Q13                            1.000   0.591      0.049      0.051
+Q14~~Q14                            1.000   0.589      0.045      0.051
+Q23~~Q23                            1.000   0.593      0.059      0.051
+Q24~~Q24                            1.000   0.578      0.056      0.051
+Q25~~Q25                            1.000   0.584      0.063      0.051
                       Average Param Average Bias Coverage r_coef.n r_se.n
-psycho=~Q5_P                   0.70        0.003    1.000   -0.309 -0.899
-psycho=~Q6_P                   0.70        0.001    0.947   -0.191 -0.905
-psycho=~Q7_P                   0.70        0.009    0.947   -0.226 -0.901
-psycho=~Q11_P                  0.70        0.010    0.947   -0.135 -0.895
-psycho=~Q19_P                  0.70       -0.014    1.000    0.075 -0.908
-psycho=~Q26_P                  0.70        0.005    1.000   -0.454 -0.894
-physical=~Q3_F                 0.70        0.007    0.947   -0.153 -0.889
-physical=~Q4_F                 0.70        0.006    0.947   -0.137 -0.887
-physical=~Q10_F                0.70        0.018    0.842    0.061 -0.876
-physical=~Q15_F                0.70        0.006    1.000   -0.204 -0.897
-physical=~Q16_F                0.70        0.020    1.000   -0.302 -0.896
-physical=~Q17_F                0.70       -0.017    0.842    0.144 -0.919
-physical=~Q18_F                0.70        0.012    0.895   -0.179 -0.910
-social=~Q20_S                  0.70        0.015    0.947    0.036 -0.902
-social=~Q21_S                  0.70        0.028    0.947   -0.295 -0.896
-social=~Q22_S                  0.70        0.012    1.000   -0.237 -0.909
-environment=~Q8_A              0.70       -0.005    1.000    0.153 -0.872
-environment=~Q9_A              0.70        0.006    0.947    0.130 -0.880
-environment=~Q12_A             0.70        0.017    1.000   -0.244 -0.877
-environment=~Q13_A             0.70        0.009    1.000   -0.337 -0.889
-environment=~Q14_A             0.70        0.002    0.947    0.238 -0.892
-environment=~Q23_A             0.70       -0.002    0.895    0.181 -0.897
-environment=~Q24_A             0.70       -0.001    1.000   -0.237 -0.860
-environment=~Q25_A             0.70        0.014    1.000   -0.050 -0.886
-Q3_F~~Q4_F                     0.50        0.002    1.000    0.073 -0.881
-psycho~~physical               0.50       -0.001    0.947   -0.209 -0.881
-psycho~~social                 0.50        0.025    0.895   -0.371 -0.915
-psycho~~environment            0.50        0.006    0.895   -0.458 -0.836
-physical~~social               0.50        0.012    0.947   -0.182 -0.878
-physical~~environment          0.50        0.004    0.895   -0.383 -0.826
-social~~environment            0.50        0.010    0.895   -0.218 -0.868
-Q5_P~~Q5_P                     0.51       -0.006    0.895   -0.086 -0.879
-Q6_P~~Q6_P                     0.51       -0.002    0.947    0.085 -0.883
-Q7_P~~Q7_P                     0.51       -0.014    0.895    0.384 -0.888
-Q11_P~~Q11_P                   0.51        0.000    1.000    0.107 -0.893
-Q19_P~~Q19_P                   0.51       -0.001    1.000    0.210 -0.917
-Q26_P~~Q26_P                   0.51        0.001    0.895   -0.121 -0.891
-Q10_F~~Q10_F                   0.51       -0.016    0.895    0.006 -0.862
-Q15_F~~Q15_F                   0.51       -0.012    0.895   -0.006 -0.875
-Q16_F~~Q16_F                   0.51       -0.002    1.000    0.297 -0.893
-Q17_F~~Q17_F                   0.51        0.010    0.947   -0.244 -0.911
-Q18_F~~Q18_F                   0.51       -0.009    1.000    0.415 -0.923
-Q20_S~~Q20_S                   0.51        0.014    0.947   -0.362 -0.894
-Q21_S~~Q21_S                   0.51       -0.013    0.895   -0.050 -0.866
-Q22_S~~Q22_S                   0.51       -0.008    1.000    0.062 -0.897
-Q8_A~~Q8_A                     0.51        0.002    0.895   -0.143 -0.805
-Q9_A~~Q9_A                     0.51        0.002    0.947    0.003 -0.849
-Q12_A~~Q12_A                   0.51        0.016    1.000   -0.240 -0.853
-Q13_A~~Q13_A                   0.51       -0.019    1.000    0.371 -0.869
-Q14_A~~Q14_A                   0.51       -0.016    0.842   -0.083 -0.852
-Q23_A~~Q23_A                   0.51       -0.020    0.895   -0.055 -0.868
-Q24_A~~Q24_A                   0.51        0.009    1.000   -0.399 -0.817
-Q25_A~~Q25_A                   0.51        0.000    0.947   -0.162 -0.869
-Q3_F~~Q3_F                     0.51        0.001    1.000    0.065 -0.884
-Q4_F~~Q4_F                     0.51        0.002    1.000    0.084 -0.878
+psycho=~Q5                    0.711       -0.019    0.902   -0.171 -0.942
+psycho=~Q6                    0.711       -0.008    1.000   -0.121 -0.932
+psycho=~Q7                    0.711        0.001    0.941   -0.313 -0.927
+psycho=~Q11                   0.711       -0.021    0.941    0.135 -0.923
+psycho=~Q19                   0.711       -0.004    0.961   -0.052 -0.907
+psycho=~Q26                   0.711        0.000    0.941   -0.326 -0.921
+physical=~Q3                  0.684        0.013    0.961   -0.353 -0.935
+physical=~Q4                  0.684       -0.002    0.961   -0.224 -0.941
+physical=~Q10                 0.684        0.014    0.980   -0.092 -0.944
+physical=~Q15                 0.684       -0.001    0.902   -0.100 -0.940
+physical=~Q16                 0.684       -0.004    0.961   -0.081 -0.929
+physical=~Q17                 0.684        0.006    0.961   -0.441 -0.926
+physical=~Q18                 0.684        0.008    0.961   -0.221 -0.920
+social=~Q20                   0.766       -0.004    1.000   -0.022 -0.911
+social=~Q21                   0.766       -0.024    0.882    0.120 -0.937
+social=~Q22                   0.766       -0.003    0.922   -0.037 -0.914
+environment=~Q8               0.642        0.005    0.922   -0.217 -0.923
+environment=~Q9               0.642        0.004    0.941   -0.162 -0.938
+environment=~Q12              0.642       -0.002    0.980    0.209 -0.931
+environment=~Q13              0.642       -0.006    0.902    0.146 -0.913
+environment=~Q14              0.642       -0.002    1.000    0.037 -0.918
+environment=~Q23              0.642       -0.008    0.922   -0.090 -0.933
+environment=~Q24              0.642        0.003    0.941    0.000 -0.925
+environment=~Q25              0.642        0.001    0.882   -0.005 -0.942
+psycho~~physical              0.080        0.006    0.980    0.017 -0.943
+psycho~~social                0.080       -0.005    0.941   -0.018 -0.943
+psycho~~environment           0.080       -0.005    0.961    0.079 -0.946
+physical~~social              0.080        0.005    0.980   -0.180 -0.938
+physical~~environment         0.080        0.011    0.882   -0.191 -0.943
+social~~environment           0.080        0.006    0.941    0.020 -0.942
+Q3~~Q4                        0.160        0.002    0.961    0.155 -0.919
+Q5~~Q5                        0.494        0.004    0.961   -0.095 -0.916
+Q6~~Q6                        0.494        0.007    0.980   -0.136 -0.906
+Q7~~Q7                        0.494       -0.001    0.980   -0.154 -0.888
+Q11~~Q11                      0.494        0.000    0.941   -0.008 -0.865
+Q19~~Q19                      0.494        0.004    0.902   -0.084 -0.827
+Q26~~Q26                      0.494       -0.018    1.000    0.130 -0.881
+Q3~~Q3                        0.533       -0.001    1.000    0.133 -0.901
+Q4~~Q4                        0.533        0.010    0.961   -0.310 -0.926
+Q10~~Q10                      0.533       -0.010    0.941    0.114 -0.915
+Q15~~Q15                      0.533       -0.011    1.000    0.198 -0.909
+Q16~~Q16                      0.533       -0.002    0.902   -0.009 -0.882
+Q17~~Q17                      0.533       -0.008    0.922    0.017 -0.888
+Q18~~Q18                      0.533        0.002    0.961   -0.159 -0.878
+Q20~~Q20                      0.413       -0.003    0.902   -0.069 -0.857
+Q21~~Q21                      0.413       -0.010    0.941    0.119 -0.898
+Q22~~Q22                      0.413       -0.003    0.922   -0.060 -0.856
+Q8~~Q8                        0.587       -0.001    0.941    0.228 -0.877
+Q9~~Q9                        0.587        0.000    0.980   -0.029 -0.886
+Q12~~Q12                      0.587        0.004    0.980    0.159 -0.874
+Q13~~Q13                      0.587       -0.001    0.922   -0.173 -0.861
+Q14~~Q14                      0.587        0.004    0.902   -0.177 -0.858
+Q23~~Q23                      0.587        0.000    0.941    0.137 -0.894
+Q24~~Q24                      0.587       -0.017    0.922    0.079 -0.865
+Q25~~Q25                      0.587       -0.006    0.941    0.140 -0.903
 ========= Correlation between Fit Indices ============
        chisq    aic    bic  rmsea    cfi    tli   srmr      n
-chisq  1.000 -0.294 -0.294  0.876 -0.728 -0.834  0.524 -0.294
-aic   -0.294  1.000  1.000 -0.574  0.582  0.401 -0.868  1.000
-bic   -0.294  1.000  1.000 -0.574  0.583  0.401 -0.868  1.000
-rmsea  0.876 -0.574 -0.574  1.000 -0.945 -0.943  0.822 -0.575
-cfi   -0.728  0.582  0.583 -0.945  1.000  0.959 -0.885  0.583
-tli   -0.834  0.401  0.401 -0.943  0.959  1.000 -0.747  0.401
-srmr   0.524 -0.868 -0.868  0.822 -0.885 -0.747  1.000 -0.868
-n     -0.294  1.000  1.000 -0.575  0.583  0.401 -0.868  1.000
+chisq  1.000 -0.303 -0.303  0.889 -0.785 -0.911  0.485 -0.301
+aic   -0.303  1.000  1.000 -0.620  0.597  0.454 -0.919  1.000
+bic   -0.303  1.000  1.000 -0.620  0.597  0.454 -0.919  1.000
+rmsea  0.889 -0.620 -0.620  1.000 -0.937 -0.936  0.752 -0.618
+cfi   -0.785  0.597  0.597 -0.937  1.000  0.925 -0.718  0.595
+tli   -0.911  0.454  0.454 -0.936  0.925  1.000 -0.656  0.451
+srmr   0.485 -0.919 -0.919  0.752 -0.718 -0.656  1.000 -0.918
+n     -0.301  1.000  1.000 -0.618  0.595  0.451 -0.918  1.000
 ================== Replications =====================
-Number of replications = 19 
-Number of converged replications = 19 
+Number of replications = 51 
+Number of converged replications = 51 
 Number of nonconverged replications: 
    1. Nonconvergent Results = 0 
    2. Nonconvergent results from multiple imputation = 0 
@@ -1458,47 +1396,47 @@ NOTE: The sample size is varying.</code></pre>
 </div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>opt_power <span class="ot">&lt;-</span> <span class="fu">getPower</span>(sim_opt_vary, <span class="at">alpha =</span> ALPHA)</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">findPower</span>(opt_power, <span class="st">"N"</span>, POWER)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>opt_power <span class="ot">&lt;-</span> <span class="fu">getPower</span>(sim_opt_vary, <span class="at">alpha =</span> ALPHA)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">findPower</span>(opt_power, <span class="st">"N"</span>, POWER)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         psycho=~Q5_P          psycho=~Q6_P          psycho=~Q7_P 
+<pre><code>           psycho=~Q5            psycho=~Q6            psycho=~Q7 
                   Inf                   Inf                   Inf 
-        psycho=~Q11_P         psycho=~Q19_P         psycho=~Q26_P 
+          psycho=~Q11           psycho=~Q19           psycho=~Q26 
                   Inf                   Inf                   Inf 
-       physical=~Q3_F        physical=~Q4_F       physical=~Q10_F 
+         physical=~Q3          physical=~Q4         physical=~Q10 
                   Inf                   Inf                   Inf 
-      physical=~Q15_F       physical=~Q16_F       physical=~Q17_F 
+        physical=~Q15         physical=~Q16         physical=~Q17 
                   Inf                   Inf                   Inf 
-      physical=~Q18_F         social=~Q20_S         social=~Q21_S 
+        physical=~Q18           social=~Q20           social=~Q21 
                   Inf                   Inf                   Inf 
-        social=~Q22_S     environment=~Q8_A     environment=~Q9_A 
+          social=~Q22       environment=~Q8       environment=~Q9 
                   Inf                   Inf                   Inf 
-   environment=~Q12_A    environment=~Q13_A    environment=~Q14_A 
+     environment=~Q12      environment=~Q13      environment=~Q14 
                   Inf                   Inf                   Inf 
-   environment=~Q23_A    environment=~Q24_A    environment=~Q25_A 
+     environment=~Q23      environment=~Q24      environment=~Q25 
                   Inf                   Inf                   Inf 
-           Q3_F~~Q4_F      psycho~~physical        psycho~~social 
+     psycho~~physical        psycho~~social   psycho~~environment 
+                   NA                    NA                    NA 
+     physical~~social physical~~environment   social~~environment 
+                   NA                    NA                    NA 
+               Q3~~Q4                Q5~~Q5                Q6~~Q6 
+                  148                   Inf                   Inf 
+               Q7~~Q7              Q11~~Q11              Q19~~Q19 
                   Inf                   Inf                   Inf 
-  psycho~~environment      physical~~social physical~~environment 
+             Q26~~Q26                Q3~~Q3                Q4~~Q4 
                   Inf                   Inf                   Inf 
-  social~~environment            Q5_P~~Q5_P            Q6_P~~Q6_P 
+             Q10~~Q10              Q15~~Q15              Q16~~Q16 
                   Inf                   Inf                   Inf 
-           Q7_P~~Q7_P          Q11_P~~Q11_P          Q19_P~~Q19_P 
+             Q17~~Q17              Q18~~Q18              Q20~~Q20 
                   Inf                   Inf                   Inf 
-         Q26_P~~Q26_P          Q10_F~~Q10_F          Q15_F~~Q15_F 
+             Q21~~Q21              Q22~~Q22                Q8~~Q8 
                   Inf                   Inf                   Inf 
-         Q16_F~~Q16_F          Q17_F~~Q17_F          Q18_F~~Q18_F 
+               Q9~~Q9              Q12~~Q12              Q13~~Q13 
                   Inf                   Inf                   Inf 
-         Q20_S~~Q20_S          Q21_S~~Q21_S          Q22_S~~Q22_S 
+             Q14~~Q14              Q23~~Q23              Q24~~Q24 
                   Inf                   Inf                   Inf 
-           Q8_A~~Q8_A            Q9_A~~Q9_A          Q12_A~~Q12_A 
-                  Inf                   Inf                   Inf 
-         Q13_A~~Q13_A          Q14_A~~Q14_A          Q23_A~~Q23_A 
-                  Inf                   Inf                   Inf 
-         Q24_A~~Q24_A          Q25_A~~Q25_A            Q3_F~~Q3_F 
-                  Inf                   Inf                   Inf 
-           Q4_F~~Q4_F 
+             Q25~~Q25 
                   Inf </code></pre>
 </div>
 </div></div>
@@ -1506,12 +1444,12 @@ NOTE: The sample size is varying.</code></pre>
 <section id="comparison-across-scenarios" class="level2">
 <h2 class="anchored" data-anchor-id="comparison-across-scenarios">Comparison across scenarios</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-fig-scenarios-overlay" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay power-fit plots for the three population models</span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the SRMR &lt; .06 cutoff as the reference</span></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(sim_missing_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">logistic =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">sub =</span> <span class="st">"Note: MCAR 10% scenario shown. Compare with ideal in Section 6."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay power-fit plots for the three population models</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the SRMR &lt; .06 cutoff as the reference</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(sim_missing_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">logistic =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">sub =</span> <span class="st">"Note: MCAR 10% scenario shown. Compare with ideal in Section 6."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-scenarios-overlay" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1529,41 +1467,41 @@ Power curves across population model scenarios (fit-index based)
 <section id="summary-n-requirements-across-all-scenarios" class="level2">
 <h2 class="anchored" data-anchor-id="summary-n-requirements-across-all-scenarios">Summary: N requirements across all scenarios</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: Values below are placeholders — replace with actual findPower() results</span></span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>n_requirements <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Scenario =</span> <span class="fu">c</span>(</span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Analytical (semPower, RMSEA ≥ .05)"</span>,</span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Simulation — Ideal (popModel, ML)"</span>,</span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Simulation — Missing data (popModel, 10% MCAR)"</span>,</span>
-<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Simulation — Naive model (loadings = .5)"</span>,</span>
-<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Simulation — Optimistic model (loadings = .7)"</span></span>
-<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Approach</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Analytical"</span>,</span>
-<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span>,</span>
-<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span>,</span>
-<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span>,</span>
-<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span></span>
-<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">N for 80% Power</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"See @sec-apriori"</span>,</span>
-<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From Section 6"</span>,</span>
-<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From sim-missing above"</span>,</span>
-<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From sim-naive above"</span>,</span>
-<span id="cb63-23"><a href="#cb63-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From sim-opt above"</span></span>
-<span id="cb63-24"><a href="#cb63-24" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb63-25"><a href="#cb63-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Key Assumption</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb63-26"><a href="#cb63-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous, normal, ML"</span>,</span>
-<span id="cb63-27"><a href="#cb63-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous, normal, ML"</span>,</span>
-<span id="cb63-28"><a href="#cb63-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous, normal, ML + 10% MCAR"</span>,</span>
-<span id="cb63-29"><a href="#cb63-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Weak loadings (0.5)"</span>,</span>
-<span id="cb63-30"><a href="#cb63-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Strong loadings (0.7), mod. correlations (0.5)"</span></span>
-<span id="cb63-31"><a href="#cb63-31" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb63-32"><a href="#cb63-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
-<span id="cb63-33"><a href="#cb63-33" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb63-34"><a href="#cb63-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-35"><a href="#cb63-35" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(n_requirements, <span class="at">align =</span> <span class="st">"llll"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: Values below are placeholders — replace with actual findPower() results</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>n_requirements <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Scenario =</span> <span class="fu">c</span>(</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Analytical (semPower, RMSEA ≥ .05)"</span>,</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Simulation — Ideal (popModel, ML)"</span>,</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Simulation — Missing data (popModel, 10% MCAR)"</span>,</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Simulation — Naive model (loadings = .5)"</span>,</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Simulation — Optimistic model (loadings = .7)"</span></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Approach</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Analytical"</span>,</span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span>,</span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span>,</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span>,</span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span></span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">N for 80% Power</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"See @sec-apriori"</span>,</span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From Section 6"</span>,</span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From sim-missing above"</span>,</span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From sim-naive above"</span>,</span>
+<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From sim-opt above"</span></span>
+<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Key Assumption</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous, normal, ML"</span>,</span>
+<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous, normal, ML"</span>,</span>
+<span id="cb57-28"><a href="#cb57-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous, normal, ML + 10% MCAR"</span>,</span>
+<span id="cb57-29"><a href="#cb57-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Weak loadings (0.5)"</span>,</span>
+<span id="cb57-30"><a href="#cb57-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Strong loadings (0.7), mod. correlations (0.5)"</span></span>
+<span id="cb57-31"><a href="#cb57-31" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb57-32"><a href="#cb57-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb57-33"><a href="#cb57-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb57-34"><a href="#cb57-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-35"><a href="#cb57-35" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(n_requirements, <span class="at">align =</span> <span class="st">"llll"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="tbl-n-requirements" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-n-requirements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

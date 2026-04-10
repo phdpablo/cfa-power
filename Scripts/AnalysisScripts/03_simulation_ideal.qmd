@@ -26,7 +26,7 @@ This should converge with the analytical results from semPower/semTools.
 #| cache: true
 
 sim_ideal_fixed <- run_sim(
-  nRep     = N_REP,
+  nRep     = REP,
   n        = 500,
   model    = analyzeModel,
   generate = popModel
@@ -43,7 +43,7 @@ summary(sim_ideal_fixed)
 
 sim_ideal_vary <- run_sim(
   nRep     = NULL,
-  n        = N_SEQ,
+  n        = SEQ,
   model    = analyzeModel,
   generate = popModel
 )

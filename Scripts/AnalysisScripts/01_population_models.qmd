@@ -39,6 +39,14 @@ cat(naiveModel)
 cat(optModel)
 ```
 
+## Model H1 — Cross-loading population model
+
+```{r}
+#| label: H1-model
+
+cat(H1Model)
+```
+
 ## Analysis model — Free parameters
 
 ```{r}
@@ -57,13 +65,14 @@ pop_summary <- data.frame(
     Model = c(
         "Meta-analytic (popModel)",
         "Naive (naiveModel)",
-        "Optimistic (optModel)"
+        "Optimistic (optModel)",
+        "H1 (H1model)"
     ),
-    `Loading Range` = c("0.37–0.94", "0.50", "0.70"),
-    `Mean Loading` = c("0.74", "0.50", "0.70"),
-    `Factor Correlations` = c("0.30", "0.30", "0.50"),
-    `Residual Range` = c("0.12–0.86", "0.75", "0.51"),
-    `Q3–Q4 Covariance` = c("0.30", "0.30", "0.50"),
+    `Loading Range` = c("0.37–0.94", "0.48–0.60", "0.64–0.77", "0.21–0.94"),
+    `Mean Loading` = c("0.74", "0.51", "0.69", "0.78"),
+    `Factor Correlations` = c("0.20", "0.30", "0.08", "0.20"),
+    `Residual Range` = c("0.12–0.86", "0.64–0.77", "0.41–0.59", "0.12–0.67"),
+    `Q3–Q4 Correlation` = c("0.09", "0.23", "0.16", "0.09"),
     check.names = FALSE
 )
 

@@ -35,6 +35,9 @@ df0 <- read.table(url_data)
 column_labels <- read.table(url_labels)$V1
 names(df0) <- column_labels
 
+# Strip suffixes from item names (e.g., Q3_F -> Q3)
+names(df0) <- gsub("_(P|F|S|A)$", "", names(df0))
+
 # Fit the CFA model to empirical data (continuous, ML for comparability)
 myModel <- cfa(
   analyzeModel,
@@ -43,7 +46,7 @@ myModel <- cfa(
 )
 
 cat("Empirical model fit:\n")
-format_fit(myModel) |> kable()
+lavaan::fitMeasures(myModel, c("chisq", "df", "pvalue", "cfi", "tli", "rmsea", "srmr"))
 ```
 
 ## Null distribution: Data generated from the fitted model
@@ -56,7 +59,7 @@ the world looks like if the sample-estimated parameters are the truth."
 #| cache: true
 
 sim_null <- run_sim(
-  nRep     = N_REP,
+  nRep     = REP,
   n        = N_EMPIRICAL,
   model    = analyzeModel,
   generate = myModel       # generate from the fitted lavaan object
@@ -76,7 +79,7 @@ Simulate data from the meta-analytic population model. This represents
 #| cache: true
 
 sim_alt <- run_sim(
-  nRep     = N_REP,
+  nRep     = REP,
   n        = N_EMPIRICAL,
   model    = analyzeModel,
   generate = popModel      # generate from the population model

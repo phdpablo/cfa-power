@@ -49,7 +49,7 @@ transform_nonnormal <- function(data) {
 sim_nonnormal_vary <- invisible(capture.output(
   simsem::sim(
     nRep      = NULL,
-    n         = N_SEQ,
+    n         = SEQ,
     model     = analyzeModel,
     generate  = popModel,
     lavaanfun = "cfa",
@@ -67,7 +67,7 @@ sim_nonnormal_vary <- invisible(capture.output(
 # If the datafun approach is unavailable, use this pattern:
 sim_nonnormal_vary_alt <- run_sim(
   nRep     = NULL,
-  n        = N_SEQ,
+  n        = SEQ,
   model    = analyzeModel,
   generate = popModel
 )
@@ -88,7 +88,7 @@ power cost of attrition / item non-response.
 
 sim_missing_vary <- run_sim(
   nRep     = NULL,
-  n        = N_SEQ,
+  n        = SEQ,
   model    = analyzeModel,
   generate = popModel,
   pmMCAR   = 0.10           # 10% MCAR missing data
@@ -118,7 +118,7 @@ generating model to assess the worst-case power scenario.
 
 sim_naive_vary <- run_sim(
   nRep     = NULL,
-  n        = N_SEQ,
+  n        = SEQ,
   model    = analyzeModel,
   generate = naiveModel
 )
@@ -143,7 +143,7 @@ Use the optimistic model (all loadings = 0.7, correlations = 0.5).
 
 sim_opt_vary <- run_sim(
   nRep     = NULL,
-  n        = N_SEQ,
+  n        = SEQ,
   model    = analyzeModel,
   generate = optModel
 )

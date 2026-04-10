@@ -43,49 +43,74 @@ For local development and computational convenience across this pedagogical docu
 
 To anchor our power analyses, we use the WHOQOL-BREF measurement instrument. Meaningful power analysis requires the definition of a population model—the "true" state of the world from which we believe our data are generated. By simulating from a meta-analytically derived population model rather than a purely arbitrary one, researchers can ensure that tests reflect realistic boundaries [@lin2022].
 
-We specify three population variations to perform sensitivity analyses:
+We specify four population variations to perform sensitivity analyses:
 
 1.  **Meta-analytic**: Loadings and residual variances closely matching @lin2022.
-2.  **Naive**: A pessimistic baseline where all factor loadings are weak ($\lambda = 0.5$).
-3.  **Optimistic**: A best-case scenario with stronger factor loadings ($\lambda = 0.7$).
+2.  **Naive**: A pessimistic baseline where factor loadings are based on the lowest reported reliability values per domain [@mosqueirataipe2026].
+3.  **Optimistic**: A best-case scenario where factor loadings are based on the highest reported reliability values per domain [@mosqueirataipe2026].
+4.  **H1**: A misspecified model with cross-loadings based on the meta-EFA results from @lin2022.
 
 ### Population model
 
-The primary population model uses factor loadings derived from the
-meta-analysis by Lin and Yao (2022). Four factors: Psychological (6 items),
-Physical (7 items), Social (3 items), Environment (8 items). Interfactor
-correlations are set at the upper bound (0.3) reported in the meta-analysis
-(range: 0.08–0.30). Residual variances follow the formula 1 − λ², except
-for Q3 and Q4 which share a correlated residual (0.3).
+The primary population model represents a meta-analytic scenario based on @lin2022. Factor loadings ($\lambda$) match the pooled empirical Exploratory Factor Analysis (EFA) estimates across 16 international studies. Characteristics:
+
+- **Interfactor correlations ($\phi$)**: Set to $0.20$ (conservative midpoint of the reported range $0.08$--$0.31$).
+- **Residual covariance**: $Q3$ and $Q4$ share a residual covariance ($\text{r}(Q3, Q4 | \text{physical}) = 0.30$), maintaining the subfactor signal observed in the EFA 5-factor solution [@lin2022].
+- **Factor structure**: Item $Q8$ is maintained in the environment domain despite having a higher cross-loading on the psychological domain in the meta-EFA ($\lambda_{\text{psy}} > \lambda_{\text{env}}$). This represents the null hypothesis ($H_0$) version of the population, strictly maintaining the original 4-factor structure without cross-loadings.
 
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#pop-model >}}
 
 ### Naive model
 
-All factor loadings set to 0.5 (minimum acceptable for CFA), residual
-variances = 0.75 (i.e., 1 − 0.5²), and small interfactor correlations (0.3).
-This represents a **pessimistic** scenario.
+This model defines a pessimistic, empirically grounded scenario. We apply the Spearman-Brown prediction formula to derive tau-equivalent factor loadings based on the lowest reported Cronbach's alpha ($\alpha$) values. 
+
+- **Approach**: Assuming equal loadings within each domain, we estimate the loadings as $\lambda = \sqrt{\alpha / (k - \alpha(k-1))}$ and residual variances as $\theta = 1 - \lambda^2$.
+- **Alpha sources**: Based on the lowest alphas for the original 4-factor structure reported by a single study identified in the systematic review by @mosqueirataipe2026 (Physical $\alpha = 0.672$; Psychological $\alpha = 0.704$; Social $\alpha = 0.630$; Environmental $\alpha = 0.709$). All values reside within the $M - 1SD$ range reported by @lin2022.
+- **Interfactor correlations ($\phi$)**: Fixed at $0.30$ (the upper bound from @lin2022), which makes factors harder to distinguish and yields a conservative power estimate.
+- **Derived parameters**: E.g., Physical ($\lambda = 0.4758, \theta = 0.7736$), Psychological ($\lambda = 0.5328, \theta = 0.7161$), Social ($\lambda = 0.6017, \theta = 0.6379$), Environmental ($\lambda = 0.4832, \theta = 0.7665$). The residual covariance between $Q3$ and $Q4$ is adjusted to $0.2321$.
 
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#naive-model >}}
 
 ### Optimistic model
 
-All factor loadings set to 0.7 (strong loadings), residual variances = 0.51
-(1 − 0.7²), and moderate interfactor correlations (0.5). This represents an
-**best-case** scenario.
+This model defines an optimistic, empirically grounded scenario using the same Spearman-Brown derivation approach but leveraging the highest observed Cronbach's alpha ($\alpha$) values per domain.
+
+- **Alpha sources**: Based on maximum alphas reported in the literature [@mosqueirataipe2026] (Physical $\alpha = 0.860$; Psychological $\alpha = 0.860$; Social $\alpha = 0.810$; Environmental $\alpha = 0.849$). All values are confirmed within the $M + 1SD$ range from @lin2022.
+- **Interfactor correlations ($\phi$)**: Fixed at $0.08$ (the lower bound from @lin2022), resulting in factors that are well-distinguished and providing an optimistic power estimate.
+- **Derived parameters**: E.g., Physical ($\lambda = 0.6837, \theta = 0.5326$), Psychological ($\lambda = 0.7113, \theta = 0.4941$), Social ($\lambda = 0.7661, \theta = 0.4130$), Environmental ($\lambda = 0.6424, \theta = 0.5873$). The residual covariance between $Q3$ and $Q4$ is adjusted to $0.1598$.
 
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#opt-model >}}
 
+### Misspecification model
+
+This represents the alternative hypothesis ($H_1$), defining a cross-loading population model. Three empirical cross-loadings are added to the baseline 4-factor structure based on @lin2022 and supported by recent literature [@mosqueirataipe2026]:
+
+- **Cross-loading 1**: item $Q8$ loading on the Psychological factor ($\lambda = 0.55$). This item showed the highest betweenness ($40.50$) and explicitly grouped with the psychological factor in 9/16 studies.
+- **Cross-loading 2**: item $Q9$ loading on the Psychological factor ($\lambda = 0.21$). Identified as a secondary loading in the 5-factor solution.
+- **Cross-loading 3**: item $Q15$ loading on the Environmental factor ($\lambda = 0.24$). "Mobility" conceptually bridges physical ability and environmental access, showing the second-highest betweenness ($36.50$).
+
+Residual variances ($\theta$) for cross-loaded items were recalculated to preserve total item variance using the formula $\theta = 1 - \lambda_{\text{primary}}^2 - \lambda_{\text{secondary}}^2 - 2 \lambda_{\text{primary}} \lambda_{\text{secondary}} \phi$, where the interfactor correlation ($\phi$) is $0.20$.
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#H1-model >}}
+
 ### Comparison table
 
-Below is a summary of the three population models.
+Below is a summary of the four population models. Note that the H1 model is the misspecification model. 
 
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#tbl-pop-comparison >}}
 
 ### Analysis model
 
-This is the model we will fit to data. All parameters are freely
-estimated (no fixed values), matching the structure of the population models.
+The analysis model serves dual purposes depending on the simulation paradigm:
+
+- **Paradigm A (Recovery power)**: Estimates the 4-factor structure plus the $Q3$ and $Q4$ residual covariance given data from the meta-analytic, naive, or optimistic population models.
+- **Paradigm B (Misspecification detection)**: Acts as the null hypothesis ($H_0$), meaning it *omits* the cross-loadings, when fitting data generated from the misspecification model ($H_1$). Here, power is the probability of correctly rejecting the model given that cross-loadings exist in the population.
+
+**Key constraints and features**:
+
+- **Identification**: Factor variances are fixed to $1$ (marker-free scaling) allowing the first indicator to be freely estimated.
+- **Residual covariance**: $Q3$ and $Q4$ correlation is freely estimated, which is theoretically justified and empirically supported [@lin2022; @mosqueirataipe2026].
+- **Cross-loadings**: The omission of cross-loadings for items $Q8$, $Q9$, and $Q15$ deliberately defines the misspecification tested in Paradigm B.
 
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#analysis-model >}}
 

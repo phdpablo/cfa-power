@@ -339,7 +339,7 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>sim_ideal_fixed <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> N_REP,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> REP,</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> <span class="dv">500</span>,</span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> popModel</span>
@@ -360,191 +360,191 @@ Model Type
 ========= Fit Indices Cutoffs ============
            Alpha
 Fit Indices       0.1      0.05      0.01     0.001      Mean      SD
-      chisq   288.900   297.530   317.032   332.191   251.884  26.449
-      aic   28511.303 28571.408 28609.844 28619.269 28310.300 143.642
-      bic   28743.106 28803.211 28841.647 28851.072 28542.104 143.642
-      rmsea     0.019     0.021     0.024     0.027     0.007   0.008
-      cfi       0.993     0.992     0.989     0.987     0.998   0.003
-      tli       0.992     0.991     0.987     0.985     0.999   0.005
-      srmr      0.033     0.034     0.035     0.036     0.030   0.002
+      chisq   281.053   292.242   315.741   326.518   250.888  25.684
+      aic   27512.919 27563.484 27613.343 27622.032 27309.308 143.867
+      bic   27744.723 27795.287 27845.146 27853.836 27541.111 143.867
+      rmsea     0.017     0.020     0.024     0.026     0.007   0.007
+      cfi       0.995     0.993     0.990     0.989     0.998   0.003
+      tli       0.994     0.992     0.988     0.987     0.999   0.004
+      srmr      0.033     0.034     0.035     0.035     0.030   0.002
 ========= Parameter Estimates and Standard Errors ============
                       Estimate Average Estimate SD Average SE
-psycho=~Q5_P                     0.918       0.033      0.034
-psycho=~Q6_P                     0.813       0.037      0.037
-psycho=~Q7_P                     0.940       0.032      0.034
-psycho=~Q11_P                    0.729       0.043      0.039
-psycho=~Q19_P                    0.751       0.039      0.039
-psycho=~Q26_P                    0.631       0.039      0.041
-physical=~Q3_F                   0.834       0.054      0.055
-physical=~Q4_F                   0.835       0.056      0.055
-physical=~Q10_F                  0.636       0.040      0.042
-physical=~Q15_F                  0.715       0.048      0.041
-physical=~Q16_F                  0.686       0.037      0.042
-physical=~Q17_F                  0.892       0.035      0.037
-physical=~Q18_F                  0.609       0.047      0.042
-social=~Q20_S                    0.935       0.039      0.035
-social=~Q21_S                    0.883       0.033      0.036
-social=~Q22_S                    0.777       0.037      0.038
-environment=~Q8_A                0.366       0.040      0.045
-environment=~Q9_A                0.498       0.040      0.044
-environment=~Q12_A               0.780       0.041      0.039
-environment=~Q13_A               0.804       0.035      0.038
-environment=~Q14_A               0.766       0.038      0.039
-environment=~Q23_A               0.739       0.035      0.039
-environment=~Q24_A               0.634       0.044      0.042
-environment=~Q25_A               0.720       0.038      0.040
-Q3_F~~Q4_F                       0.300       0.044      0.053
-psycho~~physical                 0.305       0.051      0.044
-psycho~~social                   0.297       0.047      0.044
-psycho~~environment              0.307       0.048      0.044
-physical~~social                 0.301       0.043      0.045
-physical~~environment            0.311       0.052      0.046
-social~~environment              0.292       0.047      0.045
-Q5_P~~Q5_P                       0.148       0.013      0.014
-Q6_P~~Q6_P                       0.333       0.021      0.024
-Q7_P~~Q7_P                       0.117       0.015      0.013
-Q11_P~~Q11_P                     0.466       0.029      0.031
-Q19_P~~Q19_P                     0.438       0.030      0.030
-Q26_P~~Q26_P                     0.608       0.036      0.040
-Q10_F~~Q10_F                     0.600       0.046      0.041
-Q15_F~~Q15_F                     0.496       0.029      0.036
-Q16_F~~Q16_F                     0.544       0.042      0.039
-Q17_F~~Q17_F                     0.211       0.025      0.025
-Q18_F~~Q18_F                     0.621       0.041      0.042
-Q20_S~~Q20_S                     0.122       0.021      0.022
-Q21_S~~Q21_S                     0.210       0.024      0.022
-Q22_S~~Q22_S                     0.384       0.027      0.028
-Q8_A~~Q8_A                       0.858       0.053      0.055
-Q9_A~~Q9_A                       0.760       0.057      0.050
-Q12_A~~Q12_A                     0.381       0.029      0.030
-Q13_A~~Q13_A                     0.337       0.029      0.027
-Q14_A~~Q14_A                     0.409       0.031      0.031
-Q23_A~~Q23_A                     0.436       0.037      0.032
-Q24_A~~Q24_A                     0.591       0.036      0.041
-Q25_A~~Q25_A                     0.472       0.036      0.034
-Q3_F~~Q3_F                       0.998       0.066      0.070
-Q4_F~~Q4_F                       1.007       0.057      0.070
+psycho=~Q5                       0.917       0.034      0.034
+psycho=~Q6                       0.807       0.040      0.037
+psycho=~Q7                       0.940       0.031      0.034
+psycho=~Q11                      0.732       0.040      0.039
+psycho=~Q19                      0.748       0.035      0.039
+psycho=~Q26                      0.627       0.049      0.041
+physical=~Q3                     0.841       0.036      0.037
+physical=~Q4                     0.829       0.036      0.038
+physical=~Q10                    0.623       0.035      0.042
+physical=~Q15                    0.712       0.039      0.040
+physical=~Q16                    0.685       0.039      0.041
+physical=~Q17                    0.892       0.041      0.036
+physical=~Q18                    0.611       0.044      0.042
+social=~Q20                      0.942       0.040      0.035
+social=~Q21                      0.896       0.037      0.036
+social=~Q22                      0.782       0.040      0.038
+environment=~Q8                  0.363       0.049      0.046
+environment=~Q9                  0.481       0.040      0.044
+environment=~Q12                 0.777       0.040      0.039
+environment=~Q13                 0.807       0.041      0.038
+environment=~Q14                 0.769       0.039      0.039
+environment=~Q23                 0.741       0.033      0.040
+environment=~Q24                 0.616       0.042      0.042
+environment=~Q25                 0.728       0.035      0.040
+psycho~~physical                 0.202       0.053      0.046
+psycho~~social                   0.206       0.041      0.046
+psycho~~environment              0.204       0.053      0.047
+physical~~social                 0.209       0.048      0.046
+physical~~environment            0.207       0.053      0.047
+social~~environment              0.207       0.040      0.047
+Q3~~Q4                           0.089       0.023      0.020
+Q5~~Q5                           0.153       0.016      0.015
+Q6~~Q6                           0.339       0.023      0.024
+Q7~~Q7                           0.113       0.016      0.013
+Q11~~Q11                         0.468       0.031      0.032
+Q19~~Q19                         0.437       0.027      0.030
+Q26~~Q26                         0.592       0.032      0.039
+Q3~~Q3                           0.285       0.026      0.025
+Q4~~Q4                           0.308       0.030      0.026
+Q10~~Q10                         0.605       0.038      0.041
+Q15~~Q15                         0.493       0.033      0.035
+Q16~~Q16                         0.543       0.041      0.037
+Q17~~Q17                         0.207       0.020      0.021
+Q18~~Q18                         0.629       0.046      0.042
+Q20~~Q20                         0.119       0.022      0.022
+Q21~~Q21                         0.208       0.023      0.023
+Q22~~Q22                         0.388       0.028      0.028
+Q8~~Q8                           0.869       0.053      0.056
+Q9~~Q9                           0.756       0.052      0.050
+Q12~~Q12                         0.383       0.031      0.030
+Q13~~Q13                         0.335       0.026      0.028
+Q14~~Q14                         0.405       0.033      0.031
+Q23~~Q23                         0.440       0.028      0.033
+Q24~~Q24                         0.602       0.037      0.041
+Q25~~Q25                         0.462       0.032      0.034
                       Power (Not equal 0) Std Est Std Est SD Std Ave SE
-psycho=~Q5_P                            1   0.922      0.009      0.009
-psycho=~Q6_P                            1   0.815      0.017      0.016
-psycho=~Q7_P                            1   0.940      0.008      0.008
-psycho=~Q11_P                           1   0.729      0.024      0.022
-psycho=~Q19_P                           1   0.750      0.022      0.021
-psycho=~Q26_P                           1   0.629      0.028      0.028
-physical=~Q3_F                          1   0.640      0.029      0.030
-physical=~Q4_F                          1   0.639      0.027      0.030
-physical=~Q10_F                         1   0.634      0.029      0.030
-physical=~Q15_F                         1   0.711      0.027      0.025
-physical=~Q16_F                         1   0.681      0.027      0.027
-physical=~Q17_F                         1   0.889      0.016      0.015
-physical=~Q18_F                         1   0.611      0.031      0.031
-social=~Q20_S                           1   0.936      0.013      0.012
-social=~Q21_S                           1   0.887      0.014      0.014
-social=~Q22_S                           1   0.781      0.017      0.020
-environment=~Q8_A                       1   0.368      0.036      0.041
-environment=~Q9_A                       1   0.495      0.033      0.036
-environment=~Q12_A                      1   0.784      0.023      0.021
-environment=~Q13_A                      1   0.811      0.017      0.019
-environment=~Q14_A                      1   0.767      0.022      0.022
-environment=~Q23_A                      1   0.746      0.024      0.023
-environment=~Q24_A                      1   0.636      0.028      0.029
-environment=~Q25_A                      1   0.723      0.025      0.024
-Q3_F~~Q4_F                              1   0.299      0.037      0.044
-psycho~~physical                        1   0.305      0.051      0.044
-psycho~~social                          1   0.297      0.047      0.044
-psycho~~environment                     1   0.307      0.048      0.044
-physical~~social                        1   0.301      0.043      0.045
-physical~~environment                   1   0.311      0.052      0.046
-social~~environment                     1   0.292      0.047      0.045
-Q5_P~~Q5_P                              1   0.150      0.017      0.016
-Q6_P~~Q6_P                              1   0.336      0.027      0.027
-Q7_P~~Q7_P                              1   0.117      0.016      0.015
-Q11_P~~Q11_P                            1   0.468      0.035      0.032
-Q19_P~~Q19_P                            1   0.438      0.033      0.031
-Q26_P~~Q26_P                            1   0.604      0.035      0.035
-Q10_F~~Q10_F                            1   0.597      0.037      0.038
-Q15_F~~Q15_F                            1   0.493      0.038      0.036
-Q16_F~~Q16_F                            1   0.536      0.037      0.037
-Q17_F~~Q17_F                            1   0.210      0.028      0.027
-Q18_F~~Q18_F                            1   0.626      0.038      0.038
-Q20_S~~Q20_S                            1   0.123      0.025      0.023
-Q21_S~~Q21_S                            1   0.212      0.025      0.025
-Q22_S~~Q22_S                            1   0.389      0.027      0.031
-Q8_A~~Q8_A                              1   0.864      0.026      0.030
-Q9_A~~Q9_A                              1   0.754      0.033      0.036
-Q12_A~~Q12_A                            1   0.385      0.036      0.032
-Q13_A~~Q13_A                            1   0.342      0.028      0.030
-Q14_A~~Q14_A                            1   0.412      0.034      0.033
-Q23_A~~Q23_A                            1   0.444      0.035      0.034
-Q24_A~~Q24_A                            1   0.595      0.036      0.037
-Q25_A~~Q25_A                            1   0.477      0.035      0.035
-Q3_F~~Q3_F                              1   0.589      0.036      0.038
-Q4_F~~Q4_F                              1   0.591      0.035      0.038
+psycho=~Q5                           1.00   0.920      0.010      0.009
+psycho=~Q6                           1.00   0.810      0.019      0.017
+psycho=~Q7                           1.00   0.941      0.009      0.008
+psycho=~Q11                          1.00   0.730      0.022      0.022
+psycho=~Q19                          1.00   0.749      0.018      0.021
+psycho=~Q26                          1.00   0.631      0.033      0.028
+physical=~Q3                         1.00   0.844      0.016      0.017
+physical=~Q4                         1.00   0.831      0.018      0.017
+physical=~Q10                        1.00   0.625      0.025      0.029
+physical=~Q15                        1.00   0.711      0.022      0.024
+physical=~Q16                        1.00   0.681      0.029      0.026
+physical=~Q17                        1.00   0.890      0.013      0.013
+physical=~Q18                        1.00   0.610      0.032      0.030
+social=~Q20                          1.00   0.939      0.012      0.012
+social=~Q21                          1.00   0.891      0.014      0.014
+social=~Q22                          1.00   0.782      0.019      0.020
+environment=~Q8                      1.00   0.362      0.044      0.041
+environment=~Q9                      1.00   0.483      0.032      0.037
+environment=~Q12                     1.00   0.782      0.021      0.021
+environment=~Q13                     1.00   0.812      0.018      0.019
+environment=~Q14                     1.00   0.770      0.022      0.021
+environment=~Q23                     1.00   0.745      0.019      0.023
+environment=~Q24                     1.00   0.621      0.028      0.030
+environment=~Q25                     1.00   0.731      0.022      0.024
+psycho~~physical                     1.00   0.202      0.053      0.046
+psycho~~social                       1.00   0.206      0.041      0.046
+psycho~~environment                  0.98   0.204      0.053      0.047
+physical~~social                     1.00   0.209      0.048      0.046
+physical~~environment                0.98   0.207      0.053      0.047
+social~~environment                  1.00   0.207      0.040      0.047
+Q3~~Q4                               1.00   0.297      0.058      0.054
+Q5~~Q5                               1.00   0.154      0.018      0.017
+Q6~~Q6                               1.00   0.343      0.031      0.027
+Q7~~Q7                               1.00   0.114      0.016      0.015
+Q11~~Q11                             1.00   0.466      0.032      0.032
+Q19~~Q19                             1.00   0.439      0.027      0.031
+Q26~~Q26                             1.00   0.601      0.041      0.035
+Q3~~Q3                               1.00   0.287      0.026      0.028
+Q4~~Q4                               1.00   0.310      0.030      0.029
+Q10~~Q10                             1.00   0.609      0.031      0.037
+Q15~~Q15                             1.00   0.493      0.031      0.035
+Q16~~Q16                             1.00   0.536      0.039      0.036
+Q17~~Q17                             1.00   0.207      0.024      0.024
+Q18~~Q18                             1.00   0.627      0.039      0.037
+Q20~~Q20                             1.00   0.118      0.023      0.023
+Q21~~Q21                             1.00   0.206      0.025      0.025
+Q22~~Q22                             1.00   0.389      0.030      0.031
+Q8~~Q8                               1.00   0.867      0.032      0.030
+Q9~~Q9                               1.00   0.765      0.032      0.036
+Q12~~Q12                             1.00   0.388      0.033      0.032
+Q13~~Q13                             1.00   0.340      0.029      0.030
+Q14~~Q14                             1.00   0.407      0.034      0.033
+Q23~~Q23                             1.00   0.445      0.028      0.034
+Q24~~Q24                             1.00   0.614      0.034      0.037
+Q25~~Q25                             1.00   0.466      0.032      0.035
                       Average Param Average Bias Coverage
-psycho=~Q5_P                   0.92       -0.002     0.96
-psycho=~Q6_P                   0.81        0.003     0.94
-psycho=~Q7_P                   0.94        0.000     0.96
-psycho=~Q11_P                  0.73       -0.001     0.96
-psycho=~Q19_P                  0.75        0.001     0.96
-psycho=~Q26_P                  0.63        0.001     0.96
-physical=~Q3_F                 0.84       -0.006     0.90
-physical=~Q4_F                 0.83        0.005     0.90
-physical=~Q10_F                0.63        0.006     0.98
-physical=~Q15_F                0.71        0.005     0.94
-physical=~Q16_F                0.68        0.006     0.98
-physical=~Q17_F                0.89        0.002     0.98
-physical=~Q18_F                0.61       -0.001     0.96
-social=~Q20_S                  0.94       -0.005     0.94
-social=~Q21_S                  0.89       -0.007     0.96
-social=~Q22_S                  0.78       -0.003     0.98
-environment=~Q8_A              0.37       -0.004     0.98
-environment=~Q9_A              0.49        0.008     0.98
-environment=~Q12_A             0.79       -0.010     0.96
-environment=~Q13_A             0.81       -0.006     0.94
-environment=~Q14_A             0.77       -0.004     0.96
-environment=~Q23_A             0.75       -0.011     0.96
-environment=~Q24_A             0.64       -0.006     0.96
-environment=~Q25_A             0.73       -0.010     0.90
-Q3_F~~Q4_F                     0.30        0.000     0.96
-psycho~~physical               0.30        0.005     0.90
-psycho~~social                 0.30       -0.003     0.96
-psycho~~environment            0.30        0.007     0.94
-physical~~social               0.30        0.001     0.96
-physical~~environment          0.30        0.011     0.94
-social~~environment            0.30       -0.008     0.94
-Q5_P~~Q5_P                     0.15       -0.002     0.96
-Q6_P~~Q6_P                     0.34       -0.007     0.94
-Q7_P~~Q7_P                     0.12       -0.003     0.94
-Q11_P~~Q11_P                   0.47       -0.004     0.96
-Q19_P~~Q19_P                   0.44       -0.002     0.94
-Q26_P~~Q26_P                   0.60        0.008     0.96
-Q10_F~~Q10_F                   0.60        0.000     0.94
-Q15_F~~Q15_F                   0.50       -0.004     1.00
-Q16_F~~Q16_F                   0.54        0.004     0.92
-Q17_F~~Q17_F                   0.21        0.001     0.96
-Q18_F~~Q18_F                   0.63       -0.009     0.96
-Q20_S~~Q20_S                   0.12        0.002     0.96
-Q21_S~~Q21_S                   0.21        0.000     0.98
-Q22_S~~Q22_S                   0.39       -0.006     0.96
-Q8_A~~Q8_A                     0.86       -0.002     0.96
-Q9_A~~Q9_A                     0.76        0.000     0.88
-Q12_A~~Q12_A                   0.38        0.001     0.96
-Q13_A~~Q13_A                   0.34       -0.003     0.88
-Q14_A~~Q14_A                   0.41       -0.001     0.92
-Q23_A~~Q23_A                   0.44       -0.004     0.92
-Q24_A~~Q24_A                   0.59        0.001     0.96
-Q25_A~~Q25_A                   0.47        0.002     0.96
-Q3_F~~Q3_F                     1.00       -0.002     0.96
-Q4_F~~Q4_F                     1.00        0.007     0.98
+psycho=~Q5                    0.920       -0.003     0.92
+psycho=~Q6                    0.810       -0.003     0.88
+psycho=~Q7                    0.940        0.000     0.96
+psycho=~Q11                   0.730        0.002     0.96
+psycho=~Q19                   0.750       -0.002     0.98
+psycho=~Q26                   0.630       -0.003     0.88
+physical=~Q3                  0.840        0.001     0.96
+physical=~Q4                  0.830       -0.001     0.96
+physical=~Q10                 0.630       -0.007     0.98
+physical=~Q15                 0.710        0.002     0.98
+physical=~Q16                 0.680        0.005     0.98
+physical=~Q17                 0.890        0.002     0.88
+physical=~Q18                 0.610        0.001     0.94
+social=~Q20                   0.940        0.002     0.94
+social=~Q21                   0.890        0.006     0.96
+social=~Q22                   0.780        0.002     0.92
+environment=~Q8               0.370       -0.007     0.94
+environment=~Q9               0.490       -0.009     0.98
+environment=~Q12              0.790       -0.013     0.94
+environment=~Q13              0.810       -0.003     0.94
+environment=~Q14              0.770       -0.001     0.96
+environment=~Q23              0.750       -0.009     0.96
+environment=~Q24              0.640       -0.024     0.92
+environment=~Q25              0.730       -0.002     0.98
+psycho~~physical              0.200        0.002     0.90
+psycho~~social                0.200        0.006     0.98
+psycho~~environment           0.200        0.004     0.94
+physical~~social              0.200        0.009     0.92
+physical~~environment         0.200        0.007     0.90
+social~~environment           0.200        0.007     0.98
+Q3~~Q4                        0.091       -0.002     0.92
+Q5~~Q5                        0.154       -0.001     0.92
+Q6~~Q6                        0.344       -0.005     0.92
+Q7~~Q7                        0.116       -0.003     0.92
+Q11~~Q11                      0.467        0.000     0.96
+Q19~~Q19                      0.438       -0.001     0.98
+Q26~~Q26                      0.603       -0.011     0.94
+Q3~~Q3                        0.294       -0.010     0.92
+Q4~~Q4                        0.311       -0.003     0.92
+Q10~~Q10                      0.603        0.002     1.00
+Q15~~Q15                      0.496       -0.002     0.94
+Q16~~Q16                      0.538        0.005     0.94
+Q17~~Q17                      0.208       -0.001     0.96
+Q18~~Q18                      0.628        0.001     0.94
+Q20~~Q20                      0.116        0.002     1.00
+Q21~~Q21                      0.208        0.000     0.94
+Q22~~Q22                      0.392       -0.003     0.92
+Q8~~Q8                        0.863        0.006     0.98
+Q9~~Q9                        0.760       -0.004     0.94
+Q12~~Q12                      0.376        0.007     0.96
+Q13~~Q13                      0.344       -0.009     0.94
+Q14~~Q14                      0.407       -0.002     0.94
+Q23~~Q23                      0.438        0.003     1.00
+Q24~~Q24                      0.590        0.011     1.00
+Q25~~Q25                      0.467       -0.005     0.96
 ========= Correlation between Fit Indices ============
        chisq    aic    bic  rmsea    cfi    tli   srmr
-chisq  1.000 -0.159 -0.159  0.955 -0.945 -0.999  0.667
-aic   -0.159  1.000  1.000 -0.129  0.143  0.157  0.043
-bic   -0.159  1.000  1.000 -0.129  0.143  0.157  0.043
-rmsea  0.955 -0.129 -0.129  1.000 -0.954 -0.957  0.586
-cfi   -0.945  0.143  0.143 -0.954  1.000  0.943 -0.554
-tli   -0.999  0.157  0.157 -0.957  0.943  1.000 -0.673
-srmr   0.667  0.043  0.043  0.586 -0.554 -0.673  1.000
+chisq  1.000 -0.160 -0.160  0.953 -0.920 -0.999  0.745
+aic   -0.160  1.000  1.000 -0.201  0.154  0.156  0.066
+bic   -0.160  1.000  1.000 -0.201  0.154  0.156  0.066
+rmsea  0.953 -0.201 -0.201  1.000 -0.942 -0.954  0.657
+cfi   -0.920  0.154  0.154 -0.942  1.000  0.920 -0.653
+tli   -0.999  0.156  0.156 -0.954  0.920  1.000 -0.749
+srmr   0.745  0.066  0.066  0.657 -0.653 -0.749  1.000
 ================== Replications =====================
 Number of replications = 50 
 Number of converged replications = 50 
@@ -563,7 +563,7 @@ Number of nonconverged replications:
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>sim_ideal_vary <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> <span class="cn">NULL</span>,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> N_SEQ,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> SEQ,</span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> popModel</span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -573,209 +573,195 @@ Number of nonconverged replications:
 <pre><code>RESULT OBJECT
 Model Type
 [1] "lavaan"
-========= Fit Indices Cutoffs ============</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     N   chisq       aic       bic rmsea   cfi   tli  srmr
-1  100 314.747  5839.741  6005.252 0.040 0.968 0.964 0.068
-2  325 297.720 18610.406 18811.685 0.031 0.976 0.973 0.056
-3  550 280.694 31381.072 31618.118 0.022 0.984 0.983 0.045
-4  775 263.668 44151.738 44424.551 0.012 0.992 0.992 0.033
-5 1000 246.641 56922.404 57230.984 0.003 1.000 1.002 0.022
+========= Fit Indices Cutoffs ============
+    N   chisq       aic       bic rmsea   cfi   tli  srmr
+1 100 298.104  5878.811  6042.462 0.038 0.975 0.972 0.065
+2 225 292.468 12628.755 12813.149 0.031 0.981 0.979 0.055
+3 350 286.833 19378.698 19583.836 0.024 0.987 0.985 0.046
+4 475 281.197 26128.641 26354.523 0.017 0.993 0.992 0.036
+5 600 275.561 32878.585 33125.209 0.010 0.999 0.999 0.026
 ========= Parameter Estimates and Standard Errors ============
                       Estimate Average Estimate SD Average SE
-psycho=~Q5_P                     0.929       0.043      0.038
-psycho=~Q6_P                     0.828       0.050      0.041
-psycho=~Q7_P                     0.944       0.039      0.038
-psycho=~Q11_P                    0.724       0.037      0.043
-psycho=~Q19_P                    0.765       0.048      0.043
-psycho=~Q26_P                    0.656       0.046      0.045
-physical=~Q3_F                   0.862       0.071      0.060
-physical=~Q4_F                   0.840       0.071      0.060
-physical=~Q10_F                  0.640       0.046      0.046
-physical=~Q15_F                  0.724       0.051      0.045
-physical=~Q16_F                  0.692       0.036      0.046
-physical=~Q17_F                  0.891       0.034      0.041
-physical=~Q18_F                  0.608       0.042      0.047
-social=~Q20_S                    0.928       0.044      0.038
-social=~Q21_S                    0.885       0.048      0.039
-social=~Q22_S                    0.773       0.034      0.042
-environment=~Q8_A                0.383       0.048      0.049
-environment=~Q9_A                0.497       0.035      0.047
-environment=~Q12_A               0.797       0.035      0.042
-environment=~Q13_A               0.819       0.036      0.042
-environment=~Q14_A               0.773       0.050      0.043
-environment=~Q23_A               0.768       0.042      0.044
-environment=~Q24_A               0.638       0.068      0.046
-environment=~Q25_A               0.717       0.058      0.043
-Q3_F~~Q4_F                       0.296       0.059      0.057
-psycho~~physical                 0.306       0.049      0.049
-psycho~~social                   0.287       0.058      0.048
-psycho~~environment              0.310       0.061      0.048
-physical~~social                 0.286       0.054      0.050
-physical~~environment            0.314       0.062      0.050
-social~~environment              0.307       0.039      0.049
-Q5_P~~Q5_P                       0.142       0.018      0.015
-Q6_P~~Q6_P                       0.337       0.023      0.026
-Q7_P~~Q7_P                       0.127       0.017      0.015
-Q11_P~~Q11_P                     0.471       0.024      0.035
-Q19_P~~Q19_P                     0.441       0.043      0.033
-Q26_P~~Q26_P                     0.603       0.050      0.044
-Q10_F~~Q10_F                     0.595       0.056      0.045
-Q15_F~~Q15_F                     0.503       0.030      0.041
-Q16_F~~Q16_F                     0.556       0.046      0.044
-Q17_F~~Q17_F                     0.211       0.026      0.027
-Q18_F~~Q18_F                     0.637       0.043      0.047
-Q20_S~~Q20_S                     0.117       0.022      0.023
-Q21_S~~Q21_S                     0.199       0.028      0.024
-Q22_S~~Q22_S                     0.387       0.034      0.031
-Q8_A~~Q8_A                       0.845       0.059      0.059
-Q9_A~~Q9_A                       0.739       0.066      0.052
-Q12_A~~Q12_A                     0.375       0.032      0.032
-Q13_A~~Q13_A                     0.328       0.047      0.030
-Q14_A~~Q14_A                     0.404       0.037      0.033
-Q23_A~~Q23_A                     0.434       0.039      0.036
-Q24_A~~Q24_A                     0.606       0.046      0.046
-Q25_A~~Q25_A                     0.466       0.035      0.037
-Q3_F~~Q3_F                       0.984       0.075      0.076
-Q4_F~~Q4_F                       1.006       0.092      0.076
+psycho=~Q5                       0.918       0.049      0.045
+psycho=~Q6                       0.819       0.054      0.049
+psycho=~Q7                       0.944       0.048      0.044
+psycho=~Q11                      0.742       0.057      0.051
+psycho=~Q19                      0.749       0.044      0.050
+psycho=~Q26                      0.630       0.060      0.053
+physical=~Q3                     0.827       0.055      0.048
+physical=~Q4                     0.827       0.057      0.049
+physical=~Q10                    0.625       0.057      0.054
+physical=~Q15                    0.699       0.060      0.053
+physical=~Q16                    0.681       0.053      0.052
+physical=~Q17                    0.894       0.053      0.047
+physical=~Q18                    0.611       0.050      0.054
+social=~Q20                      0.930       0.052      0.045
+social=~Q21                      0.886       0.050      0.047
+social=~Q22                      0.768       0.043      0.050
+environment=~Q8                  0.369       0.056      0.059
+environment=~Q9                  0.491       0.061      0.057
+environment=~Q12                 0.787       0.055      0.050
+environment=~Q13                 0.800       0.056      0.050
+environment=~Q14                 0.772       0.046      0.051
+environment=~Q23                 0.747       0.047      0.052
+environment=~Q24                 0.626       0.064      0.054
+environment=~Q25                 0.737       0.047      0.052
+psycho~~physical                 0.211       0.063      0.060
+psycho~~social                   0.209       0.060      0.059
+psycho~~environment              0.217       0.071      0.060
+physical~~social                 0.204       0.061      0.060
+physical~~environment            0.194       0.069      0.062
+social~~environment              0.214       0.061      0.061
+Q3~~Q4                           0.087       0.026      0.026
+Q5~~Q5                           0.154       0.018      0.019
+Q6~~Q6                           0.342       0.036      0.032
+Q7~~Q7                           0.118       0.020      0.017
+Q11~~Q11                         0.470       0.038      0.041
+Q19~~Q19                         0.437       0.032      0.039
+Q26~~Q26                         0.605       0.039      0.052
+Q3~~Q3                           0.281       0.032      0.032
+Q4~~Q4                           0.313       0.036      0.035
+Q10~~Q10                         0.603       0.043      0.053
+Q15~~Q15                         0.510       0.052      0.046
+Q16~~Q16                         0.527       0.054      0.047
+Q17~~Q17                         0.202       0.025      0.027
+Q18~~Q18                         0.620       0.057      0.054
+Q20~~Q20                         0.117       0.032      0.028
+Q21~~Q21                         0.204       0.030      0.030
+Q22~~Q22                         0.392       0.032      0.037
+Q8~~Q8                           0.866       0.073      0.073
+Q9~~Q9                           0.758       0.070      0.065
+Q12~~Q12                         0.373       0.040      0.038
+Q13~~Q13                         0.342       0.038      0.036
+Q14~~Q14                         0.411       0.042      0.041
+Q23~~Q23                         0.435       0.039      0.042
+Q24~~Q24                         0.586       0.044      0.052
+Q25~~Q25                         0.458       0.042      0.044
                       Power (Not equal 0) Std Est Std Est SD Std Ave SE
-psycho=~Q5_P                        1.000   0.926      0.010      0.009
-psycho=~Q6_P                        1.000   0.818      0.020      0.017
-psycho=~Q7_P                        1.000   0.935      0.011      0.009
-psycho=~Q11_P                       1.000   0.725      0.020      0.025
-psycho=~Q19_P                       1.000   0.755      0.019      0.023
-psycho=~Q26_P                       1.000   0.645      0.030      0.030
-physical=~Q3_F                      1.000   0.654      0.036      0.031
-physical=~Q4_F                      1.000   0.641      0.039      0.032
-physical=~Q10_F                     1.000   0.638      0.039      0.032
-physical=~Q15_F                     1.000   0.713      0.029      0.028
-physical=~Q16_F                     1.000   0.680      0.025      0.030
-physical=~Q17_F                     1.000   0.889      0.015      0.017
-physical=~Q18_F                     1.000   0.605      0.032      0.034
-social=~Q20_S                       1.000   0.938      0.013      0.013
-social=~Q21_S                       1.000   0.892      0.019      0.015
-social=~Q22_S                       1.000   0.779      0.023      0.022
-environment=~Q8_A                   1.000   0.384      0.041      0.044
-environment=~Q9_A                   1.000   0.501      0.024      0.039
-environment=~Q12_A                  1.000   0.793      0.018      0.022
-environment=~Q13_A                  1.000   0.819      0.023      0.020
-environment=~Q14_A                  1.000   0.772      0.027      0.023
-environment=~Q23_A                  1.000   0.759      0.017      0.024
-environment=~Q24_A                  1.000   0.632      0.049      0.033
-environment=~Q25_A                  1.000   0.723      0.034      0.027
-Q3_F~~Q4_F                          1.000   0.297      0.050      0.049
-psycho~~physical                    1.000   0.306      0.049      0.049
-psycho~~social                      0.947   0.287      0.058      0.048
-psycho~~environment                 1.000   0.310      0.061      0.048
-physical~~social                    1.000   0.286      0.054      0.050
-physical~~environment               1.000   0.314      0.062      0.050
-social~~environment                 1.000   0.307      0.039      0.049
-Q5_P~~Q5_P                          1.000   0.142      0.018      0.017
-Q6_P~~Q6_P                          1.000   0.331      0.032      0.029
-Q7_P~~Q7_P                          1.000   0.125      0.020      0.016
-Q11_P~~Q11_P                        1.000   0.473      0.029      0.036
-Q19_P~~Q19_P                        1.000   0.430      0.028      0.034
-Q26_P~~Q26_P                        1.000   0.583      0.039      0.038
-Q10_F~~Q10_F                        1.000   0.592      0.049      0.041
-Q15_F~~Q15_F                        1.000   0.491      0.040      0.039
-Q16_F~~Q16_F                        1.000   0.537      0.033      0.040
-Q17_F~~Q17_F                        1.000   0.210      0.027      0.029
-Q18_F~~Q18_F                        1.000   0.633      0.039      0.041
-Q20_S~~Q20_S                        1.000   0.120      0.025      0.025
-Q21_S~~Q21_S                        1.000   0.203      0.034      0.027
-Q22_S~~Q22_S                        1.000   0.393      0.035      0.034
-Q8_A~~Q8_A                          1.000   0.851      0.033      0.034
-Q9_A~~Q9_A                          1.000   0.749      0.024      0.040
-Q12_A~~Q12_A                        1.000   0.371      0.029      0.034
-Q13_A~~Q13_A                        1.000   0.328      0.038      0.032
-Q14_A~~Q14_A                        1.000   0.404      0.043      0.035
-Q23_A~~Q23_A                        1.000   0.424      0.026      0.036
-Q24_A~~Q24_A                        1.000   0.599      0.057      0.040
-Q25_A~~Q25_A                        1.000   0.477      0.047      0.038
-Q3_F~~Q3_F                          1.000   0.570      0.047      0.041
-Q4_F~~Q4_F                          1.000   0.587      0.050      0.041
+psycho=~Q5                          1.000   0.919      0.013      0.012
+psycho=~Q6                          1.000   0.813      0.023      0.021
+psycho=~Q7                          1.000   0.940      0.010      0.010
+psycho=~Q11                         1.000   0.733      0.032      0.028
+psycho=~Q19                         1.000   0.749      0.023      0.027
+psycho=~Q26                         1.000   0.628      0.042      0.037
+physical=~Q3                        1.000   0.841      0.023      0.022
+physical=~Q4                        1.000   0.827      0.026      0.023
+physical=~Q10                       1.000   0.626      0.040      0.038
+physical=~Q15                       1.000   0.698      0.039      0.033
+physical=~Q16                       1.000   0.683      0.040      0.034
+physical=~Q17                       1.000   0.893      0.016      0.017
+physical=~Q18                       1.000   0.613      0.039      0.039
+social=~Q20                         1.000   0.938      0.018      0.016
+social=~Q21                         1.000   0.891      0.017      0.018
+social=~Q22                         1.000   0.774      0.025      0.026
+environment=~Q8                     1.000   0.368      0.053      0.053
+environment=~Q9                     1.000   0.490      0.054      0.047
+environment=~Q12                    1.000   0.789      0.028      0.026
+environment=~Q13                    1.000   0.806      0.024      0.025
+environment=~Q14                    1.000   0.769      0.025      0.028
+environment=~Q23                    1.000   0.749      0.022      0.029
+environment=~Q24                    1.000   0.631      0.039      0.039
+environment=~Q25                    1.000   0.736      0.029      0.030
+psycho~~physical                    0.941   0.211      0.063      0.060
+psycho~~social                      0.961   0.209      0.060      0.059
+psycho~~environment                 0.922   0.217      0.071      0.060
+physical~~social                    0.863   0.204      0.061      0.060
+physical~~environment               0.824   0.194      0.069      0.062
+social~~environment                 0.961   0.214      0.061      0.061
+Q3~~Q4                              0.902   0.292      0.069      0.070
+Q5~~Q5                              1.000   0.155      0.024      0.022
+Q6~~Q6                              1.000   0.338      0.038      0.035
+Q7~~Q7                              1.000   0.117      0.020      0.019
+Q11~~Q11                            1.000   0.461      0.046      0.042
+Q19~~Q19                            1.000   0.438      0.034      0.041
+Q26~~Q26                            1.000   0.604      0.051      0.046
+Q3~~Q3                              1.000   0.292      0.038      0.036
+Q4~~Q4                              1.000   0.315      0.043      0.038
+Q10~~Q10                            1.000   0.607      0.049      0.048
+Q15~~Q15                            1.000   0.511      0.054      0.045
+Q16~~Q16                            1.000   0.532      0.055      0.046
+Q17~~Q17                            1.000   0.203      0.028      0.030
+Q18~~Q18                            1.000   0.623      0.048      0.048
+Q20~~Q20                            0.902   0.120      0.034      0.030
+Q21~~Q21                            1.000   0.206      0.030      0.033
+Q22~~Q22                            1.000   0.400      0.039      0.041
+Q8~~Q8                              1.000   0.862      0.039      0.039
+Q9~~Q9                              1.000   0.757      0.053      0.046
+Q12~~Q12                            1.000   0.377      0.044      0.041
+Q13~~Q13                            1.000   0.349      0.040      0.040
+Q14~~Q14                            1.000   0.408      0.038      0.043
+Q23~~Q23                            1.000   0.438      0.033      0.044
+Q24~~Q24                            1.000   0.600      0.049      0.048
+Q25~~Q25                            1.000   0.458      0.043      0.045
                       Average Param Average Bias Coverage r_coef.n r_se.n
-psycho=~Q5_P                   0.92        0.009    0.947   -0.384 -0.883
-psycho=~Q6_P                   0.81        0.018    0.947   -0.545 -0.881
-psycho=~Q7_P                   0.94        0.004    0.947   -0.203 -0.897
-psycho=~Q11_P                  0.73       -0.006    0.947   -0.067 -0.892
-psycho=~Q19_P                  0.75        0.015    0.947   -0.138 -0.886
-psycho=~Q26_P                  0.63        0.026    0.947   -0.290 -0.886
-physical=~Q3_F                 0.84        0.022    0.895   -0.102 -0.886
-physical=~Q4_F                 0.83        0.010    0.895   -0.115 -0.913
-physical=~Q10_F                0.63        0.010    0.895    0.012 -0.890
-physical=~Q15_F                0.71        0.014    0.947   -0.030 -0.880
-physical=~Q16_F                0.68        0.012    1.000    0.017 -0.873
-physical=~Q17_F                0.89        0.001    1.000   -0.266 -0.894
-physical=~Q18_F                0.61       -0.002    1.000   -0.131 -0.898
-social=~Q20_S                  0.94       -0.012    0.947   -0.015 -0.886
-social=~Q21_S                  0.89       -0.005    1.000    0.032 -0.885
-social=~Q22_S                  0.78       -0.007    0.895   -0.318 -0.877
-environment=~Q8_A              0.37        0.013    0.895    0.031 -0.902
-environment=~Q9_A              0.49        0.007    1.000    0.329 -0.930
-environment=~Q12_A             0.79        0.007    1.000    0.225 -0.894
-environment=~Q13_A             0.81        0.009    1.000   -0.054 -0.886
-environment=~Q14_A             0.77        0.003    0.947   -0.294 -0.895
-environment=~Q23_A             0.75        0.018    0.947    0.151 -0.890
-environment=~Q24_A             0.64       -0.002    0.895    0.206 -0.902
-environment=~Q25_A             0.73       -0.013    0.895    0.406 -0.911
-Q3_F~~Q4_F                     0.30       -0.004    1.000    0.142 -0.896
-psycho~~physical               0.30        0.006    0.947   -0.312 -0.879
-psycho~~social                 0.30       -0.013    1.000   -0.008 -0.859
-psycho~~environment            0.30        0.010    0.842   -0.201 -0.873
-physical~~social               0.30       -0.014    1.000   -0.102 -0.875
-physical~~environment          0.30        0.014    0.842   -0.419 -0.870
-social~~environment            0.30        0.007    1.000   -0.311 -0.894
-Q5_P~~Q5_P                     0.15       -0.008    0.947    0.260 -0.858
-Q6_P~~Q6_P                     0.34       -0.003    1.000    0.225 -0.860
-Q7_P~~Q7_P                     0.12        0.007    0.895   -0.120 -0.872
-Q11_P~~Q11_P                   0.47        0.001    1.000   -0.279 -0.890
-Q19_P~~Q19_P                   0.44        0.001    0.895   -0.356 -0.847
-Q26_P~~Q26_P                   0.60        0.003    0.947   -0.116 -0.859
-Q10_F~~Q10_F                   0.60       -0.005    0.947   -0.024 -0.856
-Q15_F~~Q15_F                   0.50        0.003    1.000   -0.384 -0.867
-Q16_F~~Q16_F                   0.54        0.016    0.947   -0.270 -0.859
-Q17_F~~Q17_F                   0.21        0.001    1.000    0.110 -0.880
-Q18_F~~Q18_F                   0.63        0.007    0.947    0.231 -0.887
-Q20_S~~Q20_S                   0.12       -0.003    0.947   -0.479 -0.823
-Q21_S~~Q21_S                   0.21       -0.011    0.895    0.206 -0.817
-Q22_S~~Q22_S                   0.39       -0.003    0.947    0.175 -0.811
-Q8_A~~Q8_A                     0.86       -0.015    0.947    0.508 -0.896
-Q9_A~~Q9_A                     0.76       -0.021    0.947    0.441 -0.934
-Q12_A~~Q12_A                   0.38       -0.005    0.895   -0.016 -0.872
-Q13_A~~Q13_A                   0.34       -0.012    0.789   -0.380 -0.878
-Q14_A~~Q14_A                   0.41       -0.006    1.000    0.486 -0.903
-Q23_A~~Q23_A                   0.44       -0.006    1.000   -0.183 -0.879
-Q24_A~~Q24_A                   0.59        0.016    1.000   -0.431 -0.880
-Q25_A~~Q25_A                   0.47       -0.004    1.000   -0.179 -0.898
-Q3_F~~Q3_F                     1.00       -0.016    0.947    0.166 -0.875
-Q4_F~~Q4_F                     1.00        0.006    0.947    0.380 -0.898
+psycho=~Q5                    0.920       -0.002    0.922   -0.234 -0.934
+psycho=~Q6                    0.810        0.009    0.922   -0.337 -0.928
+psycho=~Q7                    0.940        0.004    0.902   -0.227 -0.935
+psycho=~Q11                   0.730        0.012    0.902   -0.414 -0.926
+psycho=~Q19                   0.750       -0.001    0.980   -0.190 -0.931
+psycho=~Q26                   0.630        0.000    0.922   -0.130 -0.936
+physical=~Q3                  0.840       -0.013    0.961    0.172 -0.919
+physical=~Q4                  0.830       -0.003    0.941    0.141 -0.919
+physical=~Q10                 0.630       -0.005    0.922    0.023 -0.935
+physical=~Q15                 0.710       -0.011    0.941    0.091 -0.913
+physical=~Q16                 0.680        0.001    0.961   -0.116 -0.941
+physical=~Q17                 0.890        0.004    0.941   -0.036 -0.913
+physical=~Q18                 0.610        0.001    0.941   -0.167 -0.938
+social=~Q20                   0.940       -0.010    0.902   -0.071 -0.938
+social=~Q21                   0.890       -0.004    0.961   -0.075 -0.919
+social=~Q22                   0.780       -0.012    1.000    0.203 -0.929
+environment=~Q8               0.370       -0.001    0.980    0.002 -0.923
+environment=~Q9               0.490        0.001    0.980   -0.098 -0.932
+environment=~Q12              0.790       -0.003    0.980   -0.190 -0.925
+environment=~Q13              0.810       -0.010    0.961   -0.242 -0.925
+environment=~Q14              0.770        0.002    1.000   -0.244 -0.923
+environment=~Q23              0.750       -0.003    0.941   -0.268 -0.927
+environment=~Q24              0.640       -0.014    0.902   -0.020 -0.946
+environment=~Q25              0.730        0.007    0.980   -0.179 -0.935
+psycho~~physical              0.200        0.011    0.941   -0.059 -0.945
+psycho~~social                0.200        0.009    0.941   -0.113 -0.944
+psycho~~environment           0.200        0.017    0.902   -0.098 -0.929
+physical~~social              0.200        0.004    0.922   -0.126 -0.938
+physical~~environment         0.200       -0.006    0.902   -0.050 -0.939
+social~~environment           0.200        0.014    0.922   -0.098 -0.932
+Q3~~Q4                        0.091       -0.003    0.980   -0.107 -0.901
+Q5~~Q5                        0.154        0.000    0.961   -0.213 -0.895
+Q6~~Q6                        0.344       -0.002    0.922    0.080 -0.861
+Q7~~Q7                        0.116        0.001    0.922   -0.226 -0.896
+Q11~~Q11                      0.467        0.003    0.941    0.055 -0.898
+Q19~~Q19                      0.438        0.000    0.980    0.006 -0.885
+Q26~~Q26                      0.603        0.002    0.980    0.068 -0.912
+Q3~~Q3                        0.294       -0.014    0.941    0.164 -0.879
+Q4~~Q4                        0.311        0.002    0.980   -0.261 -0.895
+Q10~~Q10                      0.603        0.000    0.980    0.069 -0.916
+Q15~~Q15                      0.496        0.015    0.961   -0.114 -0.853
+Q16~~Q16                      0.538       -0.011    0.922    0.270 -0.908
+Q17~~Q17                      0.208       -0.006    0.941    0.183 -0.915
+Q18~~Q18                      0.628       -0.008    0.902   -0.003 -0.903
+Q20~~Q20                      0.116        0.000    0.941    0.071 -0.909
+Q21~~Q21                      0.208       -0.004    0.961   -0.166 -0.884
+Q22~~Q22                      0.392        0.001    0.980   -0.097 -0.895
+Q8~~Q8                        0.863        0.003    0.980    0.075 -0.874
+Q9~~Q9                        0.760       -0.002    0.961    0.033 -0.882
+Q12~~Q12                      0.376       -0.002    0.980   -0.010 -0.875
+Q13~~Q13                      0.344       -0.002    0.922    0.022 -0.863
+Q14~~Q14                      0.407        0.004    0.941    0.095 -0.870
+Q23~~Q23                      0.438       -0.002    0.961   -0.166 -0.894
+Q24~~Q24                      0.590       -0.005    1.000   -0.035 -0.932
+Q25~~Q25                      0.467       -0.009    0.922   -0.120 -0.912
 ========= Correlation between Fit Indices ============
        chisq    aic    bic  rmsea    cfi    tli   srmr      n
-chisq  1.000 -0.355 -0.355  0.861 -0.708 -0.823  0.555 -0.354
-aic   -0.355  1.000  1.000 -0.594  0.557  0.398 -0.867  1.000
-bic   -0.355  1.000  1.000 -0.594  0.557  0.399 -0.867  1.000
-rmsea  0.861 -0.594 -0.594  1.000 -0.937 -0.937  0.829 -0.594
-cfi   -0.708  0.557  0.557 -0.937  1.000  0.955 -0.847  0.557
-tli   -0.823  0.398  0.399 -0.937  0.955  1.000 -0.740  0.398
-srmr   0.555 -0.867 -0.867  0.829 -0.847 -0.740  1.000 -0.866
-n     -0.354  1.000  1.000 -0.594  0.557  0.398 -0.866  1.000
+chisq  1.000 -0.375 -0.375  0.885 -0.787 -0.895  0.550 -0.373
+aic   -0.375  1.000  1.000 -0.649  0.642  0.540 -0.912  1.000
+bic   -0.375  1.000  1.000 -0.650  0.643  0.540 -0.912  1.000
+rmsea  0.885 -0.649 -0.650  1.000 -0.942 -0.950  0.785 -0.648
+cfi   -0.787  0.642  0.643 -0.942  1.000  0.950 -0.774  0.640
+tli   -0.895  0.540  0.540 -0.950  0.950  1.000 -0.731  0.537
+srmr   0.550 -0.912 -0.912  0.785 -0.774 -0.731  1.000 -0.911
+n     -0.373  1.000  1.000 -0.648  0.640  0.537 -0.911  1.000
 ================== Replications =====================
-Number of replications = 19 
-Number of converged replications = 19 
+Number of replications = 51 
+Number of converged replications = 51 
 Number of nonconverged replications: 
    1. Nonconvergent Results = 0 
    2. Nonconvergent results from multiple imputation = 0 
@@ -789,50 +775,50 @@ NOTE: The sample size is varying.</code></pre>
 <section id="power-for-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="power-for-parameters">Power for parameters</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract power for each parameter across N values</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>ideal_power <span class="ot">&lt;-</span> <span class="fu">getPower</span>(sim_ideal_vary, <span class="at">alpha =</span> ALPHA)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the minimum N for 80% power across all parameters</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">findPower</span>(ideal_power, <span class="st">"N"</span>, POWER)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract power for each parameter across N values</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>ideal_power <span class="ot">&lt;-</span> <span class="fu">getPower</span>(sim_ideal_vary, <span class="at">alpha =</span> ALPHA)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the minimum N for 80% power across all parameters</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">findPower</span>(ideal_power, <span class="st">"N"</span>, POWER)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         psycho=~Q5_P          psycho=~Q6_P          psycho=~Q7_P 
+<pre><code>           psycho=~Q5            psycho=~Q6            psycho=~Q7 
                   Inf                   Inf                   Inf 
-        psycho=~Q11_P         psycho=~Q19_P         psycho=~Q26_P 
+          psycho=~Q11           psycho=~Q19           psycho=~Q26 
                   Inf                   Inf                   Inf 
-       physical=~Q3_F        physical=~Q4_F       physical=~Q10_F 
+         physical=~Q3          physical=~Q4         physical=~Q10 
                   Inf                   Inf                   Inf 
-      physical=~Q15_F       physical=~Q16_F       physical=~Q17_F 
+        physical=~Q15         physical=~Q16         physical=~Q17 
                   Inf                   Inf                   Inf 
-      physical=~Q18_F         social=~Q20_S         social=~Q21_S 
+        physical=~Q18           social=~Q20           social=~Q21 
                   Inf                   Inf                   Inf 
-        social=~Q22_S     environment=~Q8_A     environment=~Q9_A 
+          social=~Q22       environment=~Q8       environment=~Q9 
                   Inf                   Inf                   Inf 
-   environment=~Q12_A    environment=~Q13_A    environment=~Q14_A 
+     environment=~Q12      environment=~Q13      environment=~Q14 
                   Inf                   Inf                   Inf 
-   environment=~Q23_A    environment=~Q24_A    environment=~Q25_A 
+     environment=~Q23      environment=~Q24      environment=~Q25 
                   Inf                   Inf                   Inf 
-           Q3_F~~Q4_F      psycho~~physical        psycho~~social 
-                  Inf                   Inf                   127 
-  psycho~~environment      physical~~social physical~~environment 
+     psycho~~physical        psycho~~social   psycho~~environment 
+                  135                   135                   174 
+     physical~~social physical~~environment   social~~environment 
+                  233                   267                   119 
+               Q3~~Q4                Q5~~Q5                Q6~~Q6 
+                  175                   Inf                   Inf 
+               Q7~~Q7              Q11~~Q11              Q19~~Q19 
                   Inf                   Inf                   Inf 
-  social~~environment            Q5_P~~Q5_P            Q6_P~~Q6_P 
+             Q26~~Q26                Q3~~Q3                Q4~~Q4 
                   Inf                   Inf                   Inf 
-           Q7_P~~Q7_P          Q11_P~~Q11_P          Q19_P~~Q19_P 
+             Q10~~Q10              Q15~~Q15              Q16~~Q16 
                   Inf                   Inf                   Inf 
-         Q26_P~~Q26_P          Q10_F~~Q10_F          Q15_F~~Q15_F 
+             Q17~~Q17              Q18~~Q18              Q20~~Q20 
+                  Inf                   Inf                   189 
+             Q21~~Q21              Q22~~Q22                Q8~~Q8 
                   Inf                   Inf                   Inf 
-         Q16_F~~Q16_F          Q17_F~~Q17_F          Q18_F~~Q18_F 
+               Q9~~Q9              Q12~~Q12              Q13~~Q13 
                   Inf                   Inf                   Inf 
-         Q20_S~~Q20_S          Q21_S~~Q21_S          Q22_S~~Q22_S 
+             Q14~~Q14              Q23~~Q23              Q24~~Q24 
                   Inf                   Inf                   Inf 
-           Q8_A~~Q8_A            Q9_A~~Q9_A          Q12_A~~Q12_A 
-                  Inf                   Inf                   Inf 
-         Q13_A~~Q13_A          Q14_A~~Q14_A          Q23_A~~Q23_A 
-                  Inf                   Inf                   Inf 
-         Q24_A~~Q24_A          Q25_A~~Q25_A            Q3_F~~Q3_F 
-                  Inf                   Inf                   Inf 
-           Q4_F~~Q4_F 
+             Q25~~Q25 
                   Inf </code></pre>
 </div>
 </div></div>
@@ -840,61 +826,49 @@ NOTE: The sample size is varying.</code></pre>
 <section id="power-to-detect-good-fit-fit-index-cutoffs" class="level2">
 <h2 class="anchored" data-anchor-id="power-to-detect-good-fit-fit-index-cutoffs">Power to detect good fit (fit index cutoffs)</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Power that fit indices fall within rule-of-thumb cutoffs at selected N values</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--- Power at N = 300 ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Power that fit indices fall within rule-of-thumb cutoffs at selected N values</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--- Power at N = 300 ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>--- Power at N = 300 ---</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(sim_ideal_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">nVal =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(sim_ideal_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">nVal =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     cfi      tli    rmsea     srmr 
-"&lt; 0.48"  "&lt; 0.5" "&lt; 0.48" "&lt; 0.46" </code></pre>
+"&lt; 0.48" "&lt; 0.42" "&lt; 0.46" "&lt; 0.42" </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">--- Power at N = 500 ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">--- Power at N = 500 ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 --- Power at N = 500 ---</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(sim_ideal_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">nVal =</span> <span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(sim_ideal_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">nVal =</span> <span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     cfi      tli    rmsea     srmr 
-"&lt; 0.48"  "&lt; 0.5" "&lt; 0.48" "&lt; 0.46" </code></pre>
+"&lt; 0.48" "&lt; 0.48" "&lt; 0.46" "&lt; 0.42" </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">--- Power at N = 1000 ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">--- Power at N = 1000 ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 --- Power at N = 1000 ---</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(sim_ideal_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">nVal =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique
-Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(sim_ideal_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">nVal =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     cfi      tli    rmsea     srmr 
-"&lt; 0.46"  "&lt; 0.3" "&lt; 0.46" "&lt; 0.48" </code></pre>
+"&lt; 0.42" "&lt; 0.48" "&lt; 0.46" "&lt; 0.48" </code></pre>
 </div>
 </div></div>
 </section>
 <section id="fit-index-sampling-distributions" class="level2">
 <h2 class="anchored" data-anchor-id="fit-index-sampling-distributions">Fit index sampling distributions</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="cell-fig-sim-ideal-fit" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCutoff</span>(sim_ideal_vary, <span class="at">alpha =</span> ALPHA)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCutoff</span>(sim_ideal_vary, <span class="at">alpha =</span> ALPHA)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-sim-ideal-fit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -909,8 +883,8 @@ Sampling distributions of fit indices across varying N (ideal conditions)
 </div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-fig-sim-ideal-power-fit" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(sim_ideal_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">logistic =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(sim_ideal_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">logistic =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-sim-ideal-power-fit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -928,9 +902,9 @@ Power to achieve acceptable fit across varying N (ideal conditions)
 <section id="parameter-level-summary" class="level2">
 <h2 class="anchored" data-anchor-id="parameter-level-summary">Parameter-level summary</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>param_summary <span class="ot">&lt;-</span> <span class="fu">summaryParam</span>(sim_ideal_fixed, <span class="at">detail =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(param_summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>param_summary <span class="ot">&lt;-</span> <span class="fu">summaryParam</span>(sim_ideal_fixed, <span class="at">detail =</span> <span class="cn">TRUE</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(param_summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="tbl-sim-param" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sim-param-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -983,1104 +957,1104 @@ Parameter estimates summary — Ideal conditions, fixed N = 500
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">psycho=~Q5_P</td>
-<td style="text-align: right;">0.918</td>
-<td style="text-align: right;">0.033</td>
+<td style="text-align: left;">psycho=~Q5</td>
+<td style="text-align: right;">0.917</td>
 <td style="text-align: right;">0.034</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.922</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.920</td>
+<td style="text-align: right;">0.010</td>
 <td style="text-align: right;">0.009</td>
-<td style="text-align: right;">0.009</td>
-<td style="text-align: right;">0.92</td>
-<td style="text-align: right;">-0.002</td>
-<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">0.920</td>
 <td style="text-align: right;">-0.003</td>
-<td style="text-align: right;">-0.074</td>
-<td style="text-align: right;">0.028</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">-0.095</td>
+<td style="text-align: right;">0.026</td>
 <td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.134</td>
-<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.135</td>
+<td style="text-align: right;">0.004</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">psycho=~Q6_P</td>
-<td style="text-align: right;">0.813</td>
+<td style="text-align: left;">psycho=~Q6</td>
+<td style="text-align: right;">0.807</td>
+<td style="text-align: right;">0.040</td>
 <td style="text-align: right;">0.037</td>
-<td style="text-align: right;">0.037</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.815</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.810</td>
+<td style="text-align: right;">0.019</td>
 <td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.016</td>
-<td style="text-align: right;">0.81</td>
-<td style="text-align: right;">0.003</td>
-<td style="text-align: right;">0.94</td>
-<td style="text-align: right;">0.003</td>
-<td style="text-align: right;">0.073</td>
-<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.810</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">0.88</td>
+<td style="text-align: right;">-0.004</td>
+<td style="text-align: right;">-0.073</td>
+<td style="text-align: right;">-0.074</td>
 <td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.10</td>
 <td style="text-align: right;">0.145</td>
 <td style="text-align: right;">0.004</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">psycho=~Q7_P</td>
+<td style="text-align: left;">psycho=~Q7</td>
 <td style="text-align: right;">0.940</td>
-<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.031</td>
 <td style="text-align: right;">0.034</td>
-<td style="text-align: right;">1</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.941</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.008</td>
 <td style="text-align: right;">0.940</td>
-<td style="text-align: right;">0.008</td>
-<td style="text-align: right;">0.008</td>
-<td style="text-align: right;">0.94</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.96</td>
 <td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">0.093</td>
 <td style="text-align: right;">0.02</td>
 <td style="text-align: right;">0.02</td>
 <td style="text-align: right;">0.133</td>
 <td style="text-align: right;">0.004</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">psycho=~Q11_P</td>
-<td style="text-align: right;">0.729</td>
-<td style="text-align: right;">0.043</td>
+<td style="text-align: left;">psycho=~Q11</td>
+<td style="text-align: right;">0.732</td>
+<td style="text-align: right;">0.040</td>
 <td style="text-align: right;">0.039</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.729</td>
-<td style="text-align: right;">0.024</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.730</td>
 <td style="text-align: right;">0.022</td>
-<td style="text-align: right;">0.73</td>
-<td style="text-align: right;">-0.001</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">0.730</td>
+<td style="text-align: right;">0.002</td>
 <td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.001</td>
-<td style="text-align: right;">-0.025</td>
-<td style="text-align: right;">-0.097</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">-0.031</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.00</td>
 <td style="text-align: right;">0.153</td>
 <td style="text-align: right;">0.004</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">psycho=~Q19_P</td>
-<td style="text-align: right;">0.751</td>
+<td style="text-align: left;">psycho=~Q19</td>
+<td style="text-align: right;">0.748</td>
+<td style="text-align: right;">0.035</td>
 <td style="text-align: right;">0.039</td>
-<td style="text-align: right;">0.039</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.750</td>
-<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.749</td>
+<td style="text-align: right;">0.018</td>
 <td style="text-align: right;">0.021</td>
-<td style="text-align: right;">0.75</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.020</td>
-<td style="text-align: right;">-0.019</td>
+<td style="text-align: right;">0.750</td>
+<td style="text-align: right;">-0.002</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">-0.063</td>
+<td style="text-align: right;">0.094</td>
+<td style="text-align: right;">0.00</td>
 <td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.152</td>
+<td style="text-align: right;">0.151</td>
 <td style="text-align: right;">0.004</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">psycho=~Q26_P</td>
+<td style="text-align: left;">psycho=~Q26</td>
+<td style="text-align: right;">0.627</td>
+<td style="text-align: right;">0.049</td>
+<td style="text-align: right;">0.041</td>
+<td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.631</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">0.028</td>
+<td style="text-align: right;">0.630</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">0.88</td>
+<td style="text-align: right;">-0.004</td>
+<td style="text-align: right;">-0.053</td>
+<td style="text-align: right;">-0.176</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.159</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">physical=~Q3</td>
+<td style="text-align: right;">0.841</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.844</td>
+<td style="text-align: right;">0.016</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.840</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.146</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">physical=~Q4</td>
+<td style="text-align: right;">0.829</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.831</td>
+<td style="text-align: right;">0.018</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.830</td>
+<td style="text-align: right;">-0.001</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">-0.001</td>
+<td style="text-align: right;">-0.034</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.147</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">physical=~Q10</td>
+<td style="text-align: right;">0.623</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.625</td>
+<td style="text-align: right;">0.025</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.630</td>
+<td style="text-align: right;">-0.007</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">-0.011</td>
+<td style="text-align: right;">-0.206</td>
+<td style="text-align: right;">0.188</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.163</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">physical=~Q15</td>
+<td style="text-align: right;">0.712</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.711</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">0.024</td>
+<td style="text-align: right;">0.710</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.055</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.157</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">physical=~Q16</td>
+<td style="text-align: right;">0.685</td>
 <td style="text-align: right;">0.039</td>
 <td style="text-align: right;">0.041</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.629</td>
-<td style="text-align: right;">0.028</td>
-<td style="text-align: right;">0.028</td>
-<td style="text-align: right;">0.63</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.023</td>
-<td style="text-align: right;">0.051</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.161</td>
-<td style="text-align: right;">0.004</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">physical=~Q3_F</td>
-<td style="text-align: right;">0.834</td>
-<td style="text-align: right;">0.054</td>
-<td style="text-align: right;">0.055</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.640</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.681</td>
 <td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: right;">0.84</td>
-<td style="text-align: right;">-0.006</td>
-<td style="text-align: right;">0.90</td>
-<td style="text-align: right;">-0.007</td>
-<td style="text-align: right;">-0.112</td>
-<td style="text-align: right;">0.016</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">0.215</td>
-<td style="text-align: right;">0.006</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">physical=~Q4_F</td>
-<td style="text-align: right;">0.835</td>
-<td style="text-align: right;">0.056</td>
-<td style="text-align: right;">0.055</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.639</td>
-<td style="text-align: right;">0.027</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: right;">0.83</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">0.680</td>
 <td style="text-align: right;">0.005</td>
-<td style="text-align: right;">0.90</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">0.089</td>
-<td style="text-align: right;">-0.014</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">0.215</td>
-<td style="text-align: right;">0.006</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">physical=~Q10_F</td>
-<td style="text-align: right;">0.636</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">0.042</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.634</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: right;">0.63</td>
-<td style="text-align: right;">0.006</td>
 <td style="text-align: right;">0.98</td>
-<td style="text-align: right;">0.010</td>
-<td style="text-align: right;">0.148</td>
-<td style="text-align: right;">0.041</td>
-<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">0.137</td>
+<td style="text-align: right;">0.051</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.165</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">physical=~Q15_F</td>
-<td style="text-align: right;">0.715</td>
-<td style="text-align: right;">0.048</td>
-<td style="text-align: right;">0.041</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.711</td>
-<td style="text-align: right;">0.027</td>
-<td style="text-align: right;">0.025</td>
-<td style="text-align: right;">0.71</td>
-<td style="text-align: right;">0.005</td>
-<td style="text-align: right;">0.94</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.110</td>
-<td style="text-align: right;">-0.149</td>
-<td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.02</td>
 <td style="text-align: right;">0.160</td>
 <td style="text-align: right;">0.004</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">physical=~Q16_F</td>
-<td style="text-align: right;">0.686</td>
-<td style="text-align: right;">0.037</td>
-<td style="text-align: right;">0.042</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.681</td>
-<td style="text-align: right;">0.027</td>
-<td style="text-align: right;">0.027</td>
-<td style="text-align: right;">0.68</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">0.98</td>
-<td style="text-align: right;">0.009</td>
-<td style="text-align: right;">0.163</td>
-<td style="text-align: right;">0.125</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.163</td>
-<td style="text-align: right;">0.004</td>
-</tr>
 <tr class="even">
-<td style="text-align: left;">physical=~Q17_F</td>
+<td style="text-align: left;">physical=~Q17</td>
 <td style="text-align: right;">0.892</td>
-<td style="text-align: right;">0.035</td>
-<td style="text-align: right;">0.037</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.889</td>
-<td style="text-align: right;">0.016</td>
-<td style="text-align: right;">0.015</td>
-<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">0.041</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.890</td>
+<td style="text-align: right;">0.013</td>
+<td style="text-align: right;">0.013</td>
+<td style="text-align: right;">0.890</td>
 <td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.88</td>
 <td style="text-align: right;">0.002</td>
 <td style="text-align: right;">0.052</td>
-<td style="text-align: right;">0.042</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">-0.110</td>
 <td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.145</td>
-<td style="text-align: right;">0.004</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">physical=~Q18_F</td>
-<td style="text-align: right;">0.609</td>
-<td style="text-align: right;">0.047</td>
-<td style="text-align: right;">0.042</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.611</td>
-<td style="text-align: right;">0.031</td>
-<td style="text-align: right;">0.031</td>
-<td style="text-align: right;">0.61</td>
-<td style="text-align: right;">-0.001</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.002</td>
-<td style="text-align: right;">-0.021</td>
-<td style="text-align: right;">-0.091</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.166</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">social=~Q20_S</td>
-<td style="text-align: right;">0.935</td>
-<td style="text-align: right;">0.039</td>
-<td style="text-align: right;">0.035</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.936</td>
-<td style="text-align: right;">0.013</td>
-<td style="text-align: right;">0.012</td>
-<td style="text-align: right;">0.94</td>
-<td style="text-align: right;">-0.005</td>
-<td style="text-align: right;">0.94</td>
-<td style="text-align: right;">-0.005</td>
-<td style="text-align: right;">-0.121</td>
-<td style="text-align: right;">-0.091</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.138</td>
-<td style="text-align: right;">0.003</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">social=~Q21_S</td>
-<td style="text-align: right;">0.883</td>
-<td style="text-align: right;">0.033</td>
-<td style="text-align: right;">0.036</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.887</td>
-<td style="text-align: right;">0.014</td>
-<td style="text-align: right;">0.014</td>
-<td style="text-align: right;">0.89</td>
-<td style="text-align: right;">-0.007</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.008</td>
-<td style="text-align: right;">-0.211</td>
-<td style="text-align: right;">0.079</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.142</td>
-<td style="text-align: right;">0.003</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">social=~Q22_S</td>
-<td style="text-align: right;">0.777</td>
-<td style="text-align: right;">0.037</td>
-<td style="text-align: right;">0.038</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.781</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.020</td>
-<td style="text-align: right;">0.78</td>
-<td style="text-align: right;">-0.003</td>
-<td style="text-align: right;">0.98</td>
-<td style="text-align: right;">-0.004</td>
-<td style="text-align: right;">-0.092</td>
-<td style="text-align: right;">0.036</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.150</td>
-<td style="text-align: right;">0.004</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">environment=~Q8_A</td>
-<td style="text-align: right;">0.366</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">0.045</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.368</td>
-<td style="text-align: right;">0.036</td>
-<td style="text-align: right;">0.041</td>
-<td style="text-align: right;">0.37</td>
-<td style="text-align: right;">-0.004</td>
-<td style="text-align: right;">0.98</td>
-<td style="text-align: right;">-0.009</td>
-<td style="text-align: right;">-0.088</td>
+<td style="text-align: right;">0.10</td>
 <td style="text-align: right;">0.141</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">physical=~Q18</td>
+<td style="text-align: right;">0.611</td>
+<td style="text-align: right;">0.044</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.610</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">0.610</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">-0.056</td>
 <td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.178</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.164</td>
 <td style="text-align: right;">0.005</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">environment=~Q9_A</td>
-<td style="text-align: right;">0.498</td>
+<td style="text-align: left;">social=~Q20</td>
+<td style="text-align: right;">0.942</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.939</td>
+<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">0.940</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.059</td>
+<td style="text-align: right;">-0.122</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.138</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">social=~Q21</td>
+<td style="text-align: right;">0.896</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.891</td>
+<td style="text-align: right;">0.014</td>
+<td style="text-align: right;">0.014</td>
+<td style="text-align: right;">0.890</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.175</td>
+<td style="text-align: right;">-0.006</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.143</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">social=~Q22</td>
+<td style="text-align: right;">0.782</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.782</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">0.780</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.058</td>
+<td style="text-align: right;">-0.050</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.151</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">environment=~Q8</td>
+<td style="text-align: right;">0.363</td>
+<td style="text-align: right;">0.049</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.362</td>
+<td style="text-align: right;">0.044</td>
+<td style="text-align: right;">0.041</td>
+<td style="text-align: right;">0.370</td>
+<td style="text-align: right;">-0.007</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">-0.020</td>
+<td style="text-align: right;">-0.152</td>
+<td style="text-align: right;">-0.072</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.179</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">environment=~Q9</td>
+<td style="text-align: right;">0.481</td>
 <td style="text-align: right;">0.040</td>
 <td style="text-align: right;">0.044</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.495</td>
-<td style="text-align: right;">0.033</td>
-<td style="text-align: right;">0.036</td>
-<td style="text-align: right;">0.49</td>
-<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.483</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">0.490</td>
+<td style="text-align: right;">-0.009</td>
 <td style="text-align: right;">0.98</td>
-<td style="text-align: right;">0.016</td>
-<td style="text-align: right;">0.189</td>
-<td style="text-align: right;">0.096</td>
-<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">-0.019</td>
+<td style="text-align: right;">-0.230</td>
+<td style="text-align: right;">0.106</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.173</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.172</td>
 <td style="text-align: right;">0.006</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">environment=~Q12_A</td>
-<td style="text-align: right;">0.780</td>
-<td style="text-align: right;">0.041</td>
+<td style="text-align: left;">environment=~Q12</td>
+<td style="text-align: right;">0.777</td>
+<td style="text-align: right;">0.040</td>
 <td style="text-align: right;">0.039</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.784</td>
-<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.782</td>
 <td style="text-align: right;">0.021</td>
-<td style="text-align: right;">0.79</td>
-<td style="text-align: right;">-0.010</td>
-<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: right;">0.790</td>
 <td style="text-align: right;">-0.013</td>
-<td style="text-align: right;">-0.243</td>
-<td style="text-align: right;">-0.052</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">-0.016</td>
+<td style="text-align: right;">-0.327</td>
+<td style="text-align: right;">-0.027</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.151</td>
-<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.152</td>
+<td style="text-align: right;">0.004</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">environment=~Q13_A</td>
-<td style="text-align: right;">0.804</td>
-<td style="text-align: right;">0.035</td>
+<td style="text-align: left;">environment=~Q13</td>
+<td style="text-align: right;">0.807</td>
+<td style="text-align: right;">0.041</td>
 <td style="text-align: right;">0.038</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.811</td>
-<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.812</td>
+<td style="text-align: right;">0.018</td>
 <td style="text-align: right;">0.019</td>
-<td style="text-align: right;">0.81</td>
-<td style="text-align: right;">-0.006</td>
+<td style="text-align: right;">0.810</td>
+<td style="text-align: right;">-0.003</td>
 <td style="text-align: right;">0.94</td>
-<td style="text-align: right;">-0.007</td>
-<td style="text-align: right;">-0.160</td>
-<td style="text-align: right;">0.076</td>
+<td style="text-align: right;">-0.004</td>
+<td style="text-align: right;">-0.082</td>
+<td style="text-align: right;">-0.064</td>
 <td style="text-align: right;">0.02</td>
 <td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.149</td>
 <td style="text-align: right;">0.004</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">environment=~Q14_A</td>
-<td style="text-align: right;">0.766</td>
-<td style="text-align: right;">0.038</td>
+<td style="text-align: left;">environment=~Q14</td>
+<td style="text-align: right;">0.769</td>
 <td style="text-align: right;">0.039</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.767</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.770</td>
 <td style="text-align: right;">0.022</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">0.77</td>
-<td style="text-align: right;">-0.004</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: right;">0.770</td>
+<td style="text-align: right;">-0.001</td>
 <td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.006</td>
-<td style="text-align: right;">-0.118</td>
-<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">-0.002</td>
+<td style="text-align: right;">-0.033</td>
+<td style="text-align: right;">0.012</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">0.04</td>
 <td style="text-align: right;">0.153</td>
 <td style="text-align: right;">0.004</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">environment=~Q23_A</td>
-<td style="text-align: right;">0.739</td>
-<td style="text-align: right;">0.035</td>
-<td style="text-align: right;">0.039</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.746</td>
-<td style="text-align: right;">0.024</td>
-<td style="text-align: right;">0.023</td>
-<td style="text-align: right;">0.75</td>
-<td style="text-align: right;">-0.011</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.014</td>
-<td style="text-align: right;">-0.306</td>
-<td style="text-align: right;">0.130</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.154</td>
-<td style="text-align: right;">0.004</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">environment=~Q24_A</td>
-<td style="text-align: right;">0.634</td>
-<td style="text-align: right;">0.044</td>
-<td style="text-align: right;">0.042</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.636</td>
-<td style="text-align: right;">0.028</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.64</td>
-<td style="text-align: right;">-0.006</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.009</td>
-<td style="text-align: right;">-0.132</td>
-<td style="text-align: right;">-0.061</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.163</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">environment=~Q25_A</td>
-<td style="text-align: right;">0.720</td>
-<td style="text-align: right;">0.038</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.723</td>
-<td style="text-align: right;">0.025</td>
-<td style="text-align: right;">0.024</td>
-<td style="text-align: right;">0.73</td>
-<td style="text-align: right;">-0.010</td>
-<td style="text-align: right;">0.90</td>
-<td style="text-align: right;">-0.014</td>
-<td style="text-align: right;">-0.275</td>
-<td style="text-align: right;">0.064</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">0.157</td>
-<td style="text-align: right;">0.004</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Q3_F~~Q4_F</td>
-<td style="text-align: right;">0.300</td>
-<td style="text-align: right;">0.044</td>
-<td style="text-align: right;">0.053</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.299</td>
-<td style="text-align: right;">0.037</td>
-<td style="text-align: right;">0.044</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.001</td>
-<td style="text-align: right;">-0.004</td>
-<td style="text-align: right;">0.191</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.206</td>
-<td style="text-align: right;">0.010</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">psycho~~physical</td>
-<td style="text-align: right;">0.305</td>
-<td style="text-align: right;">0.051</td>
-<td style="text-align: right;">0.044</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.305</td>
-<td style="text-align: right;">0.051</td>
-<td style="text-align: right;">0.044</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.005</td>
-<td style="text-align: right;">0.90</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.103</td>
-<td style="text-align: right;">-0.121</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.174</td>
-<td style="text-align: right;">0.006</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">psycho~~social</td>
-<td style="text-align: right;">0.297</td>
-<td style="text-align: right;">0.047</td>
-<td style="text-align: right;">0.044</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.297</td>
-<td style="text-align: right;">0.047</td>
-<td style="text-align: right;">0.044</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">-0.003</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.009</td>
-<td style="text-align: right;">-0.058</td>
-<td style="text-align: right;">-0.079</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.171</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">psycho~~environment</td>
-<td style="text-align: right;">0.307</td>
-<td style="text-align: right;">0.048</td>
-<td style="text-align: right;">0.044</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.307</td>
-<td style="text-align: right;">0.048</td>
-<td style="text-align: right;">0.044</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.94</td>
-<td style="text-align: right;">0.024</td>
-<td style="text-align: right;">0.154</td>
-<td style="text-align: right;">-0.072</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.173</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">physical~~social</td>
-<td style="text-align: right;">0.301</td>
-<td style="text-align: right;">0.043</td>
-<td style="text-align: right;">0.045</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.301</td>
-<td style="text-align: right;">0.043</td>
-<td style="text-align: right;">0.045</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">0.003</td>
-<td style="text-align: right;">0.023</td>
-<td style="text-align: right;">0.054</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.177</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">physical~~environment</td>
-<td style="text-align: right;">0.311</td>
-<td style="text-align: right;">0.052</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.311</td>
-<td style="text-align: right;">0.052</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.011</td>
-<td style="text-align: right;">0.94</td>
-<td style="text-align: right;">0.036</td>
-<td style="text-align: right;">0.209</td>
-<td style="text-align: right;">-0.121</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.179</td>
-<td style="text-align: right;">0.006</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">social~~environment</td>
-<td style="text-align: right;">0.292</td>
-<td style="text-align: right;">0.047</td>
-<td style="text-align: right;">0.045</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.292</td>
-<td style="text-align: right;">0.047</td>
-<td style="text-align: right;">0.045</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">-0.008</td>
-<td style="text-align: right;">0.94</td>
-<td style="text-align: right;">-0.026</td>
-<td style="text-align: right;">-0.165</td>
-<td style="text-align: right;">-0.028</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.177</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Q5_P~~Q5_P</td>
-<td style="text-align: right;">0.148</td>
-<td style="text-align: right;">0.013</td>
-<td style="text-align: right;">0.014</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.150</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.016</td>
-<td style="text-align: right;">0.15</td>
-<td style="text-align: right;">-0.002</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.017</td>
-<td style="text-align: right;">-0.185</td>
-<td style="text-align: right;">0.054</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.055</td>
-<td style="text-align: right;">0.003</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Q6_P~~Q6_P</td>
-<td style="text-align: right;">0.333</td>
-<td style="text-align: right;">0.021</td>
-<td style="text-align: right;">0.024</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.336</td>
-<td style="text-align: right;">0.027</td>
-<td style="text-align: right;">0.027</td>
-<td style="text-align: right;">0.34</td>
-<td style="text-align: right;">-0.007</td>
-<td style="text-align: right;">0.94</td>
-<td style="text-align: right;">-0.021</td>
-<td style="text-align: right;">-0.327</td>
-<td style="text-align: right;">0.103</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.093</td>
-<td style="text-align: right;">0.005</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Q7_P~~Q7_P</td>
-<td style="text-align: right;">0.117</td>
-<td style="text-align: right;">0.015</td>
-<td style="text-align: right;">0.013</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.117</td>
-<td style="text-align: right;">0.016</td>
-<td style="text-align: right;">0.015</td>
-<td style="text-align: right;">0.12</td>
-<td style="text-align: right;">-0.003</td>
-<td style="text-align: right;">0.94</td>
-<td style="text-align: right;">-0.026</td>
-<td style="text-align: right;">-0.211</td>
-<td style="text-align: right;">-0.100</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.052</td>
-<td style="text-align: right;">0.003</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Q11_P~~Q11_P</td>
-<td style="text-align: right;">0.466</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.031</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.468</td>
-<td style="text-align: right;">0.035</td>
-<td style="text-align: right;">0.032</td>
-<td style="text-align: right;">0.47</td>
-<td style="text-align: right;">-0.004</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.008</td>
-<td style="text-align: right;">-0.134</td>
-<td style="text-align: right;">0.078</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.123</td>
-<td style="text-align: right;">0.007</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Q19_P~~Q19_P</td>
-<td style="text-align: right;">0.438</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.438</td>
+<td style="text-align: left;">environment=~Q23</td>
+<td style="text-align: right;">0.741</td>
 <td style="text-align: right;">0.033</td>
-<td style="text-align: right;">0.031</td>
-<td style="text-align: right;">0.44</td>
-<td style="text-align: right;">-0.002</td>
-<td style="text-align: right;">0.94</td>
-<td style="text-align: right;">-0.004</td>
-<td style="text-align: right;">-0.065</td>
-<td style="text-align: right;">-0.010</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.117</td>
-<td style="text-align: right;">0.007</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Q26_P~~Q26_P</td>
-<td style="text-align: right;">0.608</td>
-<td style="text-align: right;">0.036</td>
 <td style="text-align: right;">0.040</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.604</td>
-<td style="text-align: right;">0.035</td>
-<td style="text-align: right;">0.035</td>
-<td style="text-align: right;">0.60</td>
-<td style="text-align: right;">0.008</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">0.013</td>
-<td style="text-align: right;">0.207</td>
-<td style="text-align: right;">0.096</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.156</td>
-<td style="text-align: right;">0.009</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Q10_F~~Q10_F</td>
-<td style="text-align: right;">0.600</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">0.041</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.597</td>
-<td style="text-align: right;">0.037</td>
-<td style="text-align: right;">0.038</td>
-<td style="text-align: right;">0.60</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.94</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">-0.089</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.163</td>
-<td style="text-align: right;">0.011</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Q15_F~~Q15_F</td>
-<td style="text-align: right;">0.496</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.036</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.493</td>
-<td style="text-align: right;">0.038</td>
-<td style="text-align: right;">0.036</td>
-<td style="text-align: right;">0.50</td>
-<td style="text-align: right;">-0.004</td>
 <td style="text-align: right;">1.00</td>
-<td style="text-align: right;">-0.007</td>
-<td style="text-align: right;">-0.129</td>
-<td style="text-align: right;">0.247</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.142</td>
-<td style="text-align: right;">0.007</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Q16_F~~Q16_F</td>
-<td style="text-align: right;">0.544</td>
-<td style="text-align: right;">0.042</td>
-<td style="text-align: right;">0.039</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.536</td>
-<td style="text-align: right;">0.037</td>
-<td style="text-align: right;">0.037</td>
-<td style="text-align: right;">0.54</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">0.92</td>
-<td style="text-align: right;">0.008</td>
-<td style="text-align: right;">0.104</td>
-<td style="text-align: right;">-0.085</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.152</td>
-<td style="text-align: right;">0.010</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Q17_F~~Q17_F</td>
-<td style="text-align: right;">0.211</td>
-<td style="text-align: right;">0.025</td>
-<td style="text-align: right;">0.025</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.210</td>
-<td style="text-align: right;">0.028</td>
-<td style="text-align: right;">0.027</td>
-<td style="text-align: right;">0.21</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">0.006</td>
-<td style="text-align: right;">0.049</td>
-<td style="text-align: right;">-0.007</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.099</td>
-<td style="text-align: right;">0.006</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Q18_F~~Q18_F</td>
-<td style="text-align: right;">0.621</td>
-<td style="text-align: right;">0.041</td>
-<td style="text-align: right;">0.042</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.626</td>
-<td style="text-align: right;">0.038</td>
-<td style="text-align: right;">0.038</td>
-<td style="text-align: right;">0.63</td>
+<td style="text-align: right;">0.745</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">0.750</td>
 <td style="text-align: right;">-0.009</td>
 <td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.014</td>
-<td style="text-align: right;">-0.220</td>
-<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">-0.012</td>
+<td style="text-align: right;">-0.269</td>
+<td style="text-align: right;">0.194</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.166</td>
-<td style="text-align: right;">0.010</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Q20_S~~Q20_S</td>
-<td style="text-align: right;">0.122</td>
-<td style="text-align: right;">0.021</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.123</td>
-<td style="text-align: right;">0.025</td>
-<td style="text-align: right;">0.023</td>
-<td style="text-align: right;">0.12</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">0.016</td>
-<td style="text-align: right;">0.091</td>
-<td style="text-align: right;">0.033</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.085</td>
+<td style="text-align: right;">0.155</td>
 <td style="text-align: right;">0.004</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">environment=~Q24</td>
+<td style="text-align: right;">0.616</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.621</td>
+<td style="text-align: right;">0.028</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">0.640</td>
+<td style="text-align: right;">-0.024</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">-0.038</td>
+<td style="text-align: right;">-0.579</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.164</td>
+<td style="text-align: right;">0.005</td>
+</tr>
 <tr class="even">
-<td style="text-align: left;">Q21_S~~Q21_S</td>
-<td style="text-align: right;">0.210</td>
-<td style="text-align: right;">0.024</td>
+<td style="text-align: left;">environment=~Q25</td>
+<td style="text-align: right;">0.728</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.731</td>
 <td style="text-align: right;">0.022</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.212</td>
-<td style="text-align: right;">0.025</td>
-<td style="text-align: right;">0.025</td>
-<td style="text-align: right;">0.21</td>
-<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.024</td>
+<td style="text-align: right;">0.730</td>
+<td style="text-align: right;">-0.002</td>
 <td style="text-align: right;">0.98</td>
 <td style="text-align: right;">-0.002</td>
-<td style="text-align: right;">-0.015</td>
-<td style="text-align: right;">-0.059</td>
+<td style="text-align: right;">-0.049</td>
+<td style="text-align: right;">0.127</td>
 <td style="text-align: right;">0.00</td>
 <td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.156</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">psycho~~physical</td>
+<td style="text-align: right;">0.202</td>
+<td style="text-align: right;">0.053</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.202</td>
+<td style="text-align: right;">0.053</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">0.200</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.90</td>
+<td style="text-align: right;">0.010</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">-0.122</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.181</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">psycho~~social</td>
+<td style="text-align: right;">0.206</td>
+<td style="text-align: right;">0.041</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.206</td>
+<td style="text-align: right;">0.041</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">0.200</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.028</td>
+<td style="text-align: right;">0.138</td>
+<td style="text-align: right;">0.115</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.179</td>
+<td style="text-align: right;">0.003</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">psycho~~environment</td>
+<td style="text-align: right;">0.204</td>
+<td style="text-align: right;">0.053</td>
+<td style="text-align: right;">0.047</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.204</td>
+<td style="text-align: right;">0.053</td>
+<td style="text-align: right;">0.047</td>
+<td style="text-align: right;">0.200</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">0.070</td>
+<td style="text-align: right;">-0.121</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.183</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">physical~~social</td>
+<td style="text-align: right;">0.209</td>
+<td style="text-align: right;">0.048</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.209</td>
+<td style="text-align: right;">0.048</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">0.200</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">0.179</td>
+<td style="text-align: right;">-0.028</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.182</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">physical~~environment</td>
+<td style="text-align: right;">0.207</td>
+<td style="text-align: right;">0.053</td>
+<td style="text-align: right;">0.047</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.207</td>
+<td style="text-align: right;">0.053</td>
+<td style="text-align: right;">0.047</td>
+<td style="text-align: right;">0.200</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.90</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">0.125</td>
+<td style="text-align: right;">-0.113</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.186</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">social~~environment</td>
+<td style="text-align: right;">0.207</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.047</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.207</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.047</td>
+<td style="text-align: right;">0.200</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">0.183</td>
+<td style="text-align: right;">0.167</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.185</td>
+<td style="text-align: right;">0.003</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q3~~Q4</td>
+<td style="text-align: right;">0.089</td>
+<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.297</td>
+<td style="text-align: right;">0.058</td>
+<td style="text-align: right;">0.054</td>
+<td style="text-align: right;">0.091</td>
+<td style="text-align: right;">-0.002</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">-0.021</td>
+<td style="text-align: right;">-0.084</td>
+<td style="text-align: right;">-0.103</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.080</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q5~~Q5</td>
+<td style="text-align: right;">0.153</td>
+<td style="text-align: right;">0.016</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.154</td>
+<td style="text-align: right;">0.018</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.154</td>
+<td style="text-align: right;">-0.001</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">-0.047</td>
+<td style="text-align: right;">-0.106</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.057</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q6~~Q6</td>
+<td style="text-align: right;">0.339</td>
+<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">0.024</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.343</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">0.027</td>
+<td style="text-align: right;">0.344</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">-0.015</td>
+<td style="text-align: right;">-0.219</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.094</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q7~~Q7</td>
+<td style="text-align: right;">0.113</td>
+<td style="text-align: right;">0.016</td>
+<td style="text-align: right;">0.013</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.114</td>
+<td style="text-align: right;">0.016</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">0.116</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">-0.026</td>
+<td style="text-align: right;">-0.193</td>
+<td style="text-align: right;">-0.174</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.052</td>
+<td style="text-align: right;">0.003</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q11~~Q11</td>
+<td style="text-align: right;">0.468</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.466</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.467</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.124</td>
+<td style="text-align: right;">0.008</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q19~~Q19</td>
+<td style="text-align: right;">0.437</td>
+<td style="text-align: right;">0.027</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.439</td>
+<td style="text-align: right;">0.027</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">0.438</td>
+<td style="text-align: right;">-0.001</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">-0.001</td>
+<td style="text-align: right;">-0.019</td>
 <td style="text-align: right;">0.088</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.117</td>
+<td style="text-align: right;">0.007</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q26~~Q26</td>
+<td style="text-align: right;">0.592</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.601</td>
+<td style="text-align: right;">0.041</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">0.603</td>
+<td style="text-align: right;">-0.011</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">-0.019</td>
+<td style="text-align: right;">-0.354</td>
+<td style="text-align: right;">0.210</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.152</td>
+<td style="text-align: right;">0.008</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q3~~Q3</td>
+<td style="text-align: right;">0.285</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">0.025</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.287</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">0.028</td>
+<td style="text-align: right;">0.294</td>
+<td style="text-align: right;">-0.010</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">-0.033</td>
+<td style="text-align: right;">-0.367</td>
+<td style="text-align: right;">-0.043</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.098</td>
+<td style="text-align: right;">0.006</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q4~~Q4</td>
+<td style="text-align: right;">0.308</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.310</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.311</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">-0.011</td>
+<td style="text-align: right;">-0.110</td>
+<td style="text-align: right;">-0.119</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.103</td>
+<td style="text-align: right;">0.006</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q10~~Q10</td>
+<td style="text-align: right;">0.605</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">0.041</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.609</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">0.603</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.052</td>
+<td style="text-align: right;">0.083</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.160</td>
+<td style="text-align: right;">0.009</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q15~~Q15</td>
+<td style="text-align: right;">0.493</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.493</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">0.496</td>
+<td style="text-align: right;">-0.002</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">-0.072</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.136</td>
+<td style="text-align: right;">0.008</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q16~~Q16</td>
+<td style="text-align: right;">0.543</td>
+<td style="text-align: right;">0.041</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.536</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">0.538</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">0.010</td>
+<td style="text-align: right;">0.130</td>
+<td style="text-align: right;">-0.080</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.147</td>
+<td style="text-align: right;">0.010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q17~~Q17</td>
+<td style="text-align: right;">0.207</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.207</td>
+<td style="text-align: right;">0.024</td>
+<td style="text-align: right;">0.024</td>
+<td style="text-align: right;">0.208</td>
+<td style="text-align: right;">-0.001</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">-0.034</td>
+<td style="text-align: right;">0.085</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.084</td>
+<td style="text-align: right;">0.005</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q18~~Q18</td>
+<td style="text-align: right;">0.629</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.627</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">0.628</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.016</td>
+<td style="text-align: right;">-0.081</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.165</td>
+<td style="text-align: right;">0.011</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q20~~Q20</td>
+<td style="text-align: right;">0.119</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.118</td>
+<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">0.116</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.018</td>
+<td style="text-align: right;">0.098</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.086</td>
+<td style="text-align: right;">0.006</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q21~~Q21</td>
+<td style="text-align: right;">0.208</td>
+<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.206</td>
+<td style="text-align: right;">0.025</td>
+<td style="text-align: right;">0.025</td>
+<td style="text-align: right;">0.208</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">-0.001</td>
+<td style="text-align: right;">-0.008</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.089</td>
 <td style="text-align: right;">0.005</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Q22_S~~Q22_S</td>
-<td style="text-align: right;">0.384</td>
-<td style="text-align: right;">0.027</td>
+<td style="text-align: left;">Q22~~Q22</td>
+<td style="text-align: right;">0.388</td>
 <td style="text-align: right;">0.028</td>
-<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.028</td>
+<td style="text-align: right;">1.00</td>
 <td style="text-align: right;">0.389</td>
-<td style="text-align: right;">0.027</td>
+<td style="text-align: right;">0.030</td>
 <td style="text-align: right;">0.031</td>
-<td style="text-align: right;">0.39</td>
-<td style="text-align: right;">-0.006</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.016</td>
-<td style="text-align: right;">-0.225</td>
-<td style="text-align: right;">0.045</td>
+<td style="text-align: right;">0.392</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">-0.009</td>
+<td style="text-align: right;">-0.119</td>
+<td style="text-align: right;">0.016</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.111</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.112</td>
 <td style="text-align: right;">0.007</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Q8_A~~Q8_A</td>
-<td style="text-align: right;">0.858</td>
+<td style="text-align: left;">Q8~~Q8</td>
+<td style="text-align: right;">0.869</td>
 <td style="text-align: right;">0.053</td>
-<td style="text-align: right;">0.055</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.864</td>
-<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.867</td>
+<td style="text-align: right;">0.032</td>
 <td style="text-align: right;">0.030</td>
-<td style="text-align: right;">0.86</td>
-<td style="text-align: right;">-0.002</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.002</td>
-<td style="text-align: right;">-0.041</td>
-<td style="text-align: right;">0.051</td>
+<td style="text-align: right;">0.863</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.116</td>
+<td style="text-align: right;">0.063</td>
+<td style="text-align: right;">0.02</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.217</td>
+<td style="text-align: right;">0.219</td>
 <td style="text-align: right;">0.013</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Q9_A~~Q9_A</td>
-<td style="text-align: right;">0.760</td>
-<td style="text-align: right;">0.057</td>
+<td style="text-align: left;">Q9~~Q9</td>
+<td style="text-align: right;">0.756</td>
+<td style="text-align: right;">0.052</td>
 <td style="text-align: right;">0.050</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.754</td>
-<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.765</td>
+<td style="text-align: right;">0.032</td>
 <td style="text-align: right;">0.036</td>
-<td style="text-align: right;">0.76</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.88</td>
-<td style="text-align: right;">0.000</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">-0.120</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">0.196</td>
-<td style="text-align: right;">0.014</td>
+<td style="text-align: right;">0.760</td>
+<td style="text-align: right;">-0.004</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">-0.071</td>
+<td style="text-align: right;">-0.037</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.194</td>
+<td style="text-align: right;">0.013</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Q12_A~~Q12_A</td>
-<td style="text-align: right;">0.381</td>
-<td style="text-align: right;">0.029</td>
+<td style="text-align: left;">Q12~~Q12</td>
+<td style="text-align: right;">0.383</td>
+<td style="text-align: right;">0.031</td>
 <td style="text-align: right;">0.030</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.385</td>
-<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.033</td>
 <td style="text-align: right;">0.032</td>
-<td style="text-align: right;">0.38</td>
-<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.376</td>
+<td style="text-align: right;">0.007</td>
 <td style="text-align: right;">0.96</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.026</td>
-<td style="text-align: right;">0.026</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.116</td>
+<td style="text-align: right;">0.018</td>
+<td style="text-align: right;">0.221</td>
+<td style="text-align: right;">-0.036</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.117</td>
 <td style="text-align: right;">0.007</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Q13_A~~Q13_A</td>
-<td style="text-align: right;">0.337</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.027</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.342</td>
+<td style="text-align: left;">Q13~~Q13</td>
+<td style="text-align: right;">0.335</td>
+<td style="text-align: right;">0.026</td>
 <td style="text-align: right;">0.028</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.340</td>
+<td style="text-align: right;">0.029</td>
 <td style="text-align: right;">0.030</td>
-<td style="text-align: right;">0.34</td>
-<td style="text-align: right;">-0.003</td>
-<td style="text-align: right;">0.88</td>
-<td style="text-align: right;">-0.010</td>
-<td style="text-align: right;">-0.115</td>
-<td style="text-align: right;">-0.048</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.344</td>
+<td style="text-align: right;">-0.009</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;">-0.026</td>
+<td style="text-align: right;">-0.337</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.06</td>
 <td style="text-align: right;">0.108</td>
 <td style="text-align: right;">0.007</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Q14_A~~Q14_A</td>
-<td style="text-align: right;">0.409</td>
+<td style="text-align: left;">Q14~~Q14</td>
+<td style="text-align: right;">0.405</td>
+<td style="text-align: right;">0.033</td>
 <td style="text-align: right;">0.031</td>
-<td style="text-align: right;">0.031</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.412</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.407</td>
 <td style="text-align: right;">0.034</td>
 <td style="text-align: right;">0.033</td>
-<td style="text-align: right;">0.41</td>
-<td style="text-align: right;">-0.001</td>
-<td style="text-align: right;">0.92</td>
-<td style="text-align: right;">-0.001</td>
-<td style="text-align: right;">-0.016</td>
-<td style="text-align: right;">-0.003</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.122</td>
-<td style="text-align: right;">0.007</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Q23_A~~Q23_A</td>
-<td style="text-align: right;">0.436</td>
-<td style="text-align: right;">0.037</td>
-<td style="text-align: right;">0.032</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.444</td>
-<td style="text-align: right;">0.035</td>
-<td style="text-align: right;">0.034</td>
-<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">0.407</td>
+<td style="text-align: right;">-0.002</td>
+<td style="text-align: right;">0.94</td>
 <td style="text-align: right;">-0.004</td>
-<td style="text-align: right;">0.92</td>
-<td style="text-align: right;">-0.009</td>
-<td style="text-align: right;">-0.103</td>
-<td style="text-align: right;">-0.138</td>
+<td style="text-align: right;">-0.054</td>
+<td style="text-align: right;">-0.070</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">0.127</td>
-<td style="text-align: right;">0.009</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Q24_A~~Q24_A</td>
-<td style="text-align: right;">0.591</td>
-<td style="text-align: right;">0.036</td>
-<td style="text-align: right;">0.041</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.595</td>
-<td style="text-align: right;">0.036</td>
-<td style="text-align: right;">0.037</td>
-<td style="text-align: right;">0.59</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">0.001</td>
-<td style="text-align: right;">0.024</td>
-<td style="text-align: right;">0.140</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.159</td>
-<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">0.008</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Q25_A~~Q25_A</td>
-<td style="text-align: right;">0.472</td>
-<td style="text-align: right;">0.036</td>
+<td style="text-align: left;">Q23~~Q23</td>
+<td style="text-align: right;">0.440</td>
+<td style="text-align: right;">0.028</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.445</td>
+<td style="text-align: right;">0.028</td>
 <td style="text-align: right;">0.034</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.477</td>
-<td style="text-align: right;">0.035</td>
-<td style="text-align: right;">0.035</td>
-<td style="text-align: right;">0.47</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">0.049</td>
-<td style="text-align: right;">-0.055</td>
+<td style="text-align: right;">0.438</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.104</td>
+<td style="text-align: right;">0.164</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.134</td>
-<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.128</td>
+<td style="text-align: right;">0.007</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Q3_F~~Q3_F</td>
-<td style="text-align: right;">0.998</td>
-<td style="text-align: right;">0.066</td>
-<td style="text-align: right;">0.070</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.589</td>
-<td style="text-align: right;">0.036</td>
-<td style="text-align: right;">0.038</td>
+<td style="text-align: left;">Q24~~Q24</td>
+<td style="text-align: right;">0.602</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">0.041</td>
 <td style="text-align: right;">1.00</td>
-<td style="text-align: right;">-0.002</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">-0.002</td>
-<td style="text-align: right;">-0.027</td>
-<td style="text-align: right;">0.050</td>
+<td style="text-align: right;">0.614</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">0.590</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">0.303</td>
+<td style="text-align: right;">0.115</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.273</td>
-<td style="text-align: right;">0.016</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.161</td>
+<td style="text-align: right;">0.009</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Q4_F~~Q4_F</td>
-<td style="text-align: right;">1.007</td>
-<td style="text-align: right;">0.057</td>
-<td style="text-align: right;">0.070</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0.591</td>
-<td style="text-align: right;">0.035</td>
-<td style="text-align: right;">0.038</td>
+<td style="text-align: left;">Q25~~Q25</td>
+<td style="text-align: right;">0.462</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.034</td>
 <td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.98</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.130</td>
-<td style="text-align: right;">0.221</td>
-<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.466</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">0.467</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">-0.011</td>
+<td style="text-align: right;">-0.160</td>
+<td style="text-align: right;">0.053</td>
 <td style="text-align: right;">0.00</td>
-<td style="text-align: right;">0.275</td>
-<td style="text-align: right;">0.014</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.132</td>
+<td style="text-align: right;">0.008</td>
 </tr>
 </tbody>
 </table>
@@ -2093,30 +2067,30 @@ Parameter estimates summary — Ideal conditions, fixed N = 500
 <section id="convergence-analytical-vs.-simulation" class="level2">
 <h2 class="anchored" data-anchor-id="convergence-analytical-vs.-simulation">Convergence: Analytical vs.&nbsp;Simulation</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: fill in analytical_n after running 03_analytical_power.qmd</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co"># For now, use placeholder that will be replaced by the embed output</span></span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>convergence_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Approach =</span> <span class="fu">c</span>(<span class="st">"semPower a priori (RMSEA ≥ .05)"</span>,</span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>               <span class="st">"semTools a priori (RMSEA ≥ .05)"</span>,</span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>               <span class="st">"simsem (parameter power, max N)"</span>,</span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>               <span class="st">"simsem (fit power at SRMR &lt; .06)"</span>),</span>
-<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">N for 80% Power</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"See @sec-apriori"</span>,</span>
-<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"See @sec-apriori"</span>,</span>
-<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From findPower() above"</span>,</span>
-<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From getPowerFit() above"</span></span>
-<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Notes =</span> <span class="fu">c</span>(</span>
-<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Model-free, RMSEA-based"</span>,</span>
-<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Same underlying math"</span>,</span>
-<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous/ML, population model"</span>,</span>
-<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous/ML, population model"</span></span>
-<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
-<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(convergence_table, <span class="at">align =</span> <span class="st">"lll"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: fill in analytical_n after running 03_analytical_power.qmd</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># For now, use placeholder that will be replaced by the embed output</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>convergence_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Approach =</span> <span class="fu">c</span>(<span class="st">"semPower a priori (RMSEA ≥ .05)"</span>,</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>               <span class="st">"semTools a priori (RMSEA ≥ .05)"</span>,</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>               <span class="st">"simsem (parameter power, max N)"</span>,</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>               <span class="st">"simsem (fit power at SRMR &lt; .06)"</span>),</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">N for 80% Power</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"See @sec-apriori"</span>,</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"See @sec-apriori"</span>,</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From findPower() above"</span>,</span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From getPowerFit() above"</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Notes =</span> <span class="fu">c</span>(</span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Model-free, RMSEA-based"</span>,</span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Same underlying math"</span>,</span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous/ML, population model"</span>,</span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous/ML, population model"</span></span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(convergence_table, <span class="at">align =</span> <span class="st">"lll"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="tbl-convergence" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-convergence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

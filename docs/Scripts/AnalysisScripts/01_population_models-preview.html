@@ -211,6 +211,7 @@
   <li><a href="#population-model-meta-analytic-lin-yao-2022" id="toc-population-model-meta-analytic-lin-yao-2022" class="nav-link" data-scroll-target="#population-model-meta-analytic-lin-yao-2022">Population model — Meta-analytic (Lin &amp; Yao, 2022)</a></li>
   <li><a href="#naive-model-minimally-acceptable-scenario" id="toc-naive-model-minimally-acceptable-scenario" class="nav-link" data-scroll-target="#naive-model-minimally-acceptable-scenario">Naive model — Minimally acceptable scenario</a></li>
   <li><a href="#optimistic-model-best-case-scenario" id="toc-optimistic-model-best-case-scenario" class="nav-link" data-scroll-target="#optimistic-model-best-case-scenario">Optimistic model — Best-case scenario</a></li>
+  <li><a href="#model-h1-cross-loading-population-model" id="toc-model-h1-cross-loading-population-model" class="nav-link" data-scroll-target="#model-h1-cross-loading-population-model">Model H1 — Cross-loading population model</a></li>
   <li><a href="#analysis-model-free-parameters" id="toc-analysis-model-free-parameters" class="nav-link" data-scroll-target="#analysis-model-free-parameters">Analysis model — Free parameters</a></li>
   <li><a href="#comparison-table" id="toc-comparison-table" class="nav-link" data-scroll-target="#comparison-table">Comparison table</a></li>
   </ul>
@@ -315,198 +316,308 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"models.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'quantreg' was built under R version 4.5.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: SparseM</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'SparseM' was built under R version 4.5.3</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"models.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="population-model-meta-analytic-lin-yao-2022" class="level2">
 <h2 class="anchored" data-anchor-id="population-model-meta-analytic-lin-yao-2022">Population model — Meta-analytic (Lin &amp; Yao, 2022)</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(popModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(popModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-  # Factor loadings from Lin and Yao (2022) meta-analysis
-  psycho =~ 0.92*Q5_P + 0.81*Q6_P + 0.94*Q7_P +
-            0.73*Q11_P + 0.75*Q19_P + 0.63*Q26_P
-  physical =~ 0.84*Q3_F + 0.83*Q4_F + 0.63*Q10_F +
-              0.71*Q15_F + 0.68*Q16_F + 0.89*Q17_F + 0.61*Q18_F
-  social =~ 0.94*Q20_S + 0.89*Q21_S + 0.78*Q22_S
-  environment =~ 0.37*Q8_A + 0.49*Q9_A + 0.79*Q12_A + 0.81*Q13_A +
-                 0.77*Q14_A + 0.75*Q23_A + 0.64*Q24_A + 0.73*Q25_A
+  # ── Factor loadings: empirical estimates from Lin &amp; Yao (2022) ────────────
+  psycho      =~ 0.92*Q5  + 0.81*Q6  + 0.94*Q7  +
+                 0.73*Q11 + 0.75*Q19 + 0.63*Q26
 
-  # Correlated residual between Q3 and Q4
-  Q4_F ~~ 0.3*Q3_F
+  physical    =~ 0.84*Q3  + 0.83*Q4  + 0.63*Q10 +
+                 0.71*Q15 + 0.68*Q16 + 0.89*Q17  + 0.61*Q18
 
-  # Factor variances fixed to 1; interfactor correlations = 0.3
-  psycho ~~ 1*psycho + 0.3*physical + 0.3*social + 0.3*environment
-  physical ~~ 1*physical + 0.3*social + 0.3*environment
-  social ~~ 1*social + 0.3*environment
+  social      =~ 0.94*Q20 + 0.89*Q21 + 0.78*Q22
+
+  environment =~ 0.37*Q8  + 0.49*Q9  + 0.79*Q12 + 0.81*Q13 +
+                 0.77*Q14 + 0.75*Q23  + 0.64*Q24 + 0.73*Q25
+
+  # ── Residual covariance Q3~~Q4 ────────────────────────────────────────────
+  # r(Q3,Q4|physical) = 0.30 (method bias / conceptual proximity)
+  # cov = 0.30 × sqrt(1-0.84²) × sqrt(1-0.83²) = 0.0908
+  Q4 ~~ 0.0908*Q3
+
+  # ── Factor variances (=1) and interfactor correlations ────────────────────
+  # Range reported in Lin &amp; Yao (2022): 0.08 to 0.31
+  # Conservative midpoint = 0.20 for all pairs
+  psycho      ~~ 1*psycho      + 0.2*physical + 0.2*social + 0.2*environment
+  physical    ~~ 1*physical    + 0.2*social   + 0.2*environment
+  social      ~~ 1*social      + 0.2*environment
   environment ~~ 1*environment
 
-  # Residual variances = 1 - lambda^2
-  Q5_P ~~ 0.15*Q5_P
-  Q6_P ~~ 0.34*Q6_P
-  Q7_P ~~ 0.12*Q7_P
-  Q11_P ~~ 0.47*Q11_P
-  Q19_P ~~ 0.44*Q19_P
-  Q26_P ~~ 0.60*Q26_P
-  Q10_F ~~ 0.60*Q10_F
-  Q15_F ~~ 0.50*Q15_F
-  Q16_F ~~ 0.54*Q16_F
-  Q17_F ~~ 0.21*Q17_F
-  Q18_F ~~ 0.63*Q18_F
-  Q20_S ~~ 0.12*Q20_S
-  Q21_S ~~ 0.21*Q21_S
-  Q22_S ~~ 0.39*Q22_S
-  Q8_A ~~ 0.86*Q8_A
-  Q9_A ~~ 0.76*Q9_A
-  Q12_A ~~ 0.38*Q12_A
-  Q13_A ~~ 0.34*Q13_A
-  Q14_A ~~ 0.41*Q14_A
-  Q23_A ~~ 0.44*Q23_A
-  Q24_A ~~ 0.59*Q24_A
-  Q25_A ~~ 0.47*Q25_A</code></pre>
+  # ── Residual variances: θ = 1 − λ² (standardised indicators) ─────────────
+  Q5  ~~ 0.1536*Q5    # 1 − 0.92²
+  Q6  ~~ 0.3439*Q6    # 1 − 0.81²
+  Q7  ~~ 0.1164*Q7    # 1 − 0.94²
+  Q11 ~~ 0.4671*Q11   # 1 − 0.73²
+  Q19 ~~ 0.4375*Q19   # 1 − 0.75²
+  Q26 ~~ 0.6031*Q26   # 1 − 0.63²
+  Q3  ~~ 0.2944*Q3    # 1 − 0.84²
+  Q4  ~~ 0.3111*Q4    # 1 − 0.83²
+  Q10 ~~ 0.6031*Q10   # 1 − 0.63²
+  Q15 ~~ 0.4959*Q15   # 1 − 0.71²
+  Q16 ~~ 0.5376*Q16   # 1 − 0.68²
+  Q17 ~~ 0.2079*Q17   # 1 − 0.89²
+  Q18 ~~ 0.6279*Q18   # 1 − 0.61²
+  Q20 ~~ 0.1164*Q20   # 1 − 0.94²
+  Q21 ~~ 0.2079*Q21   # 1 − 0.89²
+  Q22 ~~ 0.3916*Q22   # 1 − 0.78²
+  Q8  ~~ 0.8631*Q8    # 1 − 0.37² — lowest loading; bridge item (betweenness=40.5)
+  Q9  ~~ 0.7599*Q9    # 1 − 0.49²
+  Q12 ~~ 0.3759*Q12   # 1 − 0.79²
+  Q13 ~~ 0.3439*Q13   # 1 − 0.81²
+  Q14 ~~ 0.4071*Q14   # 1 − 0.77²
+  Q23 ~~ 0.4375*Q23   # 1 − 0.75²
+  Q24 ~~ 0.5904*Q24   # 1 − 0.64²
+  Q25 ~~ 0.4671*Q25   # 1 − 0.73²</code></pre>
 </div>
 </div></div>
 </section>
 <section id="naive-model-minimally-acceptable-scenario" class="level2">
 <h2 class="anchored" data-anchor-id="naive-model-minimally-acceptable-scenario">Naive model — Minimally acceptable scenario</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(naiveModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(naiveModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-  # All loadings = 0.5
-  psycho =~ 0.5*Q5_P + 0.5*Q6_P + 0.5*Q7_P +
-            0.5*Q11_P + 0.5*Q19_P + 0.5*Q26_P
-  physical =~ 0.5*Q3_F + 0.5*Q4_F + 0.5*Q10_F +
-              0.5*Q15_F + 0.5*Q16_F + 0.5*Q17_F + 0.5*Q18_F
-  social =~ 0.5*Q20_S + 0.5*Q21_S + 0.5*Q22_S
-  environment =~ 0.5*Q8_A + 0.5*Q9_A + 0.5*Q12_A + 0.5*Q13_A +
-                 0.5*Q14_A + 0.5*Q23_A + 0.5*Q24_A + 0.5*Q25_A
+  # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
+  psycho      =~ 0.5328*Q5  + 0.5328*Q6  + 0.5328*Q7  +
+                 0.5328*Q11 + 0.5328*Q19 + 0.5328*Q26
 
-  Q4_F ~~ 0.3*Q3_F
+  physical    =~ 0.4758*Q3  + 0.4758*Q4  + 0.4758*Q10 +
+                 0.4758*Q15 + 0.4758*Q16 + 0.4758*Q17  + 0.4758*Q18
 
-  psycho ~~ 1*psycho + 0.3*physical + 0.3*social + 0.3*environment
-  physical ~~ 1*physical + 0.3*social + 0.3*environment
-  social ~~ 1*social + 0.3*environment
+  social      =~ 0.6017*Q20 + 0.6017*Q21 + 0.6017*Q22
+
+  environment =~ 0.4832*Q8  + 0.4832*Q9  + 0.4832*Q12 + 0.4832*Q13 +
+                 0.4832*Q14 + 0.4832*Q23  + 0.4832*Q24 + 0.4832*Q25
+
+  # ── Residual covariance Q3~~Q4 ────────────────────────────────────────────
+  # r(Q3,Q4|physical) = 0.30; cov = 0.30 × (1 − 0.4758²) = 0.2321
+  Q4 ~~ 0.2321*Q3
+
+  # ── Factor variances (=1) and interfactor correlations ────────────────────
+  # φ = 0.30: upper bound of Lin &amp; Yao (2022) range — pessimistic scenario
+  psycho      ~~ 1*psycho      + 0.3*physical + 0.3*social + 0.3*environment
+  physical    ~~ 1*physical    + 0.3*social   + 0.3*environment
+  social      ~~ 1*social      + 0.3*environment
   environment ~~ 1*environment
 
-  # Residual variances = 1 - 0.5^2 = 0.75
-  Q5_P ~~ 0.75*Q5_P
-  Q6_P ~~ 0.75*Q6_P
-  Q7_P ~~ 0.75*Q7_P
-  Q11_P ~~ 0.75*Q11_P
-  Q19_P ~~ 0.75*Q19_P
-  Q26_P ~~ 0.75*Q26_P
-  Q3_F ~~ 0.75*Q3_F
-  Q4_F ~~ 0.75*Q4_F
-  Q10_F ~~ 0.75*Q10_F
-  Q15_F ~~ 0.75*Q15_F
-  Q16_F ~~ 0.75*Q16_F
-  Q17_F ~~ 0.75*Q17_F
-  Q18_F ~~ 0.75*Q18_F
-  Q20_S ~~ 0.75*Q20_S
-  Q21_S ~~ 0.75*Q21_S
-  Q22_S ~~ 0.75*Q22_S
-  Q8_A ~~ 0.75*Q8_A
-  Q9_A ~~ 0.75*Q9_A
-  Q12_A ~~ 0.75*Q12_A
-  Q13_A ~~ 0.75*Q13_A
-  Q14_A ~~ 0.75*Q14_A
-  Q23_A ~~ 0.75*Q23_A
-  Q24_A ~~ 0.75*Q24_A
-  Q25_A ~~ 0.75*Q25_A</code></pre>
+  # ── Residual variances: θ = 1 − λ² per domain ────────────────────────────
+  Q5  ~~ 0.7161*Q5    # Psychological: θ = 1 − 0.5328² = 0.7161
+  Q6  ~~ 0.7161*Q6
+  Q7  ~~ 0.7161*Q7
+  Q11 ~~ 0.7161*Q11
+  Q19 ~~ 0.7161*Q19
+  Q26 ~~ 0.7161*Q26
+  Q3  ~~ 0.7736*Q3    # Physical: θ = 1 − 0.4758² = 0.7736
+  Q4  ~~ 0.7736*Q4
+  Q10 ~~ 0.7736*Q10
+  Q15 ~~ 0.7736*Q15
+  Q16 ~~ 0.7736*Q16
+  Q17 ~~ 0.7736*Q17
+  Q18 ~~ 0.7736*Q18
+  Q20 ~~ 0.6379*Q20   # Social: θ = 1 − 0.6017² = 0.6379
+  Q21 ~~ 0.6379*Q21
+  Q22 ~~ 0.6379*Q22
+  Q8  ~~ 0.7665*Q8    # Environmental: θ = 1 − 0.4832² = 0.7665
+  Q9  ~~ 0.7665*Q9
+  Q12 ~~ 0.7665*Q12
+  Q13 ~~ 0.7665*Q13
+  Q14 ~~ 0.7665*Q14
+  Q23 ~~ 0.7665*Q23
+  Q24 ~~ 0.7665*Q24
+  Q25 ~~ 0.7665*Q25</code></pre>
 </div>
 </div></div>
 </section>
 <section id="optimistic-model-best-case-scenario" class="level2">
 <h2 class="anchored" data-anchor-id="optimistic-model-best-case-scenario">Optimistic model — Best-case scenario</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(optModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(optModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-  # All loadings = 0.7
-  psycho =~ 0.7*Q5_P + 0.7*Q6_P + 0.7*Q7_P +
-            0.7*Q11_P + 0.7*Q19_P + 0.7*Q26_P
-  physical =~ 0.7*Q3_F + 0.7*Q4_F + 0.7*Q10_F +
-              0.7*Q15_F + 0.7*Q16_F + 0.7*Q17_F + 0.7*Q18_F
-  social =~ 0.7*Q20_S + 0.7*Q21_S + 0.7*Q22_S
-  environment =~ 0.7*Q8_A + 0.7*Q9_A + 0.7*Q12_A + 0.7*Q13_A +
-                 0.7*Q14_A + 0.7*Q23_A + 0.7*Q24_A + 0.7*Q25_A
+  # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
+  psycho      =~ 0.7113*Q5  + 0.7113*Q6  + 0.7113*Q7  +
+                 0.7113*Q11 + 0.7113*Q19 + 0.7113*Q26
 
-  Q4_F ~~ 0.5*Q3_F
+  physical    =~ 0.6837*Q3  + 0.6837*Q4  + 0.6837*Q10 +
+                 0.6837*Q15 + 0.6837*Q16 + 0.6837*Q17  + 0.6837*Q18
 
-  psycho ~~ 1*psycho + 0.5*physical + 0.5*social + 0.5*environment
-  physical ~~ 1*physical + 0.5*social + 0.5*environment
-  social ~~ 1*social + 0.5*environment
+  social      =~ 0.7661*Q20 + 0.7661*Q21 + 0.7661*Q22
+
+  environment =~ 0.6424*Q8  + 0.6424*Q9  + 0.6424*Q12 + 0.6424*Q13 +
+                 0.6424*Q14 + 0.6424*Q23  + 0.6424*Q24 + 0.6424*Q25
+
+  # ── Residual covariance Q3~~Q4 ────────────────────────────────────────────
+  # r(Q3,Q4|physical) = 0.30; cov = 0.30 × (1 − 0.6837²) = 0.1598
+  Q4 ~~ 0.1598*Q3
+
+  # ── Factor variances (=1) and interfactor correlations ────────────────────
+  # φ = 0.08: lower bound of Lin &amp; Yao (2022) range — optimistic scenario
+  psycho      ~~ 1*psycho      + 0.08*physical + 0.08*social + 0.08*environment
+  physical    ~~ 1*physical    + 0.08*social   + 0.08*environment
+  social      ~~ 1*social      + 0.08*environment
   environment ~~ 1*environment
 
-  # Residual variances = 1 - 0.7^2 = 0.51
-  Q5_P ~~ 0.51*Q5_P
-  Q6_P ~~ 0.51*Q6_P
-  Q7_P ~~ 0.51*Q7_P
-  Q11_P ~~ 0.51*Q11_P
-  Q19_P ~~ 0.51*Q19_P
-  Q26_P ~~ 0.51*Q26_P
-  Q3_F ~~ 0.51*Q3_F
-  Q4_F ~~ 0.51*Q4_F
-  Q10_F ~~ 0.51*Q10_F
-  Q15_F ~~ 0.51*Q15_F
-  Q16_F ~~ 0.51*Q16_F
-  Q17_F ~~ 0.51*Q17_F
-  Q18_F ~~ 0.51*Q18_F
-  Q20_S ~~ 0.51*Q20_S
-  Q21_S ~~ 0.51*Q21_S
-  Q22_S ~~ 0.51*Q22_S
-  Q8_A ~~ 0.51*Q8_A
-  Q9_A ~~ 0.51*Q9_A
-  Q12_A ~~ 0.51*Q12_A
-  Q13_A ~~ 0.51*Q13_A
-  Q14_A ~~ 0.51*Q14_A
-  Q23_A ~~ 0.51*Q23_A
-  Q24_A ~~ 0.51*Q24_A
-  Q25_A ~~ 0.51*Q25_A</code></pre>
+  # ── Residual variances: θ = 1 − λ² per domain ────────────────────────────
+  Q5  ~~ 0.4941*Q5    # Psychological: θ = 1 − 0.7113² = 0.4941
+  Q6  ~~ 0.4941*Q6
+  Q7  ~~ 0.4941*Q7
+  Q11 ~~ 0.4941*Q11
+  Q19 ~~ 0.4941*Q19
+  Q26 ~~ 0.4941*Q26
+  Q3  ~~ 0.5326*Q3    # Physical: θ = 1 − 0.6837² = 0.5326
+  Q4  ~~ 0.5326*Q4
+  Q10 ~~ 0.5326*Q10
+  Q15 ~~ 0.5326*Q15
+  Q16 ~~ 0.5326*Q16
+  Q17 ~~ 0.5326*Q17
+  Q18 ~~ 0.5326*Q18
+  Q20 ~~ 0.4130*Q20   # Social: θ = 1 − 0.7661² = 0.4130
+  Q21 ~~ 0.4130*Q21
+  Q22 ~~ 0.4130*Q22
+  Q8  ~~ 0.5873*Q8    # Environmental: θ = 1 − 0.6424² = 0.5873
+  Q9  ~~ 0.5873*Q9
+  Q12 ~~ 0.5873*Q12
+  Q13 ~~ 0.5873*Q13
+  Q14 ~~ 0.5873*Q14
+  Q23 ~~ 0.5873*Q23
+  Q24 ~~ 0.5873*Q24
+  Q25 ~~ 0.5873*Q25</code></pre>
+</div>
+</div></div>
+</section>
+<section id="model-h1-cross-loading-population-model" class="level2">
+<h2 class="anchored" data-anchor-id="model-h1-cross-loading-population-model">Model H1 — Cross-loading population model</h2>
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(H1Model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  # ── Factor loadings (with three cross-loadings) ───────────────────────────
+  psycho      =~ 0.92*Q5  + 0.81*Q6  + 0.94*Q7  +
+                 0.73*Q11 + 0.75*Q19 + 0.63*Q26  +
+                 0.55*Q8  +                             # cross-load (1)
+                 0.21*Q9                                # cross-load (2)
+
+  physical    =~ 0.84*Q3  + 0.83*Q4  + 0.63*Q10 +
+                 0.71*Q15 + 0.68*Q16 + 0.89*Q17  + 0.61*Q18
+
+  social      =~ 0.94*Q20 + 0.89*Q21 + 0.78*Q22
+
+  environment =~ 0.37*Q8  + 0.49*Q9  + 0.79*Q12 + 0.81*Q13 +
+                 0.77*Q14 + 0.75*Q23  + 0.64*Q24 + 0.73*Q25 +
+                 0.24*Q15                               # cross-load (3)
+
+  # ── Residual covariance Q3~~Q4 (fixed in both P2 and analyzeModel) ────────
+  Q4 ~~ 0.0908*Q3
+
+  # ── Factor variances (=1) and interfactor correlations ────────────────────
+  psycho      ~~ 1*psycho      + 0.2*physical + 0.2*social + 0.2*environment
+  physical    ~~ 1*physical    + 0.2*social   + 0.2*environment
+  social      ~~ 1*social      + 0.2*environment
+  environment ~~ 1*environment
+
+  # ── Residual variances ────────────────────────────────────────────────────
+  Q5  ~~ 0.1536*Q5
+  Q6  ~~ 0.3439*Q6
+  Q7  ~~ 0.1164*Q7
+  Q11 ~~ 0.4671*Q11
+  Q19 ~~ 0.4375*Q19
+  Q26 ~~ 0.6031*Q26
+  Q3  ~~ 0.2944*Q3
+  Q4  ~~ 0.3111*Q4
+  Q10 ~~ 0.6031*Q10
+  Q15 ~~ 0.3701*Q15   # UPDATED: was 0.4959 — cross-load on environment
+  Q16 ~~ 0.5376*Q16
+  Q17 ~~ 0.2079*Q17
+  Q18 ~~ 0.6279*Q18
+  Q20 ~~ 0.1164*Q20
+  Q21 ~~ 0.2079*Q21
+  Q22 ~~ 0.3916*Q22
+  Q8  ~~ 0.4792*Q8    # UPDATED: was 0.8631 — cross-load on psycho
+  Q9  ~~ 0.6746*Q9    # UPDATED: was 0.7599 — cross-load on psycho
+  Q12 ~~ 0.3759*Q12
+  Q13 ~~ 0.3439*Q13
+  Q14 ~~ 0.4071*Q14
+  Q23 ~~ 0.4375*Q23
+  Q24 ~~ 0.5904*Q24
+  Q25 ~~ 0.4671*Q25</code></pre>
 </div>
 </div></div>
 </section>
 <section id="analysis-model-free-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-model-free-parameters">Analysis model — Free parameters</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(analyzeModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(analyzeModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-  psycho =~ Q5_P + Q6_P + Q7_P + Q11_P + Q19_P + Q26_P
-  physical =~ Q3_F + Q4_F + Q10_F + Q15_F + Q16_F + Q17_F + Q18_F
-  social =~ Q20_S + Q21_S + Q22_S
-  environment =~ Q8_A + Q9_A + Q12_A + Q13_A + Q14_A + Q23_A + Q24_A + Q25_A
-  Q4_F ~~ Q3_F</code></pre>
+  # ── Factor loadings: freely estimated ─────────────────────────────────────
+  psycho      =~ Q5  + Q6  + Q7  + Q11 + Q19 + Q26
+  physical    =~ Q3  + Q4  + Q10 + Q15 + Q16 + Q17 + Q18
+  social      =~ Q20 + Q21 + Q22
+  environment =~ Q8  + Q9  + Q12 + Q13 + Q14 + Q23 + Q24 + Q25
+
+  # ── Factor variances (=1) and free interfactor correlations ───────────────
+  psycho      ~~ 1*psycho      + physical + social + environment
+  physical    ~~ 1*physical    + social   + environment
+  social      ~~ 1*social      + environment
+  environment ~~ 1*environment
+
+  # ── Residual covariance Q3~~Q4: freely estimated ──────────────────────────
+  Q4 ~~ Q3
+
+  # ── Residual variances: freely estimated ──────────────────────────────────
+  Q5  ~~ Q5;  Q6  ~~ Q6;  Q7  ~~ Q7
+  Q11 ~~ Q11; Q19 ~~ Q19; Q26 ~~ Q26
+  Q3  ~~ Q3;  Q4  ~~ Q4;  Q10 ~~ Q10
+  Q15 ~~ Q15; Q16 ~~ Q16; Q17 ~~ Q17; Q18 ~~ Q18
+  Q20 ~~ Q20; Q21 ~~ Q21; Q22 ~~ Q22
+  Q8  ~~ Q8;  Q9  ~~ Q9;  Q12 ~~ Q12; Q13 ~~ Q13
+  Q14 ~~ Q14; Q23 ~~ Q23; Q24 ~~ Q24; Q25 ~~ Q25</code></pre>
 </div>
 </div></div>
 </section>
 <section id="comparison-table" class="level2">
 <h2 class="anchored" data-anchor-id="comparison-table">Comparison table</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>pop_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Model =</span> <span class="fu">c</span>(</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Meta-analytic (popModel)"</span>,</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Naive (naiveModel)"</span>,</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Optimistic (optModel)"</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Loading Range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.37–0.94"</span>, <span class="st">"0.50"</span>, <span class="st">"0.70"</span>),</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Mean Loading</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.74"</span>, <span class="st">"0.50"</span>, <span class="st">"0.70"</span>),</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Factor Correlations</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.30"</span>, <span class="st">"0.30"</span>, <span class="st">"0.50"</span>),</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Residual Range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.12–0.86"</span>, <span class="st">"0.75"</span>, <span class="st">"0.51"</span>),</span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Q3–Q4 Covariance</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.30"</span>, <span class="st">"0.30"</span>, <span class="st">"0.50"</span>),</span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(pop_summary, <span class="at">align =</span> <span class="st">"lccccc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="tbl-pop-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>pop_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Model =</span> <span class="fu">c</span>(</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Meta-analytic (popModel)"</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Naive (naiveModel)"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Optimistic (optModel)"</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"H1 (H1model)"</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Loading Range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.37–0.94"</span>, <span class="st">"0.48–0.60"</span>, <span class="st">"0.64–0.77"</span>, <span class="st">"0.21–0.94"</span>),</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Mean Loading</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.74"</span>, <span class="st">"0.51"</span>, <span class="st">"0.69"</span>, <span class="st">"0.78"</span>),</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Factor Correlations</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.20"</span>, <span class="st">"0.30"</span>, <span class="st">"0.08"</span>, <span class="st">"0.20"</span>),</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Residual Range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.12–0.86"</span>, <span class="st">"0.64–0.77"</span>, <span class="st">"0.41–0.59"</span>, <span class="st">"0.12–0.67"</span>),</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Q3–Q4 Correlation</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.09"</span>, <span class="st">"0.23"</span>, <span class="st">"0.16"</span>, <span class="st">"0.09"</span>),</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(pop_summary, <span class="at">align =</span> <span class="st">"lccccc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="tbl-pop-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pop-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Summary of population model variants used for sensitivity analysis
@@ -520,7 +631,7 @@ Summary of population model variants used for sensitivity analysis
 <col style="width: 12%">
 <col style="width: 19%">
 <col style="width: 14%">
-<col style="width: 16%">
+<col style="width: 17%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -529,7 +640,7 @@ Summary of population model variants used for sensitivity analysis
 <th style="text-align: center;">Mean Loading</th>
 <th style="text-align: center;">Factor Correlations</th>
 <th style="text-align: center;">Residual Range</th>
-<th style="text-align: center;">Q3–Q4 Covariance</th>
+<th style="text-align: center;">Q3–Q4 Correlation</th>
 </tr>
 </thead>
 <tbody>
@@ -537,25 +648,33 @@ Summary of population model variants used for sensitivity analysis
 <td style="text-align: left;">Meta-analytic (popModel)</td>
 <td style="text-align: center;">0.37–0.94</td>
 <td style="text-align: center;">0.74</td>
-<td style="text-align: center;">0.30</td>
+<td style="text-align: center;">0.20</td>
 <td style="text-align: center;">0.12–0.86</td>
-<td style="text-align: center;">0.30</td>
+<td style="text-align: center;">0.09</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Naive (naiveModel)</td>
-<td style="text-align: center;">0.50</td>
-<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">0.48–0.60</td>
+<td style="text-align: center;">0.51</td>
 <td style="text-align: center;">0.30</td>
-<td style="text-align: center;">0.75</td>
-<td style="text-align: center;">0.30</td>
+<td style="text-align: center;">0.64–0.77</td>
+<td style="text-align: center;">0.23</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Optimistic (optModel)</td>
-<td style="text-align: center;">0.70</td>
-<td style="text-align: center;">0.70</td>
-<td style="text-align: center;">0.50</td>
-<td style="text-align: center;">0.51</td>
-<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">0.64–0.77</td>
+<td style="text-align: center;">0.69</td>
+<td style="text-align: center;">0.08</td>
+<td style="text-align: center;">0.41–0.59</td>
+<td style="text-align: center;">0.16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">H1 (H1model)</td>
+<td style="text-align: center;">0.21–0.94</td>
+<td style="text-align: center;">0.78</td>
+<td style="text-align: center;">0.20</td>
+<td style="text-align: center;">0.12–0.67</td>
+<td style="text-align: center;">0.09</td>
 </tr>
 </tbody>
 </table>
