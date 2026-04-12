@@ -17,6 +17,7 @@ library(dplyr)
 library(here)
 library(knitr)
 library(quantreg)
+library(snow)
 
 # --- Configuration -----------------------------------------------------------
 
@@ -39,6 +40,10 @@ P <- 24
 #' Sample size in the WHOQOL-BREF empirical dataset (Rogers, 2022).
 N_EMPIRICAL <- 1047
 
+#' Fit indices to be used in the analysis.
+FITS <- c("rmsea", "srmr", "cfi", "tli")
+FITS_ROB <- c("rmsea.robust", "srmr", "cfi.robust", "tli.robust")
+
 #' Rule-of-thumb cutoffs for global fit indices.
 RULE_OF_THUMB <- c(
   rmsea = 0.06,
@@ -51,34 +56,6 @@ RULE_OF_THUMB <- c(
 SEQ <- seq(100, 600, 10)
 
 # --- Global Session Configuration --------------------------------------------
-
 options(max.print = 1e6)
 set.seed(SEED)
-
-# --- Sim helper --------------------------------------------------------------
-
-#' Run a simsem simulation with standard arguments and suppressed output
-#'
-#' @param nRep Number of replications (NULL for varying N).
-#' @param n Sample size(s). A scalar or a vector (for varying-N designs).
-#' @param model Analysis model (lavaan syntax string).
-#' @param generate Population/generating model (lavaan syntax string or
-#'   fitted lavaan object).
-#' @param ... Additional arguments passed to \code{simsem::sim()}
-#'   (e.g., \code{pmMCAR = .10}).
-#' @return A simsem result object.
-run_sim <- function(nRep, n, model, generate, ...) {
-  invisible(capture.output(
-    result <- simsem::sim(
-      nRep = nRep,
-      n = n,
-      model = model,
-      generate = generate,
-      lavaanfun = "cfa",
-      std.lv = TRUE,
-      seed = SEED,
-      ...
-    )
-  ))
-  result
-}
+set.seed(SEED, kind = "L'Ecuyer-CMRG")

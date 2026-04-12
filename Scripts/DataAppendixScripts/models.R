@@ -19,7 +19,7 @@
 # SECTION 1 — POPULATION MODELS (fixed parameters; data-generating)
 # =============================================================================
 
-popModel <- "
+popmodel <- '
   # ── Factor loadings: empirical estimates from Lin & Yao (2022) ────────────
   psycho      =~ 0.92*Q5  + 0.81*Q6  + 0.94*Q7  +
                  0.73*Q11 + 0.75*Q19 + 0.63*Q26
@@ -70,9 +70,9 @@ popModel <- "
   Q23 ~~ 0.4375*Q23   # 1 − 0.75²
   Q24 ~~ 0.5904*Q24   # 1 − 0.64²
   Q25 ~~ 0.4671*Q25   # 1 − 0.73²
-"
+'
 
-naiveModel <- "
+naivemodel <- '
   # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
   psycho      =~ 0.5328*Q5  + 0.5328*Q6  + 0.5328*Q7  +
                  0.5328*Q11 + 0.5328*Q19 + 0.5328*Q26
@@ -121,9 +121,9 @@ naiveModel <- "
   Q23 ~~ 0.7665*Q23
   Q24 ~~ 0.7665*Q24
   Q25 ~~ 0.7665*Q25
-"
+'
 
-optModel <- "
+optmodel <- '
   # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
   psycho      =~ 0.7113*Q5  + 0.7113*Q6  + 0.7113*Q7  +
                  0.7113*Q11 + 0.7113*Q19 + 0.7113*Q26
@@ -172,9 +172,9 @@ optModel <- "
   Q23 ~~ 0.5873*Q23
   Q24 ~~ 0.5873*Q24
   Q25 ~~ 0.5873*Q25
-"
+'
 
-H1Model <- "
+h1model <- '
   # ── Factor loadings (with three cross-loadings) ───────────────────────────
   psycho      =~ 0.92*Q5  + 0.81*Q6  + 0.94*Q7  +
                  0.73*Q11 + 0.75*Q19 + 0.63*Q26  +
@@ -224,13 +224,13 @@ H1Model <- "
   Q23 ~~ 0.4375*Q23
   Q24 ~~ 0.5904*Q24
   Q25 ~~ 0.4671*Q25
-"
+'
 
 # =============================================================================
 # SECTION 2 — ANALYSIS MODEL (free parameters; used in BOTH paradigmas)
 # =============================================================================
 
-analyzeModel <- "
+analyzemodel <- '
   # ── Factor loadings: freely estimated ─────────────────────────────────────
   psycho      =~ Q5  + Q6  + Q7  + Q11 + Q19 + Q26
   physical    =~ Q3  + Q4  + Q10 + Q15 + Q16 + Q17 + Q18
@@ -254,4 +254,4 @@ analyzeModel <- "
   Q20 ~~ Q20; Q21 ~~ Q21; Q22 ~~ Q22
   Q8  ~~ Q8;  Q9  ~~ Q9;  Q12 ~~ Q12; Q13 ~~ Q13
   Q14 ~~ Q14; Q23 ~~ Q23; Q24 ~~ Q24; Q25 ~~ Q25
-"
+'

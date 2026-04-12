@@ -20,7 +20,7 @@ source(here("Scripts", "DataAppendixScripts", "models.R"))
 ```{r}
 #| label: pop-model
 
-cat(popModel)
+cat(popmodel)
 ```
 
 ## Naive model — Minimally acceptable scenario
@@ -28,7 +28,7 @@ cat(popModel)
 ```{r}
 #| label: naive-model
 
-cat(naiveModel)
+cat(naivemodel)
 ```
 
 ## Optimistic model — Best-case scenario
@@ -36,7 +36,7 @@ cat(naiveModel)
 ```{r}
 #| label: opt-model
 
-cat(optModel)
+cat(optmodel)
 ```
 
 ## Model H1 — Cross-loading population model
@@ -44,7 +44,7 @@ cat(optModel)
 ```{r}
 #| label: H1-model
 
-cat(H1Model)
+cat(h1model)
 ```
 
 ## Analysis model — Free parameters
@@ -52,7 +52,7 @@ cat(H1Model)
 ```{r}
 #| label: analysis-model
 
-cat(analyzeModel)
+cat(analyzemodel)
 ```
 
 ## Comparison table
@@ -63,10 +63,10 @@ cat(analyzeModel)
 
 pop_summary <- data.frame(
     Model = c(
-        "Meta-analytic (popModel)",
-        "Naive (naiveModel)",
-        "Optimistic (optModel)",
-        "H1 (H1model)"
+        "Meta-analytic (popmodel)",
+        "Naive (naivemodel)",
+        "Optimistic (optmodel)",
+        "H1 (h1model)"
     ),
     `Loading Range` = c("0.37–0.94", "0.48–0.60", "0.64–0.77", "0.21–0.94"),
     `Mean Loading` = c("0.74", "0.51", "0.69", "0.78"),

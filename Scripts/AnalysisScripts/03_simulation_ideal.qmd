@@ -15,127 +15,303 @@ source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "models.R"))
 ```
 
+## Main misspecification simulation
 
-## Fixed-N simulation (continuous data, ML)
-
-Under ideal conditions: continuous multivariate normal data, ML estimator.
-This should converge with the analytical results from semPower/semTools.
+Coul be create an trivial (or harder) artificial misspecification
 
 ```{r}
-#| label: sim-ideal-fixed
+#| label: sim-ideal-popmodel
 #| cache: true
 
-sim_ideal_fixed <- run_sim(
-  nRep     = REP,
-  n        = 500,
-  model    = analyzeModel,
-  generate = popModel
+popmodel_out <- sim(
+    NULL,
+    n = 51:350,
+    analyzemodel,
+    generate = popmodel,
+    std.lv = TRUE,
+    lavaanfun = "cfa",
+    seed = SEED,
+    multicore = TRUE
 )
-
-summary(sim_ideal_fixed)
 ```
 
-## Varying-N simulation — Power curve
 
 ```{r}
-#| label: sim-ideal-vary
+#| label: sim-ideal-h1model
 #| cache: true
 
-sim_ideal_vary <- run_sim(
-  nRep     = NULL,
-  n        = SEQ,
-  model    = analyzeModel,
-  generate = popModel
+h1model_out <- sim(
+    NULL,
+    n = 51:350,
+    analyzemodel,
+    generate = h1model,
+    std.lv = TRUE,
+    lavaanfun = "cfa",
+    seed = SEED,
+    multicore = TRUE
 )
-
-summary(sim_ideal_vary)
 ```
 
-## Power for parameters
+## Main misspecification outputs
+
+### Power curves for fit indices
 
 ```{r}
-#| label: sim-ideal-power
+#| label: power-curve-ideal
 
-# Extract power for each parameter across N values
-ideal_power <- getPower(sim_ideal_vary, alpha = ALPHA)
-
-# Find the minimum N for 80% power across all parameters
-findPower(ideal_power, "N", POWER)
-```
-
-## Power to detect good fit (fit index cutoffs)
-
-```{r}
-#| label: sim-ideal-fit-power
-
-# Power that fit indices fall within rule-of-thumb cutoffs at selected N values
-cat("--- Power at N = 300 ---\n")
-getPowerFit(sim_ideal_vary, cutoff = RULE_OF_THUMB, nVal = 300)
-
-cat("\n--- Power at N = 500 ---\n")
-getPowerFit(sim_ideal_vary, cutoff = RULE_OF_THUMB, nVal = 500)
-
-cat("\n--- Power at N = 1000 ---\n")
-getPowerFit(sim_ideal_vary, cutoff = RULE_OF_THUMB, nVal = 1000)
-```
-
-## Fit index sampling distributions
-
-```{r}
-#| label: fig-sim-ideal-fit
-#| fig-cap: "Sampling distributions of fit indices across varying N (ideal conditions)"
-#| fig-width: 10
-#| fig-height: 8
-
-plotCutoff(sim_ideal_vary, alpha = ALPHA)
-```
-
-```{r}
-#| label: fig-sim-ideal-power-fit
-#| fig-cap: "Power to achieve acceptable fit across varying N (ideal conditions)"
-#| fig-width: 10
-#| fig-height: 6
-
-plotPowerFit(sim_ideal_vary, cutoff = RULE_OF_THUMB, logistic = FALSE)
-```
-
-## Parameter-level summary
-
-```{r}
-#| label: tbl-sim-param
-#| tbl-cap: "Parameter estimates summary — Ideal conditions, fixed N = 500"
-
-param_summary <- summaryParam(sim_ideal_fixed, detail = TRUE, digits = 3)
-kable(param_summary)
-```
-
-## Convergence: Analytical vs. Simulation
-
-```{r}
-#| label: tbl-convergence
-#| tbl-cap: "Convergence check — Analytical vs. simulation N requirements"
-
-# Note: fill in analytical_n after running 03_analytical_power.qmd
-# For now, use placeholder that will be replaced by the embed output
-convergence_table <- data.frame(
-  Approach = c("semPower a priori (RMSEA ≥ .05)",
-               "semTools a priori (RMSEA ≥ .05)",
-               "simsem (parameter power, max N)",
-               "simsem (fit power at SRMR < .06)"),
-  `N for 80% Power` = c(
-    "See @sec-apriori",
-    "See @sec-apriori",
-    "From findPower() above",
-    "From getPowerFit() above"
-  ),
-  Notes = c(
-    "Model-free, RMSEA-based",
-    "Same underlying math",
-    "Continuous/ML, population model",
-    "Continuous/ML, population model"
-  ),
-  check.names = FALSE
+plotPowerFit(
+    h1model_out,
+    popmodel_out,
+    alpha = ALPHA,
+    usedFit = FITS
 )
+```
 
-kable(convergence_table, align = "lll")
+
+```{r}
+#| label: fit-curve-ideal
+
+plotPowerFit(
+    h1model_out,
+    popmodel_out,
+    alpha = ALPHA,
+    usedFit = FITS,
+    logistic = FALSE
+)
+```
+
+### Power cutoff values for fit indices
+
+You extract the cutoff values for fit indices at a given alpha level and sample size to determine the threshold for acceptable fit under the null model. This allows you to see how stringent the fit criteria are at different sample sizes.
+
+```{r}
+#| label: power-cutoff-ideal
+
+getPowerFit(
+    h1model_out,
+    nullObject = popmodel_out,
+    alpha = ALPHA,
+    nVal = 178,
+    usedFit = FITS
+)
+```
+
+```{r}
+#| label: fit-cutoff-ideal
+
+getCutoff(
+    popmodel_out,
+    alpha = ALPHA,
+    nVal = 178,
+    usedFit = FITS
+)
+```
+
+### Tradidional cutoff values for fit indices
+
+
+```{r}
+#| label: fit-curve-traditional
+
+plotPowerFit(
+    h1model_out,
+    popmodel_out,
+    cutoff = RULE_OF_THUMB,
+    alpha = ALPHA,
+    usedFit = FITS,
+    logistic = FALSE
+)
+```
+
+
+```{r}
+#| label: power-cutoff-traditional
+
+getPowerFit(
+    h1model_out,
+    RULE_OF_THUMB,
+    alpha = ALPHA,
+    nVal = 178,
+    usedFit = FITS
+)
+```
+
+```{r}
+summaryFit(h1model_out, alpha = ALPHA, usedFit = FITS)
+```
+
+### Target parameter estimates
+
+
+```{r}
+summaryParam(h1model_out, alpha = ALPHA, digits = 3, detail = TRUE)
+```
+
+```{r}
+pow_h1 <- getPower(h1model_out, alpha = ALPHA)
+findPower(pow_h1, "N", 0.80)
+```
+
+### Recovering the population parameters
+
+Recovery of population parameters is not best strategy in CFA power analyses. The idea is to determine the sample size needed to accurately estimate the population parameters (e.g., factor loadings <> 0) with a certain level of precision. This can be done by simulating data under different models and evaluating how well the analysis model recovers the population parameters. 
+
+But this strategy its not pratical because uselly we don't need an large sample size to recover the loadings > 0, but rather to detect misspecifications (e.g., cross-loadings) that are not present in the population model. Therefore, we can use the power to detect misspecifications as a more relevant criterion for determining the required sample size.
+
+Naive model: tau-equivalent loadings (uniform λ per domain) with same reliability as the population model. This is a common but often unrealistic assumption in CFA power analyses.
+
+```{r}
+#| label: sim-ideal-naivemodel
+#| cache: true
+
+naivemodel_out <- sim(
+    NULL,
+    n = 51:350,
+    analyzemodel,
+    generate = naivemodel,
+    std.lv = TRUE,
+    lavaanfun = "cfa",
+    seed = SEED,
+    multicore = TRUE
+)
+```
+
+Maybe the better strategy is recovering N from the lowest population loadings.
+
+```{r}
+pow_naive <- getPower(naivemodel_out, alpha = ALPHA)
+findPower(pow_naive, "N", 0.80)
+```
+
+Optimal model: tau-equivalent loadings (uniform λ per domain) with same reliability as the population model, but with higher loadings to match the population reliability. This represents an idealized scenario where the analysis model is correctly specified in terms of reliability, but still assumes tau-equivalence.
+
+```{r}
+#| label: sim-ideal-optmodel
+#| cache: true
+
+optmodel_out <- sim(
+    NULL,
+    n = 51:350,
+    analyzemodel,
+    generate = optmodel,
+    std.lv = TRUE,
+    lavaanfun = "cfa",
+    seed = SEED,
+    multicore = TRUE
+)
+```
+
+Maybe the better strategy is recovering N from the lowest population loadings.
+
+```{r}
+pow_opt <- getPower(optmodel_out, alpha = ALPHA)
+findPower(pow_opt, "N", 0.80)
+```
+
+### Misspecification simulation with different population parameters
+
+#### Naive model
+
+- Power curves for fit indices
+
+```{r}
+#| label: power-curve-naive
+
+plotPowerFit(
+    h1model_out,
+    naivemodel_out,
+    alpha = ALPHA,
+    usedFit = FITS
+)
+```
+
+
+```{r}
+#| label: fit-curve-naive
+
+plotPowerFit(
+    h1model_out,
+    naivemodel_out,
+    alpha = ALPHA,
+    usedFit = FITS,
+    logistic = FALSE
+)
+```
+
+- Power cutoff values for fit indices
+
+```{r}
+#| label: power-cutoff-naive
+
+getPowerFit(
+    h1model_out,
+    nullObject = naivemodel_out,
+    alpha = ALPHA,
+    nVal = 245,
+    usedFit = FITS
+)
+```
+
+```{r}
+#| label: fit-cutoff-naive
+
+getCutoff(
+    naivemodel_out,
+    alpha = ALPHA,
+    nVal = 245,
+    usedFit = FITS
+)
+```
+
+#### Optimal model
+
+- Power curves for fit indices
+
+```{r}
+#| label: power-curve-opt
+
+plotPowerFit(
+    h1model_out,
+    optmodel_out,
+    alpha = ALPHA,
+    usedFit = FITS
+)
+```
+
+
+```{r}
+#| label: fit-curve-opt
+
+plotPowerFit(
+    h1model_out,
+    optmodel_out,
+    alpha = ALPHA,
+    usedFit = FITS,
+    logistic = FALSE
+)
+```
+
+- Power cutoff values for fit indices
+
+```{r}
+#| label: power-cutoff-opt
+
+getPowerFit(
+    h1model_out,
+    nullObject = optmodel_out,
+    alpha = ALPHA,
+    nVal = 217,
+    usedFit = FITS
+)
+```
+
+```{r}
+#| label: fit-cutoff-opt
+
+getCutoff(
+    optmodel_out,
+    alpha = ALPHA,
+    nVal = 217,
+    usedFit = FITS
+)
 ```

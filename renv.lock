@@ -1955,6 +1955,28 @@
       "Author": "Sunthud Pornprasertmanit [aut], Patrick Miller [aut], Alexander M. Schoemann [aut] (<https://orcid.org/0000-0002-8479-8798>), Terrence D. Jorgensen [aut, cre] (<https://orcid.org/0000-0001-5111-6773>), Corbin Quick [ctb]",
       "Repository": "CRAN"
     },
+    "snow": {
+      "Package": "snow",
+      "Version": "0.4-4",
+      "Source": "Repository",
+      "Title": "Simple Network of Workstations",
+      "Author": "Luke Tierney, A. J. Rossini, Na Li, H. Sevcikova",
+      "Description": "Support for simple parallel computing in R.",
+      "Maintainer": "Luke Tierney <luke-tierney@uiowa.edu>",
+      "Suggests": [
+        "rlecuyer"
+      ],
+      "Enhances": [
+        "Rmpi"
+      ],
+      "License": "GPL",
+      "Depends": [
+        "R (>= 2.13.1)",
+        "utils"
+      ],
+      "NeedsCompilation": "no",
+      "Repository": "CRAN"
+    },
     "survival": {
       "Package": "survival",
       "Version": "3.8-6",

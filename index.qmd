@@ -145,9 +145,8 @@ The RMSEA/$\chi^2$-based analytical method classically assumes continuous, multi
 
 ## Monte Carlo Simulation: Ideal Conditions {#sec-sim-ideal}
 
-Given the limitations above, Monte Carlo simulation stands as a highly flexible strategy. We generate many synthetic datasets from the defined `popModel`, apply our `analyzeModel`, and record the parameter estimates and standard errors.
+Given the limitations above, Monte Carlo simulation stands as a highly flexible strategy. We generate many synthetic datasets from the defined `popModel`, apply our `analyzeModel`, and record the parameter estimates and standard errors. Also, we generate many datasets under the alternative misspecification model to evaluate power to detect cross-loadings: `H1Model`. This allows us to empirically estimate the sampling distribution of fit indices and parameter estimates across varying sample sizes, providing a more nuanced picture of power under ideal conditions.
 
-Under strictly ideal conditions (multivariate normal continuous data, no missing values), simulation results should match analytical calculations, validating both implementations. Notice that varying sample sizes gives us empirical power curves.
 
 {{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#sim-ideal-vary >}}
 

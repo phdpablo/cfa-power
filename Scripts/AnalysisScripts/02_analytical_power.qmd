@@ -26,7 +26,7 @@ both parameterized by df.
 #| label: compute-df
 
 # Compute df directly with semPower (no data needed)
-df_model <- semPower::semPower.getDf(analyzeModel)
+df_model <- semPower::semPower.getDf(analyzemodel)
 
 cat("Model degrees of freedom (via semPower):", df_model, "\n")
 ```
@@ -57,12 +57,13 @@ summary(ap_rmsea)
 
 ```{r}
 #| label: apriori-popmodel
+
 ap_popmodel <- semPower.powerLav(
   type = 'a-priori',
   alpha = ALPHA,
   power = POWER,
-  modelPop = popModel,
-  modelH0 = analyzeModel
+  modelPop = popmodel,
+  modelH0 = analyzemodel
 )
 
 summary(ap_popmodel)
