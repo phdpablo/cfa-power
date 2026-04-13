@@ -15,7 +15,7 @@ source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "models.R"))
 ```
 
-## Scenario A — Missing data (MAR 10%)
+## Scenario A — Missing data (MCAR 10%)
 
 Introduce 10% missing completeness at random (MCAR). This demonstrates the
 power cost of attrition / item non-response. For more complex missing data patterns (e.g., MAR, MNAR), you would need to specify a more detailed missing data mechanism (`miss` function in `simsem` package), but this serves as a baseline for the impact of missingness on power. We use FIML estimation to handle the missing data, which is a common approach in SEM.
@@ -26,7 +26,7 @@ power cost of attrition / item non-response. For more complex missing data patte
 
 popmodel_miss <- sim(
     NULL,
-    n = 51:350,
+    n = SEQ,
     pmMCAR = 0.10,
     analyzemodel,
     generate = popmodel,
@@ -46,7 +46,7 @@ popmodel_miss <- sim(
 
 h1model_miss <- sim(
     NULL,
-    n = 51:350,
+    n = SEQ,
     pmMCAR = 0.10,
     analyzemodel,
     generate = h1model,
@@ -63,6 +63,9 @@ h1model_miss <- sim(
 
 ```{r}
 #| label: power-curve-missing
+#| fig-cap: "Power curves for fit indices under missing data conditions."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_miss,
@@ -75,6 +78,9 @@ plotPowerFit(
 
 ```{r}
 #| label: fit-curve-missing
+#| fig-cap: "Power curves for fit indices under missing data conditions without logistic smoothing."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_miss,
@@ -91,23 +97,25 @@ You extract the cutoff values for fit indices at a given alpha level and sample 
 
 ```{r}
 #| label: power-cutoff-missing
+#| tbl-cap: "Power for fit index cutoffs under missing data conditions at N = 297."
 
 getPowerFit(
     h1model_miss,
     nullObject = popmodel_miss,
     alpha = ALPHA,
-    nVal = 100,
+    nVal = 297,
     usedFit = FITS
 )
 ```
 
 ```{r}
 #| label: fit-cutoff-missing
+#| tbl-cap: "Fit index cutoff values under missing data conditions at N = 100."
 
 getCutoff(
     popmodel_miss,
     alpha = ALPHA,
-    nVal = 100,
+    nVal = 297,
     usedFit = FITS
 )
 ```
@@ -136,7 +144,7 @@ dist <- bindDist(
 
 popmodel_nnorm <- sim(
     NULL,
-    n = 51:350,
+    n = SEQ,
     analyzemodel,
     generate = popmodel,
     indDist = dist,
@@ -155,7 +163,7 @@ popmodel_nnorm <- sim(
 
 h1model_nnorm <- sim(
     NULL,
-    n = 51:350,
+    n = SEQ,
     analyzemodel,
     generate = h1model,
     indDist = dist,
@@ -171,6 +179,9 @@ h1model_nnorm <- sim(
 
 ```{r}
 #| label: power-curve-nnorm
+#| fig-cap: "Power curves for robust fit indices under non-normal conditions."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_nnorm,
@@ -183,6 +194,9 @@ plotPowerFit(
 
 ```{r}
 #| label: fit-curve-nnorm
+#| fig-cap: "Power curves for robust fit indices under non-normal conditions without logistic smoothing."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_nnorm,
@@ -199,23 +213,25 @@ You extract the cutoff values for fit indices at a given alpha level and sample 
 
 ```{r}
 #| label: power-cutoff-nnorm
+#| tbl-cap: "Power for robust fit index cutoffs under non-normal conditions at N = 201."
 
 getPowerFit(
     h1model_nnorm,
     nullObject = popmodel_nnorm,
     alpha = ALPHA,
-    nVal = 100,
+    nVal = 201,
     usedFit = FITS_ROB
 )
 ```
 
 ```{r}
 #| label: fit-cutoff-nnorm
+#| tbl-cap: "Robust fit index cutoff values under non-normal conditions at N = 201."
 
 getCutoff(
     popmodel_nnorm,
     alpha = ALPHA,
-    nVal = 100,
+    nVal = 201,
     usedFit = FITS_ROB
 )
 ```
@@ -231,7 +247,7 @@ This scenario combines the challenges of missing data and non-normality, reflect
 
 popmodel_normiss <- sim(
     NULL,
-    n = 51:350,
+    n = SEQ,
     pmMCAR = 0.10,
     analyzemodel,
     generate = popmodel,
@@ -252,7 +268,7 @@ popmodel_normiss <- sim(
 
 h1model_normiss <- sim(
     NULL,
-    n = 51:350,
+    n = SEQ,
     pmMCAR = 0.10,
     analyzemodel,
     generate = h1model,
@@ -270,6 +286,9 @@ h1model_normiss <- sim(
 
 ```{r}
 #| label: power-curve-normiss
+#| fig-cap: "Power curves for robust fit indices under missing data and non-normal conditions."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_normiss,
@@ -282,6 +301,9 @@ plotPowerFit(
 
 ```{r}
 #| label: fit-curve-normiss
+#| fig-cap: "Power curves for robust fit indices under missing data and non-normal conditions without logistic smoothing."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_normiss,
@@ -299,23 +321,25 @@ You extract the cutoff values for fit indices at a given alpha level and sample 
 
 ```{r}
 #| label: power-cutoff-normiss
+#| tbl-cap: "Power for robust fit index cutoffs under missing data and non-normal conditions at N = 185."
 
 getPowerFit(
     h1model_normiss,
     nullObject = popmodel_normiss,
     alpha = ALPHA,
-    nVal = 135,
+    nVal = 350,
     usedFit = FITS_ROB
 )
 ```
 
 ```{r}
 #| label: fit-cutoff-normiss
+#| tbl-cap: "Robust fit index cutoff values under missing data and non-normal conditions at N = 185."
 
 getCutoff(
     popmodel_normiss,
     alpha = ALPHA,
-    nVal = 135,
+    nVal = 350,
     usedFit = FITS_ROB
 )
 ```

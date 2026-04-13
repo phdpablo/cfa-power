@@ -226,6 +226,32 @@ h1model <- '
   Q25 ~~ 0.4671*Q25
 '
 
+h1modelfree <- '
+  # ── Factor loadings (with three cross-loadings; freely estimated) ─────────
+  psycho      =~ Q5  + Q6  + Q7  + Q11 + Q19 + Q26 + Q8  + Q9
+  physical    =~ Q3  + Q4  + Q10 + Q15 + Q16 + Q17 + Q18
+  social      =~ Q20 + Q21 + Q22
+  environment =~ Q8  + Q9  + Q12 + Q13 + Q14 + Q23 + Q24 + Q25 + Q15
+
+  # ── Factor variances (=1) and free interfactor correlations ───────────────
+  psycho      ~~ 1*psycho      + physical + social + environment
+  physical    ~~ 1*physical    + social   + environment
+  social      ~~ 1*social      + environment
+  environment ~~ 1*environment
+
+  # ── Residual covariance Q3~~Q4: freely estimated ──────────────────────────
+  Q4 ~~ Q3
+
+  # ── Residual variances: freely estimated ──────────────────────────────────
+  Q5  ~~ Q5;  Q6  ~~ Q6;  Q7  ~~ Q7
+  Q11 ~~ Q11; Q19 ~~ Q19; Q26 ~~ Q26
+  Q3  ~~ Q3;  Q4  ~~ Q4;  Q10 ~~ Q10
+  Q15 ~~ Q15; Q16 ~~ Q16; Q17 ~~ Q17; Q18 ~~ Q18
+  Q20 ~~ Q20; Q21 ~~ Q21; Q22 ~~ Q22
+  Q8  ~~ Q8;  Q9  ~~ Q9;  Q12 ~~ Q12; Q13 ~~ Q13
+  Q14 ~~ Q14; Q23 ~~ Q23; Q24 ~~ Q24; Q25 ~~ Q25
+'
+
 # =============================================================================
 # SECTION 2 — ANALYSIS MODEL (free parameters; used in BOTH paradigmas)
 # =============================================================================

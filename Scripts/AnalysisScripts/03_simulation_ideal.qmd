@@ -17,7 +17,7 @@ source(here("Scripts", "DataAppendixScripts", "models.R"))
 
 ## Main misspecification simulation
 
-Coul be create an trivial (or harder) artificial misspecification
+Coul be create an trivial (or harder) artificial misspecification. Just one rep by each N: in your case you should be use more reps, but for the sake of time we will use just one.
 
 ```{r}
 #| label: sim-ideal-popmodel
@@ -25,7 +25,7 @@ Coul be create an trivial (or harder) artificial misspecification
 
 popmodel_out <- sim(
     NULL,
-    n = 51:350,
+    n = SEQ,
     analyzemodel,
     generate = popmodel,
     std.lv = TRUE,
@@ -42,7 +42,7 @@ popmodel_out <- sim(
 
 h1model_out <- sim(
     NULL,
-    n = 51:350,
+    n = SEQ,
     analyzemodel,
     generate = h1model,
     std.lv = TRUE,
@@ -58,6 +58,9 @@ h1model_out <- sim(
 
 ```{r}
 #| label: power-curve-ideal
+#| fig-cap: "Power curves for fit indices under ideal conditions."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_out,
@@ -70,6 +73,9 @@ plotPowerFit(
 
 ```{r}
 #| label: fit-curve-ideal
+#| fig-cap: "Power curves for fit indices under ideal conditions without logistic smoothing."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_out,
@@ -86,23 +92,25 @@ You extract the cutoff values for fit indices at a given alpha level and sample 
 
 ```{r}
 #| label: power-cutoff-ideal
+#| tbl-cap: "Power for fit index cutoffs under ideal conditions at N = 184."
 
 getPowerFit(
     h1model_out,
     nullObject = popmodel_out,
     alpha = ALPHA,
-    nVal = 178,
+    nVal = 184,
     usedFit = FITS
 )
 ```
 
 ```{r}
 #| label: fit-cutoff-ideal
+#| tbl-cap: "Fit index cutoff values under ideal conditions at N = 184."
 
 getCutoff(
     popmodel_out,
     alpha = ALPHA,
-    nVal = 178,
+    nVal = 184,
     usedFit = FITS
 )
 ```
@@ -112,6 +120,9 @@ getCutoff(
 
 ```{r}
 #| label: fit-curve-traditional
+#| fig-cap: "Power curves using traditional fit index cutoffs under ideal conditions."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_out,
@@ -126,17 +137,19 @@ plotPowerFit(
 
 ```{r}
 #| label: power-cutoff-traditional
+#| tbl-cap: "Power for traditional fit index cutoffs under ideal conditions at N = 184."
 
 getPowerFit(
     h1model_out,
     RULE_OF_THUMB,
     alpha = ALPHA,
-    nVal = 178,
+    nVal = 184,
     usedFit = FITS
 )
 ```
 
 ```{r}
+#| tbl-cap: "Summary of fit indices under ideal conditions."
 summaryFit(h1model_out, alpha = ALPHA, usedFit = FITS)
 ```
 
@@ -144,6 +157,7 @@ summaryFit(h1model_out, alpha = ALPHA, usedFit = FITS)
 
 
 ```{r}
+#| tbl-cap: "Summary of parameter estimates under ideal conditions."
 summaryParam(h1model_out, alpha = ALPHA, digits = 3, detail = TRUE)
 ```
 
@@ -166,7 +180,7 @@ Naive model: tau-equivalent loadings (uniform λ per domain) with same reliabili
 
 naivemodel_out <- sim(
     NULL,
-    n = 51:350,
+    n = SEQ,
     analyzemodel,
     generate = naivemodel,
     std.lv = TRUE,
@@ -191,7 +205,7 @@ Optimal model: tau-equivalent loadings (uniform λ per domain) with same reliabi
 
 optmodel_out <- sim(
     NULL,
-    n = 51:350,
+    n = SEQ,
     analyzemodel,
     generate = optmodel,
     std.lv = TRUE,
@@ -216,6 +230,9 @@ findPower(pow_opt, "N", 0.80)
 
 ```{r}
 #| label: power-curve-naive
+#| fig-cap: "Power curves for fit indices using the naive population model."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_out,
@@ -228,6 +245,9 @@ plotPowerFit(
 
 ```{r}
 #| label: fit-curve-naive
+#| fig-cap: "Power curves for fit indices using the naive population model without logistic smoothing."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_out,
@@ -242,23 +262,25 @@ plotPowerFit(
 
 ```{r}
 #| label: power-cutoff-naive
+#| tbl-cap: "Power for fit index cutoffs using the naive population model at N = 203."
 
 getPowerFit(
     h1model_out,
     nullObject = naivemodel_out,
     alpha = ALPHA,
-    nVal = 245,
+    nVal = 203,
     usedFit = FITS
 )
 ```
 
 ```{r}
 #| label: fit-cutoff-naive
+#| tbl-cap: "Fit index cutoff values using the naive population model at N = 203."
 
 getCutoff(
     naivemodel_out,
     alpha = ALPHA,
-    nVal = 245,
+    nVal = 203,
     usedFit = FITS
 )
 ```
@@ -269,6 +291,9 @@ getCutoff(
 
 ```{r}
 #| label: power-curve-opt
+#| fig-cap: "Power curves for fit indices using the optimal population model."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_out,
@@ -281,6 +306,9 @@ plotPowerFit(
 
 ```{r}
 #| label: fit-curve-opt
+#| fig-cap: "Power curves for fit indices using the optimal population model without logistic smoothing."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_out,
@@ -295,23 +323,25 @@ plotPowerFit(
 
 ```{r}
 #| label: power-cutoff-opt
+#| tbl-cap: "Power for fit index cutoffs using the optimal population model at N = 170."
 
 getPowerFit(
     h1model_out,
     nullObject = optmodel_out,
     alpha = ALPHA,
-    nVal = 217,
+    nVal = 170,
     usedFit = FITS
 )
 ```
 
 ```{r}
 #| label: fit-cutoff-opt
+#| tbl-cap: "Fit index cutoff values using the optimal population model at N = 170."
 
 getCutoff(
     optmodel_out,
     alpha = ALPHA,
-    nVal = 217,
+    nVal = 170,
     usedFit = FITS
 )
 ```

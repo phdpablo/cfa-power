@@ -13,41 +13,148 @@ execute:
 library(here)
 source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "models.R"))
+
 ```
 
-## Post hoc power analysis: Achieved power with N = 1047
+```{r}
+#| label: load-realdata
+#|
+url_data <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/b58a7054-4978-4239-81db-00f9efd86e44/WHOQOL_Data.dat"
+realdata <- read.table(url_data)
+
+url_labels <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/ae2a5c01-2fc2-43e5-b31c-8db8cc5bff8a/WHOQOL_Labels.txt"
+column_labels <- read.table(url_labels)
+column_labels <- column_labels$V1
+names(realdata) <- gsub("_[FPSA]$", "", column_labels)
+
+n_real <- nrow(realdata)
+
+df_model <- semPower::semPower.getDf(analyzemodel)
+```
+
+## Post hoc power analysis
+
+### With simulation
+
+- Passo 1: Ajustar o modelo aos dados reais
+
+```{r}
+#| label: realdata-model
+
+fit_real <- cfa(
+  analyzemodel,
+  data = realdata,
+  #std.lv = TRUE,
+  estimator = "mlr"
+)
+```
+
+- Passo 2: Simular modelo nulo com N real
+
+```{r}
+#| label: posthoc-sim-null
+
+sim_null <- sim(
+    nRep      = 1000,
+    n         = n_real,
+    analyzemodel,
+    generate  = fit_real,
+    std.lv    = TRUE,
+    lavaanfun = "cfa",
+    estimator = "mlr",
+    seed      = SEED,
+    multicore = TRUE
+)
+```
+
+- Passo 3: Simular modelo alternativo com N real
+
+```{r}
+#| label: posthoc-sim-alt
+
+sim_alt <- sim(
+    nRep      = 1000,
+    n         = n_real,
+    analyzemodel,
+    generate  = h1model,
+    std.lv    = TRUE,
+    lavaanfun = "cfa",
+    estimator = "mlr",
+    seed      = SEED,
+    multicore = TRUE
+)
+```
+
+- Passo 4: Poder no N coletado
+
+```{r}
+#| label: posthoc-plotpower
+
+# Visualização
+plotPowerFit(
+    sim_alt,
+    nullObject = sim_null,
+    alpha      = ALPHA,
+    usedFit    = FITS_ROB
+)
+```
+
+```{r}
+#| label: posthoc-power
+
+# Poder para detectar a misspecification no N atual
+getPowerFit(
+    sim_alt,
+    nullObject = sim_null,
+    alpha      = ALPHA,
+    usedFit    = FITS_ROB
+)
+```
+
 
 ### With semPower
 
 ```{r}
-#| label: posthoc-sempower
+#| label: posthoc-rsmea
 
-df_model <- semPower::semPower.getDf(analyzeModel)
-
-ph_sempower <- semPower::semPower.postHoc(
+ph_rsmea <- semPower::semPower.postHoc(
     effect         = 0.05,
-    effect.measure = "RMSEA",
+    effect.measure = "RMSEA", # RMSEA under H1 (exact-fit model: H0: RMSEA = 0)
     alpha          = ALPHA,
-    N              = N_EMPIRICAL,
-    df             = df_model
+    N              = n_real,
+    df             = df_model,
+    p              = P # Just for GFI and AGFI
 )
 
-summary(ph_sempower)
+summary(ph_rsmea)
 ```
 
-### With semTools
-
 ```{r}
-#| label: posthoc-semtools
+#| label: posthoc-realmodel
 
-power_semtools <- semTools::findRMSEApower(
-    rmsea0 = 0.05,
-    rmseaA = 0,
-    df     = df_model,
-    n      = N_EMPIRICAL,
-    alpha  = ALPHA
+ph_realmodel <- semPower.powerLav(
+  type = 'post-hoc',
+  alpha = ALPHA,
+  N = n_real,
+  modelPop = popmodel,
+  modelH0 = fit_real,
 )
 
-cat("Achieved power (semTools):", round(power_semtools, 4), "\n")
+summary(ph_realmodel)
+```
+
+```{r}
+#| label: posthoc-test
+
+ph_test <- semPower.powerLav(
+  type = 'post-hoc',
+  alpha = ALPHA,
+  N = n_real,
+  modelPop = popmodel,
+  modelH0 = fit_real,
+  modelH1 = h1modelfree
+)
+
+summary(ph_test)
 ```
 

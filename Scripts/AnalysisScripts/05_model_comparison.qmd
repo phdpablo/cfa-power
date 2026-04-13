@@ -22,17 +22,18 @@ Make table with resume.
 
 ## Power Analysis with fixed N
 
-Ideial condition: PA it not sensitive to distributional assumptions, missing data, etc. So, we use ideal for time consuming simulations. We can also do the same for the robust conditions, but it will take more time.
+Ideial condition: PA it not too sensitive to distributional assumptions, missing data, etc. So, we use ideal for time consuming simulations. We can also do the same for the robust conditions, but it will take more time.
 
 ```{r}
 #| label: sim-fixed-popmodel
 #| cache: true
 
 popmodel_fixed <- sim(
-    1000,
-    n = 250,
+    REP,
+    n = 350,
     analyzemodel,
     generate = popmodel,
+    indDist = dist,
     std.lv = TRUE,
     lavaanfun = "cfa",
     seed = SEED,
@@ -46,10 +47,11 @@ popmodel_fixed <- sim(
 #| cache: true
 
 h1model_fixed <- sim(
-    1000,
-    n = 250,
+    REP,
+    n = 350,
     analyzemodel,
     generate = h1model,
+    indDist = dist,
     std.lv = TRUE,
     lavaanfun = "cfa",
     seed = SEED,
@@ -61,6 +63,9 @@ h1model_fixed <- sim(
 
 ```{r}
 #| label: power-curve-fixed
+#| fig-cap: "Power curves for fit indices with fixed sample size."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_fixed,
@@ -76,6 +81,7 @@ You extract the cutoff values for fit indices at a given alpha level and sample 
 
 ```{r}
 #| label: power-cutoff-fixed
+#| tbl-cap: "Power for fit index cutoffs with fixed sample size."
 
 getPowerFit(
     h1model_fixed,
@@ -87,6 +93,7 @@ getPowerFit(
 
 ```{r}
 #| label: fit-cutoff-fixed
+#| tbl-cap: "Fit index cutoff values with fixed sample size."
 
 getCutoff(
     popmodel_fixed,
@@ -97,6 +104,7 @@ getCutoff(
 
 
 ```{r}
+#| tbl-cap: "Summary of parameter estimates with fixed sample size."
 summaryParam(h1model_fixed, alpha = ALPHA, digits = 3, detail = TRUE)
 ```
 
@@ -104,6 +112,9 @@ summaryParam(h1model_fixed, alpha = ALPHA, digits = 3, detail = TRUE)
 
 ```{r}
 #| label: fit-curve-fixed
+#| fig-cap: "Power curves using traditional fit index cutoffs with fixed sample size."
+#| fig-width: 8
+#| fig-height: 5
 
 plotPowerFit(
     h1model_fixed,
@@ -117,6 +128,7 @@ plotPowerFit(
 
 ```{r}
 #| label: power-cutoff-traditional
+#| tbl-cap: "Power for traditional fit index cutoffs with fixed sample size."
 
 getPowerFit(
     h1model_fixed,

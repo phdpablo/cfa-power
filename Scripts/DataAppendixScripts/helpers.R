@@ -21,12 +21,12 @@ library(snow)
 
 # --- Configuration -----------------------------------------------------------
 
-#' Number of Monte Carlo replications.
-#' Use 50 for local development; increase to >= 1000 for production results.
-REP <- 50
+#' Monte Carlo Simulation.
+REP <- 1000 # Number of replications for final analysis.
+SEQ <- 51:350 # Sample size sequence for varying-N simulations [or seq(51, 350, 1)]
 
-#' Random seed for reproducibility across all simulations.
-SEED <- 123456
+#' Random seed for reproducibility across all simulations: simsem default is 123321.
+SEED <- 123321
 
 #' Significance level for hypothesis tests.
 ALPHA <- 0.05
@@ -36,9 +36,6 @@ POWER <- 0.80
 
 #' Number of observed indicators in the CFA model (p).
 P <- 24
-
-#' Sample size in the WHOQOL-BREF empirical dataset (Rogers, 2022).
-N_EMPIRICAL <- 1047
 
 #' Fit indices to be used in the analysis.
 FITS <- c("rmsea", "srmr", "cfi", "tli")
@@ -52,10 +49,5 @@ RULE_OF_THUMB <- c(
   srmr = 0.06
 )
 
-#' Sample size sequence for varying-N simulations.
-SEQ <- seq(100, 600, 10)
-
 # --- Global Session Configuration --------------------------------------------
 options(max.print = 1e6)
-set.seed(SEED)
-set.seed(SEED, kind = "L'Ecuyer-CMRG")
