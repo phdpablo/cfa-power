@@ -31,13 +31,19 @@ Ideial condition: PA it not too sensitive to distributional assumptions, missing
 popmodel_fixed <- sim(
     REP,
     n = 350,
+    pmMCAR = 0.10,
     analyzemodel,
     generate = popmodel,
+    indDist = dist,
     std.lv = TRUE,
     lavaanfun = "cfa",
+    estimator = "mlr",
+    missing = "fiml",
     seed = SEED,
     multicore = TRUE
 )
+
+saveRDS(popmodel_fixed, file = "cache/popmodel_fixed.rds")
 ```
 
 
@@ -48,13 +54,19 @@ popmodel_fixed <- sim(
 h1model_fixed <- sim(
     REP,
     n = 350,
+    pmMCAR = 0.10,
     analyzemodel,
     generate = h1model,
+    indDist = dist,
     std.lv = TRUE,
     lavaanfun = "cfa",
+    estimator = "mlr",
+    missing = "fiml",
     seed = SEED,
     multicore = TRUE
 )
+
+saveRDS(h1model_fixed, file = "cache/h1model_fixed.rds")
 ```
 
 ### Power curves for fit indices

@@ -126,15 +126,129 @@ Analytical calculations depend crucially on model degrees of freedom ($df$), the
 
 ### A Priori: How Many Observations? {#sec-apriori}
 
+An a priori power analysis is conducted before data collection to determine the sample size required to detect a target effect with a prespecified significance level, desired power, and model degrees of freedom [@moshagen2023; @semPower].
+
+In this setup, the effect is defined through the RMSEA, which expresses model misfit on a per-degree-of-freedom basis and therefore serves as a noncentrality-based measure of discrepancy between the null model and the comparison model [@moshagen2023; @jobst2023].
+
+Because RMSEA is directly linked to the population minimum of the fitting function through \(F_0 = \mathrm{RMSEA}^2 \times df\), the target misfit can be translated into the noncentrality parameter used in the analytical power calculation, \(\lambda = (N - 1)F_0\) [@moshagen2023].
+
+This corresponds to an analytical, model-free power analysis, meaning that the required sample size is determined by the chosen effect magnitude, \(\alpha\), desired power, and \(df\), rather than by the interpretation of any single model parameter [@moshagen2023].
+
+Accordingly, an RMSEA-based a priori analysis is most appropriate when the objective is to plan sample size for detecting overall model misspecification in a global chi-square test of model fit [@jobst2023; @moshagen2023].
+
 {{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#apriori-rmsea >}}
+
+#### Interpreting the `semPower.aPriori` output
+
+This output shows the minimum sample size required to detect a degree of model misfit equal to \(\mathrm{RMSEA} = 0.05\) with target power \(0.80\) at \(\alpha = 0.05\). In this setup, the null hypothesis is exact fit, so the reported effect refers to the level of misspecification to be detected under the alternative hypothesis, not to a misfit level assumed under the null [@moshagen2023; @jobst2023].
+
+#### Effect-size values
+
+The output reports several equivalent representations of the same target effect. The value \(F_0 = `r round(ap_rmsea$fmin, 3)`\) is the population minimum of the fitting function, obtained from \(F_0 = df \cdot \mathrm{RMSEA}^2 = `r ap_rmsea$df` \cdot 0.05^2\), so it is simply the RMSEA target expressed on the scale used by the chi-square power calculation [@moshagen2023; @jobst2023].
+
+The same discrepancy is also shown as \(\mathrm{RMSEA} = 0.050\), \(Mc = `r round(ap_rmsea$mc, 3)`\), \(GFI = `r round(ap_rmsea$gfi, 3)`\), and \(AGFI = `r round(ap_rmsea$agfi, 3)`\). These are not different effects; they are alternative summaries of the same amount of model misfit, reported in the format used by `semPower` [@moshagen2023].
+
+The key conversion behind the output is
+
+\[
+\lambda = (N - 1)F_0 = (N - 1)\,df\,\mathrm{RMSEA}^2
+\]
+
+which translates the chosen effect size into the noncentrality parameter used to define the alternative chi-square distribution [@moshagen2023; @jobst2023].
+
+#### Test quantities
+
+The model has \(df = `r ap_rmsea$df)`\), and these degrees of freedom determine the reference central chi-square distribution used in the test. Given the requested operating conditions, the a priori solution is \(N = `r ap_rmsea$requiredN`\), meaning that `r ap_rmsea$requiredN` observations are the minimum sample size needed to achieve power of about 0.80 in this exact specification [@jobst2023; @jak2021].
+
+At that sample size, the noncentrality parameter is \(\lambda = `r round(ap_rmsea$impliedNCP, 3)`\), obtained from \((`r ap_rmsea$requiredN` - 1) \cdot 0.`r round(ap_rmsea$fmin, 3)`\). This value determines how far the alternative chi-square distribution is shifted to the right relative to the null distribution [@moshagen2023; @jak2021].
+
+The critical value is \(\chi^2_c = `r round(ap_rmsea$chiCrit, 3)`\). In practical terms, this is the cutoff used to decide whether the observed test statistic is large enough to reject exact fit at the \(\alpha = 0.05\) level [@jobst2023; @jak2021].
+
+#### Errors and power
+
+The reported \(\alpha = 0.05\) is the probability of rejecting the model when exact fit is actually true. The reported \(\beta \approx `r round(ap_rmsea$impliedBeta, 3)`\) is the probability of failing to reject the model even though the population misfit is \(\mathrm{RMSEA} = 0.05\) [@jak2021; @jobst2023].
+
+Accordingly, the reported power is \(1 - \beta \approx `r round(ap_rmsea$impliedPower, 3)`\). This means that, with \(N = `r ap_rmsea$requiredN`\), the analysis has about an 80% chance of detecting this level of misspecification if it is truly present in the population [@moshagen2023; @jobst2023].
+
+#### Reading the figure
+
+In the figure, the solid red curve represents the central \(\chi^2\) distribution under exact fit, and the dashed blue curve represents the noncentral \(\chi^2\) distribution under the target misspecification \(\mathrm{RMSEA} = 0.05\). The vertical dotted line at \(\chi^2 = `r round(ap_rmsea$chiCrit, 3)`\) is the decision threshold, so the two shaded tail areas visualize the reported \(\alpha\), \(\beta\), and power values [@jak2021; @moshagen2023].
+
+Because the achieved power is \(`r round(ap_rmsea$impliedPower, 3)`\), the solution is essentially right at the requested threshold rather than comfortably above it. The output therefore supports the interpretation that \(N = `r ap_rmsea$requiredN`\) is the minimum adequate sample size for this particular a priori specification [@jobst2023].
+
+By contrast, when the substantive hypothesis concerns a specific loading, regression coefficient, factor correlation, or cross-group constraint, a model-based power analysis is typically more appropriate than a global RMSEA-based specification [@moshagen2023].
+
+In this framework, power is defined for a specific hypothesis, so the relevant sample size depends on the discrepancy between the null model and the comparison model rather than on a universal rule of thumb for SEM sample sizes [@moshagen2023; @jobst2023].
+
+Using `semPower.powerLav()`, the population model represents the data-generating structure, whereas `modelH0` represents the null analysis model to be challenged. When `modelH1` is omitted, the null model is evaluated against the saturated model, which makes the analysis a test of global model misfit rather than a test of a single isolated parameter restriction [@moshagen2023; @jobst2023].
+
+Conceptually, the analytical procedure fits the null model to the population-implied covariance structure and converts the resulting discrepancy into a noncentrality-based effect size. The key quantity is the population minimum of the fitting function, \(F_0\), which is linked to the noncentrality parameter by \(\lambda = (N - 1)F_0\) and therefore connects substantive model misspecification to statistical power [@moshagen2023; @jobst2023].
+
+Because the effect is generated by the full model specification, the required sample size is inherently model-dependent and may change when loadings, factor correlations, residual variances, or other population parameters are modified [@moshagen2023; @jobst2023].
+
+This type of analysis is especially useful when the goal is to justify sample size planning from a theoretically specified SEM rather than from a generic fit index threshold. At the same time, its interpretation relies on the assumptions underlying analytical chi-square-based power analysis, so simulation-based approaches become preferable when nonnormality, missing data, or convergence issues are central concerns [@moshagen2023; @jobst2023].
 
 {{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#apriori-popmodel >}}
 
+The output indicates a population discrepancy of \(F_0 = `r round(ap_popmodel$fmin, 3)`\), which is also expressed as \(\mathrm{RMSEA} = `r round(ap_popmodel$rmsea, 3)`\) and \(Mc = `r round(ap_popmodel$mc, 3)`\) in the summary table.
+
+The null model has \(df = `r ap_popmodel$df`\), and the a priori analysis shows that the required sample size is \(N = `r ap_popmodel$requiredN`\) to attain the requested design conditions. The corresponding critical chi-square is \(`r round(ap_popmodel$chiCrit, 3)`\), which is the cutoff used by the test at the specified significance level.
+
+The output also reports a noncentrality parameter of \(`r round(ap_popmodel$impliedNCP, 3)`\), consistent with the relationship \(\lambda = (N - 1)F_0\) for the obtained solution.
+
+Regarding the error rates, the summary shows \(\alpha = `r round(ap_popmodel$alpha, 3)`\), \(\beta = `r round(ap_popmodel$impliedBeta, 3)`\), and \(\text{Power} = 1 - \beta = `r round(ap_popmodel$impliedPower, 3)`\), indicating that the result reaches the intended power of approximately 80\%.
+
 ### Power Curves {#sec-power-curves}
+
+This figures are used to frame power analysis as a relationship between sample size and the probability of detecting a prespecified degree of model misspecification, holding the significance level and model degrees of freedom constant [@moshagen2023; @jobst2023].
+
+#### Model-free approach (RMSEA-based)
+
+In setting below, power is evaluated analytically and **model-free**, which means the calculation depends on the chosen effect size metric, \(\alpha\), and \(df\), rather than on a fully parameterized substantive SEM [@moshagen2023; @jobst2023].
+
+Using RMSEA as the effect definition is convenient because it is a noncentrality-based fit measure with a direct connection to the discrepancy underlying the chi-square test, typically expressed as \(F_0 = \mathrm{RMSEA}^2 \times df\) [@moshagen2023; @jobst2023].
+
+Conceptually, the plot answers a planning question: for a model with fixed \(df\), how large must \(N\) be so that the test has a sufficiently high probability of detecting misspecification of at least the target magnitude [@moshagen2023; @jobst2023].
+
+This type of visualization is especially useful when the research objective concerns global model fit rather than a single parameter restriction, because it summarizes the sensitivity of the chi-square-based test across a continuum of sample sizes [@moshagen2023; @jobst2023]. It therefore supports design justification by linking substantive tolerance for model misfit to sample size requirements in a transparent and reproducible way [@moshagen2023; @jobst2023].
 
 {{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-power-rmsea >}}
 
+The figure shows that statistical power increases monotonically as sample size \(N\) becomes larger. At the lower end of the \(N\) range, the curve indicates insufficient sensitivity to detect the prespecified level of misspecification, whereas at higher \(N\) values the curve approaches very high power.
+
+The most important empirical result in this plot is the point where the curve reaches the target power threshold used in the analysis. That crossing identifies the minimum sample size in the displayed range that is consistent with the desired level of power, while values below that point remain underpowered and values above it provide progressively greater detection probability.
+
+In practical terms, the graph supports a direct reading of sample-size adequacy from the plotted trajectory. The relevant interpretation is therefore not any single point in isolation, but the location of the curve relative to the target power level across the full range of \(N\) values shown in the figure.
+
+#### Model-based approach
+
+In the model-based approach, power analysis is anchored in a substantively specified SEM rather than in a purely generic fit index value, so the focal effect is defined by the discrepancy between the population model and the restricted analysis model under the null hypothesis [@moshagen2023; @jobst2023].
+
+Analytically, this discrepancy is translated into a noncentrality-based effect, typically through the population minimum of the fitting function \(F_0\), which then links the substantive model assumptions to the likelihood-ratio testing framework used for power analysis [@moshagen2023; @jobst2023].
+
+The function `semPower.powerPlot` does not redefine the model or estimate new parameters; instead, it visualizes how the implied statistical power changes as a function of sample size for that previously specified model-based effect [@moshagen2023; @jobst2023].
+
+Conceptually, this type of graph is useful because it turns the result of the analytical power analysis into a design-oriented representation of sensitivity across possible sample sizes [@moshagen2023; @jobst2023]. 
+
+In a model-based setting, this is especially valuable because the effect is tied to the specific covariance structure implied by the substantive model, meaning that the power function reflects the hypothesized parameter configuration rather than an abstract misspecification level detached from the model itself [@moshagen2023; @jobst2023].
+
 {{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-power-popmodel >}}
+
+The plot titled \( \text{Power for } F_0 = `r round(ap_popmodel$fmin, 3)`\) shows a clear monotonic increase in power as sample size \(N\) grows.
+
+At the lower end of the sample-size range, power is very limited. For very small samples, the curve is close to \(0.07\)–\(0.10\), indicating a low probability of detecting the effect represented by this \(F_0\).
+
+The curve enters a stronger growth region between approximately \(N = 120\) and \(N = 220\). In this interval, gains in sample size translate into substantial gains in power, with the curve moving from moderate sensitivity to clearly adequate sensitivity.
+
+The conventional threshold of \(0.80\) power is reached at approximately \(N \approx 200\). This is the key empirical reading of the graph, because it marks the approximate sample size at which the analysis becomes adequately powered under the specified effect.
+
+For larger samples, the curve approaches its ceiling. Around \(N \approx 280\), power is close to \(0.95\), and by the upper end of the graph, near \(N \approx 340\) to \(350\), power is close to \(0.99\).
+
+Overall, the graph indicates that small samples are clearly underpowered, sample sizes around \(200\) are approximately sufficient for the usual \(0.80\) criterion, and larger samples above that level provide increasingly strong detection probability, though with diminishing marginal gains.
+
+### Summary table
+
+The table shows that the model-based approach is substantially more demanding in sample size than the model-free RMSEA-based approach, requiring roughly twice as many observations to achieve essentially the same target power. This difference suggests that, once the effect is defined from the population model itself, the analysis points to a more conservative and likely more realistic sample size requirement.
 
 {{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#tbl-analytical-summary >}}
 

@@ -23,7 +23,7 @@ Coul be create an trivial (or harder) artificial misspecification. Just one rep 
 #| label: sim-ideal-popmodel
 #| cache: true
 
-popmodel_out <- sim(
+popmodel_ideal <- sim(
     NULL,
     n = SEQ,
     analyzemodel,
@@ -40,7 +40,7 @@ popmodel_out <- sim(
 #| label: sim-ideal-h1model
 #| cache: true
 
-h1model_out <- sim(
+h1model_ideal <- sim(
     NULL,
     n = SEQ,
     analyzemodel,
@@ -63,8 +63,8 @@ h1model_out <- sim(
 #| fig-height: 5
 
 plotPowerFit(
-    h1model_out,
-    popmodel_out,
+    h1model_ideal,
+    popmodel_ideal,
     alpha = ALPHA,
     usedFit = FITS
 )
@@ -78,8 +78,8 @@ plotPowerFit(
 #| fig-height: 5
 
 plotPowerFit(
-    h1model_out,
-    popmodel_out,
+    h1model_ideal,
+    popmodel_ideal,
     alpha = ALPHA,
     usedFit = FITS,
     logistic = FALSE
@@ -95,8 +95,8 @@ You extract the cutoff values for fit indices at a given alpha level and sample 
 #| tbl-cap: "Power for fit index cutoffs under ideal conditions at N = 231."
 
 getPowerFit(
-    h1model_out,
-    nullObject = popmodel_out,
+    h1model_ideal,
+    nullObject = popmodel_ideal,
     alpha = ALPHA,
     nVal = 231,
     usedFit = FITS
@@ -108,7 +108,7 @@ getPowerFit(
 #| tbl-cap: "Fit index cutoff values under ideal conditions at N = 231."
 
 getCutoff(
-    popmodel_out,
+    popmodel_ideal,
     alpha = ALPHA,
     nVal = 231,
     usedFit = FITS
@@ -125,8 +125,8 @@ getCutoff(
 #| fig-height: 5
 
 plotPowerFit(
-    h1model_out,
-    popmodel_out,
+    h1model_ideal,
+    popmodel_ideal,
     cutoff = RULE_OF_THUMB,
     alpha = ALPHA,
     usedFit = FITS,
@@ -140,7 +140,7 @@ plotPowerFit(
 #| tbl-cap: "Power for traditional fit index cutoffs under ideal conditions at N = 231."
 
 getPowerFit(
-    h1model_out,
+    h1model_ideal,
     RULE_OF_THUMB,
     alpha = ALPHA,
     nVal = 231,
@@ -152,7 +152,7 @@ getPowerFit(
 #| label: tbl-fit-cutoff-traditional
 #| tbl-cap: "Traditional fit index cutoff values under ideal conditions."
 
-summaryFit(h1model_out, alpha = ALPHA, usedFit = FITS)
+summaryFit(h1model_ideal, alpha = ALPHA, usedFit = FITS)
 ```
 
 ### Target parameter estimates
@@ -162,14 +162,14 @@ summaryFit(h1model_out, alpha = ALPHA, usedFit = FITS)
 #| label: tbl-param-estimate-ideal
 #| tbl-cap: "Summary of parameter estimates under ideal conditions."
 
-summaryParam(h1model_out, alpha = ALPHA, digits = 3, detail = TRUE)
+summaryParam(h1model_ideal, alpha = ALPHA, digits = 3, detail = TRUE)
 ```
 
 ```{r}
 #| label: tbl-power-n-ideal
 #| tbl-cap: "Sample size needed for 80% power under ideal conditions."
 
-pow_h1 <- getPower(h1model_out, alpha = ALPHA)
+pow_h1 <- getPower(h1model_ideal, alpha = ALPHA)
 findPower(pow_h1, "N", 0.80)
 ```
 
@@ -185,7 +185,7 @@ Naive model: tau-equivalent loadings (uniform λ per domain) with same reliabili
 #| label: sim-ideal-naivemodel
 #| cache: true
 
-naivemodel_out <- sim(
+naivemodel_ideal <- sim(
     NULL,
     n = SEQ,
     analyzemodel,
@@ -203,7 +203,7 @@ Maybe the better strategy is recovering N from the lowest population loadings.
 #| label: tbl-power-n-naive
 #| tbl-cap: "Sample size needed for 80% power under naive model."
 
-pow_naive <- getPower(naivemodel_out, alpha = ALPHA)
+pow_naive <- getPower(naivemodel_ideal, alpha = ALPHA)
 findPower(pow_naive, "N", 0.80)
 ```
 
@@ -213,7 +213,7 @@ Optimal model: tau-equivalent loadings (uniform λ per domain) with same reliabi
 #| label: sim-ideal-optmodel
 #| cache: true
 
-optmodel_out <- sim(
+optmodel_ideal <- sim(
     NULL,
     n = SEQ,
     analyzemodel,
@@ -231,7 +231,7 @@ Maybe the better strategy is recovering N from the lowest population loadings.
 #| label: tbl-power-n-optimal
 #| tbl-cap: "Sample size needed for 80% power under optimal model."
 
-pow_opt <- getPower(optmodel_out, alpha = ALPHA)
+pow_opt <- getPower(optmodel_ideal, alpha = ALPHA)
 findPower(pow_opt, "N", 0.80)
 ```
 
@@ -248,8 +248,8 @@ findPower(pow_opt, "N", 0.80)
 #| fig-height: 5
 
 plotPowerFit(
-    h1model_out,
-    naivemodel_out,
+    h1model_ideal,
+    naivemodel_ideal,
     alpha = ALPHA,
     usedFit = FITS
 )
@@ -263,8 +263,8 @@ plotPowerFit(
 #| fig-height: 5
 
 plotPowerFit(
-    h1model_out,
-    naivemodel_out,
+    h1model_ideal,
+    naivemodel_ideal,
     alpha = ALPHA,
     usedFit = FITS,
     logistic = FALSE
@@ -278,8 +278,8 @@ plotPowerFit(
 #| tbl-cap: "Power for fit index cutoffs using the naive population model at N = 330."
 
 getPowerFit(
-    h1model_out,
-    nullObject = naivemodel_out,
+    h1model_ideal,
+    nullObject = naivemodel_ideal,
     alpha = ALPHA,
     nVal = 330,
     usedFit = FITS
@@ -291,7 +291,7 @@ getPowerFit(
 #| tbl-cap: "Fit index cutoff values using the naive population model at N = 330."
 
 getCutoff(
-    naivemodel_out,
+    naivemodel_ideal,
     alpha = ALPHA,
     nVal = 330,
     usedFit = FITS
@@ -309,8 +309,8 @@ getCutoff(
 #| fig-height: 5
 
 plotPowerFit(
-    h1model_out,
-    optmodel_out,
+    h1model_ideal,
+    optmodel_ideal,
     alpha = ALPHA,
     usedFit = FITS
 )
@@ -324,8 +324,8 @@ plotPowerFit(
 #| fig-height: 5
 
 plotPowerFit(
-    h1model_out,
-    optmodel_out,
+    h1model_ideal,
+    optmodel_ideal,
     alpha = ALPHA,
     usedFit = FITS,
     logistic = FALSE
@@ -339,8 +339,8 @@ plotPowerFit(
 #| tbl-cap: "Power for fit index cutoffs using the optimal population model at N = 291."
 
 getPowerFit(
-    h1model_out,
-    nullObject = optmodel_out,
+    h1model_ideal,
+    nullObject = optmodel_ideal,
     alpha = ALPHA,
     nVal = 291,
     usedFit = FITS
@@ -352,7 +352,7 @@ getPowerFit(
 #| tbl-cap: "Fit index cutoff values using the optimal population model at N = 291."
 
 getCutoff(
-    optmodel_out,
+    optmodel_ideal,
     alpha = ALPHA,
     nVal = 291,
     usedFit = FITS

@@ -1,6 +1,9 @@
 project: # https://quarto.org/docs/manuscripts/
   type: manuscript # Specifies this project is a manuscript format.
+  execute-dir: project # Ensuring relative paths work correctly.
   output-dir: docs # Directory where the rendered output files will be placed.
+  #pre-render:
+    #- Rscript Scripts/DataAppendixScripts/pre_render_cache.R
   render:
     - "!adm/" # Exclude the 'adm' directory and its contents from rendering.
     - "!renv/" # Exclude the 'renv' directory and its contents from rendering.
