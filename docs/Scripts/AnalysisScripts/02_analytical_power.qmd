@@ -13,10 +13,6 @@ execute:
 library(here)
 source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "models.R"))
-source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
-source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
-
-cache_load_existing()
 ```
 
 

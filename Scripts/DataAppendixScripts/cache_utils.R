@@ -1,4 +1,9 @@
-cache_or_run <- function(name, expr, dir = "cache", envir = parent.frame()) {
+cache_or_run <- function(
+  name,
+  expr,
+  dir = "Data/IntermediateData",
+  envir = parent.frame()
+) {
   dir.create(dir, showWarnings = FALSE, recursive = TRUE)
 
   path <- file.path(dir, paste0(name, ".rds"))

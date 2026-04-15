@@ -259,23 +259,53 @@ The RMSEA/$\chi^2$-based analytical method classically assumes continuous, multi
 
 ## Monte Carlo Simulation: Ideal Conditions {#sec-sim-ideal}
 
-Given the limitations above, Monte Carlo simulation stands as a highly flexible strategy. We generate many synthetic datasets from the defined `popModel`, apply our `analyzeModel`, and record the parameter estimates and standard errors. Also, we generate many datasets under the alternative misspecification model to evaluate power to detect cross-loadings: `H1Model`. This allows us to empirically estimate the sampling distribution of fit indices and parameter estimates across varying sample sizes, providing a more nuanced picture of power under ideal conditions.
+This section presents a Monte Carlo framework for evaluating **fit-based power** in SEM under ideal conditions, that is, under a scenario in which the analyst fully specifies both the reference population model and the alternative population model before data are generated [@jobst2023; @feng2023].
+
+The central idea is to distinguish between two roles played by models in the simulation design: a data-generating model and an analysis model [@feng2023]. The data-generating model defines the population from which replicated samples are drawn, whereas the analysis model defines the structure that is repeatedly fit to each generated sample. This separation is essential because statistical power in SEM depends not only on sample size, but also on the discrepancy between the model used for estimation and the population structure that generated the data [@jobst2023; @feng2023].
+
+In this setup, the reference condition represents the benchmark of acceptable fit, while the alternative condition represents a population in which a theoretically relevant misspecification is present [@feng2023]. Repeatedly fitting the same analysis model to samples generated under both conditions makes it possible to compare their empirical fit-index distributions and quantify how well the chosen fit criteria separate well-fitting from misspecified situations [@jobst2023].
+
+Varying \(N\) across a predefined sequence turns the simulation into a sample-size planning exercise rather than a single-condition power check [@feng2023]. Conceptually, as \(N\) increases, the sampling distributions under the reference and alternative conditions tend to become more distinguishable, so the probability of correctly flagging the misspecified condition increases as well [@feng2023; @jobst2023].
+
+Power based on fit indices is therefore interpreted here as the probability that a fit rule, calibrated from the reference condition, classifies data generated under the alternative condition as showing worse fit than expected under the benchmark model. In practical terms, this approach shifts the focus from testing a single parameter to evaluating whether global fit measures are sensitive enough to detect a substantively meaningful form of model misspecification across plausible sample sizes [@jobst2023; @feng2023; @moshagen2023].
+
+This logic is especially useful when the main research question concerns model adequacy at the global level, or when the inferential goal is to determine the sample size required for fit indices to reliably distinguish acceptable from unacceptable model-data correspondence under explicitly defined assumptions [@jobst2023; @feng2023].
+
+Below, we present the results of this simulation under ideal conditions. First, the power curve is shown for all four fit indexes (RMSEA, CFI, TLI, SRMR) across the range of sample sizes. Then, we compare the two generated distributions for the reference and alternative conditions across the four fit indices, showing how the separation between them evolves as \(N\) increases.
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-power-curve-ideal >}}
+
+The simulation under ideal conditions shows that power increases as sample size grows. At the lower end of the sample-size sequence, the fit indices remain below the target power threshold, indicating limited sensitivity to detect the imposed misspecification.
+
+As \(N\) increases, the power curves rise steadily, showing that the same degree of misspecification becomes easier to detect in larger samples. The point at which each curve crosses the conventional target level (e.g., \( .80 \)) marks the approximate minimum sample size required for that fit index to achieve adequate discriminatory performance.
+
+The graph also shows that the fit indices do not behave identically across the sample-size range. Some indices reach the target power earlier, which indicates greater sensitivity to the discrepancy built into the alternative model, whereas others require larger \(N\) to attain the same level of power.
+
+Taken together, the figure indicates that the required sample size depends on the specific fit criterion being used. Therefore, the most conservative planning decision is based on the fit index whose curve reaches the desired power threshold at the largest sample size.
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-fit-curve-ideal >}}
+
+The second figure shows the empirical distributions of the four fit indices under the reference and alternative conditions for each sample size. At the smallest \(N\), the two distributions are heavily overlapping, which means that the fit indices have limited ability to distinguish between the well-fitting and misspecified scenarios. 
+
+As \(N\) increases, the distribution under the alternative condition shifts towards worse fit values, while the distribution under the reference condition remains relatively stable. This growing separation between the distributions illustrates how the fit indices become more effective at detecting the misspecification as sample size increases, which is the empirical basis for the observed power curves.
+
+This plot is best understood as a Monte Carlo view of **discrimination** between well-fitting and misspecified conditions in SEM, using fit indices as decision variables rather than relying only on a single observed estimate [@moshagen2023; @jobst2023]. In `simsem`, `plotPowerFit()` is designed to visualize the sampling distributions of fit indices under an alternative condition and, when a null object is supplied, to relate them to cutoffs derived from the null-model distribution at a prespecified \(\alpha\) level. Conceptually, this turns power into a question of how often values generated under misspecification fall beyond the acceptance region implied by the null/reference model [@jobst2023].
+
+When sample size varies across replications, the figure shows how the empirical behavior of indices such as CFI, TLI, RMSEA, or SRMR changes as information accumulates, which is central to power analysis in SEM because power depends on the separation between the null and alternative sampling distributions [@moshagen2023; @jobst2023; @feng2023]. In that sense, the graph is not just a display of fit indices; it is a visual representation of the decision process underlying rejection of inadequate models [@jobst2023].
+
+The resulting figure therefore serves as a diagnostic complement to formal power summaries, helping the reader assess whether rejection is driven by clear distributional separation or by marginal boundary behavior around the cutoff [@moshagen2023]. As \(N\) increases, the indices move progressively to the rejection side, and this pattern becomes stable around \(N = 200-250\). RMSEA and SRMR are [more/less] visually separated from the cutoff than CFI and TLI, while among the incremental indices, [CFI/TLI] shows the earliest clear discrimination. The table below summarizes the power and cutoff values for each fit index at \(N = 231\).
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-cutoff-ideal >}}
+
+At \(N = 231\), the table shows that the estimated power was \(`r round(power_ideal$rmsea, 3)`\) for RMSEA, \(`r round(power_ideal$srmr, 3)`\) for SRMR, and \(`r round(power_ideal$cfi, 3)`\) for both CFI and TLI. Among the four indices, SRMR yielded the highest power, followed by RMSEA, whereas CFI and TLI produced the lowest and virtually identical power values.
+
+The empirical cutoff values were \(`r round(cutoff_ideal$rmsea, 3)`\) for RMSEA, \(`r round(cutoff_ideal$srmr, 3)`\) for SRMR, \(`r round(cutoff_ideal$cfi, 3)`\) for CFI, and \(`r round(cutoff_ideal$tli, 3)`\) for TLI. In practical terms, the rejection rule is stricter for RMSEA and SRMR above their cutoffs, and for CFI and TLI below their cutoffs.
+
+Taken together, the pattern of results is clear: \( \text{SRMR} > \text{RMSEA} > \text{CFI} \approx \text{TLI} \) in terms of power. Thus, within this specific analysis, SRMR provided the strongest discrimination, RMSEA also performed strongly, and CFI and TLI were just above the conventional \(0.80\) threshold.
+
+### Traditional cutoff values for fit indices
 
 
-{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#sim-ideal-vary >}}
-
-{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#sim-ideal-fit-power >}}
-
-{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-sim-ideal-fit >}}
-
-{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-sim-param >}}
-
-{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-convergence >}}
-
-::: {.callout-tip}
-## Convergence Check
-If the simulation-based $N$ requirement closely matches the analytical estimate (or is slightly larger to account for sampling error), you have correctly operationalized the model in the simulation structure. This serves as a vital sanity check before introducing complex non-ideal conditions.
-:::
 
 ## Monte Carlo Simulation: Realistic Scenarios {#sec-sim-robust}
 

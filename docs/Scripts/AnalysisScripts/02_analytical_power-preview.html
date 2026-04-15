@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.8.25">
+    <meta name="generator" content="quarto-1.9.37">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
     <title>Analytical Power Analysis</title>
     <style>
+      /* Default styles provided by pandoc.
+      ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+      */
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -150,15 +153,14 @@
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e261b86ae15e22bf333780d8a72f25c9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-df715b4811ca13bc07639e5bce24b6cd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -176,7 +178,7 @@
       <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link" href=""><i class="bi bi-caret-left"></i> Back to Article</a>
       <h6><i class="bi bi-journal-code"></i> Analytical Power Analysis</h6>
 
-            <a href="../../Scripts/AnalysisScripts/02_analytical_power.out.ipynb" class="btn btn-primary quarto-download-embed" download="02_analytical_power.qmd">Download Source</a>
+            <a href="../../Scripts/AnalysisScripts/02_analytical_power.qmd" class="btn btn-primary quarto-download-embed" download="02_analytical_power.qmd">Download Source</a>
           </div>
 
      <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
@@ -344,7 +346,7 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute df directly with semPower (no data needed)</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>df_model <span class="ot">&lt;-</span> semPower<span class="sc">::</span><span class="fu">semPower.getDf</span>(analyzeModel)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>df_model <span class="ot">&lt;-</span> semPower<span class="sc">::</span><span class="fu">semPower.getDf</span>(analyzemodel)</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Model degrees of freedom (via semPower):"</span>, df_model, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -356,19 +358,26 @@ Attaching package: 'dplyr'</code></pre>
 <h2 class="anchored" data-anchor-id="a-priori-power-analysis-determine-n">A priori power analysis: Determine N</h2>
 <section id="model-free-approach-rmsea-based" class="level3">
 <h3 class="anchored" data-anchor-id="model-free-approach-rmsea-based">Model-free approach (RMSEA-based)</h3>
-<p>Given the model df and a target RMSEA of 0.05, how many observations are needed for 80% power to detect misfit?</p>
+<p>This chunk uses <code>semPower::semPower.aPriori()</code> to compute the minimum sample size required for an a priori power analysis based on RMSEA, given the target (), desired power, and model degrees of freedom <span class="citation" data-cites="moshagen2023">(<a href="#ref-moshagen2023" role="doc-biblioref"><strong>moshagen2023?</strong></a>)</span>.</p>
+<p>The output returns the required number of observations and the associated quantities reported by <code>semPower</code>, such as (F_0), RMSEA, Mc, the critical chi-square value, and the noncentrality parameter.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>ap_rmsea <span class="ot">&lt;-</span> semPower<span class="sc">::</span><span class="fu">semPower.aPriori</span>(</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">effect         =</span> <span class="fl">0.05</span>, <span class="co"># RMSEA under H1 (exact-fit model: H0: RMSEA = 0)</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">effect.measure =</span> <span class="st">"RMSEA"</span>,</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha          =</span> ALPHA,</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">power          =</span> POWER,</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">df             =</span> df_model,</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">p              =</span> P <span class="co"># Just for GFI and AGFI</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ap_rmsea)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical a priori power analysis for the global chi-square test.</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The goal is to determine the minimum N required to detect</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># a population misfit corresponding to RMSEA = 0.05.</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>ap_rmsea <span class="ot">&lt;-</span> semPower<span class="sc">::</span><span class="fu">semPower.aPriori</span>(</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect         =</span> <span class="fl">0.05</span>,      <span class="co"># RMSEA under H1</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect.measure =</span> <span class="st">"RMSEA"</span>,   <span class="co"># effect is expressed as RMSEA</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha          =</span> ALPHA,     <span class="co"># Type I error rate</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">power          =</span> POWER,     <span class="co"># desired statistical power = 1 - beta</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">df             =</span> df_model,  <span class="co"># model degrees of freedom</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">p              =</span> P          <span class="co"># only relevant for indices such as GFI/AGFI</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Shows effect size, df, required N, critical chi-square,</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="co"># noncentrality parameter, and implied alpha/beta results.</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ap_rmsea)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  semPower: A priori power analysis
@@ -400,23 +409,37 @@ Attaching package: 'dplyr'</code></pre>
 </section>
 <section id="model-based-approach-with-lavaan-syntax" class="level3">
 <h3 class="anchored" data-anchor-id="model-based-approach-with-lavaan-syntax">Model-based approach (with lavaan syntax)</h3>
+<p>This chunk runs an <strong>a priori analytical power analysis</strong> with <code>semPower.powerLav()</code>. The function uses the population model (<code>modelPop</code>) and the null analysis model (<code>modelH0</code>) to determine the minimum sample size required to detect their discrepancy with the target alpha and power <span class="citation" data-cites="moshagen2023 jobst2023">(<a href="#ref-moshagen2023" role="doc-biblioref"><strong>moshagen2023?</strong></a>; <a href="#ref-jobst2023" role="doc-biblioref"><strong>jobst2023?</strong></a>)</span>.</p>
+<p>Because no <code>modelH1</code> is specified, the comparison is made against the <strong>saturated model</strong>, so the test targets global model misfit <span class="citation" data-cites="moshagen2023 jobst2023">(<a href="#ref-moshagen2023" role="doc-biblioref"><strong>moshagen2023?</strong></a>; <a href="#ref-jobst2023" role="doc-biblioref"><strong>jobst2023?</strong></a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ap_popmodel <span class="ot">&lt;-</span> <span class="fu">semPower.powerLav</span>(</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">'a-priori'</span>,</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">power =</span> POWER,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelPop =</span> popModel,</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelH0 =</span> analyzeModel</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ap_popmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># A priori power analysis:</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># computes the minimum N needed to detect the discrepancy</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># between the population model and the null analysis model.</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>ap_popmodel <span class="ot">&lt;-</span> <span class="fu">semPower.powerLav</span>(</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"a-priori"</span>,   <span class="co"># sample size planning</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,       <span class="co"># Type I error rate</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">power =</span> POWER,       <span class="co"># target power</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelPop =</span> popmodel, <span class="co"># population-generating model</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelH0 =</span> analyzemodel, <span class="co"># null/analysis model</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> P                 <span class="co"># only relevant for indices such as GFI/AGFI</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Shows effect size, df, required N, critical chi-square,</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co"># noncentrality parameter, and implied alpha/beta results.</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ap_popmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  semPower: A priori power analysis
                                    
  F0                        0.303870
  RMSEA                     0.034934
+ SRMR                      0.175600
  Mc                        0.859044
+ GFI                       0.975303
+ AGFI                      0.970244
+ CFI                       0.977582
                                    
  df                        249     
  Required Num Observations 202     
@@ -442,24 +465,27 @@ Attaching package: 'dplyr'</code></pre>
 <h2 class="anchored" data-anchor-id="power-curves">Power curves</h2>
 <section id="model-free-approach" class="level3">
 <h3 class="anchored" data-anchor-id="model-free-approach">Model-free approach</h3>
+<p>This chunk generates a model-free power curve showing how statistical power changes as a function of sample size (N) for a fixed effect defined as ( = 0.05), given the chosen significance level () and the model degrees of freedom (df) <span class="citation" data-cites="moshagen2023 jobst2023">(<a href="#ref-moshagen2023" role="doc-biblioref"><strong>moshagen2023?</strong></a>; <a href="#ref-jobst2023" role="doc-biblioref"><strong>jobst2023?</strong></a>)</span>.</p>
+<p>In <code>semPower</code>, this is an analytical power plot for a noncentrality-based effect measure, so the curve summarizes the expected power across a range of sample sizes while holding the effect size and test conditions constant <span class="citation" data-cites="moshagen2023 jobst2023">(<a href="#ref-moshagen2023" role="doc-biblioref"><strong>moshagen2023?</strong></a>; <a href="#ref-jobst2023" role="doc-biblioref"><strong>jobst2023?</strong></a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-fig-power-rmsea" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>semPower<span class="sc">::</span><span class="fu">semPower.powerPlot.byN</span>(</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">effect         =</span> <span class="fl">0.05</span>,</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">effect.measure =</span> <span class="st">"RMSEA"</span>,</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha          =</span> ALPHA,</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">df             =</span> df_model,</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">power.min      =</span> <span class="fl">0.05</span>,</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">power.max      =</span> <span class="fl">0.99</span></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots statistical power against sample size N.</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>semPower<span class="sc">::</span><span class="fu">semPower.powerPlot.byN</span>(</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect         =</span> <span class="fl">0.05</span>, <span class="co"># effect = 0.05 sets the target misfit in RMSEA units.</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect.measure =</span> <span class="st">"RMSEA"</span>,</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha          =</span> ALPHA, <span class="co"># alpha = ALPHA sets the Type I error rate.</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">df             =</span> df_model, <span class="co"># df = df_model sets the model degrees of freedom.</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">power.min      =</span> <span class="fl">0.05</span>,</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">power.max      =</span> <span class="fl">0.99</span> <span class="co"># power.min and power.max define the y-axis range of the plotted curve.</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-power-rmsea" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-power-rmsea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="02_analytical_power_files/figure-html/fig-power-rmsea-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Power as a function of sample size for RMSEA ≥ 0.05"><img src="02_analytical_power_files/figure-html/fig-power-rmsea-1.png" class="img-fluid figure-img" width="768"></a>
+<a href="02_analytical_power_files/figure-html/fig-power-rmsea-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Power as a function of sample size for RMSEA >= 0.05"><img src="02_analytical_power_files/figure-html/fig-power-rmsea-1.png" class="img-fluid figure-img" width="768"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-rmsea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Power as a function of sample size for RMSEA ≥ 0.05
+Power as a function of sample size for RMSEA &gt;= 0.05
 </figcaption>
 </figure>
 </div>
@@ -468,9 +494,14 @@ Power as a function of sample size for RMSEA ≥ 0.05
 </section>
 <section id="model-based-approach" class="level3">
 <h3 class="anchored" data-anchor-id="model-based-approach">Model-based approach</h3>
+<p>This chunk produces a power curve for the model-based analysis stored in <code>ap_popmodel</code>, displaying how statistical power changes as a function of sample size (N) for the effect defined in that object <span class="citation" data-cites="moshagen2023 jobst2023">(<a href="#ref-moshagen2023" role="doc-biblioref"><strong>moshagen2023?</strong></a>; <a href="#ref-jobst2023" role="doc-biblioref"><strong>jobst2023?</strong></a>)</span>. In <code>semPower</code>, <code>semPower.powerPlot()</code> is used to visualize the power trajectory implied by a previously estimated power-analysis object, which is useful for identifying the sample-size region in which power becomes adequate <span class="citation" data-cites="moshagen2023 jobst2023">(<a href="#ref-moshagen2023" role="doc-biblioref"><strong>moshagen2023?</strong></a>; <a href="#ref-jobst2023" role="doc-biblioref"><strong>jobst2023?</strong></a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="cell-fig-power-popmodel" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">semPower.powerPlot</span>(ap_popmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots the power curve based on the previously computed object `ap_popmodel`.</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># x-axis: sample size (N).</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># y-axis: statistical power.</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">semPower.powerPlot</span>(ap_popmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-power-popmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -490,7 +521,7 @@ Power as a function of sample size for the population model (popModel)
 <h2 class="anchored" data-anchor-id="summary-table">Summary table</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper to ensure length-1 numeric</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper to safely extract a single numeric value from each result object</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>safe_num <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="cf">if</span> (<span class="fu">length</span>(x) <span class="sc">==</span> <span class="dv">0</span> <span class="sc">||</span> <span class="fu">is.null</span>(x)) <span class="cn">NA</span> <span class="cf">else</span> <span class="fu">as.numeric</span>(x)[<span class="dv">1</span>]</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>analytical_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
@@ -510,15 +541,12 @@ Power as a function of sample size for the population model (popModel)
 <span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(<span class="fu">safe_num</span>(ap_rmsea<span class="sc">$</span>rmsea), <span class="dv">4</span>),</span>
 <span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(<span class="fu">safe_num</span>(ap_popmodel<span class="sc">$</span>rmsea), <span class="dv">4</span>)</span>
 <span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Implied Fmin</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(<span class="fu">safe_num</span>(ap_rmsea<span class="sc">$</span>fmin), <span class="dv">4</span>),</span>
-<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">round</span>(<span class="fu">safe_num</span>(ap_popmodel<span class="sc">$</span>fmin), <span class="dv">4</span>)</span>
-<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="fu">rep</span>(<span class="fu">safe_num</span>(df_model), <span class="dv">2</span>),</span>
-<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
-<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(analytical_summary, <span class="at">align =</span> <span class="st">"lccccc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">df =</span> <span class="fu">rep</span>(<span class="fu">safe_num</span>(df_model), <span class="dv">2</span>),</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Render the summary table with simple column alignment for reporting</span></span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(analytical_summary, <span class="at">align =</span> <span class="st">"lccccc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="tbl-analytical-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-analytical-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -526,14 +554,13 @@ Summary of analytical power analysis results
 </figcaption>
 <div aria-describedby="tbl-analytical-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<table class="cell caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 42%">
-<col style="width: 12%">
-<col style="width: 8%">
+<col style="width: 50%">
 <col style="width: 15%">
-<col style="width: 14%">
-<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 18%">
+<col style="width: 6%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -541,7 +568,6 @@ Summary of analytical power analysis results
 <th style="text-align: center;">N Required</th>
 <th style="text-align: center;">Power</th>
 <th style="text-align: center;">Implied RMSEA</th>
-<th style="text-align: center;">Implied Fmin</th>
 <th style="text-align: center;">df</th>
 </tr>
 </thead>
@@ -551,7 +577,6 @@ Summary of analytical power analysis results
 <td style="text-align: center;">99</td>
 <td style="text-align: center;">0.8008</td>
 <td style="text-align: center;">0.0500</td>
-<td style="text-align: center;">0.6225</td>
 <td style="text-align: center;">249</td>
 </tr>
 <tr class="even">
@@ -559,7 +584,6 @@ Summary of analytical power analysis results
 <td style="text-align: center;">202</td>
 <td style="text-align: center;">0.8015</td>
 <td style="text-align: center;">0.0349</td>
-<td style="text-align: center;">0.3039</td>
 <td style="text-align: center;">249</td>
 </tr>
 </tbody>

@@ -13,6 +13,10 @@ execute:
 library(here)
 source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "models.R"))
+source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
+source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
+
+cache_load_existing()
 ```
 
 
@@ -27,6 +31,11 @@ Ideial condition: PA it not too sensitive to distributional assumptions, missing
 ```{r}
 #| label: sim-fixed-popmodel
 #| cache: true
+
+dist <- bindDist(
+    skewness = seq(-1, 1, length.out = 24), 
+    kurtosis = seq(1, 2, length.out = 24)
+)
 
 popmodel_fixed <- sim(
     REP,
@@ -43,13 +52,18 @@ popmodel_fixed <- sim(
     multicore = TRUE
 )
 
-saveRDS(popmodel_fixed, file = "cache/popmodel_fixed.rds")
+saveRDS(popmodel_fixed, file = "Data/IntermediateData/popmodel_fixed.rds")
 ```
 
 
 ```{r}
 #| label: sim-fixed-h1model
 #| cache: true
+
+dist <- bindDist(
+    skewness = seq(-1, 1, length.out = 24), 
+    kurtosis = seq(1, 2, length.out = 24)
+)
 
 h1model_fixed <- sim(
     REP,
@@ -66,7 +80,7 @@ h1model_fixed <- sim(
     multicore = TRUE
 )
 
-saveRDS(h1model_fixed, file = "cache/h1model_fixed.rds")
+saveRDS(h1model_fixed, file = "Data/IntermediateData/h1model_fixed.rds")
 ```
 
 ### Power curves for fit indices

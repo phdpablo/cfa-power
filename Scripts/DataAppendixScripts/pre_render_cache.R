@@ -1,4 +1,4 @@
-dir.create("cache", showWarnings = FALSE, recursive = TRUE)
+dir.create("Data/IntermediateData", showWarnings = FALSE, recursive = TRUE)
 
 loader_file <- file.path("Scripts", "DataAppendixScripts", "cache_loader.R")
 
