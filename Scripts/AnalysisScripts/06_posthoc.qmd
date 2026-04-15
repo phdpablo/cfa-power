@@ -18,7 +18,7 @@ source(here("Scripts", "DataAppendixScripts", "models.R"))
 
 ```{r}
 #| label: load-realdata
-#|
+
 url_data <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/b58a7054-4978-4239-81db-00f9efd86e44/WHOQOL_Data.dat"
 realdata <- read.table(url_data)
 
@@ -27,9 +27,9 @@ column_labels <- read.table(url_labels)
 column_labels <- column_labels$V1
 names(realdata) <- gsub("_[FPSA]$", "", column_labels)
 
-n_real <- nrow(realdata)
+n_real <- nrow(realdata) # Sample size of the real data
 
-df_model <- semPower::semPower.getDf(analyzemodel)
+df_model <- semPower::semPower.getDf(analyzemodel) # Degrees of freedom for the model, needed for semPower post hoc
 ```
 
 ## Post hoc power analysis
@@ -44,7 +44,6 @@ df_model <- semPower::semPower.getDf(analyzemodel)
 fit_real <- cfa(
   analyzemodel,
   data = realdata,
-  #std.lv = TRUE,
   estimator = "mlr"
 )
 ```
@@ -52,9 +51,9 @@ fit_real <- cfa(
 - Passo 2: Simular modelo nulo com N real
 
 ```{r}
-#| label: posthoc-sim-null
+#| label: sim-null-posthoc
 
-sim_null <- sim(
+realmodel_null <- sim(
     nRep      = 1000,
     n         = n_real,
     analyzemodel,
@@ -70,9 +69,9 @@ sim_null <- sim(
 - Passo 3: Simular modelo alternativo com N real
 
 ```{r}
-#| label: posthoc-sim-alt
+#| label: sim-alt-posthoc
 
-sim_alt <- sim(
+h1model_alt <- sim(
     nRep      = 1000,
     n         = n_real,
     analyzemodel,
@@ -88,26 +87,28 @@ sim_alt <- sim(
 - Passo 4: Poder no N coletado
 
 ```{r}
-#| label: posthoc-plotpower
+#| label: fig-posthoc-plotpower
+#| fig-cap: "Power curve for post hoc analysis based on simulation."
+#| fig-width: 8
+#| fig-height: 5
 
-# Visualização
 plotPowerFit(
-    sim_alt,
-    nullObject = sim_null,
+    h1model_alt,
+    nullObject = realmodel_null,
     alpha      = ALPHA,
-    usedFit    = FITS_ROB
+    usedFit    = FITS
 )
 ```
 
 ```{r}
-#| label: posthoc-power
+#| label: tbl-posthoc-power
+#| tbl-cap: "Power for post hoc analysis based on simulation."
 
-# Poder para detectar a misspecification no N atual
 getPowerFit(
-    sim_alt,
-    nullObject = sim_null,
+    h1model_alt,
+    nullObject = realmodel_null,
     alpha      = ALPHA,
-    usedFit    = FITS_ROB
+    usedFit    = FITS
 )
 ```
 
@@ -115,7 +116,10 @@ getPowerFit(
 ### With semPower
 
 ```{r}
-#| label: posthoc-rsmea
+#| label: fig-posthoc-rsmea
+#| fig-cap: "Post hoc power analysis for RMSEA."
+#| fig-width: 8
+#| fig-height: 5
 
 ph_rsmea <- semPower::semPower.postHoc(
     effect         = 0.05,
@@ -130,7 +134,10 @@ summary(ph_rsmea)
 ```
 
 ```{r}
-#| label: posthoc-realmodel
+#| label: fig-posthoc-realmodel
+#| fig-cap: "Post hoc power analysis for the real model."
+#| fig-width: 8
+#| fig-height: 5
 
 ph_realmodel <- semPower.powerLav(
   type = 'post-hoc',
@@ -144,9 +151,12 @@ summary(ph_realmodel)
 ```
 
 ```{r}
-#| label: posthoc-test
+#| label: fig-posthoc-miss
+#| fig-cap: "Post hoc power analysis for the misspecified model."
+#| fig-width: 8
+#| fig-height: 5
 
-ph_test <- semPower.powerLav(
+ph_posthoc_miss <- semPower.powerLav(
   type = 'post-hoc',
   alpha = ALPHA,
   N = n_real,
@@ -155,6 +165,6 @@ ph_test <- semPower.powerLav(
   modelH1 = h1modelfree
 )
 
-summary(ph_test)
+summary(ph_posthoc_miss)
 ```
 

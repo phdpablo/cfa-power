@@ -23,7 +23,7 @@ library(snow)
 
 #' Monte Carlo Simulation.
 REP <- 1000 # Number of replications for final analysis.
-SEQ <- 51:350 # Sample size sequence for varying-N simulations [or seq(51, 350, 1)]
+SEQ <- rep(51:350, each = 5) # Sample size sequence for varying-N simulations (5 per N).
 
 #' Random seed for reproducibility across all simulations: simsem default is 123321.
 SEED <- 123321
@@ -38,8 +38,8 @@ POWER <- 0.80
 P <- 24
 
 #' Fit indices to be used in the analysis.
-FITS <- c("rmsea", "srmr", "cfi", "tli")
-FITS_ROB <- c("rmsea.robust", "srmr", "cfi.robust", "tli.robust")
+FITS <- c("rmsea", "srmr", "cfi", "tli") # Standard versions of fit indices for comparability with existing literature
+FITS_ROB <- c("rmsea.robust", "srmr", "cfi.robust", "tli.robust") # Robust versions of cfi/tli is not sensitive for discrimination simsem power analysis in this context, but you can use them if you want to be consistent with the robust versions of estimator.
 
 #' Rule-of-thumb cutoffs for global fit indices.
 RULE_OF_THUMB <- c(

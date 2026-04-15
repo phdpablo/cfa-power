@@ -15,6 +15,7 @@ _manuscript/
 /index_files/
 /site_libs/
 *.tex
+cache/
 
 # Management
 adm/

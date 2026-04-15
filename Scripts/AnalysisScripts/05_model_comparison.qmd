@@ -33,7 +33,6 @@ popmodel_fixed <- sim(
     n = 350,
     analyzemodel,
     generate = popmodel,
-    indDist = dist,
     std.lv = TRUE,
     lavaanfun = "cfa",
     seed = SEED,
@@ -51,7 +50,6 @@ h1model_fixed <- sim(
     n = 350,
     analyzemodel,
     generate = h1model,
-    indDist = dist,
     std.lv = TRUE,
     lavaanfun = "cfa",
     seed = SEED,
@@ -62,7 +60,7 @@ h1model_fixed <- sim(
 ### Power curves for fit indices
 
 ```{r}
-#| label: power-curve-fixed
+#| label: fig-power-curve-fixed
 #| fig-cap: "Power curves for fit indices with fixed sample size."
 #| fig-width: 8
 #| fig-height: 5
@@ -80,7 +78,7 @@ plotPowerFit(
 You extract the cutoff values for fit indices at a given alpha level and sample size to determine the threshold for acceptable fit under the null model. This allows you to see how stringent the fit criteria are at different sample sizes.
 
 ```{r}
-#| label: power-cutoff-fixed
+#| label: tbl-power-cutoff-fixed
 #| tbl-cap: "Power for fit index cutoffs with fixed sample size."
 
 getPowerFit(
@@ -92,7 +90,7 @@ getPowerFit(
 ```
 
 ```{r}
-#| label: fit-cutoff-fixed
+#| label: tbl-fit-cutoff-fixed
 #| tbl-cap: "Fit index cutoff values with fixed sample size."
 
 getCutoff(
@@ -104,14 +102,16 @@ getCutoff(
 
 
 ```{r}
+#| label: tbl-param-summary-fixed
 #| tbl-cap: "Summary of parameter estimates with fixed sample size."
+
 summaryParam(h1model_fixed, alpha = ALPHA, digits = 3, detail = TRUE)
 ```
 
 ## Power analysis with traditional fits
 
 ```{r}
-#| label: fit-curve-fixed
+#| label: fig-fit-curve-fixed
 #| fig-cap: "Power curves using traditional fit index cutoffs with fixed sample size."
 #| fig-width: 8
 #| fig-height: 5
@@ -127,7 +127,7 @@ plotPowerFit(
 
 
 ```{r}
-#| label: power-cutoff-traditional
+#| label: tbl-power-cutoff-traditional
 #| tbl-cap: "Power for traditional fit index cutoffs with fixed sample size."
 
 getPowerFit(
