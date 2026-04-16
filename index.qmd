@@ -28,8 +28,8 @@ Statistical power in Confirmatory Factor Analysis (CFA) reflects the probability
 
 There are two main paradigms to power analysis in CFA:
 
-1.  **Analytical methods**: Rely on asymptotic statistical theory (e.g., the non-central $\chi^2$ distribution) to calculate the required sample size for detecting global model misfit based on established fit indices like the RMSEA [@moshagen_sempower_2024].
-2.  **Simulation-based methods**: Use Monte Carlo data generation to repeatedly establish how the model behaves under assumed population models, allowing the estimation of power, bias, and coverage for specific parameters or overall fit indices across varying sample sizes [@pornprasertmanit_simsem_2021].
+1.  **Analytical methods**: Rely on asymptotic statistical theory (e.g., the non-central $\chi^2$ distribution) to calculate the required sample size for detecting global model misfit based on established fit indices like the RMSEA [@sempower2024].
+2.  **Simulation-based methods**: Use Monte Carlo data generation to repeatedly establish how the model behaves under assumed population models, allowing the estimation of power, bias, and coverage for specific parameters or overall fit indices across varying sample sizes [@simsem2021].
 
 This document provides a comprehensive tutorial covering both analytical methods using the `semPower` and `semTools` packages, and Monte Carlo methods using the `simsem` package.
 
@@ -305,7 +305,157 @@ Taken together, the pattern of results is clear: \( \text{SRMR} > \text{RMSEA} >
 
 ### Traditional cutoff values for fit indices
 
+When traditional cutoffs are used, the analysis adopts fixed threshold values such as \( \text{RMSEA} \le .06 \), \( \text{CFI} \ge .95 \), \( \text{TLI} \ge .95 \), and \( \text{SRMR} \le .06 \) as the decision boundaries for acceptable fit. Conceptually, this means that power is defined here as the proportion of replications in which the misspecified model crosses those predefined boundaries in the direction of worse fit.
 
+This setup is convenient because it mirrors common applied practice, but the literature also emphasizes that such rule-of-thumb cutoffs are not universally valid and should be interpreted cautiously, since fit measures are influenced by model features beyond the focal misspecification itself [@moshagen2023; @jobst2023].
+
+A simulation-based power display is especially informative in SEM because it shows how the sampling behavior of fit indices changes as sample size varies, rather than relying only on a single summary value [@moshagen2023]. This is important because the same nominal cutoff may correspond to different practical rejection behavior depending on the model structure and the empirical distribution of the index under misspecification [@moshagen2023; @jobst2023].
+
+For that reason, plotting fit-index-based power provides an intuitive bridge between formal power analysis and the applied decision rules researchers often use when judging model adequacy in substantive SEM work [@jobst2023].
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-fit-curve-traditional >}}
+
+The figure shows that all four fit indices become more stable as sample size increases, with noticeably less dispersion from \(N \approx 50\) to \(N \approx 350\). At smaller sample sizes, the points are widely scattered in every panel, whereas at larger sample sizes the values concentrate into narrower bands.
+
+For **RMSEA**, the black points decrease clearly as \(N\) increases and are mostly well below the red cutoff line at moderate and large sample sizes. However, at the red line cutoff of \(0.05\), the distinction is still weak because the light-blue points remain close to that threshold and there is substantial overlap. In practical terms, RMSEA would need a cutoff around \(0.04\) or lower to provide a clearer distinction in this figure.
+
+For **SRMR**, the separation is visually the strongest. The black points decline from roughly \(0.09\) at low \(N\) to around \(0.03\) to \(0.04\) at high \(N\), while the light-blue points remain higher, mostly around \(0.07\) to \(0.09\). At the red cutoff of \(0.06\), SRMR is the only index that begins to make a clear distinction, and this becomes visible only when \(N\) is close to \(200\) or larger.
+
+For **CFI**, both sets of points increase with \(N\), but at the red cutoff of \(0.95\) the two clouds are not clearly separated. Many light-blue points stay around that same region, so the cutoff does not create a meaningful visual distinction between the two groups.
+
+For **TLI**, the pattern is very similar to CFI. Although the black points approach values close to \(1.00\), the light-blue points also cluster around the \(0.95\) region, so at this cutoff the red line does not provide a clear distinction either.
+
+Overall, when the red cutoff lines are used as the reference, only **SRMR** shows effective discrimination, and even then only after sample sizes approach \(N \approx 200\). RMSEA shows some separation, but not enough at \(0.06\), suggesting that a cutoff near \(0.04\) would be more informative in this plot. At the \(0.95\) cutoff, CFI and TLI do not provide any meaningful distinction.
+
+The table below summarizes the power and cutoff values for each fit index at \(N = 231\) when traditional cutoffs are applied.
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-cutoff-traditional >}}
+
+### Targeting specific parameters
+
+The previous analyses focused on global fit indices, which summarize overall model adequacy but do not directly address the power to detect specific parameter misspecifications. In this section, we evaluate power for a particular parameter (e.g., \(Q8\) on the Physical factor) by defining the alternative condition as a population in which that parameter is set to zero, while the reference condition retains the original nonzero parameter. This approach allows us to assess the sensitivity of the analysis to detect a specific parameter misspecification rather than relying on global fit measures alone.
+
+From this perspective, Monte Carlo summaries such as bias, standard error bias, and confidence-interval coverage are not secondary diagnostics. They indicate whether the estimator behaves as expected in finite samples, that is, whether \(\hat{\theta}\) is centered around the population value \(\theta\), whether the estimated uncertainty is calibrated, and whether the nominal interval actually contains the true parameter with approximately the intended frequency across replications [@simsem2021].
+
+In @tbl-param-estimate-ideal, `Rel Bias` refers to relative parameter bias, `Rel SE Bias` refers to relative standard-error bias, `Coverage` is the proportion of confidence intervals that contain the true value, and `Power (Not equal 0)` is the proportion of replications in which the parameter is detected as different from zero at the chosen significance level [@simsem2021]. A parameter may show high power and still be poorly recovered if its estimate is biased or its standard error is poorly calibrated, so detection and estimation quality should be evaluated separately [@simsem2021; @moshagen2023; @jobst2023].
+
+Overall, the results below are favorable for most parameters, but they also show that power, bias, standard-error bias, and coverage do not tell exactly the same story. The correct interpretation therefore needs to combine all four indicators, rather than relying only on power or only on the required \(N\) [@simsem; @moshagen2023; @jobst2023].
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-param-estimate-ideal >}}
+
+Most primary factor loadings behave very well under ideal conditions. The indicators of `psycho`, `physical`, and `social` follow the expected pattern: very high power, small bias, modest standard-error distortion, and coverage close to the nominal level.
+
+The main exception is the loading of `Q8` on `environment`, together with its residual variance. This parameter is easy to detect, but it is not well recovered, which means that the model would likely identify it as nonzero while still estimating it with noticeable distortion. A secondary warning appears for `Q15`, whose loading and residual variance are less stable than the rest of the measurement parameters.
+
+The latent covariances are the most demanding part of the model. In particular, the correlations involving `social` and `environment` are harder to recover than the primary loadings, showing lower power and weaker coverage than the measurement parameters.
+
+Among residual parameters, most residual variances are acceptable, but a few are more demanding. The residual covariance `Q3 ~~ Q4` stands out as one of the least easily detected residual parameters, and this places it closer to the latent covariances than to the well-behaved primary loadings in terms of inferential difficulty.
+
+The required \(N\) depends on the focal null hypothesis, the magnitude of the underlying effect, the model degrees of freedom, and the full set of model parameters, so different parameters within the same model may require markedly different sample sizes to achieve the same target power \(1-\beta\) [@moshagen2023; @jobst2023]. For that reason, planning should be anchored in the substantively focal and hardest-to-detect parameters, not in generic rules of thumb or in the most easily detectable effects [@jobst2023; @moshagen2023].
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-n-ideal >}}
+
+The `findPower` results make this contrast very clear. Many primary loadings and several residual variances reach the target power at the low end of the simulated sample-size range, whereas the latent covariances and the residual covariance `Q3 ~~ Q4` require substantially larger samples.
+
+For planning purposes, this means that the study can look well powered if the goal is only to detect the main factor loadings, but not if the substantive focus is on relations among factors or on specific residual parameters. In these results, the practical reference is therefore much closer to \(N \approx 200\) than to \(N \approx 50\), because the hardest parameters, not the easiest ones, should drive the sample-size decision [@simsem2021; @moshagen2023; @jobst2023].
+
+In short, the model performs very well for most of the measurement structure, but it still shows a clear weak point in `Q8`, a smaller warning sign in `Q15`, and substantially greater sample-size demands for the latent covariance `psycho~~social` (N = `r n_h1[[$psycho~~social]]`). So, if the goal is to support reliable inference not only for factor loadings but also for relations among the latent domains, the sample-size decision should be guided by those harder parameters rather than by the more stable measurement ones.
+
+### Recovering the population parameters
+
+## Parameter-level power under the naive model
+
+Before turning to global fit, it is useful to examine power from the perspective of **parameter recovery**. In SEM, power is always tied to a specific hypothesis, so the required sample size may differ substantially depending on whether the focus is on overall model misfit or on individual parameters such as loadings, latent covariances, or residual covariances [@moshagen2023; @jobst2023].
+
+This subsection therefore uses Monte Carlo simulation to identify the sample size required for each estimable parameter in the CFA model to attain a target power level of \( .80 \). The logic is straightforward: repeated samples are generated under the population model, the analysis model is fit to each sample, and power is summarized for each parameter across candidate values of \( N \) [@simsem2021].
+
+The purpose of this step is not to evaluate model fit as a whole, but to determine which parameters are easier or harder to recover under the assumed data-generating conditions. This is useful because some parts of a CFA model can be well powered at relatively small sample sizes, whereas others may require substantially larger samples, especially when the focal quantities are covariances or other comparatively subtle effects [@moshagen2023; @jobst2023].
+
+#### Naive model
+
+In this tutorial, the naive model serves as a simple benchmark for parameter-level planning under worst-case conditions. As such, this analysis provides a local perspective on sample size requirements that complements, but does not replace, the later global-fit analyses that are central to the main study design [@simsem2021; @moshagen2023].
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-n-naive >}}
+
+The @tbl-power-n-naive shows that most factor loadings reach the target power of \( .80 \) with very small sample sizes, generally with \( N = < 60 \). This indicates that the loading structure is relatively easy to recover under the naive model in the ideal condition.
+
+The more demanding results are found among the latent covariances. Their required sample sizes are substantially larger: \( psycho \sim\sim physical =\) `r n_naive[['psycho~~physical']]`, \( psycho \sim\sim social =\) `r n_naive[['psycho~~social']]`, \( psycho \sim\sim environment =\) `r n_naive[['psycho~~environment']]`, \( physical \sim\sim social =\) `r n_naive[['physical~~social']]`, \( physical \sim\sim environment =\) `r n_naive[['physical~~environment']]`, and \( social \sim\sim environment =\) `r n_naive[['social~~environment']]`.
+
+The residual covariance \( Q3 \sim\sim Q4 \) falls between these two groups, requiring \( N =\) `r n_naive[['Q3~~Q4']]`. It is clearly harder to recover than the loadings and residual variances, but still less demanding than the latent covariances.
+
+The largest value in the table is \( N =\) `r n_naive[['physical~~social']]`, associated with \( physical \sim\sim social \). For this reason, this parameter determines the minimum sample size required to achieve at least \( .80 \) power for all reported finite parameters in this parameter-recovery analysis.
+
+Taken together, the pattern is very clear: the measurement part of the model is well powered at relatively small \( N \), whereas the associations among latent factors require a much larger sample. In this subsection, the recommended sample size is therefore \( N = `r n_naive[['physical~~social']]` \), because this is the smallest value that satisfies the \( .80 \) power criterion for the most demanding parameter. 
+
+#### Optimistic model
+
+This subsection examines sample size requirements from a **parameter-level** perspective under the optimal model. The Monte Carlo setup used here evaluates how power changes as \( N \) varies and then identifies the smallest sample size required for each parameter to attain the target power level of \( .80 \). In the `simsem` framework, this type of analysis is useful for planning studies when the main concern is whether specific model components can be detected under assumed population conditions [@simsem2021].
+
+Within the optimal scenario, this step provides a benchmark for how demanding the focal parameters are when the model is estimated under more favorable assumptions. Thus, the analysis complements later global-fit evaluations by showing the local sample size requirements implied by the same CFA structure [@moshagen2023; @simsem2021].
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-n-opt >}}
+
+The @tbl-power-n-opt shows a very sparse set of finite sample-size requirements under the optimal model. Only seven parameters remained with finite \( N \) values after filtering (not shown in the table), which indicates that, within the simulated range, these are the parameters for which a specific minimum sample size could be directly reported.
+
+The only parameter with a meaningfully larger requirement is the residual covariance \( Q3 \sim\sim Q4 \), which required \( N = `r n_opt[['Q3~~Q4']]` \) to reach \( .80 \) power. This value is much higher than the others in the table and clearly stands out as the most demanding finite parameter in the optimal model.
+
+For that reason, the sample size decision implied by this table is governed by \( Q3 \sim\sim Q4 \). If the goal is to ensure at least \( .80 \) power for all parameters with finite reported values in this output, the required sample size is \( N = `r n_opt[['Q3~~Q4']]` \).
+
+Overall, the result is highly concentrated: most reported parameters are already adequately powered at \( N = 51 \), and only one parameter pushes the requirement upward. In practical terms, the optimal model appears easy to recover for the listed loadings and residual variances, while the residual covariance \( Q3 \sim\sim Q4 \) is the sole finite bottleneck in this table.
+
+### Misspecification and population sensitivity
+
+#### Fit-index-based power under the naive population
+
+This section evaluates **global** power from the perspective of naive model as population model. The Monte Carlo setup is designed to assess how well fit indices can discriminate between the reference condition (data generated under the naive model) and the alternative condition (data generated under the H1 model), across a range of sample sizes [@moshagen2023; @jobst2023].
+
+The power curves across sample size show how the probability of rejecting the misspecified model evolves as \( N \) increases. This is consistent with the general theory of power in SEM, according to which power increases as the overlap between the null and alternative sampling distributions decreases, and that separation is strengthened by larger samples and clearer model discrepancy [@jobst2023; @moshagen2023].
+
+In `simsem`, these curves can be displayed either as raw empirical patterns or as smoothed functions based on logistic regression when sample size varies across replications. The smoothed representation is useful because it summarizes the relation between the reject/retain decision and \( N \) into a continuous power function, whereas the unsmoothed version helps inspect the empirical fit-index distributions more directly [@simsem2021].
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-power-curve-naive >}}
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-fit-curve-naive >}}
+
+The power curves show two distinct patterns across the four fit indices. RMSEA and SRMR increase gradually and continuously with \(N\), starting at moderate levels around \(N = 50\) and approaching 1.00 as sample size grows. In contrast, CFI and TLI remain close to zero for most of the range and then rise sharply only near the upper end of the sample-size grid, with the main increase concentrated around \(N \approx 310\) to \(340\).
+
+In the raw fit-index plots, the separation between the two point clouds is very clear for RMSEA and SRMR across nearly the entire range of \(N > 200\). For these two indices, one distribution stays systematically higher while the other decreases as sample size increases, which visually matches their high power values. For CFI and TLI, the two clouds overlap more strongly at smaller and intermediate sample sizes, and the distinction becomes clearer only at larger \(N\).
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-cutoff-naive >}}
+
+At \(N = 330\), the estimated power values were \( > .80 \) for all four indices, but they differed substantially in magnitude. RMSEA and SRMR showed very high power, with values close to \(0.99\), while CFI and TLI were just above the \(0.80\) threshold, indicating that they are less sensitive to the misspecification under these conditions.
+
+These results indicate that SRMR produced the highest power, followed very closely by RMSEA. CFI and TLI yielded substantially lower power than RMSEA and SRMR, although both still reached the conventional \(0.80\) threshold at \(N = 330\). The empirical cutoff values at \(N = 330\) were more pessimistic than the conventional thresholds. These cutoffs reflect the thresholds derived from the null-model distribution at the chosen \(\alpha\) level, which are used to determine whether the observed fit indices indicate a significant misspecification.
+
+The cutoff table and the figures are consistent with each other. RMSEA and SRMR show very strong discrimination at \(N = 330\), with power near 0.99, whereas CFI and TLI appear to be operating at the minimum level typically considered acceptable, with power just above 0.80. Overall, at this sample size, RMSEA and SRMR perform more strongly than CFI and TLI for detecting the difference represented in this naive-population condition.
+
+#### Optimistic model
+
+### Conceptual background
+
+In this simulation-based approach implemented in `simsem`, cutoff values are first derived from the sampling distribution of the fit indices under an optimistic null model (population model), and power is then defined as the proportion of replications from the alternative condition (H1 model) that cross those cutoffs in the direction indicating worse fit. For indices in which larger values indicate poorer fit, such as RMSEA and SRMR, rejection is based on exceeding the cutoff; for indices in which larger values indicate better fit, such as CFI and TLI, rejection is based on falling below the cutoff.
+
+When sample size varies across replications, power can be represented as a function of \(N\), which makes it possible to study how discrimination improves as information accumulates. In `plotPowerFit()`, this relationship may be shown either through logistic smoothing, which summarizes the rejection process continuously over \(N\), or through the unsmoothed empirical pattern of simulated values and cutoff boundaries [@simsem2021].
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-power-curve-opt >}}
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-fit-curve-opt >}}
+
+The power curves show a clear increase in performance as sample size grows. RMSEA and SRMR rise earlier and more smoothly, reaching high power at smaller \(N\) values than CFI and TLI.
+
+Among the four indices, SRMR shows the strongest overall performance across the sample-size range. Its curve starts at a comparatively higher level and approaches \(1.00\) more quickly than the others, indicating that it is the most sensitive index in this set for detecting the targeted discrepancy. RMSEA also performs very well, although it starts below SRMR at smaller sample sizes. Its increase is steady and pronounced, and the curve approaches very high power as \(N\) moves into the upper half of the evaluated range.
+
+CFI and TLI behave differently from RMSEA and SRMR. Both remain near zero power at smaller and moderate sample sizes, then increase sharply only in the higher-\(N\) region, indicating that these indices require substantially larger samples before reaching adequate discrimination.
+
+The unsmoothed plots reinforce this pattern. For RMSEA and SRMR, the simulated values from the two conditions are more clearly separated across the range of \(N\), whereas for CFI and TLI there is more overlap at lower and intermediate sample sizes, with clearer separation emerging only as \(N\) becomes larger.
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-cutoff-opt >}}
+
+At \(N = 291\), the estimated power values are \( > .80 \) for all four indices, but they differ in magnitude. The power values at this sample size is show in @tbl-power-cutoff-opt. These values indicate that, at the target sample size, all four indices achieve at least acceptable power, but they do so with different margins. SRMR and RMSEA are well above the conventional \(0.80\) benchmark, whereas CFI and TLI are just above that threshold.
+
+The cutoff values at \(N = 291\) are more pessimistic than the conventional thresholds, reflecting the specific sampling distribution of the fit indices under the optimistic null model. These cutoffs are used to determine whether the observed fit indices indicate a significant misspecification in the alternative condition.
+
+Taken together, the results indicate that RMSEA and especially SRMR provide very strong discrimination under the optimal model at \(N = 291\). In contrast, CFI and TLI are the more demanding indices in this setting, because their power at the same sample size is adequate but still comparatively limited.
 
 ## Monte Carlo Simulation: Realistic Scenarios {#sec-sim-robust}
 

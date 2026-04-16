@@ -137,59 +137,111 @@ knitr::kable(power_cutoff_df, digits = 3, align = "c") # Print the table.
 
 ### Tradidional cutoff values for fit indices
 
+This chunk plots the simulated fit-index distributions across sample sizes to inspect how often the misspecified model would be rejected using traditional cutoff values. It uses `plotPowerFit()` with fixed rule-of-thumb cutoffs, the selected fit indices, and `logistic = FALSE`, so the output is shown as raw simulated points with horizontal cutoff lines rather than logistic power curves [@simsem2021; @moshagen2023; @jobst2023].
+
 ```{r}
 #| label: fig-fit-curve-traditional
 #| fig-cap: "Power curves using traditional fit index cutoffs under ideal conditions."
 #| fig-width: 8
 #| fig-height: 5
 
+# Plot fit-index results from the misspecified model across sample sizes.
+# The cutoff object applies traditional rule-of-thumb thresholds
+# (e.g., RMSEA, SRMR, CFI, and TLI cutoffs) for rejection decisions.
+# logistic = FALSE requests the scatterplot-style display of simulated values
+# and the cutoff line, instead of a logistic-smoothed power curve
+
 plotPowerFit(
-    h1model_ideal,
-    popmodel_ideal,
-    cutoff = RULE_OF_THUMB,
-    alpha = ALPHA,
-    usedFit = FITS,
-    logistic = FALSE
+  h1model_ideal,   # Simulated results under the misspecified model
+  popmodel_ideal,  # Reference model object used for comparison
+  cutoff = RULE_OF_THUMB, # Rule-of-thumb cutoff values for fit indices
+  alpha = ALPHA, # Significance level for determining power
+  usedFit = FITS, # RMSEA, SRMR, CFI, and TLI fit indices to display
+  logistic = FALSE # Display raw simulated points and cutoff lines instead of logistic curves
 )
 ```
 
+The table below summarizes the empirical power to reject the misspecified model using traditional fit-index cutoffs at \(N = 231\) under ideal conditions. This provides a direct comparison of how well the traditional cutoffs perform in terms of power relative to the empirically derived cutoffs from the previous chunk.
 
 ```{r}
 #| label: tbl-power-cutoff-traditional
 #| tbl-cap: "Power for traditional fit index cutoffs under ideal conditions at N = 231."
 
-getPowerFit(
+power_trad <- getPowerFit(
     h1model_ideal,
     RULE_OF_THUMB,
     alpha = ALPHA,
     nVal = 231,
     usedFit = FITS
 )
-```
 
-```{r}
-#| label: tbl-fit-cutoff-traditional
-#| tbl-cap: "Traditional fit index cutoff values under ideal conditions."
+# Create horizontal table: Fit Index as column names, Power as single row
+power_df <- data.frame(
+    "CFI" = round(as.numeric(power_trad["cfi"]), 3),
+    "TLI" = round(as.numeric(power_trad["tli"]), 3),
+    "RMSEA" = round(as.numeric(power_trad["rmsea"]), 3),
+    "SRMR" = power_trad["srmr"],  # Keep as string
+    row.names = "Power"
+)
 
-summaryFit(h1model_ideal, alpha = ALPHA, usedFit = FITS)
+knitr::kable(power_df, digits = 3, align = "c", col.names = toupper(names(power_df)))
 ```
 
 ### Target parameter estimates
 
+Under ideal conditions, the first step is to evaluate parameter recovery rather than focusing on statistical significance alone. In `simsem`, `summaryParam(..., detail = TRUE)` provides detailed recovery diagnostics, including relative bias, relative standard error bias, coverage, and power for testing whether each parameter differs from zero [@simsem2021]. Because power in SEM is hypothesis-specific, parameters within the same model may require substantially different sample sizes to reach the same target power [@moshagen2023; @jobst2023].
 
 ```{r}
 #| label: tbl-param-estimate-ideal
 #| tbl-cap: "Summary of parameter estimates under ideal conditions."
 
-summaryParam(h1model_ideal, alpha = ALPHA, digits = 3, detail = TRUE)
+# Compute detailed parameter-recovery results for the fitted model
+param_ideal <- summaryParam(
+  h1model_ideal,
+  alpha = ALPHA,
+  digits = 3,
+  detail = TRUE
+)
+
+# Keep only the diagnostics used in the discussion
+param_subset <- param_ideal[, c("Rel Bias", "Rel SE Bias", "Coverage", "Power (Not equal 0)")]
+
+# Print the table
+knitr::kable(
+  param_subset,
+  digits = 3,
+  align = "c",
+  caption = "Parameter estimates under ideal conditions"
+)
 ```
+
+The second step is to translate parameter-specific power into a planning quantity. In `simsem`, `getPower()` returns power estimates for model parameters, and `findPower()` identifies the value of the chosen independent variable, here \(N\), that first exceeds the target power level; thus, the resulting \(N\) should be read as a practical threshold for planning rather than an exact analytical cutoff [@simsem2021]. This is useful because SEM sample size requirements should be aligned with the most demanding focal parameters, not with the easiest ones to detect [@moshagen2023; @jobst2023].
 
 ```{r}
 #| label: tbl-power-n-ideal
 #| tbl-cap: "Sample size needed for 80% power under ideal conditions."
 
+# Obtain parameter-specific power estimates across sample sizes
 pow_h1 <- getPower(h1model_ideal, alpha = ALPHA)
-findPower(pow_h1, "N", 0.80)
+
+# Find the minimum N in the simulated grid that reaches the target power of 0.80
+n_h1 <- findPower(pow_h1, "N", 0.80)
+
+# Convert to a data frame for reporting
+n_df <- data.frame(
+  Parameter = names(n_h1),
+  N = as.integer(n_h1)
+)
+
+# Remove parameters for which no finite N was returned
+n_df <- n_df[is.finite(n_df$N), ]
+
+# Print the table
+knitr::kable(
+  n_df,
+  col.names = c("Parameter", "N"),
+  align = "c"
+)
 ```
 
 ### Recovering the population parameters
@@ -198,7 +250,9 @@ Recovery of population parameters is not best strategy in CFA power analyses. Th
 
 But this strategy its not pratical because uselly we don't need an large sample size to recover the loadings > 0, but rather to detect misspecifications (e.g., cross-loadings) that are not present in the population model. Therefore, we can use the power to detect misspecifications as a more relevant criterion for determining the required sample size.
 
-Naive model: tau-equivalent loadings (uniform λ per domain) with same reliability as the population model. This is a common but often unrealistic assumption in CFA power analyses.
+#### Naive model
+
+-   Naive model: tau-equivalent loadings (uniform λ per domain) with same reliability as the population model. This is a common but often unrealistic assumption in CFA power analyses.
 
 ```{r}
 #| label: sim-ideal-naivemodel
@@ -216,17 +270,48 @@ naivemodel_ideal <- sim(
 )
 ```
 
-Maybe the better strategy is recovering N from the lowest population loadings.
+This chunk summarizes the parameter-level results of the Monte Carlo simulation by identifying the sample size required to reach \( .80 \) power for each estimable parameter. In line with simulation-based SEM power analysis, the goal here is not global fit, but parameter recovery under the specified population and analysis models, using the focal parameter requirements to identify the most demanding part of the model [@simsem2021; @moshagen2023; @jobst2023]. The resulting table focuses on the parameters for which a finite sample size requirement could be determined, which are the most relevant for planning purposes. We also show the fit diagnostics simulated used in this tutorial for the naive model, which are relevant for understanding the misspecification scenario and its implications for power.
 
 ```{r}
 #| label: tbl-power-n-naive
-#| tbl-cap: "Sample size needed for 80% power under naive model."
+#| tbl-cap: "Parameter estimates and required sample size for 80% power under naive conditions."
 
+# Compute detailed parameter-recovery results for the fitted model
+param_naive <- summaryParam(
+  naivemodel_ideal,
+  alpha = ALPHA,
+  digits = 3,
+  detail = TRUE
+)
+
+# Keep only the diagnostics used in the discussion
+param_subset <- as.data.frame(param_naive[, c("Rel Bias", "Rel SE Bias", "Coverage", "Power (Not equal 0)")])
+
+# Compute parameter-level power across the simulated values of N.
 pow_naive <- getPower(naivemodel_ideal, alpha = ALPHA)
-findPower(pow_naive, "N", 0.80)
+
+# Extract the minimum N that reaches the target power of .80 for each parameter.
+n_naive <- findPower(pow_naive, "N", 0.80)
+
+# Add Required N to the subset
+param_subset$N <- as.integer(n_naive[rownames(param_subset)])
+
+# Filter to keep only finite N that are greater than 60 (for cleaner output)
+filtered_subset <- subset(param_subset, is.finite(N) & N > 60)
+
+# Print the combined table
+knitr::kable(
+  filtered_subset,
+  digits = 3,
+  align = "c",
+  col.names = c("Rel Bias", "Rel SE Bias", "Coverage", "Power (Not equal 0)", "Required N")
+)
 ```
 
-Optimal model: tau-equivalent loadings (uniform λ per domain) with same reliability as the population model, but with higher loadings to match the population reliability. This represents an idealized scenario where the analysis model is correctly specified in terms of reliability, but still assumes tau-equivalence.
+
+#### Optimal model
+
+-   Optimal model: tau-equivalent loadings (uniform λ per domain) with same reliability as the population model, but with higher loadings to match the population reliability. This represents an idealized scenario where the analysis model is correctly specified in terms of reliability, but still assumes tau-equivalence.
 
 ```{r}
 #| label: sim-ideal-optmodel
@@ -244,21 +329,49 @@ optmodel_ideal <- sim(
 )
 ```
 
-Maybe the better strategy is recovering N from the lowest population loadings.
+This chunk computes parameter-level power for the optimal model and extracts the minimum sample size \( N \) required for each parameter to reach \( .80 \) power at the chosen \( \alpha \) level. In Monte Carlo SEM power analysis, this step helps identify which parameters are more or less demanding in terms of sample size under the assumed data-generating and analysis conditions [@simsem2021; @moshagen2023; @jobst2023]. The resulting table focuses on the parameters for which a finite sample size requirement could be determined, which are the most relevant for planning purposes. We also show the fit diagnostics simulated used in this tutorial for the naive model, which are relevant for understanding the misspecification scenario and its implications for power.
 
 ```{r}
 #| label: tbl-power-n-optimal
-#| tbl-cap: "Sample size needed for 80% power under optimal model."
+#| tbl-cap: "Parameter estimates and required sample size for 80% power under optimal conditions."
 
+# Compute detailed parameter-recovery results for the fitted model
+param_opt <- summaryParam(
+  optmodel_ideal,
+  alpha = ALPHA,
+  digits = 3,
+  detail = TRUE
+)
+
+# Keep only the diagnostics used in the discussion
+param_subset <- as.data.frame(param_opt[, c("Rel Bias", "Rel SE Bias", "Coverage", "Power (Not equal 0)")])
+
+# Compute parameter-level power across the simulated values of N.
 pow_opt <- getPower(optmodel_ideal, alpha = ALPHA)
-findPower(pow_opt, "N", 0.80)
+
+# Extract the minimum N that reaches the target power of .80 for each parameter.
+n_opt <- findPower(pow_opt, "N", 0.80)
+
+# Add Required N to the subset
+param_subset$N <- as.integer(n_opt[rownames(param_subset)])
+
+# Filter to keep only finite N that are greater than 60 (for cleaner output)
+filtered_subset <- subset(param_subset, is.finite(N) & N > 60)
+
+# Print the combined table
+knitr::kable(
+  filtered_subset,
+  digits = 3,
+  align = "c",
+  col.names = c("Rel Bias", "Rel SE Bias", "Coverage", "Power (Not equal 0)", "Required N")
+)
 ```
 
-### Misspecification simulation with different population parameters
+### Misspecification and population sensitivity
 
 #### Naive model
 
-- Power curves for fit indices
+These chunks evaluate fit-index-based power for the naive population model across sample sizes and then extract the corresponding power and empirical cutoff values at \( N = 330 \). In simulation-based SEM power analysis, this workflow is useful when the goal is to assess how well different fit indices discriminate between a better-fitting and a worse-fitting model as sample size increases [@simsem2021; @moshagen2023; @jobst2023].
 
 ```{r}
 #| label: fig-power-curve-naive
@@ -266,14 +379,17 @@ findPower(pow_opt, "N", 0.80)
 #| fig-width: 8
 #| fig-height: 5
 
+# Plot fit-index-based power as a function of N.
+# With logistic = TRUE (default), simsem smooths the reject/retain decisions
+# across sample size using logistic regression, yielding continuous power curves
+# for each fit index.
 plotPowerFit(
-    h1model_ideal,
-    naivemodel_ideal,
-    alpha = ALPHA,
-    usedFit = FITS
+  h1model_ideal,
+  naivemodel_ideal,
+  alpha = ALPHA,
+  usedFit = FITS
 )
 ```
-
 
 ```{r}
 #| label: fig-fit-curve-naive
@@ -281,48 +397,57 @@ plotPowerFit(
 #| fig-width: 8
 #| fig-height: 5
 
+# Plot the raw fit-index distributions over N without logistic smoothing.
+# This version is useful to inspect the empirical separation between the null
+# and alternative model results before smoothing them into power curves.
 plotPowerFit(
-    h1model_ideal,
-    naivemodel_ideal,
-    alpha = ALPHA,
-    usedFit = FITS,
-    logistic = FALSE
+  h1model_ideal,
+  naivemodel_ideal,
+  alpha = ALPHA,
+  usedFit = FITS,
+  logistic = FALSE
 )
 ```
 
-- Power cutoff values for fit indices
+The next chunk computes, at \( N = 330 \), the estimated power for each fit index and the empirical cutoff implied by the null-model sampling distribution at the chosen \( \alpha \) level. This provides a direct summary of how stringent each index is and whether the selected sample size is sufficient under the naive scenario.
 
 ```{r}
 #| label: tbl-power-cutoff-naive
 #| tbl-cap: "Power and fit index cutoff values using the naive population model at N = 330."
 
+# Estimate the power to reject the misspecified model at N = 330 for each fit index.
 power_naive <- getPowerFit(
-    h1model_ideal,
-    nullObject = naivemodel_ideal,
-    alpha = ALPHA,
-    nVal = 330,
-    usedFit = FITS
+  h1model_ideal,
+  nullObject = naivemodel_ideal,
+  alpha = ALPHA,
+  nVal = 330,
+  usedFit = FITS
 )
 
+# Derive empirical fit-index cutoffs from the null model at the same alpha level.
 cutoff_naive <- getCutoff(
-    naivemodel_ideal,
-    alpha = ALPHA,
-    nVal = 330,
-    usedFit = FITS
+  naivemodel_ideal,
+  alpha = ALPHA,
+  nVal = 330,
+  usedFit = FITS
 )
 
+# Combine power and cutoff values into a compact summary table.
 power_cutoff_naive_df <- rbind(
-    "Power" = as.numeric(power_naive),
-    "Cutoff" = as.numeric(cutoff_naive[1, ])
+  "Power" = as.numeric(power_naive),
+  "Cutoff" = as.numeric(cutoff_naive[1, ])
 )
 colnames(power_cutoff_naive_df) <- toupper(names(power_naive))
 
+# Print the final table.
 knitr::kable(power_cutoff_naive_df, digits = 3, align = "c")
 ```
 
 #### Optimal model
 
-- Power curves for fit indices
+The code below evaluates fit-index-based power under the optimal population model. In this setup, `plotPowerFit()` visualizes how the probability of rejecting inadequate fit changes as sample size varies, using fit-index cutoffs derived from the reference model; this follows the simulation-based logic implemented in `simsem` for power assessment via fit indices rather than single-parameter tests [@simsem2021; @jobst2023; @moshagen2023].
+
+When `logistic = TRUE` (default), the plotted curves are smoothed using logistic regression over the varying sample sizes, which is useful when \(N\) changes continuously across replications [@simsem2021]. When `logistic = FALSE`, the function shows the raw simulated relationship between sample size and the fit indices, overlaid with the cutoff boundary, which is more descriptive and less model-smoothed [@simsem2021].
 
 ```{r}
 #| label: fig-power-curve-opt
@@ -330,14 +455,17 @@ knitr::kable(power_cutoff_naive_df, digits = 3, align = "c")
 #| fig-width: 8
 #| fig-height: 5
 
+# Plots power as a function of N for the selected fit indices.
+# The null/reference object provides the cutoff distribution.
+# With the default logistic = TRUE, the curves are smoothed.
+
 plotPowerFit(
-    h1model_ideal,
-    optmodel_ideal,
-    alpha = ALPHA,
-    usedFit = FITS
+  h1model_ideal,
+  optmodel_ideal,
+  alpha = ALPHA,
+  usedFit = FITS
 )
 ```
-
 
 ```{r}
 #| label: fig-fit-curve-opt
@@ -345,39 +473,45 @@ plotPowerFit(
 #| fig-width: 8
 #| fig-height: 5
 
+# Repeats the previous plot without logistic smoothing.
+# This version emphasizes the raw simulated fit-index patterns across N.
+
 plotPowerFit(
-    h1model_ideal,
-    optmodel_ideal,
-    alpha = ALPHA,
-    usedFit = FITS,
-    logistic = FALSE
+  h1model_ideal,
+  optmodel_ideal,
+  alpha = ALPHA,
+  usedFit = FITS,
+  logistic = FALSE
 )
 ```
 
-- Power cutoff values for fit indices
+The next chunk computes, at a fixed sample size \(N = 291\), the estimated power for each selected fit index and the corresponding cutoff values obtained from the optimal reference model. In `simsem`, `getPowerFit()` returns the probability that each index correctly flags worse fit at the requested \(N\), whereas `getCutoff()` returns the index-specific decision thresholds associated with the chosen \(\alpha\) level [@simsem2021].
 
 ```{r}
 #| label: tbl-power-cutoff-opt
 #| tbl-cap: "Power and fit index cutoff values using the optimal population model at N = 291."
 
+# Power at the target sample size for each fit index.
 power_opt <- getPowerFit(
-    h1model_ideal,
-    nullObject = optmodel_ideal,
-    alpha = ALPHA,
-    nVal = 291,
-    usedFit = FITS
+  h1model_ideal,
+  nullObject = optmodel_ideal,
+  alpha = ALPHA,
+  nVal = 291,
+  usedFit = FITS
 )
 
+# Index-specific cutoffs derived from the reference model at the same N.
 cutoff_opt <- getCutoff(
-    optmodel_ideal,
-    alpha = ALPHA,
-    nVal = 291,
-    usedFit = FITS
+  optmodel_ideal,
+  alpha = ALPHA,
+  nVal = 291,
+  usedFit = FITS
 )
 
+# Combines power and cutoff values into a compact display table.
 power_cutoff_opt_df <- rbind(
-    "Power" = as.numeric(power_opt),
-    "Cutoff" = as.numeric(cutoff_opt[1, ])
+  "Power" = as.numeric(power_opt),
+  "Cutoff" = as.numeric(cutoff_opt[1, ])
 )
 colnames(power_cutoff_opt_df) <- toupper(names(power_opt))
 

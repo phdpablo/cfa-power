@@ -1,8 +1,9 @@
-# R/RStudio
+# IDE and R artifacts
 .Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
+.vscode/
 
 # Quarto and builds
 .quarto/
