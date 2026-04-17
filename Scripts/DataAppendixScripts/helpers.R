@@ -10,6 +10,7 @@
 library(lavaan)
 library(semTools)
 library(semPower)
+library(semPlot)
 library(simsem)
 library(MASS)
 library(ggplot2)
@@ -49,5 +50,107 @@ RULE_OF_THUMB <- c(
   srmr = 0.06
 )
 
+
 # --- Global Session Configuration --------------------------------------------
 options(max.print = 1e6)
+
+
+# --- DRY Functions ----------------------------------------------------------------
+
+# Helper functions for plotting SEM diagrams with semPlot, using consistent styling across all models.
+
+# plot_bw: Black-and-white version of the path diagram, with standardized estimates as edge labels.
+plot_bw <- function(model) {
+  plot_model <- semPlot::semPlotModel(model)
+
+  semPlot::semPaths(
+    plot_model,
+    #whatLabels = "est",
+    style = "lisrel",
+    layout = "circle",
+    intercepts = FALSE,
+    thresholds = FALSE,
+    residuals = FALSE,
+    edge.label.cex = 1.5,
+    label.cex = 2,
+    weighted = FALSE,
+    edge.color = "black",
+    mar = c(2, 1.5, 2, 1.5)
+  )
+}
+
+# plot_color: Color version of the cicle layout version of the path diagram, with standardized estimates as edge labels and color coding for latent variable groups.
+plot_color <- function(model) {
+  plot_model <- semPlot::semPlotModel(model)
+
+  cols <- c(
+    psy = "#F18C22",
+    phy = "#87CBCC",
+    scl = "#a0b7d2",
+    env = "#d8da54"
+  )
+
+  ink <- "#0D232C"
+
+  semPlot::semPaths(
+    plot_model,
+    whatLabels = "est",
+    style = "lisrel",
+    layout = "circle",
+    intercepts = FALSE,
+    thresholds = FALSE,
+    residuals = FALSE,
+    groups = "latents",
+    color = cols,
+    edge.color = ink,
+    border.color = ink,
+    label.color = ink,
+    sizeLat = 9,
+    sizeMan = 5,
+    sizeMan2 = 5,
+    label.cex = 2,
+    edge.label.cex = 1.5,
+    edge.label.bg = TRUE,
+    weighted = FALSE,
+    mar = c(2, 1.5, 2, 1.5)
+  )
+}
+
+# plot_tree: Tree rotate layout version of the path diagram, with standardized estimates as edge labels and color coding for latent variable groups.
+plot_tree <- function(model) {
+  plot_model <- semPlot::semPlotModel(model)
+
+  cols <- c(
+    psy = "#F18C22",
+    phy = "#87CBCC",
+    scl = "#a0b7d2",
+    env = "#d8da54"
+  )
+
+  ink <- "#0D232C"
+
+  semPlot::semPaths(
+    plot_model,
+    style = "lisrel",
+    layout = "tree2",
+    rotation = 2,
+    intercepts = FALSE,
+    thresholds = FALSE,
+    residuals = FALSE,
+    groups = "latents",
+    color = cols,
+    edge.color = ink,
+    border.color = ink,
+    label.color = ink,
+    sizeLat = 9,
+    sizeMan = 3,
+    sizeMan2 = 3,
+    label.cex = 2,
+    edge.label.cex = 1.5,
+    edge.label.bg = TRUE,
+    weighted = FALSE,
+    curve = 1,
+    curvature = 1.5,
+    mar = c(2, 10, 2, 10)
+  )
+}

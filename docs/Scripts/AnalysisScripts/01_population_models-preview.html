@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.8.25">
+    <meta name="generator" content="quarto-1.9.37">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
     <title>Population Models</title>
     <style>
+      /* Default styles provided by pandoc.
+      ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+      */
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -150,15 +153,17 @@
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e261b86ae15e22bf333780d8a72f25c9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-df715b4811ca13bc07639e5bce24b6cd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
      <script async="" src="https://hypothes.is/embed.js"></script>
 <script>
   window.document.addEventListener("DOMContentLoaded", function (_event) {
@@ -208,8 +213,8 @@
    
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#population-model-meta-analytic-lin-yao-2022" id="toc-population-model-meta-analytic-lin-yao-2022" class="nav-link" data-scroll-target="#population-model-meta-analytic-lin-yao-2022">Population model — Meta-analytic (Lin &amp; Yao, 2022)</a></li>
-  <li><a href="#naive-model-minimally-acceptable-scenario" id="toc-naive-model-minimally-acceptable-scenario" class="nav-link" data-scroll-target="#naive-model-minimally-acceptable-scenario">Naive model — Minimally acceptable scenario</a></li>
+  <li><a href="#population-model-meta-analytic" id="toc-population-model-meta-analytic" class="nav-link" data-scroll-target="#population-model-meta-analytic">Population model — Meta-analytic</a></li>
+  <li><a href="#naive-model-worst-case-scenario" id="toc-naive-model-worst-case-scenario" class="nav-link" data-scroll-target="#naive-model-worst-case-scenario">Naive model — Worst-case scenario</a></li>
   <li><a href="#optimistic-model-best-case-scenario" id="toc-optimistic-model-best-case-scenario" class="nav-link" data-scroll-target="#optimistic-model-best-case-scenario">Optimistic model — Best-case scenario</a></li>
   <li><a href="#model-h1-cross-loading-population-model" id="toc-model-h1-cross-loading-population-model" class="nav-link" data-scroll-target="#model-h1-cross-loading-population-model">Model H1 — Cross-loading population model</a></li>
   <li><a href="#analysis-model-free-parameters" id="toc-analysis-model-free-parameters" class="nav-link" data-scroll-target="#analysis-model-free-parameters">Analysis model — Free parameters</a></li>
@@ -266,6 +271,9 @@ See https://moshagen.github.io/semPower/ for a detailed manual.
 Please cite as:
 Moshagen, M., &amp; Bader, M. (2024). semPower: General Power Analysis for Structural Equation Models.
 Behavior Research Methods, 56, 2901-2922. https://doi.org/10.3758/s13428-023-02254-7</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'semPlot' was built under R version 4.5.3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code> </code></pre>
@@ -325,15 +333,15 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'SparseM' was built under R version 4.5.3</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"models.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"models.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
-<section id="population-model-meta-analytic-lin-yao-2022" class="level2">
-<h2 class="anchored" data-anchor-id="population-model-meta-analytic-lin-yao-2022">Population model — Meta-analytic (Lin &amp; Yao, 2022)</h2>
+<section id="population-model-meta-analytic" class="level2">
+<h2 class="anchored" data-anchor-id="population-model-meta-analytic">Population model — Meta-analytic</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(popModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(popmodel) <span class="co"># Lin &amp; Yao (2022) population model specification</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings: empirical estimates from Lin &amp; Yao (2022) ────────────
@@ -388,12 +396,28 @@ Attaching package: 'dplyr'</code></pre>
   Q25 ~~ 0.4671*Q25   # 1 − 0.73²</code></pre>
 </div>
 </div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-fig-diagram-popmodel" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_color</span>(popmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-diagram-popmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="01_population_models_files/figure-html/fig-diagram-popmodel-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Path diagram of the popmodel"><img src="01_population_models_files/figure-html/fig-diagram-popmodel-1.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Path diagram of the popmodel
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
 </section>
-<section id="naive-model-minimally-acceptable-scenario" class="level2">
-<h2 class="anchored" data-anchor-id="naive-model-minimally-acceptable-scenario">Naive model — Minimally acceptable scenario</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(naiveModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="naive-model-worst-case-scenario" class="level2">
+<h2 class="anchored" data-anchor-id="naive-model-worst-case-scenario">Naive model — Worst-case scenario</h2>
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(naivemodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
@@ -446,12 +470,28 @@ Attaching package: 'dplyr'</code></pre>
   Q25 ~~ 0.7665*Q25</code></pre>
 </div>
 </div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-fig-diagram-naivemodel" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_color</span>(naivemodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-diagram-naivemodel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-naivemodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="01_population_models_files/figure-html/fig-diagram-naivemodel-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Path diagram of the naivemodel"><img src="01_population_models_files/figure-html/fig-diagram-naivemodel-1.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-naivemodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Path diagram of the naivemodel
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
 </section>
 <section id="optimistic-model-best-case-scenario" class="level2">
 <h2 class="anchored" data-anchor-id="optimistic-model-best-case-scenario">Optimistic model — Best-case scenario</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(optModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(optmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
@@ -504,12 +544,28 @@ Attaching package: 'dplyr'</code></pre>
   Q25 ~~ 0.5873*Q25</code></pre>
 </div>
 </div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-fig-diagram-optmodel" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_color</span>(optmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-diagram-optmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-optmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="01_population_models_files/figure-html/fig-diagram-optmodel-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Path diagram of the optmodel"><img src="01_population_models_files/figure-html/fig-diagram-optmodel-1.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-optmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Path diagram of the optmodel
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
 </section>
 <section id="model-h1-cross-loading-population-model" class="level2">
 <h2 class="anchored" data-anchor-id="model-h1-cross-loading-population-model">Model H1 — Cross-loading population model</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(H1Model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(h1model) <span class="co"># Plus three cross-loading in Lin &amp; Yao (2022) specification</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings (with three cross-loadings) ───────────────────────────
@@ -563,12 +619,28 @@ Attaching package: 'dplyr'</code></pre>
   Q25 ~~ 0.4671*Q25</code></pre>
 </div>
 </div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-fig-diagram-h1model" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_color</span>(h1model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-diagram-h1model" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-h1model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="01_population_models_files/figure-html/fig-diagram-h1model-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Path diagram of the h1model"><img src="01_population_models_files/figure-html/fig-diagram-h1model-1.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-h1model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Path diagram of the h1model
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
 </section>
 <section id="analysis-model-free-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-model-free-parameters">Analysis model — Free parameters</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(analyzeModel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(analyzemodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings: freely estimated ─────────────────────────────────────
@@ -596,84 +668,678 @@ Attaching package: 'dplyr'</code></pre>
   Q14 ~~ Q14; Q23 ~~ Q23; Q24 ~~ Q24; Q25 ~~ Q25</code></pre>
 </div>
 </div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="cell-fig-diagram-analyzemodel" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_tree</span>(analyzemodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-diagram-analyzemodel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-analyzemodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="01_population_models_files/figure-html/fig-diagram-analyzemodel-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Path diagram of the analyzemodel"><img src="01_population_models_files/figure-html/fig-diagram-analyzemodel-1.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-analyzemodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Path diagram of the analyzemodel
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
 </section>
 <section id="comparison-table" class="level2">
 <h2 class="anchored" data-anchor-id="comparison-table">Comparison table</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>pop_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Model =</span> <span class="fu">c</span>(</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Meta-analytic (popModel)"</span>,</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Naive (naiveModel)"</span>,</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Optimistic (optModel)"</span>,</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"H1 (H1model)"</span></span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Loading Range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.37–0.94"</span>, <span class="st">"0.48–0.60"</span>, <span class="st">"0.64–0.77"</span>, <span class="st">"0.21–0.94"</span>),</span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Mean Loading</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.74"</span>, <span class="st">"0.51"</span>, <span class="st">"0.69"</span>, <span class="st">"0.78"</span>),</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Factor Correlations</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.20"</span>, <span class="st">"0.30"</span>, <span class="st">"0.08"</span>, <span class="st">"0.20"</span>),</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Residual Range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.12–0.86"</span>, <span class="st">"0.64–0.77"</span>, <span class="st">"0.41–0.59"</span>, <span class="st">"0.12–0.67"</span>),</span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Q3–Q4 Correlation</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"0.09"</span>, <span class="st">"0.23"</span>, <span class="st">"0.16"</span>, <span class="st">"0.09"</span>),</span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
-<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(pop_summary, <span class="at">align =</span> <span class="st">"lccccc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="tbl-pop-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Data/InputData/popmodels_parameters.csv"</span>,</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">""</span>,</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(csv) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'"'</span>, <span class="st">''</span>, <span class="fu">names</span>(csv))</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>param_transp <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(csv[<span class="sc">-</span><span class="dv">1</span>]), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(param_transp) <span class="ot">&lt;-</span> csv[[<span class="dv">1</span>]]</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>param_transp <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">parameters =</span> <span class="fu">names</span>(csv)[<span class="sc">-</span><span class="dv">1</span>], param_transp)</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(param_transp) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>param_transp <span class="sc">|&gt;</span></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"CFA Population Models Parameter"</span>,</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"lcccc"</span>,</span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"parameters"</span>, <span class="st">"popmodel"</span>, <span class="st">"naivemodel"</span>, <span class="st">"optmodel"</span>, <span class="st">"h1model"</span>)</span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div id="tbl-pop-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pop-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Summary of population model variants used for sensitivity analysis
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pop-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Summary of population models used for sensitivity analysis
 </figcaption>
-<div aria-describedby="tbl-pop-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-pop-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 22%">
-<col style="width: 13%">
-<col style="width: 12%">
-<col style="width: 19%">
-<col style="width: 14%">
-<col style="width: 17%">
-</colgroup>
+<table class="cell caption-top table table-sm table-striped small">
+<caption>CFA Population Models Parameter</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Model</th>
-<th style="text-align: center;">Loading Range</th>
-<th style="text-align: center;">Mean Loading</th>
-<th style="text-align: center;">Factor Correlations</th>
-<th style="text-align: center;">Residual Range</th>
-<th style="text-align: center;">Q3–Q4 Correlation</th>
+<th style="text-align: left;">parameters</th>
+<th style="text-align: center;">popmodel</th>
+<th style="text-align: center;">naivemodel</th>
+<th style="text-align: center;">optmodel</th>
+<th style="text-align: center;">h1model</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Meta-analytic (popModel)</td>
-<td style="text-align: center;">0.37–0.94</td>
-<td style="text-align: center;">0.74</td>
-<td style="text-align: center;">0.20</td>
-<td style="text-align: center;">0.12–0.86</td>
-<td style="text-align: center;">0.09</td>
+<td style="text-align: left;">psycho=~Q5</td>
+<td style="text-align: center;">0.9200</td>
+<td style="text-align: center;">0.5328</td>
+<td style="text-align: center;">0.7113</td>
+<td style="text-align: center;">0.9200</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Naive (naiveModel)</td>
-<td style="text-align: center;">0.48–0.60</td>
-<td style="text-align: center;">0.51</td>
-<td style="text-align: center;">0.30</td>
-<td style="text-align: center;">0.64–0.77</td>
-<td style="text-align: center;">0.23</td>
+<td style="text-align: left;">psycho=~Q6</td>
+<td style="text-align: center;">0.8100</td>
+<td style="text-align: center;">0.5328</td>
+<td style="text-align: center;">0.7113</td>
+<td style="text-align: center;">0.8100</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Optimistic (optModel)</td>
-<td style="text-align: center;">0.64–0.77</td>
-<td style="text-align: center;">0.69</td>
-<td style="text-align: center;">0.08</td>
-<td style="text-align: center;">0.41–0.59</td>
-<td style="text-align: center;">0.16</td>
+<td style="text-align: left;">psycho=~Q7</td>
+<td style="text-align: center;">0.9400</td>
+<td style="text-align: center;">0.5328</td>
+<td style="text-align: center;">0.7113</td>
+<td style="text-align: center;">0.9400</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">H1 (H1model)</td>
-<td style="text-align: center;">0.21–0.94</td>
-<td style="text-align: center;">0.78</td>
+<td style="text-align: left;">psycho=~Q11</td>
+<td style="text-align: center;">0.7300</td>
+<td style="text-align: center;">0.5328</td>
+<td style="text-align: center;">0.7113</td>
+<td style="text-align: center;">0.7300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">psycho=~Q19</td>
+<td style="text-align: center;">0.7500</td>
+<td style="text-align: center;">0.5328</td>
+<td style="text-align: center;">0.7113</td>
+<td style="text-align: center;">0.7500</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">psycho=~Q26</td>
+<td style="text-align: center;">0.6300</td>
+<td style="text-align: center;">0.5328</td>
+<td style="text-align: center;">0.7113</td>
+<td style="text-align: center;">0.6300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">physical=~Q3</td>
+<td style="text-align: center;">0.8400</td>
+<td style="text-align: center;">0.4758</td>
+<td style="text-align: center;">0.6837</td>
+<td style="text-align: center;">0.8400</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">physical=~Q4</td>
+<td style="text-align: center;">0.8300</td>
+<td style="text-align: center;">0.4758</td>
+<td style="text-align: center;">0.6837</td>
+<td style="text-align: center;">0.8300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">physical=~Q10</td>
+<td style="text-align: center;">0.6300</td>
+<td style="text-align: center;">0.4758</td>
+<td style="text-align: center;">0.6837</td>
+<td style="text-align: center;">0.6300</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">physical=~Q15</td>
+<td style="text-align: center;">0.7100</td>
+<td style="text-align: center;">0.4758</td>
+<td style="text-align: center;">0.6837</td>
+<td style="text-align: center;">0.7100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">physical=~Q16</td>
+<td style="text-align: center;">0.6800</td>
+<td style="text-align: center;">0.4758</td>
+<td style="text-align: center;">0.6837</td>
+<td style="text-align: center;">0.6800</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">physical=~Q17</td>
+<td style="text-align: center;">0.8900</td>
+<td style="text-align: center;">0.4758</td>
+<td style="text-align: center;">0.6837</td>
+<td style="text-align: center;">0.8900</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">physical=~Q18</td>
+<td style="text-align: center;">0.6100</td>
+<td style="text-align: center;">0.4758</td>
+<td style="text-align: center;">0.6837</td>
+<td style="text-align: center;">0.6100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">social=~Q20</td>
+<td style="text-align: center;">0.9400</td>
+<td style="text-align: center;">0.6017</td>
+<td style="text-align: center;">0.7661</td>
+<td style="text-align: center;">0.9400</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">social=~Q21</td>
+<td style="text-align: center;">0.8900</td>
+<td style="text-align: center;">0.6017</td>
+<td style="text-align: center;">0.7661</td>
+<td style="text-align: center;">0.8900</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">social=~Q22</td>
+<td style="text-align: center;">0.7800</td>
+<td style="text-align: center;">0.6017</td>
+<td style="text-align: center;">0.7661</td>
+<td style="text-align: center;">0.7800</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">environment=~Q8</td>
+<td style="text-align: center;">0.3700</td>
+<td style="text-align: center;">0.4832</td>
+<td style="text-align: center;">0.6424</td>
+<td style="text-align: center;">0.3700</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">environment=~Q9</td>
+<td style="text-align: center;">0.4900</td>
+<td style="text-align: center;">0.4832</td>
+<td style="text-align: center;">0.6424</td>
+<td style="text-align: center;">0.4900</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">environment=~Q12</td>
+<td style="text-align: center;">0.7900</td>
+<td style="text-align: center;">0.4832</td>
+<td style="text-align: center;">0.6424</td>
+<td style="text-align: center;">0.7900</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">environment=~Q13</td>
+<td style="text-align: center;">0.8100</td>
+<td style="text-align: center;">0.4832</td>
+<td style="text-align: center;">0.6424</td>
+<td style="text-align: center;">0.8100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">environment=~Q14</td>
+<td style="text-align: center;">0.7700</td>
+<td style="text-align: center;">0.4832</td>
+<td style="text-align: center;">0.6424</td>
+<td style="text-align: center;">0.7700</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">environment=~Q23</td>
+<td style="text-align: center;">0.7500</td>
+<td style="text-align: center;">0.4832</td>
+<td style="text-align: center;">0.6424</td>
+<td style="text-align: center;">0.7500</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">environment=~Q24</td>
+<td style="text-align: center;">0.6400</td>
+<td style="text-align: center;">0.4832</td>
+<td style="text-align: center;">0.6424</td>
+<td style="text-align: center;">0.6400</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">environment=~Q25</td>
+<td style="text-align: center;">0.7300</td>
+<td style="text-align: center;">0.4832</td>
+<td style="text-align: center;">0.6424</td>
+<td style="text-align: center;">0.7300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q3<sub></sub>Q4</td>
+<td style="text-align: center;">0.0908</td>
+<td style="text-align: center;">0.2321</td>
+<td style="text-align: center;">0.1598</td>
+<td style="text-align: center;">0.0908</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">psycho<sub></sub>psycho</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: center;">1.0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">psycho<sub></sub>physical</td>
+<td style="text-align: center;">0.2000</td>
+<td style="text-align: center;">0.3000</td>
+<td style="text-align: center;">0.0800</td>
+<td style="text-align: center;">0.2000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">psycho<sub></sub>social</td>
+<td style="text-align: center;">0.2000</td>
+<td style="text-align: center;">0.3000</td>
+<td style="text-align: center;">0.0800</td>
+<td style="text-align: center;">0.2000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">psycho<sub></sub>environment</td>
+<td style="text-align: center;">0.2000</td>
+<td style="text-align: center;">0.3000</td>
+<td style="text-align: center;">0.0800</td>
+<td style="text-align: center;">0.2000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">physical<sub></sub>physical</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: center;">1.0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">physical<sub></sub>social</td>
+<td style="text-align: center;">0.2000</td>
+<td style="text-align: center;">0.3000</td>
+<td style="text-align: center;">0.0800</td>
+<td style="text-align: center;">0.2000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">physical<sub></sub>environment</td>
+<td style="text-align: center;">0.2000</td>
+<td style="text-align: center;">0.3000</td>
+<td style="text-align: center;">0.0800</td>
+<td style="text-align: center;">0.2000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">social<sub></sub>social</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: center;">1.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">social<sub></sub>environment</td>
+<td style="text-align: center;">0.2000</td>
+<td style="text-align: center;">0.3000</td>
+<td style="text-align: center;">0.0800</td>
+<td style="text-align: center;">0.2000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">environment<sub></sub>environment</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: center;">1.0000</td>
+<td style="text-align: center;">1.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q5<sub></sub>Q5</td>
+<td style="text-align: center;">0.1536</td>
+<td style="text-align: center;">0.7161</td>
+<td style="text-align: center;">0.4941</td>
+<td style="text-align: center;">0.1536</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q6<sub></sub>Q6</td>
+<td style="text-align: center;">0.3439</td>
+<td style="text-align: center;">0.7161</td>
+<td style="text-align: center;">0.4941</td>
+<td style="text-align: center;">0.3439</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q7<sub></sub>Q7</td>
+<td style="text-align: center;">0.1164</td>
+<td style="text-align: center;">0.7161</td>
+<td style="text-align: center;">0.4941</td>
+<td style="text-align: center;">0.1164</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q11<sub></sub>Q11</td>
+<td style="text-align: center;">0.4671</td>
+<td style="text-align: center;">0.7161</td>
+<td style="text-align: center;">0.4941</td>
+<td style="text-align: center;">0.4671</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q19<sub></sub>Q19</td>
+<td style="text-align: center;">0.4375</td>
+<td style="text-align: center;">0.7161</td>
+<td style="text-align: center;">0.4941</td>
+<td style="text-align: center;">0.4375</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q26<sub></sub>Q26</td>
+<td style="text-align: center;">0.6031</td>
+<td style="text-align: center;">0.7161</td>
+<td style="text-align: center;">0.4941</td>
+<td style="text-align: center;">0.6031</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q3<sub></sub>Q3</td>
+<td style="text-align: center;">0.2944</td>
+<td style="text-align: center;">0.7736</td>
+<td style="text-align: center;">0.5326</td>
+<td style="text-align: center;">0.2944</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q4<sub></sub>Q4</td>
+<td style="text-align: center;">0.3111</td>
+<td style="text-align: center;">0.7736</td>
+<td style="text-align: center;">0.5326</td>
+<td style="text-align: center;">0.3111</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q10<sub></sub>Q10</td>
+<td style="text-align: center;">0.6031</td>
+<td style="text-align: center;">0.7736</td>
+<td style="text-align: center;">0.5326</td>
+<td style="text-align: center;">0.6031</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q15<sub></sub>Q15</td>
+<td style="text-align: center;">0.4959</td>
+<td style="text-align: center;">0.7736</td>
+<td style="text-align: center;">0.5326</td>
+<td style="text-align: center;">0.3701</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q16<sub></sub>Q16</td>
+<td style="text-align: center;">0.5376</td>
+<td style="text-align: center;">0.7736</td>
+<td style="text-align: center;">0.5326</td>
+<td style="text-align: center;">0.5376</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q17<sub></sub>Q17</td>
+<td style="text-align: center;">0.2079</td>
+<td style="text-align: center;">0.7736</td>
+<td style="text-align: center;">0.5326</td>
+<td style="text-align: center;">0.2079</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q18<sub></sub>Q18</td>
+<td style="text-align: center;">0.6279</td>
+<td style="text-align: center;">0.7736</td>
+<td style="text-align: center;">0.5326</td>
+<td style="text-align: center;">0.6279</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q20<sub></sub>Q20</td>
+<td style="text-align: center;">0.1164</td>
+<td style="text-align: center;">0.6379</td>
+<td style="text-align: center;">0.4130</td>
+<td style="text-align: center;">0.1164</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q21<sub></sub>Q21</td>
+<td style="text-align: center;">0.2079</td>
+<td style="text-align: center;">0.6379</td>
+<td style="text-align: center;">0.4130</td>
+<td style="text-align: center;">0.2079</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q22<sub></sub>Q22</td>
+<td style="text-align: center;">0.3916</td>
+<td style="text-align: center;">0.6379</td>
+<td style="text-align: center;">0.4130</td>
+<td style="text-align: center;">0.3916</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q8<sub></sub>Q8</td>
+<td style="text-align: center;">0.8631</td>
+<td style="text-align: center;">0.7665</td>
+<td style="text-align: center;">0.5873</td>
+<td style="text-align: center;">0.4792</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q9<sub></sub>Q9</td>
+<td style="text-align: center;">0.7599</td>
+<td style="text-align: center;">0.7665</td>
+<td style="text-align: center;">0.5873</td>
+<td style="text-align: center;">0.6746</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q12<sub></sub>Q12</td>
+<td style="text-align: center;">0.3759</td>
+<td style="text-align: center;">0.7665</td>
+<td style="text-align: center;">0.5873</td>
+<td style="text-align: center;">0.3759</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q13<sub></sub>Q13</td>
+<td style="text-align: center;">0.3439</td>
+<td style="text-align: center;">0.7665</td>
+<td style="text-align: center;">0.5873</td>
+<td style="text-align: center;">0.3439</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q14<sub></sub>Q14</td>
+<td style="text-align: center;">0.4071</td>
+<td style="text-align: center;">0.7665</td>
+<td style="text-align: center;">0.5873</td>
+<td style="text-align: center;">0.4071</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q23<sub></sub>Q23</td>
+<td style="text-align: center;">0.4375</td>
+<td style="text-align: center;">0.7665</td>
+<td style="text-align: center;">0.5873</td>
+<td style="text-align: center;">0.4375</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q24<sub></sub>Q24</td>
+<td style="text-align: center;">0.5904</td>
+<td style="text-align: center;">0.7665</td>
+<td style="text-align: center;">0.5873</td>
+<td style="text-align: center;">0.5904</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q25<sub></sub>Q25</td>
+<td style="text-align: center;">0.4671</td>
+<td style="text-align: center;">0.7665</td>
+<td style="text-align: center;">0.5873</td>
+<td style="text-align: center;">0.4671</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">psycho=~Q8</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">0.5500</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">psycho=~Q9</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">0.2100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">environment=~Q15</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">0.2400</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div></div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Return the most frequent non-missing value.</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>Mode <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  ux <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">na.omit</span>(x))</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  ux[<span class="fu">which.max</span>(<span class="fu">tabulate</span>(<span class="fu">match</span>(<span class="fu">na.omit</span>(x), ux)))]</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract key summary metrics for one model specification.</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>get_metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(model_name) {</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  vals <span class="ot">&lt;-</span> param_transp[[model_name]]</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  params <span class="ot">&lt;-</span> param_transp<span class="sc">$</span>parameters</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Summarize factor loadings.</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>  loadings <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(vals[<span class="fu">grepl</span>(<span class="st">"=~"</span>, params)])</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>  loading_min <span class="ot">&lt;-</span> <span class="fu">min</span>(loadings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>  loading_max <span class="ot">&lt;-</span> <span class="fu">max</span>(loadings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>  loading_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(loadings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Summarize latent factor correlations.</span></span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>  is_cov <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"~~"</span>, params) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Q"</span>, params)</span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>  left_right <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(params[is_cov], <span class="st">"~~"</span>)</span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>  is_diff <span class="ot">&lt;-</span> <span class="fu">sapply</span>(left_right, <span class="cf">function</span>(x) x[<span class="dv">1</span>] <span class="sc">!=</span> x[<span class="dv">2</span>])</span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>  factor_cors <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(vals[is_cov][is_diff])</span>
+<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>  factor_cor_mode <span class="ot">&lt;-</span> <span class="fu">Mode</span>(factor_cors)</span>
+<span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb47-26"><a href="#cb47-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Summarize item residual variances.</span></span>
+<span id="cb47-27"><a href="#cb47-27" aria-hidden="true" tabindex="-1"></a>  is_res <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"Q.*~~Q.*"</span>, params)</span>
+<span id="cb47-28"><a href="#cb47-28" aria-hidden="true" tabindex="-1"></a>  left_right_res <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(params[is_res], <span class="st">"~~"</span>)</span>
+<span id="cb47-29"><a href="#cb47-29" aria-hidden="true" tabindex="-1"></a>  is_same_res <span class="ot">&lt;-</span> <span class="fu">sapply</span>(left_right_res, <span class="cf">function</span>(x) x[<span class="dv">1</span>] <span class="sc">==</span> x[<span class="dv">2</span>])</span>
+<span id="cb47-30"><a href="#cb47-30" aria-hidden="true" tabindex="-1"></a>  residuals <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(vals[is_res][is_same_res])</span>
+<span id="cb47-31"><a href="#cb47-31" aria-hidden="true" tabindex="-1"></a>  residual_min <span class="ot">&lt;-</span> <span class="fu">min</span>(residuals, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-32"><a href="#cb47-32" aria-hidden="true" tabindex="-1"></a>  residual_max <span class="ot">&lt;-</span> <span class="fu">max</span>(residuals, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-33"><a href="#cb47-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb47-34"><a href="#cb47-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract the residual correlation between Q3 and Q4.</span></span>
+<span id="cb47-35"><a href="#cb47-35" aria-hidden="true" tabindex="-1"></a>  q3q4 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(vals[params <span class="sc">==</span> <span class="st">"Q3~~Q4"</span>])</span>
+<span id="cb47-36"><a href="#cb47-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb47-37"><a href="#cb47-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb47-38"><a href="#cb47-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, loading_min),</span>
+<span id="cb47-39"><a href="#cb47-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, loading_max),</span>
+<span id="cb47-40"><a href="#cb47-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, loading_mean),</span>
+<span id="cb47-41"><a href="#cb47-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, factor_cor_mode),</span>
+<span id="cb47-42"><a href="#cb47-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, residual_min),</span>
+<span id="cb47-43"><a href="#cb47-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, residual_max),</span>
+<span id="cb47-44"><a href="#cb47-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, q3q4)</span>
+<span id="cb47-45"><a href="#cb47-45" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb47-46"><a href="#cb47-46" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb47-47"><a href="#cb47-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-48"><a href="#cb47-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Define model identifiers and display labels.</span></span>
+<span id="cb47-49"><a href="#cb47-49" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"popmodel"</span>, <span class="st">"naivemodel"</span>, <span class="st">"optmodel"</span>, <span class="st">"h1model"</span>)</span>
+<span id="cb47-50"><a href="#cb47-50" aria-hidden="true" tabindex="-1"></a>model_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb47-51"><a href="#cb47-51" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Meta-analytic (popmodel)"</span>,</span>
+<span id="cb47-52"><a href="#cb47-52" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Naive (naivemodel)"</span>,</span>
+<span id="cb47-53"><a href="#cb47-53" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Optimistic (optmodel)"</span>,</span>
+<span id="cb47-54"><a href="#cb47-54" aria-hidden="true" tabindex="-1"></a>  <span class="st">"H1 (h1model)"</span></span>
+<span id="cb47-55"><a href="#cb47-55" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-56"><a href="#cb47-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-57"><a href="#cb47-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the metrics shown in the transposed table.</span></span>
+<span id="cb47-58"><a href="#cb47-58" aria-hidden="true" tabindex="-1"></a>metric_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb47-59"><a href="#cb47-59" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Loading Min"</span>,</span>
+<span id="cb47-60"><a href="#cb47-60" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Loading Max"</span>,</span>
+<span id="cb47-61"><a href="#cb47-61" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Mean Loading"</span>,</span>
+<span id="cb47-62"><a href="#cb47-62" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Factor Correlations"</span>,</span>
+<span id="cb47-63"><a href="#cb47-63" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Residual Min"</span>,</span>
+<span id="cb47-64"><a href="#cb47-64" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Residual Max"</span>,</span>
+<span id="cb47-65"><a href="#cb47-65" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Q3-Q4 Correlation"</span></span>
+<span id="cb47-66"><a href="#cb47-66" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-67"><a href="#cb47-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-68"><a href="#cb47-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the model-by-metric summary table.</span></span>
+<span id="cb47-69"><a href="#cb47-69" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">sapply</span>(models, get_metrics)</span>
+<span id="cb47-70"><a href="#cb47-70" aria-hidden="true" tabindex="-1"></a>pop_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb47-71"><a href="#cb47-71" aria-hidden="true" tabindex="-1"></a>  <span class="at">Model =</span> model_names,</span>
+<span id="cb47-72"><a href="#cb47-72" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Loading Min</span><span class="st">`</span> <span class="ot">=</span> res[<span class="dv">1</span>, ],</span>
+<span id="cb47-73"><a href="#cb47-73" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Loading Max</span><span class="st">`</span> <span class="ot">=</span> res[<span class="dv">2</span>, ],</span>
+<span id="cb47-74"><a href="#cb47-74" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Mean Loading</span><span class="st">`</span> <span class="ot">=</span> res[<span class="dv">3</span>, ],</span>
+<span id="cb47-75"><a href="#cb47-75" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Factor Correlations</span><span class="st">`</span> <span class="ot">=</span> res[<span class="dv">4</span>, ],</span>
+<span id="cb47-76"><a href="#cb47-76" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Residual Min</span><span class="st">`</span> <span class="ot">=</span> res[<span class="dv">5</span>, ],</span>
+<span id="cb47-77"><a href="#cb47-77" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Residual Max</span><span class="st">`</span> <span class="ot">=</span> res[<span class="dv">6</span>, ],</span>
+<span id="cb47-78"><a href="#cb47-78" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Q3-Q4 Correlation</span><span class="st">`</span> <span class="ot">=</span> res[<span class="dv">7</span>, ],</span>
+<span id="cb47-79"><a href="#cb47-79" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb47-80"><a href="#cb47-80" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-81"><a href="#cb47-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-82"><a href="#cb47-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Transpose the summary so metrics appear in rows and models in columns.</span></span>
+<span id="cb47-83"><a href="#cb47-83" aria-hidden="true" tabindex="-1"></a>pop_summary_t <span class="ot">&lt;-</span> <span class="fu">setNames</span>(</span>
+<span id="cb47-84"><a href="#cb47-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="fu">t</span>(pop_summary[, <span class="sc">-</span><span class="dv">1</span>])),</span>
+<span id="cb47-85"><a href="#cb47-85" aria-hidden="true" tabindex="-1"></a>  pop_summary<span class="sc">$</span>Model</span>
+<span id="cb47-86"><a href="#cb47-86" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-87"><a href="#cb47-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-88"><a href="#cb47-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Add metric labels as the first column and drop row names.</span></span>
+<span id="cb47-89"><a href="#cb47-89" aria-hidden="true" tabindex="-1"></a>pop_summary_t <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb47-90"><a href="#cb47-90" aria-hidden="true" tabindex="-1"></a>  <span class="at">Metric =</span> metric_names,</span>
+<span id="cb47-91"><a href="#cb47-91" aria-hidden="true" tabindex="-1"></a>  pop_summary_t,</span>
+<span id="cb47-92"><a href="#cb47-92" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="cn">NULL</span></span>
+<span id="cb47-93"><a href="#cb47-93" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-94"><a href="#cb47-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-95"><a href="#cb47-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Render the transposed table.</span></span>
+<span id="cb47-96"><a href="#cb47-96" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(pop_summary_t, <span class="at">align =</span> <span class="st">"lcccc"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [15]:</pre></div><div id="tbl-pop-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pop-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Comparison of model variants used for sensitivity analysis
+</figcaption>
+<div aria-describedby="tbl-pop-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 25%">
+<col style="width: 19%">
+<col style="width: 22%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric</th>
+<th style="text-align: center;">Meta-analytic (popmodel)</th>
+<th style="text-align: center;">Naive (naivemodel)</th>
+<th style="text-align: center;">Optimistic (optmodel)</th>
+<th style="text-align: center;">H1 (h1model)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Loading Min</td>
+<td style="text-align: center;">0.37</td>
+<td style="text-align: center;">0.48</td>
+<td style="text-align: center;">0.64</td>
+<td style="text-align: center;">0.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Loading Max</td>
+<td style="text-align: center;">0.94</td>
+<td style="text-align: center;">0.60</td>
+<td style="text-align: center;">0.77</td>
+<td style="text-align: center;">0.94</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mean Loading</td>
+<td style="text-align: center;">0.75</td>
+<td style="text-align: center;">0.51</td>
+<td style="text-align: center;">0.69</td>
+<td style="text-align: center;">0.70</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Factor Correlations</td>
 <td style="text-align: center;">0.20</td>
-<td style="text-align: center;">0.12–0.67</td>
+<td style="text-align: center;">0.30</td>
+<td style="text-align: center;">0.08</td>
+<td style="text-align: center;">0.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Residual Min</td>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">0.64</td>
+<td style="text-align: center;">0.41</td>
+<td style="text-align: center;">0.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residual Max</td>
+<td style="text-align: center;">0.86</td>
+<td style="text-align: center;">0.77</td>
+<td style="text-align: center;">0.59</td>
+<td style="text-align: center;">0.67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q3-Q4 Correlation</td>
+<td style="text-align: center;">0.09</td>
+<td style="text-align: center;">0.23</td>
+<td style="text-align: center;">0.16</td>
 <td style="text-align: center;">0.09</td>
 </tr>
 </tbody>
@@ -1084,6 +1750,37 @@ Summary of population model variants used for sensitivity analysis
       }
     }
   });
-  </script>  </div> <!-- /content --> 
+  </script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script> 
   
 </body></html>

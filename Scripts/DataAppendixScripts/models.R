@@ -1,8 +1,8 @@
 # =============================================================================
 # WHOQOL-BREF Power Analysis
 # Two paradigms:
-#   Paradigma A: Recovery power — popModel / naiveModel / optModel → analyzeModel
-#   Paradigma B: Misspecification detection power — H1model → analyzeModel
+#   Paradigma A: Misspecification detection power — H1model → analyzeModel
+#   Paradigma B: Recovery power — popModel / naiveModel / optModel → analyzeModel
 #
 # Sources:
 #   Lin & Yao (2022) — meta-EFA + SNA, 16 studies, Psy Assessment
@@ -18,6 +18,10 @@
 # =============================================================================
 # SECTION 1 — POPULATION MODELS (fixed parameters; data-generating)
 # =============================================================================
+
+# The population models are defined using `lavaan` syntax, which is compatible with the `simsem` package for data generation. Each model specifies factor loadings, residual covariances, factor variances, and interfactor correlations based on empirical estimates from Lin & Yao (2022) and theoretical considerations for the naive and optimistic scenarios. The misspecification model (H1model) incorporates cross-loadings to represent a more complex population structure.
+
+# popmodel: Meta-analytic model based on Lin & Yao (2022) estimates.
 
 popmodel <- '
   # ── Factor loadings: empirical estimates from Lin & Yao (2022) ────────────
@@ -72,6 +76,8 @@ popmodel <- '
   Q25 ~~ 0.4671*Q25   # 1 − 0.73²
 '
 
+# naivemodel: Tau-equivalent model with uniform loadings per domain, based on the worst reliability (Cronbach's alpha) reported by Mosqueira-Taipe et al.(2026).
+
 naivemodel <- '
   # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
   psycho      =~ 0.5328*Q5  + 0.5328*Q6  + 0.5328*Q7  +
@@ -123,6 +129,8 @@ naivemodel <- '
   Q25 ~~ 0.7665*Q25
 '
 
+# optmodel: Tau-equivalent model with uniform loadings per domain, based on the best reliability (Cronbach's alpha) reported by Mosqueira-Taipe et al.(2026).
+
 optmodel <- '
   # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
   psycho      =~ 0.7113*Q5  + 0.7113*Q6  + 0.7113*Q7  +
@@ -173,6 +181,8 @@ optmodel <- '
   Q24 ~~ 0.5873*Q24
   Q25 ~~ 0.5873*Q25
 '
+
+# h1model: Misspecification model based on Lin & Yao (2022) estimates, with three cross-loadings added to represent a more complex population structure.
 
 h1model <- '
   # ── Factor loadings (with three cross-loadings) ───────────────────────────
@@ -226,12 +236,18 @@ h1model <- '
   Q25 ~~ 0.4671*Q25
 '
 
-h1modelfree <- '
-  # ── Factor loadings (with three cross-loadings; freely estimated) ─────────
-  psycho      =~ Q5  + Q6  + Q7  + Q11 + Q19 + Q26 + Q8  + Q9
+# =============================================================================
+# SECTION 2 — ANALYSIS MODEL (free parameters)
+# =============================================================================
+
+# analyzeModel: The analysis model is the same popmodel and represents the standard 4-factor CFA structure without cross-loadings.
+
+analyzemodel <- '
+  # ── Factor loadings: freely estimated ─────────────────────────────────────
+  psycho      =~ Q5  + Q6  + Q7  + Q11 + Q19 + Q26
   physical    =~ Q3  + Q4  + Q10 + Q15 + Q16 + Q17 + Q18
   social      =~ Q20 + Q21 + Q22
-  environment =~ Q8  + Q9  + Q12 + Q13 + Q14 + Q23 + Q24 + Q25 + Q15
+  environment =~ Q8  + Q9  + Q12 + Q13 + Q14 + Q23 + Q24 + Q25
 
   # ── Factor variances (=1) and free interfactor correlations ───────────────
   psycho      ~~ 1*psycho      + physical + social + environment
@@ -252,16 +268,14 @@ h1modelfree <- '
   Q14 ~~ Q14; Q23 ~~ Q23; Q24 ~~ Q24; Q25 ~~ Q25
 '
 
-# =============================================================================
-# SECTION 2 — ANALYSIS MODEL (free parameters; used in BOTH paradigmas)
-# =============================================================================
+# h1modelfree: Misspecification model with three cross-loadings, but all parameters freely estimated in the analysis model.
 
-analyzemodel <- '
-  # ── Factor loadings: freely estimated ─────────────────────────────────────
-  psycho      =~ Q5  + Q6  + Q7  + Q11 + Q19 + Q26
+h1modelfree <- '
+  # ── Factor loadings (with three cross-loadings; freely estimated) ─────────
+  psycho      =~ Q5  + Q6  + Q7  + Q11 + Q19 + Q26 + Q8  + Q9
   physical    =~ Q3  + Q4  + Q10 + Q15 + Q16 + Q17 + Q18
   social      =~ Q20 + Q21 + Q22
-  environment =~ Q8  + Q9  + Q12 + Q13 + Q14 + Q23 + Q24 + Q25
+  environment =~ Q8  + Q9  + Q12 + Q13 + Q14 + Q23 + Q24 + Q25 + Q15
 
   # ── Factor variances (=1) and free interfactor correlations ───────────────
   psycho      ~~ 1*psycho      + physical + social + environment

@@ -2,6 +2,8 @@
 title: "Population Models"
 execute:
   echo: false
+  warning: false
+  message: false
 ---
 
 ## Setup
@@ -13,26 +15,40 @@ execute:
 library(here)
 source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "models.R"))
-source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
-source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
-
-cache_load_existing()
 ```
 
-## Population model — Meta-analytic (Lin & Yao, 2022)
+## Population model — Meta-analytic
 
 ```{r}
 #| label: pop-model
 
-cat(popmodel)
+cat(popmodel) # Lin & Yao (2022) population model specification
 ```
 
-## Naive model — Minimally acceptable scenario
+```{r}
+#| label: fig-diagram-popmodel
+#| fig-cap: "Path diagram of the popmodel"
+#| fig-width: 8
+#| fig-height: 7
+
+plot_color(popmodel) # See plot_color() function in helpers.R for details.
+```
+
+## Naive model — Worst-case scenario
 
 ```{r}
 #| label: naive-model
 
 cat(naivemodel)
+```
+
+```{r}
+#| label: fig-diagram-naivemodel
+#| fig-cap: "Path diagram of the naivemodel"
+#| fig-width: 8
+#| fig-height: 7
+
+plot_color(naivemodel) # See plot_color() function in helpers.R for details.
 ```
 
 ## Optimistic model — Best-case scenario
@@ -43,12 +59,30 @@ cat(naivemodel)
 cat(optmodel)
 ```
 
+```{r}
+#| label: fig-diagram-optmodel
+#| fig-cap: "Path diagram of the optmodel"
+#| fig-width: 8
+#| fig-height: 7
+
+plot_color(optmodel) # See plot_color() function in helpers.R for details.
+```
+
 ## Model H1 — Cross-loading population model
 
 ```{r}
 #| label: H1-model
 
-cat(h1model)
+cat(h1model) # Plus three cross-loading in Lin & Yao (2022) specification
+```
+
+```{r}
+#| label: fig-diagram-h1model
+#| fig-cap: "Path diagram of the h1model"
+#| fig-width: 8
+#| fig-height: 7
+
+plot_color(h1model) # See plot_color() function in helpers.R for details.
 ```
 
 ## Analysis model — Free parameters
@@ -59,26 +93,142 @@ cat(h1model)
 cat(analyzemodel)
 ```
 
+```{r}
+#| label: fig-diagram-analyzemodel
+#| fig-cap: "Path diagram of the analyzemodel"
+#| fig-width: 8
+#| fig-height: 7
+
+plot_tree(analyzemodel) # See plot_tree() function in helpers.R for details.
+```
+
 ## Comparison table
 
 ```{r}
-#| label: tbl-pop-comparison
-#| tbl-cap: "Summary of population model variants used for sensitivity analysis"
+#| label: tbl-pop-summary
+#| tbl-cap: "Summary of population models used for sensitivity analysis"
 
-pop_summary <- data.frame(
-    Model = c(
-        "Meta-analytic (popmodel)",
-        "Naive (naivemodel)",
-        "Optimistic (optmodel)",
-        "H1 (h1model)"
-    ),
-    `Loading Range` = c("0.37–0.94", "0.48–0.60", "0.64–0.77", "0.21–0.94"),
-    `Mean Loading` = c("0.74", "0.51", "0.69", "0.78"),
-    `Factor Correlations` = c("0.20", "0.30", "0.08", "0.20"),
-    `Residual Range` = c("0.12–0.86", "0.64–0.77", "0.41–0.59", "0.12–0.67"),
-    `Q3–Q4 Correlation` = c("0.09", "0.23", "0.16", "0.09"),
-    check.names = FALSE
+csv <- read.csv(
+  "Data/InputData/popmodels_parameters.csv",
+  quote = "",
+  check.names = FALSE,
+  stringsAsFactors = FALSE
 )
 
-kable(pop_summary, align = "lccccc")
+names(csv) <- gsub('"', '', names(csv))
+
+param_transp <- as.data.frame(t(csv[-1]), stringsAsFactors = FALSE)
+names(param_transp) <- csv[[1]]
+param_transp <- cbind(parameters = names(csv)[-1], param_transp)
+row.names(param_transp) <- NULL
+
+param_transp |>
+  kable(
+    caption = "CFA Population Models Parameter",
+    digits = 4,
+    align = "lcccc",
+    booktabs = TRUE,
+    col.names = c("parameters", "popmodel", "naivemodel", "optmodel", "h1model")
+  )
+```
+
+```{r}
+#| label: tbl-pop-comparison
+#| tbl-cap: "Comparison of model variants used for sensitivity analysis"
+
+# Return the most frequent non-missing value.
+Mode <- function(x) {
+  ux <- unique(na.omit(x))
+  ux[which.max(tabulate(match(na.omit(x), ux)))]
+}
+
+# Extract key summary metrics for one model specification.
+get_metrics <- function(model_name) {
+  vals <- param_transp[[model_name]]
+  params <- param_transp$parameters
+  
+  # Summarize factor loadings.
+  loadings <- as.numeric(vals[grepl("=~", params)])
+  loading_min <- min(loadings, na.rm = TRUE)
+  loading_max <- max(loadings, na.rm = TRUE)
+  loading_mean <- mean(loadings, na.rm = TRUE)
+  
+  # Summarize latent factor correlations.
+  is_cov <- grepl("~~", params) & !grepl("Q", params)
+  left_right <- strsplit(params[is_cov], "~~")
+  is_diff <- sapply(left_right, function(x) x[1] != x[2])
+  factor_cors <- as.numeric(vals[is_cov][is_diff])
+  factor_cor_mode <- Mode(factor_cors)
+  
+  # Summarize item residual variances.
+  is_res <- grepl("Q.*~~Q.*", params)
+  left_right_res <- strsplit(params[is_res], "~~")
+  is_same_res <- sapply(left_right_res, function(x) x[1] == x[2])
+  residuals <- as.numeric(vals[is_res][is_same_res])
+  residual_min <- min(residuals, na.rm = TRUE)
+  residual_max <- max(residuals, na.rm = TRUE)
+  
+  # Extract the residual correlation between Q3 and Q4.
+  q3q4 <- as.numeric(vals[params == "Q3~~Q4"])
+  
+  c(
+    sprintf("%.2f", loading_min),
+    sprintf("%.2f", loading_max),
+    sprintf("%.2f", loading_mean),
+    sprintf("%.2f", factor_cor_mode),
+    sprintf("%.2f", residual_min),
+    sprintf("%.2f", residual_max),
+    sprintf("%.2f", q3q4)
+  )
+}
+
+# Define model identifiers and display labels.
+models <- c("popmodel", "naivemodel", "optmodel", "h1model")
+model_names <- c(
+  "Meta-analytic (popmodel)",
+  "Naive (naivemodel)",
+  "Optimistic (optmodel)",
+  "H1 (h1model)"
+)
+
+# Define the metrics shown in the transposed table.
+metric_names <- c(
+  "Loading Min",
+  "Loading Max",
+  "Mean Loading",
+  "Factor Correlations",
+  "Residual Min",
+  "Residual Max",
+  "Q3-Q4 Correlation"
+)
+
+# Build the model-by-metric summary table.
+res <- sapply(models, get_metrics)
+pop_summary <- data.frame(
+  Model = model_names,
+  `Loading Min` = res[1, ],
+  `Loading Max` = res[2, ],
+  `Mean Loading` = res[3, ],
+  `Factor Correlations` = res[4, ],
+  `Residual Min` = res[5, ],
+  `Residual Max` = res[6, ],
+  `Q3-Q4 Correlation` = res[7, ],
+  check.names = FALSE
+)
+
+# Transpose the summary so metrics appear in rows and models in columns.
+pop_summary_t <- setNames(
+  data.frame(t(pop_summary[, -1])),
+  pop_summary$Model
+)
+
+# Add metric labels as the first column and drop row names.
+pop_summary_t <- cbind(
+  Metric = metric_names,
+  pop_summary_t,
+  row.names = NULL
+)
+
+# Render the transposed table.
+kable(pop_summary_t, align = "lcccc", row.names = FALSE)
 ```

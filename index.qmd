@@ -28,27 +28,27 @@ Statistical power in Confirmatory Factor Analysis (CFA) reflects the probability
 
 There are two main paradigms to power analysis in CFA:
 
-1.  **Analytical methods**: Rely on asymptotic statistical theory (e.g., the non-central $\chi^2$ distribution) to calculate the required sample size for detecting global model misfit based on established fit indices like the RMSEA [@sempower2024].
+1.  **Analytical methods**: Rely on asymptotic statistical theory (e.g., the non-central $\chi^2$ distribution) to calculate the required sample size for detecting global/local model misfit based on established fit indices like the RMSEA [@moshagen2024].
 2.  **Simulation-based methods**: Use Monte Carlo data generation to repeatedly establish how the model behaves under assumed population models, allowing the estimation of power, bias, and coverage for specific parameters or overall fit indices across varying sample sizes [@simsem2021].
 
-This document provides a comprehensive tutorial covering both analytical methods using the `semPower` and `semTools` packages, and Monte Carlo methods using the `simsem` package.
+This document provides a comprehensive tutorial covering analytical methods using the `semPower` package, and Monte Carlo methods using the `simsem` package.
 
 
 ::: {.callout-note}
 ## Reproducibility Note
-For local development and computational convenience across this pedagogical document, simulations use `N_REP = 50`. For production-quality applied research, you must increase this to `N_REP ≥ 1,000`. The results throughout this tutorial will thus show more sampling variability than you would expect in a final study. All analytical and simulation parameters are centrally defined in `helpers.R` and `models.R`.
+For local development and computational convenience across this pedagogical document, simulations use 1,500 replications. For production-quality applied research, you must increase this to 5,000 or more replications. The results throughout this tutorial will thus show more sampling variability than you would expect in a final study. All analytical and simulation parameters are centrally defined in `helpers.R` and `models.R` in `Scripts/DataAppendixScripts`.
 :::
 
 ## The Running Example: WHOQOL-BREF Population CFA Model {#sec-popmodel}
 
-To anchor our power analyses, we use the WHOQOL-BREF measurement instrument. Meaningful power analysis requires the definition of a population model—the "true" state of the world from which we believe our data are generated. By simulating from a meta-analytically derived population model rather than a purely arbitrary one, researchers can ensure that tests reflect realistic boundaries [@lin2022].
+To anchor our power analyses, we use the World Health Organization Quality of Life-BREF (WHOQOL-BREF) 4-factor measurement instrument. Meaningful power analysis requires the definition of a population model—the "true" state of the world from which we believe our data are generated. By simulating from a meta-analytically derived population model rather than a purely arbitrary one, researchers can ensure that tests reflect realistic boundaries [@lin2022; @maccallum1996mosqueirataipe2026].
 
 We specify four population variations to perform sensitivity analyses:
 
 1.  **Meta-analytic**: Loadings and residual variances closely matching @lin2022.
 2.  **Naive**: A pessimistic baseline where factor loadings are based on the lowest reported reliability values per domain [@mosqueirataipe2026].
 3.  **Optimistic**: A best-case scenario where factor loadings are based on the highest reported reliability values per domain [@mosqueirataipe2026].
-4.  **H1**: A misspecified model with cross-loadings based on the meta-EFA results from @lin2022.
+4.  **H1**: A misspecified model with three cross-loadings based on the meta-EFA results from @lin2022.
 
 ### Population model
 
@@ -58,7 +58,11 @@ The primary population model represents a meta-analytic scenario based on @lin20
 - **Residual covariance**: $Q3$ and $Q4$ share a residual covariance ($\text{r}(Q3, Q4 | \text{physical}) = 0.30$), maintaining the subfactor signal observed in the EFA 5-factor solution [@lin2022].
 - **Factor structure**: Item $Q8$ is maintained in the environment domain despite having a higher cross-loading on the psychological domain in the meta-EFA ($\lambda_{\text{psy}} > \lambda_{\text{env}}$). This represents the null hypothesis ($H_0$) version of the population, strictly maintaining the original 4-factor structure without cross-loadings.
 
+The `lavaan` syntax for this population model is shown below, and @fig-diagram-popmodel provides a visual representation of the model structure.
+
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#pop-model >}}
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-popmodel >}}
 
 ### Naive model
 
@@ -69,7 +73,11 @@ This model defines a pessimistic, empirically grounded scenario. We apply the Sp
 - **Interfactor correlations ($\phi$)**: Fixed at $0.30$ (the upper bound from @lin2022), which makes factors harder to distinguish and yields a conservative power estimate.
 - **Derived parameters**: E.g., Physical ($\lambda = 0.4758, \theta = 0.7736$), Psychological ($\lambda = 0.5328, \theta = 0.7161$), Social ($\lambda = 0.6017, \theta = 0.6379$), Environmental ($\lambda = 0.4832, \theta = 0.7665$). The residual covariance between $Q3$ and $Q4$ is adjusted to $0.2321$.
 
+The `lavaan` syntax for this population model is shown below, and @fig-diagram-naivemodel provides a visual representation of the model structure.
+
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#naive-model >}}
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-naivemodel >}}
 
 ### Optimistic model
 
@@ -79,23 +87,33 @@ This model defines an optimistic, empirically grounded scenario using the same S
 - **Interfactor correlations ($\phi$)**: Fixed at $0.08$ (the lower bound from @lin2022), resulting in factors that are well-distinguished and providing an optimistic power estimate.
 - **Derived parameters**: E.g., Physical ($\lambda = 0.6837, \theta = 0.5326$), Psychological ($\lambda = 0.7113, \theta = 0.4941$), Social ($\lambda = 0.7661, \theta = 0.4130$), Environmental ($\lambda = 0.6424, \theta = 0.5873$). The residual covariance between $Q3$ and $Q4$ is adjusted to $0.1598$.
 
+The `lavaan` syntax for this population model is shown below, and @fig-diagram-optmodel provides a visual representation of the model structure.
+
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#opt-model >}}
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-optmodel >}}
 
 ### Misspecification model
 
 This represents the alternative hypothesis ($H_1$), defining a cross-loading population model. Three empirical cross-loadings are added to the baseline 4-factor structure based on @lin2022 and supported by recent literature [@mosqueirataipe2026]:
 
-- **Cross-loading 1**: item $Q8$ loading on the Psychological factor ($\lambda = 0.55$). This item showed the highest betweenness ($40.50$) and explicitly grouped with the psychological factor in 9/16 studies.
+- **Cross-loading 1**: item $Q8$ loading on the Psychological factor ($\lambda = 0.55$). This item showed the highest betweenness ($40.50$) and explicitly grouped with the psychological factor in 9/16 studies [@lin2022].
 - **Cross-loading 2**: item $Q9$ loading on the Psychological factor ($\lambda = 0.21$). Identified as a secondary loading in the 5-factor solution.
-- **Cross-loading 3**: item $Q15$ loading on the Environmental factor ($\lambda = 0.24$). "Mobility" conceptually bridges physical ability and environmental access, showing the second-highest betweenness ($36.50$).
+- **Cross-loading 3**: item $Q15$ loading on the Environmental factor ($\lambda = 0.24$). "Mobility" conceptually bridges physical ability and environmental access, showing the second-highest betweenness ($36.50$) [@lin2022].
 
 Residual variances ($\theta$) for cross-loaded items were recalculated to preserve total item variance using the formula $\theta = 1 - \lambda_{\text{primary}}^2 - \lambda_{\text{secondary}}^2 - 2 \lambda_{\text{primary}} \lambda_{\text{secondary}} \phi$, where the interfactor correlation ($\phi$) is $0.20$.
 
-{{< embed Scripts/AnalysisScripts/01_population_models.qmd#H1-model >}}
+The `lavaan` syntax for this population model is shown below, and @fig-diagram-h1model provides a visual representation of the model structure.
 
-### Comparison table
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#h1-model >}}
 
-Below is a summary of the four population models. Note that the H1 model is the misspecification model. 
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-h1model >}}
+
+### Summary of population (alternative) models
+
+In @tbl-pop-summary, we show all parameters of the four population models. To facilitate comparison, @tbl-pop-comparison summarizes key parameters across models, including the minimum and maximum factor loadings, mean loading, mode of the factor correlations, minimum and maximum residual variances, and the residual correlation between $Q3$ and $Q4$.
+I
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#tbl-pop-summary >}}
 
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#tbl-pop-comparison >}}
 
@@ -103,16 +121,20 @@ Below is a summary of the four population models. Note that the H1 model is the 
 
 The analysis model serves dual purposes depending on the simulation paradigm:
 
-- **Paradigm A (Recovery power)**: Estimates the 4-factor structure plus the $Q3$ and $Q4$ residual covariance given data from the meta-analytic, naive, or optimistic population models.
-- **Paradigm B (Misspecification detection)**: Acts as the null hypothesis ($H_0$), meaning it *omits* the cross-loadings, when fitting data generated from the misspecification model ($H_1$). Here, power is the probability of correctly rejecting the model given that cross-loadings exist in the population.
+- **Misspecification detection**: Acts as the null hypothesis ($H_0$), meaning it *omits* the cross-loadings, when fitting data generated from the misspecification model ($H_1$). Here, power is the probability of correctly rejecting the model given that cross-loadings exist in the population.
+- **Recovery power**: Estimates the 4-factor structure plus the $Q3$ and $Q4$ residual covariance given data from the meta-analytic, naive, or optimistic population models.
 
 **Key constraints and features**:
 
 - **Identification**: Factor variances are fixed to $1$ (marker-free scaling) allowing the first indicator to be freely estimated.
 - **Residual covariance**: $Q3$ and $Q4$ correlation is freely estimated, which is theoretically justified and empirically supported [@lin2022; @mosqueirataipe2026].
-- **Cross-loadings**: The omission of cross-loadings for items $Q8$, $Q9$, and $Q15$ deliberately defines the misspecification tested in Paradigm B.
+- **Cross-loadings**: The omission of cross-loadings for items $Q8$, $Q9$, and $Q15$ deliberately defines the misspecification tested in misspecification detection.
+
+The `lavaan` syntax for this analysis model is shown below, and @fig-diagram-analyzemodel provides a visual representation of the model structure.
 
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#analysis-model >}}
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-analyzemodel >}}
 
 ## Analytical Power Analysis {#sec-analytical}
 
