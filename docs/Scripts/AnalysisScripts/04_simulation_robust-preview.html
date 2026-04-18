@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
     <meta charset="utf-8">
-    <meta name="generator" content="quarto-1.8.25">
+    <meta name="generator" content="quarto-1.9.37">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
     <title>Simulation — Realistic Scenarios</title>
     <style>
+      /* Default styles provided by pandoc.
+      ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+      */
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -150,15 +153,14 @@
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e261b86ae15e22bf333780d8a72f25c9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-df715b4811ca13bc07639e5bce24b6cd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -211,12 +213,21 @@
    
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#scenario-a-non-normality" id="toc-scenario-a-non-normality" class="nav-link" data-scroll-target="#scenario-a-non-normality">Scenario A — Non-normality</a></li>
-  <li><a href="#scenario-b-missing-data-mcar-10" id="toc-scenario-b-missing-data-mcar-10" class="nav-link" data-scroll-target="#scenario-b-missing-data-mcar-10">Scenario B — Missing data (MCAR 10%)</a></li>
-  <li><a href="#scenario-c-sensitivity-naive-population-model" id="toc-scenario-c-sensitivity-naive-population-model" class="nav-link" data-scroll-target="#scenario-c-sensitivity-naive-population-model">Scenario C — Sensitivity: Naive population model</a></li>
-  <li><a href="#scenario-d-sensitivity-optimistic-population-model" id="toc-scenario-d-sensitivity-optimistic-population-model" class="nav-link" data-scroll-target="#scenario-d-sensitivity-optimistic-population-model">Scenario D — Sensitivity: Optimistic population model</a></li>
-  <li><a href="#comparison-across-scenarios" id="toc-comparison-across-scenarios" class="nav-link" data-scroll-target="#comparison-across-scenarios">Comparison across scenarios</a></li>
-  <li><a href="#summary-n-requirements-across-all-scenarios" id="toc-summary-n-requirements-across-all-scenarios" class="nav-link" data-scroll-target="#summary-n-requirements-across-all-scenarios">Summary: N requirements across all scenarios</a></li>
+  <li><a href="#scenario-a-missing-data-mcar-10" id="toc-scenario-a-missing-data-mcar-10" class="nav-link" data-scroll-target="#scenario-a-missing-data-mcar-10">Scenario A — Missing data (MCAR 10%)</a>
+  <ul class="collapse">
+  <li><a href="#power-curves-for-fit-indices" id="toc-power-curves-for-fit-indices" class="nav-link" data-scroll-target="#power-curves-for-fit-indices">Power curves for fit indices</a></li>
+  <li><a href="#power-cutoff-values-for-fit-indices" id="toc-power-cutoff-values-for-fit-indices" class="nav-link" data-scroll-target="#power-cutoff-values-for-fit-indices">Power cutoff values for fit indices</a></li>
+  </ul></li>
+  <li><a href="#scenario-b-non-normality" id="toc-scenario-b-non-normality" class="nav-link" data-scroll-target="#scenario-b-non-normality">Scenario B — Non-normality</a>
+  <ul class="collapse">
+  <li><a href="#power-curves-for-fit-indices-1" id="toc-power-curves-for-fit-indices-1" class="nav-link" data-scroll-target="#power-curves-for-fit-indices-1">Power curves for fit indices</a></li>
+  <li><a href="#power-cutoff-values-for-fit-indices-1" id="toc-power-cutoff-values-for-fit-indices-1" class="nav-link" data-scroll-target="#power-cutoff-values-for-fit-indices-1">Power cutoff values for fit indices</a></li>
+  </ul></li>
+  <li><a href="#scenario-c-missing-data-non-normality" id="toc-scenario-c-missing-data-non-normality" class="nav-link" data-scroll-target="#scenario-c-missing-data-non-normality">Scenario C — Missing data + Non-normality</a>
+  <ul class="collapse">
+  <li><a href="#power-curves-for-fit-indices-2" id="toc-power-curves-for-fit-indices-2" class="nav-link" data-scroll-target="#power-curves-for-fit-indices-2">Power curves for fit indices</a></li>
+  <li><a href="#power-cutoff-values-for-fit-indices-2" id="toc-power-cutoff-values-for-fit-indices-2" class="nav-link" data-scroll-target="#power-cutoff-values-for-fit-indices-2">Power cutoff values for fit indices</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -233,7 +244,8 @@
 <pre><code>here() starts at C:/Users/pablo/OneDrive/Github/cfa-power</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"helpers.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"models.R"</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"helpers.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>This is lavaan 0.6-21
 lavaan is FREE software! Please report any bugs.</code></pre>
@@ -269,6 +281,9 @@ See https://moshagen.github.io/semPower/ for a detailed manual.
 Please cite as:
 Moshagen, M., &amp; Bader, M. (2024). semPower: General Power Analysis for Structural Equation Models.
 Behavior Research Methods, 56, 2901-2922. https://doi.org/10.3758/s13428-023-02254-7</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'semPlot' was built under R version 4.5.3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code> </code></pre>
@@ -328,1240 +343,406 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'SparseM' was built under R version 4.5.3</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"models.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"cache_utils.R"</span>))</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"cache_loader.R"</span>))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cache_load_existing</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
-<section id="scenario-a-non-normality" class="level2">
-<h2 class="anchored" data-anchor-id="scenario-a-non-normality">Scenario A — Non-normality</h2>
+<section id="scenario-a-missing-data-mcar-10" class="level2">
+<h2 class="anchored" data-anchor-id="scenario-a-missing-data-mcar-10">Scenario A — Missing data (MCAR 10%)</h2>
+<p>Introduce 10% missing completeness at random (MCAR). This demonstrates the power cost of attrition / item non-response. For more complex missing data patterns (e.g., MAR, MNAR), you would need to specify a more detailed missing data mechanism (<code>miss</code> function in <code>simsem</code> package), but this serves as a baseline for the impact of missingness on power. We use FIML estimation to handle the missing data, which is a common approach in SEM.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>popmodel_miss <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"popmodel_miss"</span>, {</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sim</span>(</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NULL</span>,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> SEQ1,              <span class="co"># See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">pmMCAR =</span> <span class="fl">0.10</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        analyzemodel,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">generate =</span> popmodel,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">estimator =</span> <span class="st">"ml"</span>,</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">missing =</span> <span class="st">"fiml"</span>,</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">seed =</span> SEED,</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>h1model_miss <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"h1model_miss"</span>, {</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sim</span>(</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NULL</span>,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> SEQ1,              <span class="co"># See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">pmMCAR =</span> <span class="fl">0.10</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>        analyzemodel,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">generate =</span> h1model,</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">estimator =</span> <span class="st">"ml"</span>,</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">missing =</span> <span class="st">"fiml"</span>,</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">seed =</span> SEED,</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<section id="power-curves-for-fit-indices" class="level3">
+<h3 class="anchored" data-anchor-id="power-curves-for-fit-indices">Power curves for fit indices</h3>
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-fig-power-curve-missing" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    h1model_miss,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    popmodel_miss,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-power-curve-missing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-power-curve-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="04_simulation_robust_files/figure-html/fig-power-curve-missing-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Power curves for fit indices under missing data conditions."><img src="04_simulation_robust_files/figure-html/fig-power-curve-missing-1.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Power curves for fit indices under missing data conditions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-fig-fit-curve-missing" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    h1model_miss,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    popmodel_miss,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">logistic =</span> <span class="cn">FALSE</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-fit-curve-missing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fit-curve-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="04_simulation_robust_files/figure-html/fig-fit-curve-missing-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Power curves for fit indices under missing data conditions without logistic smoothing."><img src="04_simulation_robust_files/figure-html/fig-fit-curve-missing-1.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fit-curve-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Power curves for fit indices under missing data conditions without logistic smoothing.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="power-cutoff-values-for-fit-indices" class="level3">
+<h3 class="anchored" data-anchor-id="power-cutoff-values-for-fit-indices">Power cutoff values for fit indices</h3>
+<p>You extract the cutoff values for fit indices at a given alpha level and sample size to determine the threshold for acceptable fit under the null model. This allows you to see how stringent the fit criteria are at different sample sizes.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="tbl-power-cutoff-missing" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Power for fit index cutoffs under missing data conditions at N = 359.
+</figcaption>
+<div aria-describedby="tbl-power-cutoff-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    h1model_miss,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nullObject =</span> popmodel_miss,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nVal =</span> <span class="dv">359</span>,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    rmsea      srmr       cfi       tli 
+0.9471638 0.9869795 0.8018185 0.8057400 </code></pre>
+</div>
+</div>
+</figure>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="tbl-fit-cutoff-missing" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fit-cutoff-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Fit index cutoff values under missing data conditions at N = 359.
+</figcaption>
+<div aria-describedby="tbl-fit-cutoff-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getCutoff</span>(</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    popmodel_miss,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nVal =</span> <span class="dv">359</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       rmsea      srmr      cfi      tli
+1 0.01120342 0.0350943 1.007667 1.009877</code></pre>
+</div>
+</div>
+</figure>
+</div></div>
+</section>
+</section>
+<section id="scenario-b-non-normality" class="level2">
+<h2 class="anchored" data-anchor-id="scenario-b-non-normality">Scenario B — Non-normality</h2>
 <p>Generate data from the population model with normal distributions, then apply marginal transformations to introduce moderate non-normality (skewness ≈ 1.5, kurtosis ≈ 3). This simulates realistic conditions where psychological data often deviate from multivariate normality.</p>
 <p>We use a custom data generation function that applies a power transformation to each variable after generation, combined with ML and MLR estimators to show the impact.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Custom data transformation function to induce non-normality</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Applies an exponential transformation that introduces right skew</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>transform_nonnormal <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Apply a mild exponential transformation to introduce skewness ~ 1.5</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  data_nn <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">lapply</span>(data, <span class="cf">function</span>(x) {</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Standardize, apply transformation, re-standardize</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">scale</span>(x)</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    transformed <span class="ot">&lt;-</span> <span class="fu">sign</span>(z) <span class="sc">*</span> <span class="fu">abs</span>(z)<span class="sc">^</span><span class="fl">1.5</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale</span>(transformed)</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  }))</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(data_nn) <span class="ot">&lt;-</span> <span class="fu">names</span>(data)</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  data_nn</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation with non-normal data — ML estimator</span></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>sim_nonnormal_vary <span class="ot">&lt;-</span> <span class="fu">invisible</span>(<span class="fu">capture.output</span>(</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>  simsem<span class="sc">::</span><span class="fu">sim</span>(</span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">nRep      =</span> <span class="cn">NULL</span>,</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">n         =</span> SEQ,</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">model     =</span> analyzeModel,</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">generate  =</span> popModel,</span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.lv    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed      =</span> SEED,</span>
-<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">datafun   =</span> transform_nonnormal</span>
-<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The RNGkind() was changed from "Mersenne-Twister" to RNGkind("L'Ecuyer-CMRG") in order to enable the multiple streams in the parallel package.
-To set a RNG seed using the previous RNGkind(), you can use
-    RNGkind("Mersenne-Twister","Inversion","Rejection")
- or 
-    set.seed(seed, kind = "Mersenne-Twister")</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: if datafun is not supported in your simsem version, an alternative</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># approach is to generate data manually and loop over sim() with fixed N.</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># See the discussion in Section 8 for details.</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Alternative: Manual non-normal generation ---</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># If the datafun approach is unavailable, use this pattern:</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>sim_nonnormal_vary_alt <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> <span class="cn">NULL</span>,</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> SEQ,</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> popModel</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="co"># The results above are with normal data; the non-normal transformation</span></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="co"># would need to be applied manually. This is documented for transparency.</span></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_nonnormal_vary_alt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>RESULT OBJECT
-Model Type
-[1] "lavaan"
-========= Fit Indices Cutoffs ============
-    N   chisq       aic       bic rmsea   cfi   tli  srmr
-1 100 298.104  5878.811  6042.462 0.038 0.975 0.972 0.065
-2 225 292.468 12628.755 12813.149 0.031 0.981 0.979 0.055
-3 350 286.833 19378.698 19583.836 0.024 0.987 0.985 0.046
-4 475 281.197 26128.641 26354.523 0.017 0.993 0.992 0.036
-5 600 275.561 32878.585 33125.209 0.010 0.999 0.999 0.026
-========= Parameter Estimates and Standard Errors ============
-                      Estimate Average Estimate SD Average SE
-psycho=~Q5                       0.918       0.049      0.045
-psycho=~Q6                       0.819       0.054      0.049
-psycho=~Q7                       0.944       0.048      0.044
-psycho=~Q11                      0.742       0.057      0.051
-psycho=~Q19                      0.749       0.044      0.050
-psycho=~Q26                      0.630       0.060      0.053
-physical=~Q3                     0.827       0.055      0.048
-physical=~Q4                     0.827       0.057      0.049
-physical=~Q10                    0.625       0.057      0.054
-physical=~Q15                    0.699       0.060      0.053
-physical=~Q16                    0.681       0.053      0.052
-physical=~Q17                    0.894       0.053      0.047
-physical=~Q18                    0.611       0.050      0.054
-social=~Q20                      0.930       0.052      0.045
-social=~Q21                      0.886       0.050      0.047
-social=~Q22                      0.768       0.043      0.050
-environment=~Q8                  0.369       0.056      0.059
-environment=~Q9                  0.491       0.061      0.057
-environment=~Q12                 0.787       0.055      0.050
-environment=~Q13                 0.800       0.056      0.050
-environment=~Q14                 0.772       0.046      0.051
-environment=~Q23                 0.747       0.047      0.052
-environment=~Q24                 0.626       0.064      0.054
-environment=~Q25                 0.737       0.047      0.052
-psycho~~physical                 0.211       0.063      0.060
-psycho~~social                   0.209       0.060      0.059
-psycho~~environment              0.217       0.071      0.060
-physical~~social                 0.204       0.061      0.060
-physical~~environment            0.194       0.069      0.062
-social~~environment              0.214       0.061      0.061
-Q3~~Q4                           0.087       0.026      0.026
-Q5~~Q5                           0.154       0.018      0.019
-Q6~~Q6                           0.342       0.036      0.032
-Q7~~Q7                           0.118       0.020      0.017
-Q11~~Q11                         0.470       0.038      0.041
-Q19~~Q19                         0.437       0.032      0.039
-Q26~~Q26                         0.605       0.039      0.052
-Q3~~Q3                           0.281       0.032      0.032
-Q4~~Q4                           0.313       0.036      0.035
-Q10~~Q10                         0.603       0.043      0.053
-Q15~~Q15                         0.510       0.052      0.046
-Q16~~Q16                         0.527       0.054      0.047
-Q17~~Q17                         0.202       0.025      0.027
-Q18~~Q18                         0.620       0.057      0.054
-Q20~~Q20                         0.117       0.032      0.028
-Q21~~Q21                         0.204       0.030      0.030
-Q22~~Q22                         0.392       0.032      0.037
-Q8~~Q8                           0.866       0.073      0.073
-Q9~~Q9                           0.758       0.070      0.065
-Q12~~Q12                         0.373       0.040      0.038
-Q13~~Q13                         0.342       0.038      0.036
-Q14~~Q14                         0.411       0.042      0.041
-Q23~~Q23                         0.435       0.039      0.042
-Q24~~Q24                         0.586       0.044      0.052
-Q25~~Q25                         0.458       0.042      0.044
-                      Power (Not equal 0) Std Est Std Est SD Std Ave SE
-psycho=~Q5                          1.000   0.919      0.013      0.012
-psycho=~Q6                          1.000   0.813      0.023      0.021
-psycho=~Q7                          1.000   0.940      0.010      0.010
-psycho=~Q11                         1.000   0.733      0.032      0.028
-psycho=~Q19                         1.000   0.749      0.023      0.027
-psycho=~Q26                         1.000   0.628      0.042      0.037
-physical=~Q3                        1.000   0.841      0.023      0.022
-physical=~Q4                        1.000   0.827      0.026      0.023
-physical=~Q10                       1.000   0.626      0.040      0.038
-physical=~Q15                       1.000   0.698      0.039      0.033
-physical=~Q16                       1.000   0.683      0.040      0.034
-physical=~Q17                       1.000   0.893      0.016      0.017
-physical=~Q18                       1.000   0.613      0.039      0.039
-social=~Q20                         1.000   0.938      0.018      0.016
-social=~Q21                         1.000   0.891      0.017      0.018
-social=~Q22                         1.000   0.774      0.025      0.026
-environment=~Q8                     1.000   0.368      0.053      0.053
-environment=~Q9                     1.000   0.490      0.054      0.047
-environment=~Q12                    1.000   0.789      0.028      0.026
-environment=~Q13                    1.000   0.806      0.024      0.025
-environment=~Q14                    1.000   0.769      0.025      0.028
-environment=~Q23                    1.000   0.749      0.022      0.029
-environment=~Q24                    1.000   0.631      0.039      0.039
-environment=~Q25                    1.000   0.736      0.029      0.030
-psycho~~physical                    0.941   0.211      0.063      0.060
-psycho~~social                      0.961   0.209      0.060      0.059
-psycho~~environment                 0.922   0.217      0.071      0.060
-physical~~social                    0.863   0.204      0.061      0.060
-physical~~environment               0.824   0.194      0.069      0.062
-social~~environment                 0.961   0.214      0.061      0.061
-Q3~~Q4                              0.902   0.292      0.069      0.070
-Q5~~Q5                              1.000   0.155      0.024      0.022
-Q6~~Q6                              1.000   0.338      0.038      0.035
-Q7~~Q7                              1.000   0.117      0.020      0.019
-Q11~~Q11                            1.000   0.461      0.046      0.042
-Q19~~Q19                            1.000   0.438      0.034      0.041
-Q26~~Q26                            1.000   0.604      0.051      0.046
-Q3~~Q3                              1.000   0.292      0.038      0.036
-Q4~~Q4                              1.000   0.315      0.043      0.038
-Q10~~Q10                            1.000   0.607      0.049      0.048
-Q15~~Q15                            1.000   0.511      0.054      0.045
-Q16~~Q16                            1.000   0.532      0.055      0.046
-Q17~~Q17                            1.000   0.203      0.028      0.030
-Q18~~Q18                            1.000   0.623      0.048      0.048
-Q20~~Q20                            0.902   0.120      0.034      0.030
-Q21~~Q21                            1.000   0.206      0.030      0.033
-Q22~~Q22                            1.000   0.400      0.039      0.041
-Q8~~Q8                              1.000   0.862      0.039      0.039
-Q9~~Q9                              1.000   0.757      0.053      0.046
-Q12~~Q12                            1.000   0.377      0.044      0.041
-Q13~~Q13                            1.000   0.349      0.040      0.040
-Q14~~Q14                            1.000   0.408      0.038      0.043
-Q23~~Q23                            1.000   0.438      0.033      0.044
-Q24~~Q24                            1.000   0.600      0.049      0.048
-Q25~~Q25                            1.000   0.458      0.043      0.045
-                      Average Param Average Bias Coverage r_coef.n r_se.n
-psycho=~Q5                    0.920       -0.002    0.922   -0.234 -0.934
-psycho=~Q6                    0.810        0.009    0.922   -0.337 -0.928
-psycho=~Q7                    0.940        0.004    0.902   -0.227 -0.935
-psycho=~Q11                   0.730        0.012    0.902   -0.414 -0.926
-psycho=~Q19                   0.750       -0.001    0.980   -0.190 -0.931
-psycho=~Q26                   0.630        0.000    0.922   -0.130 -0.936
-physical=~Q3                  0.840       -0.013    0.961    0.172 -0.919
-physical=~Q4                  0.830       -0.003    0.941    0.141 -0.919
-physical=~Q10                 0.630       -0.005    0.922    0.023 -0.935
-physical=~Q15                 0.710       -0.011    0.941    0.091 -0.913
-physical=~Q16                 0.680        0.001    0.961   -0.116 -0.941
-physical=~Q17                 0.890        0.004    0.941   -0.036 -0.913
-physical=~Q18                 0.610        0.001    0.941   -0.167 -0.938
-social=~Q20                   0.940       -0.010    0.902   -0.071 -0.938
-social=~Q21                   0.890       -0.004    0.961   -0.075 -0.919
-social=~Q22                   0.780       -0.012    1.000    0.203 -0.929
-environment=~Q8               0.370       -0.001    0.980    0.002 -0.923
-environment=~Q9               0.490        0.001    0.980   -0.098 -0.932
-environment=~Q12              0.790       -0.003    0.980   -0.190 -0.925
-environment=~Q13              0.810       -0.010    0.961   -0.242 -0.925
-environment=~Q14              0.770        0.002    1.000   -0.244 -0.923
-environment=~Q23              0.750       -0.003    0.941   -0.268 -0.927
-environment=~Q24              0.640       -0.014    0.902   -0.020 -0.946
-environment=~Q25              0.730        0.007    0.980   -0.179 -0.935
-psycho~~physical              0.200        0.011    0.941   -0.059 -0.945
-psycho~~social                0.200        0.009    0.941   -0.113 -0.944
-psycho~~environment           0.200        0.017    0.902   -0.098 -0.929
-physical~~social              0.200        0.004    0.922   -0.126 -0.938
-physical~~environment         0.200       -0.006    0.902   -0.050 -0.939
-social~~environment           0.200        0.014    0.922   -0.098 -0.932
-Q3~~Q4                        0.091       -0.003    0.980   -0.107 -0.901
-Q5~~Q5                        0.154        0.000    0.961   -0.213 -0.895
-Q6~~Q6                        0.344       -0.002    0.922    0.080 -0.861
-Q7~~Q7                        0.116        0.001    0.922   -0.226 -0.896
-Q11~~Q11                      0.467        0.003    0.941    0.055 -0.898
-Q19~~Q19                      0.438        0.000    0.980    0.006 -0.885
-Q26~~Q26                      0.603        0.002    0.980    0.068 -0.912
-Q3~~Q3                        0.294       -0.014    0.941    0.164 -0.879
-Q4~~Q4                        0.311        0.002    0.980   -0.261 -0.895
-Q10~~Q10                      0.603        0.000    0.980    0.069 -0.916
-Q15~~Q15                      0.496        0.015    0.961   -0.114 -0.853
-Q16~~Q16                      0.538       -0.011    0.922    0.270 -0.908
-Q17~~Q17                      0.208       -0.006    0.941    0.183 -0.915
-Q18~~Q18                      0.628       -0.008    0.902   -0.003 -0.903
-Q20~~Q20                      0.116        0.000    0.941    0.071 -0.909
-Q21~~Q21                      0.208       -0.004    0.961   -0.166 -0.884
-Q22~~Q22                      0.392        0.001    0.980   -0.097 -0.895
-Q8~~Q8                        0.863        0.003    0.980    0.075 -0.874
-Q9~~Q9                        0.760       -0.002    0.961    0.033 -0.882
-Q12~~Q12                      0.376       -0.002    0.980   -0.010 -0.875
-Q13~~Q13                      0.344       -0.002    0.922    0.022 -0.863
-Q14~~Q14                      0.407        0.004    0.941    0.095 -0.870
-Q23~~Q23                      0.438       -0.002    0.961   -0.166 -0.894
-Q24~~Q24                      0.590       -0.005    1.000   -0.035 -0.932
-Q25~~Q25                      0.467       -0.009    0.922   -0.120 -0.912
-========= Correlation between Fit Indices ============
-       chisq    aic    bic  rmsea    cfi    tli   srmr      n
-chisq  1.000 -0.375 -0.375  0.885 -0.787 -0.895  0.550 -0.373
-aic   -0.375  1.000  1.000 -0.649  0.642  0.540 -0.912  1.000
-bic   -0.375  1.000  1.000 -0.650  0.643  0.540 -0.912  1.000
-rmsea  0.885 -0.649 -0.650  1.000 -0.942 -0.950  0.785 -0.648
-cfi   -0.787  0.642  0.643 -0.942  1.000  0.950 -0.774  0.640
-tli   -0.895  0.540  0.540 -0.950  0.950  1.000 -0.731  0.537
-srmr   0.550 -0.912 -0.912  0.785 -0.774 -0.731  1.000 -0.911
-n     -0.373  1.000  1.000 -0.648  0.640  0.537 -0.911  1.000
-================== Replications =====================
-Number of replications = 51 
-Number of converged replications = 51 
-Number of nonconverged replications: 
-   1. Nonconvergent Results = 0 
-   2. Nonconvergent results from multiple imputation = 0 
-   3. At least one SE were negative or NA = 0 
-   4. Nonpositive-definite latent or observed (residual) covariance matrix 
-      (e.g., Heywood case or linear dependency) = 0 
-NOTE: The sample size is varying.</code></pre>
-</div>
-</div></div>
-</section>
-<section id="scenario-b-missing-data-mcar-10" class="level2">
-<h2 class="anchored" data-anchor-id="scenario-b-missing-data-mcar-10">Scenario B — Missing data (MCAR 10%)</h2>
-<p>Introduce 10% missing completely at random (MCAR). This demonstrates the power cost of attrition / item non-response.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>sim_missing_vary <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> <span class="cn">NULL</span>,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> SEQ,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> popModel,</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pmMCAR   =</span> <span class="fl">0.10</span>           <span class="co"># 10% MCAR missing data</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: lavaan-&gt;lav_object_post_check():  
-   some estimated ov variances are negative
-Warning: lavaan-&gt;lav_object_post_check():  
-   some estimated ov variances are negative</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_missing_vary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>RESULT OBJECT
-Model Type
-[1] "lavaan"
-========= Fit Indices Cutoffs ============
-    N   chisq       aic       bic rmsea   cfi   tli  srmr
-1 100 317.703  5245.664  5479.987 0.045 0.961 0.956 0.068
-2 225 307.632 11468.803 11733.948 0.037 0.970 0.967 0.058
-3 350 297.562 17691.942 17987.909 0.029 0.980 0.977 0.048
-4 475 287.491 23915.081 24241.870 0.021 0.989 0.988 0.038
-5 600 277.421 30138.219 30495.831 0.013 0.999 0.999 0.028
-========= Parameter Estimates and Standard Errors ============
-                      Estimate Average Estimate SD Average SE
-psycho=~Q5                       0.919       0.051      0.046
-psycho=~Q6                       0.821       0.056      0.051
-psycho=~Q7                       0.943       0.050      0.046
-psycho=~Q11                      0.740       0.059      0.054
-psycho=~Q19                      0.750       0.047      0.052
-psycho=~Q26                      0.631       0.062      0.056
-physical=~Q3                     0.825       0.060      0.049
-physical=~Q4                     0.825       0.055      0.051
-physical=~Q10                    0.629       0.063      0.057
-physical=~Q15                    0.703       0.063      0.055
-physical=~Q16                    0.676       0.054      0.055
-physical=~Q17                    0.895       0.056      0.049
-physical=~Q18                    0.612       0.052      0.057
-social=~Q20                      0.931       0.056      0.047
-social=~Q21                      0.888       0.048      0.049
-social=~Q22                      0.766       0.050      0.052
-environment=~Q8                  0.370       0.060      0.063
-environment=~Q9                  0.491       0.058      0.060
-environment=~Q12                 0.786       0.059      0.053
-environment=~Q13                 0.801       0.056      0.052
-environment=~Q14                 0.767       0.049      0.054
-environment=~Q23                 0.748       0.051      0.054
-environment=~Q24                 0.625       0.065      0.057
-environment=~Q25                 0.734       0.054      0.055
-psycho~~physical                 0.210       0.065      0.060
-psycho~~social                   0.209       0.063      0.060
-psycho~~environment              0.217       0.073      0.061
-physical~~social                 0.207       0.060      0.061
-physical~~environment            0.193       0.068      0.063
-social~~environment              0.213       0.065      0.062
-Q3~~Q4                           0.091       0.027      0.029
-Q5~~Q5                           0.151       0.021      0.021
-Q6~~Q6                           0.341       0.033      0.034
-Q7~~Q7                           0.118       0.022      0.020
-Q11~~Q11                         0.470       0.041      0.044
-Q19~~Q19                         0.435       0.036      0.041
-Q26~~Q26                         0.602       0.046      0.055
-Q3~~Q3                           0.282       0.034      0.034
-Q4~~Q4                           0.316       0.038      0.038
-Q10~~Q10                         0.599       0.047      0.056
-Q15~~Q15                         0.509       0.048      0.050
-Q16~~Q16                         0.530       0.048      0.050
-Q17~~Q17                         0.199       0.027      0.030
-Q18~~Q18                         0.617       0.057      0.057
-Q20~~Q20                         0.116       0.035      0.033
-Q21~~Q21                         0.203       0.035      0.034
-Q22~~Q22                         0.393       0.032      0.040
-Q8~~Q8                           0.869       0.073      0.077
-Q9~~Q9                           0.756       0.069      0.068
-Q12~~Q12                         0.378       0.043      0.042
-Q13~~Q13                         0.342       0.038      0.039
-Q14~~Q14                         0.413       0.048      0.044
-Q23~~Q23                         0.429       0.038      0.045
-Q24~~Q24                         0.586       0.049      0.056
-Q25~~Q25                         0.452       0.044      0.047
-Q5~1                            -0.009       0.063      0.059
-Q6~1                            -0.007       0.052      0.060
-Q7~1                            -0.009       0.062      0.059
-Q11~1                           -0.004       0.070      0.061
-Q19~1                           -0.003       0.066      0.060
-Q26~1                            0.000       0.057      0.060
-Q3~1                            -0.008       0.063      0.058
-Q4~1                            -0.012       0.060      0.059
-Q10~1                           -0.018       0.058      0.060
-Q15~1                           -0.004       0.065      0.060
-Q16~1                           -0.020       0.069      0.060
-Q17~1                           -0.010       0.061      0.059
-Q18~1                            0.001       0.071      0.060
-Q20~1                            0.004       0.059      0.059
-Q21~1                           -0.002       0.054      0.059
-Q22~1                            0.014       0.072      0.059
-Q8~1                            -0.012       0.061      0.061
-Q9~1                            -0.004       0.064      0.061
-Q12~1                           -0.005       0.075      0.060
-Q13~1                           -0.018       0.064      0.059
-Q14~1                           -0.009       0.057      0.060
-Q23~1                            0.005       0.060      0.060
-Q24~1                           -0.014       0.065      0.060
-Q25~1                           -0.005       0.070      0.060
-                      Power (Not equal 0) Std Est Std Est SD Std Ave SE
-psycho=~Q5                          1.000   0.921      0.014      0.013
-psycho=~Q6                          1.000   0.814      0.023      0.023
-psycho=~Q7                          1.000   0.939      0.011      0.011
-psycho=~Q11                         1.000   0.732      0.034      0.030
-psycho=~Q19                         1.000   0.750      0.026      0.029
-psycho=~Q26                         1.000   0.629      0.044      0.039
-physical=~Q3                        1.000   0.839      0.026      0.023
-physical=~Q4                        1.000   0.825      0.025      0.025
-physical=~Q10                       1.000   0.629      0.044      0.040
-physical=~Q15                       1.000   0.700      0.039      0.035
-physical=~Q16                       1.000   0.679      0.037      0.036
-physical=~Q17                       1.000   0.894      0.018      0.018
-physical=~Q18                       1.000   0.614      0.039      0.041
-social=~Q20                         1.000   0.938      0.020      0.019
-social=~Q21                         1.000   0.892      0.019      0.020
-social=~Q22                         1.000   0.772      0.029      0.028
-environment=~Q8                     1.000   0.369      0.057      0.057
-environment=~Q9                     1.000   0.491      0.052      0.050
-environment=~Q12                    1.000   0.787      0.029      0.028
-environment=~Q13                    1.000   0.807      0.025      0.027
-environment=~Q14                    1.000   0.766      0.027      0.030
-environment=~Q23                    1.000   0.752      0.027      0.031
-environment=~Q24                    1.000   0.631      0.040      0.041
-environment=~Q25                    1.000   0.736      0.033      0.033
-psycho~~physical                    0.902   0.210      0.065      0.060
-psycho~~social                      0.961   0.209      0.063      0.060
-psycho~~environment                 0.922   0.217      0.073      0.061
-physical~~social                    0.882   0.207      0.060      0.061
-physical~~environment               0.843   0.193      0.068      0.063
-social~~environment                 0.961   0.213      0.065      0.062
-Q3~~Q4                              0.922   0.301      0.072      0.077
-Q5~~Q5                              1.000   0.152      0.025      0.023
-Q6~~Q6                              1.000   0.337      0.037      0.037
-Q7~~Q7                              1.000   0.118      0.021      0.021
-Q11~~Q11                            1.000   0.463      0.049      0.044
-Q19~~Q19                            1.000   0.437      0.039      0.043
-Q26~~Q26                            1.000   0.602      0.054      0.048
-Q3~~Q3                              1.000   0.295      0.043      0.039
-Q4~~Q4                              1.000   0.318      0.041      0.041
-Q10~~Q10                            1.000   0.603      0.055      0.050
-Q15~~Q15                            1.000   0.508      0.054      0.048
-Q16~~Q16                            1.000   0.537      0.050      0.049
-Q17~~Q17                            1.000   0.200      0.032      0.033
-Q18~~Q18                            1.000   0.622      0.049      0.051
-Q20~~Q20                            0.941   0.119      0.038      0.035
-Q21~~Q21                            1.000   0.205      0.033      0.036
-Q22~~Q22                            1.000   0.403      0.045      0.044
-Q8~~Q8                              1.000   0.861      0.043      0.042
-Q9~~Q9                              1.000   0.756      0.052      0.049
-Q12~~Q12                            1.000   0.380      0.045      0.044
-Q13~~Q13                            1.000   0.348      0.040      0.043
-Q14~~Q14                            1.000   0.413      0.042      0.046
-Q23~~Q23                            1.000   0.434      0.040      0.047
-Q24~~Q24                            1.000   0.601      0.050      0.051
-Q25~~Q25                            1.000   0.457      0.049      0.048
-Q5~1                                0.078  -0.008      0.062      0.059
-Q6~1                                0.039  -0.007      0.052      0.059
-Q7~1                                0.078  -0.008      0.061      0.059
-Q11~1                               0.039  -0.003      0.069      0.060
-Q19~1                               0.020  -0.002      0.066      0.060
-Q26~1                               0.039   0.000      0.057      0.060
-Q3~1                                0.078  -0.007      0.064      0.059
-Q4~1                                0.098  -0.012      0.060      0.059
-Q10~1                               0.039  -0.017      0.058      0.060
-Q15~1                               0.059  -0.003      0.065      0.060
-Q16~1                               0.118  -0.020      0.070      0.060
-Q17~1                               0.078  -0.011      0.060      0.059
-Q18~1                               0.098   0.001      0.071      0.060
-Q20~1                               0.059   0.004      0.060      0.059
-Q21~1                               0.039  -0.002      0.055      0.059
-Q22~1                               0.098   0.014      0.073      0.060
-Q8~1                                0.039  -0.011      0.061      0.061
-Q9~1                                0.020  -0.004      0.064      0.061
-Q12~1                               0.059  -0.006      0.074      0.060
-Q13~1                               0.059  -0.020      0.068      0.060
-Q14~1                               0.039  -0.010      0.058      0.060
-Q23~1                               0.000   0.005      0.060      0.060
-Q24~1                               0.098  -0.014      0.068      0.060
-Q25~1                               0.078  -0.005      0.070      0.060
-                      Average FMI1 SD FMI1 r_coef.n r_se.n
-psycho=~Q5                   0.046   0.013   -0.224 -0.925
-psycho=~Q6                   0.067   0.019   -0.386 -0.925
-psycho=~Q7                   0.047   0.015   -0.163 -0.935
-psycho=~Q11                  0.079   0.026   -0.351 -0.922
-psycho=~Q19                  0.074   0.021   -0.145 -0.931
-psycho=~Q26                  0.087   0.023   -0.161 -0.922
-physical=~Q3                 0.066   0.020    0.191 -0.924
-physical=~Q4                 0.068   0.025    0.131 -0.914
-physical=~Q10                0.094   0.021   -0.006 -0.940
-physical=~Q15                0.087   0.020    0.046 -0.908
-physical=~Q16                0.084   0.029   -0.080 -0.929
-physical=~Q17                0.073   0.022   -0.062 -0.915
-physical=~Q18                0.094   0.035   -0.271 -0.942
-social=~Q20                  0.077   0.022   -0.076 -0.934
-social=~Q21                  0.072   0.023   -0.065 -0.919
-social=~Q22                  0.078   0.023    0.216 -0.925
-environment=~Q8              0.104   0.032   -0.038 -0.913
-environment=~Q9              0.098   0.028   -0.137 -0.931
-environment=~Q12             0.079   0.026   -0.120 -0.910
-environment=~Q13             0.079   0.019   -0.205 -0.931
-environment=~Q14             0.090   0.028   -0.210 -0.916
-environment=~Q23             0.083   0.028   -0.297 -0.931
-environment=~Q24             0.092   0.025    0.022 -0.939
-environment=~Q25             0.094   0.028   -0.132 -0.924
-psycho~~physical             0.021   0.008   -0.035 -0.945
-psycho~~social               0.025   0.008   -0.099 -0.940
-psycho~~environment          0.023   0.008   -0.115 -0.928
-physical~~social             0.030   0.011   -0.129 -0.938
-physical~~environment        0.024   0.011   -0.038 -0.938
-social~~environment          0.031   0.011   -0.073 -0.933
-Q3~~Q4                       0.190   0.034   -0.244 -0.912
-Q5~~Q5                       0.178   0.024   -0.103 -0.875
-Q6~~Q6                       0.139   0.023    0.125 -0.880
-Q7~~Q7                       0.193   0.033   -0.282 -0.891
-Q11~~Q11                     0.121   0.021   -0.027 -0.884
-Q19~~Q19                     0.125   0.022   -0.008 -0.889
-Q26~~Q26                     0.113   0.025    0.197 -0.877
-Q3~~Q3                       0.157   0.031    0.096 -0.886
-Q4~~Q4                       0.154   0.025   -0.329 -0.893
-Q10~~Q10                     0.121   0.024    0.166 -0.916
-Q15~~Q15                     0.128   0.024   -0.124 -0.867
-Q16~~Q16                     0.118   0.027    0.257 -0.905
-Q17~~Q17                     0.171   0.023    0.184 -0.897
-Q18~~Q18                     0.118   0.020    0.077 -0.912
-Q20~~Q20                     0.230   0.038    0.059 -0.894
-Q21~~Q21                     0.211   0.038   -0.110 -0.882
-Q22~~Q22                     0.147   0.039   -0.135 -0.899
-Q8~~Q8                       0.111   0.031    0.069 -0.881
-Q9~~Q9                       0.117   0.025    0.097 -0.893
-Q12~~Q12                     0.149   0.032   -0.137 -0.853
-Q13~~Q13                     0.157   0.037    0.072 -0.880
-Q14~~Q14                     0.146   0.029    0.041 -0.855
-Q23~~Q23                     0.140   0.022    0.016 -0.892
-Q24~~Q24                     0.121   0.019   -0.066 -0.924
-Q25~~Q25                     0.143   0.039   -0.049 -0.908
-Q5~1                         0.024   0.005    0.170 -0.928
-Q6~1                         0.040   0.008    0.196 -0.928
-Q7~1                         0.022   0.005    0.135 -0.932
-Q11~1                        0.051   0.011    0.086 -0.923
-Q19~1                        0.051   0.010    0.099 -0.937
-Q26~1                        0.065   0.010    0.192 -0.924
-Q3~1                         0.032   0.008   -0.024 -0.908
-Q4~1                         0.034   0.008   -0.043 -0.907
-Q10~1                        0.068   0.011    0.301 -0.929
-Q15~1                        0.061   0.012    0.058 -0.900
-Q16~1                        0.059   0.014    0.181 -0.920
-Q17~1                        0.033   0.009    0.060 -0.902
-Q18~1                        0.069   0.013    0.083 -0.935
-Q20~1                        0.030   0.007   -0.222 -0.931
-Q21~1                        0.034   0.007   -0.034 -0.922
-Q22~1                        0.046   0.010   -0.099 -0.925
-Q8~1                         0.090   0.014    0.085 -0.922
-Q9~1                         0.083   0.018   -0.139 -0.939
-Q12~1                        0.050   0.012   -0.219 -0.916
-Q13~1                        0.047   0.011    0.034 -0.935
-Q14~1                        0.055   0.011   -0.254 -0.925
-Q23~1                        0.053   0.011   -0.271 -0.924
-Q24~1                        0.067   0.013   -0.265 -0.937
-Q25~1                        0.057   0.012   -0.117 -0.926
-========= Correlation between Fit Indices ============
-       chisq    aic    bic  rmsea    cfi    tli   srmr      n
-chisq  1.000 -0.309 -0.310  0.929 -0.787 -0.860  0.509 -0.307
-aic   -0.309  1.000  1.000 -0.470  0.466  0.437 -0.910  1.000
-bic   -0.310  1.000  1.000 -0.470  0.466  0.437 -0.910  1.000
-rmsea  0.929 -0.470 -0.470  1.000 -0.906 -0.938  0.637 -0.468
-cfi   -0.787  0.466  0.466 -0.906  1.000  0.984 -0.644  0.464
-tli   -0.860  0.437  0.437 -0.938  0.984  1.000 -0.641  0.435
-srmr   0.509 -0.910 -0.910  0.637 -0.644 -0.641  1.000 -0.908
-n     -0.307  1.000  1.000 -0.468  0.464  0.435 -0.908  1.000
-================== Replications =====================
-Number of replications = 51 
-Number of converged replications = 50 
-Number of nonconverged replications: 
-   1. Nonconvergent Results = 0 
-   2. Nonconvergent results from multiple imputation = 0 
-   3. At least one SE were negative or NA = 0 
-   4. Nonpositive-definite latent or observed (residual) covariance matrix 
-      (e.g., Heywood case or linear dependency) = 1 
-NOTE: The sample size is varying.
-NOTE: The data generation model is not the same as the analysis  model. See the summary of the population underlying data  generation by the summaryPopulation function.</code></pre>
-</div>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--- Power at N = 300 (10% MCAR) ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>--- Power at N = 300 (10% MCAR) ---</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(sim_missing_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">nVal =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     cfi      tli    rmsea     srmr 
-"&lt; 0.44" "&lt; 0.48" "&lt; 0.48" "&lt; 0.32" </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">--- Power at N = 500 (10% MCAR) ---</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
---- Power at N = 500 (10% MCAR) ---</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(sim_missing_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">nVal =</span> <span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in rq.fit.br(x, y, tau = tau, ...): Solution may be nonunique</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     cfi      tli    rmsea     srmr 
-"&lt; 0.44" "&lt; 0.48"  "&lt; 0.3" "&lt; 0.32" </code></pre>
-</div>
-</div></div>
-</section>
-<section id="scenario-c-sensitivity-naive-population-model" class="level2">
-<h2 class="anchored" data-anchor-id="scenario-c-sensitivity-naive-population-model">Scenario C — Sensitivity: Naive population model</h2>
-<p>Use the pessimistic population model (all loadings = 0.5) as the generating model to assess the worst-case power scenario.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>sim_naive_vary <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> <span class="cn">NULL</span>,</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> SEQ,</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> naiveModel</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_naive_vary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>RESULT OBJECT
-Model Type
-[1] "lavaan"
-========= Fit Indices Cutoffs ============
-    N   chisq       aic       bic rmsea   cfi   tli  srmr
-1 100 305.230  6919.921  7083.572 0.038 0.896 0.883 0.074
-2 225 297.615 14983.600 15167.995 0.031 0.921 0.911 0.064
-3 350 290.001 23047.280 23252.418 0.025 0.945 0.938 0.053
-4 475 282.386 31110.959 31336.840 0.019 0.969 0.965 0.042
-5 600 274.772 39174.638 39421.263 0.013 0.994 0.993 0.032
-========= Parameter Estimates and Standard Errors ============
-                      Estimate Average Estimate SD Average SE
-psycho=~Q5                       0.545       0.068      0.064
-psycho=~Q6                       0.522       0.055      0.064
-psycho=~Q7                       0.549       0.056      0.065
-psycho=~Q11                      0.522       0.055      0.064
-psycho=~Q19                      0.514       0.064      0.065
-psycho=~Q26                      0.519       0.064      0.065
-physical=~Q3                     0.486       0.078      0.068
-physical=~Q4                     0.467       0.080      0.069
-physical=~Q10                    0.477       0.073      0.067
-physical=~Q15                    0.471       0.068      0.067
-physical=~Q16                    0.485       0.080      0.067
-physical=~Q17                    0.474       0.092      0.067
-physical=~Q18                    0.493       0.060      0.067
-social=~Q20                      0.596       0.077      0.071
-social=~Q21                      0.590       0.078      0.070
-social=~Q22                      0.598       0.077      0.071
-environment=~Q8                  0.474       0.082      0.065
-environment=~Q9                  0.489       0.078      0.064
-environment=~Q12                 0.481       0.052      0.065
-environment=~Q13                 0.484       0.073      0.064
-environment=~Q14                 0.478       0.064      0.064
-environment=~Q23                 0.493       0.049      0.064
-environment=~Q24                 0.474       0.066      0.064
-environment=~Q25                 0.482       0.054      0.065
-psycho~~physical                 0.317       0.079      0.079
-psycho~~social                   0.302       0.092      0.082
-psycho~~environment              0.295       0.087      0.077
-physical~~social                 0.321       0.092      0.083
-physical~~environment            0.315       0.081      0.078
-social~~environment              0.312       0.099      0.081
-Q3~~Q4                           0.236       0.058      0.058
-Q5~~Q5                           0.694       0.082      0.069
-Q6~~Q6                           0.711       0.074      0.069
-Q7~~Q7                           0.708       0.071      0.071
-Q11~~Q11                         0.715       0.065      0.069
-Q19~~Q19                         0.729       0.072      0.071
-Q26~~Q26                         0.731       0.064      0.071
-Q3~~Q3                           0.772       0.067      0.075
-Q4~~Q4                           0.787       0.063      0.076
-Q10~~Q10                         0.764       0.069      0.073
-Q15~~Q15                         0.773       0.072      0.073
-Q16~~Q16                         0.756       0.072      0.073
-Q17~~Q17                         0.774       0.072      0.074
-Q18~~Q18                         0.768       0.075      0.074
-Q20~~Q20                         0.641       0.086      0.078
-Q21~~Q21                         0.611       0.096      0.076
-Q22~~Q22                         0.632       0.102      0.078
-Q8~~Q8                           0.774       0.086      0.072
-Q9~~Q9                           0.758       0.071      0.071
-Q12~~Q12                         0.768       0.067      0.071
-Q13~~Q13                         0.758       0.075      0.071
-Q14~~Q14                         0.765       0.067      0.071
-Q23~~Q23                         0.744       0.063      0.070
-Q24~~Q24                         0.759       0.073      0.071
-Q25~~Q25                         0.765       0.070      0.071
-                      Power (Not equal 0) Std Est Std Est SD Std Ave SE
-psycho=~Q5                          1.000   0.547      0.056      0.054
-psycho=~Q6                          1.000   0.526      0.052      0.055
-psycho=~Q7                          1.000   0.546      0.045      0.054
-psycho=~Q11                         1.000   0.524      0.043      0.055
-psycho=~Q19                         1.000   0.515      0.054      0.055
-psycho=~Q26                         1.000   0.517      0.054      0.055
-physical=~Q3                        1.000   0.482      0.068      0.060
-physical=~Q4                        1.000   0.463      0.068      0.061
-physical=~Q10                       1.000   0.477      0.062      0.059
-physical=~Q15                       1.000   0.471      0.059      0.059
-physical=~Q16                       1.000   0.485      0.067      0.059
-physical=~Q17                       0.980   0.471      0.077      0.059
-physical=~Q18                       1.000   0.489      0.053      0.058
-social=~Q20                         1.000   0.595      0.068      0.060
-social=~Q21                         1.000   0.601      0.073      0.061
-social=~Q22                         1.000   0.600      0.073      0.060
-environment=~Q8                     1.000   0.472      0.070      0.057
-environment=~Q9                     1.000   0.488      0.068      0.056
-environment=~Q12                    1.000   0.480      0.048      0.056
-environment=~Q13                    1.000   0.484      0.061      0.056
-environment=~Q14                    1.000   0.478      0.049      0.056
-environment=~Q23                    1.000   0.496      0.047      0.055
-environment=~Q24                    1.000   0.477      0.058      0.057
-environment=~Q25                    1.000   0.482      0.049      0.056
-psycho~~physical                    0.961   0.317      0.079      0.079
-psycho~~social                      0.922   0.302      0.092      0.082
-psycho~~environment                 0.941   0.295      0.087      0.077
-physical~~social                    0.941   0.321      0.092      0.083
-physical~~environment               1.000   0.315      0.081      0.078
-social~~environment                 0.863   0.312      0.099      0.081
-Q3~~Q4                              0.980   0.301      0.065      0.061
-Q5~~Q5                              1.000   0.698      0.061      0.059
-Q6~~Q6                              1.000   0.720      0.055      0.057
-Q7~~Q7                              1.000   0.700      0.050      0.059
-Q11~~Q11                            1.000   0.724      0.044      0.058
-Q19~~Q19                            1.000   0.732      0.056      0.056
-Q26~~Q26                            1.000   0.730      0.053      0.056
-Q3~~Q3                              1.000   0.763      0.064      0.058
-Q4~~Q4                              1.000   0.781      0.060      0.056
-Q10~~Q10                            1.000   0.769      0.061      0.056
-Q15~~Q15                            1.000   0.775      0.055      0.056
-Q16~~Q16                            1.000   0.760      0.066      0.057
-Q17~~Q17                            1.000   0.772      0.073      0.055
-Q18~~Q18                            1.000   0.758      0.051      0.057
-Q20~~Q20                            1.000   0.641      0.080      0.071
-Q21~~Q21                            0.980   0.633      0.089      0.074
-Q22~~Q22                            1.000   0.635      0.087      0.072
-Q8~~Q8                              1.000   0.772      0.067      0.053
-Q9~~Q9                              1.000   0.757      0.067      0.054
-Q12~~Q12                            1.000   0.767      0.045      0.054
-Q13~~Q13                            1.000   0.762      0.063      0.054
-Q14~~Q14                            1.000   0.769      0.048      0.054
-Q23~~Q23                            1.000   0.752      0.045      0.055
-Q24~~Q24                            1.000   0.769      0.052      0.053
-Q25~~Q25                            1.000   0.765      0.048      0.054
-                      Average Param Average Bias Coverage r_coef.n r_se.n
-psycho=~Q5                    0.533        0.013    0.941   -0.448 -0.888
-psycho=~Q6                    0.533       -0.010    0.961   -0.030 -0.928
-psycho=~Q7                    0.533        0.017    0.980   -0.235 -0.908
-psycho=~Q11                   0.533       -0.011    0.961   -0.219 -0.941
-psycho=~Q19                   0.533       -0.019    0.941    0.171 -0.917
-psycho=~Q26                   0.533       -0.014    0.980    0.083 -0.936
-physical=~Q3                  0.476        0.010    0.961   -0.256 -0.933
-physical=~Q4                  0.476       -0.009    0.961   -0.111 -0.940
-physical=~Q10                 0.476        0.001    0.941   -0.065 -0.918
-physical=~Q15                 0.476       -0.005    0.961   -0.116 -0.937
-physical=~Q16                 0.476        0.009    0.941   -0.067 -0.925
-physical=~Q17                 0.476       -0.002    0.882   -0.177 -0.931
-physical=~Q18                 0.476        0.017    0.980   -0.311 -0.937
-social=~Q20                   0.602       -0.006    0.941   -0.072 -0.897
-social=~Q21                   0.602       -0.011    0.922    0.017 -0.882
-social=~Q22                   0.602       -0.004    0.941    0.003 -0.905
-environment=~Q8               0.483       -0.009    0.941    0.034 -0.919
-environment=~Q9               0.483        0.006    0.961   -0.051 -0.948
-environment=~Q12              0.483       -0.003    0.961    0.153 -0.943
-environment=~Q13              0.483        0.001    0.922   -0.147 -0.936
-environment=~Q14              0.483       -0.005    0.961   -0.019 -0.922
-environment=~Q23              0.483        0.010    0.961   -0.287 -0.937
-environment=~Q24              0.483       -0.009    0.980    0.234 -0.923
-environment=~Q25              0.483       -0.001    0.941    0.076 -0.931
-psycho~~physical              0.300        0.017    0.941    0.043 -0.923
-psycho~~social                0.300        0.002    0.902   -0.084 -0.923
-psycho~~environment           0.300       -0.005    0.941    0.023 -0.919
-physical~~social              0.300        0.021    0.941   -0.210 -0.929
-physical~~environment         0.300        0.015    0.902   -0.162 -0.938
-social~~environment           0.300        0.012    0.882   -0.004 -0.933
-Q3~~Q4                        0.232        0.003    0.980    0.141 -0.925
-Q5~~Q5                        0.716       -0.022    0.902    0.080 -0.816
-Q6~~Q6                        0.716       -0.006    0.961    0.195 -0.890
-Q7~~Q7                        0.716       -0.008    0.922    0.019 -0.859
-Q11~~Q11                      0.716       -0.001    1.000   -0.014 -0.918
-Q19~~Q19                      0.716        0.013    0.980   -0.330 -0.874
-Q26~~Q26                      0.716        0.015    0.961   -0.351 -0.914
-Q3~~Q3                        0.774       -0.002    0.961    0.127 -0.903
-Q4~~Q4                        0.774        0.014    0.980   -0.357 -0.925
-Q10~~Q10                      0.774       -0.010    1.000   -0.007 -0.876
-Q15~~Q15                      0.774       -0.001    0.961    0.071 -0.906
-Q16~~Q16                      0.774       -0.018    0.941    0.191 -0.881
-Q17~~Q17                      0.774        0.001    0.961    0.072 -0.889
-Q18~~Q18                      0.774       -0.006    0.961    0.178 -0.906
-Q20~~Q20                      0.638        0.003    0.941   -0.062 -0.840
-Q21~~Q21                      0.638       -0.027    0.961    0.151 -0.792
-Q22~~Q22                      0.638       -0.006    0.922   -0.059 -0.855
-Q8~~Q8                        0.766        0.008    0.902    0.071 -0.861
-Q9~~Q9                        0.766       -0.009    0.961    0.035 -0.922
-Q12~~Q12                      0.766        0.001    0.941   -0.064 -0.920
-Q13~~Q13                      0.766       -0.008    0.941    0.273 -0.893
-Q14~~Q14                      0.766       -0.002    0.980    0.119 -0.872
-Q23~~Q23                      0.766       -0.023    0.980    0.058 -0.914
-Q24~~Q24                      0.766       -0.008    0.941   -0.242 -0.877
-Q25~~Q25                      0.766       -0.002    0.922   -0.111 -0.892
-========= Correlation between Fit Indices ============
-       chisq    aic    bic  rmsea    cfi    tli   srmr      n
-chisq  1.000 -0.351 -0.351  0.886 -0.785 -0.902  0.517 -0.350
-aic   -0.351  1.000  1.000 -0.646  0.652  0.508 -0.926  1.000
-bic   -0.351  1.000  1.000 -0.647  0.652  0.508 -0.926  1.000
-rmsea  0.886 -0.646 -0.647  1.000 -0.946 -0.943  0.791 -0.645
-cfi   -0.785  0.652  0.652 -0.946  1.000  0.934 -0.800  0.650
-tli   -0.902  0.508  0.508 -0.943  0.934  1.000 -0.708  0.505
-srmr   0.517 -0.926 -0.926  0.791 -0.800 -0.708  1.000 -0.926
-n     -0.350  1.000  1.000 -0.645  0.650  0.505 -0.926  1.000
-================== Replications =====================
-Number of replications = 51 
-Number of converged replications = 51 
-Number of nonconverged replications: 
-   1. Nonconvergent Results = 0 
-   2. Nonconvergent results from multiple imputation = 0 
-   3. At least one SE were negative or NA = 0 
-   4. Nonpositive-definite latent or observed (residual) covariance matrix 
-      (e.g., Heywood case or linear dependency) = 0 
-NOTE: The sample size is varying.</code></pre>
-</div>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>naive_power <span class="ot">&lt;-</span> <span class="fu">getPower</span>(sim_naive_vary, <span class="at">alpha =</span> ALPHA)</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">findPower</span>(naive_power, <span class="st">"N"</span>, POWER)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>           psycho=~Q5            psycho=~Q6            psycho=~Q7 
-                  Inf                   Inf                   Inf 
-          psycho=~Q11           psycho=~Q19           psycho=~Q26 
-                  Inf                   Inf                   Inf 
-         physical=~Q3          physical=~Q4         physical=~Q10 
-                  Inf                   Inf                   Inf 
-        physical=~Q15         physical=~Q16         physical=~Q17 
-                  Inf                   Inf                   115 
-        physical=~Q18           social=~Q20           social=~Q21 
-                  Inf                   Inf                   Inf 
-          social=~Q22       environment=~Q8       environment=~Q9 
-                  Inf                   Inf                   Inf 
-     environment=~Q12      environment=~Q13      environment=~Q14 
-                  Inf                   Inf                   Inf 
-     environment=~Q23      environment=~Q24      environment=~Q25 
-                  Inf                   Inf                   Inf 
-     psycho~~physical        psycho~~social   psycho~~environment 
-                  119                   137                   155 
-     physical~~social physical~~environment   social~~environment 
-                  100                   Inf                   237 
-               Q3~~Q4                Q5~~Q5                Q6~~Q6 
-                  114                   Inf                   Inf 
-               Q7~~Q7              Q11~~Q11              Q19~~Q19 
-                  Inf                   Inf                   Inf 
-             Q26~~Q26                Q3~~Q3                Q4~~Q4 
-                  Inf                   Inf                   Inf 
-             Q10~~Q10              Q15~~Q15              Q16~~Q16 
-                  Inf                   Inf                   Inf 
-             Q17~~Q17              Q18~~Q18              Q20~~Q20 
-                  Inf                   Inf                   Inf 
-             Q21~~Q21              Q22~~Q22                Q8~~Q8 
-                  106                   Inf                   Inf 
-               Q9~~Q9              Q12~~Q12              Q13~~Q13 
-                  Inf                   Inf                   Inf 
-             Q14~~Q14              Q23~~Q23              Q24~~Q24 
-                  Inf                   Inf                   Inf 
-             Q25~~Q25 
-                  Inf </code></pre>
-</div>
-</div></div>
-</section>
-<section id="scenario-d-sensitivity-optimistic-population-model" class="level2">
-<h2 class="anchored" data-anchor-id="scenario-d-sensitivity-optimistic-population-model">Scenario D — Sensitivity: Optimistic population model</h2>
-<p>Use the optimistic model (all loadings = 0.7, correlations = 0.5).</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>sim_opt_vary <span class="ot">&lt;-</span> <span class="fu">run_sim</span>(</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nRep     =</span> <span class="cn">NULL</span>,</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n        =</span> SEQ,</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model    =</span> analyzeModel,</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">generate =</span> optModel</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_opt_vary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>RESULT OBJECT
-Model Type
-[1] "lavaan"
-========= Fit Indices Cutoffs ============
-    N   chisq       aic       bic rmsea   cfi   tli  srmr
-1 100 326.336  6401.706  6565.357 0.041 0.953 0.947 0.069
-2 225 312.106 13816.069 14000.463 0.034 0.965 0.960 0.059
-3 350 297.875 21230.432 21435.570 0.027 0.976 0.973 0.049
-4 475 283.644 28644.795 28870.676 0.020 0.988 0.987 0.038
-5 600 269.413 36059.157 36305.782 0.012 1.000 1.000 0.028
-========= Parameter Estimates and Standard Errors ============
-                      Estimate Average Estimate SD Average SE
-psycho=~Q5                       0.693       0.047      0.054
-psycho=~Q6                       0.703       0.044      0.054
-psycho=~Q7                       0.712       0.055      0.054
-psycho=~Q11                      0.690       0.055      0.053
-psycho=~Q19                      0.707       0.048      0.054
-psycho=~Q26                      0.711       0.053      0.053
-physical=~Q3                     0.697       0.062      0.055
-physical=~Q4                     0.682       0.058      0.056
-physical=~Q10                    0.697       0.056      0.055
-physical=~Q15                    0.682       0.061      0.054
-physical=~Q16                    0.680       0.055      0.055
-physical=~Q17                    0.689       0.051      0.055
-physical=~Q18                    0.691       0.055      0.055
-social=~Q20                      0.762       0.046      0.056
-social=~Q21                      0.742       0.064      0.055
-social=~Q22                      0.763       0.063      0.056
-environment=~Q8                  0.648       0.053      0.056
-environment=~Q9                  0.647       0.062      0.056
-environment=~Q12                 0.641       0.051      0.056
-environment=~Q13                 0.637       0.059      0.056
-environment=~Q14                 0.641       0.047      0.056
-environment=~Q23                 0.635       0.064      0.056
-environment=~Q24                 0.645       0.063      0.055
-environment=~Q25                 0.644       0.067      0.056
-psycho~~physical                 0.086       0.069      0.067
-psycho~~social                   0.075       0.084      0.069
-psycho~~environment              0.075       0.069      0.067
-physical~~social                 0.085       0.064      0.069
-physical~~environment            0.091       0.076      0.067
-social~~environment              0.086       0.075      0.069
-Q3~~Q4                           0.161       0.045      0.041
-Q5~~Q5                           0.499       0.048      0.049
-Q6~~Q6                           0.501       0.041      0.050
-Q7~~Q7                           0.493       0.049      0.049
-Q11~~Q11                         0.494       0.051      0.049
-Q19~~Q19                         0.498       0.060      0.050
-Q26~~Q26                         0.476       0.040      0.048
-Q3~~Q3                           0.532       0.048      0.053
-Q4~~Q4                           0.543       0.046      0.054
-Q10~~Q10                         0.523       0.041      0.051
-Q15~~Q15                         0.522       0.049      0.050
-Q16~~Q16                         0.530       0.059      0.051
-Q17~~Q17                         0.525       0.051      0.051
-Q18~~Q18                         0.534       0.047      0.052
-Q20~~Q20                         0.410       0.065      0.054
-Q21~~Q21                         0.403       0.059      0.052
-Q22~~Q22                         0.410       0.056      0.054
-Q8~~Q8                           0.586       0.058      0.055
-Q9~~Q9                           0.588       0.067      0.055
-Q12~~Q12                         0.591       0.056      0.055
-Q13~~Q13                         0.586       0.060      0.055
-Q14~~Q14                         0.592       0.069      0.056
-Q23~~Q23                         0.588       0.059      0.055
-Q24~~Q24                         0.570       0.061      0.054
-Q25~~Q25                         0.582       0.057      0.055
-                      Power (Not equal 0) Std Est Std Est SD Std Ave SE
-psycho=~Q5                          1.000   0.700      0.029      0.035
-psycho=~Q6                          1.000   0.704      0.026      0.035
-psycho=~Q7                          1.000   0.711      0.035      0.034
-psycho=~Q11                         1.000   0.700      0.038      0.036
-psycho=~Q19                         1.000   0.707      0.034      0.035
-psycho=~Q26                         1.000   0.717      0.030      0.034
-physical=~Q3                        1.000   0.689      0.039      0.037
-physical=~Q4                        1.000   0.678      0.038      0.038
-physical=~Q10                       1.000   0.693      0.036      0.036
-physical=~Q15                       1.000   0.685      0.037      0.036
-physical=~Q16                       1.000   0.682      0.037      0.037
-physical=~Q17                       1.000   0.689      0.034      0.036
-physical=~Q18                       1.000   0.686      0.036      0.036
-social=~Q20                         1.000   0.765      0.033      0.037
-social=~Q21                         1.000   0.758      0.045      0.037
-social=~Q22                         1.000   0.765      0.040      0.037
-environment=~Q8                     1.000   0.645      0.041      0.039
-environment=~Q9                     1.000   0.644      0.048      0.040
-environment=~Q12                    1.000   0.640      0.036      0.040
-environment=~Q13                    1.000   0.638      0.038      0.040
-environment=~Q14                    1.000   0.640      0.036      0.040
-environment=~Q23                    1.000   0.636      0.045      0.040
-environment=~Q24                    1.000   0.648      0.042      0.039
-environment=~Q25                    1.000   0.643      0.050      0.040
-psycho~~physical                    0.333   0.086      0.069      0.067
-psycho~~social                      0.235   0.075      0.084      0.069
-psycho~~environment                 0.235   0.075      0.069      0.067
-physical~~social                    0.196   0.085      0.064      0.069
-physical~~environment               0.294   0.091      0.076      0.067
-social~~environment                 0.275   0.086      0.075      0.069
-Q3~~Q4                              0.941   0.298      0.070      0.062
-Q5~~Q5                              1.000   0.510      0.041      0.049
-Q6~~Q6                              1.000   0.504      0.036      0.049
-Q7~~Q7                              1.000   0.493      0.050      0.049
-Q11~~Q11                            1.000   0.509      0.051      0.049
-Q19~~Q19                            1.000   0.499      0.048      0.049
-Q26~~Q26                            1.000   0.485      0.043      0.049
-Q3~~Q3                              1.000   0.524      0.054      0.051
-Q4~~Q4                              1.000   0.539      0.051      0.051
-Q10~~Q10                            1.000   0.519      0.050      0.050
-Q15~~Q15                            1.000   0.529      0.051      0.050
-Q16~~Q16                            1.000   0.534      0.050      0.050
-Q17~~Q17                            1.000   0.525      0.046      0.050
-Q18~~Q18                            1.000   0.528      0.049      0.050
-Q20~~Q20                            1.000   0.413      0.051      0.056
-Q21~~Q21                            1.000   0.423      0.067      0.056
-Q22~~Q22                            1.000   0.414      0.061      0.056
-Q8~~Q8                              1.000   0.583      0.054      0.051
-Q9~~Q9                              1.000   0.583      0.061      0.051
-Q12~~Q12                            1.000   0.590      0.045      0.051
-Q13~~Q13                            1.000   0.591      0.049      0.051
-Q14~~Q14                            1.000   0.589      0.045      0.051
-Q23~~Q23                            1.000   0.593      0.059      0.051
-Q24~~Q24                            1.000   0.578      0.056      0.051
-Q25~~Q25                            1.000   0.584      0.063      0.051
-                      Average Param Average Bias Coverage r_coef.n r_se.n
-psycho=~Q5                    0.711       -0.019    0.902   -0.171 -0.942
-psycho=~Q6                    0.711       -0.008    1.000   -0.121 -0.932
-psycho=~Q7                    0.711        0.001    0.941   -0.313 -0.927
-psycho=~Q11                   0.711       -0.021    0.941    0.135 -0.923
-psycho=~Q19                   0.711       -0.004    0.961   -0.052 -0.907
-psycho=~Q26                   0.711        0.000    0.941   -0.326 -0.921
-physical=~Q3                  0.684        0.013    0.961   -0.353 -0.935
-physical=~Q4                  0.684       -0.002    0.961   -0.224 -0.941
-physical=~Q10                 0.684        0.014    0.980   -0.092 -0.944
-physical=~Q15                 0.684       -0.001    0.902   -0.100 -0.940
-physical=~Q16                 0.684       -0.004    0.961   -0.081 -0.929
-physical=~Q17                 0.684        0.006    0.961   -0.441 -0.926
-physical=~Q18                 0.684        0.008    0.961   -0.221 -0.920
-social=~Q20                   0.766       -0.004    1.000   -0.022 -0.911
-social=~Q21                   0.766       -0.024    0.882    0.120 -0.937
-social=~Q22                   0.766       -0.003    0.922   -0.037 -0.914
-environment=~Q8               0.642        0.005    0.922   -0.217 -0.923
-environment=~Q9               0.642        0.004    0.941   -0.162 -0.938
-environment=~Q12              0.642       -0.002    0.980    0.209 -0.931
-environment=~Q13              0.642       -0.006    0.902    0.146 -0.913
-environment=~Q14              0.642       -0.002    1.000    0.037 -0.918
-environment=~Q23              0.642       -0.008    0.922   -0.090 -0.933
-environment=~Q24              0.642        0.003    0.941    0.000 -0.925
-environment=~Q25              0.642        0.001    0.882   -0.005 -0.942
-psycho~~physical              0.080        0.006    0.980    0.017 -0.943
-psycho~~social                0.080       -0.005    0.941   -0.018 -0.943
-psycho~~environment           0.080       -0.005    0.961    0.079 -0.946
-physical~~social              0.080        0.005    0.980   -0.180 -0.938
-physical~~environment         0.080        0.011    0.882   -0.191 -0.943
-social~~environment           0.080        0.006    0.941    0.020 -0.942
-Q3~~Q4                        0.160        0.002    0.961    0.155 -0.919
-Q5~~Q5                        0.494        0.004    0.961   -0.095 -0.916
-Q6~~Q6                        0.494        0.007    0.980   -0.136 -0.906
-Q7~~Q7                        0.494       -0.001    0.980   -0.154 -0.888
-Q11~~Q11                      0.494        0.000    0.941   -0.008 -0.865
-Q19~~Q19                      0.494        0.004    0.902   -0.084 -0.827
-Q26~~Q26                      0.494       -0.018    1.000    0.130 -0.881
-Q3~~Q3                        0.533       -0.001    1.000    0.133 -0.901
-Q4~~Q4                        0.533        0.010    0.961   -0.310 -0.926
-Q10~~Q10                      0.533       -0.010    0.941    0.114 -0.915
-Q15~~Q15                      0.533       -0.011    1.000    0.198 -0.909
-Q16~~Q16                      0.533       -0.002    0.902   -0.009 -0.882
-Q17~~Q17                      0.533       -0.008    0.922    0.017 -0.888
-Q18~~Q18                      0.533        0.002    0.961   -0.159 -0.878
-Q20~~Q20                      0.413       -0.003    0.902   -0.069 -0.857
-Q21~~Q21                      0.413       -0.010    0.941    0.119 -0.898
-Q22~~Q22                      0.413       -0.003    0.922   -0.060 -0.856
-Q8~~Q8                        0.587       -0.001    0.941    0.228 -0.877
-Q9~~Q9                        0.587        0.000    0.980   -0.029 -0.886
-Q12~~Q12                      0.587        0.004    0.980    0.159 -0.874
-Q13~~Q13                      0.587       -0.001    0.922   -0.173 -0.861
-Q14~~Q14                      0.587        0.004    0.902   -0.177 -0.858
-Q23~~Q23                      0.587        0.000    0.941    0.137 -0.894
-Q24~~Q24                      0.587       -0.017    0.922    0.079 -0.865
-Q25~~Q25                      0.587       -0.006    0.941    0.140 -0.903
-========= Correlation between Fit Indices ============
-       chisq    aic    bic  rmsea    cfi    tli   srmr      n
-chisq  1.000 -0.303 -0.303  0.889 -0.785 -0.911  0.485 -0.301
-aic   -0.303  1.000  1.000 -0.620  0.597  0.454 -0.919  1.000
-bic   -0.303  1.000  1.000 -0.620  0.597  0.454 -0.919  1.000
-rmsea  0.889 -0.620 -0.620  1.000 -0.937 -0.936  0.752 -0.618
-cfi   -0.785  0.597  0.597 -0.937  1.000  0.925 -0.718  0.595
-tli   -0.911  0.454  0.454 -0.936  0.925  1.000 -0.656  0.451
-srmr   0.485 -0.919 -0.919  0.752 -0.718 -0.656  1.000 -0.918
-n     -0.301  1.000  1.000 -0.618  0.595  0.451 -0.918  1.000
-================== Replications =====================
-Number of replications = 51 
-Number of converged replications = 51 
-Number of nonconverged replications: 
-   1. Nonconvergent Results = 0 
-   2. Nonconvergent results from multiple imputation = 0 
-   3. At least one SE were negative or NA = 0 
-   4. Nonpositive-definite latent or observed (residual) covariance matrix 
-      (e.g., Heywood case or linear dependency) = 0 
-NOTE: The sample size is varying.</code></pre>
-</div>
-</div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>opt_power <span class="ot">&lt;-</span> <span class="fu">getPower</span>(sim_opt_vary, <span class="at">alpha =</span> ALPHA)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">findPower</span>(opt_power, <span class="st">"N"</span>, POWER)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>           psycho=~Q5            psycho=~Q6            psycho=~Q7 
-                  Inf                   Inf                   Inf 
-          psycho=~Q11           psycho=~Q19           psycho=~Q26 
-                  Inf                   Inf                   Inf 
-         physical=~Q3          physical=~Q4         physical=~Q10 
-                  Inf                   Inf                   Inf 
-        physical=~Q15         physical=~Q16         physical=~Q17 
-                  Inf                   Inf                   Inf 
-        physical=~Q18           social=~Q20           social=~Q21 
-                  Inf                   Inf                   Inf 
-          social=~Q22       environment=~Q8       environment=~Q9 
-                  Inf                   Inf                   Inf 
-     environment=~Q12      environment=~Q13      environment=~Q14 
-                  Inf                   Inf                   Inf 
-     environment=~Q23      environment=~Q24      environment=~Q25 
-                  Inf                   Inf                   Inf 
-     psycho~~physical        psycho~~social   psycho~~environment 
-                   NA                    NA                    NA 
-     physical~~social physical~~environment   social~~environment 
-                   NA                    NA                    NA 
-               Q3~~Q4                Q5~~Q5                Q6~~Q6 
-                  148                   Inf                   Inf 
-               Q7~~Q7              Q11~~Q11              Q19~~Q19 
-                  Inf                   Inf                   Inf 
-             Q26~~Q26                Q3~~Q3                Q4~~Q4 
-                  Inf                   Inf                   Inf 
-             Q10~~Q10              Q15~~Q15              Q16~~Q16 
-                  Inf                   Inf                   Inf 
-             Q17~~Q17              Q18~~Q18              Q20~~Q20 
-                  Inf                   Inf                   Inf 
-             Q21~~Q21              Q22~~Q22                Q8~~Q8 
-                  Inf                   Inf                   Inf 
-               Q9~~Q9              Q12~~Q12              Q13~~Q13 
-                  Inf                   Inf                   Inf 
-             Q14~~Q14              Q23~~Q23              Q24~~Q24 
-                  Inf                   Inf                   Inf 
-             Q25~~Q25 
-                  Inf </code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>popmodel_nnorm <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"popmodel_nnorm"</span>, {</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sim</span>(</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NULL</span>,</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> SEQ1,             <span class="co"># See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>        analyzemodel,</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">generate =</span> popmodel,</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">indDist =</span> dist,       <span class="co"># See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">estimator =</span> <span class="st">"mlr"</span>,</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">seed =</span> SEED,</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-</section>
-<section id="comparison-across-scenarios" class="level2">
-<h2 class="anchored" data-anchor-id="comparison-across-scenarios">Comparison across scenarios</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-fig-scenarios-overlay" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay power-fit plots for the three population models</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the SRMR &lt; .06 cutoff as the reference</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(sim_missing_vary, <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="at">logistic =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">sub =</span> <span class="st">"Note: MCAR 10% scenario shown. Compare with ideal in Section 6."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>h1model_nnorm <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"h1model_nnorm"</span>, {</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sim</span>(</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NULL</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> SEQ1,             <span class="co"># See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>        analyzemodel,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">generate =</span> h1model,</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">indDist =</span> dist,       <span class="co"># See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">estimator =</span> <span class="st">"mlr"</span>,</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">seed =</span> SEED,</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<section id="power-curves-for-fit-indices-1" class="level3">
+<h3 class="anchored" data-anchor-id="power-curves-for-fit-indices-1">Power curves for fit indices</h3>
+<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="cell-fig-power-curve-nnorm" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    h1model_nnorm,</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    popmodel_nnorm,</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-scenarios-overlay" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-power-curve-nnorm" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-scenarios-overlay-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="04_simulation_robust_files/figure-html/fig-scenarios-overlay-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Power curves across population model scenarios (fit-index based)"><img src="04_simulation_robust_files/figure-html/fig-scenarios-overlay-1.png" class="img-fluid figure-img" width="960"></a>
+<div aria-describedby="fig-power-curve-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="04_simulation_robust_files/figure-html/fig-power-curve-nnorm-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Power curves for robust fit indices under non-normal conditions."><img src="04_simulation_robust_files/figure-html/fig-power-curve-nnorm-1.png" class="img-fluid figure-img" width="768"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scenarios-overlay-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Power curves across population model scenarios (fit-index based)
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Power curves for robust fit indices under non-normal conditions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="cell-fig-fit-curve-nnorm" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    h1model_nnorm,</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    popmodel_nnorm,</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS,</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">logistic =</span> <span class="cn">FALSE</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-fit-curve-nnorm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fit-curve-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="04_simulation_robust_files/figure-html/fig-fit-curve-nnorm-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Power curves for robust fit indices under non-normal conditions without logistic smoothing."><img src="04_simulation_robust_files/figure-html/fig-fit-curve-nnorm-1.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fit-curve-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Power curves for robust fit indices under non-normal conditions without logistic smoothing.
 </figcaption>
 </figure>
 </div>
 </div>
 </div></div>
 </section>
-<section id="summary-n-requirements-across-all-scenarios" class="level2">
-<h2 class="anchored" data-anchor-id="summary-n-requirements-across-all-scenarios">Summary: N requirements across all scenarios</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: Values below are placeholders — replace with actual findPower() results</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>n_requirements <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Scenario =</span> <span class="fu">c</span>(</span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Analytical (semPower, RMSEA ≥ .05)"</span>,</span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Simulation — Ideal (popModel, ML)"</span>,</span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Simulation — Missing data (popModel, 10% MCAR)"</span>,</span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Simulation — Naive model (loadings = .5)"</span>,</span>
-<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Simulation — Optimistic model (loadings = .7)"</span></span>
-<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Approach</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Analytical"</span>,</span>
-<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span>,</span>
-<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span>,</span>
-<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span>,</span>
-<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Monte Carlo"</span></span>
-<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">N for 80% Power</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"See @sec-apriori"</span>,</span>
-<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From Section 6"</span>,</span>
-<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From sim-missing above"</span>,</span>
-<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From sim-naive above"</span>,</span>
-<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"From sim-opt above"</span></span>
-<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Key Assumption</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous, normal, ML"</span>,</span>
-<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous, normal, ML"</span>,</span>
-<span id="cb57-28"><a href="#cb57-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Continuous, normal, ML + 10% MCAR"</span>,</span>
-<span id="cb57-29"><a href="#cb57-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Weak loadings (0.5)"</span>,</span>
-<span id="cb57-30"><a href="#cb57-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Strong loadings (0.7), mod. correlations (0.5)"</span></span>
-<span id="cb57-31"><a href="#cb57-31" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb57-32"><a href="#cb57-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
-<span id="cb57-33"><a href="#cb57-33" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb57-34"><a href="#cb57-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-35"><a href="#cb57-35" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(n_requirements, <span class="at">align =</span> <span class="st">"llll"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="tbl-n-requirements" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<section id="power-cutoff-values-for-fit-indices-1" class="level3">
+<h3 class="anchored" data-anchor-id="power-cutoff-values-for-fit-indices-1">Power cutoff values for fit indices</h3>
+<p>You extract the cutoff values for fit indices at a given alpha level and sample size to determine the threshold for acceptable fit under the null model. This allows you to see how stringent the fit criteria are at different sample sizes.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div id="tbl-power-cutoff-nnorm" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-n-requirements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Required N for 80% power across all analysis scenarios
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Power for robust fit index cutoffs under non-normal conditions at N = 228.
 </figcaption>
-<div aria-describedby="tbl-n-requirements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 36%">
-<col style="width: 9%">
-<col style="width: 17%">
-<col style="width: 36%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Scenario</th>
-<th style="text-align: left;">Approach</th>
-<th style="text-align: left;">N for 80% Power</th>
-<th style="text-align: left;">Key Assumption</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Analytical (semPower, RMSEA ≥ .05)</td>
-<td style="text-align: left;">Analytical</td>
-<td style="text-align: left;">See <span class="citation" data-cites="sec-apriori">(<a href="#ref-sec-apriori" role="doc-biblioref"><strong>sec-apriori?</strong></a>)</span></td>
-<td style="text-align: left;">Continuous, normal, ML</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Simulation — Ideal (popModel, ML)</td>
-<td style="text-align: left;">Monte Carlo</td>
-<td style="text-align: left;">From Section 6</td>
-<td style="text-align: left;">Continuous, normal, ML</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Simulation — Missing data (popModel, 10% MCAR)</td>
-<td style="text-align: left;">Monte Carlo</td>
-<td style="text-align: left;">From sim-missing above</td>
-<td style="text-align: left;">Continuous, normal, ML + 10% MCAR</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Simulation — Naive model (loadings = .5)</td>
-<td style="text-align: left;">Monte Carlo</td>
-<td style="text-align: left;">From sim-naive above</td>
-<td style="text-align: left;">Weak loadings (0.5)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Simulation — Optimistic model (loadings = .7)</td>
-<td style="text-align: left;">Monte Carlo</td>
-<td style="text-align: left;">From sim-opt above</td>
-<td style="text-align: left;">Strong loadings (0.7), mod. correlations (0.5)</td>
-</tr>
-</tbody>
-</table>
+<div aria-describedby="tbl-power-cutoff-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    h1model_nnorm,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nullObject =</span> popmodel_nnorm,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nVal =</span> <span class="dv">228</span>,</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    rmsea      srmr       cfi       tli 
+0.9099824 0.9942105 0.8003211 0.8003211 </code></pre>
 </div>
 </div>
 </figure>
 </div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div id="tbl-fit-cutoff-nnorm" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fit-cutoff-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Robust fit index cutoff values under non-normal conditions at N = 228.
+</figcaption>
+<div aria-describedby="tbl-fit-cutoff-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getCutoff</span>(</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    popmodel_nnorm,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nVal =</span> <span class="dv">228</span>,</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       rmsea       srmr      cfi       tli
+1 0.03979016 0.05894574 0.964321 0.9598066</code></pre>
+</div>
+</div>
+</figure>
 </div></div>
+</section>
+</section>
+<section id="scenario-c-missing-data-non-normality" class="level2">
+<h2 class="anchored" data-anchor-id="scenario-c-missing-data-non-normality">Scenario C — Missing data + Non-normality</h2>
+<p>This scenario combines the challenges of missing data and non-normality, reflecting common issues in real-world datasets. We generate data with 10% MAR missingness and apply the same marginal transformations to introduce non-normality.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>popmodel_normiss <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"popmodel_normiss"</span>, {</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sim</span>(</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NULL</span>,</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> SEQ2,             <span class="co"># See the `SEQ2` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">pmMCAR =</span> <span class="fl">0.10</span>,</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>        analyzemodel,</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">generate =</span> popmodel,</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">indDist =</span> dist,       <span class="co"># See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">estimator =</span> <span class="st">"mlr"</span>,</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">missing =</span> <span class="st">"fiml"</span>,</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">seed =</span> SEED,</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [15]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>h1model_normiss <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"h1model_normiss"</span>, {</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sim</span>(</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>        <span class="cn">NULL</span>,</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">n =</span> SEQ2,             <span class="co"># See the `SEQ2` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">pmMCAR =</span> <span class="fl">0.10</span>,</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>        analyzemodel,</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">generate =</span> h1model,</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">indDist =</span> dist,       <span class="co"># See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.</span></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">estimator =</span> <span class="st">"mlr"</span>,</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">missing =</span> <span class="st">"fiml"</span>,</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">seed =</span> SEED,</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></div>
+<section id="power-curves-for-fit-indices-2" class="level3">
+<h3 class="anchored" data-anchor-id="power-curves-for-fit-indices-2">Power curves for fit indices</h3>
+<div class="cell-container"><div class="cell-decorator"><pre>In [16]:</pre></div><div id="cell-fig-power-curve-normiss" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    h1model_normiss,</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    popmodel_normiss,</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-power-curve-normiss" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-power-curve-normiss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="04_simulation_robust_files/figure-html/fig-power-curve-normiss-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Power curves for robust fit indices under missing data and non-normal conditions."><img src="04_simulation_robust_files/figure-html/fig-power-curve-normiss-1.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-normiss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Power curves for robust fit indices under missing data and non-normal conditions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [17]:</pre></div><div id="cell-fig-fit-curve-normiss" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    h1model_normiss,</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    popmodel_normiss,</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS,</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">logistic =</span> <span class="cn">FALSE</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-fit-curve-normiss" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fit-curve-normiss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="04_simulation_robust_files/figure-html/fig-fit-curve-normiss-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Power curves for robust fit indices under missing data and non-normal conditions without logistic smoothing."><img src="04_simulation_robust_files/figure-html/fig-fit-curve-normiss-1.png" class="img-fluid figure-img" width="768"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fit-curve-normiss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Power curves for robust fit indices under missing data and non-normal conditions without logistic smoothing.
+</figcaption>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="power-cutoff-values-for-fit-indices-2" class="level3">
+<h3 class="anchored" data-anchor-id="power-cutoff-values-for-fit-indices-2">Power cutoff values for fit indices</h3>
+<p>You extract the cutoff values for fit indices at a given alpha level and sample size to determine the threshold for acceptable fit under the null model. This allows you to see how stringent the fit criteria are at different sample sizes.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [18]:</pre></div><div id="tbl-power-cutoff-normiss" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-normiss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Power for robust fit index cutoffs under missing data and non-normal conditions at N = 200.
+</figcaption>
+<div aria-describedby="tbl-power-cutoff-normiss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    h1model_normiss,</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nullObject =</span> popmodel_normiss,</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nVal =</span> <span class="dv">200</span>,</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>rmsea  srmr   cfi   tli 
+    1     1     1     1 </code></pre>
+</div>
+</div>
+</figure>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [19]:</pre></div><div id="tbl-fit-cutoff-normiss" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fit-cutoff-normiss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Robust fit index cutoff values under missing data and non-normal conditions at N = 200.
+</figcaption>
+<div aria-describedby="tbl-fit-cutoff-normiss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getCutoff</span>(</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    popmodel_normiss,</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nVal =</span> <span class="dv">200</span>,</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       rmsea       srmr       cfi       tli
+1 0.03379438 0.05324447 0.9774917 0.9746437</code></pre>
+</div>
+</div>
+</figure>
+</div></div>
+</section>
 </section>
      </main>
 <!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">

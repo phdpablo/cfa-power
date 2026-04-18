@@ -11,8 +11,8 @@ execute:
 #| include: false
 
 library(here)
-source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "models.R"))
+source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
 source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
 
@@ -32,27 +32,22 @@ Ideial condition: PA it not too sensitive to distributional assumptions, missing
 #| label: sim-fixed-popmodel
 #| cache: true
 
-dist <- bindDist(
-    skewness = seq(-1, 1, length.out = 24), 
-    kurtosis = seq(1, 2, length.out = 24)
-)
-
-popmodel_fixed <- sim(
-    REP,
-    n = 350,
-    pmMCAR = 0.10,
-    analyzemodel,
-    generate = popmodel,
-    indDist = dist,
-    std.lv = TRUE,
-    lavaanfun = "cfa",
-    estimator = "mlr",
-    missing = "fiml",
-    seed = SEED,
-    multicore = TRUE
-)
-
-saveRDS(popmodel_fixed, file = "Data/IntermediateData/popmodel_fixed.rds")
+popmodel_fixed <- cache_or_run("popmodel_fixed", {
+    sim(
+        REP,
+        n = 350,
+        pmMCAR = 0.10,
+        analyzemodel,
+        generate = popmodel,
+        indDist = dist,       # See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.
+        std.lv = TRUE,
+        lavaanfun = "cfa",
+        estimator = "mlr",
+        missing = "fiml",
+        seed = SEED,
+        multicore = TRUE
+    )
+})
 ```
 
 
@@ -60,27 +55,22 @@ saveRDS(popmodel_fixed, file = "Data/IntermediateData/popmodel_fixed.rds")
 #| label: sim-fixed-h1model
 #| cache: true
 
-dist <- bindDist(
-    skewness = seq(-1, 1, length.out = 24), 
-    kurtosis = seq(1, 2, length.out = 24)
-)
-
-h1model_fixed <- sim(
-    REP,
-    n = 350,
-    pmMCAR = 0.10,
-    analyzemodel,
-    generate = h1model,
-    indDist = dist,
-    std.lv = TRUE,
-    lavaanfun = "cfa",
-    estimator = "mlr",
-    missing = "fiml",
-    seed = SEED,
-    multicore = TRUE
-)
-
-saveRDS(h1model_fixed, file = "Data/IntermediateData/h1model_fixed.rds")
+h1model_fixed <- cache_or_run("h1model_fixed", {
+    sim(
+        REP,
+        n = 350,
+        pmMCAR = 0.10,
+        analyzemodel,
+        generate = h1model,
+        indDist = dist,      # See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.
+        std.lv = TRUE,
+        lavaanfun = "cfa",
+        estimator = "mlr",
+        missing = "fiml",
+        seed = SEED,
+        multicore = TRUE
+    )
+})
 ```
 
 ### Power curves for fit indices

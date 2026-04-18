@@ -13,8 +13,8 @@ execute:
 #| include: false
 
 library(here)
-source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "models.R"))
+source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 ```
 
 ## Population model — Meta-analytic
@@ -99,7 +99,7 @@ cat(analyzemodel)
 #| fig-width: 8
 #| fig-height: 7
 
-plot_tree(analyzemodel) # See plot_tree() function in helpers.R for details.
+plot_free(analyzemodel) # See plot_free() function in helpers.R for details.
 ```
 
 ## Comparison table
@@ -122,12 +122,15 @@ names(param_transp) <- csv[[1]]
 param_transp <- cbind(parameters = names(csv)[-1], param_transp)
 row.names(param_transp) <- NULL
 
+param_transp$parameters <- paste0("`", param_transp$parameters, "`")
+
 param_transp |>
   kable(
     caption = "CFA Population Models Parameter",
     digits = 4,
     align = "lcccc",
     booktabs = TRUE,
+    escape = FALSE,
     col.names = c("parameters", "popmodel", "naivemodel", "optmodel", "h1model")
   )
 ```
@@ -145,25 +148,27 @@ Mode <- function(x) {
 # Extract key summary metrics for one model specification.
 get_metrics <- function(model_name) {
   vals <- param_transp[[model_name]]
-  params <- param_transp$parameters
+  
+  # Remove display backticks added in the previous chunk.
+  params <- gsub("`", "", param_transp$parameters, fixed = TRUE)
   
   # Summarize factor loadings.
-  loadings <- as.numeric(vals[grepl("=~", params)])
+  loadings <- as.numeric(vals[grepl("=~", params, fixed = TRUE)])
   loading_min <- min(loadings, na.rm = TRUE)
   loading_max <- max(loadings, na.rm = TRUE)
   loading_mean <- mean(loadings, na.rm = TRUE)
   
   # Summarize latent factor correlations.
-  is_cov <- grepl("~~", params) & !grepl("Q", params)
-  left_right <- strsplit(params[is_cov], "~~")
-  is_diff <- sapply(left_right, function(x) x[1] != x[2])
+  is_cov <- grepl("~~", params, fixed = TRUE) & !grepl("^Q", params)
+  left_right <- strsplit(params[is_cov], "~~", fixed = TRUE)
+  is_diff <- vapply(left_right, function(x) length(x) == 2 && x[1] != x[2], logical(1))
   factor_cors <- as.numeric(vals[is_cov][is_diff])
   factor_cor_mode <- Mode(factor_cors)
   
   # Summarize item residual variances.
-  is_res <- grepl("Q.*~~Q.*", params)
-  left_right_res <- strsplit(params[is_res], "~~")
-  is_same_res <- sapply(left_right_res, function(x) x[1] == x[2])
+  is_res <- grepl("^Q.+~~Q.+$", params)
+  left_right_res <- strsplit(params[is_res], "~~", fixed = TRUE)
+  is_same_res <- vapply(left_right_res, function(x) length(x) == 2 && x[1] == x[2], logical(1))
   residuals <- as.numeric(vals[is_res][is_same_res])
   residual_min <- min(residuals, na.rm = TRUE)
   residual_max <- max(residuals, na.rm = TRUE)
@@ -199,11 +204,12 @@ metric_names <- c(
   "Factor Correlations",
   "Residual Min",
   "Residual Max",
-  "Q3-Q4 Correlation"
+  "Q3~~Q4 Correlation"
 )
 
 # Build the model-by-metric summary table.
 res <- sapply(models, get_metrics)
+
 pop_summary <- data.frame(
   Model = model_names,
   `Loading Min` = res[1, ],
@@ -212,7 +218,7 @@ pop_summary <- data.frame(
   `Factor Correlations` = res[4, ],
   `Residual Min` = res[5, ],
   `Residual Max` = res[6, ],
-  `Q3-Q4 Correlation` = res[7, ],
+  `Q3~~Q4 Correlation` = res[7, ],
   check.names = FALSE
 )
 
@@ -230,5 +236,9 @@ pop_summary_t <- cbind(
 )
 
 # Render the transposed table.
-kable(pop_summary_t, align = "lcccc", row.names = FALSE)
+kable(
+  pop_summary_t,
+  align = "lcccc",
+  row.names = FALSE
+)
 ```

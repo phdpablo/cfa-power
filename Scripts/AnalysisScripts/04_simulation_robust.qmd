@@ -11,8 +11,8 @@ execute:
 #| include: false
 
 library(here)
-source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "models.R"))
+source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
 source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
 
@@ -28,19 +28,21 @@ power cost of attrition / item non-response. For more complex missing data patte
 #| label: sim-missing-popmodel
 #| cache: true
 
-popmodel_miss <- sim(
-    NULL,
-    n = SEQ,
-    pmMCAR = 0.10,
-    analyzemodel,
-    generate = popmodel,
-    std.lv = TRUE,
-    lavaanfun = "cfa",
-    estimator = "ml",
-    missing = "fiml",
-    seed = SEED,
-    multicore = TRUE
-)
+popmodel_miss <- cache_or_run("popmodel_miss", {
+    sim(
+        NULL,
+        n = SEQ1,              # See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.
+        pmMCAR = 0.10,
+        analyzemodel,
+        generate = popmodel,
+        std.lv = TRUE,
+        lavaanfun = "cfa",
+        estimator = "ml",
+        missing = "fiml",
+        seed = SEED,
+        multicore = TRUE
+    )
+})
 ```
 
 
@@ -48,19 +50,21 @@ popmodel_miss <- sim(
 #| label: sim-missing-h1model
 #| cache: true
 
-h1model_miss <- sim(
-    NULL,
-    n = SEQ,
-    pmMCAR = 0.10,
-    analyzemodel,
-    generate = h1model,
-    std.lv = TRUE,
-    lavaanfun = "cfa",
-    estimator = "ml",
-    missing = "fiml",
-    seed = SEED,
-    multicore = TRUE
-)
+h1model_miss <- cache_or_run("h1model_miss", {
+    sim(
+        NULL,
+        n = SEQ1,              # See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.
+        pmMCAR = 0.10,
+        analyzemodel,
+        generate = h1model,
+        std.lv = TRUE,
+        lavaanfun = "cfa",
+        estimator = "ml",
+        missing = "fiml",
+        seed = SEED,
+        multicore = TRUE
+    )
+})
 ```
 
 ### Power curves for fit indices
@@ -141,23 +145,20 @@ show the impact.
 #| label: sim-nnorm-popmodel
 #| cache: true
 
-dist <- bindDist(
-    skewness = seq(-1, 1, length.out = 24), 
-    kurtosis = seq(1, 2, length.out = 24)
-)
-
-popmodel_nnorm <- sim(
-    NULL,
-    n = SEQ,
-    analyzemodel,
-    generate = popmodel,
-    indDist = dist,
-    std.lv = TRUE,
-    lavaanfun = "cfa",
-    estimator = "mlr",
-    seed = SEED,
-    multicore = TRUE
-)
+popmodel_nnorm <- cache_or_run("popmodel_nnorm", {
+    sim(
+        NULL,
+        n = SEQ1,             # See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.
+        analyzemodel,
+        generate = popmodel,
+        indDist = dist,       # See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.
+        std.lv = TRUE,
+        lavaanfun = "cfa",
+        estimator = "mlr",
+        seed = SEED,
+        multicore = TRUE
+    )
+})
 ```
 
 
@@ -165,18 +166,20 @@ popmodel_nnorm <- sim(
 #| label: sim-nnorm-h1model
 #| cache: true
 
-h1model_nnorm <- sim(
-    NULL,
-    n = SEQ,
-    analyzemodel,
-    generate = h1model,
-    indDist = dist,
-    std.lv = TRUE,
-    lavaanfun = "cfa",
-    estimator = "mlr",
-    seed = SEED,
-    multicore = TRUE
-)
+h1model_nnorm <- cache_or_run("h1model_nnorm", {
+    sim(
+        NULL,
+        n = SEQ1,             # See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.
+        analyzemodel,
+        generate = h1model,
+        indDist = dist,       # See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.
+        std.lv = TRUE,
+        lavaanfun = "cfa",
+        estimator = "mlr",
+        seed = SEED,
+        multicore = TRUE
+    )
+})
 ```
 
 ### Power curves for fit indices
@@ -249,20 +252,22 @@ This scenario combines the challenges of missing data and non-normality, reflect
 #| label: sim-normiss-popmodel
 #| cache: true
 
-popmodel_normiss <- sim(
-    NULL,
-    n = rep(201:500, each = 5),
-    pmMCAR = 0.10,
-    analyzemodel,
-    generate = popmodel,
-    indDist = dist,
-    std.lv = TRUE,
-    lavaanfun = "cfa",
-    estimator = "mlr",
-    missing = "fiml",
-    seed = SEED,
-    multicore = TRUE
-)
+popmodel_normiss <- cache_or_run("popmodel_normiss", {
+    sim(
+        NULL,
+        n = SEQ2,             # See the `SEQ2` object defined in helpers.R for the sample size sequence used in this scenario.
+        pmMCAR = 0.10,
+        analyzemodel,
+        generate = popmodel,
+        indDist = dist,       # See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.
+        std.lv = TRUE,
+        lavaanfun = "cfa",
+        estimator = "mlr",
+        missing = "fiml",
+        seed = SEED,
+        multicore = TRUE
+    )
+})
 ```
 
 
@@ -270,20 +275,22 @@ popmodel_normiss <- sim(
 #| label: sim-normiss-h1model
 #| cache: true
 
-h1model_normiss <- sim(
-    NULL,
-    n = rep(201:500, each = 5),
-    pmMCAR = 0.10,
-    analyzemodel,
-    generate = h1model,
-    indDist = dist,
-    std.lv = TRUE,
-    lavaanfun = "cfa",
-    estimator = "mlr",
-    missing = "fiml",
-    seed = SEED,
-    multicore = TRUE
-)
+h1model_normiss <- cache_or_run("h1model_normiss", {
+    sim(
+        NULL,
+        n = SEQ2,             # See the `SEQ2` object defined in helpers.R for the sample size sequence used in this scenario.
+        pmMCAR = 0.10,
+        analyzemodel,
+        generate = h1model,
+        indDist = dist,       # See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.
+        std.lv = TRUE,
+        lavaanfun = "cfa",
+        estimator = "mlr",
+        missing = "fiml",
+        seed = SEED,
+        multicore = TRUE
+    )
+})
 ```
 
 ### Power curves for fit indices

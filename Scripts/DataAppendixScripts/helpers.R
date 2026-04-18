@@ -24,7 +24,8 @@ library(snow)
 
 #' Monte Carlo Simulation.
 REP <- 1000 # Number of replications for final analysis.
-SEQ <- rep(51:350, each = 5) # Sample size sequence for varying-N simulations (5 per N).
+SEQ1 <- rep(51:350, each = 5) # Sample size sequence for varying-N simulations (5 per N).
+SEQ2 <- rep(201:500, each = 5) # Sample size sequence for varying-N simulations (5 per N).
 
 #' Random seed for reproducibility across all simulations: simsem default is 123321.
 SEED <- 123321
@@ -50,10 +51,15 @@ RULE_OF_THUMB <- c(
   srmr = 0.06
 )
 
+#' Simulation distribution for non-normal data (skewness and kurtosis values).
+dist <- bindDist(
+  skewness = seq(-1, 1, length.out = 24),
+  kurtosis = seq(1, 2, length.out = 24)
+)
+
 
 # --- Global Session Configuration --------------------------------------------
 options(max.print = 1e6)
-
 
 # --- DRY Functions ----------------------------------------------------------------
 
@@ -79,18 +85,19 @@ plot_bw <- function(model) {
   )
 }
 
-# plot_color: Color version of the cicle layout version of the path diagram, with standardized estimates as edge labels and color coding for latent variable groups.
+# Colors for latent variable groups: psychological (psy), physical (phy), social (scl), and environmental (env). The colors are chosen to be visually distinct and consistent across all diagrams, with a neutral ink color for edges and labels.
+cols <- c(
+  psy = "#F18C22",
+  phy = "#87CBCC",
+  scl = "#a0b7d2",
+  env = "#d8da54"
+)
+
+ink <- "#0D232C"
+
+# plot_color: Circle layout version of the path diagram, with standardized estimates as edge labels and color coding for latent variable groups.
 plot_color <- function(model) {
   plot_model <- semPlot::semPlotModel(model)
-
-  cols <- c(
-    psy = "#F18C22",
-    phy = "#87CBCC",
-    scl = "#a0b7d2",
-    env = "#d8da54"
-  )
-
-  ink <- "#0D232C"
 
   semPlot::semPaths(
     plot_model,
@@ -108,32 +115,23 @@ plot_color <- function(model) {
     sizeLat = 9,
     sizeMan = 5,
     sizeMan2 = 5,
-    label.cex = 2,
-    edge.label.cex = 1.5,
+    label.cex = 1.5,
+    edge.label.cex = 1.2,
     edge.label.bg = TRUE,
     weighted = FALSE,
     mar = c(2, 1.5, 2, 1.5)
   )
 }
 
-# plot_tree: Tree rotate layout version of the path diagram, with standardized estimates as edge labels and color coding for latent variable groups.
-plot_tree <- function(model) {
+# plot_free: Color layout version of the path diagram, with standardized estimates as edge labels and color coding for latent variable groups, but without edge labels to focus on the structure rather than the specific parameter values.
+plot_free <- function(model) {
   plot_model <- semPlot::semPlotModel(model)
-
-  cols <- c(
-    psy = "#F18C22",
-    phy = "#87CBCC",
-    scl = "#a0b7d2",
-    env = "#d8da54"
-  )
-
-  ink <- "#0D232C"
 
   semPlot::semPaths(
     plot_model,
+    #whatLabels = "est",
     style = "lisrel",
-    layout = "tree2",
-    rotation = 2,
+    layout = "circle",
     intercepts = FALSE,
     thresholds = FALSE,
     residuals = FALSE,
@@ -143,14 +141,12 @@ plot_tree <- function(model) {
     border.color = ink,
     label.color = ink,
     sizeLat = 9,
-    sizeMan = 3,
-    sizeMan2 = 3,
-    label.cex = 2,
-    edge.label.cex = 1.5,
+    sizeMan = 5,
+    sizeMan2 = 5,
+    label.cex = 1.5,
+    edge.label.cex = 1.2,
     edge.label.bg = TRUE,
     weighted = FALSE,
-    curve = 1,
-    curvature = 1.5,
-    mar = c(2, 10, 2, 10)
+    mar = c(2, 1.5, 2, 1.5)
   )
 }

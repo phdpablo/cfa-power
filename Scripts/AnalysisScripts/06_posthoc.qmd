@@ -11,8 +11,8 @@ execute:
 #| include: false
 
 library(here)
-source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "models.R"))
+source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
 source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
 
@@ -57,17 +57,19 @@ fit_real <- cfa(
 ```{r}
 #| label: sim-null-posthoc
 
-realmodel_null <- sim(
-    nRep      = 1000,
-    n         = n_real,
-    analyzemodel,
-    generate  = fit_real,
-    std.lv    = TRUE,
-    lavaanfun = "cfa",
-    estimator = "mlr",
-    seed      = SEED,
-    multicore = TRUE
-)
+realmodel_null <- cache_or_run("realmodel_null", {
+  sim(
+      nRep      = REP,        # See the `REP` object defined in helpers.R for the number of replications used in this scenario.
+      n         = n_real,
+      analyzemodel,
+      generate  = fit_real,
+      std.lv    = TRUE,
+      lavaanfun = "cfa",
+      estimator = "mlr",
+      seed      = SEED,
+      multicore = TRUE
+  )
+})
 ```
 
 - Passo 3: Simular modelo alternativo com N real
@@ -75,17 +77,19 @@ realmodel_null <- sim(
 ```{r}
 #| label: sim-alt-posthoc
 
-h1model_alt <- sim(
-    nRep      = 1000,
-    n         = n_real,
-    analyzemodel,
-    generate  = h1model,
-    std.lv    = TRUE,
-    lavaanfun = "cfa",
-    estimator = "mlr",
-    seed      = SEED,
-    multicore = TRUE
-)
+h1model_alt <- cache_or_run("h1model_alt", {
+  sim(
+      nRep      = REP,        # See the `REP` object defined in helpers.R for the number of replications used in this scenario.
+      n         = n_real,
+      analyzemodel,
+      generate  = h1model,
+      std.lv    = TRUE,
+      lavaanfun = "cfa",
+      estimator = "mlr",
+      seed      = SEED,
+      multicore = TRUE
+  )
+})
 ```
 
 - Passo 4: Poder no N coletado
@@ -127,11 +131,11 @@ getPowerFit(
 
 ph_rsmea <- semPower::semPower.postHoc(
     effect         = 0.05,
-    effect.measure = "RMSEA", # RMSEA under H1 (exact-fit model: H0: RMSEA = 0)
+    effect.measure = "RMSEA",  # RMSEA under H1 (exact-fit model: H0: RMSEA = 0)
     alpha          = ALPHA,
     N              = n_real,
     df             = df_model,
-    p              = P # Just for GFI and AGFI
+    p              = P         # Just for GFI and AGFI
 )
 
 summary(ph_rsmea)

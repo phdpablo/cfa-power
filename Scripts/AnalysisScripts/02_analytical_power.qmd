@@ -11,12 +11,8 @@ execute:
 #| include: false
 
 library(here)
-source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 source(here("Scripts", "DataAppendixScripts", "models.R"))
-source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
-source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
-
-cache_load_existing()
+source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 ```
 
 
@@ -39,12 +35,13 @@ cat("Model degrees of freedom (via semPower):", df_model, "\n")
 
 ### Model-free approach (RMSEA-based)
 
-This chunk uses `semPower::semPower.aPriori()` to compute the minimum sample size required for an a priori power analysis based on RMSEA, given the target \(\alpha\), desired power, and model degrees of freedom [@moshagen2023].
+This chunk uses `semPower::semPower.aPriori()` to compute the minimum sample size required for an a priori power analysis based on RMSEA, given the target \(\alpha\), desired power, and model degrees of freedom [@moshagen2024].
 
 The output returns the required number of observations and the associated quantities reported by `semPower`, such as \(F_0\), RMSEA, Mc, the critical chi-square value, and the noncentrality parameter.
 
 ```{r}
 #| label: apriori-rmsea
+#! fig-cap: "A priori power analysis for exact fit with RMSEA-based effect size"
 
 # Analytical a priori power analysis for the global chi-square test.
 # The goal is to determine the minimum N required to detect
@@ -66,24 +63,25 @@ summary(ap_rmsea)
 
 ### Model-based approach (with lavaan syntax)
 
-This chunk runs an **a priori analytical power analysis** with `semPower.powerLav()`. The function uses the population model (`modelPop`) and the null analysis model (`modelH0`) to determine the minimum sample size required to detect their discrepancy with the target alpha and power [@moshagen2023; @jobst2023].
+This chunk runs an **a priori analytical power analysis** with `semPower.powerLav()`. The function uses the population model (`modelPop`) and the null analysis model (`modelH0`) to determine the minimum sample size required to detect their discrepancy with the target alpha and power [@moshagen2024; @jobst2023].
 
-Because no `modelH1` is specified, the comparison is made against the **saturated model**, so the test targets global model misfit [@moshagen2023; @jobst2023].
+Because no `modelH1` is specified, the comparison is made against the **saturated model**, so the test targets global model misfit [@moshagen2024; @jobst2023].
 
 ```{r}
 #| label: apriori-popmodel
+#| fig-cap: "A priori power analysis Model-based approach (popModel)"
 
 # A priori power analysis:
 # computes the minimum N needed to detect the discrepancy
 # between the population model and the null analysis model.
 
 ap_popmodel <- semPower.powerLav(
-  type = "a-priori",   # sample size planning
-  alpha = ALPHA,       # Type I error rate
-  power = POWER,       # target power
-  modelPop = popmodel, # population-generating model
-  modelH0 = analyzemodel, # null/analysis model
-  p = P                 # only relevant for indices such as GFI/AGFI
+  type = "a-priori",       # sample size planning
+  alpha = ALPHA,           # Type I error rate
+  power = POWER,           # target power
+  modelPop = popmodel,     # population-generating model
+  modelH0 = analyzemodel,  # null/analysis model
+  p = P                    # only relevant for indices such as GFI/AGFI
 )
 
 # Shows effect size, df, required N, critical chi-square,
@@ -95,30 +93,30 @@ summary(ap_popmodel)
 
 ### Model-free approach
 
-This chunk generates a model-free power curve showing how statistical power changes as a function of sample size \(N\) for a fixed effect defined as \(\mathrm{RMSEA} = 0.05\), given the chosen significance level \(\alpha\) and the model degrees of freedom \(df\) [@moshagen2023; @jobst2023].
+This chunk generates a model-free power curve showing how statistical power changes as a function of sample size \(N\) for a fixed effect defined as \(\mathrm{RMSEA} = 0.05\), given the chosen significance level \(\alpha\) and the model degrees of freedom \(df\) [@moshagen2024; @jobst2023].
 
-In `semPower`, this is an analytical power plot for a noncentrality-based effect measure, so the curve summarizes the expected power across a range of sample sizes while holding the effect size and test conditions constant [@moshagen2023; @jobst2023].
+In `semPower`, this is an analytical power plot for a noncentrality-based effect measure, so the curve summarizes the expected power across a range of sample sizes while holding the effect size and test conditions constant [@moshagen2024; @jobst2023].
 
 ```{r}
 #| label: fig-power-rmsea
-#| fig-cap: "Power as a function of sample size for RMSEA >= 0.05"
+#| fig-cap: "Power as a function of sample size for RMSEA = 0.05"
 #| fig-width: 8
 #| fig-height: 5
 
 # Plots statistical power against sample size N.
 semPower::semPower.powerPlot.byN(
-  effect         = 0.05, # effect = 0.05 sets the target misfit in RMSEA units.
+  effect         = 0.05,      # effect = 0.05 sets the target misfit in RMSEA units.
   effect.measure = "RMSEA",
-  alpha          = ALPHA, # alpha = ALPHA sets the Type I error rate.
-  df             = df_model, # df = df_model sets the model degrees of freedom.
+  alpha          = ALPHA,     # alpha = ALPHA sets the Type I error rate.
+  df             = df_model,  # df = df_model sets the model degrees of freedom.
   power.min      = 0.05,
-  power.max      = 0.99 # power.min and power.max define the y-axis range of the plotted curve.
+  power.max      = 0.99       # power.min and power.max define the y-axis range of curve.
 )
 ```
 
 ### Model-based approach
 
-This chunk produces a power curve for the model-based analysis stored in `ap_popmodel`, displaying how statistical power changes as a function of sample size \(N\) for the effect defined in that object [@moshagen2023; @jobst2023]. In `semPower`, `semPower.powerPlot()` is used to visualize the power trajectory implied by a previously estimated power-analysis object, which is useful for identifying the sample-size region in which power becomes adequate [@moshagen2023; @jobst2023].
+This chunk produces a power curve for the model-based analysis stored in `ap_popmodel`, displaying how statistical power changes as a function of sample size \(N\) for the effect defined in that object [@moshagen2024; @jobst2023]. In `semPower`, `semPower.powerPlot()` is used to visualize the power trajectory implied by a previously estimated power-analysis object, which is useful for identifying the sample-size region in which power becomes adequate [@moshagen2024; @jobst2023].
 
 ```{r}
 #| label: fig-power-popmodel
@@ -144,7 +142,7 @@ safe_num <- function(x) if (length(x) == 0 || is.null(x)) NA else as.numeric(x)[
 
 analytical_summary <- data.frame(
     Method = c(
-        "Model-free a priori (RMSEA ≥ .05)",
+        "Model-free a priori (RMSEA = .05)",
         "Model-based a priori (Population Model)"
     ),
     `N Required` = c(
