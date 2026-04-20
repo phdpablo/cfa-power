@@ -75,6 +75,41 @@ cutoff_ideal <- as.list(getCutoff(
 n_h1    <- as.list(findPower(getPower(h1model_ideal,    alpha = ALPHA), "N", 0.80))
 n_naive <- as.list(findPower(getPower(naivemodel_ideal, alpha = ALPHA), "N", 0.80))
 n_opt   <- as.list(findPower(getPower(optmodel_ideal,   alpha = ALPHA), "N", 0.80))
+
+# Missing Data (MCAR 10%)
+popmodel_miss    <- readRDS(file.path(cache_dir, "popmodel_miss.rds"))
+h1model_miss     <- readRDS(file.path(cache_dir, "h1model_miss.rds"))
+
+power_miss <- getPowerFit(
+  h1model_miss, nullObject = popmodel_miss,
+  alpha = ALPHA, nVal = 359, usedFit = FITS
+)
+cutoff_miss <- getCutoff(
+  popmodel_miss, alpha = ALPHA, nVal = 359, usedFit = FITS
+)
+power_cutoff_miss <- rbind(
+  "Power" = as.numeric(power_miss),
+  "Cutoff" = as.numeric(cutoff_miss[1, ])
+)
+colnames(power_cutoff_miss) <- toupper(names(power_miss))
+
+# Non-Normality
+popmodel_nnorm   <- readRDS(file.path(cache_dir, "popmodel_nnorm.rds"))
+h1model_nnorm    <- readRDS(file.path(cache_dir, "h1model_nnorm.rds"))
+
+power_nnorm <- getPowerFit(
+  h1model_nnorm, nullObject = popmodel_nnorm,
+  alpha = ALPHA, nVal = 228, usedFit = FITS
+)
+cutoff_nnorm <- getCutoff(
+  popmodel_nnorm, alpha = ALPHA, nVal = 228, usedFit = FITS
+)
+power_cutoff_nnorm <- rbind(
+  "Power" = as.numeric(power_nnorm),
+  "Cutoff" = as.numeric(cutoff_nnorm[1, ])
+)
+colnames(power_cutoff_nnorm) <- toupper(names(power_nnorm))
+
 ```
 
 ## Introduction {#sec-intro}
@@ -348,7 +383,7 @@ Below, we present the results of this simulation under ideal conditions. First, 
 
 The simulation under ideal conditions shows that power increases as sample size grows. At the lower end of the sample-size sequence, the fit indices remain below the target power threshold, indicating limited sensitivity to detect the imposed misspecification.
 
-As $N$ increases, the power curves rise steadily, showing that the same degree of misspecification becomes easier to detect in larger samples. The point at which each curve crosses the conventional target level (e.g., $ .80 $) marks the approximate minimum sample size required for that fit index to achieve adequate discriminatory performance.
+As $N$ increases, the power curves rise steadily, showing that the same degree of misspecification becomes easier to detect in larger samples. The point at which each curve crosses the conventional target level (e.g., .80) marks the approximate minimum sample size required for that fit index to achieve adequate discriminatory performance.
 
 The graph also shows that the fit indices do not behave identically across the sample-size range. Some indices reach the target power earlier, which indicates greater sensitivity to the discrepancy built into the alternative model, whereas others require larger $N$ to attain the same level of power.
 
@@ -372,11 +407,11 @@ At $N = 231$, the table shows that the estimated power was `r round(power_ideal$
 
 The empirical cutoff values were `r round(cutoff_ideal$rmsea, 3)` for RMSEA, `r round(cutoff_ideal$srmr, 3)` for SRMR, `r round(cutoff_ideal$cfi, 3)` for CFI, and `r round(cutoff_ideal$tli, 3)` for TLI. In practical terms, the rejection rule is stricter for RMSEA and SRMR above their cutoffs, and for CFI and TLI below their cutoffs.
 
-Taken together, the pattern of results is clear: $ \text{SRMR} > \text{RMSEA} > \text{CFI} \approx \text{TLI} $ in terms of power. Thus, within this specific analysis, SRMR provided the strongest discrimination, RMSEA also performed strongly, and CFI and TLI were just above the conventional $0.80$ threshold.
+Taken together, the pattern of results is clear: SRMR > RMSEA > CFI/TLI in terms of power. Thus, within this specific analysis, SRMR provided the strongest discrimination, RMSEA also performed strongly, and CFI and TLI were just above the conventional $0.80$ threshold.
 
 ### Traditional cutoff values for fit indices
 
-When traditional cutoffs are used, the analysis adopts fixed threshold values such as $ \text{RMSEA} \le .06 $, $ \text{CFI} \ge .95 $, $ \text{TLI} \ge .95 $, and $ \text{SRMR} \le .06 $ as the decision boundaries for acceptable fit. Conceptually, this means that power is defined here as the proportion of replications in which the misspecified model crosses those predefined boundaries in the direction of worse fit.
+When traditional cutoffs are used, the analysis adopts fixed threshold values such as $\text{RMSEA} \le .06$, $\text{CFI} \ge .95$, $\text{TLI} \ge .95$, and $\text{SRMR} \le .06$ as the decision boundaries for acceptable fit. Conceptually, this means that power is defined here as the proportion of replications in which the misspecified model crosses those predefined boundaries in the direction of worse fit.
 
 This setup is convenient because it mirrors common applied practice, but the literature also emphasizes that such rule-of-thumb cutoffs are not universally valid and should be interpreted cautiously, since fit measures are influenced by model features beyond the focal misspecification itself [@moshagen2024; @jobst2023].
 
@@ -460,19 +495,19 @@ Taken together, the pattern is very clear: the measurement part of the model is 
 
 #### Optimistic model
 
-This subsection examines sample size requirements from a **parameter-level** perspective under the optimal model. The Monte Carlo setup used here evaluates how power changes as $ N $ varies and then identifies the smallest sample size required for each parameter to attain the target power level of $ .80 $. In the `simsem` framework, this type of analysis is useful for planning studies when the main concern is whether specific model components can be detected under assumed population conditions [@simsem2021].
+This subsection examines sample size requirements from a **parameter-level** perspective under the optimal model. The Monte Carlo setup used here evaluates how power changes as $N$ varies and then identifies the smallest sample size required for each parameter to attain the target power level of $.80$. In the `simsem` framework, this type of analysis is useful for planning studies when the main concern is whether specific model components can be detected under assumed population conditions [@simsem2021].
 
 Within the optimal scenario, this step provides a benchmark for how demanding the focal parameters are when the model is estimated under more favorable assumptions. Thus, the analysis complements later global-fit evaluations by showing the local sample size requirements implied by the same CFA structure [@moshagen2024; @simsem2021].
 
 {{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-n-opt >}}
 
-The @tbl-power-n-opt shows a very sparse set of finite sample-size requirements under the optimal model. Only seven parameters remained with finite $ N $ values after filtering (not shown in the table), which indicates that, within the simulated range, these are the parameters for which a specific minimum sample size could be directly reported.
+The @tbl-power-n-opt shows a very sparse set of finite sample-size requirements under the optimal model. Only seven parameters remained with finite $N$ values after filtering (not shown in the table), which indicates that, within the simulated range, these are the parameters for which a specific minimum sample size could be directly reported.
 
 The only parameter with a meaningfully larger requirement is the residual covariance $Q3 \sim\sim Q4$, which required $N$ = `r n_opt[['Q3~~Q4']]` to reach $.80$ power. This value is much higher than the others in the table and clearly stands out as the most demanding finite parameter in the optimal model.
 
 For that reason, the sample size decision implied by this table is governed by $Q3 \sim\sim Q4$. If the goal is to ensure at least $.80$ power for all parameters with finite reported values in this output, the required sample size is $N$ = `r n_opt[['Q3~~Q4']]`.
 
-Overall, the result is highly concentrated: most reported parameters are already adequately powered at $ N = 51 $, and only one parameter pushes the requirement upward. In practical terms, the optimal model appears easy to recover for the listed loadings and residual variances, while the residual covariance $ Q3 \sim\sim Q4 $ is the sole finite bottleneck in this table.
+Overall, the result is highly concentrated: most reported parameters are already adequately powered at $N = 51$, and only one parameter pushes the requirement upward. In practical terms, the optimal model appears easy to recover for the listed loadings and residual variances, while the residual covariance $Q3 \sim\sim Q4$ is the sole finite bottleneck in this table.
 
 ### Misspecification and population sensitivity
 
@@ -480,9 +515,9 @@ Overall, the result is highly concentrated: most reported parameters are already
 
 This section evaluates **global** power from the perspective of naive model as population model. The Monte Carlo setup is designed to assess how well fit indices can discriminate between the reference condition (data generated under the naive model) and the alternative condition (data generated under the H1 model), across a range of sample sizes [@moshagen2024; @jobst2023].
 
-The power curves across sample size show how the probability of rejecting the misspecified model evolves as $ N $ increases. This is consistent with the general theory of power in SEM, according to which power increases as the overlap between the null and alternative sampling distributions decreases, and that separation is strengthened by larger samples and clearer model discrepancy [@jobst2023; @moshagen2024].
+The power curves across sample size show how the probability of rejecting the misspecified model evolves as $N$ increases. This is consistent with the general theory of power in SEM, according to which power increases as the overlap between the null and alternative sampling distributions decreases, and that separation is strengthened by larger samples and clearer model discrepancy [@jobst2023; @moshagen2024].
 
-In `simsem`, these curves can be displayed either as raw empirical patterns or as smoothed functions based on logistic regression when sample size varies across replications. The smoothed representation is useful because it summarizes the relation between the reject/retain decision and $ N $ into a continuous power function, whereas the unsmoothed version helps inspect the empirical fit-index distributions more directly [@simsem2021].
+In `simsem`, these curves can be displayed either as raw empirical patterns or as smoothed functions based on logistic regression when sample size varies across replications. The smoothed representation is useful because it summarizes the relation between the reject/retain decision and $N$ into a continuous power function, whereas the unsmoothed version helps inspect the empirical fit-index distributions more directly [@simsem2021].
 
 {{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-power-curve-naive >}}
 
@@ -494,15 +529,13 @@ In the raw fit-index plots, the separation between the two point clouds is very 
 
 {{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-cutoff-naive >}}
 
-At $N = 330$, the estimated power values were $ > .80 $ for all four indices, but they differed substantially in magnitude. RMSEA and SRMR showed very high power, with values close to $0.99$, while CFI and TLI were just above the $0.80$ threshold, indicating that they are less sensitive to the misspecification under these conditions.
+At $N = 330$, the estimated power values were $> .80$ for all four indices, but they differed substantially in magnitude. RMSEA and SRMR showed very high power, with values close to $0.99$, while CFI and TLI were just above the $0.80$ threshold, indicating that they are less sensitive to the misspecification under these conditions.
 
 These results indicate that SRMR produced the highest power, followed very closely by RMSEA. CFI and TLI yielded substantially lower power than RMSEA and SRMR, although both still reached the conventional $0.80$ threshold at $N = 330$. The empirical cutoff values at $N = 330$ were more pessimistic than the conventional thresholds. These cutoffs reflect the thresholds derived from the null-model distribution at the chosen $\alpha$ level, which are used to determine whether the observed fit indices indicate a significant misspecification.
 
 The cutoff table and the figures are consistent with each other. RMSEA and SRMR show very strong discrimination at $N = 330$, with power near 0.99, whereas CFI and TLI appear to be operating at the minimum level typically considered acceptable, with power just above 0.80. Overall, at this sample size, RMSEA and SRMR perform more strongly than CFI and TLI for detecting the difference represented in this naive-population condition.
 
 #### Optimistic model
-
-### Conceptual background
 
 In this simulation-based approach implemented in `simsem`, cutoff values are first derived from the sampling distribution of the fit indices under an optimistic null model (population model), and power is then defined as the proportion of replications from the alternative condition (H1 model) that cross those cutoffs in the direction indicating worse fit. For indices in which larger values indicate poorer fit, such as RMSEA and SRMR, rejection is based on exceeding the cutoff; for indices in which larger values indicate better fit, such as CFI and TLI, rejection is based on falling below the cutoff.
 
@@ -522,7 +555,7 @@ The unsmoothed plots reinforce this pattern. For RMSEA and SRMR, the simulated v
 
 {{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-cutoff-opt >}}
 
-At $N = 291$, the estimated power values are $ > .80 $ for all four indices, but they differ in magnitude. The power values at this sample size is show in @tbl-power-cutoff-opt. These values indicate that, at the target sample size, all four indices achieve at least acceptable power, but they do so with different margins. SRMR and RMSEA are well above the conventional $0.80$ benchmark, whereas CFI and TLI are just above that threshold.
+At $N = 291$, the estimated power values are $> .80$ for all four indices, but they differ in magnitude. The power values at this sample size is show in @tbl-power-cutoff-opt. These values indicate that, at the target sample size, all four indices achieve at least acceptable power, but they do so with different margins. SRMR and RMSEA are well above the conventional $0.80$ benchmark, whereas CFI and TLI are just above that threshold.
 
 The cutoff values at $N = 291$ are more pessimistic than the conventional thresholds, reflecting the specific sampling distribution of the fit indices under the optimistic null model. These cutoffs are used to determine whether the observed fit indices indicate a significant misspecification in the alternative condition.
 
@@ -530,43 +563,86 @@ Taken together, the results indicate that RMSEA and especially SRMR provide very
 
 ## Monte Carlo Simulation: Realistic Scenarios {#sec-sim-robust}
 
-Most applied survey data violate the ideal assumptions. Simulating how analytical robustness deteriorates helps us adjust the planned sample sizes to offset the expected penalty.
+Power analysis in structural equation modeling should be framed as a design-stage procedure that connects substantive expectations, model specification, and data conditions to the probability of obtaining informative statistical tests, rather than as a mechanical search for a single “minimum $N$” rule [@feng2023; @wang2023].
 
-### Non-Normality {#sec-nonnormal}
-
-Applying continuous but non-normal (e.g., highly skewed or kurtotic) generation exposes the vulnerability of unadjusted normal-theory ML tests, emphasizing the necessity of robust estimators (e.g., MLR).
+SEM power analysis is strongest when it is anchored in a plausible population-generating mechanism rather than in generic rules of thumb or model-free calculators borrowed from simpler analyses [@feng2023; @kyriazos2018].
 
 ### Missing Data (MCAR) {#sec-missing}
 
-Missing data effectively shrinks $N$ through a loss of information, meaning empirical sample sizes must often be adjusted proportionately. This simulation evaluates the explicit power penalty of $10\%$ Missing Completely at Random strings.
+Missing data must be treated as part of the design problem, not as a secondary complication to be handled only after estimation, because missingness reduces available information and therefore generally lowers estimation efficiency and statistical power [@feng2023; @jak2021].
 
-### Sensitivity Across Population Models {#sec-sensitivity}
+From this perspective, the relevant question is not only how many cases are planned, but how much usable information remains under the anticipated missing-data process [@feng2023].
 
-A robust power analysis examines boundaries. How drastically does necessary $N$ shift when our assumption about structural quality is overly naive, or overly optimistic?
+This is one reason Monte Carlo power analysis is especially valuable in SEM with missing data: it allows the analyst to generate data under a prespecified population model, impose realistic missingness mechanisms such as MCAR or MAR, fit the intended analysis model, and estimate power empirically under the same conditions expected in practice [@feng2023; @moshagen2024]. 
 
-### Comparison {#sec-scenarios-comparison}
+Simulation-based power analysis is also advantageous when assumptions underlying purely analytical solutions become less credible, such as in the presence of incomplete data, non-normality, or more complex model structures [@feng2023; @moshagen2024; @wang2023].
 
+In this sense, the Monte Carlo approach is not merely a computational alternative, but a way to align sample size planning with the actual data-generating conditions anticipated for the study [@moshagen2024; @wang2023].
 
-## Population Model vs. Empirical Model {#sec-null-vs-alt}
+Conceptually, the purpose of the analysis is therefore twofold: first, to ensure enough sensitivity to test the focal theoretical relations, and second, to ensure enough sensitivity to evaluate whether the overall model remains substantively interpretable under the planned conditions [@wang2023; @feng2023].
 
-Consider an epistemological question driving CFA: can we statistically distinguish the theorized population structure from an empirically estimated model with trivial incidental misspecifications that are ubiquitous in real-life sample covariance matrices? In this section, we compare empirical power distributions generated under a "Null" (empirical sample parameters representing noise) and an "Alternative" (our clean meta-analytic population model).
+When missing data are expected, this dual objective becomes even more important, because power for parameter detection and power for fit evaluation may deteriorate at different rates as information is lost [@feng2023; @wang2023].
 
-## Post Hoc: Achieved Power {#sec-posthoc-analytical}
+A well-justified SEM power analysis thus rests on explicit assumptions about the population model, the magnitude of focal effects, the measurement structure, the estimation framework, and the expected missing-data mechanism [@moshagen2024; @wang2023; @jak2021]. 
 
-For the empirical WHOQOL-BREF dataset, $N = 1,047$. What is our achieved power if true RMSEA is 0.05?
+Under this logic, the reported power results should be understood as conditional on a theoretically motivated scenario, not as universal guarantees, which is precisely why transparent documentation of assumptions is essential in reproducible SEM workflows [@feng2023; @moshagen2024].
 
-## When to Use What: Analytical vs. Simulation {#sec-synthesis}
+The @fig-power-curve-missing shows the power curves for the four fit indices under the 10% missing MCAR missing-data scenario. The curves indicate that power is generally lower across the sample-size range compared to the ideal condition, which is expected due to the loss of information caused by missing data.
 
-| Feature | Analytical (`semPower`/`semTools`) | Simulation (`simsem`) |
-| :--- | :--- | :--- |
-| **Speed** | Instantaneous | Minutes to hours |
-| **Handles non-normality effectively** | No | Yes |
-| **Handles missing data mechanism** | No | Yes |
-| **Parameter-level power targeting** | Very Limited | Comprehensive |
-| **Coverage / relative bias diagnostics** | No | Yes |
-| **Primary Use-Case** | Grant planning, quick rough parameterization bounds | Pre-registration confirmation, sensitivity checks, final reporting |
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#fig-power-curve-missing >}}
 
-> **Best Practice Recommendation:** Define theoretical bounds mapping an expected scenario utilizing fast analytical approximations. Validate robust tolerance to observed/anticipated data flaws (e.g., missingness, skew, differing distributions) iteratively through explicit simulation runs before finalizing sample specifications.
+The @fig-fit-curve-missing shows the empirical distributions of the fit indices under the reference and alternative conditions with 10% MCAR missing data. The separation between the two conditions is less pronounced than in the ideal scenario, especially for CFI and TLI, which show more overlap in their distributions at smaller and intermediate sample sizes.
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#fig-fit-curve-missing >}}
+
+The @tbl-power-cutoff-missing summarizes the power and cutoff values for each fit index at $N = 359$ under the missing data scenario. The estimated power values are lower than in the ideal condition, with RMSEA and SRMR still showing relatively high power, while CFI and TLI have notably reduced power, indicating that they are more sensitive to the loss of information caused by missing data.
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#tbl-power-cutoff-missing >}}
+
+At $N = 359$, the empirical power values are `r round(power_cutoff_miss[1,1], 3)` for RMSEA, `r round(power_cutoff_miss[1,2], 3)` for SRMR, `r round(power_cutoff_miss[1,3], 3)` for CFI, and `r round(power_cutoff_miss[1,4], 3)` for TLI.
+
+These results show a clear difference in performance across indices. SRMR presents the highest power, RMSEA also shows very strong power, and both CFI and TLI are just above the conventional $0.80$ threshold.
+
+This means that, at $N = 359$, the sample size is more than sufficient for SRMR and RMSEA, while for CFI and TLI it is sufficient but still much closer to the minimum acceptable level.
+
+The empirical cutoff values obtained at $N = 359$ are `r round(power_cutoff_miss[2,1], 3)` for RMSEA, `r round(power_cutoff_miss[2,2], 3)` for SRMR, `r round(power_cutoff_miss[2,3], 3)` for CFI, and `r round(power_cutoff_miss[2,4], 3)` for TLI.
+
+For RMSEA and SRMR, the cutoffs are very low, which is consistent with the strong discrimination shown by their power values.
+
+For CFI and TLI, the cutoffs are slightly above $1.00$. In practical terms, this indicates that the classification boundary estimated from the simulation lies at the upper edge of the index scale, which helps explain why their power is only marginally above $0.80$ even at this sample size.
+
+Taken together, the outputs indicate that the design performs very well for RMSEA and SRMR and only minimally adequately for CFI and TLI.
+
+So, at $N = 359$, the results support a stronger conclusion for RMSEA and SRMR, whereas for CFI and TLI the conclusion is more cautious because their power values are only slightly above the target level.
+
+### Non-Normality {#sec-nonnormal}
+
+This section focuses on the condition with **mild non-normality**, so power should be evaluated using robust fit indices rather than relying on normal-theory fit behavior. When available, the newer robust fit measures should be preferred over older scaled versions because they have better theoretical properties under non-normal data. However, for comparability with the ideal condition, the same set of indices is evaluated here.
+
+The power curves show how often the misspecified model would be rejected as $N$ changes under this mildly non-normal condition. Here, the rejection rule is not based on generic cutoffs, but on empirical cutoffs obtained from the null-model sampling distribution at the chosen $\alpha$ level [@simsem2021].
+
+The version with logistic smoothing emphasizes the general trend of power across sample sizes, whereas the version without smoothing shows the simulated fit-index values more directly [@simsem2021]. This is useful for checking how clearly the misspecified-model distribution separates from the null-based cutoff as $N$ increases [@simsem2021].
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#fig-power-curve-nnorm >}}
+
+Figure @fig-power-curve-nnorm shows a clear increase in power as $N$ grows for all fit indices. SRMR is the strongest index across the entire range, starting already high at small samples and approaching $1.00$ quickly. RMSEA also increases steadily and reaches high power earlier than the incremental indices. CFI and TLI follow the same general pattern, but their curves rise more slowly and remain below RMSEA and SRMR over most of the sample-size range.
+
+In practical terms, the ordering of sensitivity is stable throughout the figure: $\text{SRMR} > \text{RMSEA} > \text{CFI} \approx \text{TLI}$. Around the mid-range of $N$, SRMR is already near ceiling, RMSEA is in a clearly high-power region, and CFI/TLI are still catching up. By the largest sample sizes, all four indices show strong power, although SRMR and RMSEA remain visibly ahead.
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#fig-fit-curve-nnorm >}}
+
+Figure @fig-fit-curve-nnorm shows the same pattern without logistic smoothing and makes the separation between the simulated values more explicit. For RMSEA and SRMR, the distributions become increasingly distinct as $N$ increases, with less overlap and a clearer gap between the two sets of points. For CFI and TLI, the separation also improves with larger $N$, but the overlap is more evident at lower and moderate sample sizes, which is consistent with their slower increase in power.
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#tbl-power-cutoff-nnorm >}}
+
+Table @tbl-power-cutoff-nnorm summarizes the results at $N = 228$. At this sample size, SRMR has the highest power `r round(power_cutoff_nnorm[1,1], 3)`, followed by RMSEA `r round(power_cutoff_nnorm[1,2], 3)`, followed by CFI `r round(power_cutoff_nnorm[1,3], 3)`. CFI and TLI both reach $0.800$, making them the least sensitive indices in this condition at the selected sample size.
+
+The cutoff values at $N = 228$ are `r round(power_cutoff_nnorm[2,1], 3)` for RMSEA, `r round(power_cutoff_nnorm[2,2], 3)` for SRMR, `r round(power_cutoff_nnorm[2,3], 3)` for CFI, and `r round(power_cutoff_nnorm[2,4], 3)` for TLI. These values are consistent with the pattern in the figures: SRMR and RMSEA show stronger discrimination at this sample size, whereas CFI and TLI require more favorable values to classify fit as acceptable. Overall, the results at $N = 228$ show very strong rejection performance for SRMR, strong performance for RMSEA, and adequate performance for CFI and TLI.
+
+The cutoff step at $N = 228$ complements the curves by fixing the decision rule at a specific sample size under the same mildly non-normal setup [@simsem2021]. In this setting, power and cutoff values should be read together: the cutoff defines how strict the robust fit criterion is, and power indicates how often that criterion rejects the misspecified model [@simsem2021].
+
+### Simulation with fixed N {#sec-scenarios-fixed}
+
 
 ## References {.unnumbered}
 

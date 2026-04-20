@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-    <title>Model Comparison with Fixed Sample Size</title>
+    <title>Simulation with Fixed Sample Size</title>
     <style>
       /* Default styles provided by pandoc.
       ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -176,7 +176,7 @@
     <div id="quarto-embed-header" class="headroom fixed-top bg-primary">
       
       <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link" href=""><i class="bi bi-caret-left"></i> Back to Article</a>
-      <h6><i class="bi bi-journal-code"></i> Model Comparison with Fixed Sample Size</h6>
+      <h6><i class="bi bi-journal-code"></i> Simulation with Fixed Sample Size</h6>
 
             <a href="../../Scripts/AnalysisScripts/05_model_comparison.out.ipynb" class="btn btn-primary quarto-download-embed" download="05_model_comparison.qmd">Download Source</a>
           </div>
@@ -184,7 +184,7 @@
      <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Model Comparison with Fixed Sample Size</h1>
+      <h1 class="title">Simulation with Fixed Sample Size</h1>
           </div>
 
     
@@ -213,7 +213,6 @@
    
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#model-comparison-power-to-detect-h1-vs-h0" id="toc-model-comparison-power-to-detect-h1-vs-h0" class="nav-link" data-scroll-target="#model-comparison-power-to-detect-h1-vs-h0">Model comparison: Power to detect H1 vs H0</a></li>
   <li><a href="#power-analysis-with-fixed-n" id="toc-power-analysis-with-fixed-n" class="nav-link" data-scroll-target="#power-analysis-with-fixed-n">Power Analysis with fixed N</a>
   <ul class="collapse">
   <li><a href="#power-curves-for-fit-indices" id="toc-power-curves-for-fit-indices" class="nav-link" data-scroll-target="#power-curves-for-fit-indices">Power curves for fit indices</a></li>
@@ -342,10 +341,6 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cache_load_existing</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
-<section id="model-comparison-power-to-detect-h1-vs-h0" class="level2">
-<h2 class="anchored" data-anchor-id="model-comparison-power-to-detect-h1-vs-h0">Model comparison: Power to detect H1 vs H0</h2>
-<p>Make table with resume.</p>
-</section>
 <section id="power-analysis-with-fixed-n" class="level2">
 <h2 class="anchored" data-anchor-id="power-analysis-with-fixed-n">Power Analysis with fixed N</h2>
 <p>Ideial condition: PA it not too sensitive to distributional assumptions, missing data, etc. So, we use ideal for time consuming simulations. We can also do the same for the robust conditions, but it will take more time.</p>
@@ -414,231 +409,94 @@ Power curves for fit indices with fixed sample size.
 <section id="power-cutoff-values-for-fit-indices" class="level3">
 <h3 class="anchored" data-anchor-id="power-cutoff-values-for-fit-indices">Power cutoff values for fit indices</h3>
 <p>You extract the cutoff values for fit indices at a given alpha level and sample size to determine the threshold for acceptable fit under the null model. This allows you to see how stringent the fit criteria are at different sample sizes.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="tbl-power-cutoff-fixed" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model (h1model_fixed)</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># using fit-index cutoffs implied by the null model.</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>power_fixed <span class="ot">&lt;-</span> <span class="fu">getPowerFit</span>(</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  h1model_fixed,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">nullObject =</span> popmodel_fixed,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive empirical cutoff values for the selected fit indices</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co"># from the null-model sampling distribution under the same conditions.</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>cutoff_fixed <span class="ot">&lt;-</span> <span class="fu">getCutoff</span>(</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  popmodel_fixed,</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine power and cutoff values into a compact summary table.</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>power_cutoff_fixed <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Power"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(power_fixed),</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cutoff"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(cutoff_fixed[<span class="dv">1</span>, ])</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in rbind(Power = as.numeric(power_fixed), Cutoff =
+as.numeric(cutoff_fixed[1, : number of columns of result is not a multiple of
+vector length (arg 2)</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(power_cutoff_fixed) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(power_fixed))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(power_cutoff_fixed, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="st">"c"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="tbl-power-cutoff-fixed" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Power for fit index cutoffs with fixed sample size.
+Power and fit index cutoff values with fixed sample size.
 </figcaption>
 <div aria-describedby="tbl-power-cutoff-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    h1model_fixed,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nullObject =</span> popmodel_fixed,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>TraditionalChi          rmsea           srmr            cfi            tli 
-             1              1              1              1              1 </code></pre>
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">TRADITIONALCHI</th>
+<th style="text-align: center;">RMSEA</th>
+<th style="text-align: center;">SRMR</th>
+<th style="text-align: center;">CFI</th>
+<th style="text-align: center;">TLI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Power</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cutoff</td>
+<td style="text-align: center;">0.025</td>
+<td style="text-align: center;">0.042</td>
+<td style="text-align: center;">0.988</td>
+<td style="text-align: center;">0.986</td>
+<td style="text-align: center;">0.025</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </figure>
 </div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="tbl-fit-cutoff-fixed" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fit-cutoff-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Fit index cutoff values with fixed sample size.
-</figcaption>
-<div aria-describedby="tbl-fit-cutoff-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getCutoff</span>(</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    popmodel_fixed,</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>         rmsea       srmr       cfi       tli
-95% 0.02473118 0.04184716 0.9875703 0.9859975</code></pre>
-</div>
-</div>
-</figure>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="tbl-param-summary-fixed" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-param-summary-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Summary of parameter estimates with fixed sample size.
-</figcaption>
-<div aria-describedby="tbl-param-summary-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summaryParam</span>(h1model_fixed, <span class="at">alpha =</span> ALPHA, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">detail =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                      Estimate Average Estimate SD Average SE
-psycho=~Q5                       0.917       0.050      0.049
-psycho=~Q6                       0.808       0.053      0.053
-psycho=~Q7                       0.936       0.050      0.049
-psycho=~Q11                      0.726       0.055      0.055
-psycho=~Q19                      0.747       0.056      0.054
-psycho=~Q26                      0.631       0.060      0.057
-physical=~Q3                     0.836       0.054      0.054
-physical=~Q4                     0.828       0.056      0.054
-physical=~Q10                    0.630       0.057      0.057
-physical=~Q15                    0.761       0.055      0.056
-physical=~Q16                    0.678       0.059      0.057
-physical=~Q17                    0.888       0.055      0.054
-physical=~Q18                    0.608       0.057      0.058
-social=~Q20                      0.939       0.055      0.055
-social=~Q21                      0.888       0.055      0.055
-social=~Q22                      0.780       0.059      0.057
-environment=~Q8                  0.506       0.057      0.060
-environment=~Q9                  0.550       0.058      0.058
-environment=~Q12                 0.782       0.057      0.057
-environment=~Q13                 0.805       0.057      0.057
-environment=~Q14                 0.765       0.059      0.058
-environment=~Q23                 0.745       0.059      0.058
-environment=~Q24                 0.635       0.060      0.059
-environment=~Q25                 0.728       0.062      0.058
-psycho~~physical                 0.208       0.055      0.055
-psycho~~social                   0.205       0.057      0.055
-psycho~~environment              0.258       0.057      0.058
-physical~~social                 0.208       0.056      0.056
-physical~~environment            0.248       0.058      0.058
-social~~environment              0.214       0.058      0.057
-Q3~~Q4                           0.094       0.028      0.028
-Q5~~Q5                           0.153       0.022      0.022
-Q6~~Q6                           0.342       0.038      0.037
-Q7~~Q7                           0.115       0.020      0.020
-Q11~~Q11                         0.465       0.048      0.047
-Q19~~Q19                         0.434       0.045      0.044
-Q26~~Q26                         0.599       0.060      0.059
-Q3~~Q3                           0.295       0.034      0.036
-Q4~~Q4                           0.313       0.038      0.037
-Q10~~Q10                         0.598       0.061      0.061
-Q15~~Q15                         0.413       0.046      0.044
-Q16~~Q16                         0.534       0.056      0.055
-Q17~~Q17                         0.210       0.031      0.030
-Q18~~Q18                         0.623       0.065      0.064
-Q20~~Q20                         0.115       0.033      0.032
-Q21~~Q21                         0.205       0.034      0.033
-Q22~~Q22                         0.390       0.044      0.044
-Q8~~Q8                           0.733       0.073      0.074
-Q9~~Q9                           0.692       0.073      0.069
-Q12~~Q12                         0.378       0.046      0.044
-Q13~~Q13                         0.348       0.044      0.042
-Q14~~Q14                         0.409       0.052      0.048
-Q23~~Q23                         0.438       0.051      0.051
-Q24~~Q24                         0.587       0.067      0.065
-Q25~~Q25                         0.466       0.059      0.055
-Q5~1                             0.001       0.055      0.054
-Q6~1                            -0.001       0.055      0.054
-Q7~1                             0.000       0.054      0.054
-Q11~1                            0.000       0.054      0.055
-Q19~1                           -0.001       0.054      0.055
-Q26~1                            0.000       0.058      0.055
-Q3~1                             0.000       0.055      0.054
-Q4~1                             0.001       0.055      0.054
-Q10~1                            0.000       0.054      0.055
-Q15~1                            0.002       0.055      0.055
-Q16~1                           -0.001       0.055      0.055
-Q17~1                            0.001       0.053      0.054
-Q18~1                            0.000       0.055      0.055
-Q20~1                            0.000       0.056      0.054
-Q21~1                            0.001       0.056      0.054
-Q22~1                           -0.001       0.055      0.055
-Q8~1                             0.001       0.056      0.055
-Q9~1                             0.001       0.055      0.055
-Q12~1                            0.000       0.054      0.055
-Q13~1                            0.001       0.053      0.055
-Q14~1                            0.001       0.052      0.055
-Q23~1                           -0.001       0.054      0.055
-Q24~1                           -0.001       0.056      0.055
-Q25~1                           -0.001       0.056      0.055
-                      Power (Not equal 0) Std Est Std Est SD Std Ave SE
-psycho=~Q5                          1.000   0.919      0.013      0.013
-psycho=~Q6                          1.000   0.810      0.023      0.023
-psycho=~Q7                          1.000   0.940      0.011      0.011
-psycho=~Q11                         1.000   0.728      0.031      0.030
-psycho=~Q19                         1.000   0.749      0.029      0.028
-psycho=~Q26                         1.000   0.631      0.038      0.037
-physical=~Q3                        1.000   0.838      0.021      0.022
-physical=~Q4                        1.000   0.828      0.023      0.022
-physical=~Q10                       1.000   0.630      0.037      0.037
-physical=~Q15                       1.000   0.763      0.027      0.028
-physical=~Q16                       1.000   0.679      0.034      0.034
-physical=~Q17                       1.000   0.888      0.018      0.017
-physical=~Q18                       1.000   0.609      0.039      0.038
-social=~Q20                         1.000   0.940      0.018      0.017
-social=~Q21                         1.000   0.890      0.020      0.019
-social=~Q22                         1.000   0.780      0.026      0.026
-environment=~Q8                     1.000   0.508      0.045      0.047
-environment=~Q9                     1.000   0.550      0.043      0.043
-environment=~Q12                    1.000   0.785      0.027      0.027
-environment=~Q13                    1.000   0.806      0.025      0.025
-environment=~Q14                    1.000   0.766      0.029      0.029
-environment=~Q23                    1.000   0.747      0.030      0.030
-environment=~Q24                    1.000   0.637      0.039      0.038
-environment=~Q25                    1.000   0.728      0.033      0.032
-psycho~~physical                    0.956   0.208      0.055      0.055
-psycho~~social                      0.946   0.205      0.057      0.055
-psycho~~environment                 0.991   0.258      0.057      0.058
-physical~~social                    0.953   0.208      0.056      0.056
-physical~~environment               0.987   0.248      0.058      0.058
-social~~environment                 0.940   0.214      0.058      0.057
-Q3~~Q4                              0.937   0.305      0.073      0.073
-Q5~~Q5                              1.000   0.154      0.024      0.023
-Q6~~Q6                              1.000   0.344      0.037      0.037
-Q7~~Q7                              1.000   0.116      0.022      0.021
-Q11~~Q11                            1.000   0.469      0.044      0.043
-Q19~~Q19                            1.000   0.438      0.043      0.042
-Q26~~Q26                            1.000   0.601      0.048      0.046
-Q3~~Q3                              1.000   0.298      0.035      0.036
-Q4~~Q4                              1.000   0.314      0.038      0.037
-Q10~~Q10                            1.000   0.601      0.046      0.047
-Q15~~Q15                            1.000   0.417      0.041      0.042
-Q16~~Q16                            1.000   0.538      0.047      0.045
-Q17~~Q17                            1.000   0.211      0.032      0.031
-Q18~~Q18                            1.000   0.627      0.047      0.047
-Q20~~Q20                            0.949   0.116      0.034      0.032
-Q21~~Q21                            0.999   0.207      0.036      0.034
-Q22~~Q22                            1.000   0.391      0.041      0.041
-Q8~~Q8                              1.000   0.740      0.045      0.048
-Q9~~Q9                              1.000   0.695      0.047      0.047
-Q12~~Q12                            1.000   0.383      0.042      0.042
-Q13~~Q13                            1.000   0.350      0.040      0.041
-Q14~~Q14                            1.000   0.412      0.045      0.044
-Q23~~Q23                            1.000   0.442      0.045      0.045
-Q24~~Q24                            1.000   0.592      0.050      0.049
-Q25~~Q25                            1.000   0.468      0.048      0.046
-Q5~1                                0.050   0.002      0.056      0.054
-Q6~1                                0.061   0.000      0.055      0.055
-Q7~1                                0.054   0.001      0.054      0.054
-Q11~1                               0.054   0.001      0.055      0.055
-Q19~1                               0.051   0.000      0.055      0.055
-Q26~1                               0.065   0.001      0.058      0.055
-Q3~1                                0.054   0.001      0.055      0.054
-Q4~1                                0.050   0.002      0.055      0.054
-Q10~1                               0.045   0.000      0.054      0.055
-Q15~1                               0.055   0.002      0.055      0.055
-Q16~1                               0.044  -0.001      0.055      0.055
-Q17~1                               0.040   0.000      0.053      0.054
-Q18~1                               0.057   0.000      0.056      0.055
-Q20~1                               0.060  -0.001      0.057      0.054
-Q21~1                               0.063   0.000      0.057      0.054
-Q22~1                               0.053  -0.002      0.056      0.055
-Q8~1                                0.050   0.002      0.057      0.056
-Q9~1                                0.043   0.001      0.055      0.056
-Q12~1                               0.045  -0.001      0.055      0.055
-Q13~1                               0.045   0.000      0.053      0.055
-Q14~1                               0.048   0.000      0.053      0.055
-Q23~1                               0.057  -0.002      0.055      0.055
-Q24~1                               0.051  -0.002      0.056      0.055
-Q25~1                               0.056  -0.002      0.056      0.055</code></pre>
-</div>
-</div>
-</figure>
 </div></div>
 </section>
 </section>
 <section id="power-analysis-with-traditional-fits" class="level2">
 <h2 class="anchored" data-anchor-id="power-analysis-with-traditional-fits">Power analysis with traditional fits</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="cell-fig-fit-curve-fixed" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    h1model_fixed,</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    popmodel_fixed,</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cutoff =</span> RULE_OF_THUMB,</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-fig-fit-curve-fixed" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    h1model_fixed,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    popmodel_fixed,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cutoff =</span> RULE_OF_THUMB,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-fit-curve-fixed" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -652,25 +510,54 @@ Power curves using traditional fit index cutoffs with fixed sample size.
 </div>
 </div>
 </div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power using traditional fit-index cutoffs.</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>power_traditional <span class="ot">&lt;-</span> <span class="fu">getPowerFit</span>(</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  h1model_fixed,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  RULE_OF_THUMB,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a one-row table with column headers.</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>power_traditional_tbl <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">as.data.frame</span>(power_traditional))</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(power_traditional_tbl) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(power_traditional))</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(power_traditional_tbl) <span class="ot">&lt;-</span> <span class="st">"Power"</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(power_traditional_tbl, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="st">"c"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="tbl-power-cutoff-traditional" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Power for traditional fit index cutoffs with fixed sample size.
 </figcaption>
 <div aria-describedby="tbl-power-cutoff-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    h1model_fixed,</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    RULE_OF_THUMB,</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  cfi   tli rmsea  srmr 
-0.222 0.483 0.000 0.997 </code></pre>
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">CFI</th>
+<th style="text-align: center;">TLI</th>
+<th style="text-align: center;">RMSEA</th>
+<th style="text-align: center;">SRMR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Power</td>
+<td style="text-align: center;">0.222</td>
+<td style="text-align: center;">0.483</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.997</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </figure>
+</div></div>
 </div></div>
 </section>
      </main>

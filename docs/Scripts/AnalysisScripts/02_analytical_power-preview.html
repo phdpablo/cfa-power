@@ -189,7 +189,7 @@
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     document.body.classList.add('hypothesis-enabled');
   });
-</script>  
+</script>   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script> 
       </head>
 
   <body class="quarto-notebook quarto-light">
@@ -380,8 +380,8 @@ Attaching package: 'dplyr'</code></pre>
 <h2 class="anchored" data-anchor-id="a-priori-power-analysis-determine-n">A priori power analysis: Determine N</h2>
 <section id="model-free-approach-rmsea-based" class="level3">
 <h3 class="anchored" data-anchor-id="model-free-approach-rmsea-based">Model-free approach (RMSEA-based)</h3>
-<p>This chunk uses <code>semPower::semPower.aPriori()</code> to compute the minimum sample size required for an a priori power analysis based on RMSEA, given the target (), desired power, and model degrees of freedom <span class="citation" data-cites="moshagen2024">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
-<p>The output returns the required number of observations and the associated quantities reported by <code>semPower</code>, such as (F_0), RMSEA, Mc, the critical chi-square value, and the noncentrality parameter.</p>
+<p>This chunk uses <code>semPower::semPower.aPriori()</code> to compute the minimum sample size required for an a priori power analysis based on RMSEA, given the target (<span class="math inline">\(\alpha\)</span>), desired power, and model degrees of freedom <span class="citation" data-cites="moshagen2024">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>The output returns the required number of observations and the associated quantities reported by <code>semPower</code>, such as <span class="math inline">\(F_0\)</span>, RMSEA, Mc, the critical chi-square value, and the noncentrality parameter.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! fig-cap: "A priori power analysis for exact fit with RMSEA-based effect size"</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -489,7 +489,7 @@ Attaching package: 'dplyr'</code></pre>
 <h2 class="anchored" data-anchor-id="power-curves">Power curves</h2>
 <section id="model-free-approach" class="level3">
 <h3 class="anchored" data-anchor-id="model-free-approach">Model-free approach</h3>
-<p>This chunk generates a model-free power curve showing how statistical power changes as a function of sample size (N) for a fixed effect defined as ( = 0.05), given the chosen significance level () and the model degrees of freedom (df) <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>This chunk generates a model-free power curve showing how statistical power changes as a function of sample size <span class="math inline">\(N\)</span> for a fixed effect defined as <span class="math inline">\(\mathrm{RMSEA} = 0.05\)</span>, given the chosen significance level <span class="math inline">\(\alpha\)</span> and the model degrees of freedom <span class="math inline">\(df\)</span> <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
 <p>In <code>semPower</code>, this is an analytical power plot for a noncentrality-based effect measure, so the curve summarizes the expected power across a range of sample sizes while holding the effect size and test conditions constant <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-fig-power-rmsea" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -518,7 +518,7 @@ Power as a function of sample size for RMSEA = 0.05
 </section>
 <section id="model-based-approach" class="level3">
 <h3 class="anchored" data-anchor-id="model-based-approach">Model-based approach</h3>
-<p>This chunk produces a power curve for the model-based analysis stored in <code>ap_popmodel</code>, displaying how statistical power changes as a function of sample size (N) for the effect defined in that object <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>. In <code>semPower</code>, <code>semPower.powerPlot()</code> is used to visualize the power trajectory implied by a previously estimated power-analysis object, which is useful for identifying the sample-size region in which power becomes adequate <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>This chunk produces a power curve for the model-based analysis stored in <code>ap_popmodel</code>, displaying how statistical power changes as a function of sample size <span class="math inline">\(N\)</span> for the effect defined in that object <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>. In <code>semPower</code>, <code>semPower.powerPlot()</code> is used to visualize the power trajectory implied by a previously estimated power-analysis object, which is useful for identifying the sample-size region in which power becomes adequate <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="cell-fig-power-popmodel" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots the power curve based on the previously computed object `ap_popmodel`.</span></span>

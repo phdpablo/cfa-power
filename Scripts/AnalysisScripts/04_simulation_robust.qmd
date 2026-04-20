@@ -69,11 +69,20 @@ h1model_miss <- cache_or_run("h1model_miss", {
 
 ### Power curves for fit indices
 
+These chunks summarize a simulation-based, a priori power analysis for global fit under $10\%$ MCAR missingness. The goal is to evaluate how much sample size is needed for the analysis model to reliably distinguish itself from a misspecified competing model when the decision is based on RMSEA, SRMR, CFI, and TLI, following the logic of model-based Monte Carlo power analysis in SEM [@moshagen2024; @feng2023].
+
 ```{r}
 #| label: fig-power-curve-missing
 #| fig-cap: "Power curves for fit indices under missing data conditions."
 #| fig-width: 8
 #| fig-height: 5
+
+# Plot model-based power as a function of N.
+# The null object provides the reference cutoff distribution,
+# and the alternative object represents the misspecified model.
+# With logistic = TRUE, simsem smooths the rejection probability
+# over N using logistic regression, which is useful for identifying
+# the sample size at which power approaches the target level.
 
 plotPowerFit(
     h1model_miss,
@@ -83,12 +92,15 @@ plotPowerFit(
 )
 ```
 
-
 ```{r}
 #| label: fig-fit-curve-missing
 #| fig-cap: "Power curves for fit indices under missing data conditions without logistic smoothing."
 #| fig-width: 8
 #| fig-height: 5
+
+# Plot the same power information without logistic smoothing.
+# Here the figure shows the simulated fit-index values directly across N,
+# which helps visualize how the sampling distributions separate as sample size increases @simsem.
 
 plotPowerFit(
     h1model_miss,
@@ -101,45 +113,46 @@ plotPowerFit(
 
 ### Power cutoff values for fit indices
 
-You extract the cutoff values for fit indices at a given alpha level and sample size to determine the threshold for acceptable fit under the null model. This allows you to see how stringent the fit criteria are at different sample sizes.
+The next chunk summarizes the model-based decision quantities used in the power analysis. In `simsem`, power is obtained by comparing the sampling distribution under the misspecified model against cutoffs derived from the reference model at the chosen $\alpha$ level, for the same sample size and missing-data condition [@simsem2021; @jobst2023].
 
 ```{r}
 #| label: tbl-power-cutoff-missing
-#| tbl-cap: "Power for fit index cutoffs under missing data conditions at N = 359."
+#| tbl-cap: "Power and fit index cutoff values under missing data conditions at N = 359."
 
-getPowerFit(
+# Estimate power for rejecting the misspecified model
+# using fit-index cutoffs implied by the reference model at alpha = .05 and N = 359.
+power_miss <- getPowerFit(
     h1model_miss,
     nullObject = popmodel_miss,
     alpha = ALPHA,
     nVal = 359,
     usedFit = FITS
 )
-```
 
-```{r}
-#| label: tbl-fit-cutoff-missing
-#| tbl-cap: "Fit index cutoff values under missing data conditions at N = 359."
-
-getCutoff(
+# Derive empirical cutoff values for the selected fit indices
+# from the reference-model sampling distribution under the same conditions.
+cutoff_miss <- getCutoff(
     popmodel_miss,
     alpha = ALPHA,
     nVal = 359,
     usedFit = FITS
 )
+
+# Combine power and cutoff values into a compact summary table.
+power_cutoff_miss <- rbind(
+    "Power" = as.numeric(power_miss),
+    "Cutoff" = as.numeric(cutoff_miss[1, ])
+)
+
+colnames(power_cutoff_miss) <- toupper(names(power_miss)) # Standardize column names for presentation.
+
+knitr::kable(power_cutoff_miss, digits = 3, align = "c") # Print the table.
 ```
 
 
 ## Scenario B — Non-normality
 
-Generate data from the population model with normal distributions, then
-apply marginal transformations to introduce moderate non-normality
-(skewness ≈ 1.5, kurtosis ≈ 3). This simulates realistic conditions where
-psychological data often deviate from multivariate normality.
-
-We use a custom data generation function that applies a power transformation
-to each variable after generation, combined with ML and MLR estimators to
-show the impact.
-
+This scenario simulates data with varying degrees of non-normality by applying marginal transformations to the observed variables. The `dist` object defined in `helpers.R` specifies a range of skewness and kurtosis values to create different non-normal conditions. This allows us to evaluate how robust fit indices perform when the normality assumption is violated, which is common in real-world data. We use the same estimation method (MLR) that provides robust standard errors and fit indices under non-normal conditions.
 
 ```{r}
 #| label: sim-nnorm-popmodel
@@ -184,173 +197,88 @@ h1model_nnorm <- cache_or_run("h1model_nnorm", {
 
 ### Power curves for fit indices
 
+This section evaluates power to reject a misspecified SEM across varying $N$ using fit-index cutoffs derived from the null-model sampling distribution, which aligns with the simulation-based logic of absolute-fit power analysis in SEM [@simsem2021; @wang2023].
+
 ```{r}
 #| label: fig-power-curve-nnorm
-#| fig-cap: "Power curves for robust fit indices under non-normal conditions."
+#| fig-cap: "Power curves for fit indices under non-normal conditions."
 #| fig-width: 8
 #| fig-height: 5
 
+# Plot power as a function of N for the selected fit indices.
+# In simsem, plotPowerFit visualizes rejection power for a misspecified model
+# using either cutoffs supplied directly or cutoffs implied by the null model
+
+# With nullObject = popmodel_nnorm, the cutoff for each index is taken from the
+# null-model sampling distribution rather than from fixed rules of thumb.
+
+# When a varying condition such as sample size is present and logistic = TRUE
+# (the default), the plotted curve is based on logistic regression smoothing
+# of the reject/retain decision over that varying condition.
+
 plotPowerFit(
-    h1model_nnorm,
-    popmodel_nnorm,
-    alpha = ALPHA,
-    usedFit = FITS
+  h1model_nnorm,
+  popmodel_nnorm,
+  alpha = ALPHA,
+  usedFit = FITS
 )
 ```
 
+The next figure shows the same power analysis without logistic smoothing, so the empirical separation between simulated values and the cutoff line can be inspected more directly [@simsem2021]
 
 ```{r}
 #| label: fig-fit-curve-nnorm
-#| fig-cap: "Power curves for robust fit indices under non-normal conditions without logistic smoothing."
+#| fig-cap: "Power curves for fit indices under non-normal conditions without logistic smoothing."
 #| fig-width: 8
 #| fig-height: 5
 
+# Reproduce the same plot, but disable logistic smoothing.
+# In simsem, logistic = FALSE overlays the raw simulated fit-index values and the
+# cutoff line, which is useful for checking dispersion and overlap across N
+
 plotPowerFit(
-    h1model_nnorm,
-    popmodel_nnorm,
-    alpha = ALPHA,
-    usedFit = FITS,
-    logistic = FALSE
+  h1model_nnorm,
+  popmodel_nnorm,
+  alpha = ALPHA,
+  usedFit = FITS,
+  logistic = FALSE
 )
 ```
 
-### Power cutoff values for fit indices
-
-You extract the cutoff values for fit indices at a given alpha level and sample size to determine the threshold for acceptable fit under the null model. This allows you to see how stringent the fit criteria are at different sample sizes.
+At $N = 228$, the code below extracts both index-specific power and the corresponding empirical cutoff values under the same $\alpha$ level, so the rejection rule and its operating performance are evaluated on the same sampling basis [@simsem2021; @feng2023].
 
 ```{r}
 #| label: tbl-power-cutoff-nnorm
-#| tbl-cap: "Power for robust fit index cutoffs under non-normal conditions at N = 228."
+#| tbl-cap: "Power and fit index cutoff values under non-normal conditions at N = 228."
 
-getPowerFit(
-    h1model_nnorm,
-    nullObject = popmodel_nnorm,
-    alpha = ALPHA,
-    nVal = 228,
-    usedFit = FITS
+# Estimate power to reject the misspecified model at N = 228.
+# getPowerFit returns the probability that each selected fit index classifies
+# the misspecified model as worse than the null-based cutoff
+power_nnorm <- getPowerFit(
+  h1model_nnorm,
+  nullObject = popmodel_nnorm,
+  alpha = ALPHA,
+  nVal = 228,
+  usedFit = FITS
 )
-```
 
-```{r}
-#| label: tbl-fit-cutoff-nnorm
-#| tbl-cap: "Robust fit index cutoff values under non-normal conditions at N = 228."
-
-getCutoff(
-    popmodel_nnorm,
-    alpha = ALPHA,
-    nVal = 228,
-    usedFit = FITS
+# Derive empirical cutoff values from the null-model sampling distribution
+# under the same alpha level and sample size
+cutoff_nnorm <- getCutoff(
+  popmodel_nnorm,
+  alpha = ALPHA,
+  nVal = 228,
+  usedFit = FITS
 )
-```
 
-
-## Scenario C — Missing data + Non-normality
-
-This scenario combines the challenges of missing data and non-normality, reflecting common issues in real-world datasets. We generate data with 10% MAR missingness and apply the same marginal transformations to introduce non-normality.
-
-```{r}
-#| label: sim-normiss-popmodel
-#| cache: true
-
-popmodel_normiss <- cache_or_run("popmodel_normiss", {
-    sim(
-        NULL,
-        n = SEQ2,             # See the `SEQ2` object defined in helpers.R for the sample size sequence used in this scenario.
-        pmMCAR = 0.10,
-        analyzemodel,
-        generate = popmodel,
-        indDist = dist,       # See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.
-        std.lv = TRUE,
-        lavaanfun = "cfa",
-        estimator = "mlr",
-        missing = "fiml",
-        seed = SEED,
-        multicore = TRUE
-    )
-})
-```
-
-
-```{r}
-#| label: sim-normiss-h1model
-#| cache: true
-
-h1model_normiss <- cache_or_run("h1model_normiss", {
-    sim(
-        NULL,
-        n = SEQ2,             # See the `SEQ2` object defined in helpers.R for the sample size sequence used in this scenario.
-        pmMCAR = 0.10,
-        analyzemodel,
-        generate = h1model,
-        indDist = dist,       # See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.
-        std.lv = TRUE,
-        lavaanfun = "cfa",
-        estimator = "mlr",
-        missing = "fiml",
-        seed = SEED,
-        multicore = TRUE
-    )
-})
-```
-
-### Power curves for fit indices
-
-```{r}
-#| label: fig-power-curve-normiss
-#| fig-cap: "Power curves for robust fit indices under missing data and non-normal conditions."
-#| fig-width: 8
-#| fig-height: 5
-
-plotPowerFit(
-    h1model_normiss,
-    popmodel_normiss,
-    alpha = ALPHA,
-    usedFit = FITS
+# Combine operating characteristics (power) and decision thresholds (cutoffs)
+# into a compact table for direct reporting
+power_cutoff_nnorm <- rbind(
+  "Power" = as.numeric(power_nnorm),
+  "Cutoff" = as.numeric(cutoff_nnorm[1, ])
 )
-```
 
+colnames(power_cutoff_nnorm) <- toupper(names(power_nnorm))
 
-```{r}
-#| label: fig-fit-curve-normiss
-#| fig-cap: "Power curves for robust fit indices under missing data and non-normal conditions without logistic smoothing."
-#| fig-width: 8
-#| fig-height: 5
-
-plotPowerFit(
-    h1model_normiss,
-    popmodel_normiss,
-    alpha = ALPHA,
-    usedFit = FITS,
-    logistic = FALSE
-)
-```
-
-
-### Power cutoff values for fit indices
-
-You extract the cutoff values for fit indices at a given alpha level and sample size to determine the threshold for acceptable fit under the null model. This allows you to see how stringent the fit criteria are at different sample sizes.
-
-```{r}
-#| label: tbl-power-cutoff-normiss
-#| tbl-cap: "Power for robust fit index cutoffs under missing data and non-normal conditions at N = 200."
-
-getPowerFit(
-    h1model_normiss,
-    nullObject = popmodel_normiss,
-    alpha = ALPHA,
-    nVal = 200,
-    usedFit = FITS
-)
-```
-
-```{r}
-#| label: tbl-fit-cutoff-normiss
-#| tbl-cap: "Robust fit index cutoff values under missing data and non-normal conditions at N = 200."
-
-getCutoff(
-    popmodel_normiss,
-    alpha = ALPHA,
-    nVal = 200,
-    usedFit = FITS
-)
+knitr::kable(power_cutoff_nnorm, digits = 3, align = "c")
 ```

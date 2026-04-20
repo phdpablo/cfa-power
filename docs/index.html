@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Pablo Rogers">
-<meta name="dcterms.date" content="2026-04-18">
+<meta name="dcterms.date" content="2026-04-20">
 <meta name="keywords" content="Power Analysis, Confirmatory Factor Analysis, Structural Equation Modeling, Monte Carlo Simulation, semPower, simsem">
 
 <title>Power Analysis for Confirmatory Factor Analysis: A Practical Tutorial</title>
@@ -105,10 +105,10 @@ window.Quarto = {
 ">
 <meta name="citation_keywords" content="Power Analysis,Confirmatory Factor Analysis,Structural Equation Modeling,Monte Carlo Simulation,semPower,simsem">
 <meta name="citation_author" content="Pablo Rogers">
-<meta name="citation_publication_date" content="2026-04-18">
-<meta name="citation_cover_date" content="2026-04-18">
+<meta name="citation_publication_date" content="2026-04-20">
+<meta name="citation_cover_date" content="2026-04-20">
 <meta name="citation_year" content="2026">
-<meta name="citation_online_date" content="2026-04-18">
+<meta name="citation_online_date" content="2026-04-20">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Simsem: SIMulated Structural Equation Modeling;,citation_author=Sunthud Pornprasertmanit;,citation_author=Patrick Miller;,citation_author=Alexander Schoemann;,citation_author=Terrence D. Jorgensen;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_fulltext_html_url=https://CRAN.R-project.org/package=simsem;">
 <meta name="citation_reference" content="citation_title=Validation of the factor structure of the WHOQOL-BREF using meta-analysis of exploratory factor analysis and social network analysis;,citation_author=Lin-Ching Lin;,citation_author=Grace Yao;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_issue=7;,citation_doi=10.1037/pas0001122;,citation_volume=34;,citation_journal_title=Psychological Assessment;">
@@ -180,7 +180,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">April 18, 2026</p>
+              <p class="date">April 20, 2026</p>
             </div>
           </div>
           
@@ -239,18 +239,13 @@ window.Quarto = {
   <li><a href="#parameter-level-power-under-the-naive-model" id="toc-parameter-level-power-under-the-naive-model" class="nav-link" data-scroll-target="#parameter-level-power-under-the-naive-model"><span class="header-section-number">5</span> Parameter-level power under the naive model</a>
   <ul class="collapse">
   <li><a href="#misspecification-and-population-sensitivity" id="toc-misspecification-and-population-sensitivity" class="nav-link" data-scroll-target="#misspecification-and-population-sensitivity"><span class="header-section-number">5.1</span> Misspecification and population sensitivity</a></li>
-  <li><a href="#conceptual-background" id="toc-conceptual-background" class="nav-link" data-scroll-target="#conceptual-background"><span class="header-section-number">5.2</span> Conceptual background</a></li>
   </ul></li>
   <li><a href="#sec-sim-robust" id="toc-sec-sim-robust" class="nav-link" data-scroll-target="#sec-sim-robust"><span class="header-section-number">6</span> Monte Carlo Simulation: Realistic Scenarios</a>
   <ul class="collapse">
-  <li><a href="#sec-nonnormal" id="toc-sec-nonnormal" class="nav-link" data-scroll-target="#sec-nonnormal"><span class="header-section-number">6.1</span> Non-Normality</a></li>
-  <li><a href="#sec-missing" id="toc-sec-missing" class="nav-link" data-scroll-target="#sec-missing"><span class="header-section-number">6.2</span> Missing Data (MCAR)</a></li>
-  <li><a href="#sec-sensitivity" id="toc-sec-sensitivity" class="nav-link" data-scroll-target="#sec-sensitivity"><span class="header-section-number">6.3</span> Sensitivity Across Population Models</a></li>
-  <li><a href="#sec-scenarios-comparison" id="toc-sec-scenarios-comparison" class="nav-link" data-scroll-target="#sec-scenarios-comparison"><span class="header-section-number">6.4</span> Comparison</a></li>
+  <li><a href="#sec-missing" id="toc-sec-missing" class="nav-link" data-scroll-target="#sec-missing"><span class="header-section-number">6.1</span> Missing Data (MCAR)</a></li>
+  <li><a href="#sec-nonnormal" id="toc-sec-nonnormal" class="nav-link" data-scroll-target="#sec-nonnormal"><span class="header-section-number">6.2</span> Non-Normality</a></li>
+  <li><a href="#sec-scenarios-fixed" id="toc-sec-scenarios-fixed" class="nav-link" data-scroll-target="#sec-scenarios-fixed"><span class="header-section-number">6.3</span> Simulation with fixed N</a></li>
   </ul></li>
-  <li><a href="#sec-null-vs-alt" id="toc-sec-null-vs-alt" class="nav-link" data-scroll-target="#sec-null-vs-alt"><span class="header-section-number">7</span> Population Model vs.&nbsp;Empirical Model</a></li>
-  <li><a href="#sec-posthoc-analytical" id="toc-sec-posthoc-analytical" class="nav-link" data-scroll-target="#sec-posthoc-analytical"><span class="header-section-number">8</span> Post Hoc: Achieved Power</a></li>
-  <li><a href="#sec-synthesis" id="toc-sec-synthesis" class="nav-link" data-scroll-target="#sec-synthesis"><span class="header-section-number">9</span> When to Use What: Analytical vs.&nbsp;Simulation</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="Scripts\AnalysisScripts\02_analytical_power-preview.html"><i class="bi bi-journal-code"></i>Analytical Power Analysis</a></li><li><a href="index-preview.html"><i class="bi bi-journal-code"></i>Article Notebook</a></li><li><a href="Scripts\AnalysisScripts\05_model_comparison-preview.html"><i class="bi bi-journal-code"></i>Model Comparison (Null vs Alternative)</a></li><li><a href="Scripts\AnalysisScripts\01_population_models-preview.html"><i class="bi bi-journal-code"></i>Population Models</a></li><li><a href="Scripts\AnalysisScripts\06_posthoc-preview.html"><i class="bi bi-journal-code"></i>Post Hoc Power Analysis</a></li><li><a href="Scripts\AnalysisScripts\03_simulation_ideal-preview.html"><i class="bi bi-journal-code"></i>Simulation — Ideal Conditions</a></li><li><a href="Scripts\AnalysisScripts\04_simulation_robust-preview.html"><i class="bi bi-journal-code"></i>Simulation — Realistic Scenarios</a></li></ul></div></nav>
@@ -1512,7 +1507,7 @@ Figure&nbsp;8: Power curves for fit indices under ideal conditions.
 </div>
 </div>
 <p>The simulation under ideal conditions shows that power increases as sample size grows. At the lower end of the sample-size sequence, the fit indices remain below the target power threshold, indicating limited sensitivity to detect the imposed misspecification.</p>
-<p>As <span class="math inline">\(N\)</span> increases, the power curves rise steadily, showing that the same degree of misspecification becomes easier to detect in larger samples. The point at which each curve crosses the conventional target level (e.g., $ .80 $) marks the approximate minimum sample size required for that fit index to achieve adequate discriminatory performance.</p>
+<p>As <span class="math inline">\(N\)</span> increases, the power curves rise steadily, showing that the same degree of misspecification becomes easier to detect in larger samples. The point at which each curve crosses the conventional target level (e.g., .80) marks the approximate minimum sample size required for that fit index to achieve adequate discriminatory performance.</p>
 <p>The graph also shows that the fit indices do not behave identically across the sample-size range. Some indices reach the target power earlier, which indicates greater sensitivity to the discrepancy built into the alternative model, whereas others require larger <span class="math inline">\(N\)</span> to attain the same level of power.</p>
 <p>Taken together, the figure indicates that the required sample size depends on the specific fit criterion being used. Therefore, the most conservative planning decision is based on the fit index whose curve reaches the desired power threshold at the largest sample size.</p>
 <div class="quarto-embed-nb-cell">
@@ -1580,10 +1575,10 @@ Table&nbsp;4: Power and fit index cutoff values under ideal conditions at N = 23
 </div>
 <p>At <span class="math inline">\(N = 231\)</span>, the table shows that the estimated power was 0.9 for RMSEA, 0.995 for SRMR, and 0.801 for both CFI and TLI. Among the four indices, SRMR yielded the highest power, followed by RMSEA, whereas CFI and TLI produced the lowest and virtually identical power values.</p>
 <p>The empirical cutoff values were 0.039 for RMSEA, 0.058 for SRMR, 0.965 for CFI, and 0.961 for TLI. In practical terms, the rejection rule is stricter for RMSEA and SRMR above their cutoffs, and for CFI and TLI below their cutoffs.</p>
-<p>Taken together, the pattern of results is clear: $ &gt; &gt; $ in terms of power. Thus, within this specific analysis, SRMR provided the strongest discrimination, RMSEA also performed strongly, and CFI and TLI were just above the conventional <span class="math inline">\(0.80\)</span> threshold.</p>
+<p>Taken together, the pattern of results is clear: SRMR &gt; RMSEA &gt; CFI/TLI in terms of power. Thus, within this specific analysis, SRMR provided the strongest discrimination, RMSEA also performed strongly, and CFI and TLI were just above the conventional <span class="math inline">\(0.80\)</span> threshold.</p>
 <section id="traditional-cutoff-values-for-fit-indices" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="traditional-cutoff-values-for-fit-indices"><span class="header-section-number">4.1</span> Traditional cutoff values for fit indices</h3>
-<p>When traditional cutoffs are used, the analysis adopts fixed threshold values such as $ $, $ $, $ $, and $ $ as the decision boundaries for acceptable fit. Conceptually, this means that power is defined here as the proportion of replications in which the misspecified model crosses those predefined boundaries in the direction of worse fit.</p>
+<p>When traditional cutoffs are used, the analysis adopts fixed threshold values such as <span class="math inline">\(\text{RMSEA} \le .06\)</span>, <span class="math inline">\(\text{CFI} \ge .95\)</span>, <span class="math inline">\(\text{TLI} \ge .95\)</span>, and <span class="math inline">\(\text{SRMR} \le .06\)</span> as the decision boundaries for acceptable fit. Conceptually, this means that power is defined here as the proportion of replications in which the misspecified model crosses those predefined boundaries in the direction of worse fit.</p>
 <p>This setup is convenient because it mirrors common applied practice, but the literature also emphasizes that such rule-of-thumb cutoffs are not universally valid and should be interpreted cautiously, since fit measures are influenced by model features beyond the focal misspecification itself <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
 <p>A simulation-based power display is especially informative in SEM because it shows how the sampling behavior of fit indices changes as sample size varies, rather than relying only on a single summary value <span class="citation" data-cites="moshagen2024">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>. This is important because the same nominal cutoff may correspond to different practical rejection behavior depending on the model structure and the empirical distribution of the index under misspecification <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
 <p>For that reason, plotting fit-index-based power provides an intuitive bridge between formal power analysis and the applied decision rules researchers often use when judging model adequacy in substantive SEM work <span class="citation" data-cites="jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>)</span>.</p>
@@ -2261,7 +2256,7 @@ Table&nbsp;8: Parameter estimates and required sample size for 80% power under n
 </section>
 <section id="optimistic-model-1" class="level4" data-number="5.0.2">
 <h4 data-number="5.0.2" class="anchored" data-anchor-id="optimistic-model-1"><span class="header-section-number">5.0.2</span> Optimistic model</h4>
-<p>This subsection examines sample size requirements from a <strong>parameter-level</strong> perspective under the optimal model. The Monte Carlo setup used here evaluates how power changes as $ N $ varies and then identifies the smallest sample size required for each parameter to attain the target power level of $ .80 $. In the <code>simsem</code> framework, this type of analysis is useful for planning studies when the main concern is whether specific model components can be detected under assumed population conditions <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<p>This subsection examines sample size requirements from a <strong>parameter-level</strong> perspective under the optimal model. The Monte Carlo setup used here evaluates how power changes as <span class="math inline">\(N\)</span> varies and then identifies the smallest sample size required for each parameter to attain the target power level of <span class="math inline">\(.80\)</span>. In the <code>simsem</code> framework, this type of analysis is useful for planning studies when the main concern is whether specific model components can be detected under assumed population conditions <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <p>Within the optimal scenario, this step provides a benchmark for how demanding the focal parameters are when the model is estimated under more favorable assumptions. Thus, the analysis complements later global-fit evaluations by showing the local sample size requirements implied by the same CFA structure <span class="citation" data-cites="moshagen2024 simsem2021">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="quarto-embed-nb-cell">
 <div class="cell">
@@ -2300,18 +2295,18 @@ Table&nbsp;9: Parameter estimates and required sample size for 80% power under o
 </div>
 </div>
 </div>
-<p>The <a href="#tbl-power-n-opt" class="quarto-xref">Table&nbsp;9</a> shows a very sparse set of finite sample-size requirements under the optimal model. Only seven parameters remained with finite $ N $ values after filtering (not shown in the table), which indicates that, within the simulated range, these are the parameters for which a specific minimum sample size could be directly reported.</p>
+<p>The <a href="#tbl-power-n-opt" class="quarto-xref">Table&nbsp;9</a> shows a very sparse set of finite sample-size requirements under the optimal model. Only seven parameters remained with finite <span class="math inline">\(N\)</span> values after filtering (not shown in the table), which indicates that, within the simulated range, these are the parameters for which a specific minimum sample size could be directly reported.</p>
 <p>The only parameter with a meaningfully larger requirement is the residual covariance <span class="math inline">\(Q3 \sim\sim Q4\)</span>, which required <span class="math inline">\(N\)</span> = 139 to reach <span class="math inline">\(.80\)</span> power. This value is much higher than the others in the table and clearly stands out as the most demanding finite parameter in the optimal model.</p>
 <p>For that reason, the sample size decision implied by this table is governed by <span class="math inline">\(Q3 \sim\sim Q4\)</span>. If the goal is to ensure at least <span class="math inline">\(.80\)</span> power for all parameters with finite reported values in this output, the required sample size is <span class="math inline">\(N\)</span> = 139.</p>
-<p>Overall, the result is highly concentrated: most reported parameters are already adequately powered at $ N = 51 $, and only one parameter pushes the requirement upward. In practical terms, the optimal model appears easy to recover for the listed loadings and residual variances, while the residual covariance $ Q3 Q4 $ is the sole finite bottleneck in this table.</p>
+<p>Overall, the result is highly concentrated: most reported parameters are already adequately powered at <span class="math inline">\(N = 51\)</span>, and only one parameter pushes the requirement upward. In practical terms, the optimal model appears easy to recover for the listed loadings and residual variances, while the residual covariance <span class="math inline">\(Q3 \sim\sim Q4\)</span> is the sole finite bottleneck in this table.</p>
 </section>
 <section id="misspecification-and-population-sensitivity" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="misspecification-and-population-sensitivity"><span class="header-section-number">5.1</span> Misspecification and population sensitivity</h3>
 <section id="fit-index-based-power-under-the-naive-population" class="level4" data-number="5.1.1">
 <h4 data-number="5.1.1" class="anchored" data-anchor-id="fit-index-based-power-under-the-naive-population"><span class="header-section-number">5.1.1</span> Fit-index-based power under the naive population</h4>
 <p>This section evaluates <strong>global</strong> power from the perspective of naive model as population model. The Monte Carlo setup is designed to assess how well fit indices can discriminate between the reference condition (data generated under the naive model) and the alternative condition (data generated under the H1 model), across a range of sample sizes <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
-<p>The power curves across sample size show how the probability of rejecting the misspecified model evolves as $ N $ increases. This is consistent with the general theory of power in SEM, according to which power increases as the overlap between the null and alternative sampling distributions decreases, and that separation is strengthened by larger samples and clearer model discrepancy <span class="citation" data-cites="jobst2023 moshagen2024">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
-<p>In <code>simsem</code>, these curves can be displayed either as raw empirical patterns or as smoothed functions based on logistic regression when sample size varies across replications. The smoothed representation is useful because it summarizes the relation between the reject/retain decision and $ N $ into a continuous power function, whereas the unsmoothed version helps inspect the empirical fit-index distributions more directly <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<p>The power curves across sample size show how the probability of rejecting the misspecified model evolves as <span class="math inline">\(N\)</span> increases. This is consistent with the general theory of power in SEM, according to which power increases as the overlap between the null and alternative sampling distributions decreases, and that separation is strengthened by larger samples and clearer model discrepancy <span class="citation" data-cites="jobst2023 moshagen2024">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>In <code>simsem</code>, these curves can be displayed either as raw empirical patterns or as smoothed functions based on logistic regression when sample size varies across replications. The smoothed representation is useful because it summarizes the relation between the reject/retain decision and <span class="math inline">\(N\)</span> into a continuous power function, whereas the unsmoothed version helps inspect the empirical fit-index distributions more directly <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="quarto-embed-nb-cell">
 <div id="cell-fig-power-curve-naive" class="cell" data-fig-width="8" data-fig-height="5">
 <div class="cell-output cell-output-display">
@@ -2388,16 +2383,12 @@ Table&nbsp;10: Power and fit index cutoff values using the naive population mode
 </div>
 </div>
 </div>
-<p>At <span class="math inline">\(N = 330\)</span>, the estimated power values were $ &gt; .80 $ for all four indices, but they differed substantially in magnitude. RMSEA and SRMR showed very high power, with values close to <span class="math inline">\(0.99\)</span>, while CFI and TLI were just above the <span class="math inline">\(0.80\)</span> threshold, indicating that they are less sensitive to the misspecification under these conditions.</p>
+<p>At <span class="math inline">\(N = 330\)</span>, the estimated power values were <span class="math inline">\(&gt; .80\)</span> for all four indices, but they differed substantially in magnitude. RMSEA and SRMR showed very high power, with values close to <span class="math inline">\(0.99\)</span>, while CFI and TLI were just above the <span class="math inline">\(0.80\)</span> threshold, indicating that they are less sensitive to the misspecification under these conditions.</p>
 <p>These results indicate that SRMR produced the highest power, followed very closely by RMSEA. CFI and TLI yielded substantially lower power than RMSEA and SRMR, although both still reached the conventional <span class="math inline">\(0.80\)</span> threshold at <span class="math inline">\(N = 330\)</span>. The empirical cutoff values at <span class="math inline">\(N = 330\)</span> were more pessimistic than the conventional thresholds. These cutoffs reflect the thresholds derived from the null-model distribution at the chosen <span class="math inline">\(\alpha\)</span> level, which are used to determine whether the observed fit indices indicate a significant misspecification.</p>
 <p>The cutoff table and the figures are consistent with each other. RMSEA and SRMR show very strong discrimination at <span class="math inline">\(N = 330\)</span>, with power near 0.99, whereas CFI and TLI appear to be operating at the minimum level typically considered acceptable, with power just above 0.80. Overall, at this sample size, RMSEA and SRMR perform more strongly than CFI and TLI for detecting the difference represented in this naive-population condition.</p>
 </section>
 <section id="optimistic-model-2" class="level4" data-number="5.1.2">
 <h4 data-number="5.1.2" class="anchored" data-anchor-id="optimistic-model-2"><span class="header-section-number">5.1.2</span> Optimistic model</h4>
-</section>
-</section>
-<section id="conceptual-background" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="conceptual-background"><span class="header-section-number">5.2</span> Conceptual background</h3>
 <p>In this simulation-based approach implemented in <code>simsem</code>, cutoff values are first derived from the sampling distribution of the fit indices under an optimistic null model (population model), and power is then defined as the proportion of replications from the alternative condition (H1 model) that cross those cutoffs in the direction indicating worse fit. For indices in which larger values indicate poorer fit, such as RMSEA and SRMR, rejection is based on exceeding the cutoff; for indices in which larger values indicate better fit, such as CFI and TLI, rejection is based on falling below the cutoff.</p>
 <p>When sample size varies across replications, power can be represented as a function of <span class="math inline">\(N\)</span>, which makes it possible to study how discrimination improves as information accumulates. In <code>plotPowerFit()</code>, this relationship may be shown either through logistic smoothing, which summarizes the rejection process continuously over <span class="math inline">\(N\)</span>, or through the unsmoothed empirical pattern of simulated values and cutoff boundaries <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="quarto-embed-nb-cell">
@@ -2478,89 +2469,202 @@ Table&nbsp;11: Power and fit index cutoff values using the optimal population mo
 </div>
 </div>
 </div>
-<p>At <span class="math inline">\(N = 291\)</span>, the estimated power values are $ &gt; .80 $ for all four indices, but they differ in magnitude. The power values at this sample size is show in <a href="#tbl-power-cutoff-opt" class="quarto-xref">Table&nbsp;11</a>. These values indicate that, at the target sample size, all four indices achieve at least acceptable power, but they do so with different margins. SRMR and RMSEA are well above the conventional <span class="math inline">\(0.80\)</span> benchmark, whereas CFI and TLI are just above that threshold.</p>
+<p>At <span class="math inline">\(N = 291\)</span>, the estimated power values are <span class="math inline">\(&gt; .80\)</span> for all four indices, but they differ in magnitude. The power values at this sample size is show in <a href="#tbl-power-cutoff-opt" class="quarto-xref">Table&nbsp;11</a>. These values indicate that, at the target sample size, all four indices achieve at least acceptable power, but they do so with different margins. SRMR and RMSEA are well above the conventional <span class="math inline">\(0.80\)</span> benchmark, whereas CFI and TLI are just above that threshold.</p>
 <p>The cutoff values at <span class="math inline">\(N = 291\)</span> are more pessimistic than the conventional thresholds, reflecting the specific sampling distribution of the fit indices under the optimistic null model. These cutoffs are used to determine whether the observed fit indices indicate a significant misspecification in the alternative condition.</p>
 <p>Taken together, the results indicate that RMSEA and especially SRMR provide very strong discrimination under the optimal model at <span class="math inline">\(N = 291\)</span>. In contrast, CFI and TLI are the more demanding indices in this setting, because their power at the same sample size is adequate but still comparatively limited.</p>
 </section>
 </section>
+</section>
 <section id="sec-sim-robust" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="sec-sim-robust"><span class="header-section-number">6</span> Monte Carlo Simulation: Realistic Scenarios</h2>
-<p>Most applied survey data violate the ideal assumptions. Simulating how analytical robustness deteriorates helps us adjust the planned sample sizes to offset the expected penalty.</p>
-<section id="sec-nonnormal" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="sec-nonnormal"><span class="header-section-number">6.1</span> Non-Normality</h3>
-<p>Applying continuous but non-normal (e.g., highly skewed or kurtotic) generation exposes the vulnerability of unadjusted normal-theory ML tests, emphasizing the necessity of robust estimators (e.g., MLR).</p>
-</section>
-<section id="sec-missing" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="sec-missing"><span class="header-section-number">6.2</span> Missing Data (MCAR)</h3>
-<p>Missing data effectively shrinks <span class="math inline">\(N\)</span> through a loss of information, meaning empirical sample sizes must often be adjusted proportionately. This simulation evaluates the explicit power penalty of <span class="math inline">\(10\%\)</span> Missing Completely at Random strings.</p>
-</section>
-<section id="sec-sensitivity" class="level3" data-number="6.3">
-<h3 data-number="6.3" class="anchored" data-anchor-id="sec-sensitivity"><span class="header-section-number">6.3</span> Sensitivity Across Population Models</h3>
-<p>A robust power analysis examines boundaries. How drastically does necessary <span class="math inline">\(N\)</span> shift when our assumption about structural quality is overly naive, or overly optimistic?</p>
-</section>
-<section id="sec-scenarios-comparison" class="level3" data-number="6.4">
-<h3 data-number="6.4" class="anchored" data-anchor-id="sec-scenarios-comparison"><span class="header-section-number">6.4</span> Comparison</h3>
-</section>
-</section>
-<section id="sec-null-vs-alt" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="sec-null-vs-alt"><span class="header-section-number">7</span> Population Model vs.&nbsp;Empirical Model</h2>
-<p>Consider an epistemological question driving CFA: can we statistically distinguish the theorized population structure from an empirically estimated model with trivial incidental misspecifications that are ubiquitous in real-life sample covariance matrices? In this section, we compare empirical power distributions generated under a “Null” (empirical sample parameters representing noise) and an “Alternative” (our clean meta-analytic population model).</p>
-</section>
-<section id="sec-posthoc-analytical" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="sec-posthoc-analytical"><span class="header-section-number">8</span> Post Hoc: Achieved Power</h2>
-<p>For the empirical WHOQOL-BREF dataset, <span class="math inline">\(N = 1,047\)</span>. What is our achieved power if true RMSEA is 0.05?</p>
-</section>
-<section id="sec-synthesis" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="sec-synthesis"><span class="header-section-number">9</span> When to Use What: Analytical vs.&nbsp;Simulation</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
+<p>Power analysis in structural equation modeling should be framed as a design-stage procedure that connects substantive expectations, model specification, and data conditions to the probability of obtaining informative statistical tests, rather than as a mechanical search for a single “minimum <span class="math inline">\(N\)</span>” rule <span class="citation" data-cites="feng2023 wang2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+<p>SEM power analysis is strongest when it is anchored in a plausible population-generating mechanism rather than in generic rules of thumb or model-free calculators borrowed from simpler analyses <span class="citation" data-cites="feng2023 kyriazos2018">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-kyriazos2018" role="doc-biblioref">Kyriazos, 2018</a>)</span>.</p>
+<section id="sec-missing" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="sec-missing"><span class="header-section-number">6.1</span> Missing Data (MCAR)</h3>
+<p>Missing data must be treated as part of the design problem, not as a secondary complication to be handled only after estimation, because missingness reduces available information and therefore generally lowers estimation efficiency and statistical power <span class="citation" data-cites="feng2023 jak2021">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>)</span>.</p>
+<p>From this perspective, the relevant question is not only how many cases are planned, but how much usable information remains under the anticipated missing-data process <span class="citation" data-cites="feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>)</span>.</p>
+<p>This is one reason Monte Carlo power analysis is especially valuable in SEM with missing data: it allows the analyst to generate data under a prespecified population model, impose realistic missingness mechanisms such as MCAR or MAR, fit the intended analysis model, and estimate power empirically under the same conditions expected in practice <span class="citation" data-cites="feng2023 moshagen2024">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>Simulation-based power analysis is also advantageous when assumptions underlying purely analytical solutions become less credible, such as in the presence of incomplete data, non-normality, or more complex model structures <span class="citation" data-cites="feng2023 moshagen2024 wang2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+<p>In this sense, the Monte Carlo approach is not merely a computational alternative, but a way to align sample size planning with the actual data-generating conditions anticipated for the study <span class="citation" data-cites="moshagen2024 wang2023">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+<p>Conceptually, the purpose of the analysis is therefore twofold: first, to ensure enough sensitivity to test the focal theoretical relations, and second, to ensure enough sensitivity to evaluate whether the overall model remains substantively interpretable under the planned conditions <span class="citation" data-cites="wang2023 feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+<p>When missing data are expected, this dual objective becomes even more important, because power for parameter detection and power for fit evaluation may deteriorate at different rates as information is lost <span class="citation" data-cites="feng2023 wang2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+<p>A well-justified SEM power analysis thus rests on explicit assumptions about the population model, the magnitude of focal effects, the measurement structure, the estimation framework, and the expected missing-data mechanism <span class="citation" data-cites="moshagen2024 wang2023 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+<p>Under this logic, the reported power results should be understood as conditional on a theoretically motivated scenario, not as universal guarantees, which is precisely why transparent documentation of assumptions is essential in reproducible SEM workflows <span class="citation" data-cites="feng2023 moshagen2024">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>The <a href="#fig-power-curve-missing" class="quarto-xref">Figure&nbsp;15</a> shows the power curves for the four fit indices under the 10% missing MCAR missing-data scenario. The curves indicate that power is generally lower across the sample-size range compared to the ideal condition, which is expected due to the loss of information caused by missing data.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-power-curve-missing" class="cell" data-fig-width="8" data-fig-height="5">
+<div class="cell-output cell-output-display">
+<div id="fig-power-curve-missing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-power-curve-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-power-curve-missing-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Figure&nbsp;15: Power curves for fit indices under missing data conditions."><img src="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-power-curve-missing-output-1.png" width="768" height="480" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Power curves for fit indices under missing data conditions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The <a href="#fig-fit-curve-missing" class="quarto-xref">Figure&nbsp;16</a> shows the empirical distributions of the fit indices under the reference and alternative conditions with 10% MCAR missing data. The separation between the two conditions is less pronounced than in the ideal scenario, especially for CFI and TLI, which show more overlap in their distributions at smaller and intermediate sample sizes.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-fit-curve-missing" class="cell" data-fig-width="8" data-fig-height="5">
+<div class="cell-output cell-output-display">
+<div id="fig-fit-curve-missing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fit-curve-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-fit-curve-missing-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Figure&nbsp;16: Power curves for fit indices under missing data conditions without logistic smoothing."><img src="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-fit-curve-missing-output-1.png" width="768" height="480" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fit-curve-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16: Power curves for fit indices under missing data conditions without logistic smoothing.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The <a href="#tbl-power-cutoff-missing" class="quarto-xref">Table&nbsp;12</a> summarizes the power and cutoff values for each fit index at <span class="math inline">\(N = 359\)</span> under the missing data scenario. The estimated power values are lower than in the ideal condition, with RMSEA and SRMR still showing relatively high power, while CFI and TLI have notably reduced power, indicating that they are more sensitive to the loss of information caused by missing data.</p>
+<div class="quarto-embed-nb-cell">
+<div class="cell">
+<div id="tbl-power-cutoff-missing" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12: Power and fit index cutoff values under missing data conditions at N = 359.
+</figcaption>
+<div aria-describedby="tbl-power-cutoff-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown">
+<table class="cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Feature</th>
-<th style="text-align: left;">Analytical (<code>semPower</code>/<code>semTools</code>)</th>
-<th style="text-align: left;">Simulation (<code>simsem</code>)</th>
+<th></th>
+<th style="text-align: center;">RMSEA</th>
+<th style="text-align: center;">SRMR</th>
+<th style="text-align: center;">CFI</th>
+<th style="text-align: center;">TLI</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong>Speed</strong></td>
-<td style="text-align: left;">Instantaneous</td>
-<td style="text-align: left;">Minutes to hours</td>
+<td>Power</td>
+<td style="text-align: center;">0.947</td>
+<td style="text-align: center;">0.987</td>
+<td style="text-align: center;">0.802</td>
+<td style="text-align: center;">0.806</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong>Handles non-normality effectively</strong></td>
-<td style="text-align: left;">No</td>
-<td style="text-align: left;">Yes</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Handles missing data mechanism</strong></td>
-<td style="text-align: left;">No</td>
-<td style="text-align: left;">Yes</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Parameter-level power targeting</strong></td>
-<td style="text-align: left;">Very Limited</td>
-<td style="text-align: left;">Comprehensive</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Coverage / relative bias diagnostics</strong></td>
-<td style="text-align: left;">No</td>
-<td style="text-align: left;">Yes</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Primary Use-Case</strong></td>
-<td style="text-align: left;">Grant planning, quick rough parameterization bounds</td>
-<td style="text-align: left;">Pre-registration confirmation, sensitivity checks, final reporting</td>
+<td>Cutoff</td>
+<td style="text-align: center;">0.011</td>
+<td style="text-align: center;">0.035</td>
+<td style="text-align: center;">1.008</td>
+<td style="text-align: center;">1.010</td>
 </tr>
 </tbody>
 </table>
-<blockquote class="blockquote">
-<p><strong>Best Practice Recommendation:</strong> Define theoretical bounds mapping an expected scenario utilizing fast analytical approximations. Validate robust tolerance to observed/anticipated data flaws (e.g., missingness, skew, differing distributions) iteratively through explicit simulation runs before finalizing sample specifications.</p>
-</blockquote>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>At <span class="math inline">\(N = 359\)</span>, the empirical power values are 0.947 for RMSEA, 0.987 for SRMR, 0.802 for CFI, and 0.806 for TLI.</p>
+<p>These results show a clear difference in performance across indices. SRMR presents the highest power, RMSEA also shows very strong power, and both CFI and TLI are just above the conventional <span class="math inline">\(0.80\)</span> threshold.</p>
+<p>This means that, at <span class="math inline">\(N = 359\)</span>, the sample size is more than sufficient for SRMR and RMSEA, while for CFI and TLI it is sufficient but still much closer to the minimum acceptable level.</p>
+<p>The empirical cutoff values obtained at <span class="math inline">\(N = 359\)</span> are 0.011 for RMSEA, 0.035 for SRMR, 1.008 for CFI, and 1.01 for TLI.</p>
+<p>For RMSEA and SRMR, the cutoffs are very low, which is consistent with the strong discrimination shown by their power values.</p>
+<p>For CFI and TLI, the cutoffs are slightly above <span class="math inline">\(1.00\)</span>. In practical terms, this indicates that the classification boundary estimated from the simulation lies at the upper edge of the index scale, which helps explain why their power is only marginally above <span class="math inline">\(0.80\)</span> even at this sample size.</p>
+<p>Taken together, the outputs indicate that the design performs very well for RMSEA and SRMR and only minimally adequately for CFI and TLI.</p>
+<p>So, at <span class="math inline">\(N = 359\)</span>, the results support a stronger conclusion for RMSEA and SRMR, whereas for CFI and TLI the conclusion is more cautious because their power values are only slightly above the target level.</p>
+</section>
+<section id="sec-nonnormal" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="sec-nonnormal"><span class="header-section-number">6.2</span> Non-Normality</h3>
+<p>This section focuses on the condition with <strong>mild non-normality</strong>, so power should be evaluated using robust fit indices rather than relying on normal-theory fit behavior. When available, the newer robust fit measures should be preferred over older scaled versions because they have better theoretical properties under non-normal data. However, for comparability with the ideal condition, the same set of indices is evaluated here.</p>
+<p>The power curves show how often the misspecified model would be rejected as <span class="math inline">\(N\)</span> changes under this mildly non-normal condition. Here, the rejection rule is not based on generic cutoffs, but on empirical cutoffs obtained from the null-model sampling distribution at the chosen <span class="math inline">\(\alpha\)</span> level <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<p>The version with logistic smoothing emphasizes the general trend of power across sample sizes, whereas the version without smoothing shows the simulated fit-index values more directly <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>. This is useful for checking how clearly the misspecified-model distribution separates from the null-based cutoff as <span class="math inline">\(N\)</span> increases <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-power-curve-nnorm" class="cell" data-fig-width="8" data-fig-height="5">
+<div class="cell-output cell-output-display">
+<div id="fig-power-curve-nnorm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-power-curve-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-power-curve-nnorm-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Figure&nbsp;17: Power curves for fit indices under non-normal conditions."><img src="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-power-curve-nnorm-output-1.png" width="768" height="480" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17: Power curves for fit indices under non-normal conditions.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Figure <a href="#fig-power-curve-nnorm" class="quarto-xref">Figure&nbsp;17</a> shows a clear increase in power as <span class="math inline">\(N\)</span> grows for all fit indices. SRMR is the strongest index across the entire range, starting already high at small samples and approaching <span class="math inline">\(1.00\)</span> quickly. RMSEA also increases steadily and reaches high power earlier than the incremental indices. CFI and TLI follow the same general pattern, but their curves rise more slowly and remain below RMSEA and SRMR over most of the sample-size range.</p>
+<p>In practical terms, the ordering of sensitivity is stable throughout the figure: <span class="math inline">\(\text{SRMR} &gt; \text{RMSEA} &gt; \text{CFI} \approx \text{TLI}\)</span>. Around the mid-range of <span class="math inline">\(N\)</span>, SRMR is already near ceiling, RMSEA is in a clearly high-power region, and CFI/TLI are still catching up. By the largest sample sizes, all four indices show strong power, although SRMR and RMSEA remain visibly ahead.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-fit-curve-nnorm" class="cell" data-fig-width="8" data-fig-height="5">
+<div class="cell-output cell-output-display">
+<div id="fig-fit-curve-nnorm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fit-curve-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-fit-curve-nnorm-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Figure&nbsp;18: Power curves for fit indices under non-normal conditions without logistic smoothing."><img src="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-fit-curve-nnorm-output-1.png" width="768" height="480" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fit-curve-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18: Power curves for fit indices under non-normal conditions without logistic smoothing.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Figure <a href="#fig-fit-curve-nnorm" class="quarto-xref">Figure&nbsp;18</a> shows the same pattern without logistic smoothing and makes the separation between the simulated values more explicit. For RMSEA and SRMR, the distributions become increasingly distinct as <span class="math inline">\(N\)</span> increases, with less overlap and a clearer gap between the two sets of points. For CFI and TLI, the separation also improves with larger <span class="math inline">\(N\)</span>, but the overlap is more evident at lower and moderate sample sizes, which is consistent with their slower increase in power.</p>
+<div class="quarto-embed-nb-cell">
+<div class="cell">
+<div id="tbl-power-cutoff-nnorm" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13: Power and fit index cutoff values under non-normal conditions at N = 228.
+</figcaption>
+<div aria-describedby="tbl-power-cutoff-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">RMSEA</th>
+<th style="text-align: center;">SRMR</th>
+<th style="text-align: center;">CFI</th>
+<th style="text-align: center;">TLI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Power</td>
+<td style="text-align: center;">0.91</td>
+<td style="text-align: center;">0.994</td>
+<td style="text-align: center;">0.800</td>
+<td style="text-align: center;">0.80</td>
+</tr>
+<tr class="even">
+<td>Cutoff</td>
+<td style="text-align: center;">0.04</td>
+<td style="text-align: center;">0.059</td>
+<td style="text-align: center;">0.964</td>
+<td style="text-align: center;">0.96</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>Table <a href="#tbl-power-cutoff-nnorm" class="quarto-xref">Table&nbsp;13</a> summarizes the results at <span class="math inline">\(N = 228\)</span>. At this sample size, SRMR has the highest power 0.91, followed by RMSEA 0.994, followed by CFI 0.8. CFI and TLI both reach <span class="math inline">\(0.800\)</span>, making them the least sensitive indices in this condition at the selected sample size.</p>
+<p>The cutoff values at <span class="math inline">\(N = 228\)</span> are 0.04 for RMSEA, 0.059 for SRMR, 0.964 for CFI, and 0.96 for TLI. These values are consistent with the pattern in the figures: SRMR and RMSEA show stronger discrimination at this sample size, whereas CFI and TLI require more favorable values to classify fit as acceptable. Overall, the results at <span class="math inline">\(N = 228\)</span> show very strong rejection performance for SRMR, strong performance for RMSEA, and adequate performance for CFI and TLI.</p>
+<p>The cutoff step at <span class="math inline">\(N = 228\)</span> complements the curves by fixing the decision rule at a specific sample size under the same mildly non-normal setup <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>. In this setting, power and cutoff values should be read together: the cutoff defines how strict the robust fit criterion is, and power indicates how often that criterion rejects the misspecified model <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+</section>
+<section id="sec-scenarios-fixed" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="sec-scenarios-fixed"><span class="header-section-number">6.3</span> Simulation with fixed N</h3>
+</section>
 </section>
 <section id="references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
@@ -2573,6 +2677,9 @@ Jak, S., Jorgensen, T. D., Verdam, M. G. E., Oort, F. J., &amp; Elffers, L. (202
 </div>
 <div id="ref-jobst2023" class="csl-entry" role="listitem">
 Jobst, L. J., Bader, M., &amp; Moshagen, M. (2023). A tutorial on assessing statistical power and determining sample size for structural equation models. <em>Psychological Methods</em>, <em>28</em>(1), 207–221. <a href="https://doi.org/10.1037/met0000423">https://doi.org/10.1037/met0000423</a>
+</div>
+<div id="ref-kyriazos2018" class="csl-entry" role="listitem">
+Kyriazos, T. A. (2018). Applied <span>Psychometrics</span>: <span>Sample Size</span> and <span>Sample Power Considerations</span> in <span>Factor Analysis</span> (<span>EFA</span>, <span>CFA</span>) and <span>SEM</span> in <span>General</span>. <em>Psychology</em>, <em>09</em>(08), 2207–2230. <a href="https://doi.org/10.4236/psych.2018.98126">https://doi.org/10.4236/psych.2018.98126</a>
 </div>
 <div id="ref-lin2022" class="csl-entry" role="listitem">
 Lin, L.-C., &amp; Yao, G. (2022). Validation of the factor structure of the <span>WHOQOL-BREF</span> using meta-analysis of exploratory factor analysis and social network analysis. <em>Psychological Assessment</em>, <em>34</em>(7), 660–670. <a href="https://doi.org/10.1037/pas0001122">https://doi.org/10.1037/pas0001122</a>
@@ -2588,6 +2695,9 @@ Moshagen, M., &amp; Bader, M. (2024). <span class="nocase">semPower</span>: <spa
 </div>
 <div id="ref-simsem2021" class="csl-entry" role="listitem">
 Pornprasertmanit, S., Miller, P., Schoemann, A., &amp; Jorgensen, T. D. (2021). <em>Simsem: <span>SIMulated Structural Equation Modeling</span></em>. <a href="https://CRAN.R-project.org/package=simsem">https://CRAN.R-project.org/package=simsem</a>
+</div>
+<div id="ref-wang2023" class="csl-entry" role="listitem">
+Wang, Y. A. (2023). <em>How to <span>Conduct Power Analysis</span> for <span>Structural Equation Models</span>: <span>A Practical Primer</span></em> [Preprint]. PsyArXiv. <a href="https://doi.org/10.31234/osf.io/4n3uk">https://doi.org/10.31234/osf.io/4n3uk</a>
 </div>
 </div>
 </section>

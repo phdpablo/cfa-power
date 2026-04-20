@@ -1,7 +1,9 @@
 ---
-title: "Model Comparison with Fixed Sample Size"
+title: "Simulation with Fixed Sample Size"
 execute:
   echo: false
+  warning: false
+  message: false
 ---
 
 ## Setup
@@ -19,10 +21,6 @@ source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
 cache_load_existing()
 ```
 
-
-## Model comparison: Power to detect H1 vs H0
-
-Make table with resume.
 
 ## Power Analysis with fixed N
 
@@ -95,33 +93,34 @@ You extract the cutoff values for fit indices at a given alpha level and sample 
 
 ```{r}
 #| label: tbl-power-cutoff-fixed
-#| tbl-cap: "Power for fit index cutoffs with fixed sample size."
+#| tbl-cap: "Power and fit index cutoff values with fixed sample size."
 
-getPowerFit(
-    h1model_fixed,
-    nullObject = popmodel_fixed,
-    alpha = ALPHA,
-    usedFit = FITS
+# Estimate power for rejecting the misspecified model (h1model_fixed)
+# using fit-index cutoffs implied by the null model.
+power_fixed <- getPowerFit(
+  h1model_fixed,
+  nullObject = popmodel_fixed,
+  alpha = ALPHA,
+  usedFit = FITS
 )
-```
 
-```{r}
-#| label: tbl-fit-cutoff-fixed
-#| tbl-cap: "Fit index cutoff values with fixed sample size."
-
-getCutoff(
-    popmodel_fixed,
-    alpha = ALPHA,
-    usedFit = FITS
+# Derive empirical cutoff values for the selected fit indices
+# from the null-model sampling distribution under the same conditions.
+cutoff_fixed <- getCutoff(
+  popmodel_fixed,
+  alpha = ALPHA,
+  usedFit = FITS
 )
-```
 
+# Combine power and cutoff values into a compact summary table.
+power_cutoff_fixed <- rbind(
+  "Power" = as.numeric(power_fixed),
+  "Cutoff" = as.numeric(cutoff_fixed[1, ])
+)
 
-```{r}
-#| label: tbl-param-summary-fixed
-#| tbl-cap: "Summary of parameter estimates with fixed sample size."
+colnames(power_cutoff_fixed) <- toupper(names(power_fixed))
 
-summaryParam(h1model_fixed, alpha = ALPHA, digits = 3, detail = TRUE)
+knitr::kable(power_cutoff_fixed, digits = 3, align = "c")
 ```
 
 ## Power analysis with traditional fits
@@ -146,14 +145,21 @@ plotPowerFit(
 #| label: tbl-power-cutoff-traditional
 #| tbl-cap: "Power for traditional fit index cutoffs with fixed sample size."
 
-getPowerFit(
-    h1model_fixed,
-    RULE_OF_THUMB,
-    alpha = ALPHA,
-    usedFit = FITS
+# Estimate power using traditional fit-index cutoffs.
+power_traditional <- getPowerFit(
+  h1model_fixed,
+  RULE_OF_THUMB,
+  alpha = ALPHA,
+  usedFit = FITS
 )
+
+# Convert to a one-row table with column headers.
+power_traditional_tbl <- t(as.data.frame(power_traditional))
+
+colnames(power_traditional_tbl) <- toupper(names(power_traditional))
+rownames(power_traditional_tbl) <- "Power"
+
+knitr::kable(power_traditional_tbl, digits = 3, align = "c")
 ```
-
-
 
 
