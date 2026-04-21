@@ -110,6 +110,47 @@ power_cutoff_nnorm <- rbind(
 )
 colnames(power_cutoff_nnorm) <- toupper(names(power_nnorm))
 
+# Post Hoc Power Analysis
+url_data <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/b58a7054-4978-4239-81db-00f9efd86e44/WHOQOL_Data.dat"
+realdata <- read.table(url_data)
+
+url_labels <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/ae2a5c01-2fc2-43e5-b31c-8db8cc5bff8a/WHOQOL_Labels.txt"
+column_labels <- read.table(url_labels)
+column_labels <- column_labels$V1
+names(realdata) <- gsub("_[FPSA]$", "", column_labels)
+n_real <- nrow(realdata)
+
+fit_real <- lavaan::cfa(
+  analyzemodel,
+  data = realdata,
+  estimator = "mlr"
+)
+
+ph_rmsea <- semPower::semPower.postHoc(
+  effect         = 0.05,
+  effect.measure = "RMSEA",
+  alpha          = ALPHA,
+  N              = n_real,
+  df             = df_model,
+  p              = P
+)
+
+ph_realmodel <- semPower::semPower.powerLav(
+  type     = "post-hoc",
+  alpha    = ALPHA,
+  N        = n_real,
+  modelPop = popmodel,
+  modelH0  = fit_real
+)
+
+ph_posthoc_miss <- semPower::semPower.powerLav(
+  type     = "post-hoc",
+  alpha    = ALPHA,
+  N        = n_real,
+  modelPop = popmodel,
+  modelH0  = fit_real,
+  modelH1  = h1modelfree
+)
 ```
 
 ## Introduction {#sec-intro}
@@ -643,6 +684,97 @@ The cutoff step at $N = 228$ complements the curves by fixing the decision rule 
 
 ### Simulation with fixed N {#sec-scenarios-fixed}
 
+Earlier sections used a priori Monte Carlo simulation to determine the minimum sample size needed for adequate power. Here, the goal is different: we hold $N$ fixed at a conservative value and examine whether that choice yields stable model discrimination across many replications.
+
+This step is important because power analysis in SEM is not only about finding the smallest workable sample. It is also about understanding how reliably a chosen design can separate a defensible measurement model from a substantively relevant misspecified alternative when the data are repeatedly sampled from the assumed population model [@moshagen2024; @feng2023].
+
+In this tutorial, the focus remains on **global model fit** rather than on isolated parameters. That choice is theoretically appropriate because the CFA is being used here as one measurement component within a broader research program, so the practical question is whether the instrument as a whole can rule out a meaningful misspecification pattern, not merely whether one parameter at a time is detected [@jobst2023; @wang2023].
+
+The section also highlights an important distinction between empirical and traditional fit criteria. Empirical cutoffs are derived from the simulated sampling behavior of the fitted model under the design at hand, whereas traditional thresholds are generic conventions; as a result, the two approaches need not lead to the same conclusion about power or model rejection [@simsem2021; @jak2021].
+
+{{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#fig-power-curve-fixed >}}
+
+With $N = 350$, the main analysis shows complete discrimination between the reference and misspecified conditions across the four global fit indices considered. Using empirical cutoffs derived from the simulated reference model, RMSEA, SRMR, CFI, and TLI all reached power equal to 1.000, indicating that this sample size separates the target model from the misspecified alternative with essentially perfect consistency in the ideal scenario.
+
+The empirical cutoffs are also informative in their own right (@tbl-power-cutoff-fixed). They indicate the level of fit that is typical of the correctly specified model under this design, and therefore define a data-driven benchmark for deciding when the misspecified model should be rejected. In the @fig-power-curve-fixed, this appears as a clear separation between the null and alternative distributions, with the cutoff placed at a point that produces minimal overlap.
+
+This pattern supports the use of $N = 350$ as a conservative and stable design choice for the main comparison developed throughout the tutorial. At this stage, the aim is no longer to identify the minimum acceptable sample size, but to show that a fixed and defensible $N$ yields highly reliable rejection of the misspecified model when the data are generated from the population model.
+
+{{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#tbl-power-cutoff-fixed >}}
+
+#### Power analysis with traditional fits
+
+The illustration based on traditional rule-of-thumb cutoffs leads to a very different picture. Under those generic thresholds, power remains very high for SRMR, but becomes weak for CFI and TLI and drops to zero for RMSEA (@fig-curve-fixed-traditional). This contrast shows that conventional cutoffs may be poorly aligned with the sampling behavior of a specific model and can therefore understate the discriminating capacity revealed by the empirical simulation-based approach.
+
+{{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#fig-curve-fixed-traditional >}}
+
+Taken together, these results reinforce the main methodological message of this section: in Monte Carlo power analysis for CFA model fit, the adequacy of a fixed sample size depends not only on $N$ itself, but also on how the rejection criterion is defined. When cutoffs are calibrated to the population model and to the planned analysis, the chosen $N$ performs as a highly stable basis for global fit evaluation in the main comparison of the tutorial [@moshagen2024; @simsem2021; @feng2023; @jak2021].
+
+{{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#tbl-power-cutoff-traditional >}}
+
+## Post Hoc Power Analysis {#sec-post-hoc}
+
+Post hoc power analysis is used to evaluate how likely the study design was to reject a false structural model under the conditions actually assumed in the analysis, that is, with the fitted model, the reference model, the selected fit criteria, and the observed sample size already fixed. In SEM, this type of assessment is meaningful only with respect to a clearly defined focal hypothesis, because power is always attached to a specific model comparison rather than to a model in general [@jobst2023; @moshagen2024].
+
+In this section, power is framed as the probability of identifying global misspecification, not as the probability of detecting an individual parameter. More specifically, the focus is on whether the hypothesized model can be rejected when the data-generating process follows an alternative structure, using fit-index thresholds derived from the null-model distribution at level $\alpha$ [@jobst2023; @simsem2021].
+
+### With Simulation
+
+This simulation-based strategy is especially useful when the effect of interest is defined in model terms, because the discrepancy between $H_0$ and $H_1$ depends on the full parameterization of the model, not only on one isolated misspecification. In other words, the same nominal discrepancy may imply different statistical power depending on factor loadings, residual structure, latent correlations, and other features of the population model [@moshagen2024; @wang2023].
+
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#fig-posthoc-plotpower >}}
+
+All four fit indices reached power equal to $1.00$. This means that, in the simulated replications, RMSEA, SRMR, CFI, and TLI all rejected the alternative condition in $100\%$ of cases according to their respective cutoff rules.
+
+The @fig-posthoc-plotpower is fully consistent with these values. In every panel, the null and alternative distributions are clearly separated, and the red cutoff line falls between them with no visible overlap.
+
+For RMSEA, the null distribution is concentrated near zero, whereas the alternative distribution is centered around approximately $0.05$. The cutoff is located between these two regions, so all alternative replications fall on the rejection side.
+
+For SRMR, the null distribution is clustered around approximately $0.01$ to $0.02$, while the alternative distribution is concentrated around approximately $0.06$ to $0.08$. The separation is complete, which explains the power of $1.00$.
+
+For CFI/TLI, the null distribution is concentrated very close to $1.00$, whereas the alternative distribution is centered around approximately $0.95$ to $0.97$. The cutoff line is placed between the two distributions, so every alternative replication is correctly classified.
+
+Overall, the graphical pattern indicates perfect empirical discrimination for all four indices in this post hoc analysis. In practical terms, the results show no ambiguity in classification: the null and alternative conditions are entirely distinct for RMSEA, SRMR, CFI, and TLI. But note that RMSEA, CFI, and TLI are operating at the below the conventional threshold, which is a consequence of the specific cutoff values derived from the null-model distribution in this scenario.
+
+### With Analytical Solutions
+
+In analytical power analysis, the effect is expressed through a noncentrality-based measure such as $F_0$ or RMSEA, because these quantities map directly onto the noncentrality parameter used in the likelihood-ratio test. For that reason, analytical post hoc power is especially convenient when the goal is to assess sensitivity to global model misfit without relying on simulation-based estimation [@moshagen2024; @jak2021].
+
+The first specification (@fig-posthoc-rmsea) is model-free in the sense that the focal discrepancy is supplied directly as $RMSEA = 0.05$, so power is evaluated for a global test of exact fit rather than for a specific substantive parameter. Conceptually, this treats misspecification as an overall degree of lack of fit per degree of freedom, which makes the analysis comparable across different SEM families as long as the same effect metric is used [@jak2021; @moshagen2024; @jobst2023].
+
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#fig-posthoc-rmsea >}}
+
+The @fig-posthoc-rmsea shows an extremely high detection capacity for the tested discrepancy. With $F_0 =$ `r round(ph_rmsea$fmin ,3)`, $RMSEA =$ `r round(ph_rmsea$rmsea ,3)`, $df =$ `r ph_rmsea$df`, and $N =$ `r ph_rmsea$N`, the noncentrality parameter reached $NCP =$ `r round(ph_rmsea$ncp ,3)`, while the critical value was only $\chi^2_{crit} =$ `r round(ph_rmsea$chiCrit ,3)`.
+
+As a result, power was effectively `r round(ph_rmsea$power, 3)`. In substantive terms, this means that, under this effect specification, the design was more than sufficient to detect the target misspecification.
+
+The graph is fully consistent with this result. The noncentral $\chi^2$ curve is located far to the right of the critical value, and the shaded $\beta$ region is essentially negligible, while the $\alpha$ region remains fixed at $0.05$.
+
+The model-based specifications (@fig-posthoc-realmodel) move one step closer to substantive hypotheses by deriving the effect from explicitly defined models. In this setup, the population model generates the covariance structure expected under the data-generating process, whereas the analysis model encodes the restrictions to be tested; the discrepancy between them is then translated into the population minimum of the fitting function and, from there, into analytical power [@moshagen2024; @jobst2023].
+
+When only `modelH0` is provided (@fig-posthoc-realmodel), the comparison is against the saturated model, so the power analysis concerns the ability to detect that the focal model does not reproduce the population moments exactly. This is a global hypothesis about overall fit, not a targeted test of one particular restriction, even though the model itself may embody many substantive assumptions [@moshagen2024; @jak2021].
+
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#fig-posthoc-realmodel >}}
+
+The @fig-posthoc-realmodel shows an extremely high detection capacity for the tested discrepancy. With $F_0 =$ `r round(ph_realmodel$fmin ,3)`, $RMSEA =$ `r round(ph_realmodel$rmsea ,3)`, $df =$ `r ph_realmodel$df`, and $N =$ `r ph_realmodel$N`, the noncentrality parameter reached $NCP =$ `r round(ph_realmodel$ncp ,3)`, while the critical value was only $\chi^2_{crit} =$ `r round(ph_realmodel$chiCrit ,3)`.
+
+The graphical result shows the same pattern as in the previous case, although with less separation between the two distributions. Even so, the noncentral distribution still lies predominantly to the right of the cutoff, so the probability of failing to detect the effect is practically zero.
+
+When both `modelH0` and `modelH1` are specified (@fig-posthoc-misspec), the analysis becomes a nested-model comparison. In that case, power refers to the probability of detecting the additional restrictions imposed by $H_0$ relative to a less restrictive competitor, which is usually the conceptually preferable strategy when the research question concerns a particular constrained relation rather than the model as a whole [@moshagen2024; @jak2021; @jobst2023].
+
+This distinction is important because the same sample size may imply very different power depending on the hypothesis under evaluation. A study can be adequately powered to detect overall misspecification against the saturated model and still be poorly powered for a more localized restriction, or the reverse, because power in SEM is always tied to the specific discrepancy being tested [@moshagen2024; @jobst2023; @wang2023].
+
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#fig-posthoc-misspec >}}
+
+The @fig-posthoc-misspec yields a much more moderate result. Although the sample size was the same, the tested discrepancy was much smaller, with $F_0 =$ `r round(ph_posthoc_miss$fmin ,3)`, $RMSEA =$ `r round(ph_posthoc_miss$rmsea ,3)` and only $df =$ `r ph_posthoc_miss$df`, which led to a comparatively small $NCP =$ `r round(ph_posthoc_miss$ncp ,3)`.
+
+The critical value was $\chi^2_{crit} =$ `r round(ph_posthoc_miss$chiCrit ,3)`, and this time the overlap between the central and noncentral distributions was substantial. Accordingly, $\beta =$ `r round(ph_posthoc_miss$beta ,3)` and power was `r round(ph_posthoc_miss$power ,3)`, indicating that the analysis did not reach the conventional $0.80$ threshold.
+
+The graph reflects this clearly. Unlike the first two plots, the noncentral curve is only moderately shifted to the right of the critical value, and the shaded $\beta$ area is visibly large, showing a nontrivial probability of not detecting the tested discrepancy.
+
+More broadly, these chunks illustrate the two main analytical routes available in SEM post hoc power assessment: a model-free route based on a prespecified fit index value, and a model-based route in which the effect is induced by the discrepancy between population and analysis models. The latter is often more substantively interpretable, whereas the former is simpler and more general, especially when the main interest is sensitivity to a chosen level of global misfit [@moshagen2024; @jak2021].
+
+Analytical post hoc power is typically preferred whenever its asymptotic assumptions are reasonable, because it is computationally immediate, free from Monte Carlo sampling error, and directly tied to the theoretical reference distributions of the SEM test statistic. Even so, its interpretation remains conditional on the chosen effect definition, the assumed fitting function, and the specific null-versus-alternative comparison encoded by the models [@moshagen2024; @jobst2023].
 
 ## References {.unnumbered}
 

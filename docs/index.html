@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Pablo Rogers">
-<meta name="dcterms.date" content="2026-04-20">
+<meta name="dcterms.date" content="2026-04-21">
 <meta name="keywords" content="Power Analysis, Confirmatory Factor Analysis, Structural Equation Modeling, Monte Carlo Simulation, semPower, simsem">
 
 <title>Power Analysis for Confirmatory Factor Analysis: A Practical Tutorial</title>
@@ -105,10 +105,10 @@ window.Quarto = {
 ">
 <meta name="citation_keywords" content="Power Analysis,Confirmatory Factor Analysis,Structural Equation Modeling,Monte Carlo Simulation,semPower,simsem">
 <meta name="citation_author" content="Pablo Rogers">
-<meta name="citation_publication_date" content="2026-04-20">
-<meta name="citation_cover_date" content="2026-04-20">
+<meta name="citation_publication_date" content="2026-04-21">
+<meta name="citation_cover_date" content="2026-04-21">
 <meta name="citation_year" content="2026">
-<meta name="citation_online_date" content="2026-04-20">
+<meta name="citation_online_date" content="2026-04-21">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Simsem: SIMulated Structural Equation Modeling;,citation_author=Sunthud Pornprasertmanit;,citation_author=Patrick Miller;,citation_author=Alexander Schoemann;,citation_author=Terrence D. Jorgensen;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_fulltext_html_url=https://CRAN.R-project.org/package=simsem;">
 <meta name="citation_reference" content="citation_title=Validation of the factor structure of the WHOQOL-BREF using meta-analysis of exploratory factor analysis and social network analysis;,citation_author=Lin-Ching Lin;,citation_author=Grace Yao;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_issue=7;,citation_doi=10.1037/pas0001122;,citation_volume=34;,citation_journal_title=Psychological Assessment;">
@@ -146,6 +146,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Lower bounds on sample size in structural equation modeling;,citation_author=Christopher J. Westland;,citation_publication_date=2010-11;,citation_cover_date=2010-11;,citation_year=2010;,citation_issue=6;,citation_doi=10.1016/j.elerap.2010.07.003;,citation_issn=15674223;,citation_volume=9;,citation_journal_title=Electronic Commerce Research and Applications;">
 <meta name="citation_reference" content="citation_title=Sample Size Requirements for Structural Equation Models: An Evaluation of Power, Bias, and Solution Propriety;,citation_abstract=Determining sample size requirements for structural equation modeling (SEM) is a challenge often faced by investigators, peer reviewers, and grant writers. Recent years have seen a large increase in SEMs in the behavioral science literature, but consideration of sample size requirements for applied SEMs often relies on outdated rules-of-thumb. This study used Monte Carlo data simulation techniques to evaluate sample size requirements for common applied SEMs. Across a series of simulations, we systematically varied key model properties, including number of indicators and factors, magnitude of factor loadings and path coefficients, and amount of missing data. We investigated how changes in these parameters affected sample size requirements with respect to statistical power, bias in the parameter estimates, and overall solution propriety. Results revealed a range of sample size requirements (i.e., from 30 to 460 cases), meaningful patterns of association between parameters and sample size, and highlight the limitations of commonly cited rules-of-thumb. The broad “lessons learned” for determining SEM sample size requirements are discussed.;,citation_author=Erika J. Wolf;,citation_author=Kelly M. Harrington;,citation_author=Shaunna L. Clark;,citation_author=Mark W. Miller;,citation_publication_date=2013-12;,citation_cover_date=2013-12;,citation_year=2013;,citation_issue=6;,citation_doi=10.1177/0013164413495237;,citation_issn=0013-1644;,citation_pmid=25705052;,citation_volume=76;,citation_journal_title=Educational and psychological measurement;">
 <meta name="citation_reference" content="citation_title=Practical statistical power analysis using Webpower and R;,citation_author=Zhiyong Zhang;,citation_author=Ke-Hai Yuan;,citation_publication_date=2018;,citation_cover_date=2018;,citation_year=2018;">
+<meta name="citation_reference" content="citation_title=Best Practices for Your Exploratory Factor Analysis: A Factor Tutorial;,citation_abstract=Context: Exploratory factor analysis (EFA) is one of the statistical methods most widely used in administration; however, its current practice coexists with rules of thumb and heuristics given half a century ago. Objective: the purpose of this article is to present the best practices and recent recommendations for a typical EFA in administration through a practical solution accessible to researchers. Methods: in this sense, in addition to discussing current practices versus recommended practices, a tutorial with real data on Factor is illustrated. The Factor software is still little known in the administration area, but is freeware, easy-to-use (point and click), and powerful. The step-by-step tutorial illustrated in the article, in addition to the discussions raised and an additional example, is also available in the format of tutorial videos. Conclusion: through the proposed didactic methodology (article-tutorial + video-tutorial), we encourage researchers/methodologists who have mastered a particular technique to do the same. Specifically about EFA, we hope that the presentation of the Factor software, as a first solution, can transcend the current outdated rules of thumb and heuristics, by making best practices accessible to administration researchers.;,citation_author=Pablo Rogers;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_issue=6;,citation_doi=10.1590/1982-7849rac2022210085.en;,citation_issn=1982-7849;,citation_volume=26;,citation_journal_title=Revista de Administração Contemporânea;">
 </head>
 
 <body class="quarto-light">
@@ -180,7 +181,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">April 20, 2026</p>
+              <p class="date">April 21, 2026</p>
             </div>
           </div>
           
@@ -245,6 +246,11 @@ window.Quarto = {
   <li><a href="#sec-missing" id="toc-sec-missing" class="nav-link" data-scroll-target="#sec-missing"><span class="header-section-number">6.1</span> Missing Data (MCAR)</a></li>
   <li><a href="#sec-nonnormal" id="toc-sec-nonnormal" class="nav-link" data-scroll-target="#sec-nonnormal"><span class="header-section-number">6.2</span> Non-Normality</a></li>
   <li><a href="#sec-scenarios-fixed" id="toc-sec-scenarios-fixed" class="nav-link" data-scroll-target="#sec-scenarios-fixed"><span class="header-section-number">6.3</span> Simulation with fixed N</a></li>
+  </ul></li>
+  <li><a href="#sec-post-hoc" id="toc-sec-post-hoc" class="nav-link" data-scroll-target="#sec-post-hoc"><span class="header-section-number">7</span> Post Hoc Power Analysis</a>
+  <ul class="collapse">
+  <li><a href="#with-simulation" id="toc-with-simulation" class="nav-link" data-scroll-target="#with-simulation"><span class="header-section-number">7.1</span> With Simulation</a></li>
+  <li><a href="#with-analytical-solutions" id="toc-with-analytical-solutions" class="nav-link" data-scroll-target="#with-analytical-solutions"><span class="header-section-number">7.2</span> With Analytical Solutions</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -2664,6 +2670,288 @@ Table&nbsp;13: Power and fit index cutoff values under non-normal conditions at 
 </section>
 <section id="sec-scenarios-fixed" class="level3" data-number="6.3">
 <h3 data-number="6.3" class="anchored" data-anchor-id="sec-scenarios-fixed"><span class="header-section-number">6.3</span> Simulation with fixed N</h3>
+<p>Earlier sections used a priori Monte Carlo simulation to determine the minimum sample size needed for adequate power. Here, the goal is different: we hold <span class="math inline">\(N\)</span> fixed at a conservative value and examine whether that choice yields stable model discrimination across many replications.</p>
+<p>This step is important because power analysis in SEM is not only about finding the smallest workable sample. It is also about understanding how reliably a chosen design can separate a defensible measurement model from a substantively relevant misspecified alternative when the data are repeatedly sampled from the assumed population model <span class="citation" data-cites="moshagen2024 feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>In this tutorial, the focus remains on <strong>global model fit</strong> rather than on isolated parameters. That choice is theoretically appropriate because the CFA is being used here as one measurement component within a broader research program, so the practical question is whether the instrument as a whole can rule out a meaningful misspecification pattern, not merely whether one parameter at a time is detected <span class="citation" data-cites="jobst2023 wang2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+<p>The section also highlights an important distinction between empirical and traditional fit criteria. Empirical cutoffs are derived from the simulated sampling behavior of the fitted model under the design at hand, whereas traditional thresholds are generic conventions; as a result, the two approaches need not lead to the same conclusion about power or model rejection <span class="citation" data-cites="simsem2021 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-power-curve-fixed" class="cell" data-fig-width="8" data-fig-height="5">
+<div class="cell-output cell-output-display">
+<div id="fig-power-curve-fixed" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-power-curve-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/Scripts-AnalysisScripts-05_model_comparison-fig-power-curve-fixed-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Figure&nbsp;19: Power curves for fit indices with fixed sample size."><img src="index_files/figure-html/Scripts-AnalysisScripts-05_model_comparison-fig-power-curve-fixed-output-1.png" width="768" height="480" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19: Power curves for fit indices with fixed sample size.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>With <span class="math inline">\(N = 350\)</span>, the main analysis shows complete discrimination between the reference and misspecified conditions across the four global fit indices considered. Using empirical cutoffs derived from the simulated reference model, RMSEA, SRMR, CFI, and TLI all reached power equal to 1.000, indicating that this sample size separates the target model from the misspecified alternative with essentially perfect consistency in the ideal scenario.</p>
+<p>The empirical cutoffs are also informative in their own right (<a href="#tbl-power-cutoff-fixed" class="quarto-xref">Table&nbsp;14</a>). They indicate the level of fit that is typical of the correctly specified model under this design, and therefore define a data-driven benchmark for deciding when the misspecified model should be rejected. In the <a href="#fig-power-curve-fixed" class="quarto-xref">Figure&nbsp;19</a>, this appears as a clear separation between the null and alternative distributions, with the cutoff placed at a point that produces minimal overlap.</p>
+<p>This pattern supports the use of <span class="math inline">\(N = 350\)</span> as a conservative and stable design choice for the main comparison developed throughout the tutorial. At this stage, the aim is no longer to identify the minimum acceptable sample size, but to show that a fixed and defensible <span class="math inline">\(N\)</span> yields highly reliable rejection of the misspecified model when the data are generated from the population model.</p>
+<div class="quarto-embed-nb-cell">
+<div class="cell">
+<div id="tbl-power-cutoff-fixed" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14: Power and fit index cutoff values with fixed sample size.
+</figcaption>
+<div aria-describedby="tbl-power-cutoff-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">TRADITIONALCHI</th>
+<th style="text-align: center;">RMSEA</th>
+<th style="text-align: center;">SRMR</th>
+<th style="text-align: center;">CFI</th>
+<th style="text-align: center;">TLI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Power</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+</tr>
+<tr class="even">
+<td>Cutoff</td>
+<td style="text-align: center;">0.025</td>
+<td style="text-align: center;">0.042</td>
+<td style="text-align: center;">0.988</td>
+<td style="text-align: center;">0.986</td>
+<td style="text-align: center;">0.025</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<section id="power-analysis-with-traditional-fits" class="level4" data-number="6.3.1">
+<h4 data-number="6.3.1" class="anchored" data-anchor-id="power-analysis-with-traditional-fits"><span class="header-section-number">6.3.1</span> Power analysis with traditional fits</h4>
+<p>The illustration based on traditional rule-of-thumb cutoffs leads to a very different picture. Under those generic thresholds, power remains very high for SRMR, but becomes weak for CFI and TLI and drops to zero for RMSEA (<a href="#fig-curve-fixed-traditional" class="quarto-xref">Figure&nbsp;20</a>). This contrast shows that conventional cutoffs may be poorly aligned with the sampling behavior of a specific model and can therefore understate the discriminating capacity revealed by the empirical simulation-based approach.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-curve-fixed-traditional" class="cell" data-fig-width="8" data-fig-height="5">
+<div class="cell-output cell-output-display">
+<div id="fig-curve-fixed-traditional" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-curve-fixed-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/Scripts-AnalysisScripts-05_model_comparison-fig-curve-fixed-traditional-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Figure&nbsp;20: Power curves using traditional fit index cutoffs with fixed sample size."><img src="index_files/figure-html/Scripts-AnalysisScripts-05_model_comparison-fig-curve-fixed-traditional-output-1.png" width="768" height="480" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curve-fixed-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20: Power curves using traditional fit index cutoffs with fixed sample size.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Taken together, these results reinforce the main methodological message of this section: in Monte Carlo power analysis for CFA model fit, the adequacy of a fixed sample size depends not only on <span class="math inline">\(N\)</span> itself, but also on how the rejection criterion is defined. When cutoffs are calibrated to the population model and to the planned analysis, the chosen <span class="math inline">\(N\)</span> performs as a highly stable basis for global fit evaluation in the main comparison of the tutorial <span class="citation" data-cites="moshagen2024 simsem2021 feng2023 jak2021">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<div class="quarto-embed-nb-cell">
+<div class="cell">
+<div id="tbl-power-cutoff-traditional" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;15: Power for traditional fit index cutoffs with fixed sample size.
+</figcaption>
+<div aria-describedby="tbl-power-cutoff-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">CFI</th>
+<th style="text-align: center;">TLI</th>
+<th style="text-align: center;">RMSEA</th>
+<th style="text-align: center;">SRMR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Power</td>
+<td style="text-align: center;">0.222</td>
+<td style="text-align: center;">0.483</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.997</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="sec-post-hoc" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-post-hoc"><span class="header-section-number">7</span> Post Hoc Power Analysis</h2>
+<p>Post hoc power analysis is used to evaluate how likely the study design was to reject a false structural model under the conditions actually assumed in the analysis, that is, with the fitted model, the reference model, the selected fit criteria, and the observed sample size already fixed. In SEM, this type of assessment is meaningful only with respect to a clearly defined focal hypothesis, because power is always attached to a specific model comparison rather than to a model in general <span class="citation" data-cites="jobst2023 moshagen2024">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>In this section, power is framed as the probability of identifying global misspecification, not as the probability of detecting an individual parameter. More specifically, the focus is on whether the hypothesized model can be rejected when the data-generating process follows an alternative structure, using fit-index thresholds derived from the null-model distribution at level <span class="math inline">\(\alpha\)</span> <span class="citation" data-cites="jobst2023 simsem2021">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<section id="with-simulation" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="with-simulation"><span class="header-section-number">7.1</span> With Simulation</h3>
+<p>This simulation-based strategy is especially useful when the effect of interest is defined in model terms, because the discrepancy between <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span> depends on the full parameterization of the model, not only on one isolated misspecification. In other words, the same nominal discrepancy may imply different statistical power depending on factor loadings, residual structure, latent correlations, and other features of the population model <span class="citation" data-cites="moshagen2024 wang2023">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-posthoc-plotpower" class="cell" data-fig-width="8" data-fig-height="5">
+<div class="cell-output cell-output-display">
+<div id="fig-posthoc-plotpower" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-posthoc-plotpower-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-plotpower-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Figure&nbsp;21: Power curve for post hoc analysis based on simulation."><img src="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-plotpower-output-1.png" width="768" height="480" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posthoc-plotpower-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21: Power curve for post hoc analysis based on simulation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>All four fit indices reached power equal to <span class="math inline">\(1.00\)</span>. This means that, in the simulated replications, RMSEA, SRMR, CFI, and TLI all rejected the alternative condition in <span class="math inline">\(100\%\)</span> of cases according to their respective cutoff rules.</p>
+<p>The <a href="#fig-posthoc-plotpower" class="quarto-xref">Figure&nbsp;21</a> is fully consistent with these values. In every panel, the null and alternative distributions are clearly separated, and the red cutoff line falls between them with no visible overlap.</p>
+<p>For RMSEA, the null distribution is concentrated near zero, whereas the alternative distribution is centered around approximately <span class="math inline">\(0.05\)</span>. The cutoff is located between these two regions, so all alternative replications fall on the rejection side.</p>
+<p>For SRMR, the null distribution is clustered around approximately <span class="math inline">\(0.01\)</span> to <span class="math inline">\(0.02\)</span>, while the alternative distribution is concentrated around approximately <span class="math inline">\(0.06\)</span> to <span class="math inline">\(0.08\)</span>. The separation is complete, which explains the power of <span class="math inline">\(1.00\)</span>.</p>
+<p>For CFI/TLI, the null distribution is concentrated very close to <span class="math inline">\(1.00\)</span>, whereas the alternative distribution is centered around approximately <span class="math inline">\(0.95\)</span> to <span class="math inline">\(0.97\)</span>. The cutoff line is placed between the two distributions, so every alternative replication is correctly classified.</p>
+<p>Overall, the graphical pattern indicates perfect empirical discrimination for all four indices in this post hoc analysis. In practical terms, the results show no ambiguity in classification: the null and alternative conditions are entirely distinct for RMSEA, SRMR, CFI, and TLI. But note that RMSEA, CFI, and TLI are operating at the below the conventional threshold, which is a consequence of the specific cutoff values derived from the null-model distribution in this scenario.</p>
+</section>
+<section id="with-analytical-solutions" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="with-analytical-solutions"><span class="header-section-number">7.2</span> With Analytical Solutions</h3>
+<p>In analytical power analysis, the effect is expressed through a noncentrality-based measure such as <span class="math inline">\(F_0\)</span> or RMSEA, because these quantities map directly onto the noncentrality parameter used in the likelihood-ratio test. For that reason, analytical post hoc power is especially convenient when the goal is to assess sensitivity to global model misfit without relying on simulation-based estimation <span class="citation" data-cites="moshagen2024 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>The first specification (<a href="#fig-posthoc-rmsea" class="quarto-xref">Figure&nbsp;22</a>) is model-free in the sense that the focal discrepancy is supplied directly as <span class="math inline">\(RMSEA = 0.05\)</span>, so power is evaluated for a global test of exact fit rather than for a specific substantive parameter. Conceptually, this treats misspecification as an overall degree of lack of fit per degree of freedom, which makes the analysis comparable across different SEM families as long as the same effect metric is used <span class="citation" data-cites="jak2021 moshagen2024 jobst2023">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-posthoc-rmsea" class="cell" data-fig-width="8" data-fig-height="5">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ semPower: Post hoc power analysis
+                                      
+ F0                       0.622500    
+ RMSEA                    0.050000    
+ Mc                       0.732531    
+ GFI                      0.950683    
+ AGFI                     0.940582    
+                                      
+ df                       249         
+ Num Observations         1047        
+ NCP                      651.1350    
+                                      
+ Critical Chi-Square      286.8077    
+ Alpha                    0.050000    
+ Beta                     4.771426e-48
+ Power (1 - Beta)         &gt; 0.9999    
+ Implied Alpha/Beta Ratio 1.047905e+46</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-posthoc-rmsea" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-posthoc-rmsea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-rmsea-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Figure&nbsp;22: Post hoc power analysis for RMSEA = 0.05."><img src="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-rmsea-output-2.png" width="768" height="480" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posthoc-rmsea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22: Post hoc power analysis for RMSEA = 0.05.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The <a href="#fig-posthoc-rmsea" class="quarto-xref">Figure&nbsp;22</a> shows an extremely high detection capacity for the tested discrepancy. With <span class="math inline">\(F_0 =\)</span> 0.623, <span class="math inline">\(RMSEA =\)</span> 0.05, <span class="math inline">\(df =\)</span> 249, and <span class="math inline">\(N =\)</span> 1047, the noncentrality parameter reached <span class="math inline">\(NCP =\)</span> 651.135, while the critical value was only <span class="math inline">\(\chi^2_{crit} =\)</span> 286.808.</p>
+<p>As a result, power was effectively 1. In substantive terms, this means that, under this effect specification, the design was more than sufficient to detect the target misspecification.</p>
+<p>The graph is fully consistent with this result. The noncentral <span class="math inline">\(\chi^2\)</span> curve is located far to the right of the critical value, and the shaded <span class="math inline">\(\beta\)</span> region is essentially negligible, while the <span class="math inline">\(\alpha\)</span> region remains fixed at <span class="math inline">\(0.05\)</span>.</p>
+<p>The model-based specifications (<a href="#fig-posthoc-realmodel" class="quarto-xref">Figure&nbsp;23</a>) move one step closer to substantive hypotheses by deriving the effect from explicitly defined models. In this setup, the population model generates the covariance structure expected under the data-generating process, whereas the analysis model encodes the restrictions to be tested; the discrepancy between them is then translated into the population minimum of the fitting function and, from there, into analytical power <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>When only <code>modelH0</code> is provided (<a href="#fig-posthoc-realmodel" class="quarto-xref">Figure&nbsp;23</a>), the comparison is against the saturated model, so the power analysis concerns the ability to detect that the focal model does not reproduce the population moments exactly. This is a global hypothesis about overall fit, not a targeted test of one particular restriction, even though the model itself may embody many substantive assumptions <span class="citation" data-cites="moshagen2024 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-posthoc-realmodel" class="cell" data-fig-width="8" data-fig-height="5">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ semPower: Post hoc power analysis
+                                      
+ F0                       0.303870    
+ RMSEA                    0.034934    
+ SRMR                     0.175600    
+ Mc                       0.859044    
+ GFI                      0.975303    
+ AGFI                     0.970244    
+ CFI                      0.977582    
+                                      
+ df                       249         
+ Num Observations         1047        
+ NCP                      317.8482    
+                                      
+ Critical Chi-Square      286.8077    
+ Alpha                    0.050000    
+ Beta                     6.740368e-16
+ Power (1 - Beta)         &gt; 0.9999    
+ Implied Alpha/Beta Ratio 7.417993e+13</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-posthoc-realmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-posthoc-realmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-realmodel-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Figure&nbsp;23: Post hoc power analysis for the real model."><img src="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-realmodel-output-2.png" width="768" height="480" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posthoc-realmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;23: Post hoc power analysis for the real model.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The <a href="#fig-posthoc-realmodel" class="quarto-xref">Figure&nbsp;23</a> shows an extremely high detection capacity for the tested discrepancy. With <span class="math inline">\(F_0 =\)</span> 0.304, <span class="math inline">\(RMSEA =\)</span> 0.035, <span class="math inline">\(df =\)</span> 249, and <span class="math inline">\(N =\)</span> 1047, the noncentrality parameter reached <span class="math inline">\(NCP =\)</span> 317.848, while the critical value was only <span class="math inline">\(\chi^2_{crit} =\)</span> 286.808.</p>
+<p>The graphical result shows the same pattern as in the previous case, although with less separation between the two distributions. Even so, the noncentral distribution still lies predominantly to the right of the cutoff, so the probability of failing to detect the effect is practically zero.</p>
+<p>When both <code>modelH0</code> and <code>modelH1</code> are specified (<a href="#fig-posthoc-misspec" class="quarto-xref">Figure&nbsp;24</a>), the analysis becomes a nested-model comparison. In that case, power refers to the probability of detecting the additional restrictions imposed by <span class="math inline">\(H_0\)</span> relative to a less restrictive competitor, which is usually the conceptually preferable strategy when the research question concerns a particular constrained relation rather than the model as a whole <span class="citation" data-cites="moshagen2024 jak2021 jobst2023">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>This distinction is important because the same sample size may imply very different power depending on the hypothesis under evaluation. A study can be adequately powered to detect overall misspecification against the saturated model and still be poorly powered for a more localized restriction, or the reverse, because power in SEM is always tied to the specific discrepancy being tested <span class="citation" data-cites="moshagen2024 jobst2023 wang2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-posthoc-misspec" class="cell" data-fig-width="8" data-fig-height="5">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ semPower: Post hoc power analysis
+                                  
+ F0                       0.009082
+ RMSEA                    0.055021
+ Mc                       0.995469
+                                  
+ df                       3       
+ Num Observations         1047    
+ NCP                      9.499715
+                                  
+ Critical Chi-Square      7.814728
+ Alpha                    0.050000
+ Beta                     0.262955
+ Power (1 - Beta)         0.737045
+ Implied Alpha/Beta Ratio 0.190147</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-posthoc-misspec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-posthoc-misspec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-misspec-output-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Figure&nbsp;24: Post hoc power analysis for the misspecified model."><img src="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-misspec-output-3.png" width="768" height="480" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posthoc-misspec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;24: Post hoc power analysis for the misspecified model.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The <a href="#fig-posthoc-misspec" class="quarto-xref">Figure&nbsp;24</a> yields a much more moderate result. Although the sample size was the same, the tested discrepancy was much smaller, with <span class="math inline">\(F_0 =\)</span> 0.009, <span class="math inline">\(RMSEA =\)</span> 0.055 and only <span class="math inline">\(df =\)</span> 3, which led to a comparatively small <span class="math inline">\(NCP =\)</span> 9.5.</p>
+<p>The critical value was <span class="math inline">\(\chi^2_{crit} =\)</span> 7.815, and this time the overlap between the central and noncentral distributions was substantial. Accordingly, <span class="math inline">\(\beta =\)</span> 0.263 and power was 0.737, indicating that the analysis did not reach the conventional <span class="math inline">\(0.80\)</span> threshold.</p>
+<p>The graph reflects this clearly. Unlike the first two plots, the noncentral curve is only moderately shifted to the right of the critical value, and the shaded <span class="math inline">\(\beta\)</span> area is visibly large, showing a nontrivial probability of not detecting the tested discrepancy.</p>
+<p>More broadly, these chunks illustrate the two main analytical routes available in SEM post hoc power assessment: a model-free route based on a prespecified fit index value, and a model-based route in which the effect is induced by the discrepancy between population and analysis models. The latter is often more substantively interpretable, whereas the former is simpler and more general, especially when the main interest is sensitivity to a chosen level of global misfit <span class="citation" data-cites="moshagen2024 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>Analytical post hoc power is typically preferred whenever its asymptotic assumptions are reasonable, because it is computationally immediate, free from Monte Carlo sampling error, and directly tied to the theoretical reference distributions of the SEM test statistic. Even so, its interpretation remains conditional on the chosen effect definition, the assumed fitting function, and the specific null-versus-alternative comparison encoded by the models <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
 </section>
 </section>
 <section id="references" class="level2 unnumbered">

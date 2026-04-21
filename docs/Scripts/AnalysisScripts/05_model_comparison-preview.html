@@ -57,7 +57,27 @@
       @media screen {
       pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
       }
-    </style>
+      /* CSS for citations */
+      div.csl-bib-body { }
+      div.csl-entry {
+        clear: both;
+        margin-bottom: 0em;
+      }
+      .hanging-indent div.csl-entry {
+        margin-left:2em;
+        text-indent:-2em;
+      }
+      div.csl-left-margin {
+        min-width:2em;
+        float:left;
+      }
+      div.csl-right-inline {
+        margin-left:2em;
+        padding-left:1em;
+      }
+      div.csl-indent {
+        margin-left: 2em;
+      }    </style>
 
     <style>
       body.hypothesis-enabled #quarto-embed-header {
@@ -169,7 +189,7 @@
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     document.body.classList.add('hypothesis-enabled');
   });
-</script>  
+</script>   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script> 
       </head>
 
   <body class="quarto-notebook quarto-light">
@@ -343,7 +363,6 @@ Attaching package: 'dplyr'</code></pre>
 </section>
 <section id="power-analysis-with-fixed-n" class="level2">
 <h2 class="anchored" data-anchor-id="power-analysis-with-fixed-n">Power Analysis with fixed N</h2>
-<p>Ideial condition: PA it not too sensitive to distributional assumptions, missing data, etc. So, we use ideal for time consuming simulations. We can also do the same for the robust conditions, but it will take more time.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>popmodel_fixed <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"popmodel_fixed"</span>, {</span>
@@ -384,6 +403,9 @@ Attaching package: 'dplyr'</code></pre>
 </div></div>
 <section id="power-curves-for-fit-indices" class="level3">
 <h3 class="anchored" data-anchor-id="power-curves-for-fit-indices">Power curves for fit indices</h3>
+<p>This chunk evaluates the main power analysis under a <strong>fixed</strong> sample size, <span class="math inline">\(N = 350\)</span>. Instead of searching for the minimum required <span class="math inline">\(N\)</span>, the simulation now examines how stable this preselected sample size is for rejecting a substantively relevant misspecified model across repeated samples.</p>
+<p>Data are generated from the population model (<code>popmodel</code>), while the fitted analysis contrasts the intended analysis model against the misspecified comparison model (<code>h1model</code>), which adds three cross-loadings. In this way, the chunk estimates how often the chosen fit indices can distinguish the target measurement structure from a plausible but inferior alternative under repeated Monte Carlo replications <span class="citation" data-cites="moshagen2024 feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>The main outputs summarize this discrimination from complementary angles. <code>plotPowerFit(logistic = FALSE)</code> shows the empirical distributions of the fit indices under the competing data-generating conditions and the cutoff used to separate them. <code>getPowerFit</code> reports the achieved power at the fixed <span class="math inline">\(N\)</span>, and <code>getCutoff</code> reports the empirical cutoffs derived from the reference model <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-fig-power-curve-fixed" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
@@ -408,7 +430,6 @@ Power curves for fit indices with fixed sample size.
 </section>
 <section id="power-cutoff-values-for-fit-indices" class="level3">
 <h3 class="anchored" data-anchor-id="power-cutoff-values-for-fit-indices">Power cutoff values for fit indices</h3>
-<p>You extract the cutoff values for fit indices at a given alpha level and sample size to determine the threshold for acceptable fit under the null model. This allows you to see how stringent the fit criteria are at different sample sizes.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model (h1model_fixed)</span></span>
@@ -488,7 +509,8 @@ Power and fit index cutoff values with fixed sample size.
 </section>
 <section id="power-analysis-with-traditional-fits" class="level2">
 <h2 class="anchored" data-anchor-id="power-analysis-with-traditional-fits">Power analysis with traditional fits</h2>
-<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-fig-fit-curve-fixed" class="cell">
+<p>In the following chunk, the same fixed-<span class="math inline">\(N\)</span> design is re-evaluated using traditional rule-of-thumb cutoffs. This is included only as an illustration of how generic thresholds may lead to very different conclusions from empirically calibrated cutoffs tailored to the specific model, misspecification, and sample size <span class="citation" data-cites="jak2021 feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>)</span>.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-fig-curve-fixed-traditional" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    h1model_fixed,</span>
@@ -498,12 +520,12 @@ Power and fit index cutoff values with fixed sample size.
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
 <span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="fig-fit-curve-fixed" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-curve-fixed-traditional" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-fit-curve-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="05_model_comparison_files/figure-html/fig-fit-curve-fixed-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Power curves using traditional fit index cutoffs with fixed sample size."><img src="05_model_comparison_files/figure-html/fig-fit-curve-fixed-1.png" class="img-fluid figure-img" width="768"></a>
+<div aria-describedby="fig-curve-fixed-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
+<a href="05_model_comparison_files/figure-html/fig-curve-fixed-traditional-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Power curves using traditional fit index cutoffs with fixed sample size."><img src="05_model_comparison_files/figure-html/fig-curve-fixed-traditional-1.png" class="img-fluid figure-img" width="768"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fit-curve-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curve-fixed-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Power curves using traditional fit index cutoffs with fixed sample size.
 </figcaption>
 </figure>
@@ -559,6 +581,20 @@ Power for traditional fit index cutoffs with fixed sample size.
 </figure>
 </div></div>
 </div></div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-feng2023" class="csl-entry" role="listitem">
+Feng, Y., &amp; Hancock, G. R. (2023). Power <span>Analysis</span> within a <span>Structural Equation Modeling Framework</span>. In R. H. Hoyle (Ed.), <em>Handbook of <span>Structural Equation Modeling</span></em>. The Guilford Press.
+</div>
+<div id="ref-jak2021" class="csl-entry" role="listitem">
+Jak, S., Jorgensen, T. D., Verdam, M. G. E., Oort, F. J., &amp; Elffers, L. (2021). Analytical power calculations for structural equation modeling: <span>A</span> tutorial and <span>Shiny</span> app. <em>Behavior Research Mehods</em>, <em>53</em>, 1385–1406. <a href="https://doi.org/10.3758/s13428-020-01479-0/Published">https://doi.org/10.3758/s13428-020-01479-0/Published</a>
+</div>
+<div id="ref-moshagen2024" class="csl-entry" role="listitem">
+Moshagen, M., &amp; Bader, M. (2024). <span class="nocase">semPower</span>: <span>General</span> power analysis for structural equation models. <em>Behavior Research Methods</em>, <em>56</em>(4), 2901–2922. <a href="https://doi.org/10.3758/s13428-023-02254-7">https://doi.org/10.3758/s13428-023-02254-7</a>
+</div>
+<div id="ref-simsem2021" class="csl-entry" role="listitem">
+Pornprasertmanit, S., Miller, P., Schoemann, A., &amp; Jorgensen, T. D. (2021). <em>Simsem: <span>SIMulated Structural Equation Modeling</span></em>. <a href="https://CRAN.R-project.org/package=simsem">https://CRAN.R-project.org/package=simsem</a>
+</div>
+</div>
 </section>
      </main>
 <!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">

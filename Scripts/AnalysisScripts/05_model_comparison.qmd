@@ -24,8 +24,6 @@ cache_load_existing()
 
 ## Power Analysis with fixed N
 
-Ideial condition: PA it not too sensitive to distributional assumptions, missing data, etc. So, we use ideal for time consuming simulations. We can also do the same for the robust conditions, but it will take more time.
-
 ```{r}
 #| label: sim-fixed-popmodel
 #| cache: true
@@ -73,6 +71,12 @@ h1model_fixed <- cache_or_run("h1model_fixed", {
 
 ### Power curves for fit indices
 
+This chunk evaluates the main power analysis under a **fixed** sample size, $N = 350$. Instead of searching for the minimum required $N$, the simulation now examines how stable this preselected sample size is for rejecting a substantively relevant misspecified model across repeated samples.
+
+Data are generated from the population model (`popmodel`), while the fitted analysis contrasts the intended analysis model against the misspecified comparison model (`h1model`), which adds three cross-loadings. In this way, the chunk estimates how often the chosen fit indices can distinguish the target measurement structure from a plausible but inferior alternative under repeated Monte Carlo replications [@moshagen2024; @feng2023].
+
+The main outputs summarize this discrimination from complementary angles. `plotPowerFit(logistic = FALSE)` shows the empirical distributions of the fit indices under the competing data-generating conditions and the cutoff used to separate them. `getPowerFit` reports the achieved power at the fixed $N$, and `getCutoff` reports the empirical cutoffs derived from the reference model [@simsem2021].
+
 ```{r}
 #| label: fig-power-curve-fixed
 #| fig-cap: "Power curves for fit indices with fixed sample size."
@@ -88,8 +92,6 @@ plotPowerFit(
 ```
 
 ### Power cutoff values for fit indices
-
-You extract the cutoff values for fit indices at a given alpha level and sample size to determine the threshold for acceptable fit under the null model. This allows you to see how stringent the fit criteria are at different sample sizes.
 
 ```{r}
 #| label: tbl-power-cutoff-fixed
@@ -125,8 +127,10 @@ knitr::kable(power_cutoff_fixed, digits = 3, align = "c")
 
 ## Power analysis with traditional fits
 
+In the following chunk, the same fixed-$N$ design is re-evaluated using traditional rule-of-thumb cutoffs. This is included only as an illustration of how generic thresholds may lead to very different conclusions from empirically calibrated cutoffs tailored to the specific model, misspecification, and sample size [@jak2021; @feng2023].
+
 ```{r}
-#| label: fig-fit-curve-fixed
+#| label: fig-curve-fixed-traditional
 #| fig-cap: "Power curves using traditional fit index cutoffs with fixed sample size."
 #| fig-width: 8
 #| fig-height: 5
