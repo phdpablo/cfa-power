@@ -1,5 +1,5 @@
 ---
-title: "Simulation with Fixed Sample Size"
+title: "Simulation — Fixed N"
 execute:
   echo: false
   warning: false
@@ -21,8 +21,22 @@ source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
 cache_load_existing()
 ```
 
+## Power analysis with fixed N
 
-## Power Analysis with fixed N
+The preceding sections determined the minimum $N$ required to achieve
+adequate power across a range of conditions. This section takes a
+different perspective: rather than searching for the smallest sufficient
+sample size, it fixes $N = 350$ and asks how reliably that value
+sustains the target power under the most demanding combined scenario —
+10% MCAR missingness and mild non-normality simultaneously [@feng2023;
+@simsem2021].
+
+This design choice reflects a common applied situation in which the
+sample size is constrained by practical or budgetary considerations.
+Running a large number of replications at a fixed $N$ provides a direct
+stability check: if power remains consistently above the target across
+many random samples, the chosen sample size can be considered a robust
+planning value for the full research design [@wang2021; @jobst2023].
 
 ```{r}
 #| label: sim-fixed-popmodel
@@ -45,7 +59,6 @@ popmodel_fixed <- cache_or_run("popmodel_fixed", {
     )
 })
 ```
-
 
 ```{r}
 #| label: sim-fixed-h1model
@@ -71,11 +84,13 @@ h1model_fixed <- cache_or_run("h1model_fixed", {
 
 ### Power curves for fit indices
 
-This chunk evaluates the main power analysis under a **fixed** sample size, $N = 350$. Instead of searching for the minimum required $N$, the simulation now examines how stable this preselected sample size is for rejecting a substantively relevant misspecified model across repeated samples.
-
-Data are generated from the population model (`popmodel`), while the fitted analysis contrasts the intended analysis model against the misspecified comparison model (`h1model`), which adds three cross-loadings. In this way, the chunk estimates how often the chosen fit indices can distinguish the target measurement structure from a plausible but inferior alternative under repeated Monte Carlo replications [@moshagen2024; @feng2023].
-
-The main outputs summarize this discrimination from complementary angles. `plotPowerFit(logistic = FALSE)` shows the empirical distributions of the fit indices under the competing data-generating conditions and the cutoff used to separate them. `getPowerFit` reports the achieved power at the fixed $N$, and `getCutoff` reports the empirical cutoffs derived from the reference model [@simsem2021].
+With $N$ fixed, `plotPowerFit()` no longer traces power as a function
+of sample size. Instead, the figure displays the empirical distributions
+of each fit index under the reference and misspecified conditions across
+replications, alongside the cutoff derived from the reference model at
+the chosen $\alpha$ level. The visual separation between the two
+distributions is the graphical counterpart of the power values reported
+in the table below [@simsem2021; @mcneish2021].
 
 ```{r}
 #| label: fig-power-curve-fixed
@@ -91,7 +106,7 @@ plotPowerFit(
 )
 ```
 
-### Power cutoff values for fit indices
+### Power and cutoff values for fit indices
 
 ```{r}
 #| label: tbl-power-cutoff-fixed
@@ -125,9 +140,15 @@ colnames(power_cutoff_fixed) <- toupper(names(power_fixed))
 knitr::kable(power_cutoff_fixed, digits = 3, align = "c")
 ```
 
-## Power analysis with traditional fits
+## Power analysis with traditional cutoffs
 
-In the following chunk, the same fixed-$N$ design is re-evaluated using traditional rule-of-thumb cutoffs. This is included only as an illustration of how generic thresholds may lead to very different conclusions from empirically calibrated cutoffs tailored to the specific model, misspecification, and sample size [@jak2021; @feng2023].
+The same fixed-$N$ simulation is now re-evaluated using conventional
+rule-of-thumb thresholds in place of the empirically derived cutoffs
+used above. This is a deliberate contrast: by holding $N$, the
+data-generating model, and the analysis model constant while changing
+only the decision criterion, the comparison isolates the contribution
+of the cutoff choice to the power conclusion [@mcneish2021;
+@kyriazos2018].
 
 ```{r}
 #| label: fig-curve-fixed-traditional
@@ -143,7 +164,6 @@ plotPowerFit(
     usedFit = FITS
 )
 ```
-
 
 ```{r}
 #| label: tbl-power-cutoff-traditional

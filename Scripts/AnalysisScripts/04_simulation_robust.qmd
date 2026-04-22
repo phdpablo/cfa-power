@@ -2,6 +2,8 @@
 title: "Simulation — Realistic Scenarios"
 execute:
   echo: false
+  warning: false
+  message: false
 ---
 
 ## Setup
@@ -21,8 +23,16 @@ cache_load_existing()
 
 ## Scenario A — Missing data (MCAR 10%)
 
-Introduce 10% missing completeness at random (MCAR). This demonstrates the
-power cost of attrition / item non-response. For more complex missing data patterns (e.g., MAR, MNAR), you would need to specify a more detailed missing data mechanism (`miss` function in `simsem` package), but this serves as a baseline for the impact of missingness on power. We use FIML estimation to handle the missing data, which is a common approach in SEM.
+Missingness reduces effective sample size and inflates sampling variance,
+both of which reduce power relative to the ideal scenario. When data are
+missing completely at random (MCAR), this reduction is a function of the
+missing proportion alone, and Full Information Maximum Likelihood (FIML)
+provides consistent estimates without imputation [@enders2010; @simsem2021].
+
+The two chunks below replicate the main misspecification simulation with
+10% MCAR applied to both the reference and the alternative conditions.
+Using the same population and analysis models as before isolates the power
+cost of missingness, since all other design choices remain constant.
 
 ```{r}
 #| label: sim-missing-popmodel
@@ -44,7 +54,6 @@ popmodel_miss <- cache_or_run("popmodel_miss", {
     )
 })
 ```
-
 
 ```{r}
 #| label: sim-missing-h1model
@@ -69,7 +78,11 @@ h1model_miss <- cache_or_run("h1model_miss", {
 
 ### Power curves for fit indices
 
-These chunks summarize a simulation-based, a priori power analysis for global fit under $10\%$ MCAR missingness. The goal is to evaluate how much sample size is needed for the analysis model to reliably distinguish itself from a misspecified competing model when the decision is based on RMSEA, SRMR, CFI, and TLI, following the logic of model-based Monte Carlo power analysis in SEM [@moshagen2024; @feng2023].
+The power curves below follow the same logic as in the ideal scenario,
+but with cutoff distributions now derived from samples subject to 10%
+MCAR. The expected outcome is a rightward shift in the curves: the same
+target power level requires a larger $N$ than under complete data
+[@enders2010; @feng2023].
 
 ```{r}
 #| label: fig-power-curve-missing
@@ -111,9 +124,14 @@ plotPowerFit(
 )
 ```
 
-### Power cutoff values for fit indices
+### Power and cutoff values for fit indices
 
-The next chunk summarizes the model-based decision quantities used in the power analysis. In `simsem`, power is obtained by comparing the sampling distribution under the misspecified model against cutoffs derived from the reference model at the chosen $\alpha$ level, for the same sample size and missing-data condition [@simsem2021; @jobst2023].
+`getPowerFit()` and `getCutoff()` are evaluated here at $N = 359$,
+the minimum sample size at which all four indices reached the target
+power under this missing-data condition. Reading power alongside the
+empirical cutoffs makes it possible to verify that the decision rule
+itself is well-calibrated — not merely that the rejection rate is
+high at the chosen $N$ [@jobst2023; @wang2023].
 
 ```{r}
 #| label: tbl-power-cutoff-missing
@@ -149,10 +167,22 @@ colnames(power_cutoff_miss) <- toupper(names(power_miss)) # Standardize column n
 knitr::kable(power_cutoff_miss, digits = 3, align = "c") # Print the table.
 ```
 
-
 ## Scenario B — Non-normality
 
-This scenario simulates data with varying degrees of non-normality by applying marginal transformations to the observed variables. The `dist` object defined in `helpers.R` specifies a range of skewness and kurtosis values to create different non-normal conditions. This allows us to evaluate how robust fit indices perform when the normality assumption is violated, which is common in real-world data. We use the same estimation method (MLR) that provides robust standard errors and fit indices under non-normal conditions.
+Non-normal continuous indicators are common in psychometric research,
+particularly when items use ordered response scales or when the
+construct exhibits floor or ceiling effects.
+Under non-normality, standard ML standard errors and test statistics
+are generally biased, so Satorra-Bentler scaling (MLR) is applied here
+to maintain appropriate Type I error control.
+
+The `dist` object in `helpers.R` generates data with mild skewness
+(ranging from $-1$ to $+1$) and slight excess kurtosis (from $1$ to
+$2$), a range that is realistic for quality-of-life scales such as
+the WHOQOL-BREF. The goal is not to impose severe
+distributional violations, but to verify that the power conclusions
+from the ideal scenario hold under plausible real-world deviations
+from normality.
 
 ```{r}
 #| label: sim-nnorm-popmodel
@@ -173,7 +203,6 @@ popmodel_nnorm <- cache_or_run("popmodel_nnorm", {
     )
 })
 ```
-
 
 ```{r}
 #| label: sim-nnorm-h1model
@@ -197,7 +226,11 @@ h1model_nnorm <- cache_or_run("h1model_nnorm", {
 
 ### Power curves for fit indices
 
-This section evaluates power to reject a misspecified SEM across varying $N$ using fit-index cutoffs derived from the null-model sampling distribution, which aligns with the simulation-based logic of absolute-fit power analysis in SEM [@simsem2021; @wang2023].
+As in the ideal scenario, power is evaluated against empirical cutoffs
+derived from the null-model sampling distribution, now obtained under
+MLR estimation. This keeps the decision criterion consistent with the
+data conditions and avoids applying cutoffs calibrated under normality
+to non-normal simulated data [@mcneish2021; @simsem2021].
 
 ```{r}
 #| label: fig-power-curve-nnorm
@@ -224,7 +257,10 @@ plotPowerFit(
 )
 ```
 
-The next figure shows the same power analysis without logistic smoothing, so the empirical separation between simulated values and the cutoff line can be inspected more directly [@simsem2021]
+The unsmoothed version below displays the raw separation between
+reference and alternative fit-index distributions across sample sizes,
+which helps assess at what point the two conditions become
+empirically distinguishable [@simsem2021; @mcneish2021].
 
 ```{r}
 #| label: fig-fit-curve-nnorm
@@ -245,7 +281,14 @@ plotPowerFit(
 )
 ```
 
-At $N = 228$, the code below extracts both index-specific power and the corresponding empirical cutoff values under the same $\alpha$ level, so the rejection rule and its operating performance are evaluated on the same sampling basis [@simsem2021; @feng2023].
+### Power and cutoff values for fit indices
+
+At $N = 228$, the table below summarizes power and empirical cutoffs
+under mild non-normality. Comparing these values with the ideal-scenario
+results at $N = 231$ shows the net effect of the distributional
+deviation: if power and cutoff values remain close across the two
+conditions, the conclusions from the ideal scenario are robust to
+this degree of non-normality [@feng2023].
 
 ```{r}
 #| label: tbl-power-cutoff-nnorm

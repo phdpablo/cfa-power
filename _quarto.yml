@@ -29,7 +29,7 @@ manuscript: # https://quarto.org/docs/manuscripts/authoring/rstudio.html
     - notebook: Scripts/AnalysisScripts/04_simulation_robust.qmd
       title: "Simulation — Realistic Scenarios"
     - notebook: Scripts/AnalysisScripts/05_model_comparison.qmd
-      title: "Model Comparison (Null vs Alternative)"
+      title: "Simulation — Fixed N"
     - notebook: Scripts/AnalysisScripts/06_posthoc.qmd
       title: "Post Hoc Power Analysis"
 

@@ -236,11 +236,12 @@
   <li><a href="#scenario-a-missing-data-mcar-10" id="toc-scenario-a-missing-data-mcar-10" class="nav-link" data-scroll-target="#scenario-a-missing-data-mcar-10">Scenario A — Missing data (MCAR 10%)</a>
   <ul class="collapse">
   <li><a href="#power-curves-for-fit-indices" id="toc-power-curves-for-fit-indices" class="nav-link" data-scroll-target="#power-curves-for-fit-indices">Power curves for fit indices</a></li>
-  <li><a href="#power-cutoff-values-for-fit-indices" id="toc-power-cutoff-values-for-fit-indices" class="nav-link" data-scroll-target="#power-cutoff-values-for-fit-indices">Power cutoff values for fit indices</a></li>
+  <li><a href="#power-and-cutoff-values-for-fit-indices" id="toc-power-and-cutoff-values-for-fit-indices" class="nav-link" data-scroll-target="#power-and-cutoff-values-for-fit-indices">Power and cutoff values for fit indices</a></li>
   </ul></li>
   <li><a href="#scenario-b-non-normality" id="toc-scenario-b-non-normality" class="nav-link" data-scroll-target="#scenario-b-non-normality">Scenario B — Non-normality</a>
   <ul class="collapse">
   <li><a href="#power-curves-for-fit-indices-1" id="toc-power-curves-for-fit-indices-1" class="nav-link" data-scroll-target="#power-curves-for-fit-indices-1">Power curves for fit indices</a></li>
+  <li><a href="#power-and-cutoff-values-for-fit-indices-1" id="toc-power-and-cutoff-values-for-fit-indices-1" class="nav-link" data-scroll-target="#power-and-cutoff-values-for-fit-indices-1">Power and cutoff values for fit indices</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -366,7 +367,8 @@ Attaching package: 'dplyr'</code></pre>
 </section>
 <section id="scenario-a-missing-data-mcar-10" class="level2">
 <h2 class="anchored" data-anchor-id="scenario-a-missing-data-mcar-10">Scenario A — Missing data (MCAR 10%)</h2>
-<p>Introduce 10% missing completeness at random (MCAR). This demonstrates the power cost of attrition / item non-response. For more complex missing data patterns (e.g., MAR, MNAR), you would need to specify a more detailed missing data mechanism (<code>miss</code> function in <code>simsem</code> package), but this serves as a baseline for the impact of missingness on power. We use FIML estimation to handle the missing data, which is a common approach in SEM.</p>
+<p>Missingness reduces effective sample size and inflates sampling variance, both of which reduce power relative to the ideal scenario. When data are missing completely at random (MCAR), this reduction is a function of the missing proportion alone, and Full Information Maximum Likelihood (FIML) provides consistent estimates without imputation <span class="citation" data-cites="enders2010 simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>; <a href="#ref-enders2010" role="doc-biblioref"><strong>enders2010?</strong></a>)</span>.</p>
+<p>The two chunks below replicate the main misspecification simulation with 10% MCAR applied to both the reference and the alternative conditions. Using the same population and analysis models as before isolates the power cost of missingness, since all other design choices remain constant.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>popmodel_miss <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"popmodel_miss"</span>, {</span>
@@ -405,7 +407,7 @@ Attaching package: 'dplyr'</code></pre>
 </div></div>
 <section id="power-curves-for-fit-indices" class="level3">
 <h3 class="anchored" data-anchor-id="power-curves-for-fit-indices">Power curves for fit indices</h3>
-<p>These chunks summarize a simulation-based, a priori power analysis for global fit under <span class="math inline">\(10\%\)</span> MCAR missingness. The goal is to evaluate how much sample size is needed for the analysis model to reliably distinguish itself from a misspecified competing model when the decision is based on RMSEA, SRMR, CFI, and TLI, following the logic of model-based Monte Carlo power analysis in SEM <span class="citation" data-cites="moshagen2024 feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>The power curves below follow the same logic as in the ideal scenario, but with cutoff distributions now derived from samples subject to 10% MCAR. The expected outcome is a rightward shift in the curves: the same target power level requires a larger <span class="math inline">\(N\)</span> than under complete data <span class="citation" data-cites="enders2010 feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-enders2010" role="doc-biblioref"><strong>enders2010?</strong></a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-fig-power-curve-missing" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot model-based power as a function of N.</span></span>
@@ -461,9 +463,9 @@ Power curves for fit indices under missing data conditions without logistic smoo
 </div>
 </div></div>
 </section>
-<section id="power-cutoff-values-for-fit-indices" class="level3">
-<h3 class="anchored" data-anchor-id="power-cutoff-values-for-fit-indices">Power cutoff values for fit indices</h3>
-<p>The next chunk summarizes the model-based decision quantities used in the power analysis. In <code>simsem</code>, power is obtained by comparing the sampling distribution under the misspecified model against cutoffs derived from the reference model at the chosen <span class="math inline">\(\alpha\)</span> level, for the same sample size and missing-data condition <span class="citation" data-cites="simsem2021 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<section id="power-and-cutoff-values-for-fit-indices" class="level3">
+<h3 class="anchored" data-anchor-id="power-and-cutoff-values-for-fit-indices">Power and cutoff values for fit indices</h3>
+<p><code>getPowerFit()</code> and <code>getCutoff()</code> are evaluated here at <span class="math inline">\(N = 359\)</span>, the minimum sample size at which all four indices reached the target power under this missing-data condition. Reading power alongside the empirical cutoffs makes it possible to verify that the decision rule itself is well-calibrated — not merely that the rejection rate is high at the chosen <span class="math inline">\(N\)</span> <span class="citation" data-cites="jobst2023 wang2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model</span></span>
@@ -537,7 +539,8 @@ Power and fit index cutoff values under missing data conditions at N = 359.
 </section>
 <section id="scenario-b-non-normality" class="level2">
 <h2 class="anchored" data-anchor-id="scenario-b-non-normality">Scenario B — Non-normality</h2>
-<p>This scenario simulates data with varying degrees of non-normality by applying marginal transformations to the observed variables. The <code>dist</code> object defined in <code>helpers.R</code> specifies a range of skewness and kurtosis values to create different non-normal conditions. This allows us to evaluate how robust fit indices perform when the normality assumption is violated, which is common in real-world data. We use the same estimation method (MLR) that provides robust standard errors and fit indices under non-normal conditions.</p>
+<p>Non-normal continuous indicators are common in psychometric research, particularly when items use ordered response scales or when the construct exhibits floor or ceiling effects. Under non-normality, standard ML standard errors and test statistics are generally biased, so Satorra-Bentler scaling (MLR) is applied here to maintain appropriate Type I error control.</p>
+<p>The <code>dist</code> object in <code>helpers.R</code> generates data with mild skewness (ranging from <span class="math inline">\(-1\)</span> to <span class="math inline">\(+1\)</span>) and slight excess kurtosis (from <span class="math inline">\(1\)</span> to <span class="math inline">\(2\)</span>), a range that is realistic for quality-of-life scales such as the WHOQOL-BREF. The goal is not to impose severe distributional violations, but to verify that the power conclusions from the ideal scenario hold under plausible real-world deviations from normality.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>popmodel_nnorm <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"popmodel_nnorm"</span>, {</span>
@@ -574,7 +577,7 @@ Power and fit index cutoff values under missing data conditions at N = 359.
 </div></div>
 <section id="power-curves-for-fit-indices-1" class="level3">
 <h3 class="anchored" data-anchor-id="power-curves-for-fit-indices-1">Power curves for fit indices</h3>
-<p>This section evaluates power to reject a misspecified SEM across varying <span class="math inline">\(N\)</span> using fit-index cutoffs derived from the null-model sampling distribution, which aligns with the simulation-based logic of absolute-fit power analysis in SEM <span class="citation" data-cites="simsem2021 wang2023">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+<p>As in the ideal scenario, power is evaluated against empirical cutoffs derived from the null-model sampling distribution, now obtained under MLR estimation. This keeps the decision criterion consistent with the data conditions and avoids applying cutoffs calibrated under normality to non-normal simulated data <span class="citation" data-cites="mcneish2021 simsem2021">(<a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="cell-fig-power-curve-nnorm" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot power as a function of N for the selected fit indices.</span></span>
@@ -607,7 +610,7 @@ Power curves for fit indices under non-normal conditions.
 </div>
 </div>
 </div></div>
-<p>The next figure shows the same power analysis without logistic smoothing, so the empirical separation between simulated values and the cutoff line can be inspected more directly <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span></p>
+<p>The unsmoothed version below displays the raw separation between reference and alternative fit-index distributions across sample sizes, which helps assess at what point the two conditions become empirically distinguishable <span class="citation" data-cites="simsem2021 mcneish2021">(<a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="cell-fig-fit-curve-nnorm" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproduce the same plot, but disable logistic smoothing.</span></span>
@@ -634,7 +637,10 @@ Power curves for fit indices under non-normal conditions without logistic smooth
 </div>
 </div>
 </div></div>
-<p>At <span class="math inline">\(N = 228\)</span>, the code below extracts both index-specific power and the corresponding empirical cutoff values under the same <span class="math inline">\(\alpha\)</span> level, so the rejection rule and its operating performance are evaluated on the same sampling basis <span class="citation" data-cites="simsem2021 feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+</section>
+<section id="power-and-cutoff-values-for-fit-indices-1" class="level3">
+<h3 class="anchored" data-anchor-id="power-and-cutoff-values-for-fit-indices-1">Power and cutoff values for fit indices</h3>
+<p>At <span class="math inline">\(N = 228\)</span>, the table below summarizes power and empirical cutoffs under mild non-normality. Comparing these values with the ideal-scenario results at <span class="math inline">\(N = 231\)</span> shows the net effect of the distributional deviation: if power and cutoff values remain close across the two conditions, the conclusions from the ideal scenario are robust to this degree of non-normality <span class="citation" data-cites="feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power to reject the misspecified model at N = 228.</span></span>
@@ -713,8 +719,8 @@ Feng, Y., &amp; Hancock, G. R. (2023). Power <span>Analysis</span> within a <spa
 <div id="ref-jobst2023" class="csl-entry" role="listitem">
 Jobst, L. J., Bader, M., &amp; Moshagen, M. (2023). A tutorial on assessing statistical power and determining sample size for structural equation models. <em>Psychological Methods</em>, <em>28</em>(1), 207–221. <a href="https://doi.org/10.1037/met0000423">https://doi.org/10.1037/met0000423</a>
 </div>
-<div id="ref-moshagen2024" class="csl-entry" role="listitem">
-Moshagen, M., &amp; Bader, M. (2024). <span class="nocase">semPower</span>: <span>General</span> power analysis for structural equation models. <em>Behavior Research Methods</em>, <em>56</em>(4), 2901–2922. <a href="https://doi.org/10.3758/s13428-023-02254-7">https://doi.org/10.3758/s13428-023-02254-7</a>
+<div id="ref-mcneish2021" class="csl-entry" role="listitem">
+McNeish, D., &amp; Wolf, M. G. (2021). Dynamic fit index cutoffs for confirmatory factor analysis models. <em>Psychological Methods</em>, <em>28</em>(1), 61–88. <a href="https://doi.org/10.1037/met0000425">https://doi.org/10.1037/met0000425</a>
 </div>
 <div id="ref-simsem2021" class="csl-entry" role="listitem">
 Pornprasertmanit, S., Miller, P., Schoemann, A., &amp; Jorgensen, T. D. (2021). <em>Simsem: <span>SIMulated Structural Equation Modeling</span></em>. <a href="https://CRAN.R-project.org/package=simsem">https://CRAN.R-project.org/package=simsem</a>

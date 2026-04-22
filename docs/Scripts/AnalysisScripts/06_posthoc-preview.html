@@ -233,7 +233,7 @@
    
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#posthoc-power-analysis" id="toc-posthoc-power-analysis" class="nav-link" data-scroll-target="#posthoc-power-analysis">Posthoc power analysis</a>
+  <li><a href="#post-hoc-power-analysis" id="toc-post-hoc-power-analysis" class="nav-link" data-scroll-target="#post-hoc-power-analysis">Post hoc power analysis</a>
   <ul class="collapse">
   <li><a href="#with-simulation" id="toc-with-simulation" class="nav-link" data-scroll-target="#with-simulation">With simulation</a></li>
   <li><a href="#with-sempower" id="toc-with-sempower" class="nav-link" data-scroll-target="#with-sempower">With semPower</a></li>
@@ -359,9 +359,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cache_load_existing</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<ul>
-<li>The post hoc power analysis is based on the real data used in <span class="citation" data-cites="rogers2022">Rogers (<a href="#ref-rogers2022" role="doc-biblioref">2022</a>)</span>, which is available in Mendeley Data. The data are from the WHOQOL-Bref questionnaire, which assesses quality of life across multiple domains. The dataset includes responses from a sample of 1,047 participants on various items that correspond to different facets of quality of life.</li>
-</ul>
+<p>The post hoc analysis is based on the real dataset from <span class="citation" data-cites="rogers2022">Rogers (<a href="#ref-rogers2022" role="doc-biblioref">2022</a>)</span>, publicly available in Mendeley Data. The data contain WHOQOL-BREF responses from 1,047 participants and are loaded directly from the repository URL. The sample size is extracted from the object and reused throughout this section, and the model degrees of freedom are computed from <code>analyzemodel</code> as a required input for the analytical functions.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>url_data <span class="ot">&lt;-</span> <span class="st">"https://data.mendeley.com/datasets/rdky78bk8r/2/files/b58a7054-4978-4239-81db-00f9efd86e44/WHOQOL_Data.dat"</span></span>
@@ -377,13 +375,12 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>df_model <span class="ot">&lt;-</span> semPower<span class="sc">::</span><span class="fu">semPower.getDf</span>(analyzemodel) <span class="co"># Degrees of freedom for the model, needed for semPower post hoc</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
-<section id="posthoc-power-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="posthoc-power-analysis">Posthoc power analysis</h2>
+<section id="post-hoc-power-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="post-hoc-power-analysis">Post hoc power analysis</h2>
 <section id="with-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="with-simulation">With simulation</h3>
-<ul>
-<li>Step 1: Fit the model to the real data. This will be used as the null model in the post hoc power analysis.</li>
-</ul>
+<p>Post hoc simulation-based power analysis follows four steps: fit the analysis model to the real data to obtain the empirical parameter estimates; simulate data from that fitted model to construct the null reference distribution; simulate data from the misspecified model to construct the alternative distribution; and evaluate how well each fit index separates the two distributions at the observed <span class="math inline">\(N\)</span> <span class="citation" data-cites="simsem2021 wang2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>; <a href="#ref-wang2021" role="doc-biblioref">Wang &amp; Rhemtulla, 2021</a>)</span>.</p>
+<p>Grounding the reference distribution in the fitted model rather than in the theoretical population model is what distinguishes this from the a priori analyses above: here, the population structure is implied by the data rather than specified in advance, which makes the power estimate reflect the evidence actually available in the collected sample <span class="citation" data-cites="feng2023 jobst2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>fit_real <span class="ot">&lt;-</span> <span class="fu">cfa</span>(</span>
@@ -392,9 +389,6 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"mlr"</span></span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<ul>
-<li>Step 2: Fit the null model to the real data.</li>
-</ul>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>realmodel_null <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"realmodel_null"</span>, {</span>
@@ -411,9 +405,6 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<ul>
-<li>Step 3: Fit the misspecified model to the real data. This will be used as the alternative model in the post hoc power analysis.</li>
-</ul>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>h1model_alt <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"h1model_alt"</span>, {</span>
@@ -430,10 +421,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<ul>
-<li>Step 4: Evaluate power for rejecting the null model in favor of the alternative model based on the simulated data.</li>
-</ul>
-<p>The next chunk visualizes post hoc power for global model fit by comparing the sampling distributions of fit indices from the misspecified alternative model against cutoffs derived from the null model fitted to data generated under the empirical reference model. This use of simulation is appropriate when power is evaluated for a specific model comparison rather than for an abstract misfit value, because simulated SEM power is inherently model-based and tied to the population structure assumed in the analysis <span class="citation" data-cites="moshagen2024">Moshagen &amp; Bader (<a href="#ref-moshagen2024" role="doc-biblioref">2024</a>)</span>; <span class="citation" data-cites="jobst2023">Jobst et al. (<a href="#ref-jobst2023" role="doc-biblioref">2023</a>)</span>.</p>
+<p>The figure below displays the fit-index distributions for the alternative and null conditions, alongside the empirical cutoff derived from the reference model at <span class="math inline">\(\alpha\)</span>. The degree of visual separation between the two distributions provides an intuitive picture of whether the observed <span class="math inline">\(N\)</span> is sufficient to support reliable model discrimination <span class="citation" data-cites="simsem2021 mcneish2021">(<a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="cell-fig-posthoc-plotpower" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fit-index distributions for the alternative model and compare them</span></span>
@@ -460,7 +448,7 @@ Power curve for post hoc analysis based on simulation.
 </div>
 </div>
 </div></div>
-<p>The next chunk extracts the same post hoc power results in tabular form. Here, power is the proportion of replications from the alternative condition that fall beyond the null-model cutoffs for each selected fit index, which provides an empirical estimate of the probability of rejecting the misspecified model on the basis of global fit <span class="citation" data-cites="simsem2021 moshagen2024">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<p>The table below reports the corresponding power values for each index: the proportion of alternative-condition replications that fall beyond the null-model cutoff at the chosen <span class="math inline">\(\alpha\)</span> level <span class="citation" data-cites="simsem2021 wang2023">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="tbl-posthoc-power" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-posthoc-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -489,7 +477,7 @@ Power for post hoc analysis based on simulation.
 </section>
 <section id="with-sempower" class="level3">
 <h3 class="anchored" data-anchor-id="with-sempower">With semPower</h3>
-<p>The following chunks implement <strong>analytical</strong> post hoc power analyses for SEM. The first chunk is a model-free analysis that fixes the target discrepancy at <span class="math inline">\(RMSEA = 0.05\)</span>, whereas the next two are model-based analyses that derive the effect from the discrepancy between <code>modelPop</code> and the comparison model(s) supplied to <code>semPower.powerLav</code> <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>For comparison, the same post hoc question is addressed analytically through three specifications of increasing specificity. The first is model-free and sets the target discrepancy at <span class="math inline">\(\text{RMSEA} = 0.05\)</span>; the second is model-based and derives the effect from the discrepancy between the population model and the empirically fitted model; the third specifies an explicit nested-model comparison by supplying both a null and an alternative model, so the effect reflects a targeted structural difference rather than global misfit against the saturated model <span class="citation" data-cites="moshagen2024 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="cell-fig-posthoc-rmsea" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical post hoc power for a global fit test.</span></span>
@@ -539,7 +527,7 @@ Post hoc power analysis for RMSEA = 0.05.
 </div>
 </div>
 </div></div>
-<p>The next chunk performs an analytical model-based post hoc power analysis using the population model and the fitted empirical model. Here, <code>semPower.powerLav()</code> converts the discrepancy implied by the lavaan objects into the corresponding noncentrality-based effect used for the power calculation <span class="citation" data-cites="moshagen2024">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>In the model-based specification below, <code>semPower.powerLav()</code> fits the analysis model to the population-implied covariance matrix and translates the resulting discrepancy into the noncentrality parameter. Because <code>modelH1</code> is omitted, the comparison is against the saturated model, making this a global test of fit rather than a test of a specific restriction <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-fig-posthoc-realmodel" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical post hoc power based on lavaan models.</span></span>
@@ -591,7 +579,7 @@ Post hoc power analysis for the real model.
 </div>
 </div>
 </div></div>
-<p>The final chunk also uses <code>semPower.powerLav()</code>, but now the focal model is evaluated against an explicit alternative model rather than against the saturated model. This specification turns the analysis into a nested-model comparison with the effect defined by the discrepancy between <code>modelH0</code> and <code>modelH1</code> under the population model <span class="citation" data-cites="jobst2023 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>)</span>.</p>
+<p>The final specification introduces <code>modelH1 = h1modelfree</code>, which narrows the comparison from global fit to the specific nested discrepancy between the analysis model and the cross-loading alternative discussed throughout the tutorial. This mirrors the conceptual focus of all preceding a priori analyses and allows the post hoc result to be interpreted on the same substantive scale <span class="citation" data-cites="jobst2023 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="cell-fig-posthoc-misspec" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical post hoc power for an explicit nested-model comparison.</span></span>
@@ -647,11 +635,17 @@ Post hoc power analysis for the misspecified model.
 </div>
 </div></div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-feng2023" class="csl-entry" role="listitem">
+Feng, Y., &amp; Hancock, G. R. (2023). Power <span>Analysis</span> within a <span>Structural Equation Modeling Framework</span>. In R. H. Hoyle (Ed.), <em>Handbook of <span>Structural Equation Modeling</span></em>. The Guilford Press.
+</div>
 <div id="ref-jak2021" class="csl-entry" role="listitem">
 Jak, S., Jorgensen, T. D., Verdam, M. G. E., Oort, F. J., &amp; Elffers, L. (2021). Analytical power calculations for structural equation modeling: <span>A</span> tutorial and <span>Shiny</span> app. <em>Behavior Research Mehods</em>, <em>53</em>, 1385–1406. <a href="https://doi.org/10.3758/s13428-020-01479-0/Published">https://doi.org/10.3758/s13428-020-01479-0/Published</a>
 </div>
 <div id="ref-jobst2023" class="csl-entry" role="listitem">
 Jobst, L. J., Bader, M., &amp; Moshagen, M. (2023). A tutorial on assessing statistical power and determining sample size for structural equation models. <em>Psychological Methods</em>, <em>28</em>(1), 207–221. <a href="https://doi.org/10.1037/met0000423">https://doi.org/10.1037/met0000423</a>
+</div>
+<div id="ref-mcneish2021" class="csl-entry" role="listitem">
+McNeish, D., &amp; Wolf, M. G. (2021). Dynamic fit index cutoffs for confirmatory factor analysis models. <em>Psychological Methods</em>, <em>28</em>(1), 61–88. <a href="https://doi.org/10.1037/met0000425">https://doi.org/10.1037/met0000425</a>
 </div>
 <div id="ref-moshagen2024" class="csl-entry" role="listitem">
 Moshagen, M., &amp; Bader, M. (2024). <span class="nocase">semPower</span>: <span>General</span> power analysis for structural equation models. <em>Behavior Research Methods</em>, <em>56</em>(4), 2901–2922. <a href="https://doi.org/10.3758/s13428-023-02254-7">https://doi.org/10.3758/s13428-023-02254-7</a>
@@ -661,6 +655,12 @@ Pornprasertmanit, S., Miller, P., Schoemann, A., &amp; Jorgensen, T. D. (2021). 
 </div>
 <div id="ref-rogers2022" class="csl-entry" role="listitem">
 Rogers, P. (2022). Best <span>Practices</span> for <span>Your Exploratory Factor Analysis</span>: <span>A Factor Tutorial</span>. <em>Revista de Administração Contemporânea</em>, <em>26</em>(6). <a href="https://doi.org/10.1590/1982-7849rac2022210085.en">https://doi.org/10.1590/1982-7849rac2022210085.en</a>
+</div>
+<div id="ref-wang2023" class="csl-entry" role="listitem">
+Wang, Y. A. (2023). <em>How to <span>Conduct Power Analysis</span> for <span>Structural Equation Models</span>: <span>A Practical Primer</span></em> [Preprint]. PsyArXiv. <a href="https://doi.org/10.31234/osf.io/4n3uk">https://doi.org/10.31234/osf.io/4n3uk</a>
+</div>
+<div id="ref-wang2021" class="csl-entry" role="listitem">
+Wang, Y. A., &amp; Rhemtulla, M. (2021). Power <span>Analysis</span> for <span>Parameter Estimation</span> in <span>Structural Equation Modeling</span>: <span>A Discussion</span> and <span>Tutorial</span>. <em>Advances in Methods and Practices in Psychological Science</em>, <em>4</em>(1), 1–17. <a href="https://doi.org/10.1177/2515245920918253">https://doi.org/10.1177/2515245920918253</a>
 </div>
 </div>
 </section>

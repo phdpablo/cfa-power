@@ -17,12 +17,15 @@ source(here("Scripts", "DataAppendixScripts", "models.R"))
 source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 ```
 
-
 ## Computing model degrees of freedom
 
-The degrees of freedom are critical for the analytical approach because
-power is computed from the central and non-central χ² distributions,
-both parameterized by df.
+Before any analytical power calculation can be performed, the model
+degrees of freedom ($df$) must be established. This quantity is the
+difference between the number of unique variances and covariances
+in the observed data and the number of freely estimated parameters.
+It enters the non-central $\chi^2$ distribution directly and is
+therefore required for both the a priori and the power-curve analyses
+that follow [@jak2021; @moshagen2024].
 
 ```{r}
 #| label: compute-df
@@ -37,13 +40,23 @@ cat("Model degrees of freedom (via semPower):", df_model, "\n")
 
 ### Model-free approach (RMSEA-based)
 
-This chunk uses `semPower::semPower.aPriori()` to compute the minimum sample size required for an a priori power analysis based on RMSEA, given the target ($\alpha$), desired power, and model degrees of freedom [@moshagen2024].
+The model-free strategy determines the required sample size from four
+ingredients — the target RMSEA, the significance level, the desired
+power, and the model degrees of freedom — without requiring an
+explicitly specified population model [@maccallum1996; @jak2021].
+Because RMSEA expresses misfit per degree of freedom, it translates
+directly into the noncentrality parameter $\lambda = (N-1)\,df\,\text{RMSEA}^2$,
+which locates the alternative $\chi^2$ distribution relative to the
+null [@maccallum1996].
 
-The output returns the required number of observations and the associated quantities reported by `semPower`, such as $F_0$, RMSEA, Mc, the critical chi-square value, and the noncentrality parameter.
+The output below returns the minimum $N$ needed to detect
+$\text{RMSEA} = 0.05$ under the chosen $\alpha$ and power, together
+with equivalent representations of the same effect in terms of $F_0$,
+$Mc$, $GFI$, and $AGFI$ [@moshagen2024].
 
 ```{r}
-#| label: apriori-rmsea
-#! fig-cap: "A priori power analysis for exact fit with RMSEA-based effect size"
+#| label: fig-apriori-rmsea
+#| fig-cap: "A priori power analysis for exact fit with RMSEA-based effect size"
 
 # Analytical a priori power analysis for the global chi-square test.
 # The goal is to determine the minimum N required to detect
@@ -65,12 +78,23 @@ summary(ap_rmsea)
 
 ### Model-based approach (with lavaan syntax)
 
-This chunk runs an **a priori analytical power analysis** with `semPower.powerLav()`. The function uses the population model (`modelPop`) and the null analysis model (`modelH0`) to determine the minimum sample size required to detect their discrepancy with the target alpha and power [@moshagen2024; @jobst2023].
+When the substantive hypothesis is grounded in an explicit population
+model, the effect no longer needs to be set by convention: it is
+implied by the discrepancy between the population covariance structure
+and the restrictions imposed by the analysis model [@wang2023; @feng2023].
+This makes the sample size estimate more directly tied to the CFA
+under study, at the cost of requiring a fully specified population
+model as input [@buchberger2024; @moshagen2024].
 
-Because no `modelH1` is specified, the comparison is made against the **saturated model**, so the test targets global model misfit [@moshagen2024; @jobst2023].
+Here, `semPower.powerLav()` fits the analysis model to the
+population-implied covariance matrix and translates the resulting
+discrepancy into $F_0$ and then into $\lambda = (N-1)F_0$. Because
+`modelH1` is not specified, the comparison is against the saturated
+model, so this remains a global test of fit rather than a test of
+any individual restriction [@jobst2023; @moshagen2024].
 
 ```{r}
-#| label: apriori-popmodel
+#| label: fig-apriori-popmodel
 #| fig-cap: "A priori power analysis Model-based approach (popModel)"
 
 # A priori power analysis:
@@ -93,11 +117,19 @@ summary(ap_popmodel)
 
 ## Power curves
 
+Power curves shift the discussion from a single required-$N$ result
+to a continuous view of how detection probability changes as sample
+size grows. They are useful for communicating the design in a way
+that makes trade-offs between $N$, power, and tolerated misspecification
+immediately visible [@wang2023; @moshagen2024].
+
 ### Model-free approach
 
-This chunk generates a model-free power curve showing how statistical power changes as a function of sample size $N$ for a fixed effect defined as $\mathrm{RMSEA} = 0.05$, given the chosen significance level $\alpha$ and the model degrees of freedom $df$ [@moshagen2024; @jobst2023].
-
-In `semPower`, this is an analytical power plot for a noncentrality-based effect measure, so the curve summarizes the expected power across a range of sample sizes while holding the effect size and test conditions constant [@moshagen2024; @jobst2023].
+The curve below is analytical and model-free: power is a function
+of RMSEA, $df$, and $\alpha$ only. It answers the planning question
+of how many observations are needed to detect a fixed degree of
+global misspecification across a range of possible $N$ values
+[@jak2021; @jobst2023].
 
 ```{r}
 #| label: fig-power-rmsea
@@ -118,7 +150,13 @@ semPower::semPower.powerPlot.byN(
 
 ### Model-based approach
 
-This chunk produces a power curve for the model-based analysis stored in `ap_popmodel`, displaying how statistical power changes as a function of sample size $N$ for the effect defined in that object [@moshagen2024; @jobst2023]. In `semPower`, `semPower.powerPlot()` is used to visualize the power trajectory implied by a previously estimated power-analysis object, which is useful for identifying the sample-size region in which power becomes adequate [@moshagen2024; @jobst2023].
+This curve traces the same power function for the model-based effect
+stored in `ap_popmodel`. Because the effect here is derived from the
+population covariance structure, the curve reflects the specific
+degree of misspecification implied by the substantive CFA, rather
+than a generic RMSEA threshold [@feng2023; @buchberger2024].
+The sample-size region in which the curve crosses the target power
+level is the practical read-off from this figure [@moshagen2024].
 
 ```{r}
 #| label: fig-power-popmodel
@@ -134,6 +172,14 @@ semPower.powerPlot(ap_popmodel)
 ```
 
 ## Summary table
+
+The table below brings the two analytical solutions together,
+allowing a direct comparison of their sample size requirements under
+the same $\alpha$ and power targets. The difference between the two
+estimates reflects a general principle: once the effect is derived
+from a specific population model rather than from a generic RMSEA
+convention, the resulting $N$ becomes more substantively grounded
+and, in this case, more conservative [@wang2023; @feng2023].
 
 ```{r}
 #| label: tbl-analytical-summary

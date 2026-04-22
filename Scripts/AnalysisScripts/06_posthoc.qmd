@@ -2,6 +2,8 @@
 title: "Post Hoc Power Analysis"
 execute:
   echo: false
+  warning: false
+  message: false
 ---
 
 ## Setup
@@ -20,7 +22,13 @@ cache_load_existing()
 
 ```
 
-- The post hoc power analysis is based on the real data used in @rogers2022, which is available in Mendeley Data. The data are from the WHOQOL-Bref questionnaire, which assesses quality of life across multiple domains. The dataset includes responses from a sample of 1,047 participants on various items that correspond to different facets of quality of life.
+The post hoc analysis is based on the real dataset from @rogers2022,
+publicly available in Mendeley Data. The data contain WHOQOL-BREF
+responses from 1,047 participants and are loaded directly from the
+repository URL. The sample size is extracted from the object and
+reused throughout this section, and the model degrees of freedom are
+computed from `analyzemodel` as a required input for the analytical
+functions.
 
 ```{r}
 #| label: load-realdata
@@ -38,11 +46,24 @@ n_real <- nrow(realdata) # Sample size of the real data
 df_model <- semPower::semPower.getDf(analyzemodel) # Degrees of freedom for the model, needed for semPower post hoc
 ```
 
-## Posthoc power analysis
+## Post hoc power analysis
 
 ### With simulation
 
-- Step 1: Fit the model to the real data. This will be used as the null model in the post hoc power analysis.
+Post hoc simulation-based power analysis follows four steps: fit the
+analysis model to the real data to obtain the empirical parameter
+estimates; simulate data from that fitted model to construct the null
+reference distribution; simulate data from the misspecified model to
+construct the alternative distribution; and evaluate how well each fit
+index separates the two distributions at the observed $N$
+[@simsem2021; @wang2021].
+
+Grounding the reference distribution in the fitted model rather than in
+the theoretical population model is what distinguishes this from the a
+priori analyses above: here, the population structure is implied by the
+data rather than specified in advance, which makes the power estimate
+reflect the evidence actually available in the collected sample
+[@feng2023; @jobst2023].
 
 ```{r}
 #| label: realdata-model
@@ -53,8 +74,6 @@ fit_real <- cfa(
   estimator = "mlr"
 )
 ```
-
-- Step 2: Fit the null model to the real data.
 
 ```{r}
 #| label: sim-null-posthoc
@@ -74,8 +93,6 @@ realmodel_null <- cache_or_run("realmodel_null", {
 })
 ```
 
-- Step 3: Fit the misspecified model to the real data. This will be used as the alternative model in the post hoc power analysis.
-
 ```{r}
 #| label: sim-alt-posthoc
 
@@ -94,9 +111,12 @@ h1model_alt <- cache_or_run("h1model_alt", {
 })
 ```
 
-- Step 4: Evaluate power for rejecting the null model in favor of the alternative model based on the simulated data.
-
-The next chunk visualizes post hoc power for global model fit by comparing the sampling distributions of fit indices from the misspecified alternative model against cutoffs derived from the null model fitted to data generated under the empirical reference model. This use of simulation is appropriate when power is evaluated for a specific model comparison rather than for an abstract misfit value, because simulated SEM power is inherently model-based and tied to the population structure assumed in the analysis @moshagen2024; @jobst2023.
+The figure below displays the fit-index distributions for the
+alternative and null conditions, alongside the empirical cutoff derived
+from the reference model at $\alpha$. The degree of visual separation
+between the two distributions provides an intuitive picture of whether
+the observed $N$ is sufficient to support reliable model discrimination
+[@simsem2021; @mcneish2021].
 
 ```{r}
 #| label: fig-posthoc-plotpower
@@ -117,7 +137,10 @@ plotPowerFit(
 )
 ```
 
-The next chunk extracts the same post hoc power results in tabular form. Here, power is the proportion of replications from the alternative condition that fall beyond the null-model cutoffs for each selected fit index, which provides an empirical estimate of the probability of rejecting the misspecified model on the basis of global fit [@simsem2021; @moshagen2024].
+The table below reports the corresponding power values for each index:
+the proportion of alternative-condition replications that fall beyond
+the null-model cutoff at the chosen $\alpha$ level [@simsem2021;
+@wang2023].
 
 ```{r}
 #| label: tbl-posthoc-power
@@ -138,7 +161,15 @@ getPowerFit(
 
 ### With semPower
 
-The following chunks implement **analytical** post hoc power analyses for SEM. The first chunk is a model-free analysis that fixes the target discrepancy at $RMSEA = 0.05$, whereas the next two are model-based analyses that derive the effect from the discrepancy between `modelPop` and the comparison model(s) supplied to `semPower.powerLav` [@moshagen2024; @jobst2023].
+For comparison, the same post hoc question is addressed analytically
+through three specifications of increasing specificity. The first is
+model-free and sets the target discrepancy at $\text{RMSEA} = 0.05$;
+the second is model-based and derives the effect from the discrepancy
+between the population model and the empirically fitted model; the
+third specifies an explicit nested-model comparison by supplying both a
+null and an alternative model, so the effect reflects a targeted
+structural difference rather than global misfit against the saturated
+model [@moshagen2024; @jak2021].
 
 ```{r}
 #| label: fig-posthoc-rmsea
@@ -162,7 +193,12 @@ ph_rmsea <- semPower::semPower.postHoc(
 summary(ph_rmsea)
 ```
 
-The next chunk performs an analytical model-based post hoc power analysis using the population model and the fitted empirical model. Here, `semPower.powerLav()` converts the discrepancy implied by the lavaan objects into the corresponding noncentrality-based effect used for the power calculation [@moshagen2024].
+In the model-based specification below, `semPower.powerLav()` fits the
+analysis model to the population-implied covariance matrix and translates
+the resulting discrepancy into the noncentrality parameter. Because
+`modelH1` is omitted, the comparison is against the saturated model,
+making this a global test of fit rather than a test of a specific
+restriction [@moshagen2024; @jobst2023].
 
 ```{r}
 #| label: fig-posthoc-realmodel
@@ -186,7 +222,13 @@ ph_realmodel <- semPower.powerLav(
 summary(ph_realmodel)
 ```
 
-The final chunk also uses `semPower.powerLav()`, but now the focal model is evaluated against an explicit alternative model rather than against the saturated model. This specification turns the analysis into a nested-model comparison with the effect defined by the discrepancy between `modelH0` and `modelH1` under the population model [@jobst2023; @jak2021].
+The final specification introduces `modelH1 = h1modelfree`, which
+narrows the comparison from global fit to the specific nested
+discrepancy between the analysis model and the cross-loading
+alternative discussed throughout the tutorial. This mirrors the
+conceptual focus of all preceding a priori analyses and allows the
+post hoc result to be interpreted on the same substantive scale
+[@jobst2023; @jak2021].
 
 ```{r}
 #| label: fig-posthoc-misspec

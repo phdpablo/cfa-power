@@ -237,8 +237,8 @@
   <li><a href="#main-misspecification-outputs" id="toc-main-misspecification-outputs" class="nav-link" data-scroll-target="#main-misspecification-outputs">Main misspecification outputs</a>
   <ul class="collapse">
   <li><a href="#power-curves-for-fit-indices" id="toc-power-curves-for-fit-indices" class="nav-link" data-scroll-target="#power-curves-for-fit-indices">Power curves for fit indices</a></li>
-  <li><a href="#power-cutoff-values-for-fit-indices" id="toc-power-cutoff-values-for-fit-indices" class="nav-link" data-scroll-target="#power-cutoff-values-for-fit-indices">Power cutoff values for fit indices</a></li>
-  <li><a href="#tradidional-cutoff-values-for-fit-indices" id="toc-tradidional-cutoff-values-for-fit-indices" class="nav-link" data-scroll-target="#tradidional-cutoff-values-for-fit-indices">Tradidional cutoff values for fit indices</a></li>
+  <li><a href="#power-and-cutoff-values-for-fit-indices" id="toc-power-and-cutoff-values-for-fit-indices" class="nav-link" data-scroll-target="#power-and-cutoff-values-for-fit-indices">Power and cutoff values for fit indices</a></li>
+  <li><a href="#traditional-cutoff-values-for-fit-indices" id="toc-traditional-cutoff-values-for-fit-indices" class="nav-link" data-scroll-target="#traditional-cutoff-values-for-fit-indices">Traditional cutoff values for fit indices</a></li>
   <li><a href="#target-parameter-estimates" id="toc-target-parameter-estimates" class="nav-link" data-scroll-target="#target-parameter-estimates">Target parameter estimates</a></li>
   <li><a href="#recovering-the-population-parameters" id="toc-recovering-the-population-parameters" class="nav-link" data-scroll-target="#recovering-the-population-parameters">Recovering the population parameters</a></li>
   <li><a href="#misspecification-and-population-sensitivity" id="toc-misspecification-and-population-sensitivity" class="nav-link" data-scroll-target="#misspecification-and-population-sensitivity">Misspecification and population sensitivity</a></li>
@@ -404,7 +404,7 @@ Attaching package: 'dplyr'</code></pre>
 <h2 class="anchored" data-anchor-id="main-misspecification-outputs">Main misspecification outputs</h2>
 <section id="power-curves-for-fit-indices" class="level3">
 <h3 class="anchored" data-anchor-id="power-curves-for-fit-indices">Power curves for fit indices</h3>
-<p>The following figure summarizes power for rejecting the misspecified condition using the selected fit indices. In <code>simsem</code>, <code>plotPowerFit()</code> visualizes how this power changes as a function of sample size, using the alternative-model results against the reference-model results and the chosen significance level (<span class="math inline">\(\alpha\)</span>) to determine the power at each sample size. The curves show the probability of correctly rejecting the null hypothesis of good fit (i.e., accepting the misspecified model) across different sample sizes, which helps to identify the sample size needed to achieve a desired level of power (e.g., 80%) for detecting misspecification using fit indices.</p>
+<p><code>plotPowerFit()</code> displays how the probability of rejecting the misspecified condition changes as sample size increases, using the logistic-smoothed relationship between <span class="math inline">\(N\)</span> and the reject/retain decision for each index <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>. The curves cross the target power level at different sample sizes, reflecting each index’s sensitivity to the imposed cross-loading misspecification.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-fig-power-curve-ideal" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
@@ -426,7 +426,7 @@ Power curves for fit indices under ideal conditions.
 </div>
 </div>
 </div></div>
-<p>The following figure summarizes empirical fit-index distributions for the misspecified condition against the reference condition across the sample-size sequence in N: <code>usedFit</code> restricts the display to the selected indices in <code>FITS</code> and <code>logistic = FALSE</code> requests the raw overlaid scatterplot with cutoff lines instead of logistic-smoothed power curves.</p>
+<p>The unsmoothed version below overlays the raw simulated fit-index values from both conditions across the sample-size sequence. This display is useful for inspecting how the two sampling distributions separate as <span class="math inline">\(N\)</span> grows, before that separation is summarized into logistic power curves <span class="citation" data-cites="simsem2021 mcneish2021">(<a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-fig-fit-curve-ideal" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
@@ -450,10 +450,9 @@ Power curves for fit indices under ideal conditions without logistic smoothing.
 </div>
 </div></div>
 </section>
-<section id="power-cutoff-values-for-fit-indices" class="level3">
-<h3 class="anchored" data-anchor-id="power-cutoff-values-for-fit-indices">Power cutoff values for fit indices</h3>
-<p>This chunk estimates, at <span class="math inline">\(N = 231\)</span>, the empirical power to reject the misspecified model using selected fit indices and, in parallel, derives the corresponding cutoff values from the null model under the same (<span class="math inline">\(\alpha\)</span>) level and sample size. In this setup, power is the proportion of replications in which the misspecified model shows worse fit than the cutoff implied by the null-model sampling distribution, which aligns with the general SEM view of power as the probability of rejecting a false null hypothesis <span class="citation" data-cites="jobst2023 moshagen2024">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
-<p>The logic is straightforward: <code>getPowerFit()</code> evaluates how often the alternative model would be rejected, whereas <code>getCutoff()</code> obtains index-specific critical values from the null model. Using empirically derived cutoffs is preferable to generic rules of thumb when the goal is to tailor the decision criterion to the specific model, sample size, and analysis conditions <span class="citation" data-cites="jobst2023 moshagen2024">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<section id="power-and-cutoff-values-for-fit-indices" class="level3">
+<h3 class="anchored" data-anchor-id="power-and-cutoff-values-for-fit-indices">Power and cutoff values for fit indices</h3>
+<p><code>getPowerFit()</code> evaluates how often the alternative model is rejected at a given <span class="math inline">\(N\)</span>, whereas <code>getCutoff()</code> derives the index-specific decision boundaries from the null-model sampling distribution at the same <span class="math inline">\(\alpha\)</span> level. Reading power and cutoffs together is more informative than either alone: the cutoff defines how stringent each rejection rule is, and the power shows how often that rule succeeds <span class="citation" data-cites="jobst2023 wang2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model (h1model_ideal)</span></span>
@@ -482,9 +481,7 @@ Power curves for fit indices under ideal conditions without logistic smoothing.
 <span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(power_cutoff_ideal) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(power_ideal)) <span class="co"># Standardize column names for presentation.</span></span>
-<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(power_cutoff_ideal, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="st">"c"</span>) <span class="co"># Print the table.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(power_cutoff_ideal, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="st">"c"</span>) <span class="co"># Print the table.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="tbl-power-cutoff-ideal" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -525,9 +522,9 @@ Power and fit index cutoff values under ideal conditions at N = 231.
 </div></div>
 </div></div>
 </section>
-<section id="tradidional-cutoff-values-for-fit-indices" class="level3">
-<h3 class="anchored" data-anchor-id="tradidional-cutoff-values-for-fit-indices">Tradidional cutoff values for fit indices</h3>
-<p>This chunk plots the simulated fit-index distributions across sample sizes to inspect how often the misspecified model would be rejected using traditional cutoff values. It uses <code>plotPowerFit()</code> with fixed rule-of-thumb cutoffs, the selected fit indices, and <code>logistic = FALSE</code>, so the output is shown as raw simulated points with horizontal cutoff lines rather than logistic power curves <span class="citation" data-cites="simsem2021 moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<section id="traditional-cutoff-values-for-fit-indices" class="level3">
+<h3 class="anchored" data-anchor-id="traditional-cutoff-values-for-fit-indices">Traditional cutoff values for fit indices</h3>
+<p>The same analysis is repeated using fixed rule-of-thumb thresholds in place of empirically derived cutoffs. This serves as a direct illustration of how the choice of decision criterion — not <span class="math inline">\(N\)</span> alone — affects power conclusions in simulation-based CFA evaluation <span class="citation" data-cites="mcneish2021 kyriazos2018">(<a href="#ref-kyriazos2018" role="doc-biblioref">Kyriazos, 2018</a>; <a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="cell-fig-fit-curve-traditional" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot fit-index results from the misspecified model across sample sizes.</span></span>
@@ -557,7 +554,7 @@ Power curves using traditional fit index cutoffs under ideal conditions.
 </div>
 </div>
 </div></div>
-<p>The table below summarizes the empirical power to reject the misspecified model using traditional fit-index cutoffs at <span class="math inline">\(N = 231\)</span> under ideal conditions. This provides a direct comparison of how well the traditional cutoffs perform in terms of power relative to the empirically derived cutoffs from the previous chunk.</p>
+<p>The table below summarizes detection rates at <span class="math inline">\(N = 231\)</span> under the same traditional thresholds, providing a direct comparison with the empirical-cutoff results from the previous block.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>power_trad <span class="ot">&lt;-</span> <span class="fu">getPowerFit</span>(</span>
@@ -613,7 +610,7 @@ Power for traditional fit index cutoffs under ideal conditions at N = 231.
 </section>
 <section id="target-parameter-estimates" class="level3">
 <h3 class="anchored" data-anchor-id="target-parameter-estimates">Target parameter estimates</h3>
-<p>Under ideal conditions, the first step is to evaluate parameter recovery rather than focusing on statistical significance alone. In <code>simsem</code>, <code>summaryParam(..., detail = TRUE)</code> provides detailed recovery diagnostics, including relative bias, relative standard error bias, coverage, and power for testing whether each parameter differs from zero <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>. Because power in SEM is hypothesis-specific, parameters within the same model may require substantially different sample sizes to reach the same target power <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>Monte Carlo summaries in <code>simsem</code> go beyond detection rates: relative bias, relative SE bias, and CI coverage jointly indicate whether each estimator is well-calibrated in finite samples. A parameter may show high detection power while still being recovered with noticeable bias or poorly estimated uncertainty, so all four indicators should be read together rather than treating power alone as the criterion of interest <span class="citation" data-cites="wang2021 simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>; <a href="#ref-wang2021" role="doc-biblioref">Wang &amp; Rhemtulla, 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute detailed parameter-recovery results for the fitted model.</span></span>
@@ -1070,7 +1067,7 @@ Summary of parameter estimates under ideal conditions.
 </figure>
 </div></div>
 </div></div>
-<p>The second step is to translate parameter-specific power into a planning quantity. In <code>simsem</code>, <code>getPower()</code> returns power estimates for model parameters, and <code>findPower()</code> identifies the value of the chosen independent variable, here <span class="math inline">\(N\)</span>, that first exceeds the target power level; thus, the resulting <span class="math inline">\(N\)</span> should be read as a practical threshold for planning rather than an exact analytical cutoff <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>. This is useful because SEM sample size requirements should be aligned with the most demanding focal parameters, not with the easiest ones to detect <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p><code>getPower()</code> returns parameter-specific power estimates across the simulated values of <span class="math inline">\(N\)</span>, and <code>findPower()</code> identifies the first <span class="math inline">\(N\)</span> in the grid that exceeds the target level. The resulting values should be read as practical planning thresholds: the most demanding parameters determine the minimum adequate sample size, since planning around the easiest effects to detect would leave the hardest ones systematically underpowered <span class="citation" data-cites="simsem2021 moshagen2024">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain parameter-specific power estimates across sample sizes.</span></span>
@@ -1198,13 +1195,10 @@ Sample size needed for 80% power under ideal conditions.
 </section>
 <section id="recovering-the-population-parameters" class="level3">
 <h3 class="anchored" data-anchor-id="recovering-the-population-parameters">Recovering the population parameters</h3>
-<p>Recovery of population parameters is not best strategy in CFA power analyses. The idea is to determine the sample size needed to accurately estimate the population parameters (e.g., factor loadings <span class="math inline">\(\neq 0\)</span>) with a certain level of precision. This can be done by simulating data under different models and evaluating how well the analysis model recovers the population parameters.</p>
-<p>But this strategy its not pratical because uselly we don’t need an large sample size to recover the loadings &gt; 0, but rather to detect misspecifications (e.g., cross-loadings) that are not present in the population model. Therefore, we can use the power to detect misspecifications as a more relevant criterion for determining the required sample size.</p>
+<p>Parameter recovery is a complementary perspective on sample size planning: instead of asking whether a misspecification can be detected globally, it asks whether individual model parameters can be accurately estimated under the assumed data-generating conditions <span class="citation" data-cites="wang2021 feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-wang2021" role="doc-biblioref">Wang &amp; Rhemtulla, 2021</a>)</span>. Although primary loadings are typically easy to recover even at modest <span class="math inline">\(N\)</span>, latent covariances and residual covariances may require substantially larger samples, making them the practical bottleneck for many CFA designs <span class="citation" data-cites="moshagen2024 gagne2006">(<a href="#ref-gagne2006" role="doc-biblioref">Gagné &amp; Hancock, 2006</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>The analyses below use the naive and optimal population models as sensitivity benchmarks. Because these models differ from the main meta-analytic population in their loading magnitudes and interfactor correlations, comparing their recovery profiles clarifies how sensitive the sample size recommendation is to the assumed parameter values.</p>
 <section id="naive-model" class="level4">
 <h4 class="anchored" data-anchor-id="naive-model">Naive model</h4>
-<ul>
-<li>Naive model: tau-equivalent loadings (uniform λ per domain) with same reliability as the population model. This is a common but often unrealistic assumption in CFA power analyses.</li>
-</ul>
 <div class="cell-container"><div class="cell-decorator"><pre>In [15]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>naivemodel_ideal <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"naivemodel_ideal"</span>, {</span>
@@ -1220,7 +1214,7 @@ Sample size needed for 80% power under ideal conditions.
 <span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<p>This chunk summarizes the parameter-level results of the Monte Carlo simulation by identifying the sample size required to reach <span class="math inline">\(.80\)</span> power for each estimable parameter. In line with simulation-based SEM power analysis, the goal here is not global fit, but parameter recovery under the specified population and analysis models, using the focal parameter requirements to identify the most demanding part of the model <span class="citation" data-cites="simsem2021 moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>. The resulting table focuses on the parameters for which a finite sample size requirement could be determined, which are the most relevant for planning purposes. We also show the fit diagnostics simulated used in this tutorial for the naive model, which are relevant for understanding the misspecification scenario and its implications for power.</p>
+<p>The table below reports parameter-level diagnostics and the minimum <span class="math inline">\(N\)</span> required for each parameter to reach <span class="math inline">\(.80\)</span> power under the naive population. Only parameters with a finite required <span class="math inline">\(N\)</span> above 60 are shown, as smaller requirements are of limited practical interest for planning purposes <span class="citation" data-cites="simsem2021 gagne2006">(<a href="#ref-gagne2006" role="doc-biblioref">Gagné &amp; Hancock, 2006</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [16]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute detailed parameter-recovery results for the fitted model.</span></span>
@@ -1374,9 +1368,6 @@ Parameter estimates and required sample size for 80% power under naive condition
 </section>
 <section id="optimal-model" class="level4">
 <h4 class="anchored" data-anchor-id="optimal-model">Optimal model</h4>
-<ul>
-<li>Optimal model: tau-equivalent loadings (uniform λ per domain) with same reliability as the population model, but with higher loadings to match the population reliability. This represents an idealized scenario where the analysis model is correctly specified in terms of reliability, but still assumes tau-equivalence.</li>
-</ul>
 <div class="cell-container"><div class="cell-decorator"><pre>In [18]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>optmodel_ideal <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"optmodel_ideal"</span>, {</span>
@@ -1392,7 +1383,7 @@ Parameter estimates and required sample size for 80% power under naive condition
 <span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<p>This chunk computes parameter-level power for the optimal model and extracts the minimum sample size <span class="math inline">\(N\)</span> required for each parameter to reach <span class="math inline">\(.80\)</span> power at the chosen <span class="math inline">\(\alpha\)</span> level. In Monte Carlo SEM power analysis, this step helps identify which parameters are more or less demanding in terms of sample size under the assumed data-generating and analysis conditions <span class="citation" data-cites="simsem2021 moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>. The resulting table focuses on the parameters for which a finite sample size requirement could be determined, which are the most relevant for planning purposes. We also show the fit diagnostics simulated used in this tutorial for the naive model, which are relevant for understanding the misspecification scenario and its implications for power.</p>
+<p>The same parameter-level analysis is applied to the optimal model. Because this population uses stronger loadings and lower interfactor correlations, most parameters are expected to reach the target power at smaller <span class="math inline">\(N\)</span> values than under the naive scenario, and the set of finite requirements will likely be sparser <span class="citation" data-cites="simsem2021 buchberger2024">(<a href="#ref-buchberger2024" role="doc-biblioref">Buchberger et al., 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [19]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute detailed parameter-recovery results for the fitted model.</span></span>
@@ -1501,7 +1492,7 @@ Parameter estimates and required sample size for 80% power under optimal conditi
 <h3 class="anchored" data-anchor-id="misspecification-and-population-sensitivity">Misspecification and population sensitivity</h3>
 <section id="naive-model-1" class="level4">
 <h4 class="anchored" data-anchor-id="naive-model-1">Naive model</h4>
-<p>These chunks evaluate fit-index-based power for the naive population model across sample sizes and then extract the corresponding power and empirical cutoff values at <span class="math inline">\(N = 330\)</span>. In simulation-based SEM power analysis, this workflow is useful when the goal is to assess how well different fit indices discriminate between a better-fitting and a worse-fitting model as sample size increases <span class="citation" data-cites="simsem2021 moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<p>The chunks below replicate the main misspecification analysis with the naive model as the reference population. Replacing <code>popmodel</code> with <code>naivemodel</code> tests how sensitive the power conclusions are to the assumed parameter values: weaker loadings and higher interfactor correlations reduce the signal available to each fit index, typically pushing the required <span class="math inline">\(N\)</span> upward <span class="citation" data-cites="buchberger2024 irmer2024">(<a href="#ref-buchberger2024" role="doc-biblioref">Buchberger et al., 2024</a>; <a href="#ref-irmer2024" role="doc-biblioref">Irmer et al., 2024</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [21]:</pre></div><div id="cell-fig-power-curve-naive" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot fit-index-based power as a function of N.</span></span>
@@ -1552,7 +1543,7 @@ Power curves for fit indices using the naive population model without logistic s
 </div>
 </div>
 </div></div>
-<p>The next chunk computes, at <span class="math inline">\(N = 330\)</span>, the estimated power for each fit index and the empirical cutoff implied by the null-model sampling distribution at the chosen <span class="math inline">\(\alpha\)</span> level. This provides a direct summary of how stringent each index is and whether the selected sample size is sufficient under the naive scenario.</p>
+<p>The table below summarizes power and empirical cutoffs at <span class="math inline">\(N = 330\)</span> under the naive reference population.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [23]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate the power to reject the misspecified model at N = 330 for each fit index.</span></span>
@@ -1623,8 +1614,7 @@ Power and fit index cutoff values using the naive population model at N = 330.
 </section>
 <section id="optimal-model-1" class="level4">
 <h4 class="anchored" data-anchor-id="optimal-model-1">Optimal model</h4>
-<p>The code below evaluates fit-index-based power under the optimal population model. In this setup, <code>plotPowerFit()</code> visualizes how the probability of rejecting inadequate fit changes as sample size varies, using fit-index cutoffs derived from the reference model; this follows the simulation-based logic implemented in <code>simsem</code> for power assessment via fit indices rather than single-parameter tests <span class="citation" data-cites="simsem2021 jobst2023 moshagen2024">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
-<p>When <code>logistic = TRUE</code> (default), the plotted curves are smoothed using logistic regression over the varying sample sizes, which is useful when <span class="math inline">\(N\)</span> changes continuously across replications <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>. When <code>logistic = FALSE</code>, the function shows the raw simulated relationship between sample size and the fit indices, overlaid with the cutoff boundary, which is more descriptive and less model-smoothed <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<p>The same sensitivity check is repeated with the optimal model as the reference population. Stronger loadings and lower interfactor correlations are expected to shift the power curves leftward, reducing the <span class="math inline">\(N\)</span> needed for adequate discrimination relative to the naive scenario <span class="citation" data-cites="mosqueirataipe2026 buchberger2024">(<a href="#ref-buchberger2024" role="doc-biblioref">Buchberger et al., 2024</a>; <a href="#ref-mosqueirataipe2026" role="doc-biblioref"><span class="nocase">Mosqueira Taipe et al.</span>, 2026</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [25]:</pre></div><div id="cell-fig-power-curve-opt" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots power as a function of N for the selected fit indices.</span></span>
@@ -1675,7 +1665,7 @@ Power curves for fit indices using the optimal population model without logistic
 </div>
 </div>
 </div></div>
-<p>The next chunk computes, at a fixed sample size <span class="math inline">\(N = 291\)</span>, the estimated power for each selected fit index and the corresponding cutoff values obtained from the optimal reference model. In <code>simsem</code>, <code>getPowerFit()</code> returns the probability that each index correctly flags worse fit at the requested <span class="math inline">\(N\)</span>, whereas <code>getCutoff()</code> returns the index-specific decision thresholds associated with the chosen <span class="math inline">\(\alpha\)</span> level <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<p>The table below summarizes power and empirical cutoffs at <span class="math inline">\(N = 291\)</span> under the optimal reference population.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [27]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Power at the target sample size for each fit index.</span></span>
@@ -1743,14 +1733,41 @@ Power and fit index cutoff values using the optimal population model at N = 291.
 </div></div>
 </div></div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-buchberger2024" class="csl-entry" role="listitem">
+Buchberger, E. S., Ngo, C. T., Peikert, A., Brandmaier, A. M., &amp; Werkle-Bergner, M. (2024). Estimating statistical power for structural equation models in developmental cognitive science: <span>A</span> tutorial in <span>R</span>. <em>Behavior Research Methods</em>, <em>56</em>(7), 1–18. <a href="https://doi.org/10.3758/s13428-024-02396-2">https://doi.org/10.3758/s13428-024-02396-2</a>
+</div>
+<div id="ref-feng2023" class="csl-entry" role="listitem">
+Feng, Y., &amp; Hancock, G. R. (2023). Power <span>Analysis</span> within a <span>Structural Equation Modeling Framework</span>. In R. H. Hoyle (Ed.), <em>Handbook of <span>Structural Equation Modeling</span></em>. The Guilford Press.
+</div>
+<div id="ref-gagne2006" class="csl-entry" role="listitem">
+Gagné, P., &amp; Hancock, G. R. (2006). Measurement model quality, sample size, and solution propriety in confirmatory factor models. <em>Multivariate Behavioral Research</em>, <em>41</em>(1), 65–83. <a href="https://doi.org/10.1207/s15327906mbr4101_5">https://doi.org/10.1207/s15327906mbr4101_5</a>
+</div>
+<div id="ref-irmer2024" class="csl-entry" role="listitem">
+Irmer, J. P., Klein, A. G., &amp; Schermelleh-Engel, K. (2024). Model-implied simulation-based power estimation for correctly specified and distributionally misspecified models: Applications to nonlinear and linear structural equation models. <em>Behavior Research Methods</em>, <em>56</em>(8), 8955–8991. <a href="https://doi.org/10.3758/s13428-024-02507-z">https://doi.org/10.3758/s13428-024-02507-z</a>
+</div>
 <div id="ref-jobst2023" class="csl-entry" role="listitem">
 Jobst, L. J., Bader, M., &amp; Moshagen, M. (2023). A tutorial on assessing statistical power and determining sample size for structural equation models. <em>Psychological Methods</em>, <em>28</em>(1), 207–221. <a href="https://doi.org/10.1037/met0000423">https://doi.org/10.1037/met0000423</a>
+</div>
+<div id="ref-kyriazos2018" class="csl-entry" role="listitem">
+Kyriazos, T. A. (2018). Applied <span>Psychometrics</span>: <span>Sample Size</span> and <span>Sample Power Considerations</span> in <span>Factor Analysis</span> (<span>EFA</span>, <span>CFA</span>) and <span>SEM</span> in <span>General</span>. <em>Psychology</em>, <em>09</em>(08), 2207–2230. <a href="https://doi.org/10.4236/psych.2018.98126">https://doi.org/10.4236/psych.2018.98126</a>
+</div>
+<div id="ref-mcneish2021" class="csl-entry" role="listitem">
+McNeish, D., &amp; Wolf, M. G. (2021). Dynamic fit index cutoffs for confirmatory factor analysis models. <em>Psychological Methods</em>, <em>28</em>(1), 61–88. <a href="https://doi.org/10.1037/met0000425">https://doi.org/10.1037/met0000425</a>
 </div>
 <div id="ref-moshagen2024" class="csl-entry" role="listitem">
 Moshagen, M., &amp; Bader, M. (2024). <span class="nocase">semPower</span>: <span>General</span> power analysis for structural equation models. <em>Behavior Research Methods</em>, <em>56</em>(4), 2901–2922. <a href="https://doi.org/10.3758/s13428-023-02254-7">https://doi.org/10.3758/s13428-023-02254-7</a>
 </div>
+<div id="ref-mosqueirataipe2026" class="csl-entry" role="listitem">
+<span class="nocase">Mosqueira Taipe, C. M., Amador Campos, J. A., Krieger, V., Miasso, A. I., Molina, N. P. F. M., &amp; dos Santos, P. L.</span> (2026). Systematic review of the factor structure of <span class="nocase">WHOQOL-bref</span> in adult population. <em>Quality of Life Research</em>, <em>35</em>(17), 1–18. <a href="https://doi.org/10.1007/s11136-025-04115-6">https://doi.org/10.1007/s11136-025-04115-6</a>
+</div>
 <div id="ref-simsem2021" class="csl-entry" role="listitem">
 Pornprasertmanit, S., Miller, P., Schoemann, A., &amp; Jorgensen, T. D. (2021). <em>Simsem: <span>SIMulated Structural Equation Modeling</span></em>. <a href="https://CRAN.R-project.org/package=simsem">https://CRAN.R-project.org/package=simsem</a>
+</div>
+<div id="ref-wang2023" class="csl-entry" role="listitem">
+Wang, Y. A. (2023). <em>How to <span>Conduct Power Analysis</span> for <span>Structural Equation Models</span>: <span>A Practical Primer</span></em> [Preprint]. PsyArXiv. <a href="https://doi.org/10.31234/osf.io/4n3uk">https://doi.org/10.31234/osf.io/4n3uk</a>
+</div>
+<div id="ref-wang2021" class="csl-entry" role="listitem">
+Wang, Y. A., &amp; Rhemtulla, M. (2021). Power <span>Analysis</span> for <span>Parameter Estimation</span> in <span>Structural Equation Modeling</span>: <span>A Discussion</span> and <span>Tutorial</span>. <em>Advances in Methods and Practices in Psychological Science</em>, <em>4</em>(1), 1–17. <a href="https://doi.org/10.1177/2515245920918253">https://doi.org/10.1177/2515245920918253</a>
 </div>
 </div>
 </section>

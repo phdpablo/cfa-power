@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-    <title>Simulation with Fixed Sample Size</title>
+    <title>Simulation — Fixed N</title>
     <style>
       /* Default styles provided by pandoc.
       ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -196,7 +196,7 @@
     <div id="quarto-embed-header" class="headroom fixed-top bg-primary">
       
       <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link" href=""><i class="bi bi-caret-left"></i> Back to Article</a>
-      <h6><i class="bi bi-journal-code"></i> Simulation with Fixed Sample Size</h6>
+      <h6><i class="bi bi-journal-code"></i> Simulation — Fixed N</h6>
 
             <a href="../../Scripts/AnalysisScripts/05_model_comparison.out.ipynb" class="btn btn-primary quarto-download-embed" download="05_model_comparison.qmd">Download Source</a>
           </div>
@@ -204,7 +204,7 @@
      <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Simulation with Fixed Sample Size</h1>
+      <h1 class="title">Simulation — Fixed N</h1>
           </div>
 
     
@@ -233,12 +233,12 @@
    
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#power-analysis-with-fixed-n" id="toc-power-analysis-with-fixed-n" class="nav-link" data-scroll-target="#power-analysis-with-fixed-n">Power Analysis with fixed N</a>
+  <li><a href="#power-analysis-with-fixed-n" id="toc-power-analysis-with-fixed-n" class="nav-link" data-scroll-target="#power-analysis-with-fixed-n">Power analysis with fixed N</a>
   <ul class="collapse">
   <li><a href="#power-curves-for-fit-indices" id="toc-power-curves-for-fit-indices" class="nav-link" data-scroll-target="#power-curves-for-fit-indices">Power curves for fit indices</a></li>
-  <li><a href="#power-cutoff-values-for-fit-indices" id="toc-power-cutoff-values-for-fit-indices" class="nav-link" data-scroll-target="#power-cutoff-values-for-fit-indices">Power cutoff values for fit indices</a></li>
+  <li><a href="#power-and-cutoff-values-for-fit-indices" id="toc-power-and-cutoff-values-for-fit-indices" class="nav-link" data-scroll-target="#power-and-cutoff-values-for-fit-indices">Power and cutoff values for fit indices</a></li>
   </ul></li>
-  <li><a href="#power-analysis-with-traditional-fits" id="toc-power-analysis-with-traditional-fits" class="nav-link" data-scroll-target="#power-analysis-with-traditional-fits">Power analysis with traditional fits</a></li>
+  <li><a href="#power-analysis-with-traditional-cutoffs" id="toc-power-analysis-with-traditional-cutoffs" class="nav-link" data-scroll-target="#power-analysis-with-traditional-cutoffs">Power analysis with traditional cutoffs</a></li>
   </ul>
 </nav>
 </div>
@@ -362,7 +362,9 @@ Attaching package: 'dplyr'</code></pre>
 </div></div>
 </section>
 <section id="power-analysis-with-fixed-n" class="level2">
-<h2 class="anchored" data-anchor-id="power-analysis-with-fixed-n">Power Analysis with fixed N</h2>
+<h2 class="anchored" data-anchor-id="power-analysis-with-fixed-n">Power analysis with fixed N</h2>
+<p>The preceding sections determined the minimum <span class="math inline">\(N\)</span> required to achieve adequate power across a range of conditions. This section takes a different perspective: rather than searching for the smallest sufficient sample size, it fixes <span class="math inline">\(N = 350\)</span> and asks how reliably that value sustains the target power under the most demanding combined scenario — 10% MCAR missingness and mild non-normality simultaneously <span class="citation" data-cites="feng2023 simsem2021">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<p>This design choice reflects a common applied situation in which the sample size is constrained by practical or budgetary considerations. Running a large number of replications at a fixed <span class="math inline">\(N\)</span> provides a direct stability check: if power remains consistently above the target across many random samples, the chosen sample size can be considered a robust planning value for the full research design <span class="citation" data-cites="wang2021 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-wang2021" role="doc-biblioref">Wang &amp; Rhemtulla, 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>popmodel_fixed <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"popmodel_fixed"</span>, {</span>
@@ -403,9 +405,7 @@ Attaching package: 'dplyr'</code></pre>
 </div></div>
 <section id="power-curves-for-fit-indices" class="level3">
 <h3 class="anchored" data-anchor-id="power-curves-for-fit-indices">Power curves for fit indices</h3>
-<p>This chunk evaluates the main power analysis under a <strong>fixed</strong> sample size, <span class="math inline">\(N = 350\)</span>. Instead of searching for the minimum required <span class="math inline">\(N\)</span>, the simulation now examines how stable this preselected sample size is for rejecting a substantively relevant misspecified model across repeated samples.</p>
-<p>Data are generated from the population model (<code>popmodel</code>), while the fitted analysis contrasts the intended analysis model against the misspecified comparison model (<code>h1model</code>), which adds three cross-loadings. In this way, the chunk estimates how often the chosen fit indices can distinguish the target measurement structure from a plausible but inferior alternative under repeated Monte Carlo replications <span class="citation" data-cites="moshagen2024 feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
-<p>The main outputs summarize this discrimination from complementary angles. <code>plotPowerFit(logistic = FALSE)</code> shows the empirical distributions of the fit indices under the competing data-generating conditions and the cutoff used to separate them. <code>getPowerFit</code> reports the achieved power at the fixed <span class="math inline">\(N\)</span>, and <code>getCutoff</code> reports the empirical cutoffs derived from the reference model <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<p>With <span class="math inline">\(N\)</span> fixed, <code>plotPowerFit()</code> no longer traces power as a function of sample size. Instead, the figure displays the empirical distributions of each fit index under the reference and misspecified conditions across replications, alongside the cutoff derived from the reference model at the chosen <span class="math inline">\(\alpha\)</span> level. The visual separation between the two distributions is the graphical counterpart of the power values reported in the table below <span class="citation" data-cites="simsem2021 mcneish2021">(<a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-fig-power-curve-fixed" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
@@ -428,8 +428,8 @@ Power curves for fit indices with fixed sample size.
 </div>
 </div></div>
 </section>
-<section id="power-cutoff-values-for-fit-indices" class="level3">
-<h3 class="anchored" data-anchor-id="power-cutoff-values-for-fit-indices">Power cutoff values for fit indices</h3>
+<section id="power-and-cutoff-values-for-fit-indices" class="level3">
+<h3 class="anchored" data-anchor-id="power-and-cutoff-values-for-fit-indices">Power and cutoff values for fit indices</h3>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model (h1model_fixed)</span></span>
@@ -507,9 +507,9 @@ Power and fit index cutoff values with fixed sample size.
 </div></div>
 </section>
 </section>
-<section id="power-analysis-with-traditional-fits" class="level2">
-<h2 class="anchored" data-anchor-id="power-analysis-with-traditional-fits">Power analysis with traditional fits</h2>
-<p>In the following chunk, the same fixed-<span class="math inline">\(N\)</span> design is re-evaluated using traditional rule-of-thumb cutoffs. This is included only as an illustration of how generic thresholds may lead to very different conclusions from empirically calibrated cutoffs tailored to the specific model, misspecification, and sample size <span class="citation" data-cites="jak2021 feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>)</span>.</p>
+<section id="power-analysis-with-traditional-cutoffs" class="level2">
+<h2 class="anchored" data-anchor-id="power-analysis-with-traditional-cutoffs">Power analysis with traditional cutoffs</h2>
+<p>The same fixed-<span class="math inline">\(N\)</span> simulation is now re-evaluated using conventional rule-of-thumb thresholds in place of the empirically derived cutoffs used above. This is a deliberate contrast: by holding <span class="math inline">\(N\)</span>, the data-generating model, and the analysis model constant while changing only the decision criterion, the comparison isolates the contribution of the cutoff choice to the power conclusion <span class="citation" data-cites="mcneish2021 kyriazos2018">(<a href="#ref-kyriazos2018" role="doc-biblioref">Kyriazos, 2018</a>; <a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-fig-curve-fixed-traditional" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
@@ -585,14 +585,20 @@ Power for traditional fit index cutoffs with fixed sample size.
 <div id="ref-feng2023" class="csl-entry" role="listitem">
 Feng, Y., &amp; Hancock, G. R. (2023). Power <span>Analysis</span> within a <span>Structural Equation Modeling Framework</span>. In R. H. Hoyle (Ed.), <em>Handbook of <span>Structural Equation Modeling</span></em>. The Guilford Press.
 </div>
-<div id="ref-jak2021" class="csl-entry" role="listitem">
-Jak, S., Jorgensen, T. D., Verdam, M. G. E., Oort, F. J., &amp; Elffers, L. (2021). Analytical power calculations for structural equation modeling: <span>A</span> tutorial and <span>Shiny</span> app. <em>Behavior Research Mehods</em>, <em>53</em>, 1385–1406. <a href="https://doi.org/10.3758/s13428-020-01479-0/Published">https://doi.org/10.3758/s13428-020-01479-0/Published</a>
+<div id="ref-jobst2023" class="csl-entry" role="listitem">
+Jobst, L. J., Bader, M., &amp; Moshagen, M. (2023). A tutorial on assessing statistical power and determining sample size for structural equation models. <em>Psychological Methods</em>, <em>28</em>(1), 207–221. <a href="https://doi.org/10.1037/met0000423">https://doi.org/10.1037/met0000423</a>
 </div>
-<div id="ref-moshagen2024" class="csl-entry" role="listitem">
-Moshagen, M., &amp; Bader, M. (2024). <span class="nocase">semPower</span>: <span>General</span> power analysis for structural equation models. <em>Behavior Research Methods</em>, <em>56</em>(4), 2901–2922. <a href="https://doi.org/10.3758/s13428-023-02254-7">https://doi.org/10.3758/s13428-023-02254-7</a>
+<div id="ref-kyriazos2018" class="csl-entry" role="listitem">
+Kyriazos, T. A. (2018). Applied <span>Psychometrics</span>: <span>Sample Size</span> and <span>Sample Power Considerations</span> in <span>Factor Analysis</span> (<span>EFA</span>, <span>CFA</span>) and <span>SEM</span> in <span>General</span>. <em>Psychology</em>, <em>09</em>(08), 2207–2230. <a href="https://doi.org/10.4236/psych.2018.98126">https://doi.org/10.4236/psych.2018.98126</a>
+</div>
+<div id="ref-mcneish2021" class="csl-entry" role="listitem">
+McNeish, D., &amp; Wolf, M. G. (2021). Dynamic fit index cutoffs for confirmatory factor analysis models. <em>Psychological Methods</em>, <em>28</em>(1), 61–88. <a href="https://doi.org/10.1037/met0000425">https://doi.org/10.1037/met0000425</a>
 </div>
 <div id="ref-simsem2021" class="csl-entry" role="listitem">
 Pornprasertmanit, S., Miller, P., Schoemann, A., &amp; Jorgensen, T. D. (2021). <em>Simsem: <span>SIMulated Structural Equation Modeling</span></em>. <a href="https://CRAN.R-project.org/package=simsem">https://CRAN.R-project.org/package=simsem</a>
+</div>
+<div id="ref-wang2021" class="csl-entry" role="listitem">
+Wang, Y. A., &amp; Rhemtulla, M. (2021). Power <span>Analysis</span> for <span>Parameter Estimation</span> in <span>Structural Equation Modeling</span>: <span>A Discussion</span> and <span>Tutorial</span>. <em>Advances in Methods and Practices in Psychological Science</em>, <em>4</em>(1), 1–17. <a href="https://doi.org/10.1177/2515245920918253">https://doi.org/10.1177/2515245920918253</a>
 </div>
 </div>
 </section>
