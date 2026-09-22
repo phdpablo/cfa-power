@@ -1,7 +1,7 @@
 cache_or_run <- function(
   name,
   expr,
-  dir = "Data/IntermediateData",
+  dir = if (requireNamespace("here", quietly = TRUE)) here::here("Data", "IntermediateData") else "Data/IntermediateData",
   envir = parent.frame()
 ) {
   dir.create(dir, showWarnings = FALSE, recursive = TRUE)

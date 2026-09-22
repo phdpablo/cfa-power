@@ -1,0 +1,8 @@
+"Metric","Meta-analytic (popmodel)","Naive (naivemodel)","Optimistic (optmodel)","H1 (h1model)"
+"Loading Min","0.37","0.48","0.64","0.21"
+"Loading Max","0.94","0.60","0.77","0.94"
+"Mean Loading","0.75","0.51","0.69","0.70"
+"Factor Correlations","0.20","0.30","0.08","0.20"
+"Residual Min","0.12","0.64","0.41","0.12"
+"Residual Max","0.86","0.77","0.59","0.67"
+"Q3–Q4 Correlation","0.09","0.23","0.16","0.09"

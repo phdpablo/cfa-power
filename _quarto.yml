@@ -6,14 +6,14 @@ project: # https://quarto.org/docs/manuscripts/
     - Rscript Scripts/DataAppendixScripts/pre_render_cache.R
   post-render:
     - Rscript --vanilla Scripts/DataAppendixScripts/post_render_figures.R
+    - Rscript Scripts/DataAppendixScripts/export_tables.R
   render:
     - "!adm/" # Exclude the 'adm' directory and its contents from rendering.
     - "!renv/" # Exclude the 'renv' directory and its contents from rendering.
     - "!docker/" # Exclude the 'docker' directory and its contents from rendering.
 
 execute: # https://quarto.org/docs/computations/execution-options.html
-  #freeze: auto # Automatically manage code execution based on changes.
-  #cache: true # Enable caching of code chunks to speed up rendering.
+  freeze: auto # Automatically manage code execution based on changes.
   warning: false # Prevent R code chunk warnings from appearing in the output.
   message: false # Prevent R code chunk messages from appearing in the output.
   echo: false # Do not include the R code chunks in Article view.

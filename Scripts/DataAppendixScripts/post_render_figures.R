@@ -7,6 +7,8 @@ root_dir <- getwd()
 scripts_dir <- file.path(root_dir, "Scripts", "AnalysisScripts")
 docs_scripts_dir <- file.path(root_dir, "docs", "Scripts", "AnalysisScripts")
 index_figs_dir <- file.path(root_dir, "docs", "index_files", "figure-html")
+out_figs_dir <- file.path(root_dir, "Output", "Results", "Figures")
+dir.create(out_figs_dir, recursive = TRUE, showWarnings = FALSE)
 
 if (!dir.exists(docs_scripts_dir)) {
   # docs directory not created yet, nothing to do
@@ -48,35 +50,34 @@ for (pf in preview_files) {
       if (!file.exists(target_docs_file)) {
         file.copy(target_src_file, target_docs_file, overwrite = TRUE)
       }
-      next
-    }
-    
-    # 2. If it exists in docs, ensure it is mirrored in src
-    if (file.exists(target_docs_file)) {
+    } else if (file.exists(target_docs_file)) {
+      # 2. If it exists in docs, ensure it is mirrored in src
       file.copy(target_docs_file, target_src_file, overwrite = TRUE)
-      next
+    } else {
+      # 3. Check if it exists in Scripts/AnalysisScripts/<nb_name>_files/figure-ipynb/
+      ipynb_cand <- file.path(scripts_dir, paste0(nb_name, "_files"), "figure-ipynb", img_name)
+      if (file.exists(ipynb_cand)) {
+        file.copy(ipynb_cand, target_docs_file, overwrite = TRUE)
+        file.copy(ipynb_cand, target_src_file,  overwrite = TRUE)
+      } else {
+        # 4. Check in docs/index_files/figure-html/
+        fig_stem <- sub("-\\d+\\.[a-zA-Z]+$", "", img_name)
+        matching_index <- index_files[grepl(nb_name, index_files, fixed = TRUE) & grepl(fig_stem, index_files, fixed = TRUE)]
+        
+        if (length(matching_index) > 0) {
+          # Pick the last output file (output-2 if available, else output-1)
+          chosen <- tail(matching_index, 1)
+          file.copy(chosen, target_docs_file, overwrite = TRUE)
+          file.copy(chosen, target_src_file,  overwrite = TRUE)
+        }
+      }
     }
     
-    # 3. Check if it exists in Scripts/AnalysisScripts/<nb_name>_files/figure-ipynb/
-    ipynb_cand <- file.path(scripts_dir, paste0(nb_name, "_files"), "figure-ipynb", img_name)
-    if (file.exists(ipynb_cand)) {
-      file.copy(ipynb_cand, target_docs_file, overwrite = TRUE)
-      file.copy(ipynb_cand, target_src_file,  overwrite = TRUE)
-      next
-    }
-    
-    # 4. Check in docs/index_files/figure-html/
-    fig_stem <- sub("-\\d+\\.[a-zA-Z]+$", "", img_name)
-    matching_index <- index_files[grepl(nb_name, index_files, fixed = TRUE) & grepl(fig_stem, index_files, fixed = TRUE)]
-    
-    if (length(matching_index) > 0) {
-      # Pick the last output file (output-2 if available, else output-1)
-      chosen <- tail(matching_index, 1)
-      file.copy(chosen, target_docs_file, overwrite = TRUE)
-      file.copy(chosen, target_src_file,  overwrite = TRUE)
-      next
+    # 5. Mirror to Output/Results/Figures (TIER Protocol 4.0)
+    if (file.exists(target_docs_file)) {
+      file.copy(target_docs_file, file.path(out_figs_dir, img_name), overwrite = TRUE)
     }
   }
 }
 
-message("post_render_figures.R: Successfully synchronized all notebook preview figures.")
+message("post_render_figures.R: Successfully synchronized all notebook preview figures and Output/Results/Figures/.")

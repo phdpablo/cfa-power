@@ -30,7 +30,6 @@ condition.
 
 ```{r}
 #| label: sim-ideal-popmodel
-#| cache: true
 
 popmodel_ideal <- cache_or_run("popmodel_ideal", {
   sim(
@@ -53,7 +52,6 @@ later contrasted with the reference condition to evaluate power.
 
 ```{r}
 #| label: sim-ideal-h1model
-#| cache: true
 
 h1model_ideal <- cache_or_run("h1model_ideal", {
   sim(
@@ -326,7 +324,6 @@ values.
 
 ```{r}
 #| label: sim-ideal-naivemodel
-#| cache: true
 
 naivemodel_ideal <- cache_or_run("naivemodel_ideal", {
   sim(
@@ -409,7 +406,6 @@ knitr::kable(
 
 ```{r}
 #| label: sim-ideal-optmodel
-#| cache: true
 
 optmodel_ideal <- cache_or_run("optmodel_ideal", {
   sim(

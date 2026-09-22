@@ -40,7 +40,6 @@ planning value for the full research design [@wang2021; @jobst2023].
 
 ```{r}
 #| label: sim-fixed-popmodel
-#| cache: true
 
 popmodel_fixed <- cache_or_run("popmodel_fixed", {
     sim(
@@ -62,7 +61,6 @@ popmodel_fixed <- cache_or_run("popmodel_fixed", {
 
 ```{r}
 #| label: sim-fixed-h1model
-#| cache: true
 
 h1model_fixed <- cache_or_run("h1model_fixed", {
     sim(

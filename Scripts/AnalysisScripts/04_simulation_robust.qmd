@@ -36,7 +36,6 @@ cost of missingness, since all other design choices remain constant.
 
 ```{r}
 #| label: sim-missing-popmodel
-#| cache: true
 
 popmodel_miss <- cache_or_run("popmodel_miss", {
     sim(
@@ -57,7 +56,6 @@ popmodel_miss <- cache_or_run("popmodel_miss", {
 
 ```{r}
 #| label: sim-missing-h1model
-#| cache: true
 
 h1model_miss <- cache_or_run("h1model_miss", {
     sim(
@@ -186,7 +184,6 @@ from normality.
 
 ```{r}
 #| label: sim-nnorm-popmodel
-#| cache: true
 
 popmodel_nnorm <- cache_or_run("popmodel_nnorm", {
     sim(
@@ -206,7 +203,6 @@ popmodel_nnorm <- cache_or_run("popmodel_nnorm", {
 
 ```{r}
 #| label: sim-nnorm-h1model
-#| cache: true
 
 h1model_nnorm <- cache_or_run("h1model_nnorm", {
     sim(
