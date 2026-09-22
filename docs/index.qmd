@@ -266,8 +266,7 @@ naive model [@mosqueirataipe2026]:
 -   **Alpha sources**: Maximum domain alphas from the literature
     [@mosqueirataipe2026] (Physical $\alpha = 0.860$; Psychological
     $\alpha = 0.860$; Social $\alpha = 0.810$; Environmental
-    $\alpha = 0.849$), all confirmed within the $M + 1SD$ range from
-    @lin2022.
+    $\alpha = 0.849$), all confirmed within the $M + 1SD$ range from @lin2022.
 -   **Interfactor correlations ($\phi$)**: Fixed at $0.08$ (the lower
     bound from @lin2022), so that factors are well distinguished and
     sample size requirements are reduced.
