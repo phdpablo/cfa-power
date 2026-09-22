@@ -2,22 +2,18 @@
 
 ## Overview
 
-The `DataAppendixScripts` folder holds scripts used to generate the Data Appendix documentation for processed data files. These scripts automate documenting transformations and steps applied to raw data. This ensures the data appendix is comprehensive, accurate, and up-to-date. The scripts contain commands that generate the figures, tables, and descriptive statistics presented in the Data Appendix.
+This folder contains shared R scripts that support the analysis notebooks and automate project build hooks. These scripts centralize model specifications, simulation parameters, caching utilities, and post-render export routines.
 
-## Contents
+## Inventory of Scripts
 
--   **Data Appendix Scripts**: These scripts create detailed documentation of data processing. This includes descriptions of data files, transformation processes, figures, tables, descriptive statistics, and rationale for changes.
+The table below describes each R script and its role in the replication pipeline:
 
-## Guidelines
-
--   **File Naming**: Use descriptive names for scripts. Names should indicate their specific roles in generating the Data Appendix.
--   **Documentation**: Document each script thoroughly with comments. Explain its purpose, inputs, outputs, and key steps. Note any assumptions or important considerations.
-    -   **Header Comments**: Start each script with a header. Include the script name, author, date, and a brief function description.
-    -   **Inline Comments**: Use inline comments to explain specific lines or sections. This is important for complex tasks.
--   **Automation**: Design scripts to automate documentation as much as possible. This can include extracting metadata, summarizing steps, and formatting output.
--   **Modularity**: Write scripts in a modular way. This allows easy updates and code reuse. Separate different documentation tasks into distinct scripts.
--   **Version Control**: Use version control to track script changes. Record major changes and maintain a version history.
-
-## Additional Resources
-
-We recommend the [Tidyverse Style Guide](https://style.tidyverse.org/) for standardization. For more detailed instructions, see the [TIER Protocol 4.0 DataAppendixScripts Guidelines](https://www.projecttier.org/tier-protocol/protocol-4-0/root/scripts/dataappendixscripts/).
+| Script | Purpose & Contents | Consumers / Lifecycle |
+| :--- | :--- | :--- |
+| [`models.R`](file:///e:/Github/cfa-power/Scripts/DataAppendixScripts/models.R) | Defines the `lavaan` model syntax for all 5 CFA models (`popmodel`, `naivemodel`, `optmodel`, `h1model`, `analyzemodel`), as well as visual diagramming functions (`plot_color()`, `plot_free()`). | Sourced by all analysis notebooks (`01`–`06`) and `index.qmd`. |
+| [`helpers.R`](file:///e:/Github/cfa-power/Scripts/DataAppendixScripts/helpers.R) | Defines global constants: significance level ($\alpha = 0.05$), target power ($0.80$), 1,500 replications, random seeds, sample size sequences (`SEQ1`, `SEQ2`), and fit index sets (`FITS`, `RULE_OF_THUMB`). | Sourced by all analysis notebooks (`01`–`06`) and `index.qmd`. |
+| [`cache_utils.R`](file:///e:/Github/cfa-power/Scripts/DataAppendixScripts/cache_utils.R) | Defines `cache_or_run()`, ensuring simulations are loaded from `Data/IntermediateData/` if already computed, or executed and saved if missing. | Sourced by simulation notebooks (`03`, `04`, `05`, `06`). |
+| [`cache_loader.R`](file:///e:/Github/cfa-power/Scripts/DataAppendixScripts/cache_loader.R) | Defines `cache_load_existing()`, an environment helper to bulk-load all existing `.rds` simulation objects into the calling workspace. | Sourced by notebooks `03`–`06` and `pre_render_cache.R`. |
+| [`pre_render_cache.R`](file:///e:/Github/cfa-power/Scripts/DataAppendixScripts/pre_render_cache.R) | Pre-render routine that checks for the existence of intermediate simulation caches before document compilation begins. | Configured as a `pre-render` hook in `_quarto.yml`. |
+| [`post_render_figures.R`](file:///e:/Github/cfa-power/Scripts/DataAppendixScripts/post_render_figures.R) | Standalone Base R script that synchronizes all rendered figures from Quarto preview HTMLs and mirrors them to [`Output/Results/Figures/`](file:///e:/Github/cfa-power/Output/Results/Figures/). | Configured as a `post-render` hook in `_quarto.yml`. |
+| [`post_render_tables.R`](file:///e:/Github/cfa-power/Scripts/DataAppendixScripts/post_render_tables.R) | Standalone Base R script that parses all HTML table containers (`id="tbl-*"`) across rendered documents and extracts clean CSV files to [`Output/Results/Tables/`](file:///e:/Github/cfa-power/Output/Results/Tables/). | Configured as a `post-render` hook in `_quarto.yml`. |

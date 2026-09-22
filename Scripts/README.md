@@ -2,34 +2,27 @@
 
 ## Overview
 
-The `Scripts` folder holds all scripts for data processing, analysis, and result generation. Scripts are organized into subfolders by function and workflow stage. Good organization and documentation here are key for research reproducibility and transparency.
+This folder contains all computational code for the project, including the analysis notebooks, model specifications, simulation helpers, cache utilities, and post-render export hooks.
 
 ## Contents
 
-### Subfolders
+- **[`AnalysisScripts/`](file:///e:/Github/cfa-power/Scripts/AnalysisScripts/)**: Contains the 6 computational Quarto companion notebooks (`01` to `06`) that conduct analytical power calculations and Monte Carlo simulations.
+- **[`DataAppendixScripts/`](file:///e:/Github/cfa-power/Scripts/DataAppendixScripts/)**: Contains 7 shared R scripts supporting the analysis pipeline (model definitions, global simulation parameters, caching functions, and build hooks).
+- **[`ProcessingScripts/`](file:///e:/Github/cfa-power/Scripts/ProcessingScripts/)**: Standard TIER folder for data cleaning and preprocessing routines; intentionally empty in this simulation study.
 
-1.  **ProcessingScripts**
-    -   **Purpose**: Scripts for initial processing and cleaning of raw data.
-    -   **Description**: These transform raw data from the `InputData` folder into intermediate forms in the `IntermediateData` folder.
-2.  **DataAppendixScripts**
-    -   **Purpose**: Scripts to generate Data Appendix documentation for processed data.
-    -   **Description**: These automate documentation, accurately recording all transformations and steps.
-3.  **AnalysisScripts**
-    -   **Purpose**: Scripts for actual data analysis.
-    -   **Description**: These take intermediate data and apply statistical or analytical methods. They produce final outputs stored in the `Output` folder.
+## Execution and Replication Workflow
 
-### Master Script
+The analytical workflow is orchestrated centrally via [`_quarto.yml`](file:///e:/Github/cfa-power/_quarto.yml) and executed using a single command:
 
--   **Purpose**: The main script that orchestrates execution of all other scripts.
--   **Description**: This script typically runs all processing, analysis, and documentation scripts in order. It reproduces the entire workflow from raw data to final results.
+```bash
+quarto render
+```
 
-## Guidelines
-
--   **Organization**: Keep scripts organized in their subfolders by function. Use clear, descriptive names that reflect purpose.
--   **Documentation**: Document each script thoroughly with comments. Explain the purpose, inputs, outputs, and key steps. Include usage instructions if needed.
--   **Modularity**: Write scripts in a modular way. This allows easy updates and code reuse. Separate different processing and analysis stages into distinct scripts.
--   **Version Control**: Use version control to track script changes. Record major changes and maintain a version history.
-
-## Additional Resources
-
-We recommend the [Tidyverse Style Guide](https://style.tidyverse.org/) for standardization. For more detailed instructions, see the [TIER Protocol 4.0 Scripts Guidelines](https://www.projecttier.org/tier-protocol/protocol-4-0/root/scripts/).
+### Execution Lifecycle:
+1. **Pre-Render**:
+   - Runs `Scripts/DataAppendixScripts/pre_render_cache.R` to verify that precomputed simulation models exist in `Data/IntermediateData/`.
+2. **Analysis Execution**:
+   - Executes the companion notebooks (`Scripts/AnalysisScripts/01_*.qmd` through `06_*.qmd`) and the main manuscript (`index.qmd`), drawing shared functions from `Scripts/DataAppendixScripts/models.R` and `helpers.R`.
+3. **Post-Render**:
+   - Runs `Scripts/DataAppendixScripts/post_render_figures.R` to mirror all 21 PNG figures to [`Output/Results/Figures/`](file:///e:/Github/cfa-power/Output/Results/Figures/).
+   - Runs `Scripts/DataAppendixScripts/post_render_tables.R` to extract all 14 tabular outputs to [`Output/Results/Tables/`](file:///e:/Github/cfa-power/Output/Results/Tables/) in clean CSV format.
