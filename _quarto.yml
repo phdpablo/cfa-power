@@ -6,7 +6,7 @@ project: # https://quarto.org/docs/manuscripts/
     - Rscript Scripts/DataAppendixScripts/pre_render_cache.R
   post-render:
     - Rscript --vanilla Scripts/DataAppendixScripts/post_render_figures.R
-    - Rscript Scripts/DataAppendixScripts/export_tables.R
+    - Rscript --vanilla Scripts/DataAppendixScripts/post_render_tables.R
   render:
     - "!adm/" # Exclude the 'adm' directory and its contents from rendering.
     - "!renv/" # Exclude the 'renv' directory and its contents from rendering.
