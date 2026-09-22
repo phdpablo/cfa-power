@@ -24,7 +24,7 @@ cache_load_existing()
 ## Main misspecification simulation
 
 Simulate data from the ideal population model and fit the analysis CFA
-model across the sample-size grid in SEQ. This yields the reference
+model across the sample-size grid in `SEQ1`. This yields the reference
 sampling distribution of fit indices under the correctly specified
 condition.
 
@@ -193,7 +193,7 @@ traditional thresholds, providing a direct comparison with the
 empirical-cutoff results from the previous block.
 
 ```{r}
-#| label: tbl-power-cutoff-traditional
+#| label: tbl-power-cutoff-traditional-ideal
 #| tbl-cap: "Power for traditional fit index cutoffs under ideal conditions at N = 231."
 
 power_trad <- getPowerFit(
@@ -248,30 +248,17 @@ param_subset <- cbind(
   row.names = NULL
 )
 
-# Build an output-specific display version of the parameter labels.
-if (knitr::is_latex_output()) {
-  param_subset$Parameter <- gsub(
-    "~",
-    "\\\\textasciitilde{}",
-    param_subset$Parameter,
-    fixed = TRUE
-  )
-  tbl_format <- "latex"
-} else if (knitr::is_html_output()) {
-  tbl_format <- "html"
-} else {
-  tbl_format <- "pipe"
-}
+# Escape ~~ for Pandoc (prevents strikethrough in HTML); matches tbl-pop-summary
+param_subset$Parameter <- gsub("~~", "\\~\\~", param_subset$Parameter, fixed = TRUE)
 
 # Print the table.
 knitr::kable(
   param_subset,
-  format = tbl_format,
   digits = 3,
   align = c("l", "c", "c", "c", "c"),
+  booktabs = TRUE,
   escape = FALSE,
-  row.names = FALSE,
-  caption = "Parameter estimates under ideal conditions" # REMEMBER ERROR RENDER
+  row.names = FALSE
 )
 ```
 
@@ -303,27 +290,15 @@ n_df <- data.frame(
 # Remove parameters for which no finite N was returned.
 n_df <- subset(n_df, is.finite(N))
 
-# Build an output-specific display version of the parameter labels.
-if (knitr::is_latex_output()) {
-  n_df$Parameter <- gsub(
-    "~",
-    "\\\\textasciitilde{}",
-    n_df$Parameter,
-    fixed = TRUE
-  )
-  tbl_format <- "latex"
-} else if (knitr::is_html_output()) {
-  tbl_format <- "html"
-} else {
-  tbl_format <- "pipe"
-}
+# Escape ~~ for Pandoc (prevents strikethrough in HTML); matches tbl-pop-summary
+n_df$Parameter <- gsub("~~", "\\~\\~", n_df$Parameter, fixed = TRUE)
 
 # Print the table without row numbers.
 knitr::kable(
   n_df,
-  format = tbl_format,
   col.names = c("Parameter", "N"),
   align = c("l", "c"),
+  booktabs = TRUE,
   escape = FALSE,
   row.names = FALSE
 )
@@ -409,27 +384,15 @@ filtered_subset <- cbind(
   row.names = NULL
 )
 
-# Build an output-specific display version of the parameter labels.
-if (knitr::is_latex_output()) {
-  filtered_subset$Parameter <- gsub(
-    "~",
-    "\\\\textasciitilde{}",
-    filtered_subset$Parameter,
-    fixed = TRUE
-  )
-  tbl_format <- "latex"
-} else if (knitr::is_html_output()) {
-  tbl_format <- "html"
-} else {
-  tbl_format <- "pipe"
-}
+# Escape ~~ for Pandoc (prevents strikethrough in HTML); matches tbl-pop-summary
+filtered_subset$Parameter <- gsub("~~", "\\~\\~", filtered_subset$Parameter, fixed = TRUE)
 
 # Print the combined table.
 knitr::kable(
   filtered_subset,
-  format = tbl_format,
   digits = 3,
   align = c("l", "c", "c", "c", "c", "c"),
+  booktabs = TRUE,
   escape = FALSE,
   col.names = c(
     "Parameter",
@@ -463,10 +426,16 @@ optmodel_ideal <- cache_or_run("optmodel_ideal", {
 ```
 
 The same parameter-level analysis is applied to the optimal model.
-Because this population uses stronger loadings and lower interfactor
-correlations, most parameters are expected to reach the target power
-at smaller $N$ values than under the naive scenario, and the set of
-finite requirements will likely be sparser [@simsem2021; @buchberger2024].
+Because this population uses stronger loadings ($\lambda \approx 0.80$)
+and lower interfactor correlations ($\phi = 0.08$), two contrasting phenomena
+emerge. On the one hand, primary factor loadings and residual variances reach
+the target power of $0.80$ at minimal sample sizes ($N \le 51$) with negligible bias.
+On the other hand, the very small interfactor correlations ($\phi = 0.08$) create
+an acute bottleneck: detecting such weak associations with $80\%$ power requires
+$N > 1,200$, far exceeding the simulated range ($N \in [51, 350]$), which causes
+`findPower` to return `NA` for all factor correlations. Consequently, among parameters
+with finite sample size requirements above 60, only the residual covariance
+$Q3 \sim\sim Q4$ appears in the table below, requiring $N = 139$ [@simsem2021; @buchberger2024].
 
 ```{r}
 #| label: tbl-power-n-opt
@@ -504,27 +473,15 @@ filtered_subset <- cbind(
   row.names = NULL
 )
 
-# Build an output-specific display version of the parameter labels.
-if (knitr::is_latex_output()) {
-  filtered_subset$Parameter <- gsub(
-    "~",
-    "\\\\textasciitilde{}",
-    filtered_subset$Parameter,
-    fixed = TRUE
-  )
-  tbl_format <- "latex"
-} else if (knitr::is_html_output()) {
-  tbl_format <- "html"
-} else {
-  tbl_format <- "pipe"
-}
+# Escape ~~ for Pandoc (prevents strikethrough in HTML); matches tbl-pop-summary
+filtered_subset$Parameter <- gsub("~~", "\\~\\~", filtered_subset$Parameter, fixed = TRUE)
 
 # Print the combined table.
 knitr::kable(
   filtered_subset,
-  format = tbl_format,
   digits = 3,
   align = c("l", "c", "c", "c", "c", "c"),
+  booktabs = TRUE,
   escape = FALSE,
   col.names = c(
     "Parameter",
@@ -537,162 +494,3 @@ knitr::kable(
 )
 ```
 
-### Misspecification and population sensitivity
-
-#### Naive model
-
-The chunks below replicate the main misspecification analysis with
-the naive model as the reference population. Replacing `popmodel`
-with `naivemodel` tests how sensitive the power conclusions are to
-the assumed parameter values: weaker loadings and higher interfactor
-correlations reduce the signal available to each fit index, typically
-pushing the required $N$ upward [@buchberger2024; @irmer2024].
-
-```{r}
-#| label: fig-power-curve-naive
-#| fig-cap: "Power curves for fit indices using the naive population model."
-#| fig-width: 8
-#| fig-height: 5
-
-# Plot fit-index-based power as a function of N.
-# With logistic = TRUE (default), simsem smooths the reject/retain decisions
-# across sample size using logistic regression, yielding continuous power curves
-# for each fit index.
-plotPowerFit(
-  h1model_ideal,
-  naivemodel_ideal,
-  alpha = ALPHA,
-  usedFit = FITS
-)
-```
-
-```{r}
-#| label: fig-fit-curve-naive
-#| fig-cap: "Power curves for fit indices using the naive population model without logistic smoothing."
-#| fig-width: 8
-#| fig-height: 5
-
-# Plot the raw fit-index distributions over N without logistic smoothing.
-# This version is useful to inspect the empirical separation between the null
-# and alternative model results before smoothing them into power curves.
-plotPowerFit(
-  h1model_ideal,
-  naivemodel_ideal,
-  alpha = ALPHA,
-  usedFit = FITS,
-  logistic = FALSE
-)
-```
-
-The table below summarizes power and empirical cutoffs at $N = 330$
-under the naive reference population.
-
-```{r}
-#| label: tbl-power-cutoff-naive
-#| tbl-cap: "Power and fit index cutoff values using the naive population model at N = 330."
-
-# Estimate the power to reject the misspecified model at N = 330 for each fit index.
-power_naive <- getPowerFit(
-  h1model_ideal,
-  nullObject = naivemodel_ideal,
-  alpha = ALPHA,
-  nVal = 330,
-  usedFit = FITS
-)
-
-# Derive empirical fit-index cutoffs from the null model at the same alpha level.
-cutoff_naive <- getCutoff(
-  naivemodel_ideal,
-  alpha = ALPHA,
-  nVal = 330,
-  usedFit = FITS
-)
-
-# Combine power and cutoff values into a compact summary table.
-power_cutoff_naive <- rbind(
-  "Power" = as.numeric(power_naive),
-  "Cutoff" = as.numeric(cutoff_naive[1, ])
-)
-colnames(power_cutoff_naive) <- toupper(names(power_naive))
-
-# Print the final table.
-knitr::kable(power_cutoff_naive, digits = 3, align = "c")
-```
-
-#### Optimal model
-
-The same sensitivity check is repeated with the optimal model as the
-reference population. Stronger loadings and lower interfactor
-correlations are expected to shift the power curves leftward, reducing
-the $N$ needed for adequate discrimination relative to the naive
-scenario [@mosqueirataipe2026; @buchberger2024].
-
-```{r}
-#| label: fig-power-curve-opt
-#| fig-cap: "Power curves for fit indices using the optimal population model."
-#| fig-width: 8
-#| fig-height: 5
-
-# Plots power as a function of N for the selected fit indices.
-# The null/reference object provides the cutoff distribution.
-# With the default logistic = TRUE, the curves are smoothed.
-
-plotPowerFit(
-  h1model_ideal,
-  optmodel_ideal,
-  alpha = ALPHA,
-  usedFit = FITS
-)
-```
-
-```{r}
-#| label: fig-fit-curve-opt
-#| fig-cap: "Power curves for fit indices using the optimal population model without logistic smoothing."
-#| fig-width: 8
-#| fig-height: 5
-
-# Repeats the previous plot without logistic smoothing.
-# This version emphasizes the raw simulated fit-index patterns across N.
-
-plotPowerFit(
-  h1model_ideal,
-  optmodel_ideal,
-  alpha = ALPHA,
-  usedFit = FITS,
-  logistic = FALSE
-)
-```
-
-The table below summarizes power and empirical cutoffs at $N = 291$
-under the optimal reference population.
-
-```{r}
-#| label: tbl-power-cutoff-opt
-#| tbl-cap: "Power and fit index cutoff values using the optimal population model at N = 291."
-
-# Power at the target sample size for each fit index.
-power_opt <- getPowerFit(
-  h1model_ideal,
-  nullObject = optmodel_ideal,
-  alpha = ALPHA,
-  nVal = 291,
-  usedFit = FITS
-)
-
-# Index-specific cutoffs derived from the reference model at the same N.
-cutoff_opt <- getCutoff(
-  optmodel_ideal,
-  alpha = ALPHA,
-  nVal = 291,
-  usedFit = FITS
-)
-
-# Combines power and cutoff values into a compact display table.
-power_cutoff_opt <- rbind(
-  "Power" = as.numeric(power_opt),
-  "Cutoff" = as.numeric(cutoff_opt[1, ])
-)
-colnames(power_cutoff_opt) <- toupper(names(power_opt))
-
-knitr::kable(power_cutoff_opt, digits = 3, align = "c")
-```

@@ -241,7 +241,6 @@
   <li><a href="#traditional-cutoff-values-for-fit-indices" id="toc-traditional-cutoff-values-for-fit-indices" class="nav-link" data-scroll-target="#traditional-cutoff-values-for-fit-indices">Traditional cutoff values for fit indices</a></li>
   <li><a href="#target-parameter-estimates" id="toc-target-parameter-estimates" class="nav-link" data-scroll-target="#target-parameter-estimates">Target parameter estimates</a></li>
   <li><a href="#recovering-the-population-parameters" id="toc-recovering-the-population-parameters" class="nav-link" data-scroll-target="#recovering-the-population-parameters">Recovering the population parameters</a></li>
-  <li><a href="#misspecification-and-population-sensitivity" id="toc-misspecification-and-population-sensitivity" class="nav-link" data-scroll-target="#misspecification-and-population-sensitivity">Misspecification and population sensitivity</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -256,7 +255,7 @@
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>here() starts at C:/Users/pablo/OneDrive/Github/cfa-power</code></pre>
+<pre><code>here() starts at E:/Github/cfa-power</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"models.R"</span>))</span>
@@ -264,9 +263,6 @@
 <div class="cell-output cell-output-stderr">
 <pre><code>This is lavaan 0.6-21
 lavaan is FREE software! Please report any bugs.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'semTools' was built under R version 4.5.3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code> </code></pre>
@@ -284,9 +280,6 @@ lavaan is FREE software! Please report any bugs.</code></pre>
 <pre><code>###############################################################################</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'semPower' was built under R version 4.5.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
 <pre><code>
 ### Welcome to semPower 2.1.3 ###
 
@@ -296,9 +289,6 @@ See https://moshagen.github.io/semPower/ for a detailed manual.
 Please cite as:
 Moshagen, M., &amp; Bader, M. (2024). semPower: General Power Analysis for Structural Equation Models.
 Behavior Research Methods, 56, 2901-2922. https://doi.org/10.3758/s13428-023-02254-7</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'semPlot' was built under R version 4.5.3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code> </code></pre>
@@ -350,54 +340,48 @@ Attaching package: 'dplyr'</code></pre>
     intersect, setdiff, setequal, union</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'quantreg' was built under R version 4.5.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: SparseM</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'SparseM' was built under R version 4.5.3</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"cache_utils.R"</span>))</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"cache_loader.R"</span>))</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cache_load_existing</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"cache_utils.R"</span>))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"cache_loader.R"</span>))</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cache_load_existing</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="main-misspecification-simulation" class="level2">
 <h2 class="anchored" data-anchor-id="main-misspecification-simulation">Main misspecification simulation</h2>
-<p>Simulate data from the ideal population model and fit the analysis CFA model across the sample-size grid in SEQ. This yields the reference sampling distribution of fit indices under the correctly specified condition.</p>
+<p>Simulate data from the ideal population model and fit the analysis CFA model across the sample-size grid in <code>SEQ1</code>. This yields the reference sampling distribution of fit indices under the correctly specified condition.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>popmodel_ideal <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"popmodel_ideal"</span>, {</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim</span>(</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>,</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> SEQ1,              <span class="co"># See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    analyzemodel,</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">generate =</span> popmodel,</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> SEED,</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>popmodel_ideal <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"popmodel_ideal"</span>, {</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim</span>(</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> SEQ1,              <span class="co"># See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    analyzemodel,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">generate =</span> popmodel,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> SEED,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <p>Simulate data from the alternative population model and fit the same analysis CFA model across the same sample-size grid. This creates the sampling distribution of fit indices under misspecification, which is later contrasted with the reference condition to evaluate power.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>h1model_ideal <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"h1model_ideal"</span>, {</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim</span>(</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>,</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> SEQ1,              <span class="co"># See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    analyzemodel,</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">generate =</span> h1model,</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> SEED,</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>h1model_ideal <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"h1model_ideal"</span>, {</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim</span>(</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> SEQ1,              <span class="co"># See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    analyzemodel,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">generate =</span> h1model,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> SEED,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="main-misspecification-outputs" class="level2">
@@ -406,13 +390,13 @@ Attaching package: 'dplyr'</code></pre>
 <h3 class="anchored" data-anchor-id="power-curves-for-fit-indices">Power curves for fit indices</h3>
 <p><code>plotPowerFit()</code> displays how the probability of rejecting the misspecified condition changes as sample size increases, using the logistic-smoothed relationship between <span class="math inline">\(N\)</span> and the reject/retain decision for each index <span class="citation" data-cites="simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>. The curves cross the target power level at different sample sizes, reflecting each index’s sensitivity to the imposed cross-loading misspecification.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-fig-power-curve-ideal" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    popmodel_ideal,</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    popmodel_ideal,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-power-curve-ideal" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -428,14 +412,14 @@ Power curves for fit indices under ideal conditions.
 </div></div>
 <p>The unsmoothed version below overlays the raw simulated fit-index values from both conditions across the sample-size sequence. This display is useful for inspecting how the two sampling distributions separate as <span class="math inline">\(N\)</span> grows, before that separation is summarized into logistic power curves <span class="citation" data-cites="simsem2021 mcneish2021">(<a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-fig-fit-curve-ideal" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    popmodel_ideal,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS,</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">logistic =</span> <span class="cn">FALSE</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    popmodel_ideal,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">logistic =</span> <span class="cn">FALSE</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-fit-curve-ideal" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -454,34 +438,34 @@ Power curves for fit indices under ideal conditions without logistic smoothing.
 <h3 class="anchored" data-anchor-id="power-and-cutoff-values-for-fit-indices">Power and cutoff values for fit indices</h3>
 <p><code>getPowerFit()</code> evaluates how often the alternative model is rejected at a given <span class="math inline">\(N\)</span>, whereas <code>getCutoff()</code> derives the index-specific decision boundaries from the null-model sampling distribution at the same <span class="math inline">\(\alpha\)</span> level. Reading power and cutoffs together is more informative than either alone: the cutoff defines how stringent each rejection rule is, and the power shows how often that rule succeeds <span class="citation" data-cites="jobst2023 wang2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model (h1model_ideal)</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># using fit-index cutoffs implied by the null model at alpha = ALPHA and N = 231.</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>power_ideal <span class="ot">&lt;-</span> <span class="fu">getPowerFit</span>(</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nullObject =</span> popmodel_ideal,</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">nVal =</span> <span class="dv">231</span>,</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive empirical cutoff values for the selected fit indices</span></span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co"># from the null-model sampling distribution under the same conditions.</span></span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>cutoff_ideal <span class="ot">&lt;-</span> <span class="fu">getCutoff</span>(</span>
-<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>    popmodel_ideal,</span>
-<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">nVal =</span> <span class="dv">231</span>,</span>
-<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
-<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine power and cutoff values into a compact summary table.</span></span>
-<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>power_cutoff_ideal <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Power"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(power_ideal),</span>
-<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Cutoff"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(cutoff_ideal[<span class="dv">1</span>, ])</span>
-<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(power_cutoff_ideal) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(power_ideal)) <span class="co"># Standardize column names for presentation.</span></span>
-<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(power_cutoff_ideal, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="st">"c"</span>) <span class="co"># Print the table.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model (h1model_ideal)</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># using fit-index cutoffs implied by the null model at alpha = ALPHA and N = 231.</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>power_ideal <span class="ot">&lt;-</span> <span class="fu">getPowerFit</span>(</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nullObject =</span> popmodel_ideal,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">nVal =</span> <span class="dv">231</span>,</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive empirical cutoff values for the selected fit indices</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co"># from the null-model sampling distribution under the same conditions.</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>cutoff_ideal <span class="ot">&lt;-</span> <span class="fu">getCutoff</span>(</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    popmodel_ideal,</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">nVal =</span> <span class="dv">231</span>,</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine power and cutoff values into a compact summary table.</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>power_cutoff_ideal <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Power"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(power_ideal),</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Cutoff"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(cutoff_ideal[<span class="dv">1</span>, ])</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(power_cutoff_ideal) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(power_ideal)) <span class="co"># Standardize column names for presentation.</span></span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(power_cutoff_ideal, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="st">"c"</span>) <span class="co"># Print the table.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="tbl-power-cutoff-ideal" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -526,21 +510,21 @@ Power and fit index cutoff values under ideal conditions at N = 231.
 <h3 class="anchored" data-anchor-id="traditional-cutoff-values-for-fit-indices">Traditional cutoff values for fit indices</h3>
 <p>The same analysis is repeated using fixed rule-of-thumb thresholds in place of empirically derived cutoffs. This serves as a direct illustration of how the choice of decision criterion — not <span class="math inline">\(N\)</span> alone — affects power conclusions in simulation-based CFA evaluation <span class="citation" data-cites="mcneish2021 kyriazos2018">(<a href="#ref-kyriazos2018" role="doc-biblioref">Kyriazos, 2018</a>; <a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="cell-fig-fit-curve-traditional" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot fit-index results from the misspecified model across sample sizes.</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The cutoff object applies traditional rule-of-thumb thresholds</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (e.g., RMSEA, SRMR, CFI, and TLI cutoffs) for rejection decisions.</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># logistic = FALSE requests the scatterplot-style display of simulated values</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># and the cutoff line, instead of a logistic-smoothed power curve</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,   <span class="co"># Simulated results under the misspecified model</span></span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  popmodel_ideal,  <span class="co"># Reference model object used for comparison</span></span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="co"># Rule-of-thumb cutoff values for fit indices</span></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA, <span class="co"># Significance level for determining power</span></span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS, <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display</span></span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">logistic =</span> <span class="cn">FALSE</span> <span class="co"># Display raw simulated points and cutoff lines instead of logistic curves</span></span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot fit-index results from the misspecified model across sample sizes.</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The cutoff object applies traditional rule-of-thumb thresholds</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (e.g., RMSEA, SRMR, CFI, and TLI cutoffs) for rejection decisions.</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># logistic = FALSE requests the scatterplot-style display of simulated values</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># and the cutoff line, instead of a logistic-smoothed power curve</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,   <span class="co"># Simulated results under the misspecified model</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  popmodel_ideal,  <span class="co"># Reference model object used for comparison</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">cutoff =</span> RULE_OF_THUMB, <span class="co"># Rule-of-thumb cutoff values for fit indices</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA, <span class="co"># Significance level for determining power</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS, <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">logistic =</span> <span class="cn">FALSE</span> <span class="co"># Display raw simulated points and cutoff lines instead of logistic curves</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-fit-curve-traditional" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -556,31 +540,31 @@ Power curves using traditional fit index cutoffs under ideal conditions.
 </div></div>
 <p>The table below summarizes detection rates at <span class="math inline">\(N = 231\)</span> under the same traditional thresholds, providing a direct comparison with the empirical-cutoff results from the previous block.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>power_trad <span class="ot">&lt;-</span> <span class="fu">getPowerFit</span>(</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    RULE_OF_THUMB,</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nVal =</span> <span class="dv">231</span>,</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create horizontal table: Fit Index as column names, Power as single row</span></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>power_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CFI"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(power_trad[<span class="st">"cfi"</span>]), <span class="dv">3</span>),</span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"TLI"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(power_trad[<span class="st">"tli"</span>]), <span class="dv">3</span>),</span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RMSEA"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(power_trad[<span class="st">"rmsea"</span>]), <span class="dv">3</span>),</span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SRMR"</span> <span class="ot">=</span> power_trad[<span class="st">"srmr"</span>],  <span class="co"># Keep as string</span></span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">row.names =</span> <span class="st">"Power"</span></span>
-<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(power_df, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="st">"c"</span>, <span class="at">col.names =</span> <span class="fu">toupper</span>(<span class="fu">names</span>(power_df)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="tbl-power-cutoff-traditional" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>power_trad <span class="ot">&lt;-</span> <span class="fu">getPowerFit</span>(</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    RULE_OF_THUMB,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nVal =</span> <span class="dv">231</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit =</span> FITS</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create horizontal table: Fit Index as column names, Power as single row</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>power_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CFI"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(power_trad[<span class="st">"cfi"</span>]), <span class="dv">3</span>),</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"TLI"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(power_trad[<span class="st">"tli"</span>]), <span class="dv">3</span>),</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RMSEA"</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">as.numeric</span>(power_trad[<span class="st">"rmsea"</span>]), <span class="dv">3</span>),</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SRMR"</span> <span class="ot">=</span> power_trad[<span class="st">"srmr"</span>],  <span class="co"># Keep as string</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">row.names =</span> <span class="st">"Power"</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(power_df, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="st">"c"</span>, <span class="at">col.names =</span> <span class="fu">toupper</span>(<span class="fu">names</span>(power_df)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="tbl-power-cutoff-traditional-ideal" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-traditional-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Power for traditional fit index cutoffs under ideal conditions at N = 231.
 </figcaption>
-<div aria-describedby="tbl-power-cutoff-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-power-cutoff-traditional-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="cell caption-top table table-sm table-striped small">
 <thead>
@@ -612,50 +596,37 @@ Power for traditional fit index cutoffs under ideal conditions at N = 231.
 <h3 class="anchored" data-anchor-id="target-parameter-estimates">Target parameter estimates</h3>
 <p>Monte Carlo summaries in <code>simsem</code> go beyond detection rates: relative bias, relative SE bias, and CI coverage jointly indicate whether each estimator is well-calibrated in finite samples. A parameter may show high detection power while still being recovered with noticeable bias or poorly estimated uncertainty, so all four indicators should be read together rather than treating power alone as the criterion of interest <span class="citation" data-cites="wang2021 simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>; <a href="#ref-wang2021" role="doc-biblioref">Wang &amp; Rhemtulla, 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute detailed parameter-recovery results for the fitted model.</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>param_ideal <span class="ot">&lt;-</span> <span class="fu">summaryParam</span>(</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">detail =</span> <span class="cn">TRUE</span></span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the diagnostics used in the discussion.</span></span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>param_subset <span class="ot">&lt;-</span> param_ideal[, <span class="fu">c</span>(<span class="st">"Rel Bias"</span>, <span class="st">"Rel SE Bias"</span>, <span class="st">"Coverage"</span>, <span class="st">"Power (Not equal 0)"</span>)]</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Move parameter labels to an explicit first column.</span></span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>param_subset <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameter =</span> <span class="fu">rownames</span>(param_subset),</span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>  param_subset,</span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="cn">NULL</span></span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Build an output-specific display version of the parameter labels.</span></span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (knitr<span class="sc">::</span><span class="fu">is_latex_output</span>()) {</span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>  param_subset<span class="sc">$</span>Parameter <span class="ot">&lt;-</span> <span class="fu">gsub</span>(</span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"~"</span>,</span>
-<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\\\\</span><span class="st">textasciitilde{}"</span>,</span>
-<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>    param_subset<span class="sc">$</span>Parameter,</span>
-<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixed =</span> <span class="cn">TRUE</span></span>
-<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>  tbl_format <span class="ot">&lt;-</span> <span class="st">"latex"</span></span>
-<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (knitr<span class="sc">::</span><span class="fu">is_html_output</span>()) {</span>
-<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>  tbl_format <span class="ot">&lt;-</span> <span class="st">"html"</span></span>
-<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>  tbl_format <span class="ot">&lt;-</span> <span class="st">"pipe"</span></span>
-<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table.</span></span>
-<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>  param_subset,</span>
-<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">format =</span> tbl_format,</span>
-<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>),</span>
-<span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Parameter estimates under ideal conditions"</span> <span class="co"># REMEMBER ERROR RENDER</span></span>
-<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute detailed parameter-recovery results for the fitted model.</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>param_ideal <span class="ot">&lt;-</span> <span class="fu">summaryParam</span>(</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">detail =</span> <span class="cn">TRUE</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the diagnostics used in the discussion.</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>param_subset <span class="ot">&lt;-</span> param_ideal[, <span class="fu">c</span>(<span class="st">"Rel Bias"</span>, <span class="st">"Rel SE Bias"</span>, <span class="st">"Coverage"</span>, <span class="st">"Power (Not equal 0)"</span>)]</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Move parameter labels to an explicit first column.</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>param_subset <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameter =</span> <span class="fu">rownames</span>(param_subset),</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  param_subset,</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="cn">NULL</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Escape ~~ for Pandoc (prevents strikethrough in HTML); matches tbl-pop-summary</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>param_subset<span class="sc">$</span>Parameter <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"~~"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">~</span><span class="sc">\\</span><span class="st">~"</span>, param_subset<span class="sc">$</span>Parameter, <span class="at">fixed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table.</span></span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>  param_subset,</span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>),</span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div id="tbl-param-estimate-ideal" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-param-estimate-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -664,14 +635,20 @@ Summary of parameter estimates under ideal conditions.
 <div aria-describedby="tbl-param-estimate-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="cell caption-top table table-sm table-striped small">
-<caption>Parameter estimates under ideal conditions</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 12%">
+<col style="width: 26%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Parameter</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Rel Bias</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Rel SE Bias</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Coverage</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Power (Not equal 0)</th>
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: center;">Rel Bias</th>
+<th style="text-align: center;">Rel SE Bias</th>
+<th style="text-align: center;">Coverage</th>
+<th style="text-align: center;">Power (Not equal 0)</th>
 </tr>
 </thead>
 <tbody>
@@ -1069,51 +1046,39 @@ Summary of parameter estimates under ideal conditions.
 </div></div>
 <p><code>getPower()</code> returns parameter-specific power estimates across the simulated values of <span class="math inline">\(N\)</span>, and <code>findPower()</code> identifies the first <span class="math inline">\(N\)</span> in the grid that exceeds the target level. The resulting values should be read as practical planning thresholds: the most demanding parameters determine the minimum adequate sample size, since planning around the easiest effects to detect would leave the hardest ones systematically underpowered <span class="citation" data-cites="simsem2021 moshagen2024">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain parameter-specific power estimates across sample sizes.</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>pow_h1 <span class="ot">&lt;-</span> <span class="fu">getPower</span>(h1model_ideal, <span class="at">alpha =</span> ALPHA)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the minimum N in the simulated grid that reaches the target power of 0.80.</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>n_h1 <span class="ot">&lt;-</span> <span class="fu">findPower</span>(pow_h1, <span class="st">"N"</span>, <span class="fl">0.80</span>)</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a data frame for reporting.</span></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>n_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameter =</span> <span class="fu">names</span>(n_h1),</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">as.integer</span>(n_h1),</span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain parameter-specific power estimates across sample sizes.</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>pow_h1 <span class="ot">&lt;-</span> <span class="fu">getPower</span>(h1model_ideal, <span class="at">alpha =</span> ALPHA)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the minimum N in the simulated grid that reaches the target power of 0.80.</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>n_h1 <span class="ot">&lt;-</span> <span class="fu">findPower</span>(pow_h1, <span class="st">"N"</span>, <span class="fl">0.80</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a data frame for reporting.</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>n_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameter =</span> <span class="fu">names</span>(n_h1),</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">as.integer</span>(n_h1),</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in data.frame(Parameter = names(n_h1), N = as.integer(n_h1),
 stringsAsFactors = FALSE): NAs introduced by coercion to integer range</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove parameters for which no finite N was returned.</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>n_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(n_df, <span class="fu">is.finite</span>(N))</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Build an output-specific display version of the parameter labels.</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (knitr<span class="sc">::</span><span class="fu">is_latex_output</span>()) {</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  n_df<span class="sc">$</span>Parameter <span class="ot">&lt;-</span> <span class="fu">gsub</span>(</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"~"</span>,</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\\\\</span><span class="st">textasciitilde{}"</span>,</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    n_df<span class="sc">$</span>Parameter,</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixed =</span> <span class="cn">TRUE</span></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>  tbl_format <span class="ot">&lt;-</span> <span class="st">"latex"</span></span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (knitr<span class="sc">::</span><span class="fu">is_html_output</span>()) {</span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  tbl_format <span class="ot">&lt;-</span> <span class="st">"html"</span></span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>  tbl_format <span class="ot">&lt;-</span> <span class="st">"pipe"</span></span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table without row numbers.</span></span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>  n_df,</span>
-<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">format =</span> tbl_format,</span>
-<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Parameter"</span>, <span class="st">"N"</span>),</span>
-<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>),</span>
-<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="cn">FALSE</span></span>
-<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove parameters for which no finite N was returned.</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>n_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(n_df, <span class="fu">is.finite</span>(N))</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Escape ~~ for Pandoc (prevents strikethrough in HTML); matches tbl-pop-summary</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>n_df<span class="sc">$</span>Parameter <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"~~"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">~</span><span class="sc">\\</span><span class="st">~"</span>, n_df<span class="sc">$</span>Parameter, <span class="at">fixed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table without row numbers.</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  n_df,</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Parameter"</span>, <span class="st">"N"</span>),</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>),</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div id="tbl-power-n-ideal" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-n-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1124,8 +1089,8 @@ Sample size needed for 80% power under ideal conditions.
 <table class="cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Parameter</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">N</th>
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: center;">N</th>
 </tr>
 </thead>
 <tbody>
@@ -1200,89 +1165,77 @@ Sample size needed for 80% power under ideal conditions.
 <section id="naive-model" class="level4">
 <h4 class="anchored" data-anchor-id="naive-model">Naive model</h4>
 <div class="cell-container"><div class="cell-decorator"><pre>In [15]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>naivemodel_ideal <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"naivemodel_ideal"</span>, {</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim</span>(</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>,</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> SEQ1,               <span class="co"># See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    analyzemodel,</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">generate =</span> naivemodel,</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> SEED,</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>naivemodel_ideal <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"naivemodel_ideal"</span>, {</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim</span>(</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> SEQ1,               <span class="co"># See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    analyzemodel,</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">generate =</span> naivemodel,</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> SEED,</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <p>The table below reports parameter-level diagnostics and the minimum <span class="math inline">\(N\)</span> required for each parameter to reach <span class="math inline">\(.80\)</span> power under the naive population. Only parameters with a finite required <span class="math inline">\(N\)</span> above 60 are shown, as smaller requirements are of limited practical interest for planning purposes <span class="citation" data-cites="simsem2021 gagne2006">(<a href="#ref-gagne2006" role="doc-biblioref">Gagné &amp; Hancock, 2006</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [16]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute detailed parameter-recovery results for the fitted model.</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>param_naive <span class="ot">&lt;-</span> <span class="fu">summaryParam</span>(</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  naivemodel_ideal,</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">detail =</span> <span class="cn">TRUE</span></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the diagnostics used in the discussion.</span></span>
-<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>param_subset <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
-<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>  param_naive[, <span class="fu">c</span>(<span class="st">"Rel Bias"</span>, <span class="st">"Rel SE Bias"</span>, <span class="st">"Coverage"</span>, <span class="st">"Power (Not equal 0)"</span>)]</span>
-<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute parameter-level power across the simulated values of N.</span></span>
-<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>pow_naive <span class="ot">&lt;-</span> <span class="fu">getPower</span>(naivemodel_ideal, <span class="at">alpha =</span> ALPHA)</span>
-<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the minimum N that reaches the target power of .80 for each parameter.</span></span>
-<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>n_naive <span class="ot">&lt;-</span> <span class="fu">findPower</span>(pow_naive, <span class="st">"N"</span>, <span class="fl">0.80</span>)</span>
-<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add required N to the subset.</span></span>
-<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>param_subset<span class="sc">$</span>N <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(n_naive[<span class="fu">rownames</span>(param_subset)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute detailed parameter-recovery results for the fitted model.</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>param_naive <span class="ot">&lt;-</span> <span class="fu">summaryParam</span>(</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  naivemodel_ideal,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">detail =</span> <span class="cn">TRUE</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the diagnostics used in the discussion.</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>param_subset <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  param_naive[, <span class="fu">c</span>(<span class="st">"Rel Bias"</span>, <span class="st">"Rel SE Bias"</span>, <span class="st">"Coverage"</span>, <span class="st">"Power (Not equal 0)"</span>)]</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute parameter-level power across the simulated values of N.</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>pow_naive <span class="ot">&lt;-</span> <span class="fu">getPower</span>(naivemodel_ideal, <span class="at">alpha =</span> ALPHA)</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the minimum N that reaches the target power of .80 for each parameter.</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>n_naive <span class="ot">&lt;-</span> <span class="fu">findPower</span>(pow_naive, <span class="st">"N"</span>, <span class="fl">0.80</span>)</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add required N to the subset.</span></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>param_subset<span class="sc">$</span>N <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(n_naive[<span class="fu">rownames</span>(param_subset)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: NAs introduced by coercion to integer range</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to keep only finite N values greater than 60.</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>filtered_subset <span class="ot">&lt;-</span> <span class="fu">subset</span>(param_subset, <span class="fu">is.finite</span>(N) <span class="sc">&amp;</span> N <span class="sc">&gt;</span> <span class="dv">60</span>)</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Move parameter labels to an explicit first column.</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>filtered_subset <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameter =</span> <span class="fu">rownames</span>(filtered_subset),</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  filtered_subset,</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="cn">NULL</span></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Build an output-specific display version of the parameter labels.</span></span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (knitr<span class="sc">::</span><span class="fu">is_latex_output</span>()) {</span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>  filtered_subset<span class="sc">$</span>Parameter <span class="ot">&lt;-</span> <span class="fu">gsub</span>(</span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"~"</span>,</span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\\\\</span><span class="st">textasciitilde{}"</span>,</span>
-<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>    filtered_subset<span class="sc">$</span>Parameter,</span>
-<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixed =</span> <span class="cn">TRUE</span></span>
-<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>  tbl_format <span class="ot">&lt;-</span> <span class="st">"latex"</span></span>
-<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (knitr<span class="sc">::</span><span class="fu">is_html_output</span>()) {</span>
-<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>  tbl_format <span class="ot">&lt;-</span> <span class="st">"html"</span></span>
-<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a>  tbl_format <span class="ot">&lt;-</span> <span class="st">"pipe"</span></span>
-<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the combined table.</span></span>
-<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a>  filtered_subset,</span>
-<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">format =</span> tbl_format,</span>
-<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>),</span>
-<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(</span>
-<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Parameter"</span>,</span>
-<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rel Bias"</span>,</span>
-<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rel SE Bias"</span>,</span>
-<span id="cb45-38"><a href="#cb45-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Coverage"</span>,</span>
-<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Power (Not equal 0)"</span>,</span>
-<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Required N"</span></span>
-<span id="cb45-41"><a href="#cb45-41" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to keep only finite N values greater than 60.</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>filtered_subset <span class="ot">&lt;-</span> <span class="fu">subset</span>(param_subset, <span class="fu">is.finite</span>(N) <span class="sc">&amp;</span> N <span class="sc">&gt;</span> <span class="dv">60</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Move parameter labels to an explicit first column.</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>filtered_subset <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameter =</span> <span class="fu">rownames</span>(filtered_subset),</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  filtered_subset,</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="cn">NULL</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Escape ~~ for Pandoc (prevents strikethrough in HTML); matches tbl-pop-summary</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>filtered_subset<span class="sc">$</span>Parameter <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"~~"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">~</span><span class="sc">\\</span><span class="st">~"</span>, filtered_subset<span class="sc">$</span>Parameter, <span class="at">fixed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the combined table.</span></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>  filtered_subset,</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>),</span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Parameter"</span>,</span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rel Bias"</span>,</span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rel SE Bias"</span>,</span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Coverage"</span>,</span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Power (Not equal 0)"</span>,</span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Required N"</span></span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [17]:</pre></div><div id="tbl-power-n-naive" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-n-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1291,14 +1244,22 @@ Parameter estimates and required sample size for 80% power under naive condition
 <div aria-describedby="tbl-power-n-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 23%">
+<col style="width: 13%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Parameter</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Rel Bias</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Rel SE Bias</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Coverage</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Power (Not equal 0)</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Required N</th>
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: center;">Rel Bias</th>
+<th style="text-align: center;">Rel SE Bias</th>
+<th style="text-align: center;">Coverage</th>
+<th style="text-align: center;">Power (Not equal 0)</th>
+<th style="text-align: center;">Required N</th>
 </tr>
 </thead>
 <tbody>
@@ -1369,89 +1330,77 @@ Parameter estimates and required sample size for 80% power under naive condition
 <section id="optimal-model" class="level4">
 <h4 class="anchored" data-anchor-id="optimal-model">Optimal model</h4>
 <div class="cell-container"><div class="cell-decorator"><pre>In [18]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>optmodel_ideal <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"optmodel_ideal"</span>, {</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim</span>(</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>,</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> SEQ1,               <span class="co"># See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    analyzemodel,</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">generate =</span> optmodel,</span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> SEED,</span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>optmodel_ideal <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"optmodel_ideal"</span>, {</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim</span>(</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>,</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> SEQ1,               <span class="co"># See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    analyzemodel,</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">generate =</span> optmodel,</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.lv =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> SEED,</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<p>The same parameter-level analysis is applied to the optimal model. Because this population uses stronger loadings and lower interfactor correlations, most parameters are expected to reach the target power at smaller <span class="math inline">\(N\)</span> values than under the naive scenario, and the set of finite requirements will likely be sparser <span class="citation" data-cites="simsem2021 buchberger2024">(<a href="#ref-buchberger2024" role="doc-biblioref">Buchberger et al., 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
+<p>The same parameter-level analysis is applied to the optimal model. Because this population uses stronger loadings (<span class="math inline">\(\lambda \approx 0.80\)</span>) and lower interfactor correlations (<span class="math inline">\(\phi = 0.08\)</span>), two contrasting phenomena emerge. On the one hand, primary factor loadings and residual variances reach the target power of <span class="math inline">\(0.80\)</span> at minimal sample sizes (<span class="math inline">\(N \le 51\)</span>) with negligible bias. On the other hand, the very small interfactor correlations (<span class="math inline">\(\phi = 0.08\)</span>) create an acute bottleneck: detecting such weak associations with <span class="math inline">\(80\%\)</span> power requires <span class="math inline">\(N &gt; 1,200\)</span>, far exceeding the simulated range (<span class="math inline">\(N \in [51, 350]\)</span>), which causes <code>findPower</code> to return <code>NA</code> for all factor correlations. Consequently, among parameters with finite sample size requirements above 60, only the residual covariance <span class="math inline">\(Q3 \sim\sim Q4\)</span> appears in the table below, requiring <span class="math inline">\(N = 139\)</span> <span class="citation" data-cites="simsem2021 buchberger2024">(<a href="#ref-buchberger2024" role="doc-biblioref">Buchberger et al., 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [19]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute detailed parameter-recovery results for the fitted model.</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>param_opt <span class="ot">&lt;-</span> <span class="fu">summaryParam</span>(</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  optmodel_ideal,</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">detail =</span> <span class="cn">TRUE</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the diagnostics used in the discussion.</span></span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>param_subset <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>  param_opt[, <span class="fu">c</span>(<span class="st">"Rel Bias"</span>, <span class="st">"Rel SE Bias"</span>, <span class="st">"Coverage"</span>, <span class="st">"Power (Not equal 0)"</span>)]</span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute parameter-level power across the simulated values of N.</span></span>
-<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>pow_opt <span class="ot">&lt;-</span> <span class="fu">getPower</span>(optmodel_ideal, <span class="at">alpha =</span> ALPHA)</span>
-<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the minimum N that reaches the target power of .80 for each parameter.</span></span>
-<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>n_opt <span class="ot">&lt;-</span> <span class="fu">findPower</span>(pow_opt, <span class="st">"N"</span>, <span class="fl">0.80</span>)</span>
-<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add required N to the subset.</span></span>
-<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>param_subset<span class="sc">$</span>N <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(n_opt[<span class="fu">rownames</span>(param_subset)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute detailed parameter-recovery results for the fitted model.</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>param_opt <span class="ot">&lt;-</span> <span class="fu">summaryParam</span>(</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  optmodel_ideal,</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">detail =</span> <span class="cn">TRUE</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the diagnostics used in the discussion.</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>param_subset <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  param_opt[, <span class="fu">c</span>(<span class="st">"Rel Bias"</span>, <span class="st">"Rel SE Bias"</span>, <span class="st">"Coverage"</span>, <span class="st">"Power (Not equal 0)"</span>)]</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute parameter-level power across the simulated values of N.</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>pow_opt <span class="ot">&lt;-</span> <span class="fu">getPower</span>(optmodel_ideal, <span class="at">alpha =</span> ALPHA)</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the minimum N that reaches the target power of .80 for each parameter.</span></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>n_opt <span class="ot">&lt;-</span> <span class="fu">findPower</span>(pow_opt, <span class="st">"N"</span>, <span class="fl">0.80</span>)</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add required N to the subset.</span></span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>param_subset<span class="sc">$</span>N <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(n_opt[<span class="fu">rownames</span>(param_subset)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: NAs introduced by coercion to integer range</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to keep only finite N values greater than 60.</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>filtered_subset <span class="ot">&lt;-</span> <span class="fu">subset</span>(param_subset, <span class="fu">is.finite</span>(N) <span class="sc">&amp;</span> N <span class="sc">&gt;</span> <span class="dv">60</span>)</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Move parameter labels to an explicit first column.</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>filtered_subset <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameter =</span> <span class="fu">rownames</span>(filtered_subset),</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  filtered_subset,</span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="cn">NULL</span></span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Build an output-specific display version of the parameter labels.</span></span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (knitr<span class="sc">::</span><span class="fu">is_latex_output</span>()) {</span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>  filtered_subset<span class="sc">$</span>Parameter <span class="ot">&lt;-</span> <span class="fu">gsub</span>(</span>
-<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"~"</span>,</span>
-<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\\\\</span><span class="st">textasciitilde{}"</span>,</span>
-<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>    filtered_subset<span class="sc">$</span>Parameter,</span>
-<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixed =</span> <span class="cn">TRUE</span></span>
-<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>  tbl_format <span class="ot">&lt;-</span> <span class="st">"latex"</span></span>
-<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (knitr<span class="sc">::</span><span class="fu">is_html_output</span>()) {</span>
-<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>  tbl_format <span class="ot">&lt;-</span> <span class="st">"html"</span></span>
-<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>  tbl_format <span class="ot">&lt;-</span> <span class="st">"pipe"</span></span>
-<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the combined table.</span></span>
-<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a>  filtered_subset,</span>
-<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">format =</span> tbl_format,</span>
-<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>),</span>
-<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(</span>
-<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Parameter"</span>,</span>
-<span id="cb49-36"><a href="#cb49-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rel Bias"</span>,</span>
-<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rel SE Bias"</span>,</span>
-<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Coverage"</span>,</span>
-<span id="cb49-39"><a href="#cb49-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Power (Not equal 0)"</span>,</span>
-<span id="cb49-40"><a href="#cb49-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Required N"</span></span>
-<span id="cb49-41"><a href="#cb49-41" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb49-42"><a href="#cb49-42" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to keep only finite N values greater than 60.</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>filtered_subset <span class="ot">&lt;-</span> <span class="fu">subset</span>(param_subset, <span class="fu">is.finite</span>(N) <span class="sc">&amp;</span> N <span class="sc">&gt;</span> <span class="dv">60</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Move parameter labels to an explicit first column.</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>filtered_subset <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Parameter =</span> <span class="fu">rownames</span>(filtered_subset),</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  filtered_subset,</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="cn">NULL</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Escape ~~ for Pandoc (prevents strikethrough in HTML); matches tbl-pop-summary</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>filtered_subset<span class="sc">$</span>Parameter <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"~~"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">~</span><span class="sc">\\</span><span class="st">~"</span>, filtered_subset<span class="sc">$</span>Parameter, <span class="at">fixed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the combined table.</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>  filtered_subset,</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>),</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(</span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Parameter"</span>,</span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rel Bias"</span>,</span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Rel SE Bias"</span>,</span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Coverage"</span>,</span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Power (Not equal 0)"</span>,</span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Required N"</span></span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [20]:</pre></div><div id="tbl-power-n-opt" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-n-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1460,14 +1409,22 @@ Parameter estimates and required sample size for 80% power under optimal conditi
 <div aria-describedby="tbl-power-n-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 27%">
+<col style="width: 15%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Parameter</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Rel Bias</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Rel SE Bias</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Coverage</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Power (Not equal 0)</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Required N</th>
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: center;">Rel Bias</th>
+<th style="text-align: center;">Rel SE Bias</th>
+<th style="text-align: center;">Coverage</th>
+<th style="text-align: center;">Power (Not equal 0)</th>
+<th style="text-align: center;">Required N</th>
 </tr>
 </thead>
 <tbody>
@@ -1486,252 +1443,6 @@ Parameter estimates and required sample size for 80% power under optimal conditi
 </figure>
 </div></div>
 </div></div>
-</section>
-</section>
-<section id="misspecification-and-population-sensitivity" class="level3">
-<h3 class="anchored" data-anchor-id="misspecification-and-population-sensitivity">Misspecification and population sensitivity</h3>
-<section id="naive-model-1" class="level4">
-<h4 class="anchored" data-anchor-id="naive-model-1">Naive model</h4>
-<p>The chunks below replicate the main misspecification analysis with the naive model as the reference population. Replacing <code>popmodel</code> with <code>naivemodel</code> tests how sensitive the power conclusions are to the assumed parameter values: weaker loadings and higher interfactor correlations reduce the signal available to each fit index, typically pushing the required <span class="math inline">\(N\)</span> upward <span class="citation" data-cites="buchberger2024 irmer2024">(<a href="#ref-buchberger2024" role="doc-biblioref">Buchberger et al., 2024</a>; <a href="#ref-irmer2024" role="doc-biblioref">Irmer et al., 2024</a>)</span>.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [21]:</pre></div><div id="cell-fig-power-curve-naive" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot fit-index-based power as a function of N.</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co"># With logistic = TRUE (default), simsem smooths the reject/retain decisions</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co"># across sample size using logistic regression, yielding continuous power curves</span></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co"># for each fit index.</span></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,</span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  naivemodel_ideal,</span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS</span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div id="fig-power-curve-naive" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-power-curve-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="03_simulation_ideal_files/figure-html/fig-power-curve-naive-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Power curves for fit indices using the naive population model."><img src="03_simulation_ideal_files/figure-html/fig-power-curve-naive-1.png" class="img-fluid figure-img" width="768"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Power curves for fit indices using the naive population model.
-</figcaption>
-</figure>
-</div>
-</div>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [22]:</pre></div><div id="cell-fig-fit-curve-naive" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the raw fit-index distributions over N without logistic smoothing.</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This version is useful to inspect the empirical separation between the null</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># and alternative model results before smoothing them into power curves.</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  naivemodel_ideal,</span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS,</span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">logistic =</span> <span class="cn">FALSE</span></span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div id="fig-fit-curve-naive" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-fit-curve-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="03_simulation_ideal_files/figure-html/fig-fit-curve-naive-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Power curves for fit indices using the naive population model without logistic smoothing."><img src="03_simulation_ideal_files/figure-html/fig-fit-curve-naive-1.png" class="img-fluid figure-img" width="768"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fit-curve-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Power curves for fit indices using the naive population model without logistic smoothing.
-</figcaption>
-</figure>
-</div>
-</div>
-</div></div>
-<p>The table below summarizes power and empirical cutoffs at <span class="math inline">\(N = 330\)</span> under the naive reference population.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [23]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate the power to reject the misspecified model at N = 330 for each fit index.</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>power_naive <span class="ot">&lt;-</span> <span class="fu">getPowerFit</span>(</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">nullObject =</span> naivemodel_ideal,</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">nVal =</span> <span class="dv">330</span>,</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive empirical fit-index cutoffs from the null model at the same alpha level.</span></span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>cutoff_naive <span class="ot">&lt;-</span> <span class="fu">getCutoff</span>(</span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>  naivemodel_ideal,</span>
-<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">nVal =</span> <span class="dv">330</span>,</span>
-<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS</span>
-<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine power and cutoff values into a compact summary table.</span></span>
-<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>power_cutoff_naive <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Power"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(power_naive),</span>
-<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cutoff"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(cutoff_naive[<span class="dv">1</span>, ])</span>
-<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(power_cutoff_naive) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(power_naive))</span>
-<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the final table.</span></span>
-<span id="cb52-27"><a href="#cb52-27" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(power_cutoff_naive, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="st">"c"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [24]:</pre></div><div id="tbl-power-cutoff-naive" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Power and fit index cutoff values using the naive population model at N = 330.
-</figcaption>
-<div aria-describedby="tbl-power-cutoff-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: center;">RMSEA</th>
-<th style="text-align: center;">SRMR</th>
-<th style="text-align: center;">CFI</th>
-<th style="text-align: center;">TLI</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Power</td>
-<td style="text-align: center;">0.984</td>
-<td style="text-align: center;">0.986</td>
-<td style="text-align: center;">0.801</td>
-<td style="text-align: center;">0.801</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Cutoff</td>
-<td style="text-align: center;">0.022</td>
-<td style="text-align: center;">0.047</td>
-<td style="text-align: center;">0.964</td>
-<td style="text-align: center;">0.959</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div></div>
-</div></div>
-</section>
-<section id="optimal-model-1" class="level4">
-<h4 class="anchored" data-anchor-id="optimal-model-1">Optimal model</h4>
-<p>The same sensitivity check is repeated with the optimal model as the reference population. Stronger loadings and lower interfactor correlations are expected to shift the power curves leftward, reducing the <span class="math inline">\(N\)</span> needed for adequate discrimination relative to the naive scenario <span class="citation" data-cites="mosqueirataipe2026 buchberger2024">(<a href="#ref-buchberger2024" role="doc-biblioref">Buchberger et al., 2024</a>; <a href="#ref-mosqueirataipe2026" role="doc-biblioref"><span class="nocase">Mosqueira Taipe et al.</span>, 2026</a>)</span>.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [25]:</pre></div><div id="cell-fig-power-curve-opt" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots power as a function of N for the selected fit indices.</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The null/reference object provides the cutoff distribution.</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="co"># With the default logistic = TRUE, the curves are smoothed.</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,</span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  optmodel_ideal,</span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS</span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div id="fig-power-curve-opt" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-power-curve-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="03_simulation_ideal_files/figure-html/fig-power-curve-opt-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Power curves for fit indices using the optimal population model."><img src="03_simulation_ideal_files/figure-html/fig-power-curve-opt-1.png" class="img-fluid figure-img" width="768"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Power curves for fit indices using the optimal population model.
-</figcaption>
-</figure>
-</div>
-</div>
-</div></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [26]:</pre></div><div id="cell-fig-fit-curve-opt" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Repeats the previous plot without logistic smoothing.</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This version emphasizes the raw simulated fit-index patterns across N.</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  optmodel_ideal,</span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS,</span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">logistic =</span> <span class="cn">FALSE</span></span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div id="fig-fit-curve-opt" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-fit-curve-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="03_simulation_ideal_files/figure-html/fig-fit-curve-opt-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Power curves for fit indices using the optimal population model without logistic smoothing."><img src="03_simulation_ideal_files/figure-html/fig-fit-curve-opt-1.png" class="img-fluid figure-img" width="768"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fit-curve-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Power curves for fit indices using the optimal population model without logistic smoothing.
-</figcaption>
-</figure>
-</div>
-</div>
-</div></div>
-<p>The table below summarizes power and empirical cutoffs at <span class="math inline">\(N = 291\)</span> under the optimal reference population.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [27]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Power at the target sample size for each fit index.</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>power_opt <span class="ot">&lt;-</span> <span class="fu">getPowerFit</span>(</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,</span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">nullObject =</span> optmodel_ideal,</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">nVal =</span> <span class="dv">291</span>,</span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS</span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Index-specific cutoffs derived from the reference model at the same N.</span></span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>cutoff_opt <span class="ot">&lt;-</span> <span class="fu">getCutoff</span>(</span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>  optmodel_ideal,</span>
-<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha =</span> ALPHA,</span>
-<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">nVal =</span> <span class="dv">291</span>,</span>
-<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">usedFit =</span> FITS</span>
-<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Combines power and cutoff values into a compact display table.</span></span>
-<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>power_cutoff_opt <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Power"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(power_opt),</span>
-<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cutoff"</span> <span class="ot">=</span> <span class="fu">as.numeric</span>(cutoff_opt[<span class="dv">1</span>, ])</span>
-<span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb55-24"><a href="#cb55-24" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(power_cutoff_opt) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(power_opt))</span>
-<span id="cb55-25"><a href="#cb55-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-26"><a href="#cb55-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(power_cutoff_opt, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">align =</span> <span class="st">"c"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-container"><div class="cell-decorator"><pre>In [28]:</pre></div><div id="tbl-power-cutoff-opt" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Power and fit index cutoff values using the optimal population model at N = 291.
-</figcaption>
-<div aria-describedby="tbl-power-cutoff-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: center;">RMSEA</th>
-<th style="text-align: center;">SRMR</th>
-<th style="text-align: center;">CFI</th>
-<th style="text-align: center;">TLI</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Power</td>
-<td style="text-align: center;">0.968</td>
-<td style="text-align: center;">0.988</td>
-<td style="text-align: center;">0.805</td>
-<td style="text-align: center;">0.805</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Cutoff</td>
-<td style="text-align: center;">0.028</td>
-<td style="text-align: center;">0.051</td>
-<td style="text-align: center;">0.970</td>
-<td style="text-align: center;">0.966</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div></div>
-</div></div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-buchberger2024" class="csl-entry" role="listitem">
 Buchberger, E. S., Ngo, C. T., Peikert, A., Brandmaier, A. M., &amp; Werkle-Bergner, M. (2024). Estimating statistical power for structural equation models in developmental cognitive science: <span>A</span> tutorial in <span>R</span>. <em>Behavior Research Methods</em>, <em>56</em>(7), 1–18. <a href="https://doi.org/10.3758/s13428-024-02396-2">https://doi.org/10.3758/s13428-024-02396-2</a>
@@ -1741,9 +1452,6 @@ Feng, Y., &amp; Hancock, G. R. (2023). Power <span>Analysis</span> within a <spa
 </div>
 <div id="ref-gagne2006" class="csl-entry" role="listitem">
 Gagné, P., &amp; Hancock, G. R. (2006). Measurement model quality, sample size, and solution propriety in confirmatory factor models. <em>Multivariate Behavioral Research</em>, <em>41</em>(1), 65–83. <a href="https://doi.org/10.1207/s15327906mbr4101_5">https://doi.org/10.1207/s15327906mbr4101_5</a>
-</div>
-<div id="ref-irmer2024" class="csl-entry" role="listitem">
-Irmer, J. P., Klein, A. G., &amp; Schermelleh-Engel, K. (2024). Model-implied simulation-based power estimation for correctly specified and distributionally misspecified models: Applications to nonlinear and linear structural equation models. <em>Behavior Research Methods</em>, <em>56</em>(8), 8955–8991. <a href="https://doi.org/10.3758/s13428-024-02507-z">https://doi.org/10.3758/s13428-024-02507-z</a>
 </div>
 <div id="ref-jobst2023" class="csl-entry" role="listitem">
 Jobst, L. J., Bader, M., &amp; Moshagen, M. (2023). A tutorial on assessing statistical power and determining sample size for structural equation models. <em>Psychological Methods</em>, <em>28</em>(1), 207–221. <a href="https://doi.org/10.1037/met0000423">https://doi.org/10.1037/met0000423</a>
@@ -1756,9 +1464,6 @@ McNeish, D., &amp; Wolf, M. G. (2021). Dynamic fit index cutoffs for confirmator
 </div>
 <div id="ref-moshagen2024" class="csl-entry" role="listitem">
 Moshagen, M., &amp; Bader, M. (2024). <span class="nocase">semPower</span>: <span>General</span> power analysis for structural equation models. <em>Behavior Research Methods</em>, <em>56</em>(4), 2901–2922. <a href="https://doi.org/10.3758/s13428-023-02254-7">https://doi.org/10.3758/s13428-023-02254-7</a>
-</div>
-<div id="ref-mosqueirataipe2026" class="csl-entry" role="listitem">
-<span class="nocase">Mosqueira Taipe, C. M., Amador Campos, J. A., Krieger, V., Miasso, A. I., Molina, N. P. F. M., &amp; dos Santos, P. L.</span> (2026). Systematic review of the factor structure of <span class="nocase">WHOQOL-bref</span> in adult population. <em>Quality of Life Research</em>, <em>35</em>(17), 1–18. <a href="https://doi.org/10.1007/s11136-025-04115-6">https://doi.org/10.1007/s11136-025-04115-6</a>
 </div>
 <div id="ref-simsem2021" class="csl-entry" role="listitem">
 Pornprasertmanit, S., Miller, P., Schoemann, A., &amp; Jorgensen, T. D. (2021). <em>Simsem: <span>SIMulated Structural Equation Modeling</span></em>. <a href="https://CRAN.R-project.org/package=simsem">https://CRAN.R-project.org/package=simsem</a>

@@ -3189,7 +3189,7 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "1.2.0",
+      "Version": "1.2.4",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Project Environments",
@@ -3231,16 +3231,16 @@
         "webfakes"
       ],
       "Encoding": "UTF-8",
-      "NeedsCompilation": "yes",
-      "RoxygenNote": "7.3.3",
       "VignetteBuilder": "knitr",
       "Config/Needs/website": "tidyverse/tidytemplate",
       "Config/testthat/edition": "3",
       "Config/testthat/parallel": "true",
       "Config/testthat/start-first": "bioconductor,python,install,restore,snapshot,retrieve,remotes",
+      "Config/roxygen2/version": "8.0.0",
+      "NeedsCompilation": "no",
       "Author": "Kevin Ushey [aut, cre] (ORCID: <https://orcid.org/0000-0003-2880-7407>), Hadley Wickham [aut] (ORCID: <https://orcid.org/0000-0003-4757-117X>), Posit Software, PBC [cph, fnd]",
       "Maintainer": "Kevin Ushey <kevin@rstudio.com>",
-      "Repository": "https://p3m.dev/cran/latest"
+      "Repository": "CRAN"
     },
     "reshape2": {
       "Package": "reshape2",
@@ -3823,28 +3823,6 @@
       "URL": "https://simsem.org/",
       "NeedsCompilation": "no",
       "Author": "Sunthud Pornprasertmanit [aut], Patrick Miller [aut], Alexander M. Schoemann [aut] (<https://orcid.org/0000-0002-8479-8798>), Terrence D. Jorgensen [aut, cre] (<https://orcid.org/0000-0001-5111-6773>), Corbin Quick [ctb]",
-      "Repository": "CRAN"
-    },
-    "snow": {
-      "Package": "snow",
-      "Version": "0.4-4",
-      "Source": "Repository",
-      "Title": "Simple Network of Workstations",
-      "Author": "Luke Tierney, A. J. Rossini, Na Li, H. Sevcikova",
-      "Description": "Support for simple parallel computing in R.",
-      "Maintainer": "Luke Tierney <luke-tierney@uiowa.edu>",
-      "Suggests": [
-        "rlecuyer"
-      ],
-      "Enhances": [
-        "Rmpi"
-      ],
-      "License": "GPL",
-      "Depends": [
-        "R (>= 2.13.1)",
-        "utils"
-      ],
-      "NeedsCompilation": "no",
       "Repository": "CRAN"
     },
     "stringi": {

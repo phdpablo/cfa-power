@@ -18,7 +18,7 @@ library(dplyr)
 library(here)
 library(knitr)
 library(quantreg)
-library(snow)
+library(parallel)
 
 # --- Configuration -----------------------------------------------------------
 

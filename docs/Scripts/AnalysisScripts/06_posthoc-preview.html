@@ -251,7 +251,7 @@
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>here() starts at C:/Users/pablo/OneDrive/Github/cfa-power</code></pre>
+<pre><code>here() starts at E:/Github/cfa-power</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"models.R"</span>))</span>
@@ -259,9 +259,6 @@
 <div class="cell-output cell-output-stderr">
 <pre><code>This is lavaan 0.6-21
 lavaan is FREE software! Please report any bugs.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'semTools' was built under R version 4.5.3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code> </code></pre>
@@ -279,9 +276,6 @@ lavaan is FREE software! Please report any bugs.</code></pre>
 <pre><code>###############################################################################</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'semPower' was built under R version 4.5.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
 <pre><code>
 ### Welcome to semPower 2.1.3 ###
 
@@ -291,9 +285,6 @@ See https://moshagen.github.io/semPower/ for a detailed manual.
 Please cite as:
 Moshagen, M., &amp; Bader, M. (2024). semPower: General Power Analysis for Structural Equation Models.
 Behavior Research Methods, 56, 2901-2922. https://doi.org/10.3758/s13428-023-02254-7</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'semPlot' was built under R version 4.5.3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code> </code></pre>
@@ -345,34 +336,28 @@ Attaching package: 'dplyr'</code></pre>
     intersect, setdiff, setequal, union</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'quantreg' was built under R version 4.5.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: SparseM</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'SparseM' was built under R version 4.5.3</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"cache_utils.R"</span>))</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"cache_loader.R"</span>))</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cache_load_existing</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"cache_utils.R"</span>))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"cache_loader.R"</span>))</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cache_load_existing</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <p>The post hoc analysis is based on the real dataset from <span class="citation" data-cites="rogers2022">Rogers (<a href="#ref-rogers2022" role="doc-biblioref">2022</a>)</span>, publicly available in Mendeley Data. The data contain WHOQOL-BREF responses from 1,047 participants and are loaded directly from the repository URL. The sample size is extracted from the object and reused throughout this section, and the model degrees of freedom are computed from <code>analyzemodel</code> as a required input for the analytical functions.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>url_data <span class="ot">&lt;-</span> <span class="st">"https://data.mendeley.com/datasets/rdky78bk8r/2/files/b58a7054-4978-4239-81db-00f9efd86e44/WHOQOL_Data.dat"</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>realdata <span class="ot">&lt;-</span> <span class="fu">read.table</span>(url_data)</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>url_labels <span class="ot">&lt;-</span> <span class="st">"https://data.mendeley.com/datasets/rdky78bk8r/2/files/ae2a5c01-2fc2-43e5-b31c-8db8cc5bff8a/WHOQOL_Labels.txt"</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>column_labels <span class="ot">&lt;-</span> <span class="fu">read.table</span>(url_labels)</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>column_labels <span class="ot">&lt;-</span> column_labels<span class="sc">$</span>V1</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(realdata) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"_[FPSA]$"</span>, <span class="st">""</span>, column_labels)</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>n_real <span class="ot">&lt;-</span> <span class="fu">nrow</span>(realdata) <span class="co"># Sample size of the real data</span></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>df_model <span class="ot">&lt;-</span> semPower<span class="sc">::</span><span class="fu">semPower.getDf</span>(analyzemodel) <span class="co"># Degrees of freedom for the model, needed for semPower post hoc</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>url_data <span class="ot">&lt;-</span> <span class="st">"https://data.mendeley.com/datasets/rdky78bk8r/2/files/b58a7054-4978-4239-81db-00f9efd86e44/WHOQOL_Data.dat"</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>realdata <span class="ot">&lt;-</span> <span class="fu">read.table</span>(url_data)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>url_labels <span class="ot">&lt;-</span> <span class="st">"https://data.mendeley.com/datasets/rdky78bk8r/2/files/ae2a5c01-2fc2-43e5-b31c-8db8cc5bff8a/WHOQOL_Labels.txt"</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>column_labels <span class="ot">&lt;-</span> <span class="fu">read.table</span>(url_labels)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>column_labels <span class="ot">&lt;-</span> column_labels<span class="sc">$</span>V1</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(realdata) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"_[FPSA]$"</span>, <span class="st">""</span>, column_labels)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>n_real <span class="ot">&lt;-</span> <span class="fu">nrow</span>(realdata) <span class="co"># Sample size of the real data</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>df_model <span class="ot">&lt;-</span> <span class="dv">245</span> <span class="co"># Degrees of freedom with std.lv = TRUE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section id="post-hoc-power-analysis" class="level2">
@@ -382,59 +367,60 @@ Attaching package: 'dplyr'</code></pre>
 <p>Post hoc simulation-based power analysis follows four steps: fit the analysis model to the real data to obtain the empirical parameter estimates; simulate data from that fitted model to construct the null reference distribution; simulate data from the misspecified model to construct the alternative distribution; and evaluate how well each fit index separates the two distributions at the observed <span class="math inline">\(N\)</span> <span class="citation" data-cites="simsem2021 wang2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>; <a href="#ref-wang2021" role="doc-biblioref">Wang &amp; Rhemtulla, 2021</a>)</span>.</p>
 <p>Grounding the reference distribution in the fitted model rather than in the theoretical population model is what distinguishes this from the a priori analyses above: here, the population structure is implied by the data rather than specified in advance, which makes the power estimate reflect the evidence actually available in the collected sample <span class="citation" data-cites="feng2023 jobst2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>fit_real <span class="ot">&lt;-</span> <span class="fu">cfa</span>(</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  analyzemodel,</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> realdata,</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"mlr"</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>fit_real <span class="ot">&lt;-</span> <span class="fu">cfa</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  analyzemodel,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data      =</span> realdata,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimator =</span> <span class="st">"mlr"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">std.lv    =</span> <span class="cn">TRUE</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>realmodel_null <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"realmodel_null"</span>, {</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim</span>(</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">nRep      =</span> REP,        <span class="co"># See the `REP` object defined in helpers.R for the number of replications used in this scenario.</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">n         =</span> n_real,</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>      analyzemodel,</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">generate  =</span> fit_real,</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">std.lv    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">estimator =</span> <span class="st">"mlr"</span>,</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">seed      =</span> SEED,</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>realmodel_null <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"realmodel_null"</span>, {</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim</span>(</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">nRep      =</span> REP,        <span class="co"># See the `REP` object defined in helpers.R for the number of replications used in this scenario.</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">n         =</span> n_real,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>      analyzemodel,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">generate  =</span> fit_real,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">std.lv    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">estimator =</span> <span class="st">"mlr"</span>,</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">seed      =</span> SEED,</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>h1model_alt <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"h1model_alt"</span>, {</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim</span>(</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">nRep      =</span> REP,        <span class="co"># See the `REP` object defined in helpers.R for the number of replications used in this scenario.</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">n         =</span> n_real,</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>      analyzemodel,</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">generate  =</span> h1model,</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">std.lv    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">estimator =</span> <span class="st">"mlr"</span>,</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">seed      =</span> SEED,</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>h1model_alt <span class="ot">&lt;-</span> <span class="fu">cache_or_run</span>(<span class="st">"h1model_alt"</span>, {</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">nRep      =</span> REP,        <span class="co"># See the `REP` object defined in helpers.R for the number of replications used in this scenario.</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">n         =</span> n_real,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>      analyzemodel,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">generate  =</span> h1model,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">std.lv    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">lavaanfun =</span> <span class="st">"cfa"</span>,</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">estimator =</span> <span class="st">"mlr"</span>,</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">seed      =</span> SEED,</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">multicore =</span> <span class="cn">TRUE</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 <p>The figure below displays the fit-index distributions for the alternative and null conditions, alongside the empirical cutoff derived from the reference model at <span class="math inline">\(\alpha\)</span>. The degree of visual separation between the two distributions provides an intuitive picture of whether the observed <span class="math inline">\(N\)</span> is sufficient to support reliable model discrimination <span class="citation" data-cites="simsem2021 mcneish2021">(<a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="cell-fig-posthoc-plotpower" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fit-index distributions for the alternative model and compare them</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># with cutoffs obtained from the null model at level alpha.</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># In simsem, this visualizes how well the selected global fit indices separate</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data generated under the null and alternative conditions.</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    h1model_alt,</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nullObject =</span> realmodel_null,</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha      =</span> ALPHA,</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit    =</span> FITS</span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fit-index distributions for the alternative model and compare them</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># with cutoffs obtained from the null model at level alpha.</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># In simsem, this visualizes how well the selected global fit indices separate</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data generated under the null and alternative conditions.</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPowerFit</span>(</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    h1model_alt,</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nullObject =</span> realmodel_null,</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha      =</span> ALPHA,</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit    =</span> FITS</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-posthoc-plotpower" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -449,70 +435,99 @@ Power curve for post hoc analysis based on simulation.
 </div>
 </div></div>
 <p>The table below reports the corresponding power values for each index: the proportion of alternative-condition replications that fall beyond the null-model cutoff at the chosen <span class="math inline">\(\alpha\)</span> level <span class="citation" data-cites="simsem2021 wang2023">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="tbl-posthoc-power" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Return post hoc power for each selected fit index.</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The cutoffs are internally derived from the null-object distribution,</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># so the table summarizes the empirical rejection rate of the alternative model</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># under the chosen set of fit criteria.</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>posthoc_pow <span class="ot">&lt;-</span> <span class="fu">getPowerFit</span>(</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    h1model_alt,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nullObject =</span> realmodel_null,</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha      =</span> ALPHA,</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit    =</span> FITS</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset power to the four requested fit indices (FITS: rmsea, srmr, cfi, tli)</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ensuring TRADITIONALCHI is excluded.</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>posthoc_pow_clean <span class="ot">&lt;-</span> posthoc_pow[FITS]</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="fu">t</span>(<span class="fu">as.numeric</span>(posthoc_pow_clean))),</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">toupper</span>(FITS),</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">"c"</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="tbl-posthoc-power" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-posthoc-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Power for post hoc analysis based on simulation.
 </figcaption>
 <div aria-describedby="tbl-posthoc-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Return post hoc power for each selected fit index.</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The cutoffs are internally derived from the null-object distribution,</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># so the table summarizes the empirical rejection rate of the alternative model</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># under the chosen set of fit criteria.</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="fu">getPowerFit</span>(</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    h1model_alt,</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nullObject =</span> realmodel_null,</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha      =</span> ALPHA,</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">usedFit    =</span> FITS</span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>TraditionalChi          rmsea           srmr            cfi            tli 
-             1              1              1              1              1 </code></pre>
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">RMSEA</th>
+<th style="text-align: center;">SRMR</th>
+<th style="text-align: center;">CFI</th>
+<th style="text-align: center;">TLI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </figure>
 </div></div>
+</div></div>
 </section>
 <section id="with-sempower" class="level3">
 <h3 class="anchored" data-anchor-id="with-sempower">With semPower</h3>
-<p>For comparison, the same post hoc question is addressed analytically through three specifications of increasing specificity. The first is model-free and sets the target discrepancy at <span class="math inline">\(\text{RMSEA} = 0.05\)</span>; the second is model-based and derives the effect from the discrepancy between the population model and the empirically fitted model; the third specifies an explicit nested-model comparison by supplying both a null and an alternative model, so the effect reflects a targeted structural difference rather than global misfit against the saturated model <span class="citation" data-cites="moshagen2024 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="cell-fig-posthoc-rmsea" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical post hoc power for a global fit test.</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The target effect is fixed directly as RMSEA = 0.05.</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># H0 is exact fit, alpha is 0.05, and the sample size is 1,047.</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>ph_rmsea <span class="ot">&lt;-</span> semPower<span class="sc">::</span><span class="fu">semPower.postHoc</span>(</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect         =</span> <span class="fl">0.05</span>,</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect.measure =</span> <span class="st">"RMSEA"</span>,  <span class="co"># Target discrepancy expressed as RMSEA</span></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha          =</span> ALPHA,</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">N              =</span> n_real,</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">df             =</span> df_model,</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">p              =</span> P         <span class="co"># Only relevant for indices such as GFI and AGFI</span></span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ph_rmsea)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For comparison, the same post hoc question is addressed analytically through three specifications of increasing specificity. The first is model-free and sets the target discrepancy at <span class="math inline">\(\text{RMSEA} = 0.05\)</span>; the second is model-based and derives the effect from the discrepancy between the misspecified population model (<code>h1model</code>) and the empirically fitted model; the third specifies an explicit nested-model comparison by supplying both a null and an alternative model, so the effect reflects a targeted structural difference rather than global misfit against the saturated model <span class="citation" data-cites="moshagen2024 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-fig-posthoc-rmsea" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical post hoc power for a global fit test.</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The target effect is fixed directly as RMSEA = 0.05.</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># H0 is exact fit, alpha is 0.05, and the sample size is 1,047.</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>ph_rmsea <span class="ot">&lt;-</span> semPower<span class="sc">::</span><span class="fu">semPower.postHoc</span>(</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect         =</span> <span class="fl">0.05</span>,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">effect.measure =</span> <span class="st">"RMSEA"</span>,  <span class="co"># Target discrepancy expressed as RMSEA</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha          =</span> ALPHA,</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">N              =</span> n_real,</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">df             =</span> df_model,</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">p              =</span> P         <span class="co"># Only relevant for indices such as GFI and AGFI</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ph_rmsea)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  semPower: Post hoc power analysis
                                       
- F0                       0.622500    
+ F0                       0.612500    
  RMSEA                    0.050000    
- Mc                       0.732531    
- GFI                      0.950683    
- AGFI                     0.940582    
+ Mc                       0.736203    
+ GFI                      0.951437    
+ AGFI                     0.940535    
                                       
- df                       249         
+ df                       245         
  Num Observations         1047        
- NCP                      651.1350    
+ NCP                      640.6750    
                                       
- Critical Chi-Square      286.8077    
+ Critical Chi-Square      282.5114    
  Alpha                    0.050000    
- Beta                     4.771426e-48
+ Beta                     3.070697e-47
  Power (1 - Beta)         &gt; 0.9999    
- Implied Alpha/Beta Ratio 1.047905e+46</code></pre>
+ Implied Alpha/Beta Ratio 1.628295e+45</code></pre>
 </div>
 <div class="cell-output-display">
 <div id="fig-posthoc-rmsea" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -528,43 +543,44 @@ Post hoc power analysis for RMSEA = 0.05.
 </div>
 </div></div>
 <p>In the model-based specification below, <code>semPower.powerLav()</code> fits the analysis model to the population-implied covariance matrix and translates the resulting discrepancy into the noncentrality parameter. Because <code>modelH1</code> is omitted, the comparison is against the saturated model, making this a global test of fit rather than a test of a specific restriction <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-fig-posthoc-realmodel" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical post hoc power based on lavaan models.</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># modelPop defines the population structure.</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># modelH0 is the focal model to be tested.</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Because modelH1 is omitted, the comparison is against the saturated model.</span></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>ph_realmodel <span class="ot">&lt;-</span> <span class="fu">semPower.powerLav</span>(</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">type     =</span> <span class="st">"post-hoc"</span>,</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha    =</span> ALPHA,</span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">N        =</span> n_real,</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelPop =</span> popmodel,</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelH0  =</span> fit_real</span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ph_realmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="cell-fig-posthoc-realmodel" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical post hoc power based on lavaan models.</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># modelPop defines the population structure (h1model with cross-loadings).</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># modelH0 is the focal model to be tested.</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Because modelH1 is omitted, the comparison is against the saturated model.</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>ph_realmodel <span class="ot">&lt;-</span> semPower<span class="sc">::</span><span class="fu">semPower.powerLav</span>(</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">type       =</span> <span class="st">"post-hoc"</span>,</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha      =</span> ALPHA,</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">N          =</span> n_real,</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelPop   =</span> h1model,</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelH0    =</span> fit_real,</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">lavOptions =</span> <span class="fu">list</span>(<span class="at">std.lv =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ph_realmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  semPower: Post hoc power analysis
                                       
- F0                       0.303870    
- RMSEA                    0.034934    
- SRMR                     0.175600    
- Mc                       0.859044    
- GFI                      0.975303    
- AGFI                     0.970244    
- CFI                      0.977582    
+ F0                       0.578978    
+ RMSEA                    0.048612    
+ SRMR                     0.066543    
+ Mc                       0.748646    
+ GFI                      0.953973    
+ AGFI                     0.943640    
+ CFI                      0.959955    
                                       
- df                       249         
+ df                       245         
  Num Observations         1047        
- NCP                      317.8482    
+ NCP                      605.6108    
                                       
- Critical Chi-Square      286.8077    
+ Critical Chi-Square      282.5114    
  Alpha                    0.050000    
- Beta                     6.740368e-16
+ Beta                     1.868864e-43
  Power (1 - Beta)         &gt; 0.9999    
- Implied Alpha/Beta Ratio 7.417993e+13</code></pre>
+ Implied Alpha/Beta Ratio 2.675422e+41</code></pre>
 </div>
 <div class="cell-output-display">
 <div id="fig-posthoc-realmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -574,61 +590,6 @@ Post hoc power analysis for RMSEA = 0.05.
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posthoc-realmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Post hoc power analysis for the real model.
-</figcaption>
-</figure>
-</div>
-</div>
-</div></div>
-<p>The final specification introduces <code>modelH1 = h1modelfree</code>, which narrows the comparison from global fit to the specific nested discrepancy between the analysis model and the cross-loading alternative discussed throughout the tutorial. This mirrors the conceptual focus of all preceding a priori analyses and allows the post hoc result to be interpreted on the same substantive scale <span class="citation" data-cites="jobst2023 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>)</span>.</p>
-<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="cell-fig-posthoc-misspec" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical post hoc power for an explicit nested-model comparison.</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># modelH0 is the focal restricted model.</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># modelH1 is the less restrictive comparison model.</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The effect is computed from the population discrepancy between these models.</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>ph_posthoc_miss <span class="ot">&lt;-</span> <span class="fu">semPower.powerLav</span>(</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">type     =</span> <span class="st">"post-hoc"</span>,</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha    =</span> ALPHA,</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">N        =</span> n_real,</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelPop =</span> popmodel,</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelH0  =</span> fit_real,</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelH1  =</span> h1modelfree</span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in semPower.powerLav(type = "post-hoc", alpha = ALPHA, N = n_real, : H1
-model yields imperfect fit (F0 = 0.294788). This may happen if the H1 model
-contains restrictions on parameters (such as invariance constraints) that
-actually differ in the population. Verify that this is intended.</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ph_posthoc_miss)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
- semPower: Post hoc power analysis
-                                  
- F0                       0.009082
- RMSEA                    0.055021
- Mc                       0.995469
-                                  
- df                       3       
- Num Observations         1047    
- NCP                      9.499715
-                                  
- Critical Chi-Square      7.814728
- Alpha                    0.050000
- Beta                     0.262955
- Power (1 - Beta)         0.737045
- Implied Alpha/Beta Ratio 0.190147</code></pre>
-</div>
-<div class="cell-output-display">
-<div id="fig-posthoc-misspec" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-posthoc-misspec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="06_posthoc_files/figure-html/fig-posthoc-misspec-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Post hoc power analysis for the misspecified model."><img src="06_posthoc_files/figure-html/fig-posthoc-misspec-1.png" class="img-fluid figure-img" width="768"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posthoc-misspec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Post hoc power analysis for the misspecified model.
 </figcaption>
 </figure>
 </div>

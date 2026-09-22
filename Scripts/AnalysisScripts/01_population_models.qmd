@@ -71,7 +71,7 @@ plot_color(optmodel) # See plot_color() function in helpers.R for details.
 ## Model H1 — Cross-loading population model
 
 ```{r}
-#| label: H1-model
+#| label: h1-model
 
 cat(h1model) # Plus three cross-loading in Lin & Yao (2022) specification
 ```
@@ -109,7 +109,7 @@ plot_free(analyzemodel) # See plot_free() function in helpers.R for details.
 #| tbl-cap: "Summary of population models used for sensitivity analysis"
 
 csv <- read.csv(
-  "Data/InputData/popmodels_parameters.csv",
+  here("Data", "InputData", "popmodels_parameters.csv"),
   quote = "",
   check.names = FALSE,
   stringsAsFactors = FALSE

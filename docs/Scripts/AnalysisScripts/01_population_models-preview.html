@@ -232,7 +232,7 @@
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>here() starts at C:/Users/pablo/OneDrive/Github/cfa-power</code></pre>
+<pre><code>here() starts at E:/Github/cfa-power</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"Scripts"</span>, <span class="st">"DataAppendixScripts"</span>, <span class="st">"models.R"</span>))</span>
@@ -240,9 +240,6 @@
 <div class="cell-output cell-output-stderr">
 <pre><code>This is lavaan 0.6-21
 lavaan is FREE software! Please report any bugs.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'semTools' was built under R version 4.5.3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code> </code></pre>
@@ -260,9 +257,6 @@ lavaan is FREE software! Please report any bugs.</code></pre>
 <pre><code>###############################################################################</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'semPower' was built under R version 4.5.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
 <pre><code>
 ### Welcome to semPower 2.1.3 ###
 
@@ -272,9 +266,6 @@ See https://moshagen.github.io/semPower/ for a detailed manual.
 Please cite as:
 Moshagen, M., &amp; Bader, M. (2024). semPower: General Power Analysis for Structural Equation Models.
 Behavior Research Methods, 56, 2901-2922. https://doi.org/10.3758/s13428-023-02254-7</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'semPlot' was built under R version 4.5.3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code> </code></pre>
@@ -326,21 +317,15 @@ Attaching package: 'dplyr'</code></pre>
     intersect, setdiff, setequal, union</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'quantreg' was built under R version 4.5.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: SparseM</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'SparseM' was built under R version 4.5.3</code></pre>
 </div>
 </div></div>
 </section>
 <section id="population-model-meta-analytic" class="level2">
 <h2 class="anchored" data-anchor-id="population-model-meta-analytic">Population model — Meta-analytic</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(popmodel) <span class="co"># Lin &amp; Yao (2022) population model specification</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(popmodel) <span class="co"># Lin &amp; Yao (2022) population model specification</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings: empirical estimates from Lin &amp; Yao (2022) ────────────
@@ -396,8 +381,8 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-fig-diagram-popmodel" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_color</span>(popmodel) <span class="co"># See plot_color() function in helpers.R for details.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_color</span>(popmodel) <span class="co"># See plot_color() function in helpers.R for details.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-diagram-popmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -415,8 +400,8 @@ Path diagram of the popmodel
 <section id="naive-model-worst-case-scenario" class="level2">
 <h2 class="anchored" data-anchor-id="naive-model-worst-case-scenario">Naive model — Worst-case scenario</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(naivemodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(naivemodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
@@ -470,8 +455,8 @@ Path diagram of the popmodel
 </div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-fig-diagram-naivemodel" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_color</span>(naivemodel) <span class="co"># See plot_color() function in helpers.R for details.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_color</span>(naivemodel) <span class="co"># See plot_color() function in helpers.R for details.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-diagram-naivemodel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -489,8 +474,8 @@ Path diagram of the naivemodel
 <section id="optimistic-model-best-case-scenario" class="level2">
 <h2 class="anchored" data-anchor-id="optimistic-model-best-case-scenario">Optimistic model — Best-case scenario</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(optmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(optmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
@@ -544,8 +529,8 @@ Path diagram of the naivemodel
 </div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-fig-diagram-optmodel" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_color</span>(optmodel) <span class="co"># See plot_color() function in helpers.R for details.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_color</span>(optmodel) <span class="co"># See plot_color() function in helpers.R for details.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-diagram-optmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -563,8 +548,8 @@ Path diagram of the optmodel
 <section id="model-h1-cross-loading-population-model" class="level2">
 <h2 class="anchored" data-anchor-id="model-h1-cross-loading-population-model">Model H1 — Cross-loading population model</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(h1model) <span class="co"># Plus three cross-loading in Lin &amp; Yao (2022) specification</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(h1model) <span class="co"># Plus three cross-loading in Lin &amp; Yao (2022) specification</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings (with three cross-loadings) ───────────────────────────
@@ -619,8 +604,8 @@ Path diagram of the optmodel
 </div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-fig-diagram-h1model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_color</span>(h1model) <span class="co"># See plot_color() function in helpers.R for details.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_color</span>(h1model) <span class="co"># See plot_color() function in helpers.R for details.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-diagram-h1model" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -638,8 +623,8 @@ Path diagram of the h1model
 <section id="analysis-model-free-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-model-free-parameters">Analysis model — Free parameters</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(analyzemodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(analyzemodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings: freely estimated ─────────────────────────────────────
@@ -668,8 +653,8 @@ Path diagram of the h1model
 </div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="cell-fig-diagram-analyzemodel" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_free</span>(analyzemodel) <span class="co"># See plot_free() function in helpers.R for details.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_free</span>(analyzemodel) <span class="co"># See plot_free() function in helpers.R for details.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-diagram-analyzemodel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -687,34 +672,34 @@ Path diagram of the analyzemodel
 <section id="comparison-table" class="level2">
 <h2 class="anchored" data-anchor-id="comparison-table">Comparison table</h2>
 <div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Data/InputData/popmodels_parameters.csv"</span>,</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">""</span>,</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(csv) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'"'</span>, <span class="st">''</span>, <span class="fu">names</span>(csv))</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>param_transp <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(csv[<span class="sc">-</span><span class="dv">1</span>]), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(param_transp) <span class="ot">&lt;-</span> csv[[<span class="dv">1</span>]]</span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>param_transp <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">parameters =</span> <span class="fu">names</span>(csv)[<span class="sc">-</span><span class="dv">1</span>], param_transp)</span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(param_transp) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Escape ~~ for Pandoc (prevents strikethrough in HTML); keep param_transp clean.</span></span>
-<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>display <span class="ot">&lt;-</span> param_transp</span>
-<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>display<span class="sc">$</span>parameters <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"~~"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">~</span><span class="sc">\\</span><span class="st">~"</span>, display<span class="sc">$</span>parameters, <span class="at">fixed =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>display <span class="sc">|&gt;</span></span>
-<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
-<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"CFA Population Models Parameter"</span>,</span>
-<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"lcccc"</span>,</span>
-<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"parameters"</span>, <span class="st">"popmodel"</span>, <span class="st">"naivemodel"</span>, <span class="st">"optmodel"</span>, <span class="st">"h1model"</span>)</span>
-<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">"Data"</span>, <span class="st">"InputData"</span>, <span class="st">"popmodels_parameters.csv"</span>),</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">""</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(csv) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'"'</span>, <span class="st">''</span>, <span class="fu">names</span>(csv))</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>param_transp <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(csv[<span class="sc">-</span><span class="dv">1</span>]), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(param_transp) <span class="ot">&lt;-</span> csv[[<span class="dv">1</span>]]</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>param_transp <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">parameters =</span> <span class="fu">names</span>(csv)[<span class="sc">-</span><span class="dv">1</span>], param_transp)</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(param_transp) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Escape ~~ for Pandoc (prevents strikethrough in HTML); keep param_transp clean.</span></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>display <span class="ot">&lt;-</span> param_transp</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>display<span class="sc">$</span>parameters <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"~~"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">~</span><span class="sc">\\</span><span class="st">~"</span>, display<span class="sc">$</span>parameters, <span class="at">fixed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>display <span class="sc">|&gt;</span></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"CFA Population Models Parameter"</span>,</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"lcccc"</span>,</span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"parameters"</span>, <span class="st">"popmodel"</span>, <span class="st">"naivemodel"</span>, <span class="st">"optmodel"</span>, <span class="st">"h1model"</span>)</span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div id="tbl-pop-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pop-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1183,49 +1168,49 @@ Summary of population models used for sensitivity analysis
 </div></div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper: return the most frequent non-missing value.</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>Mode <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  ux <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">na.omit</span>(x))</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  ux[<span class="fu">which.max</span>(<span class="fu">tabulate</span>(<span class="fu">match</span>(<span class="fu">na.omit</span>(x), ux)))]</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract key summary metrics for one model specification.</span></span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>get_metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(model_name) {</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  vals <span class="ot">&lt;-</span> param_transp[[model_name]]</span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  params <span class="ot">&lt;-</span> param_transp<span class="sc">$</span>parameters</span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>  loadings <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(vals[<span class="fu">grepl</span>(<span class="st">"=~"</span>, params, <span class="at">fixed =</span> <span class="cn">TRUE</span>)])</span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  is_cov <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"~~"</span>, params, <span class="at">fixed =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^Q"</span>, params)</span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  lr <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(params[is_cov], <span class="st">"~~"</span>, <span class="at">fixed =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>  factor_cors <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(vals[is_cov][<span class="fu">vapply</span>(lr, \(x) x[<span class="dv">1</span>] <span class="sc">!=</span> x[<span class="dv">2</span>], <span class="fu">logical</span>(<span class="dv">1</span>))])</span>
-<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>  is_res <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"^Q.+~~Q.+$"</span>, params)</span>
-<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>  lr_r <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(params[is_res], <span class="st">"~~"</span>, <span class="at">fixed =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>  residuals <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(vals[is_res][<span class="fu">vapply</span>(lr_r, \(x) x[<span class="dv">1</span>] <span class="sc">==</span> x[<span class="dv">2</span>], <span class="fu">logical</span>(<span class="dv">1</span>))])</span>
-<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>  q3q4 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(vals[params <span class="sc">==</span> <span class="st">"Q3~~Q4"</span>])</span>
-<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, <span class="fu">c</span>(</span>
-<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(loadings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">max</span>(loadings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(loadings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">Mode</span>(factor_cors),</span>
-<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(residuals, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">max</span>(residuals, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), q3q4</span>
-<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Build and transpose the summary table (metrics × models).</span></span>
-<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">popmodel =</span> <span class="st">"Meta-analytic (popmodel)"</span>,</span>
-<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">naivemodel =</span> <span class="st">"Naive (naivemodel)"</span>,</span>
-<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a>            <span class="at">optmodel =</span> <span class="st">"Optimistic (optmodel)"</span>,</span>
-<span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a>            <span class="at">h1model =</span> <span class="st">"H1 (h1model)"</span>)</span>
-<span id="cb46-34"><a href="#cb46-34" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Loading Min"</span>, <span class="st">"Loading Max"</span>, <span class="st">"Mean Loading"</span>,</span>
-<span id="cb46-35"><a href="#cb46-35" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Factor Correlations"</span>, <span class="st">"Residual Min"</span>, <span class="st">"Residual Max"</span>,</span>
-<span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Q3\u2013Q4 Correlation"</span>)</span>
-<span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-38"><a href="#cb46-38" aria-hidden="true" tabindex="-1"></a>pop_summary_t <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
-<span id="cb46-39"><a href="#cb46-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">Metric =</span> metrics),</span>
-<span id="cb46-40"><a href="#cb46-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">data.frame</span>(<span class="fu">sapply</span>(<span class="fu">names</span>(models), get_metrics)), models)</span>
-<span id="cb46-41"><a href="#cb46-41" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb46-42"><a href="#cb46-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-43"><a href="#cb46-43" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(pop_summary_t, <span class="at">align =</span> <span class="st">"lcccc"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper: return the most frequent non-missing value.</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>Mode <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  ux <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">na.omit</span>(x))</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  ux[<span class="fu">which.max</span>(<span class="fu">tabulate</span>(<span class="fu">match</span>(<span class="fu">na.omit</span>(x), ux)))]</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract key summary metrics for one model specification.</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>get_metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(model_name) {</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>  vals <span class="ot">&lt;-</span> param_transp[[model_name]]</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>  params <span class="ot">&lt;-</span> param_transp<span class="sc">$</span>parameters</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>  loadings <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(vals[<span class="fu">grepl</span>(<span class="st">"=~"</span>, params, <span class="at">fixed =</span> <span class="cn">TRUE</span>)])</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>  is_cov <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"~~"</span>, params, <span class="at">fixed =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^Q"</span>, params)</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  lr <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(params[is_cov], <span class="st">"~~"</span>, <span class="at">fixed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>  factor_cors <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(vals[is_cov][<span class="fu">vapply</span>(lr, \(x) x[<span class="dv">1</span>] <span class="sc">!=</span> x[<span class="dv">2</span>], <span class="fu">logical</span>(<span class="dv">1</span>))])</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>  is_res <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"^Q.+~~Q.+$"</span>, params)</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>  lr_r <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(params[is_res], <span class="st">"~~"</span>, <span class="at">fixed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>  residuals <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(vals[is_res][<span class="fu">vapply</span>(lr_r, \(x) x[<span class="dv">1</span>] <span class="sc">==</span> x[<span class="dv">2</span>], <span class="fu">logical</span>(<span class="dv">1</span>))])</span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>  q3q4 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(vals[params <span class="sc">==</span> <span class="st">"Q3~~Q4"</span>])</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, <span class="fu">c</span>(</span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(loadings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">max</span>(loadings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(loadings, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">Mode</span>(factor_cors),</span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(residuals, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="fu">max</span>(residuals, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), q3q4</span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Build and transpose the summary table (metrics × models).</span></span>
+<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">popmodel =</span> <span class="st">"Meta-analytic (popmodel)"</span>,</span>
+<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">naivemodel =</span> <span class="st">"Naive (naivemodel)"</span>,</span>
+<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a>            <span class="at">optmodel =</span> <span class="st">"Optimistic (optmodel)"</span>,</span>
+<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a>            <span class="at">h1model =</span> <span class="st">"H1 (h1model)"</span>)</span>
+<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Loading Min"</span>, <span class="st">"Loading Max"</span>, <span class="st">"Mean Loading"</span>,</span>
+<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Factor Correlations"</span>, <span class="st">"Residual Min"</span>, <span class="st">"Residual Max"</span>,</span>
+<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Q3\u2013Q4 Correlation"</span>)</span>
+<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>pop_summary_t <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">Metric =</span> metrics),</span>
+<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">data.frame</span>(<span class="fu">sapply</span>(<span class="fu">names</span>(models), get_metrics)), models)</span>
+<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(pop_summary_t, <span class="at">align =</span> <span class="st">"lcccc"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [15]:</pre></div><div id="tbl-pop-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pop-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

@@ -27,7 +27,7 @@ Missingness reduces effective sample size and inflates sampling variance,
 both of which reduce power relative to the ideal scenario. When data are
 missing completely at random (MCAR), this reduction is a function of the
 missing proportion alone, and Full Information Maximum Likelihood (FIML)
-provides consistent estimates without imputation [@enders2010; @simsem2021].
+provides consistent estimates without imputation [@enders2023; @simsem2021].
 
 The two chunks below replicate the main misspecification simulation with
 10% MCAR applied to both the reference and the alternative conditions.
@@ -82,7 +82,7 @@ The power curves below follow the same logic as in the ideal scenario,
 but with cutoff distributions now derived from samples subject to 10%
 MCAR. The expected outcome is a rightward shift in the curves: the same
 target power level requires a larger $N$ than under complete data
-[@enders2010; @feng2023].
+[@enders2023; @feng2023].
 
 ```{r}
 #| label: fig-power-curve-missing

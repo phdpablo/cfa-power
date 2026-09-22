@@ -129,13 +129,18 @@ cutoff_fixed <- getCutoff(
   usedFit = FITS
 )
 
+# Subset power to the four requested fit indices (FITS: rmsea, srmr, cfi, tli)
+# ensuring 1-to-1 alignment with cutoff_fixed and excluding TraditionalChi.
+power_fixed_clean <- power_fixed[FITS]
+cutoff_fixed_clean <- cutoff_fixed[1, FITS]
+
 # Combine power and cutoff values into a compact summary table.
 power_cutoff_fixed <- rbind(
-  "Power" = as.numeric(power_fixed),
-  "Cutoff" = as.numeric(cutoff_fixed[1, ])
+  "Power"  = as.numeric(power_fixed_clean),
+  "Cutoff" = as.numeric(cutoff_fixed_clean)
 )
 
-colnames(power_cutoff_fixed) <- toupper(names(power_fixed))
+colnames(power_cutoff_fixed) <- toupper(FITS)
 
 knitr::kable(power_cutoff_fixed, digits = 3, align = "c")
 ```
@@ -166,7 +171,7 @@ plotPowerFit(
 ```
 
 ```{r}
-#| label: tbl-power-cutoff-traditional
+#| label: tbl-power-cutoff-traditional-fixed
 #| tbl-cap: "Power for traditional fit index cutoffs with fixed sample size."
 
 # Estimate power using traditional fit-index cutoffs.

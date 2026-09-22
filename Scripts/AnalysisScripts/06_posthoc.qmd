@@ -43,7 +43,7 @@ names(realdata) <- gsub("_[FPSA]$", "", column_labels)
 
 n_real <- nrow(realdata) # Sample size of the real data
 
-df_model <- semPower::semPower.getDf(analyzemodel) # Degrees of freedom for the model, needed for semPower post hoc
+df_model <- 245 # Degrees of freedom with std.lv = TRUE
 ```
 
 ## Post hoc power analysis
@@ -70,8 +70,9 @@ reflect the evidence actually available in the collected sample
 
 fit_real <- cfa(
   analyzemodel,
-  data = realdata,
-  estimator = "mlr"
+  data      = realdata,
+  estimator = "mlr",
+  std.lv    = TRUE
 )
 ```
 
@@ -151,11 +152,22 @@ the null-model cutoff at the chosen $\alpha$ level [@simsem2021;
 # so the table summarizes the empirical rejection rate of the alternative model
 # under the chosen set of fit criteria.
 
-getPowerFit(
+posthoc_pow <- getPowerFit(
     h1model_alt,
     nullObject = realmodel_null,
     alpha      = ALPHA,
     usedFit    = FITS
+)
+
+# Subset power to the four requested fit indices (FITS: rmsea, srmr, cfi, tli)
+# ensuring TRADITIONALCHI is excluded.
+posthoc_pow_clean <- posthoc_pow[FITS]
+
+knitr::kable(
+  as.data.frame(t(as.numeric(posthoc_pow_clean))),
+  col.names = toupper(FITS),
+  digits = 3,
+  align = "c"
 )
 ```
 
@@ -165,7 +177,7 @@ For comparison, the same post hoc question is addressed analytically
 through three specifications of increasing specificity. The first is
 model-free and sets the target discrepancy at $\text{RMSEA} = 0.05$;
 the second is model-based and derives the effect from the discrepancy
-between the population model and the empirically fitted model; the
+between the misspecified population model (`h1model`) and the empirically fitted model; the
 third specifies an explicit nested-model comparison by supplying both a
 null and an alternative model, so the effect reflects a targeted
 structural difference rather than global misfit against the saturated
@@ -207,49 +219,20 @@ restriction [@moshagen2024; @jobst2023].
 #| fig-height: 5
 
 # Analytical post hoc power based on lavaan models.
-# modelPop defines the population structure.
+# modelPop defines the population structure (h1model with cross-loadings).
 # modelH0 is the focal model to be tested.
 # Because modelH1 is omitted, the comparison is against the saturated model.
 
-ph_realmodel <- semPower.powerLav(
-  type     = "post-hoc",
-  alpha    = ALPHA,
-  N        = n_real,
-  modelPop = popmodel,
-  modelH0  = fit_real
+ph_realmodel <- semPower::semPower.powerLav(
+  type       = "post-hoc",
+  alpha      = ALPHA,
+  N          = n_real,
+  modelPop   = h1model,
+  modelH0    = fit_real,
+  lavOptions = list(std.lv = TRUE)
 )
 
 summary(ph_realmodel)
 ```
 
-The final specification introduces `modelH1 = h1modelfree`, which
-narrows the comparison from global fit to the specific nested
-discrepancy between the analysis model and the cross-loading
-alternative discussed throughout the tutorial. This mirrors the
-conceptual focus of all preceding a priori analyses and allows the
-post hoc result to be interpreted on the same substantive scale
-[@jobst2023; @jak2021].
-
-```{r}
-#| label: fig-posthoc-misspec
-#| fig-cap: "Post hoc power analysis for the misspecified model."
-#| fig-width: 8
-#| fig-height: 5
-
-# Analytical post hoc power for an explicit nested-model comparison.
-# modelH0 is the focal restricted model.
-# modelH1 is the less restrictive comparison model.
-# The effect is computed from the population discrepancy between these models.
-
-ph_posthoc_miss <- semPower.powerLav(
-  type     = "post-hoc",
-  alpha    = ALPHA,
-  N        = n_real,
-  modelPop = popmodel,
-  modelH0  = fit_real,
-  modelH1  = h1modelfree
-)
-
-summary(ph_posthoc_miss)
-```
 

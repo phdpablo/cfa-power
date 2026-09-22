@@ -30,10 +30,13 @@ that follow [@jak2021; @moshagen2024].
 ```{r}
 #| label: compute-df
 
-# Compute df directly with semPower (no data needed)
-df_model <- semPower::semPower.getDf(analyzemodel)
+# Compute df for standardized latent variables (std.lv = TRUE)
+# 24 observed variables: p*(p+1)/2 = 300 non-redundant sample moments
+# analyzemodel: 24 loadings + 6 factor correlations + 1 residual covariance (Q3~~Q4) + 24 residual variances = 55 free parameters
+# Model degrees of freedom: df = 300 - 55 = 245
+df_model <- 245
 
-cat("Model degrees of freedom (via semPower):", df_model, "\n")
+cat("Model degrees of freedom (with std.lv = TRUE):", df_model, "\n")
 ```
 
 ## A priori power analysis: Determine N
@@ -67,7 +70,7 @@ ap_rmsea <- semPower::semPower.aPriori(
   effect.measure = "RMSEA",   # effect is expressed as RMSEA
   alpha          = ALPHA,     # Type I error rate
   power          = POWER,     # desired statistical power = 1 - beta
-  df             = df_model,  # model degrees of freedom
+  df             = df_model,  # model degrees of freedom (245)
   p              = P          # only relevant for indices such as GFI/AGFI
 )
 
@@ -86,28 +89,27 @@ This makes the sample size estimate more directly tied to the CFA
 under study, at the cost of requiring a fully specified population
 model as input [@buchberger2024; @moshagen2024].
 
-Here, `semPower.powerLav()` fits the analysis model to the
-population-implied covariance matrix and translates the resulting
-discrepancy into $F_0$ and then into $\lambda = (N-1)F_0$. Because
-`modelH1` is not specified, the comparison is against the saturated
-model, so this remains a global test of fit rather than a test of
-any individual restriction [@jobst2023; @moshagen2024].
+Here, `semPower.powerLav()` fits the analysis model (`analyzemodel`) to the
+covariance matrix implied by the misspecified population model (`h1model`)
+and translates the resulting discrepancy into $F_0$ and then into $\lambda = (N-1)F_0$.
+Because `modelH1` is not specified, the comparison is
+against the saturated model, evaluating overall model misfit ($df = 245$).
 
 ```{r}
 #| label: fig-apriori-popmodel
-#| fig-cap: "A priori power analysis Model-based approach (popModel)"
+#| fig-cap: "A priori power analysis Model-based approach (h1model vs analyzemodel)"
 
 # A priori power analysis:
-# computes the minimum N needed to detect the discrepancy
-# between the population model and the null analysis model.
+# computes the minimum N needed to detect the omission of the three
+# cross-loadings in analyzemodel when data arise from h1model.
 
-ap_popmodel <- semPower.powerLav(
-  type = "a-priori",       # sample size planning
-  alpha = ALPHA,           # Type I error rate
-  power = POWER,           # target power
-  modelPop = popmodel,     # population-generating model
-  modelH0 = analyzemodel,  # null/analysis model
-  p = P                    # only relevant for indices such as GFI/AGFI
+ap_popmodel <- semPower::semPower.powerLav(
+  type       = "a-priori",
+  alpha      = ALPHA,
+  power      = POWER,
+  modelPop   = h1model,
+  modelH0    = analyzemodel,
+  lavOptions = list(std.lv = TRUE)
 )
 
 # Shows effect size, df, required N, critical chi-square,
@@ -191,7 +193,7 @@ safe_num <- function(x) if (length(x) == 0 || is.null(x)) NA else as.numeric(x)[
 analytical_summary <- data.frame(
     Method = c(
         "Model-free a priori (RMSEA = .05)",
-        "Model-based a priori (Population Model)"
+        "Model-based global fit (h1model vs. saturated)"
     ),
     `N Required` = c(
         safe_num(ap_rmsea$requiredN),
@@ -205,10 +207,13 @@ analytical_summary <- data.frame(
         round(safe_num(ap_rmsea$rmsea), 4),
         round(safe_num(ap_popmodel$rmsea), 4)
     ),
-    df = rep(safe_num(df_model), 2),
+    df = c(
+        safe_num(ap_rmsea$df),
+        safe_num(ap_popmodel$df)
+    ),
     check.names = FALSE
 )
 
 # Render the summary table with simple column alignment for reporting
-knitr::kable(analytical_summary, align = "lccccc")
+knitr::kable(analytical_summary, align = "lcccc")
 ```

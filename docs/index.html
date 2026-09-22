@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Pablo Rogers">
-<meta name="dcterms.date" content="2026-04-21">
+<meta name="dcterms.date" content="2026-09-22">
 <meta name="keywords" content="Power Analysis, Confirmatory Factor Analysis, Structural Equation Modeling, Monte Carlo Simulation, semPower, simsem">
 
 <title>Power Analysis for Confirmatory Factor Analysis: A Practical Tutorial</title>
@@ -105,10 +105,10 @@ window.Quarto = {
 ">
 <meta name="citation_keywords" content="Power Analysis,Confirmatory Factor Analysis,Structural Equation Modeling,Monte Carlo Simulation,semPower,simsem">
 <meta name="citation_author" content="Pablo Rogers">
-<meta name="citation_publication_date" content="2026-04-21">
-<meta name="citation_cover_date" content="2026-04-21">
+<meta name="citation_publication_date" content="2026-09-22">
+<meta name="citation_cover_date" content="2026-09-22">
 <meta name="citation_year" content="2026">
-<meta name="citation_online_date" content="2026-04-21">
+<meta name="citation_online_date" content="2026-09-22">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Simsem: SIMulated Structural Equation Modeling;,citation_author=Sunthud Pornprasertmanit;,citation_author=Patrick Miller;,citation_author=Alexander Schoemann;,citation_author=Terrence D. Jorgensen;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_fulltext_html_url=https://CRAN.R-project.org/package=simsem;">
 <meta name="citation_reference" content="citation_title=Validation of the factor structure of the WHOQOL-BREF using meta-analysis of exploratory factor analysis and social network analysis;,citation_author=Lin-Ching Lin;,citation_author=Grace Yao;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_issue=7;,citation_doi=10.1037/pas0001122;,citation_volume=34;,citation_journal_title=Psychological Assessment;">
@@ -147,6 +147,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Sample Size Requirements for Structural Equation Models: An Evaluation of Power, Bias, and Solution Propriety;,citation_abstract=Determining sample size requirements for structural equation modeling (SEM) is a challenge often faced by investigators, peer reviewers, and grant writers. Recent years have seen a large increase in SEMs in the behavioral science literature, but consideration of sample size requirements for applied SEMs often relies on outdated rules-of-thumb. This study used Monte Carlo data simulation techniques to evaluate sample size requirements for common applied SEMs. Across a series of simulations, we systematically varied key model properties, including number of indicators and factors, magnitude of factor loadings and path coefficients, and amount of missing data. We investigated how changes in these parameters affected sample size requirements with respect to statistical power, bias in the parameter estimates, and overall solution propriety. Results revealed a range of sample size requirements (i.e., from 30 to 460 cases), meaningful patterns of association between parameters and sample size, and highlight the limitations of commonly cited rules-of-thumb. The broad “lessons learned” for determining SEM sample size requirements are discussed.;,citation_author=Erika J. Wolf;,citation_author=Kelly M. Harrington;,citation_author=Shaunna L. Clark;,citation_author=Mark W. Miller;,citation_publication_date=2013-12;,citation_cover_date=2013-12;,citation_year=2013;,citation_issue=6;,citation_doi=10.1177/0013164413495237;,citation_issn=0013-1644;,citation_pmid=25705052;,citation_volume=76;,citation_journal_title=Educational and psychological measurement;">
 <meta name="citation_reference" content="citation_title=Practical statistical power analysis using Webpower and R;,citation_author=Zhiyong Zhang;,citation_author=Ke-Hai Yuan;,citation_publication_date=2018;,citation_cover_date=2018;,citation_year=2018;">
 <meta name="citation_reference" content="citation_title=Best Practices for Your Exploratory Factor Analysis: A Factor Tutorial;,citation_abstract=Context: Exploratory factor analysis (EFA) is one of the statistical methods most widely used in administration; however, its current practice coexists with rules of thumb and heuristics given half a century ago. Objective: the purpose of this article is to present the best practices and recent recommendations for a typical EFA in administration through a practical solution accessible to researchers. Methods: in this sense, in addition to discussing current practices versus recommended practices, a tutorial with real data on Factor is illustrated. The Factor software is still little known in the administration area, but is freeware, easy-to-use (point and click), and powerful. The step-by-step tutorial illustrated in the article, in addition to the discussions raised and an additional example, is also available in the format of tutorial videos. Conclusion: through the proposed didactic methodology (article-tutorial + video-tutorial), we encourage researchers/methodologists who have mastered a particular technique to do the same. Specifically about EFA, we hope that the presentation of the Factor software, as a first solution, can transcend the current outdated rules of thumb and heuristics, by making best practices accessible to administration researchers.;,citation_author=Pablo Rogers;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_issue=6;,citation_doi=10.1590/1982-7849rac2022210085.en;,citation_issn=1982-7849;,citation_volume=26;,citation_journal_title=Revista de Administração Contemporânea;">
+<meta name="citation_reference" content="citation_title=Fitting structural Equation Models with Missing data;,citation_author=Craig Enders;,citation_editor=Rick H. Hoyle;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_inbook_title=Handbook of Structural Equation Modeling;">
 </head>
 
 <body class="quarto-light">
@@ -181,7 +182,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">April 21, 2026</p>
+              <p class="date">September 22, 2026</p>
             </div>
           </div>
           
@@ -237,7 +238,6 @@ window.Quarto = {
   <li><a href="#traditional-cutoff-values-for-fit-indices" id="toc-traditional-cutoff-values-for-fit-indices" class="nav-link" data-scroll-target="#traditional-cutoff-values-for-fit-indices"><span class="header-section-number">4.2</span> Traditional cutoff values for fit indices</a></li>
   <li><a href="#targeting-specific-parameters" id="toc-targeting-specific-parameters" class="nav-link" data-scroll-target="#targeting-specific-parameters"><span class="header-section-number">4.3</span> Targeting specific parameters</a></li>
   <li><a href="#recovering-population-parameters" id="toc-recovering-population-parameters" class="nav-link" data-scroll-target="#recovering-population-parameters"><span class="header-section-number">4.4</span> Recovering population parameters</a></li>
-  <li><a href="#sensitivity-to-population-model-assumptions" id="toc-sensitivity-to-population-model-assumptions" class="nav-link" data-scroll-target="#sensitivity-to-population-model-assumptions"><span class="header-section-number">4.5</span> Sensitivity to population model assumptions</a></li>
   </ul></li>
   <li><a href="#sec-sim-robust" id="toc-sec-sim-robust" class="nav-link" data-scroll-target="#sec-sim-robust"><span class="header-section-number">5</span> Monte Carlo Simulation: Realistic Scenarios</a>
   <ul class="collapse">
@@ -288,7 +288,7 @@ window.Quarto = {
 </section>
 <section id="sec-popmodel" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="sec-popmodel"><span class="header-section-number">2</span> The Running Example: WHOQOL-BREF Population CFA Model</h2>
-<p>All power analyses in this tutorial are anchored in the World Health Organization Quality of Life-BREF (WHOQOL-BREF) four-factor measurement model. Meaningful power analysis requires an explicit population model — a formal representation of the “true” covariance structure from which data are presumed to be generated <span class="citation" data-cites="feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>)</span>. By grounding this model in meta-analytic evidence rather than in arbitrary parameter choices, we ensure that sample size targets reflect realistic measurement conditions <span class="citation" data-cites="lin2022 mosqueirataipe2026">(<a href="#ref-lin2022" role="doc-biblioref">Lin &amp; Yao, 2022</a>; <a href="#ref-mosqueirataipe2026" role="doc-biblioref"><span class="nocase">Mosqueira Taipe et al.</span>, 2026</a>)</span>.</p>
+<p>All power analyses in this tutorial are anchored in the World Health Organization Quality of Life-BREF (WHOQOL-BREF) four-factor measurement model <span class="citation" data-cites="lin2022 mosqueirataipe2026">(<a href="#ref-lin2022" role="doc-biblioref">Lin &amp; Yao, 2022</a>; <a href="#ref-mosqueirataipe2026" role="doc-biblioref"><span class="nocase">Mosqueira Taipe et al.</span>, 2026</a>)</span>. Meaningful power analysis requires an explicit population model — a formal representation of the “true” covariance structure from which data are presumed to be generated <span class="citation" data-cites="feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>)</span>. By grounding this model in meta-analytic evidence rather than in arbitrary parameter choices, we ensure that sample size targets reflect realistic measurement conditions <span class="citation" data-cites="lin2022 mosqueirataipe2026">(<a href="#ref-lin2022" role="doc-biblioref">Lin &amp; Yao, 2022</a>; <a href="#ref-mosqueirataipe2026" role="doc-biblioref"><span class="nocase">Mosqueira Taipe et al.</span>, 2026</a>)</span>.</p>
 <p>We specify four population variants to support sensitivity analyses:</p>
 <ol type="1">
 <li><strong>Meta-analytic</strong> (<code>popmodel</code>): Loadings and residual variances matching the pooled estimates from 1.</li>
@@ -1253,7 +1253,7 @@ Figure&nbsp;5: Path diagram of the analyzemodel
 <div class="quarto-embed-nb-cell">
 <div id="compute-df" class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Model degrees of freedom (via semPower): 249 </code></pre>
+<pre><code>Model degrees of freedom (with std.lv = TRUE): 245 </code></pre>
 </div>
 </div>
 </div>
@@ -1270,21 +1270,21 @@ Figure&nbsp;5: Path diagram of the analyzemodel
 <pre><code>
  semPower: A priori power analysis
                                    
- F0                        0.622500
+ F0                        0.612500
  RMSEA                     0.050000
- Mc                        0.732531
- GFI                       0.950683
- AGFI                      0.940582
+ Mc                        0.736203
+ GFI                       0.951437
+ AGFI                      0.940535
                                    
- df                        249     
- Required Num Observations 99      
+ df                        245     
+ Required Num Observations 100     
                                    
- Critical Chi-Square       286.8077
- NCP                       61.00500
+ Critical Chi-Square       282.5114
+ NCP                       60.63750
  Alpha                     0.050000
- Beta                      0.199217
- Power (1 - Beta)          0.800783
- Implied Alpha/Beta Ratio  0.250983</code></pre>
+ Beta                      0.198392
+ Power (1 - Beta)          0.801608
+ Implied Alpha/Beta Ratio  0.252026</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div id="fig-apriori-rmsea" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1301,14 +1301,14 @@ Figure&nbsp;6: A priori power analysis for exact fit with RMSEA-based effect siz
 </div>
 </div>
 <p>This output reports the minimum <span class="math inline">\(N\)</span> required to detect misfit of <span class="math inline">\(\text{RMSEA} = 0.05\)</span> with power <span class="math inline">\(\approx 0.80\)</span> at <span class="math inline">\(\alpha = 0.05\)</span>. Note that <span class="math inline">\(0.05\)</span> refers to the misspecification level to be detected under the alternative hypothesis, not to a tolerated misfit level under the null <span class="citation" data-cites="maccallum1996 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-maccallum1996" role="doc-biblioref">MacCallum et al., 1996</a>)</span>.</p>
-<p>The output presents several equivalent representations of the same target effect. The value <span class="math inline">\(F_0\)</span> = 0.623 is the population minimum of the fitting function, obtained from <span class="math inline">\(F_0 = df \cdot \text{RMSEA}^2\)</span> = 249 <span class="math inline">\(\cdot\)</span> <span class="math inline">\(0.05^2\)</span>. Alongside it, the summary also reports <span class="math inline">\(Mc\)</span> = 0.733, <span class="math inline">\(GFI\)</span> = 0.951, and <span class="math inline">\(AGFI\)</span> = 0.941. These are not distinct effect sizes but alternative summaries of the same degree of model misfit, expressed in the metrics used by <code>semPower</code> <span class="citation" data-cites="moshagen2024">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>The output presents several equivalent representations of the same target effect. The value <span class="math inline">\(F_0\)</span> = 0.613 is the population minimum of the fitting function, obtained from <span class="math inline">\(F_0 = df \cdot \text{RMSEA}^2\)</span> = 245 <span class="math inline">\(\cdot\)</span> <span class="math inline">\(0.05^2\)</span>. Alongside it, the summary also reports <span class="math inline">\(Mc\)</span> = 0.736, <span class="math inline">\(GFI\)</span> = 0.951, and <span class="math inline">\(AGFI\)</span> = 0.941. These are not distinct effect sizes but alternative summaries of the same degree of model misfit, expressed in the metrics used by <code>semPower</code> <span class="citation" data-cites="moshagen2024">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
 <p>The key conversion is:</p>
 <p><span class="math display">\[
 \lambda = (N - 1)F_0 = (N - 1)\,df\,\text{RMSEA}^2
 \]</span></p>
 <p>which translates the chosen misfit into the noncentrality parameter used to locate the alternative <span class="math inline">\(\chi^2\)</span> distribution <span class="citation" data-cites="maccallum1996 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-maccallum1996" role="doc-biblioref">MacCallum et al., 1996</a>)</span>.</p>
-<p>With <span class="math inline">\(df\)</span> = 249, the a priori solution is <span class="math inline">\(N\)</span> = 99. At that <span class="math inline">\(N\)</span>, the noncentrality parameter is <span class="math inline">\(\lambda\)</span> = 61.005 and the critical value is <span class="math inline">\(\chi^2_c\)</span> = 286.808. The implied <span class="math inline">\(\beta\)</span> <span class="math inline">\(\approx\)</span> 0.199 corresponds to power <span class="math inline">\(1 - \beta\)</span> <span class="math inline">\(\approx\)</span> 0.801, confirming that <span class="math inline">\(N\)</span> = 99 is the minimum sample size at which the target operating characteristics are met <span class="citation" data-cites="jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>)</span>.</p>
-<p>In <a href="#fig-apriori-rmsea" class="quarto-xref">Figure&nbsp;6</a>, the solid red curve is the central <span class="math inline">\(\chi^2\)</span> under exact fit, the dashed blue curve is the noncentral <span class="math inline">\(\chi^2\)</span> under the target misspecification, and the vertical dotted line at <span class="math inline">\(\chi^2\)</span> = 286.808 is the decision threshold <span class="citation" data-cites="jak2021 moshagen2024">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
+<p>With <span class="math inline">\(df\)</span> = 245, the a priori solution is <span class="math inline">\(N\)</span> = 100. At that <span class="math inline">\(N\)</span>, the noncentrality parameter is <span class="math inline">\(\lambda\)</span> = 60.638 and the critical value is <span class="math inline">\(\chi^2_c\)</span> = 282.511. The implied <span class="math inline">\(\beta\)</span> <span class="math inline">\(\approx\)</span> 0.198 corresponds to power <span class="math inline">\(1 - \beta\)</span> <span class="math inline">\(\approx\)</span> 0.802, confirming that <span class="math inline">\(N\)</span> = 100 is the minimum sample size at which the target operating characteristics are met <span class="citation" data-cites="jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>)</span>.</p>
+<p>In <a href="#fig-apriori-rmsea" class="quarto-xref">Figure&nbsp;6</a>, the solid red curve is the central <span class="math inline">\(\chi^2\)</span> under exact fit, the dashed blue curve is the noncentral <span class="math inline">\(\chi^2\)</span> under the target misspecification, and the vertical dotted line at <span class="math inline">\(\chi^2\)</span> = 282.511 is the decision threshold <span class="citation" data-cites="jak2021 moshagen2024">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
 </section>
 <section id="model-based-approach" class="level4" data-number="3.2.2">
 <h4 data-number="3.2.2" class="anchored" data-anchor-id="model-based-approach"><span class="header-section-number">3.2.2</span> Model-based approach</h4>
@@ -1320,39 +1320,35 @@ Figure&nbsp;6: A priori power analysis for exact fit with RMSEA-based effect siz
 <pre><code>
  semPower: A priori power analysis
                                    
- F0                        0.303870
- RMSEA                     0.034934
- SRMR                      0.175600
- Mc                        0.859044
- GFI                       0.975303
- AGFI                      0.970244
- CFI                       0.977582
+ F0                        0.578978
+ RMSEA                     0.048612
+ Mc                        0.748646
                                    
- df                        249     
- Required Num Observations 202     
+ df                        245     
+ Required Num Observations 106     
                                    
- Critical Chi-Square       286.8077
- NCP                       61.07791
+ Critical Chi-Square       282.5114
+ NCP                       60.79267
  Alpha                     0.050000
- Beta                      0.198481
- Power (1 - Beta)          0.801519
- Implied Alpha/Beta Ratio  0.251914</code></pre>
+ Beta                      0.196821
+ Power (1 - Beta)          0.803179
+ Implied Alpha/Beta Ratio  0.254037</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div id="fig-apriori-popmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-apriori-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-fig-apriori-popmodel-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;7: A priori power analysis Model-based approach (popModel)"><img src="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-fig-apriori-popmodel-output-2.png" width="672" height="480" class="figure-img"></a>
+<a href="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-fig-apriori-popmodel-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;7: A priori power analysis Model-based approach (h1model vs analyzemodel)"><img src="index_files/figure-html/Scripts-AnalysisScripts-02_analytical_power-fig-apriori-popmodel-output-2.png" width="672" height="480" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-apriori-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: A priori power analysis Model-based approach (popModel)
+Figure&nbsp;7: A priori power analysis Model-based approach (h1model vs analyzemodel)
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>The output reports a population discrepancy of <span class="math inline">\(F_0\)</span> = 0.304, equivalently expressed as <span class="math inline">\(\text{RMSEA}\)</span> = 0.035 and <span class="math inline">\(Mc\)</span> = 0.859. With <span class="math inline">\(df\)</span> = 249, the required sample size is <span class="math inline">\(N\)</span> = 202, and the corresponding critical chi-square is 286.808. The noncentrality parameter is <span class="math inline">\(\lambda\)</span> = 61.078, consistent with <span class="math inline">\((N - 1)F_0\)</span> at the obtained solution. The error rates are <span class="math inline">\(\alpha\)</span> = 0.05, <span class="math inline">\(\beta\)</span> = 0.198, and power = 0.802, confirming that the design conditions are met at <span class="math inline">\(N\)</span> = 202.</p>
+<p>The output reports a population discrepancy of <span class="math inline">\(F_0\)</span> = 0.579, equivalently expressed as <span class="math inline">\(\text{RMSEA}\)</span> = 0.049 and <span class="math inline">\(Mc\)</span> = 0.749. With <span class="math inline">\(df\)</span> = 245, the required sample size is <span class="math inline">\(N\)</span> = 106, and the corresponding critical chi-square is 282.511. The noncentrality parameter is <span class="math inline">\(\lambda\)</span> = 60.793, consistent with <span class="math inline">\((N - 1)F_0\)</span> at the obtained solution. The error rates are <span class="math inline">\(\alpha\)</span> = 0.05, <span class="math inline">\(\beta\)</span> = 0.197, and power = 0.803, confirming that the design conditions are met at <span class="math inline">\(N\)</span> = 106.</p>
 </section>
 </section>
 <section id="sec-power-curves" class="level3" data-number="3.3">
@@ -1398,12 +1394,12 @@ Figure&nbsp;9: Power as a function of sample size for the population model (popM
 </div>
 </div>
 </div>
-<p>The plot titled Power for <span class="math inline">\(F_0\)</span> = 0.304 shows a clear monotonic increase. At the lower end, power hovers near <span class="math inline">\(0.07\)</span>–<span class="math inline">\(0.10\)</span>, indicating inadequate sensitivity for small samples. A period of rapid growth occurs between roughly <span class="math inline">\(N = 120\)</span> and <span class="math inline">\(N = 220\)</span>, where each additional observation translates into a substantial gain. The conventional <span class="math inline">\(0.80\)</span> threshold is crossed at approximately <span class="math inline">\(N \approx 200\)</span>, and power approaches <span class="math inline">\(0.95\)</span> around <span class="math inline">\(N \approx 280\)</span>, with further gains becoming marginal above that.</p>
+<p>The plot titled Power for <span class="math inline">\(F_0\)</span> = 0.579 shows a clear monotonic increase. At the lower end, power hovers near <span class="math inline">\(0.07\)</span>–<span class="math inline">\(0.10\)</span>, indicating inadequate sensitivity for small samples. A period of rapid growth occurs between roughly <span class="math inline">\(N = 60\)</span> and <span class="math inline">\(N = 120\)</span>, where each additional observation translates into a substantial gain. The conventional <span class="math inline">\(0.80\)</span> threshold is crossed at approximately <span class="math inline">\(N \approx 106\)</span>, and power approaches <span class="math inline">\(0.95\)</span> around <span class="math inline">\(N \approx 140\)</span>, with further gains becoming marginal above that.</p>
 </section>
 </section>
 <section id="summary-table" class="level3" data-number="3.4">
 <h3 data-number="3.4" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">3.4</span> Summary table</h3>
-<p><a href="#tbl-analytical-summary" class="quarto-xref">Table&nbsp;3</a> shows that the model-based approach requires roughly twice as many observations as the model-free RMSEA-based approach to achieve equivalent target power. This gap arises because the model-based effect is derived from the actual discrepancy implied by the population covariance structure, rather than from a generic <span class="math inline">\(\text{RMSEA} = 0.05\)</span> convention; it therefore reflects a more substantively grounded — and in this case more conservative — estimate of the required <span class="math inline">\(N\)</span> <span class="citation" data-cites="wang2023 feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+<p><a href="#tbl-analytical-summary" class="quarto-xref">Table&nbsp;3</a> compares the analytical power solutions. The model-based global fit test requires <span class="math inline">\(N = 106\)</span>, closely matching the model-free RMSEA-based target (<span class="math inline">\(N = 103\)</span>). This convergence occurs because the misspecification introduced by the three cross-loadings translates into an implied <span class="math inline">\(\text{RMSEA} = 0.0486\)</span>, almost identical to the generic <span class="math inline">\(0.05\)</span> threshold.</p>
 <div class="quarto-embed-nb-cell">
 <div class="cell">
 <div id="tbl-analytical-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -1415,10 +1411,10 @@ Table&nbsp;3: Summary of analytical power analysis results
 <div class="cell-output cell-output-display cell-output-markdown">
 <table class="cell caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 46%">
-<col style="width: 14%">
+<col style="width: 48%">
+<col style="width: 13%">
 <col style="width: 11%">
-<col style="width: 17%">
+<col style="width: 16%">
 <col style="width: 7%">
 </colgroup>
 <thead>
@@ -1426,24 +1422,24 @@ Table&nbsp;3: Summary of analytical power analysis results
 <th style="text-align: left;">Method</th>
 <th>N Required</th>
 <th style="text-align: center;">Power</th>
-<th>Implied RMSEA</th>
+<th style="text-align: center;">Implied RMSEA</th>
 <th style="text-align: center;">df</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Model-free a priori (RMSEA = .05)</td>
-<td>99</td>
-<td style="text-align: center;">0.8008</td>
-<td>0.0500</td>
-<td style="text-align: center;">249</td>
+<td>100</td>
+<td style="text-align: center;">0.8016</td>
+<td style="text-align: center;">0.0500</td>
+<td style="text-align: center;">245</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Model-based a priori (Population Model)</td>
-<td>202</td>
-<td style="text-align: center;">0.8015</td>
-<td>0.0349</td>
-<td style="text-align: center;">249</td>
+<td style="text-align: left;">Model-based global fit (h1model vs.&nbsp;saturated)</td>
+<td>106</td>
+<td style="text-align: center;">0.8032</td>
+<td style="text-align: center;">0.0486</td>
+<td style="text-align: center;">245</td>
 </tr>
 </tbody>
 </table>
@@ -1574,15 +1570,15 @@ Figure&nbsp;12: Power curves using traditional fit index cutoffs under ideal con
 </div>
 </div>
 </div>
-<p>The contrast with the empirical-cutoff results is instructive. SRMR is the only index that achieves clear visual discrimination under the traditional threshold, and only at <span class="math inline">\(N \approx 200\)</span> or larger. RMSEA shows some separation but would require a cutoff near <span class="math inline">\(0.04\)</span> rather than <span class="math inline">\(0.06\)</span> to make a meaningful distinction in this figure. CFI and TLI show essentially no discrimination at the <span class="math inline">\(0.95\)</span> threshold because both the reference and alternative point clouds cluster in the same region throughout the sample-size range (<a href="#fig-fit-curve-traditional" class="quarto-xref">Figure&nbsp;12</a>). The <a href="#tbl-power-cutoff-traditional" class="quarto-xref">Table&nbsp;15</a> summarizes the power for each fit index under the traditional cutoff values.</p>
+<p>The contrast with the empirical-cutoff results is instructive. SRMR is the only index that achieves clear visual discrimination under the traditional threshold, and only at <span class="math inline">\(N \approx 200\)</span> or larger. RMSEA shows some separation but would require a cutoff near <span class="math inline">\(0.04\)</span> rather than <span class="math inline">\(0.06\)</span> to make a meaningful distinction in this figure. CFI and TLI show essentially no discrimination at the <span class="math inline">\(0.95\)</span> threshold because both the reference and alternative point clouds cluster in the same region throughout the sample-size range (<a href="#fig-fit-curve-traditional" class="quarto-xref">Figure&nbsp;12</a>). The <a href="#tbl-power-cutoff-traditional-ideal" class="quarto-xref">Table&nbsp;5</a> summarizes the power for each fit index under the traditional cutoff values.</p>
 <div class="quarto-embed-nb-cell">
 <div class="cell">
-<div id="tbl-power-cutoff-traditional" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-power-cutoff-traditional-ideal" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-traditional-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;5: Power for traditional fit index cutoffs under ideal conditions at N = 231.
 </figcaption>
-<div aria-describedby="tbl-power-cutoff-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-power-cutoff-traditional-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display cell-output-markdown">
 <table class="cell caption-top table table-sm table-striped small">
 <thead>
@@ -1625,401 +1621,407 @@ Table&nbsp;6: Summary of parameter estimates under ideal conditions.
 <div aria-describedby="tbl-param-estimate-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display cell-output-markdown">
 <table class="cell caption-top table table-sm table-striped small">
-<caption>Parameter estimates under ideal conditions {quarto-postprocess='true'}</caption>
+<colgroup>
+<col style="width: 32%">
+<col style="width: 12%">
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 24%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Parameter</th>
-<th style="text-align: center;">Rel Bias</th>
-<th style="text-align: center;">Rel SE Bias</th>
+<th style="text-align: left;">Rel Bias</th>
+<th>Rel SE Bias</th>
 <th style="text-align: center;">Coverage</th>
-<th style="text-align: center;">Power (Not equal 0)</th>
+<th>Power (Not equal 0)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">psycho=~Q5</td>
-<td style="text-align: center;">-0.003</td>
-<td style="text-align: center;">-0.043</td>
+<td style="text-align: left;">-0.003</td>
+<td>-0.043</td>
 <td style="text-align: center;">0.947</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">psycho=~Q6</td>
-<td style="text-align: center;">-0.005</td>
-<td style="text-align: center;">-0.084</td>
+<td style="text-align: left;">-0.005</td>
+<td>-0.084</td>
 <td style="text-align: center;">0.937</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">psycho=~Q7</td>
-<td style="text-align: center;">-0.004</td>
-<td style="text-align: center;">-0.066</td>
+<td style="text-align: left;">-0.004</td>
+<td>-0.066</td>
 <td style="text-align: center;">0.940</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">psycho=~Q11</td>
-<td style="text-align: center;">-0.005</td>
-<td style="text-align: center;">-0.050</td>
+<td style="text-align: left;">-0.005</td>
+<td>-0.050</td>
 <td style="text-align: center;">0.945</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">psycho=~Q19</td>
-<td style="text-align: center;">-0.003</td>
-<td style="text-align: center;">0.000</td>
+<td style="text-align: left;">-0.003</td>
+<td>0.000</td>
 <td style="text-align: center;">0.953</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">psycho=~Q26</td>
-<td style="text-align: center;">-0.006</td>
-<td style="text-align: center;">-0.079</td>
+<td style="text-align: left;">-0.006</td>
+<td>-0.079</td>
 <td style="text-align: center;">0.938</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">physical=~Q3</td>
-<td style="text-align: center;">-0.011</td>
-<td style="text-align: center;">-0.063</td>
+<td style="text-align: left;">-0.011</td>
+<td>-0.063</td>
 <td style="text-align: center;">0.947</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">physical=~Q4</td>
-<td style="text-align: center;">-0.006</td>
-<td style="text-align: center;">-0.066</td>
+<td style="text-align: left;">-0.006</td>
+<td>-0.066</td>
 <td style="text-align: center;">0.945</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">physical=~Q10</td>
-<td style="text-align: center;">-0.010</td>
-<td style="text-align: center;">-0.062</td>
+<td style="text-align: left;">-0.010</td>
+<td>-0.062</td>
 <td style="text-align: center;">0.947</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">physical=~Q15</td>
-<td style="text-align: center;">0.068</td>
-<td style="text-align: center;">-0.106</td>
+<td style="text-align: left;">0.068</td>
+<td>-0.106</td>
 <td style="text-align: center;">0.871</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">physical=~Q16</td>
-<td style="text-align: center;">-0.011</td>
-<td style="text-align: center;">-0.061</td>
+<td style="text-align: left;">-0.011</td>
+<td>-0.061</td>
 <td style="text-align: center;">0.941</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">physical=~Q17</td>
-<td style="text-align: center;">-0.010</td>
-<td style="text-align: center;">-0.090</td>
+<td style="text-align: left;">-0.010</td>
+<td>-0.090</td>
 <td style="text-align: center;">0.931</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">physical=~Q18</td>
-<td style="text-align: center;">-0.011</td>
-<td style="text-align: center;">-0.077</td>
+<td style="text-align: left;">-0.011</td>
+<td>-0.077</td>
 <td style="text-align: center;">0.938</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">social=~Q20</td>
-<td style="text-align: center;">-0.004</td>
-<td style="text-align: center;">-0.050</td>
+<td style="text-align: left;">-0.004</td>
+<td>-0.050</td>
 <td style="text-align: center;">0.941</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">social=~Q21</td>
-<td style="text-align: center;">-0.003</td>
-<td style="text-align: center;">-0.025</td>
+<td style="text-align: left;">-0.003</td>
+<td>-0.025</td>
 <td style="text-align: center;">0.952</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">social=~Q22</td>
-<td style="text-align: center;">0.002</td>
-<td style="text-align: center;">-0.048</td>
+<td style="text-align: left;">0.002</td>
+<td>-0.048</td>
 <td style="text-align: center;">0.943</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">environment=~Q8</td>
-<td style="text-align: center;">0.360</td>
-<td style="text-align: center;">-0.090</td>
+<td style="text-align: left;">0.360</td>
+<td>-0.090</td>
 <td style="text-align: center;">0.520</td>
-<td style="text-align: center;">0.997</td>
+<td>0.997</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">environment=~Q9</td>
-<td style="text-align: center;">0.105</td>
-<td style="text-align: center;">-0.051</td>
+<td style="text-align: left;">0.105</td>
+<td>-0.051</td>
 <td style="text-align: center;">0.879</td>
-<td style="text-align: center;">0.999</td>
+<td>0.999</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">environment=~Q12</td>
-<td style="text-align: center;">-0.012</td>
-<td style="text-align: center;">-0.065</td>
+<td style="text-align: left;">-0.012</td>
+<td>-0.065</td>
 <td style="text-align: center;">0.939</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">environment=~Q13</td>
-<td style="text-align: center;">-0.010</td>
-<td style="text-align: center;">-0.080</td>
+<td style="text-align: left;">-0.010</td>
+<td>-0.080</td>
 <td style="text-align: center;">0.942</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">environment=~Q14</td>
-<td style="text-align: center;">-0.009</td>
-<td style="text-align: center;">-0.045</td>
+<td style="text-align: left;">-0.009</td>
+<td>-0.045</td>
 <td style="text-align: center;">0.940</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">environment=~Q23</td>
-<td style="text-align: center;">-0.010</td>
-<td style="text-align: center;">-0.075</td>
+<td style="text-align: left;">-0.010</td>
+<td>-0.075</td>
 <td style="text-align: center;">0.939</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">environment=~Q24</td>
-<td style="text-align: center;">-0.006</td>
-<td style="text-align: center;">-0.047</td>
+<td style="text-align: left;">-0.006</td>
+<td>-0.047</td>
 <td style="text-align: center;">0.947</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">environment=~Q25</td>
-<td style="text-align: center;">-0.011</td>
-<td style="text-align: center;">-0.059</td>
+<td style="text-align: left;">-0.011</td>
+<td>-0.059</td>
 <td style="text-align: center;">0.940</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">psycho~~physical</td>
-<td style="text-align: center;">0.039</td>
-<td style="text-align: center;">-0.069</td>
+<td style="text-align: left;">0.039</td>
+<td>-0.069</td>
 <td style="text-align: center;">0.941</td>
-<td style="text-align: center;">0.751</td>
+<td>0.751</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">psycho~~social</td>
-<td style="text-align: center;">-0.002</td>
-<td style="text-align: center;">-0.069</td>
+<td style="text-align: left;">-0.002</td>
+<td>-0.069</td>
 <td style="text-align: center;">0.935</td>
-<td style="text-align: center;">0.727</td>
+<td>0.727</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">psycho~~environment</td>
-<td style="text-align: center;">0.286</td>
-<td style="text-align: center;">-0.122</td>
+<td style="text-align: left;">0.286</td>
+<td>-0.122</td>
 <td style="text-align: center;">0.831</td>
-<td style="text-align: center;">0.857</td>
+<td>0.857</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">physical~~social</td>
-<td style="text-align: center;">0.046</td>
-<td style="text-align: center;">-0.047</td>
+<td style="text-align: left;">0.046</td>
+<td>-0.047</td>
 <td style="text-align: center;">0.944</td>
-<td style="text-align: center;">0.760</td>
+<td>0.760</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">physical~~environment</td>
-<td style="text-align: center;">0.239</td>
-<td style="text-align: center;">-0.091</td>
+<td style="text-align: left;">0.239</td>
+<td>-0.091</td>
 <td style="text-align: center;">0.875</td>
-<td style="text-align: center;">0.839</td>
+<td>0.839</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">social~~environment</td>
-<td style="text-align: center;">0.038</td>
-<td style="text-align: center;">-0.070</td>
+<td style="text-align: left;">0.038</td>
+<td>-0.070</td>
 <td style="text-align: center;">0.931</td>
-<td style="text-align: center;">0.736</td>
+<td>0.736</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q3~~Q4</td>
-<td style="text-align: center;">0.007</td>
-<td style="text-align: center;">-0.050</td>
+<td style="text-align: left;">0.007</td>
+<td>-0.050</td>
 <td style="text-align: center;">0.944</td>
-<td style="text-align: center;">0.775</td>
+<td>0.775</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q5~~Q5</td>
-<td style="text-align: center;">-0.012</td>
-<td style="text-align: center;">-0.043</td>
+<td style="text-align: left;">-0.012</td>
+<td>-0.043</td>
 <td style="text-align: center;">0.944</td>
-<td style="text-align: center;">0.999</td>
+<td>0.999</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q6~~Q6</td>
-<td style="text-align: center;">-0.017</td>
-<td style="text-align: center;">-0.039</td>
+<td style="text-align: left;">-0.017</td>
+<td>-0.039</td>
 <td style="text-align: center;">0.934</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q7~~Q7</td>
-<td style="text-align: center;">-0.020</td>
-<td style="text-align: center;">-0.071</td>
+<td style="text-align: left;">-0.020</td>
+<td>-0.071</td>
 <td style="text-align: center;">0.929</td>
-<td style="text-align: center;">0.993</td>
+<td>0.993</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q11~~Q11</td>
-<td style="text-align: center;">-0.014</td>
-<td style="text-align: center;">-0.073</td>
+<td style="text-align: left;">-0.014</td>
+<td>-0.073</td>
 <td style="text-align: center;">0.926</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q19~~Q19</td>
-<td style="text-align: center;">-0.014</td>
-<td style="text-align: center;">-0.050</td>
+<td style="text-align: left;">-0.014</td>
+<td>-0.050</td>
 <td style="text-align: center;">0.933</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q26~~Q26</td>
-<td style="text-align: center;">-0.018</td>
-<td style="text-align: center;">-0.038</td>
+<td style="text-align: left;">-0.018</td>
+<td>-0.038</td>
 <td style="text-align: center;">0.933</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q3~~Q3</td>
-<td style="text-align: center;">-0.012</td>
-<td style="text-align: center;">-0.059</td>
+<td style="text-align: left;">-0.012</td>
+<td>-0.059</td>
 <td style="text-align: center;">0.935</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q4~~Q4</td>
-<td style="text-align: center;">-0.015</td>
-<td style="text-align: center;">-0.040</td>
+<td style="text-align: left;">-0.015</td>
+<td>-0.040</td>
 <td style="text-align: center;">0.944</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q10~~Q10</td>
-<td style="text-align: center;">-0.008</td>
-<td style="text-align: center;">-0.044</td>
+<td style="text-align: left;">-0.008</td>
+<td>-0.044</td>
 <td style="text-align: center;">0.934</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q15~~Q15</td>
-<td style="text-align: center;">0.105</td>
-<td style="text-align: center;">-0.068</td>
+<td style="text-align: left;">0.105</td>
+<td>-0.068</td>
 <td style="text-align: center;">0.896</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q16~~Q16</td>
-<td style="text-align: center;">-0.011</td>
-<td style="text-align: center;">-0.055</td>
+<td style="text-align: left;">-0.011</td>
+<td>-0.055</td>
 <td style="text-align: center;">0.934</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q17~~Q17</td>
-<td style="text-align: center;">-0.008</td>
-<td style="text-align: center;">-0.084</td>
+<td style="text-align: left;">-0.008</td>
+<td>-0.084</td>
 <td style="text-align: center;">0.934</td>
-<td style="text-align: center;">0.999</td>
+<td>0.999</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q18~~Q18</td>
-<td style="text-align: center;">-0.008</td>
-<td style="text-align: center;">-0.010</td>
+<td style="text-align: left;">-0.008</td>
+<td>-0.010</td>
 <td style="text-align: center;">0.949</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q20~~Q20</td>
-<td style="text-align: center;">-0.004</td>
-<td style="text-align: center;">-0.091</td>
+<td style="text-align: left;">-0.004</td>
+<td>-0.091</td>
 <td style="text-align: center;">0.943</td>
-<td style="text-align: center;">0.848</td>
+<td>0.848</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q21~~Q21</td>
-<td style="text-align: center;">-0.015</td>
-<td style="text-align: center;">-0.042</td>
+<td style="text-align: left;">-0.015</td>
+<td>-0.042</td>
 <td style="text-align: center;">0.946</td>
-<td style="text-align: center;">0.991</td>
+<td>0.991</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q22~~Q22</td>
-<td style="text-align: center;">-0.018</td>
-<td style="text-align: center;">-0.050</td>
+<td style="text-align: left;">-0.018</td>
+<td>-0.050</td>
 <td style="text-align: center;">0.933</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q8~~Q8</td>
-<td style="text-align: center;">0.536</td>
-<td style="text-align: center;">-0.058</td>
+<td style="text-align: left;">0.536</td>
+<td>-0.058</td>
 <td style="text-align: center;">0.136</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q9~~Q9</td>
-<td style="text-align: center;">0.028</td>
-<td style="text-align: center;">-0.059</td>
+<td style="text-align: left;">0.028</td>
+<td>-0.059</td>
 <td style="text-align: center;">0.944</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q12~~Q12</td>
-<td style="text-align: center;">-0.001</td>
-<td style="text-align: center;">-0.036</td>
+<td style="text-align: left;">-0.001</td>
+<td>-0.036</td>
 <td style="text-align: center;">0.943</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q13~~Q13</td>
-<td style="text-align: center;">0.004</td>
-<td style="text-align: center;">-0.042</td>
+<td style="text-align: left;">0.004</td>
+<td>-0.042</td>
 <td style="text-align: center;">0.936</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q14~~Q14</td>
-<td style="text-align: center;">-0.002</td>
-<td style="text-align: center;">-0.085</td>
+<td style="text-align: left;">-0.002</td>
+<td>-0.085</td>
 <td style="text-align: center;">0.937</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q23~~Q23</td>
-<td style="text-align: center;">-0.001</td>
-<td style="text-align: center;">-0.029</td>
+<td style="text-align: left;">-0.001</td>
+<td>-0.029</td>
 <td style="text-align: center;">0.945</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Q24~~Q24</td>
-<td style="text-align: center;">-0.013</td>
-<td style="text-align: center;">-0.055</td>
+<td style="text-align: left;">-0.013</td>
+<td>-0.055</td>
 <td style="text-align: center;">0.937</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q25~~Q25</td>
-<td style="text-align: center;">-0.007</td>
-<td style="text-align: center;">-0.058</td>
+<td style="text-align: left;">-0.007</td>
+<td>-0.058</td>
 <td style="text-align: center;">0.942</td>
-<td style="text-align: center;">1.000</td>
+<td>1.000</td>
 </tr>
 </tbody>
 </table>
@@ -2118,7 +2120,7 @@ Table&nbsp;7: Sample size needed for 80% power under ideal conditions.
 <h3 data-number="4.4" class="anchored" data-anchor-id="recovering-population-parameters"><span class="header-section-number">4.4</span> Recovering population parameters</h3>
 <section id="parameter-level-power-under-the-naive-model" class="level4" data-number="4.4.1">
 <h4 data-number="4.4.1" class="anchored" data-anchor-id="parameter-level-power-under-the-naive-model"><span class="header-section-number">4.4.1</span> Parameter-level power under the naive model</h4>
-<p>Examining parameter recovery under the naive model serves as a worst-case benchmark: because this population uses the weakest loadings and the highest interfactor correlations, it maximizes the sample size needed to recover each parameter <span class="citation" data-cites="mosqueirataipe2026">(<a href="#ref-mosqueirataipe2026" role="doc-biblioref"><span class="nocase">Mosqueira Taipe et al.</span>, 2026</a>)</span>. The goal here is not to evaluate global fit, but to identify the bottleneck parameter — the one that must be detected if the entire set of model effects is to be reliably inferred <span class="citation" data-cites="wang2021 simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>; <a href="#ref-wang2021" role="doc-biblioref">Wang &amp; Rhemtulla, 2021</a>)</span>.</p>
+<p>Examining parameter recovery under the naive model serves as a conservative benchmark for the measurement structure: because this population assumes the weakest factor loadings (<span class="math inline">\(\lambda \approx 0.40\)</span>), indicator communalities are low, which increases estimation uncertainty for the measurement parameters <span class="citation" data-cites="mosqueirataipe2026">(<a href="#ref-mosqueirataipe2026" role="doc-biblioref"><span class="nocase">Mosqueira Taipe et al.</span>, 2026</a>)</span>. Concurrently, its interfactor correlations are moderate (<span class="math inline">\(\phi = 0.30\)</span>). For detecting latent covariances, a larger effect size (<span class="math inline">\(\phi = 0.30\)</span>) requires a substantially smaller sample size than a near-zero correlation, allowing all six factor correlations to reach <span class="math inline">\(80\%\)</span> power within <span class="math inline">\(N \le 90\)</span> <span class="citation" data-cites="wang2021 simsem2021">(<a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>; <a href="#ref-wang2021" role="doc-biblioref">Wang &amp; Rhemtulla, 2021</a>)</span>.</p>
 <div class="quarto-embed-nb-cell">
 <div class="cell">
 <div id="tbl-power-n-naive" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -2129,72 +2131,80 @@ Table&nbsp;8: Parameter estimates and required sample size for 80% power under n
 <div aria-describedby="tbl-power-n-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display cell-output-markdown">
 <table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 10%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 19%">
+<col style="width: 12%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Parameter</th>
-<th style="text-align: center;">Rel Bias</th>
+<th>Rel Bias</th>
 <th style="text-align: center;">Rel SE Bias</th>
 <th style="text-align: center;">Coverage</th>
 <th style="text-align: center;">Power (Not equal 0)</th>
-<th style="text-align: center;">Required N</th>
+<th>Required N</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">psycho~~physical</td>
-<td style="text-align: center;">0.140</td>
+<td>0.140</td>
 <td style="text-align: center;">-0.944</td>
 <td style="text-align: center;">0.913</td>
 <td style="text-align: center;">0.793</td>
-<td style="text-align: center;">180</td>
+<td>180</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">psycho~~social</td>
-<td style="text-align: center;">-0.009</td>
+<td>-0.009</td>
 <td style="text-align: center;">-0.137</td>
 <td style="text-align: center;">0.922</td>
 <td style="text-align: center;">0.780</td>
-<td style="text-align: center;">186</td>
+<td>186</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">psycho~~environment</td>
-<td style="text-align: center;">-0.003</td>
+<td>-0.003</td>
 <td style="text-align: center;">-0.089</td>
 <td style="text-align: center;">0.931</td>
 <td style="text-align: center;">0.817</td>
-<td style="text-align: center;">164</td>
+<td>164</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">physical~~social</td>
-<td style="text-align: center;">0.331</td>
+<td>0.331</td>
 <td style="text-align: center;">-0.971</td>
 <td style="text-align: center;">0.924</td>
 <td style="text-align: center;">0.775</td>
-<td style="text-align: center;">192</td>
+<td>192</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">physical~~environment</td>
-<td style="text-align: center;">0.141</td>
+<td>0.141</td>
 <td style="text-align: center;">-0.932</td>
 <td style="text-align: center;">0.929</td>
 <td style="text-align: center;">0.793</td>
-<td style="text-align: center;">178</td>
+<td>178</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">social~~environment</td>
-<td style="text-align: center;">-0.014</td>
+<td>-0.014</td>
 <td style="text-align: center;">-0.123</td>
 <td style="text-align: center;">0.928</td>
 <td style="text-align: center;">0.780</td>
-<td style="text-align: center;">184</td>
+<td>184</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Q3~~Q4</td>
-<td style="text-align: center;">-0.013</td>
+<td>-0.013</td>
 <td style="text-align: center;">-0.130</td>
 <td style="text-align: center;">0.932</td>
 <td style="text-align: center;">0.845</td>
-<td style="text-align: center;">143</td>
+<td>143</td>
 </tr>
 </tbody>
 </table>
@@ -2208,7 +2218,7 @@ Table&nbsp;8: Parameter estimates and required sample size for 80% power under n
 </section>
 <section id="parameter-level-power-under-the-optimistic-model" class="level4" data-number="4.4.2">
 <h4 data-number="4.4.2" class="anchored" data-anchor-id="parameter-level-power-under-the-optimistic-model"><span class="header-section-number">4.4.2</span> Parameter-level power under the optimistic model</h4>
-<p>Under the optimistic model, stronger loadings and lower interfactor correlations substantially reduce sample size requirements, as expected <span class="citation" data-cites="mosqueirataipe2026">(<a href="#ref-mosqueirataipe2026" role="doc-biblioref"><span class="nocase">Mosqueira Taipe et al.</span>, 2026</a>)</span>. The <code>findPower</code> results reveal a sparse set of finite required-<span class="math inline">\(N\)</span> values: most parameters reach <span class="math inline">\(0.80\)</span> power at very small samples, and only one parameter — the residual covariance <span class="math inline">\(Q3 \sim\sim Q4\)</span> — stands apart as the sole finite bottleneck <span class="citation" data-cites="lin2022">(<a href="#ref-lin2022" role="doc-biblioref">Lin &amp; Yao, 2022</a>)</span>.</p>
+<p>Under the optimistic model, stronger loadings (<span class="math inline">\(\lambda \approx 0.80\)</span>) and lower interfactor correlations (<span class="math inline">\(\phi = 0.08\)</span>) yield two sharply contrasting patterns <span class="citation" data-cites="mosqueirataipe2026">(<a href="#ref-mosqueirataipe2026" role="doc-biblioref"><span class="nocase">Mosqueira Taipe et al.</span>, 2026</a>)</span>. Because the measurement structure is exceptionally strong, all primary factor loadings and residual variances reach <span class="math inline">\(0.80\)</span> power at the lowest simulated sample size (<span class="math inline">\(N \le 51\)</span>) with negligible bias. Conversely, because the true interfactor correlations are very weak (<span class="math inline">\(\phi = 0.08\)</span>), detecting them as statistically different from zero requires substantially larger samples: analytical power calculations indicate that reaching <span class="math inline">\(80\%\)</span> power for <span class="math inline">\(\phi = 0.08\)</span> requires <span class="math inline">\(N &gt; 1,200\)</span>. Within the simulated sample-size range (<span class="math inline">\(N \in [51, 350]\)</span>), power for these correlations never crosses <span class="math inline">\(0.80\)</span>, leading <code>findPower</code> to return <code>NA</code>.</p>
 <div class="quarto-embed-nb-cell">
 <div class="cell">
 <div id="tbl-power-n-opt" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -2219,24 +2229,32 @@ Table&nbsp;9: Parameter estimates and required sample size for 80% power under o
 <div aria-describedby="tbl-power-n-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display cell-output-markdown">
 <table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 13%">
+<col style="width: 25%">
+<col style="width: 15%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Parameter</th>
-<th style="text-align: center;">Rel Bias</th>
-<th style="text-align: center;">Rel SE Bias</th>
+<th style="text-align: left;">Rel Bias</th>
+<th style="text-align: left;">Rel SE Bias</th>
 <th style="text-align: center;">Coverage</th>
-<th style="text-align: center;">Power (Not equal 0)</th>
-<th style="text-align: center;">Required N</th>
+<th>Power (Not equal 0)</th>
+<th style="text-align: left;">Required N</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Q3~~Q4</td>
-<td style="text-align: center;">-0.008</td>
-<td style="text-align: center;">-0.082</td>
+<td style="text-align: left;">-0.008</td>
+<td style="text-align: left;">-0.082</td>
 <td style="text-align: center;">0.934</td>
-<td style="text-align: center;">0.85</td>
-<td style="text-align: center;">139</td>
+<td>0.85</td>
+<td style="text-align: left;">139</td>
 </tr>
 </tbody>
 </table>
@@ -2246,170 +2264,7 @@ Table&nbsp;9: Parameter estimates and required sample size for 80% power under o
 </div>
 </div>
 </div>
-<p>The residual covariance <span class="math inline">\(Q3 \sim\sim Q4\)</span> requires <span class="math inline">\(N\)</span> = 139, far above the requirements for all other listed parameters. This value alone governs the sample size decision under the optimistic scenario, since every other finite parameter is adequately powered at <span class="math inline">\(N = 51\)</span>. The contrast between the naive and optimistic results demonstrates how sensitive <span class="math inline">\(N\)</span> recommendations are to the assumed population: the same model structure implies very different requirements depending on which parameter set is used, reinforcing the importance of sensitivity analyses across population variants <span class="citation" data-cites="buchberger2024 irmer2024">(<a href="#ref-buchberger2024" role="doc-biblioref">Buchberger et al., 2024</a>; <a href="#ref-irmer2024" role="doc-biblioref">Irmer et al., 2024</a>)</span>.</p>
-</section>
-</section>
-<section id="sensitivity-to-population-model-assumptions" class="level3" data-number="4.5">
-<h3 data-number="4.5" class="anchored" data-anchor-id="sensitivity-to-population-model-assumptions"><span class="header-section-number">4.5</span> Sensitivity to population model assumptions</h3>
-<section id="fit-index-based-power-under-the-naive-population" class="level4" data-number="4.5.1">
-<h4 data-number="4.5.1" class="anchored" data-anchor-id="fit-index-based-power-under-the-naive-population"><span class="header-section-number">4.5.1</span> Fit-index-based power under the naive population</h4>
-<p>Changing the reference population model from <code>popmodel</code> to <code>naivemodel</code> tests how sensitive the main conclusions are to the assumed parameter values. Under this scenario, the cutoff values are derived from the naive-model null distribution, and power is the proportion of <code>h1model</code>-generated replications that exceed those cutoffs. Because the naive model implies weaker signal, larger samples are required before the fit indices can reliably distinguish the reference from the misspecified condition <span class="citation" data-cites="buchberger2024">(<a href="#ref-buchberger2024" role="doc-biblioref">Buchberger et al., 2024</a>)</span>.</p>
-<div class="quarto-embed-nb-cell">
-<div id="cell-fig-power-curve-naive" class="cell" data-fig-width="8" data-fig-height="5">
-<div class="cell-output cell-output-display">
-<div id="fig-power-curve-naive" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-power-curve-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-03_simulation_ideal-fig-power-curve-naive-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure&nbsp;13: Power curves for fit indices using the naive population model."><img src="index_files/figure-html/Scripts-AnalysisScripts-03_simulation_ideal-fig-power-curve-naive-output-1.png" width="768" height="480" class="figure-img"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13: Power curves for fit indices using the naive population model.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="quarto-embed-nb-cell">
-<div id="cell-fig-fit-curve-naive" class="cell" data-fig-width="8" data-fig-height="5">
-<div class="cell-output cell-output-display">
-<div id="fig-fit-curve-naive" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-fit-curve-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-03_simulation_ideal-fig-fit-curve-naive-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Figure&nbsp;14: Power curves for fit indices using the naive population model without logistic smoothing."><img src="index_files/figure-html/Scripts-AnalysisScripts-03_simulation_ideal-fig-fit-curve-naive-output-1.png" width="768" height="480" class="figure-img"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fit-curve-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14: Power curves for fit indices using the naive population model without logistic smoothing.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>The power curves show two distinct patterns. RMSEA and SRMR increase gradually from moderate levels at <span class="math inline">\(N = 50\)</span> and approach <span class="math inline">\(1.00\)</span> as sample size grows. CFI and TLI remain close to zero across most of the range, then rise sharply only near <span class="math inline">\(N \approx 310\)</span>–<span class="math inline">\(340\)</span>. In the raw fit-index plots, the two point clouds are clearly separated for RMSEA and SRMR at <span class="math inline">\(N &gt; 200\)</span>, but overlap substantially for CFI and TLI at all but the largest sample sizes.</p>
-<div class="quarto-embed-nb-cell">
-<div class="cell">
-<div id="tbl-power-cutoff-naive" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;10: Power and fit index cutoff values using the naive population model at N = 330.
-</figcaption>
-<div aria-describedby="tbl-power-cutoff-naive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown">
-<table class="cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th></th>
-<th style="text-align: center;">RMSEA</th>
-<th style="text-align: center;">SRMR</th>
-<th style="text-align: center;">CFI</th>
-<th style="text-align: center;">TLI</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Power</td>
-<td style="text-align: center;">0.984</td>
-<td style="text-align: center;">0.986</td>
-<td style="text-align: center;">0.801</td>
-<td style="text-align: center;">0.801</td>
-</tr>
-<tr class="even">
-<td>Cutoff</td>
-<td style="text-align: center;">0.022</td>
-<td style="text-align: center;">0.047</td>
-<td style="text-align: center;">0.964</td>
-<td style="text-align: center;">0.959</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-</div>
-<p>At <span class="math inline">\(N = 330\)</span>, all four indices exceed <span class="math inline">\(0.80\)</span>, but the margin differs substantially. RMSEA and SRMR are near <span class="math inline">\(0.99\)</span>; CFI and TLI just clear the threshold. The empirical cutoffs at this <span class="math inline">\(N\)</span> are more demanding than conventional thresholds, reflecting the specific distribution of the null model <span class="citation" data-cites="mcneish2021">(<a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>)</span>. The pattern is consistent with the main analysis: residual-type and absolute indices detect the misspecification more readily than incremental indices, though here the gap is considerably wider because the naive population reduces the overall signal available to CFI and TLI.</p>
-</section>
-<section id="sensitivity-under-the-optimistic-population" class="level4" data-number="4.5.2">
-<h4 data-number="4.5.2" class="anchored" data-anchor-id="sensitivity-under-the-optimistic-population"><span class="header-section-number">4.5.2</span> Sensitivity under the optimistic population</h4>
-<p>Under the optimistic population, the same logic applies but the baseline signal is stronger, so power accumulates more rapidly and at smaller <span class="math inline">\(N\)</span> values than in the naive scenario <span class="citation" data-cites="mosqueirataipe2026">(<a href="#ref-mosqueirataipe2026" role="doc-biblioref"><span class="nocase">Mosqueira Taipe et al.</span>, 2026</a>)</span>. Cutoffs are derived from the optimistic null distribution, and power is evaluated against <code>h1model</code>-generated data using the same fit indices.</p>
-<div class="quarto-embed-nb-cell">
-<div id="cell-fig-power-curve-opt" class="cell" data-fig-width="8" data-fig-height="5">
-<div class="cell-output cell-output-display">
-<div id="fig-power-curve-opt" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-power-curve-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-03_simulation_ideal-fig-power-curve-opt-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Figure&nbsp;15: Power curves for fit indices using the optimal population model."><img src="index_files/figure-html/Scripts-AnalysisScripts-03_simulation_ideal-fig-power-curve-opt-output-1.png" width="768" height="480" class="figure-img"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15: Power curves for fit indices using the optimal population model.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="quarto-embed-nb-cell">
-<div id="cell-fig-fit-curve-opt" class="cell" data-fig-width="8" data-fig-height="5">
-<div class="cell-output cell-output-display">
-<div id="fig-fit-curve-opt" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-fit-curve-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-03_simulation_ideal-fig-fit-curve-opt-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Figure&nbsp;16: Power curves for fit indices using the optimal population model without logistic smoothing."><img src="index_files/figure-html/Scripts-AnalysisScripts-03_simulation_ideal-fig-fit-curve-opt-output-1.png" width="768" height="480" class="figure-img"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fit-curve-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16: Power curves for fit indices using the optimal population model without logistic smoothing.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>The power curves mirror the qualitative pattern seen under the naive population — SRMR is the strongest index, followed by RMSEA, with CFI and TLI rising later and more steeply — but all curves shift leftward, reaching target power at smaller <span class="math inline">\(N\)</span> values. The unsmoothed plots confirm that RMSEA and SRMR show clearer separation earlier than CFI and TLI, with visible overlap at lower and intermediate sample sizes for the incremental indices.</p>
-<div class="quarto-embed-nb-cell">
-<div class="cell">
-<div id="tbl-power-cutoff-opt" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11: Power and fit index cutoff values using the optimal population model at N = 291.
-</figcaption>
-<div aria-describedby="tbl-power-cutoff-opt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown">
-<table class="cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th></th>
-<th style="text-align: center;">RMSEA</th>
-<th style="text-align: center;">SRMR</th>
-<th style="text-align: center;">CFI</th>
-<th style="text-align: center;">TLI</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Power</td>
-<td style="text-align: center;">0.968</td>
-<td style="text-align: center;">0.988</td>
-<td style="text-align: center;">0.805</td>
-<td style="text-align: center;">0.805</td>
-</tr>
-<tr class="even">
-<td>Cutoff</td>
-<td style="text-align: center;">0.028</td>
-<td style="text-align: center;">0.051</td>
-<td style="text-align: center;">0.970</td>
-<td style="text-align: center;">0.966</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-</div>
-<p>At <span class="math inline">\(N = 291\)</span>, all four indices exceed <span class="math inline">\(0.80\)</span>. SRMR and RMSEA are well above the benchmark; CFI and TLI are adequate but comparatively limited. The empirical cutoffs at <span class="math inline">\(N = 291\)</span> are again more conservative than conventional thresholds, and the gap between index sensitivities is smaller here than under the naive population. Taken together, the naive (<span class="math inline">\(N = 330\)</span>) and optimistic (<span class="math inline">\(N = 291\)</span>) results bracket the main estimate (<span class="math inline">\(N = 231\)</span>), providing a concrete picture of how population uncertainty translates into uncertainty about required sample size.</p>
+<p>Among parameters with finite required <span class="math inline">\(N\)</span> above 60, only the residual covariance <span class="math inline">\(Q3 \sim\sim Q4\)</span> appears in <a href="#tbl-power-n-opt" class="quarto-xref">Table&nbsp;9</a>, requiring <span class="math inline">\(N\)</span> = 139. Rather than implying that the entire model is powered at <span class="math inline">\(N = 51\)</span>, this analysis reveals that weak latent correlations represent an acute bottleneck for parameter-level hypothesis testing, even when measurement quality is optimal <span class="citation" data-cites="buchberger2024 simsem2021">(<a href="#ref-buchberger2024" role="doc-biblioref">Buchberger et al., 2024</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>. The contrast between the naive and optimistic results demonstrates how sensitive <span class="math inline">\(N\)</span> recommendations are to the assumed population: the same model structure implies very different requirements depending on which parameter set is used, reinforcing the importance of sensitivity analyses across population variants <span class="citation" data-cites="buchberger2024 irmer2024">(<a href="#ref-buchberger2024" role="doc-biblioref">Buchberger et al., 2024</a>; <a href="#ref-irmer2024" role="doc-biblioref">Irmer et al., 2024</a>)</span>.</p>
 </section>
 </section>
 </section>
@@ -2427,10 +2282,10 @@ Table&nbsp;11: Power and fit index cutoff values using the optimal population mo
 <div id="fig-power-curve-missing" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-power-curve-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-power-curve-missing-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Figure&nbsp;17: Power curves for fit indices under missing data conditions."><img src="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-power-curve-missing-output-1.png" width="768" height="480" class="figure-img"></a>
+<a href="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-power-curve-missing-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure&nbsp;13: Power curves for fit indices under missing data conditions."><img src="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-power-curve-missing-output-1.png" width="768" height="480" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17: Power curves for fit indices under missing data conditions.
+Figure&nbsp;13: Power curves for fit indices under missing data conditions.
 </figcaption>
 </figure>
 </div>
@@ -2443,10 +2298,10 @@ Figure&nbsp;17: Power curves for fit indices under missing data conditions.
 <div id="fig-fit-curve-missing" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fit-curve-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-fit-curve-missing-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Figure&nbsp;18: Power curves for fit indices under missing data conditions without logistic smoothing."><img src="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-fit-curve-missing-output-1.png" width="768" height="480" class="figure-img"></a>
+<a href="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-fit-curve-missing-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Figure&nbsp;14: Power curves for fit indices under missing data conditions without logistic smoothing."><img src="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-fit-curve-missing-output-1.png" width="768" height="480" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fit-curve-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18: Power curves for fit indices under missing data conditions without logistic smoothing.
+Figure&nbsp;14: Power curves for fit indices under missing data conditions without logistic smoothing.
 </figcaption>
 </figure>
 </div>
@@ -2459,7 +2314,7 @@ Figure&nbsp;18: Power curves for fit indices under missing data conditions witho
 <div id="tbl-power-cutoff-missing" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;12: Power and fit index cutoff values under missing data conditions at N = 359.
+Table&nbsp;10: Power and fit index cutoff values under missing data conditions at N = 359.
 </figcaption>
 <div aria-describedby="tbl-power-cutoff-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display cell-output-markdown">
@@ -2507,10 +2362,10 @@ Table&nbsp;12: Power and fit index cutoff values under missing data conditions a
 <div id="fig-power-curve-nnorm" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-power-curve-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-power-curve-nnorm-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Figure&nbsp;19: Power curves for fit indices under non-normal conditions."><img src="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-power-curve-nnorm-output-1.png" width="768" height="480" class="figure-img"></a>
+<a href="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-power-curve-nnorm-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Figure&nbsp;15: Power curves for fit indices under non-normal conditions."><img src="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-power-curve-nnorm-output-1.png" width="768" height="480" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19: Power curves for fit indices under non-normal conditions.
+Figure&nbsp;15: Power curves for fit indices under non-normal conditions.
 </figcaption>
 </figure>
 </div>
@@ -2524,10 +2379,10 @@ Figure&nbsp;19: Power curves for fit indices under non-normal conditions.
 <div id="fig-fit-curve-nnorm" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fit-curve-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-fit-curve-nnorm-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Figure&nbsp;20: Power curves for fit indices under non-normal conditions without logistic smoothing."><img src="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-fit-curve-nnorm-output-1.png" width="768" height="480" class="figure-img"></a>
+<a href="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-fit-curve-nnorm-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Figure&nbsp;16: Power curves for fit indices under non-normal conditions without logistic smoothing."><img src="index_files/figure-html/Scripts-AnalysisScripts-04_simulation_robust-fig-fit-curve-nnorm-output-1.png" width="768" height="480" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fit-curve-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20: Power curves for fit indices under non-normal conditions without logistic smoothing.
+Figure&nbsp;16: Power curves for fit indices under non-normal conditions without logistic smoothing.
 </figcaption>
 </figure>
 </div>
@@ -2540,7 +2395,7 @@ Figure&nbsp;20: Power curves for fit indices under non-normal conditions without
 <div id="tbl-power-cutoff-nnorm" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13: Power and fit index cutoff values under non-normal conditions at N = 228.
+Table&nbsp;11: Power and fit index cutoff values under non-normal conditions at N = 228.
 </figcaption>
 <div aria-describedby="tbl-power-cutoff-nnorm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display cell-output-markdown">
@@ -2589,23 +2444,23 @@ Table&nbsp;13: Power and fit index cutoff values under non-normal conditions at 
 <div id="fig-power-curve-fixed" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-power-curve-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-05_model_comparison-fig-power-curve-fixed-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Figure&nbsp;21: Power curves for fit indices with fixed sample size."><img src="index_files/figure-html/Scripts-AnalysisScripts-05_model_comparison-fig-power-curve-fixed-output-1.png" width="768" height="480" class="figure-img"></a>
+<a href="index_files/figure-html/Scripts-AnalysisScripts-05_model_comparison-fig-power-curve-fixed-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Figure&nbsp;17: Power curves for fit indices with fixed sample size."><img src="index_files/figure-html/Scripts-AnalysisScripts-05_model_comparison-fig-power-curve-fixed-output-1.png" width="768" height="480" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-power-curve-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21: Power curves for fit indices with fixed sample size.
+Figure&nbsp;17: Power curves for fit indices with fixed sample size.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>With <span class="math inline">\(N = 350\)</span>, the main analysis achieves power = 1.000 for all four fit indices using empirical cutoffs. The distributions of the reference and alternative conditions are completely separated in every panel, confirming that this sample size provides essentially perfect discrimination under the target design <span class="citation" data-cites="liang2024 moshagen2024">(<a href="#ref-liang2024" role="doc-biblioref">Liang &amp; Sterba, 2024</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>. The empirical cutoffs at <span class="math inline">\(N = 350\)</span> serve as data-driven benchmarks for this specific population-analysis model combination, and their values (<a href="#tbl-power-cutoff-fixed" class="quarto-xref">Table&nbsp;14</a>) differ noticeably from conventional thresholds — which underscores the value of deriving rejection rules from the simulation rather than from generic recommendations.</p>
+<p>With <span class="math inline">\(N = 350\)</span>, the main analysis achieves power = 1.000 for all four fit indices using empirical cutoffs. The distributions of the reference and alternative conditions are completely separated in every panel, confirming that this sample size provides essentially perfect discrimination under the target design <span class="citation" data-cites="liang2024 moshagen2024">(<a href="#ref-liang2024" role="doc-biblioref">Liang &amp; Sterba, 2024</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>. The empirical cutoffs at <span class="math inline">\(N = 350\)</span> serve as data-driven benchmarks for this specific population-analysis model combination, and their values (<a href="#tbl-power-cutoff-fixed" class="quarto-xref">Table&nbsp;12</a>) differ noticeably from conventional thresholds — which underscores the value of deriving rejection rules from the simulation rather than from generic recommendations.</p>
 <div class="quarto-embed-nb-cell">
 <div class="cell">
 <div id="tbl-power-cutoff-fixed" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;14: Power and fit index cutoff values with fixed sample size.
+Table&nbsp;12: Power and fit index cutoff values with fixed sample size.
 </figcaption>
 <div aria-describedby="tbl-power-cutoff-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display cell-output-markdown">
@@ -2613,7 +2468,6 @@ Table&nbsp;14: Power and fit index cutoff values with fixed sample size.
 <thead>
 <tr class="header">
 <th></th>
-<th style="text-align: center;">TRADITIONALCHI</th>
 <th style="text-align: center;">RMSEA</th>
 <th style="text-align: center;">SRMR</th>
 <th style="text-align: center;">CFI</th>
@@ -2627,7 +2481,6 @@ Table&nbsp;14: Power and fit index cutoff values with fixed sample size.
 <td style="text-align: center;">1.000</td>
 <td style="text-align: center;">1.000</td>
 <td style="text-align: center;">1.000</td>
-<td style="text-align: center;">1.000</td>
 </tr>
 <tr class="even">
 <td>Cutoff</td>
@@ -2635,7 +2488,6 @@ Table&nbsp;14: Power and fit index cutoff values with fixed sample size.
 <td style="text-align: center;">0.042</td>
 <td style="text-align: center;">0.988</td>
 <td style="text-align: center;">0.986</td>
-<td style="text-align: center;">0.025</td>
 </tr>
 </tbody>
 </table>
@@ -2654,10 +2506,10 @@ Table&nbsp;14: Power and fit index cutoff values with fixed sample size.
 <div id="fig-curve-fixed-traditional" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-curve-fixed-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-05_model_comparison-fig-curve-fixed-traditional-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Figure&nbsp;22: Power curves using traditional fit index cutoffs with fixed sample size."><img src="index_files/figure-html/Scripts-AnalysisScripts-05_model_comparison-fig-curve-fixed-traditional-output-1.png" width="768" height="480" class="figure-img"></a>
+<a href="index_files/figure-html/Scripts-AnalysisScripts-05_model_comparison-fig-curve-fixed-traditional-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Figure&nbsp;18: Power curves using traditional fit index cutoffs with fixed sample size."><img src="index_files/figure-html/Scripts-AnalysisScripts-05_model_comparison-fig-curve-fixed-traditional-output-1.png" width="768" height="480" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curve-fixed-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;22: Power curves using traditional fit index cutoffs with fixed sample size.
+Figure&nbsp;18: Power curves using traditional fit index cutoffs with fixed sample size.
 </figcaption>
 </figure>
 </div>
@@ -2666,12 +2518,12 @@ Figure&nbsp;22: Power curves using traditional fit index cutoffs with fixed samp
 </div>
 <div class="quarto-embed-nb-cell">
 <div class="cell">
-<div id="tbl-power-cutoff-traditional" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-power-cutoff-traditional-fixed" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;15: Power for traditional fit index cutoffs with fixed sample size.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-traditional-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13: Power for traditional fit index cutoffs with fixed sample size.
 </figcaption>
-<div aria-describedby="tbl-power-cutoff-traditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-power-cutoff-traditional-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display cell-output-markdown">
 <table class="cell caption-top table table-sm table-striped small">
 <thead>
@@ -2715,13 +2567,46 @@ Table&nbsp;15: Power for traditional fit index cutoffs with fixed sample size.
 <div id="fig-posthoc-plotpower" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-posthoc-plotpower-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-plotpower-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="Figure&nbsp;23: Power curve for post hoc analysis based on simulation."><img src="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-plotpower-output-1.png" width="768" height="480" class="figure-img"></a>
+<a href="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-plotpower-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Figure&nbsp;19: Power curve for post hoc analysis based on simulation."><img src="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-plotpower-output-1.png" width="768" height="480" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posthoc-plotpower-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;23: Power curve for post hoc analysis based on simulation.
+Figure&nbsp;19: Power curve for post hoc analysis based on simulation.
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+</div>
+<div class="quarto-embed-nb-cell">
+<div class="cell">
+<div id="tbl-posthoc-power" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-posthoc-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14: Power for post hoc analysis based on simulation.
+</figcaption>
+<div aria-describedby="tbl-posthoc-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">RMSEA</th>
+<th style="text-align: center;">SRMR</th>
+<th style="text-align: center;">CFI</th>
+<th style="text-align: center;">TLI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
 </div>
 </div>
 </div>
@@ -2739,120 +2624,81 @@ Figure&nbsp;23: Power curve for post hoc analysis based on simulation.
 <pre><code>
  semPower: Post hoc power analysis
                                       
- F0                       0.622500    
+ F0                       0.612500    
  RMSEA                    0.050000    
- Mc                       0.732531    
- GFI                      0.950683    
- AGFI                     0.940582    
+ Mc                       0.736203    
+ GFI                      0.951437    
+ AGFI                     0.940535    
                                       
- df                       249         
+ df                       245         
  Num Observations         1047        
- NCP                      651.1350    
+ NCP                      640.6750    
                                       
- Critical Chi-Square      286.8077    
+ Critical Chi-Square      282.5114    
  Alpha                    0.050000    
- Beta                     4.771426e-48
+ Beta                     3.070697e-47
  Power (1 - Beta)         &gt; 0.9999    
- Implied Alpha/Beta Ratio 1.047905e+46</code></pre>
+ Implied Alpha/Beta Ratio 1.628295e+45</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div id="fig-posthoc-rmsea" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-posthoc-rmsea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-rmsea-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Figure&nbsp;24: Post hoc power analysis for RMSEA = 0.05."><img src="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-rmsea-output-2.png" width="768" height="480" class="figure-img"></a>
+<a href="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-rmsea-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Figure&nbsp;20: Post hoc power analysis for RMSEA = 0.05."><img src="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-rmsea-output-2.png" width="768" height="480" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posthoc-rmsea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;24: Post hoc power analysis for RMSEA = 0.05.
+Figure&nbsp;20: Post hoc power analysis for RMSEA = 0.05.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>With <span class="math inline">\(F_0\)</span> = 0.623, <span class="math inline">\(\text{RMSEA}\)</span> = 0.05, <span class="math inline">\(df\)</span> = 249, and <span class="math inline">\(N\)</span> = 1047, the noncentrality parameter reached <span class="math inline">\(\text{NCP}\)</span> = 651.135, far exceeding the critical value <span class="math inline">\(\chi^2_{\text{crit}}\)</span> = 286.808. Power was effectively 1. The noncentral <span class="math inline">\(\chi^2\)</span> curve lies far to the right of the critical value in the figure, and the shaded <span class="math inline">\(\beta\)</span> region is negligible <span class="citation" data-cites="maccallum1996 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-maccallum1996" role="doc-biblioref">MacCallum et al., 1996</a>)</span>.</p>
+<p>With <span class="math inline">\(F_0\)</span> = 0.613, <span class="math inline">\(\text{RMSEA}\)</span> = 0.05, <span class="math inline">\(df\)</span> = 245, and <span class="math inline">\(N\)</span> = 1047, the noncentrality parameter reached <span class="math inline">\(\text{NCP}\)</span> = 640.675, far exceeding the critical value <span class="math inline">\(\chi^2_{\text{crit}}\)</span> = 282.511. Power was effectively 1. The noncentral <span class="math inline">\(\chi^2\)</span> curve lies far to the right of the critical value in the figure, and the shaded <span class="math inline">\(\beta\)</span> region is negligible <span class="citation" data-cites="maccallum1996 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-maccallum1996" role="doc-biblioref">MacCallum et al., 1996</a>)</span>.</p>
 </section>
 <section id="model-based-specification-global-fit" class="level4" data-number="6.2.2">
 <h4 data-number="6.2.2" class="anchored" data-anchor-id="model-based-specification-global-fit"><span class="header-section-number">6.2.2</span> Model-based specification: global fit</h4>
-<p>The second specification derives the effect from the discrepancy between <code>popmodel</code> and the fitted analysis model, evaluating the null model against the saturated model. This tests global fit rather than an isolated restriction, so it is sensitive to any source of misspecification in the analysis model, not only the cross-loadings <span class="citation" data-cites="wang2023 moshagen2024">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
+<p>The second specification derives the effect from the discrepancy between <code>h1model</code> (incorporating the cross-loadings) and the fitted analysis model, evaluating the null model against the saturated model. This tests global fit rather than an isolated restriction, so it is sensitive to any source of misspecification in the analysis model, not only the cross-loadings <span class="citation" data-cites="wang2023 moshagen2024">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
 <div class="quarto-embed-nb-cell">
 <div id="cell-fig-posthoc-realmodel" class="cell" data-fig-width="8" data-fig-height="5">
 <div class="cell-output cell-output-stdout">
 <pre><code>
  semPower: Post hoc power analysis
                                       
- F0                       0.303870    
- RMSEA                    0.034934    
- SRMR                     0.175600    
- Mc                       0.859044    
- GFI                      0.975303    
- AGFI                     0.970244    
- CFI                      0.977582    
+ F0                       0.578978    
+ RMSEA                    0.048612    
+ SRMR                     0.066543    
+ Mc                       0.748646    
+ GFI                      0.953973    
+ AGFI                     0.943640    
+ CFI                      0.959955    
                                       
- df                       249         
+ df                       245         
  Num Observations         1047        
- NCP                      317.8482    
+ NCP                      605.6108    
                                       
- Critical Chi-Square      286.8077    
+ Critical Chi-Square      282.5114    
  Alpha                    0.050000    
- Beta                     6.740368e-16
+ Beta                     1.868864e-43
  Power (1 - Beta)         &gt; 0.9999    
- Implied Alpha/Beta Ratio 7.417993e+13</code></pre>
+ Implied Alpha/Beta Ratio 2.675422e+41</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div id="fig-posthoc-realmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-posthoc-realmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-realmodel-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Figure&nbsp;25: Post hoc power analysis for the real model."><img src="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-realmodel-output-2.png" width="768" height="480" class="figure-img"></a>
+<a href="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-realmodel-output-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Figure&nbsp;21: Post hoc power analysis for the real model."><img src="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-realmodel-output-2.png" width="768" height="480" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posthoc-realmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;25: Post hoc power analysis for the real model.
+Figure&nbsp;21: Post hoc power analysis for the real model.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>With <span class="math inline">\(F_0\)</span> = 0.304, <span class="math inline">\(\text{RMSEA}\)</span> = 0.035, <span class="math inline">\(df\)</span> = 249, and <span class="math inline">\(N\)</span> = 1047, the noncentrality reached <span class="math inline">\(\text{NCP}\)</span> = 317.848 against a critical value of <span class="math inline">\(\chi^2_{\text{crit}}\)</span> = 286.808. The graphical result is similar to the model-free case — the noncentral distribution lies predominantly to the right of the cutoff — though with slightly less separation, reflecting the more substantively grounded (and generally smaller) effect encoded in the population model.</p>
-</section>
-<section id="model-based-specification-nested-comparison" class="level4" data-number="6.2.3">
-<h4 data-number="6.2.3" class="anchored" data-anchor-id="model-based-specification-nested-comparison"><span class="header-section-number">6.2.3</span> Model-based specification: nested comparison</h4>
-<p>The third specification introduces <code>h1modelfree</code> as <code>modelH1</code>, turning the analysis into a nested comparison between the analysis model and a more permissive alternative that includes the theoretically motivated cross-loadings. Power now refers to the probability of detecting the additional constraints imposed by <span class="math inline">\(H_0\)</span> relative to this specific competitor — a more targeted and interpretable question than the global test against the saturated model <span class="citation" data-cites="moshagen2024 jobst2023 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
-<div class="quarto-embed-nb-cell">
-<div id="cell-fig-posthoc-misspec" class="cell" data-fig-width="8" data-fig-height="5">
-<div class="cell-output cell-output-stdout">
-<pre><code>
- semPower: Post hoc power analysis
-                                  
- F0                       0.009082
- RMSEA                    0.055021
- Mc                       0.995469
-                                  
- df                       3       
- Num Observations         1047    
- NCP                      9.499715
-                                  
- Critical Chi-Square      7.814728
- Alpha                    0.050000
- Beta                     0.262955
- Power (1 - Beta)         0.737045
- Implied Alpha/Beta Ratio 0.190147</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div id="fig-posthoc-misspec" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-posthoc-misspec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-misspec-output-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Figure&nbsp;26: Post hoc power analysis for the misspecified model."><img src="index_files/figure-html/Scripts-AnalysisScripts-06_posthoc-fig-posthoc-misspec-output-3.png" width="768" height="480" class="figure-img"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posthoc-misspec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;26: Post hoc power analysis for the misspecified model.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>The result is considerably more modest. With <span class="math inline">\(F_0\)</span> = 0.009, <span class="math inline">\(\text{RMSEA}\)</span> = 0.055, and only <span class="math inline">\(df\)</span> = 3, the noncentrality reached <span class="math inline">\(\text{NCP}\)</span> = 9.5. The critical value was <span class="math inline">\(\chi^2_{\text{crit}}\)</span> = 7.815, and the two distributions overlapped substantially. As a result, <span class="math inline">\(\beta\)</span> = 0.263 and power = 0.737, falling below the conventional <span class="math inline">\(0.80\)</span> threshold. The noncentral curve is only moderately shifted to the right of the cutoff in the figure, and the shaded <span class="math inline">\(\beta\)</span> region is visibly large — the empirical counterpart of the insufficient NCP.</p>
-<p>This contrast across the three specifications illustrates a fundamental principle: the same <span class="math inline">\(N\)</span> can simultaneously imply very high power for a global test and inadequate power for a more localized nested comparison, because power in SEM is always conditional on the specific discrepancy being tested <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>. Researchers designing SEM studies should therefore match their power analysis approach to their inferential target — and that choice is not merely statistical, but substantive.</p>
+<p>With <span class="math inline">\(F_0\)</span> = 0.579, <span class="math inline">\(\text{RMSEA}\)</span> = 0.049, <span class="math inline">\(df\)</span> = 245, and <span class="math inline">\(N\)</span> = 1047, the noncentrality reached <span class="math inline">\(\text{NCP}\)</span> = 605.611 against a critical value of <span class="math inline">\(\chi^2_{\text{crit}}\)</span> = 282.511. Power was 1, confirming that the observed sample size provides complete statistical power to detect the misspecification.</p>
+<p>However, post hoc power must always be interpreted with methodological caution. Calculating power retrospectively from observed sample statistics after finding a non-significant result constitutes the well-known “observed power fallacy” <span class="citation" data-cites="maccallum1996 jobst2023 zhang2018">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-maccallum1996" role="doc-biblioref">MacCallum et al., 1996</a>; <a href="#ref-zhang2018" role="doc-biblioref">Zhang &amp; Yuan, 2018</a>)</span>, where low power is simply a tautological re-expression of an unremarkable <span class="math inline">\(p\)</span>-value. Post hoc power analysis remains legitimate only when framed prospective-retrospectively: asking whether the collected <span class="math inline">\(N\)</span> possessed adequate sensitivity to reject a pre-specified, theoretically grounded alternative (<span class="math inline">\(H_1\)</span>) that was determined prior to inspecting data-derived effects <span class="citation" data-cites="moshagen2024 wang2023">(<a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>; <a href="#ref-wang2023" role="doc-biblioref">Wang, 2023</a>)</span>.</p>
 </section>
 </section>
 </section>
@@ -2918,6 +2764,9 @@ Wang, Y. A., &amp; Rhemtulla, M. (2021). Power <span>Analysis</span> for <span>P
 </div>
 <div id="ref-wolf2013" class="csl-entry" role="listitem">
 Wolf, E. J., Harrington, K. M., Clark, S. L., &amp; Miller, M. W. (2013). Sample <span>Size Requirements</span> for <span>Structural Equation Models</span>: <span>An Evaluation</span> of <span>Power</span>, <span>Bias</span>, and <span>Solution Propriety</span>. <em>Educational and Psychological Measurement</em>, <em>76</em>(6), 913–934. <a href="https://doi.org/10.1177/0013164413495237">https://doi.org/10.1177/0013164413495237</a>
+</div>
+<div id="ref-zhang2018" class="csl-entry" role="listitem">
+Zhang, Z., &amp; Yuan, K.-H. (2018). <em>Practical statistical power analysis using <span>Webpower</span> and <span>R</span></em>. ISDSA Press.
 </div>
 </div>
 </section>
