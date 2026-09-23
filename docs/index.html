@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Pablo Rogers">
-<meta name="dcterms.date" content="2026-09-22">
+<meta name="dcterms.date" content="2026-09-23">
 <meta name="keywords" content="Power Analysis, Confirmatory Factor Analysis, Structural Equation Modeling, Monte Carlo Simulation, semPower, simsem">
 
 <title>Power Analysis for Confirmatory Factor Analysis: A Practical Tutorial</title>
@@ -105,10 +105,10 @@ window.Quarto = {
 ">
 <meta name="citation_keywords" content="Power Analysis,Confirmatory Factor Analysis,Structural Equation Modeling,Monte Carlo Simulation,semPower,simsem">
 <meta name="citation_author" content="Pablo Rogers">
-<meta name="citation_publication_date" content="2026-09-22">
-<meta name="citation_cover_date" content="2026-09-22">
+<meta name="citation_publication_date" content="2026-09-23">
+<meta name="citation_cover_date" content="2026-09-23">
 <meta name="citation_year" content="2026">
-<meta name="citation_online_date" content="2026-09-22">
+<meta name="citation_online_date" content="2026-09-23">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Simsem: SIMulated Structural Equation Modeling;,citation_author=Sunthud Pornprasertmanit;,citation_author=Patrick Miller;,citation_author=Alexander Schoemann;,citation_author=Terrence D. Jorgensen;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_fulltext_html_url=https://CRAN.R-project.org/package=simsem;">
 <meta name="citation_reference" content="citation_title=Validation of the factor structure of the WHOQOL-BREF using meta-analysis of exploratory factor analysis and social network analysis;,citation_author=Lin-Ching Lin;,citation_author=Grace Yao;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_issue=7;,citation_doi=10.1037/pas0001122;,citation_volume=34;,citation_journal_title=Psychological Assessment;">
@@ -182,7 +182,7 @@ window.Quarto = {
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">September 22, 2026</p>
+              <p class="date">September 23, 2026</p>
             </div>
           </div>
           
@@ -1250,7 +1250,7 @@ Figure&nbsp;5: Path diagram of the analyzemodel
 <div class="quarto-embed-nb-cell">
 <div id="compute-df" class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Model degrees of freedom (with std.lv = TRUE): 245 </code></pre>
+<pre><code>Model degrees of freedom: 245 </code></pre>
 </div>
 </div>
 </div>
@@ -1396,7 +1396,7 @@ Figure&nbsp;9: Power as a function of sample size for the population model (popM
 </section>
 <section id="summary-table" class="level3" data-number="3.4">
 <h3 data-number="3.4" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">3.4</span> Summary table</h3>
-<p><a href="#tbl-analytical-summary" class="quarto-xref">Table&nbsp;3</a> compares the analytical power solutions. The model-based global fit test requires <span class="math inline">\(N = 106\)</span>, closely matching the model-free RMSEA-based target (<span class="math inline">\(N = 103\)</span>). This convergence occurs because the misspecification introduced by the three cross-loadings translates into an implied <span class="math inline">\(\text{RMSEA} = 0.0486\)</span>, almost identical to the generic <span class="math inline">\(0.05\)</span> threshold.</p>
+<p><a href="#tbl-analytical-summary" class="quarto-xref">Table&nbsp;3</a> compares the analytical power solutions. The model-based global fit test requires <span class="math inline">\(N = 106\)</span>, closely matching the model-free RMSEA-based target (<span class="math inline">\(N = 100\)</span>). This convergence occurs because the misspecification introduced by the three cross-loadings translates into an implied <span class="math inline">\(\text{RMSEA} = 0.0486\)</span>, almost identical to the generic <span class="math inline">\(0.05\)</span> threshold.</p>
 <div class="quarto-embed-nb-cell">
 <div class="cell">
 <div id="tbl-analytical-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -2433,7 +2433,7 @@ Table&nbsp;11: Power and fit index cutoff values under non-normal conditions at 
 </section>
 <section id="sec-scenarios-fixed" class="level3" data-number="5.3">
 <h3 data-number="5.3" class="anchored" data-anchor-id="sec-scenarios-fixed"><span class="header-section-number">5.3</span> Simulation with fixed N</h3>
-<p>Having established minimum <span class="math inline">\(N\)</span> estimates under various conditions, the question becomes whether a single, fixed sample size performs reliably as a design choice. Fixing <span class="math inline">\(N = 350\)</span> — a conservative value anchored above the most demanding simulation result (<span class="math inline">\(N = 330\)</span> under the naive population) — allows us to ask: does this <span class="math inline">\(N\)</span> consistently separate the reference and misspecified models across many independent replications, including under realistic data conditions (10% MCAR + mild non-normality)?</p>
+<p>Having established minimum <span class="math inline">\(N\)</span> estimates under various conditions, the question becomes whether a single, fixed sample size performs reliably as a design choice. Fixing <span class="math inline">\(N = 350\)</span> — a conservative value anchored above the most demanding simulation result allows us to ask: does this <span class="math inline">\(N\)</span> consistently separate the reference and misspecified models across many independent replications, including under realistic data conditions (10% MCAR + mild non-normality)?</p>
 <p>This step also highlights the practical difference between empirical and traditional fit criteria. Empirical cutoffs are calibrated to the actual sampling distribution of the fitted model; traditional cutoffs are generic conventions. The two approaches can lead to very different conclusions about adequacy <span class="citation" data-cites="mcneish2021 simsem2021">(<a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="quarto-embed-nb-cell">
 <div id="cell-fig-power-curve-fixed" class="cell" data-fig-width="8" data-fig-height="5">
@@ -2611,7 +2611,7 @@ Table&nbsp;14: Power for post hoc analysis based on simulation.
 </section>
 <section id="with-analytical-solutions" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="with-analytical-solutions"><span class="header-section-number">6.2</span> With Analytical Solutions</h3>
-<p>Analytical post hoc power expresses the effect through <span class="math inline">\(F_0\)</span> or RMSEA and links it to the noncentrality-based framework of the likelihood-ratio test. This is computationally immediate and free from Monte Carlo sampling error, making it the preferred first-pass approach when the asymptotic assumptions underlying the chi-square test are credible <span class="citation" data-cites="jak2021 moshagen2024">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>. Three specifications are compared here, illustrating a spectrum from the most generic to the most substantively specific formulation.</p>
+<p>Analytical post hoc power expresses the effect through <span class="math inline">\(F_0\)</span> or RMSEA and links it to the noncentrality-based framework of the likelihood-ratio test. This is computationally immediate and free from Monte Carlo sampling error, making it the preferred first-pass approach when the asymptotic assumptions underlying the chi-square test are credible <span class="citation" data-cites="jak2021 moshagen2024">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>. Two specifications are compared here, illustrating a spectrum from the most generic to the most substantively specific formulation.</p>
 <section id="model-free-specification" class="level4" data-number="6.2.1">
 <h4 data-number="6.2.1" class="anchored" data-anchor-id="model-free-specification"><span class="header-section-number">6.2.1</span> Model-free specification</h4>
 <p>The first specification supplies <span class="math inline">\(\text{RMSEA} = 0.05\)</span> directly, treating misspecification as a generic level of global misfit per degree of freedom. This makes the analysis comparable across SEM families sharing the same <span class="math inline">\(df\)</span>, but it abstracts away from the particular covariance structure of the WHOQOL-BREF model <span class="citation" data-cites="maccallum1996 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-maccallum1996" role="doc-biblioref">MacCallum et al., 1996</a>)</span>.</p>

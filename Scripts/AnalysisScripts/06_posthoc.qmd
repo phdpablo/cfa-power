@@ -12,14 +12,23 @@ execute:
 #| label: setup
 #| include: false
 
+# For defining file paths
 library(here)
+
+# For CFA population models
 source(here("Scripts", "DataAppendixScripts", "models.R"))
+
+# For DRY (Don't repeat yourself) parameters
 source(here("Scripts", "DataAppendixScripts", "helpers.R"))
+
+# For simulations caching
 source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
+
+# For loading existing simulations cache
 source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
 
+# Load existing simulations cache if available (cache_loader.R)
 cache_load_existing()
-
 ```
 
 The post hoc analysis is based on the real dataset from @rogers2022,
@@ -33,17 +42,23 @@ functions.
 ```{r}
 #| label: load-realdata
 
+# Load the real dataset from Mendeley Data
 url_data <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/b58a7054-4978-4239-81db-00f9efd86e44/WHOQOL_Data.dat"
 realdata <- read.table(url_data)
 
+# Load the corresponding labels for the real dataset
 url_labels <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/ae2a5c01-2fc2-43e5-b31c-8db8cc5bff8a/WHOQOL_Labels.txt"
 column_labels <- read.table(url_labels)
+
+# Assign the column labels to the real dataset
 column_labels <- column_labels$V1
 names(realdata) <- gsub("_[FPSA]$", "", column_labels)
 
-n_real <- nrow(realdata) # Sample size of the real data
+# Extract the sample size from the real dataset
+n_real <- nrow(realdata)
 
-df_model <- 245 # Degrees of freedom with std.lv = TRUE
+# Compute the model degrees of freedom from `analyzemodel`
+df_model <- semPower.getDf(analyzemodel)-4 # See `02_analytical_power.qmd`
 ```
 
 ## Post hoc power analysis
@@ -69,10 +84,10 @@ reflect the evidence actually available in the collected sample
 #| label: realdata-model
 
 fit_real <- cfa(
-  analyzemodel,
-  data      = realdata,
-  estimator = "mlr",
-  std.lv    = TRUE
+  analyzemodel,           # Model to analyze (see `models.R`)
+  data      = realdata,   # Real data from Mendeley Data
+  estimator = "mlr",      # Robust maximum likelihood estimator
+  std.lv    = TRUE        # Standardized latent variables
 )
 ```
 
@@ -81,15 +96,15 @@ fit_real <- cfa(
 
 realmodel_null <- cache_or_run("realmodel_null", {
   sim(
-      nRep      = REP,        # See the `REP` object defined in helpers.R for the number of replications used in this scenario.
-      n         = n_real,
-      analyzemodel,
-      generate  = fit_real,
-      std.lv    = TRUE,
-      lavaanfun = "cfa",
-      estimator = "mlr",
-      seed      = SEED,
-      multicore = TRUE
+      nRep      = REP,        # Number of replications (defined in helpers.R)
+      n         = n_real,     # Sample size of the real data
+      analyzemodel,           # Model to analyze (see `models.R`)
+      generate  = fit_real,   # Fitted model from real data
+      std.lv    = TRUE,       # Standardized latent variables
+      lavaanfun = "cfa",      # Use confirmatory factor analysis (CFA) function
+      estimator = "mlr",      # Robust maximum likelihood estimator
+      seed      = SEED,       # Random seed for reproducibility (defined in helpers.R) 
+      multicore = TRUE        # Use multiple cores for parallel processing
   )
 })
 ```
@@ -99,15 +114,15 @@ realmodel_null <- cache_or_run("realmodel_null", {
 
 h1model_alt <- cache_or_run("h1model_alt", {
   sim(
-      nRep      = REP,        # See the `REP` object defined in helpers.R for the number of replications used in this scenario.
-      n         = n_real,
-      analyzemodel,
-      generate  = h1model,
-      std.lv    = TRUE,
-      lavaanfun = "cfa",
-      estimator = "mlr",
-      seed      = SEED,
-      multicore = TRUE
+      nRep      = REP,        # Number of replications (defined in helpers.R)
+      n         = n_real,     # Sample size of the real data
+      analyzemodel,           # Model to analyze (see `models.R`)
+      generate  = h1model,    # Population model with misspecification (see `models.R`)
+      std.lv    = TRUE,       # Standardized latent variables
+      lavaanfun = "cfa",      # Use confirmatory factor analysis (CFA) function
+      estimator = "mlr",      # Robust maximum likelihood estimator
+      seed      = SEED,       # Random seed for reproducibility (defined in helpers.R) 
+      multicore = TRUE        # Use multiple cores for parallel processing
   )
 })
 ```
@@ -125,16 +140,11 @@ the observed $N$ is sufficient to support reliable model discrimination
 #| fig-width: 8
 #| fig-height: 5
 
-# Plot the fit-index distributions for the alternative model and compare them
-# with cutoffs obtained from the null model at level alpha.
-# In simsem, this visualizes how well the selected global fit indices separate
-# data generated under the null and alternative conditions.
-
 plotPowerFit(
-    h1model_alt,
-    nullObject = realmodel_null,
-    alpha      = ALPHA,
-    usedFit    = FITS
+    h1model_alt,                  # Data simulated under H1 (with cross-loadings)
+    nullObject = realmodel_null,  # Data simulated under H0 (no cross-loadings)
+    alpha      = ALPHA,           # Significance level (see helpers.R)
+    usedFit    = FITS             # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 ```
 
@@ -147,22 +157,19 @@ the null-model cutoff at the chosen $\alpha$ level [@simsem2021;
 #| label: tbl-posthoc-power
 #| tbl-cap: "Power for post hoc analysis based on simulation."
 
-# Return post hoc power for each selected fit index.
-# The cutoffs are internally derived from the null-object distribution,
-# so the table summarizes the empirical rejection rate of the alternative model
-# under the chosen set of fit criteria.
-
+# Estimate power for rejecting the misspecified model (h1model_alt)
+# using fit-index cutoffs implied by the null model.
 posthoc_pow <- getPowerFit(
-    h1model_alt,
-    nullObject = realmodel_null,
-    alpha      = ALPHA,
-    usedFit    = FITS
+    h1model_alt,                 # Data simulated under H1 (with cross-loadings)
+    nullObject = realmodel_null, # Data simulated under H0 (no cross-loadings)
+    alpha      = ALPHA,          # Significance level (see helpers.R)
+    usedFit    = FITS            # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 
-# Subset power to the four requested fit indices (FITS: rmsea, srmr, cfi, tli)
-# ensuring TRADITIONALCHI is excluded.
+# Subset power to the four requested fit indices
 posthoc_pow_clean <- posthoc_pow[FITS]
 
+# Return power values as a table
 knitr::kable(
   as.data.frame(t(as.numeric(posthoc_pow_clean))),
   col.names = toupper(FITS),
@@ -174,14 +181,9 @@ knitr::kable(
 ### With semPower
 
 For comparison, the same post hoc question is addressed analytically
-through three specifications of increasing specificity. The first is
-model-free and sets the target discrepancy at $\text{RMSEA} = 0.05$;
+through two specifications. The first is model-free and sets the target discrepancy at $\text{RMSEA} = 0.05$;
 the second is model-based and derives the effect from the discrepancy
-between the misspecified population model (`h1model`) and the empirically fitted model; the
-third specifies an explicit nested-model comparison by supplying both a
-null and an alternative model, so the effect reflects a targeted
-structural difference rather than global misfit against the saturated
-model [@moshagen2024; @jak2021].
+between the misspecified population model (`h1model`) and the empirically fitted model [@moshagen2024; @jak2021].
 
 ```{r}
 #| label: fig-posthoc-rmsea
@@ -191,17 +193,17 @@ model [@moshagen2024; @jak2021].
 
 # Analytical post hoc power for a global fit test.
 # The target effect is fixed directly as RMSEA = 0.05.
-# H0 is exact fit, alpha is 0.05, and the sample size is 1,047.
 
 ph_rmsea <- semPower::semPower.postHoc(
-  effect         = 0.05,
-  effect.measure = "RMSEA",  # Target discrepancy expressed as RMSEA
-  alpha          = ALPHA,
-  N              = n_real,
-  df             = df_model,
-  p              = P         # Only relevant for indices such as GFI and AGFI
+  effect         = 0.05,        # RMSEA under H1
+  effect.measure = "RMSEA",     # Target discrepancy expressed as RMSEA
+  alpha          = ALPHA,       # Significance level (see helpers.R)
+  N              = n_real,      # Sample size from real data
+  df             = df_model,    # Degrees of freedom of the model
+  p              = P            # Only relevant for indices such as GFI and AGFI
 )
 
+# Summary of the power analysis
 summary(ph_rmsea)
 ```
 
@@ -219,19 +221,17 @@ restriction [@moshagen2024; @jobst2023].
 #| fig-height: 5
 
 # Analytical post hoc power based on lavaan models.
-# modelPop defines the population structure (h1model with cross-loadings).
-# modelH0 is the focal model to be tested.
-# Because modelH1 is omitted, the comparison is against the saturated model.
 
 ph_realmodel <- semPower::semPower.powerLav(
-  type       = "post-hoc",
-  alpha      = ALPHA,
-  N          = n_real,
-  modelPop   = h1model,
-  modelH0    = fit_real,
-  lavOptions = list(std.lv = TRUE)
+  type       = "post-hoc",          # Post hoc power analysis
+  alpha      = ALPHA,               # Significance level (see helpers.R)
+  N          = n_real,              # Sample size from real data
+  modelPop   = h1model,             # Population model with cross loadings (see `models.R`)
+  modelH0    = fit_real,            # Fitted model from real data
+  lavOptions = list(std.lv = TRUE)  # Standardized latent variables
 )
 
+# Summary of the power analysis
 summary(ph_realmodel)
 ```
 

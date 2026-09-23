@@ -12,12 +12,22 @@ execute:
 #| label: setup
 #| include: false
 
+# For defining file paths
 library(here)
+
+# For CFA population models
 source(here("Scripts", "DataAppendixScripts", "models.R"))
+
+# For DRY (Don't repeat yourself) parameters
 source(here("Scripts", "DataAppendixScripts", "helpers.R"))
+
+# For simulations caching
 source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
+
+# For loading existing simulations cache
 source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
 
+# Load existing simulations cache if available (cache_loader.R)
 cache_load_existing()
 ```
 
@@ -39,17 +49,17 @@ cost of missingness, since all other design choices remain constant.
 
 popmodel_miss <- cache_or_run("popmodel_miss", {
     sim(
-        NULL,
-        n = SEQ1,              # See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.
-        pmMCAR = 0.10,
-        analyzemodel,
-        generate = popmodel,
-        std.lv = TRUE,
-        lavaanfun = "cfa",
-        estimator = "ml",
-        missing = "fiml",
-        seed = SEED,
-        multicore = TRUE
+        NULL,                  # Number of replications is defined by SEQ1
+        n = SEQ1,              # Sample sizes defined in SEQ1 (see helpers.R)
+        pmMCAR = P_MCAR,       # 10% missing completely at random (see helpers.R)
+        analyzemodel,          # Model used for analysis (see models.R)
+        generate = popmodel,   # Reference population model (see models.R)
+        std.lv = TRUE,         # Standardized latent variables
+        lavaanfun = "cfa",     # Use CFA function from lavaan
+        estimator = "ml",      # ML estimator
+        missing = "fiml",      # FIML missing-data handling
+        seed = SEED,           # Seed for reproducibility (see helpers.R)
+        multicore = TRUE       # Use multicore processing
     )
 })
 ```
@@ -59,17 +69,17 @@ popmodel_miss <- cache_or_run("popmodel_miss", {
 
 h1model_miss <- cache_or_run("h1model_miss", {
     sim(
-        NULL,
-        n = SEQ1,              # See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.
-        pmMCAR = 0.10,
-        analyzemodel,
-        generate = h1model,
-        std.lv = TRUE,
-        lavaanfun = "cfa",
-        estimator = "ml",
-        missing = "fiml",
-        seed = SEED,
-        multicore = TRUE
+        NULL,                  # Number of replications is defined by SEQ1
+        n = SEQ1,              # Sample sizes defined in SEQ1 (see helpers.R)
+        pmMCAR = P_MCAR,       # 10% missing completely at random (see helpers.R)
+        analyzemodel,          # Model used for analysis (see models.R)
+        generate = h1model,    # Alternative (misspecified) population model (see models.R)
+        std.lv = TRUE,         # Standardized latent variables
+        lavaanfun = "cfa",     # Use CFA function from lavaan
+        estimator = "ml",      # ML estimator
+        missing = "fiml",      # FIML missing-data handling
+        seed = SEED,           # Seed for reproducibility (see helpers.R)
+        multicore = TRUE       # Use multicore processing
     )
 })
 ```
@@ -88,18 +98,11 @@ target power level requires a larger $N$ than under complete data
 #| fig-width: 8
 #| fig-height: 5
 
-# Plot model-based power as a function of N.
-# The null object provides the reference cutoff distribution,
-# and the alternative object represents the misspecified model.
-# With logistic = TRUE, simsem smooths the rejection probability
-# over N using logistic regression, which is useful for identifying
-# the sample size at which power approaches the target level.
-
 plotPowerFit(
-    h1model_miss,
-    popmodel_miss,
-    alpha = ALPHA,
-    usedFit = FITS
+    h1model_miss,     # Data simulated under H1 (with cross-loadings)
+    popmodel_miss,    # Data simulated under H0 (reference model)
+    alpha = ALPHA,    # Significance level for determining power (see helpers.R)
+    usedFit = FITS    # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 ```
 
@@ -109,16 +112,12 @@ plotPowerFit(
 #| fig-width: 8
 #| fig-height: 5
 
-# Plot the same power information without logistic smoothing.
-# Here the figure shows the simulated fit-index values directly across N,
-# which helps visualize how the sampling distributions separate as sample size increases @simsem.
-
 plotPowerFit(
-    h1model_miss,
-    popmodel_miss,
-    alpha = ALPHA,
-    usedFit = FITS,
-    logistic = FALSE
+    h1model_miss,     # Data simulated under H1 (with cross-loadings)
+    popmodel_miss,    # Data simulated under H0 (no cross-loadings)
+    alpha = ALPHA,    # Significance level for determining power (see helpers.R)
+    usedFit = FITS,   # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
+    logistic = FALSE  # Display raw simulated points and cutoff lines instead of logistic curves
 )
 ```
 
@@ -135,23 +134,23 @@ high at the chosen $N$ [@jobst2023; @wang2023].
 #| label: tbl-power-cutoff-missing
 #| tbl-cap: "Power and fit index cutoff values under missing data conditions at N = 359."
 
-# Estimate power for rejecting the misspecified model
-# using fit-index cutoffs implied by the reference model at alpha = .05 and N = 359.
+# Estimate power for rejecting the misspecified model (h1model_miss)
+# using fit-index cutoffs implied by the null model (popmodel_miss) at alpha = ALPHA and N = 359.
 power_miss <- getPowerFit(
-    h1model_miss,
-    nullObject = popmodel_miss,
-    alpha = ALPHA,
-    nVal = 359,
-    usedFit = FITS
+    h1model_miss,                 # Data simulated under H1 (with cross-loadings)
+    nullObject = popmodel_miss,   # Data simulated under H0 (no cross-loadings)
+    alpha = ALPHA,                # Significance level for determining power (see helpers.R)
+    nVal = 359,                   # Sample size for analysis
+    usedFit = FITS                # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 
 # Derive empirical cutoff values for the selected fit indices
 # from the reference-model sampling distribution under the same conditions.
 cutoff_miss <- getCutoff(
-    popmodel_miss,
-    alpha = ALPHA,
-    nVal = 359,
-    usedFit = FITS
+    popmodel_miss,                # Data simulated under H0 (no cross-loadings)
+    alpha = ALPHA,                # Significance level for determining power (see helpers.R)
+    nVal = 359,                   # Sample size for analysis
+    usedFit = FITS                # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 
 # Combine power and cutoff values into a compact summary table.
@@ -160,9 +159,11 @@ power_cutoff_miss <- rbind(
     "Cutoff" = as.numeric(cutoff_miss[1, ])
 )
 
-colnames(power_cutoff_miss) <- toupper(names(power_miss)) # Standardize column names for presentation.
+# Standardize column names for presentation.
+colnames(power_cutoff_miss) <- toupper(names(power_miss)) 
 
-knitr::kable(power_cutoff_miss, digits = 3, align = "c") # Print the table.
+# Print the table.
+knitr::kable(power_cutoff_miss, digits = 3, align = "c") 
 ```
 
 ## Scenario B — Non-normality
@@ -177,7 +178,7 @@ to maintain appropriate Type I error control.
 The `dist` object in `helpers.R` generates data with mild skewness
 (ranging from $-1$ to $+1$) and slight excess kurtosis (from $1$ to
 $2$), a range that is realistic for quality-of-life scales such as
-the WHOQOL-BREF. The goal is not to impose severe
+the WHOQOL-BREF [@mosqueirataipe2026]. The goal is not to impose severe
 distributional violations, but to verify that the power conclusions
 from the ideal scenario hold under plausible real-world deviations
 from normality.
@@ -187,16 +188,16 @@ from normality.
 
 popmodel_nnorm <- cache_or_run("popmodel_nnorm", {
     sim(
-        NULL,
-        n = SEQ1,             # See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.
-        analyzemodel,
-        generate = popmodel,
-        indDist = dist,       # See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.
-        std.lv = TRUE,
-        lavaanfun = "cfa",
-        estimator = "mlr",
-        seed = SEED,
-        multicore = TRUE
+        NULL,                    # Number of replications is defined by SEQ1              
+        n = SEQ1,                # Sample sizes defined in SEQ1 (see helpers.R)
+        analyzemodel,            # Model used for analysis (see models.R)
+        generate = popmodel,     # Population model (see models.R)
+        indDist = dist,          # Distribution used for simulation (see helpers.R)
+        std.lv = TRUE,           # Standardized latent variables
+        lavaanfun = "cfa",       # Use CFA function from lavaan
+        estimator = "mlr",       # MLR estimator for non-normal data
+        seed = SEED,             # Seed for reproducibility (see helpers.R)
+        multicore = TRUE         # Use multicore processing
     )
 })
 ```
@@ -206,16 +207,16 @@ popmodel_nnorm <- cache_or_run("popmodel_nnorm", {
 
 h1model_nnorm <- cache_or_run("h1model_nnorm", {
     sim(
-        NULL,
-        n = SEQ1,             # See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.
-        analyzemodel,
-        generate = h1model,
-        indDist = dist,       # See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.
-        std.lv = TRUE,
-        lavaanfun = "cfa",
-        estimator = "mlr",
-        seed = SEED,
-        multicore = TRUE
+        NULL,                    # Number of replications is defined by SEQ1              
+        n = SEQ1,                # Sample sizes defined in SEQ1 (see helpers.R)
+        analyzemodel,            # Model used for analysis (see models.R)
+        generate = h1model,      # Population model with cross-loadings (see models.R)
+        indDist = dist,          # Distribution used for simulation (see helpers.R)
+        std.lv = TRUE,           # Standardized latent variables
+        lavaanfun = "cfa",       # Use CFA function from lavaan
+        estimator = "mlr",       # MLR estimator for non-normal data
+        seed = SEED,             # Seed for reproducibility (see helpers.R)
+        multicore = TRUE         # Use multicore processing
     )
 })
 ```
@@ -234,22 +235,11 @@ to non-normal simulated data [@mcneish2021; @simsem2021].
 #| fig-width: 8
 #| fig-height: 5
 
-# Plot power as a function of N for the selected fit indices.
-# In simsem, plotPowerFit visualizes rejection power for a misspecified model
-# using either cutoffs supplied directly or cutoffs implied by the null model
-
-# With nullObject = popmodel_nnorm, the cutoff for each index is taken from the
-# null-model sampling distribution rather than from fixed rules of thumb.
-
-# When a varying condition such as sample size is present and logistic = TRUE
-# (the default), the plotted curve is based on logistic regression smoothing
-# of the reject/retain decision over that varying condition.
-
 plotPowerFit(
-  h1model_nnorm,
-  popmodel_nnorm,
-  alpha = ALPHA,
-  usedFit = FITS
+  h1model_nnorm,   # Data simulated under H1 (with cross-loadings)
+  popmodel_nnorm,  # Data simulated under H0 (no cross-loadings)
+  alpha = ALPHA,   # Significance level for determining power (see helpers.R)
+  usedFit = FITS   # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 ```
 
@@ -264,16 +254,12 @@ empirically distinguishable [@simsem2021; @mcneish2021].
 #| fig-width: 8
 #| fig-height: 5
 
-# Reproduce the same plot, but disable logistic smoothing.
-# In simsem, logistic = FALSE overlays the raw simulated fit-index values and the
-# cutoff line, which is useful for checking dispersion and overlap across N
-
 plotPowerFit(
-  h1model_nnorm,
-  popmodel_nnorm,
-  alpha = ALPHA,
-  usedFit = FITS,
-  logistic = FALSE
+  h1model_nnorm,   # Data simulated under H1 (with cross-loadings)
+  popmodel_nnorm,  # Data simulated under H0 (no cross-loadings)
+  alpha = ALPHA,   # Significance level for determining power (see helpers.R)
+  usedFit = FITS,  # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
+  logistic = FALSE # Display raw simulated points and cutoff lines instead of logistic curves
 )
 ```
 
@@ -290,34 +276,34 @@ this degree of non-normality [@feng2023].
 #| label: tbl-power-cutoff-nnorm
 #| tbl-cap: "Power and fit index cutoff values under non-normal conditions at N = 228."
 
-# Estimate power to reject the misspecified model at N = 228.
-# getPowerFit returns the probability that each selected fit index classifies
-# the misspecified model as worse than the null-based cutoff
+# Estimate power for rejecting the misspecified model (h1model_nnorm)
+# using fit-index cutoffs implied by the null model (popmodel_nnorm) at alpha = ALPHA and N = 228.
 power_nnorm <- getPowerFit(
-  h1model_nnorm,
-  nullObject = popmodel_nnorm,
-  alpha = ALPHA,
-  nVal = 228,
-  usedFit = FITS
+  h1model_nnorm,               # Data simulated under H1 (with cross-loadings)
+  nullObject = popmodel_nnorm, # Data simulated under H0 (no cross-loadings)
+  alpha = ALPHA,               # Significance level for determining power (see helpers.R)
+  nVal = 228,                  # Sample size for analysis
+  usedFit = FITS               # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 
-# Derive empirical cutoff values from the null-model sampling distribution
-# under the same alpha level and sample size
+# Derive empirical cutoff values for the selected fit indices
+# from the null-model sampling distribution under the same conditions.
 cutoff_nnorm <- getCutoff(
-  popmodel_nnorm,
-  alpha = ALPHA,
-  nVal = 228,
-  usedFit = FITS
+  popmodel_nnorm,              # Data simulated under H0 (no cross-loadings)
+  alpha = ALPHA,               # Significance level for determining power (see helpers.R)
+  nVal = 228,                  # Sample size for analysis
+  usedFit = FITS               # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 
-# Combine operating characteristics (power) and decision thresholds (cutoffs)
-# into a compact table for direct reporting
+# Combine power and cutoff values into a compact summary table.
 power_cutoff_nnorm <- rbind(
   "Power" = as.numeric(power_nnorm),
   "Cutoff" = as.numeric(cutoff_nnorm[1, ])
 )
 
+# Standardize column names for presentation.
 colnames(power_cutoff_nnorm) <- toupper(names(power_nnorm))
 
+# Print the table.
 knitr::kable(power_cutoff_nnorm, digits = 3, align = "c")
 ```

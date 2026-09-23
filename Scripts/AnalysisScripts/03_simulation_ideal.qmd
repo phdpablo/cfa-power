@@ -12,19 +12,29 @@ execute:
 #| label: setup
 #| include: false
 
+# For defining file paths
 library(here)
+
+# For CFA population models
 source(here("Scripts", "DataAppendixScripts", "models.R"))
+
+# For DRY (Don't repeat yourself) parameters
 source(here("Scripts", "DataAppendixScripts", "helpers.R"))
+
+# For simulations caching
 source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
+
+# For loading existing simulations cache
 source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
 
+# Load existing simulations cache if available (cache_loader.R)
 cache_load_existing()
 ```
 
 ## Main misspecification simulation
 
 Simulate data from the ideal population model and fit the analysis CFA
-model across the sample-size grid in `SEQ1`. This yields the reference
+model across the sample-size grid in `SEQ1` (see `helpers.R`). This yields the reference
 sampling distribution of fit indices under the correctly specified
 condition.
 
@@ -33,14 +43,14 @@ condition.
 
 popmodel_ideal <- cache_or_run("popmodel_ideal", {
   sim(
-    NULL,
-    n = SEQ1,              # See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.
-    analyzemodel,
-    generate = popmodel,
-    std.lv = TRUE,
-    lavaanfun = "cfa",
-    seed = SEED,
-    multicore = TRUE
+    NULL,                  # Number of replications is defined by SEQ1
+    n = SEQ1,              # Sample sizes defined in SEQ1 (see helpers.R)
+    analyzemodel,          # Model used for analysis (see models.R)
+    generate = popmodel,   # Population model (see models.R)
+    std.lv = TRUE,         # Standardize latent variables
+    lavaanfun = "cfa",     # Use cfa() function for analysis
+    seed = SEED,           # Seed for reproducibility (see helpers.R)
+    multicore = TRUE       # Use multiple cores for parallel processing
 )
 })
 ```
@@ -55,14 +65,14 @@ later contrasted with the reference condition to evaluate power.
 
 h1model_ideal <- cache_or_run("h1model_ideal", {
   sim(
-    NULL,
-    n = SEQ1,              # See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.
-    analyzemodel,
-    generate = h1model,
-    std.lv = TRUE,
-    lavaanfun = "cfa",
-    seed = SEED,
-    multicore = TRUE
+    NULL,               # Number of replications is defined by SEQ1 
+    n = SEQ1,           # Sample sizes defined in SEQ1
+    analyzemodel,       # Model used for analysis
+    generate = h1model, # Population model (plus 3 cross-loadings)
+    std.lv = TRUE,      # Standardize latent variables
+    lavaanfun = "cfa",  # Use cfa() function for analysis
+    seed = SEED,        # Seed for reproducibility
+    multicore = TRUE    # Use multiple cores for parallel processing
 )
 })
 ```
@@ -85,10 +95,10 @@ sensitivity to the imposed cross-loading misspecification.
 #| fig-height: 5
 
 plotPowerFit(
-    h1model_ideal,
-    popmodel_ideal,
-    alpha = ALPHA,
-    usedFit = FITS
+    h1model_ideal,   # Data simulated under H1 (with cross-loadings)
+    popmodel_ideal,  # Data simulated under H0 (no cross-loadings)
+    alpha = ALPHA,   # Significance level for determining power (see helpers.R)
+    usedFit = FITS   # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 ```
 
@@ -105,11 +115,11 @@ logistic power curves [@simsem2021; @mcneish2021].
 #| fig-height: 5
 
 plotPowerFit(
-    h1model_ideal,
-    popmodel_ideal,
-    alpha = ALPHA,
-    usedFit = FITS,
-    logistic = FALSE
+    h1model_ideal,    # Data simulated under H1 (with cross-loadings)
+    popmodel_ideal,   # Data simulated under H0 (no cross-loadings)
+    alpha = ALPHA,    # Significance level for determining power (see helpers.R)
+    usedFit = FITS,   # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
+    logistic = FALSE  # Display raw simulated points and cutoff lines instead of logistic curves
 )
 ```
 
@@ -128,22 +138,22 @@ rejection rule is, and the power shows how often that rule succeeds
 #| tbl-cap: "Power and fit index cutoff values under ideal conditions at N = 231."
 
 # Estimate power for rejecting the misspecified model (h1model_ideal)
-# using fit-index cutoffs implied by the null model at alpha = ALPHA and N = 231.
+# using fit-index cutoffs implied by the null model (popmodel_ideal) at alpha = ALPHA and N = 231.
 power_ideal <- getPowerFit(
-    h1model_ideal,
-    nullObject = popmodel_ideal,
-    alpha = ALPHA,
-    nVal = 231,
-    usedFit = FITS
+    h1model_ideal,                # Data simulated under H1 (with cross-loadings)
+    nullObject = popmodel_ideal,  # Data simulated under H0 (no cross-loadings)
+    alpha = ALPHA,                # Significance level for determining power (see helpers.R)
+    nVal = 231,                   # Sample size for analysis
+    usedFit = FITS                # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 
 # Derive empirical cutoff values for the selected fit indices
 # from the null-model sampling distribution under the same conditions.
 cutoff_ideal <- getCutoff(
-    popmodel_ideal,
-    alpha = ALPHA,
-    nVal = 231,
-    usedFit = FITS
+    popmodel_ideal,               # Data simulated under H0 (no cross-loadings)
+    alpha = ALPHA,                # Significance level for determining power (see helpers.R)
+    nVal = 231,                   # Sample size for analysis
+    usedFit = FITS                # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 
 # Combine power and cutoff values into a compact summary table.
@@ -152,8 +162,11 @@ power_cutoff_ideal <- rbind(
     "Cutoff" = as.numeric(cutoff_ideal[1, ])
 )
 
-colnames(power_cutoff_ideal) <- toupper(names(power_ideal)) # Standardize column names for presentation.
-knitr::kable(power_cutoff_ideal, digits = 3, align = "c") # Print the table.
+# Standardize column names for presentation.
+colnames(power_cutoff_ideal) <- toupper(names(power_ideal)) 
+
+# Print the table.
+knitr::kable(power_cutoff_ideal, digits = 3, align = "c") 
 ```
 
 ### Traditional cutoff values for fit indices
@@ -177,12 +190,12 @@ affects power conclusions in simulation-based CFA evaluation
 # and the cutoff line, instead of a logistic-smoothed power curve
 
 plotPowerFit(
-  h1model_ideal,   # Simulated results under the misspecified model
-  popmodel_ideal,  # Reference model object used for comparison
-  cutoff = RULE_OF_THUMB, # Rule-of-thumb cutoff values for fit indices
-  alpha = ALPHA, # Significance level for determining power
-  usedFit = FITS, # RMSEA, SRMR, CFI, and TLI fit indices to display
-  logistic = FALSE # Display raw simulated points and cutoff lines instead of logistic curves
+  h1model_ideal,          # Data simulated under H1 (with cross-loadings)
+  popmodel_ideal,         # Data simulated under H0 (no cross-loadings)
+  cutoff = RULE_OF_THUMB, # Rule-of-thumb cutoff values for fit indices (see helpers.R)
+  alpha = ALPHA,          # Significance level for determining power (see helpers.R)
+  usedFit = FITS,         # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
+  logistic = FALSE        # Display raw simulated points and cutoff lines instead of logistic curves
 )
 ```
 
@@ -194,12 +207,14 @@ empirical-cutoff results from the previous block.
 #| label: tbl-power-cutoff-traditional-ideal
 #| tbl-cap: "Power for traditional fit index cutoffs under ideal conditions at N = 231."
 
+# Estimate power for rejecting the misspecified model (h1model_ideal)
+# using traditional rule-of-thumb cutoffs (RULE_OF_THUMB) at alpha = ALPHA and N = 231.
 power_trad <- getPowerFit(
-    h1model_ideal,
-    RULE_OF_THUMB,
-    alpha = ALPHA,
-    nVal = 231,
-    usedFit = FITS
+    h1model_ideal,    # Data simulated under H1 (with cross-loadings)
+    RULE_OF_THUMB,    # Rule-of-thumb cutoff values for fit indices (see helpers.R)
+    alpha = ALPHA,    # Significance level for determining power (see helpers.R)
+    nVal = 231,       # Sample size for analysis
+    usedFit = FITS    # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 
 # Create horizontal table: Fit Index as column names, Power as single row
@@ -207,10 +222,11 @@ power_df <- data.frame(
     "CFI" = round(as.numeric(power_trad["cfi"]), 3),
     "TLI" = round(as.numeric(power_trad["tli"]), 3),
     "RMSEA" = round(as.numeric(power_trad["rmsea"]), 3),
-    "SRMR" = power_trad["srmr"],  # Keep as string
+    "SRMR" = power_trad["srmr"],
     row.names = "Power"
 )
 
+# Print the table.
 knitr::kable(power_df, digits = 3, align = "c", col.names = toupper(names(power_df)))
 ```
 
@@ -230,10 +246,10 @@ interest [@wang2021; @simsem2021].
 
 # Compute detailed parameter-recovery results for the fitted model.
 param_ideal <- summaryParam(
-  h1model_ideal,
-  alpha = ALPHA,
-  digits = 3,
-  detail = TRUE
+  h1model_ideal,   # Data simulated under H1 (with cross-loadings)
+  alpha = ALPHA,   # Significance level for determining power (see helpers.R)
+  digits = 3,      # Number of decimal places for output
+  detail = TRUE    # Display detailed parameter-recovery results
 )
 
 # Keep only the diagnostics used in the discussion.
@@ -327,14 +343,14 @@ values.
 
 naivemodel_ideal <- cache_or_run("naivemodel_ideal", {
   sim(
-    NULL,
-    n = SEQ1,               # See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.
-    analyzemodel,
-    generate = naivemodel,
-    std.lv = TRUE,
-    lavaanfun = "cfa",
-    seed = SEED,
-    multicore = TRUE
+    NULL,                   # Number of replications is defined by SEQ1
+    n = SEQ1,               # Sample sizes defined in SEQ1 (see helpers.R)
+    analyzemodel,           # Model used for analysis (see models.R)
+    generate = naivemodel,  # Naive population model (see models.R)
+    std.lv = TRUE,          # Standardized latent variables
+    lavaanfun = "cfa",      # Use CFA function from lavaan
+    seed = SEED,            # Seed for reproducibility (see helpers.R)
+    multicore = TRUE        # Use multicore processing
 )
 })
 ```
@@ -351,10 +367,10 @@ planning purposes [@simsem2021; @gagne2006].
 
 # Compute detailed parameter-recovery results for the fitted model.
 param_naive <- summaryParam(
-  naivemodel_ideal,
-  alpha = ALPHA,
-  digits = 3,
-  detail = TRUE
+  naivemodel_ideal,  # Simulation results from the naive population model (low loadings)
+  alpha = ALPHA,     # Significance level for determining power (see helpers.R)
+  digits = 3,        # Number of digits to round the results to
+  detail = TRUE      # Return detailed parameter-level results
 )
 
 # Keep only the diagnostics used in the discussion.
@@ -409,14 +425,14 @@ knitr::kable(
 
 optmodel_ideal <- cache_or_run("optmodel_ideal", {
   sim(
-    NULL,
-    n = SEQ1,               # See the `SEQ1` object defined in helpers.R for the sample size sequence used in this scenario.
-    analyzemodel,
-    generate = optmodel,
-    std.lv = TRUE,
-    lavaanfun = "cfa",
-    seed = SEED,
-    multicore = TRUE
+    NULL,                   # Number of replications is defined by SEQ1
+    n = SEQ1,               # Sample sizes defined in SEQ1 (see helpers.R)
+    analyzemodel,           # Model used for analysis (see models.R)
+    generate = optmodel,    # Optimal population model (see models.R)
+    std.lv = TRUE,          # Standardized latent variables
+    lavaanfun = "cfa",      # Use CFA function from lavaan
+    seed = SEED,            # Seed for reproducibility (see helpers.R)
+    multicore = TRUE        # Use multicore processing
 )
 })
 ```
@@ -439,10 +455,10 @@ $Q3 \sim\sim Q4$ appears in the table below, requiring $N = 139$ [@simsem2021; @
 
 # Compute detailed parameter-recovery results for the fitted model.
 param_opt <- summaryParam(
-  optmodel_ideal,
-  alpha = ALPHA,
-  digits = 3,
-  detail = TRUE
+  optmodel_ideal,   # Simulation results from the optimal population model (stronger factor loadings)
+  alpha = ALPHA,    # Significance level for determining power (see helpers.R)
+  digits = 3,       # Number of digits to round the results to
+  detail = TRUE     # Return detailed parameter-level results
 )
 
 # Keep only the diagnostics used in the discussion.

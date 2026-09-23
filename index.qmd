@@ -531,7 +531,7 @@ with further gains becoming marginal above that.
 
 @tbl-analytical-summary compares the analytical power solutions. The
 model-based global fit test requires $N = 106$, closely matching the
-model-free RMSEA-based target ($N = 103$). This convergence occurs
+model-free RMSEA-based target ($N = 100$). This convergence occurs
 because the misspecification introduced by the three cross-loadings
 translates into an implied $\text{RMSEA} = 0.0486$, almost identical to
 the generic $0.05$ threshold.
@@ -871,8 +871,7 @@ discrimination patterns in the figures.
 Having established minimum $N$ estimates under various conditions, the
 question becomes whether a single, fixed sample size performs reliably
 as a design choice. Fixing $N = 350$ — a conservative value anchored
-above the most demanding simulation result ($N = 330$ under the naive
-population) — allows us to ask: does this $N$ consistently separate
+above the most demanding simulation result allows us to ask: does this $N$ consistently separate
 the reference and misspecified models across many independent
 replications, including under realistic data conditions (10% MCAR +
 mild non-normality)?
@@ -971,7 +970,7 @@ and links it to the noncentrality-based framework of the likelihood-ratio
 test. This is computationally immediate and free from Monte Carlo
 sampling error, making it the preferred first-pass approach when the
 asymptotic assumptions underlying the chi-square test are credible
-[@jak2021; @moshagen2024]. Three specifications are compared here,
+[@jak2021; @moshagen2024]. Two specifications are compared here,
 illustrating a spectrum from the most generic to the most
 substantively specific formulation.
 

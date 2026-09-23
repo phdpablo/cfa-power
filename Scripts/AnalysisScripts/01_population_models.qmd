@@ -12,8 +12,13 @@ execute:
 #| label: setup
 #| include: false
 
+# For defining file paths
 library(here)
+
+# For CFA population models
 source(here("Scripts", "DataAppendixScripts", "models.R"))
+
+# For plotting CFA population models
 source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 ```
 
@@ -22,7 +27,7 @@ source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 ```{r}
 #| label: pop-model
 
-cat(popmodel) # Lin & Yao (2022) population model specification
+cat(popmodel) # See object popmodel in models.R file.
 ```
 
 ```{r}
@@ -39,7 +44,7 @@ plot_color(popmodel) # See plot_color() function in helpers.R for details.
 ```{r}
 #| label: naive-model
 
-cat(naivemodel)
+cat(naivemodel) # See object naivemodel in models.R file.
 ```
 
 ```{r}
@@ -56,7 +61,7 @@ plot_color(naivemodel) # See plot_color() function in helpers.R for details.
 ```{r}
 #| label: opt-model
 
-cat(optmodel)
+cat(optmodel) # See object optmodel in models.R file.
 ```
 
 ```{r}
@@ -73,7 +78,7 @@ plot_color(optmodel) # See plot_color() function in helpers.R for details.
 ```{r}
 #| label: h1-model
 
-cat(h1model) # Plus three cross-loading in Lin & Yao (2022) specification
+cat(h1model) # See object h1model in models.R file.
 ```
 
 ```{r}
@@ -90,7 +95,7 @@ plot_color(h1model) # See plot_color() function in helpers.R for details.
 ```{r}
 #| label: analysis-model
 
-cat(analyzemodel)
+cat(analyzemodel) # See object analyzemodel in models.R file.
 ```
 
 ```{r}
@@ -108,6 +113,7 @@ plot_free(analyzemodel) # See plot_free() function in helpers.R for details.
 #| label: tbl-pop-summary
 #| tbl-cap: "Summary of population models used for sensitivity analysis"
 
+# See popmodels_parameters.csv file in InputData folder.
 csv <- read.csv(
   here("Data", "InputData", "popmodels_parameters.csv"),
   quote = "",
@@ -115,8 +121,10 @@ csv <- read.csv(
   stringsAsFactors = FALSE
 )
 
+# Remove quotes from the column names
 names(csv) <- gsub('"', '', names(csv))
 
+# Transpose the data frame to have parameters as rows and models as columns
 param_transp <- as.data.frame(t(csv[-1]), stringsAsFactors = FALSE)
 names(param_transp) <- csv[[1]]
 param_transp <- cbind(parameters = names(csv)[-1], param_transp)
@@ -126,6 +134,7 @@ row.names(param_transp) <- NULL
 display <- param_transp
 display$parameters <- gsub("~~", "\\~\\~", display$parameters, fixed = TRUE)
 
+# Display the parameters table
 display |>
   kable(
     caption = "CFA Population Models Parameter",
@@ -177,10 +186,12 @@ metrics <- c("Loading Min", "Loading Max", "Mean Loading",
              "Factor Correlations", "Residual Min", "Residual Max",
              "Q3\u2013Q4 Correlation")
 
+# Build and transpose the summary table (metrics × models)
 pop_summary_t <- cbind(
   data.frame(Metric = metrics),
   setNames(data.frame(sapply(names(models), get_metrics)), models)
 )
 
+# Display the metrics table
 kable(pop_summary_t, align = "lcccc", row.names = FALSE)
 ```

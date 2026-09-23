@@ -12,12 +12,22 @@ execute:
 #| label: setup
 #| include: false
 
+# For defining file paths
 library(here)
+
+# For CFA population models
 source(here("Scripts", "DataAppendixScripts", "models.R"))
+
+# For DRY (Don't repeat yourself) parameters
 source(here("Scripts", "DataAppendixScripts", "helpers.R"))
+
+# For simulations caching
 source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
+
+# For loading existing simulations cache
 source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
 
+# Load existing simulations cache if available (cache_loader.R)
 cache_load_existing()
 ```
 
@@ -43,18 +53,18 @@ planning value for the full research design [@wang2021; @jobst2023].
 
 popmodel_fixed <- cache_or_run("popmodel_fixed", {
     sim(
-        REP,
-        n = 350,
-        pmMCAR = 0.10,
-        analyzemodel,
-        generate = popmodel,
-        indDist = dist,       # See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.
-        std.lv = TRUE,
-        lavaanfun = "cfa",
-        estimator = "mlr",
-        missing = "fiml",
-        seed = SEED,
-        multicore = TRUE
+        REP,                    # Number of replications (defined in helpers.R)
+        n = 350,                # Fixed sample size
+        pmMCAR = P_MCAR,        # Percentage of missing Completely At Random (MCAR) data (defined in helpers.R)
+        analyzemodel,           # Model to analyze (defined in models.R)
+        generate = popmodel,    # Population model to simulate from (defined in models.R)
+        indDist = dist,         # Individual distribution of response variables (defined in helpers.R)
+        std.lv = TRUE,          # Standardize latent variables to unit variance
+        lavaanfun = "cfa",      # Use confirmatory factor analysis (CFA)
+        estimator = "mlr",      # Use robust maximum likelihood (MLR) estimator
+        missing = "fiml",       # Use Full Information Maximum Likelihood (FIML) for missing data
+        seed = SEED,            # Random seed for reproducibility (defined in helpers.R)
+        multicore = TRUE        # Use multiple cores for parallel processing
     )
 })
 ```
@@ -64,18 +74,18 @@ popmodel_fixed <- cache_or_run("popmodel_fixed", {
 
 h1model_fixed <- cache_or_run("h1model_fixed", {
     sim(
-        REP,
-        n = 350,
-        pmMCAR = 0.10,
-        analyzemodel,
-        generate = h1model,
-        indDist = dist,      # See the `dist` object defined in helpers.R for the range of skewness and kurtosis values.
-        std.lv = TRUE,
-        lavaanfun = "cfa",
-        estimator = "mlr",
-        missing = "fiml",
-        seed = SEED,
-        multicore = TRUE
+        REP,                    # Number of replications (defined in helpers.R)
+        n = 350,                # Fixed sample size
+        pmMCAR = P_MCAR,        # Percentage of missing Completely At Random (MCAR) data (defined in helpers.R)
+        analyzemodel,           # Model to analyze (defined in models.R)
+        generate = h1model,     # Population model with cross loadings (defined in models.R)
+        indDist = dist,         # Individual distribution of response variables (defined in helpers.R)
+        std.lv = TRUE,          # Standardize latent variables to unit variance
+        lavaanfun = "cfa",      # Use confirmatory factor analysis (CFA)
+        estimator = "mlr",      # Use robust maximum likelihood (MLR) estimator
+        missing = "fiml",       # Use Full Information Maximum Likelihood (FIML) for missing data
+        seed = SEED,            # Random seed for reproducibility (defined in helpers.R)
+        multicore = TRUE        # Use multiple cores for parallel processing
     )
 })
 ```
@@ -97,10 +107,10 @@ in the table below [@simsem2021; @mcneish2021].
 #| fig-height: 5
 
 plotPowerFit(
-    h1model_fixed,
-    popmodel_fixed,
-    alpha = ALPHA,
-    usedFit = FITS
+    h1model_fixed,    # Data simulated under H1 (with cross-loadings)
+    popmodel_fixed,   # Data simulated under H0 (null model)
+    alpha = ALPHA,    # Significance level for determining power (see helpers.R)
+    usedFit = FITS    # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 ```
 
@@ -113,22 +123,21 @@ plotPowerFit(
 # Estimate power for rejecting the misspecified model (h1model_fixed)
 # using fit-index cutoffs implied by the null model.
 power_fixed <- getPowerFit(
-  h1model_fixed,
-  nullObject = popmodel_fixed,
-  alpha = ALPHA,
-  usedFit = FITS
+  h1model_fixed,                 # Data simulated under H1 (with cross-loadings)
+  nullObject = popmodel_fixed,   # Data simulated under H0 (null model)
+  alpha = ALPHA,                 # Significance level (see helpers.R)
+  usedFit = FITS                 # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 
 # Derive empirical cutoff values for the selected fit indices
 # from the null-model sampling distribution under the same conditions.
 cutoff_fixed <- getCutoff(
-  popmodel_fixed,
-  alpha = ALPHA,
-  usedFit = FITS
+  popmodel_fixed,     # Data simulated under H0 (null model)
+  alpha = ALPHA,      # Significance level (see helpers.R)
+  usedFit = FITS      # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 
-# Subset power to the four requested fit indices (FITS: rmsea, srmr, cfi, tli)
-# ensuring 1-to-1 alignment with cutoff_fixed and excluding TraditionalChi.
+# Subset power to the four requested fit indices
 power_fixed_clean <- power_fixed[FITS]
 cutoff_fixed_clean <- cutoff_fixed[1, FITS]
 
@@ -138,8 +147,10 @@ power_cutoff_fixed <- rbind(
   "Cutoff" = as.numeric(cutoff_fixed_clean)
 )
 
+# Standardize column names for presentation.
 colnames(power_cutoff_fixed) <- toupper(FITS)
 
+# Print the table.
 knitr::kable(power_cutoff_fixed, digits = 3, align = "c")
 ```
 
@@ -160,11 +171,11 @@ of the cutoff choice to the power conclusion [@mcneish2021;
 #| fig-height: 5
 
 plotPowerFit(
-    h1model_fixed,
-    popmodel_fixed,
-    cutoff = RULE_OF_THUMB,
-    alpha = ALPHA,
-    usedFit = FITS
+    h1model_fixed,           # Data simulated under H1 (with cross-loadings)
+    popmodel_fixed,          # Data simulated under H0 (null model)
+    cutoff = RULE_OF_THUMB,  # Traditional fit-index cutoffs (see helpers.R)
+    alpha = ALPHA,           # Significance level (see helpers.R)
+    usedFit = FITS           # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 ```
 
@@ -174,18 +185,20 @@ plotPowerFit(
 
 # Estimate power using traditional fit-index cutoffs.
 power_traditional <- getPowerFit(
-  h1model_fixed,
-  RULE_OF_THUMB,
-  alpha = ALPHA,
-  usedFit = FITS
+  h1model_fixed,     # Data simulated under H1 (with cross-loadings)
+  RULE_OF_THUMB,     # Traditional fit-index cutoffs (see helpers.R)
+  alpha = ALPHA,     # Significance level (see helpers.R)
+  usedFit = FITS     # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
 )
 
 # Convert to a one-row table with column headers.
 power_traditional_tbl <- t(as.data.frame(power_traditional))
 
+# Standardize column names for presentation.
 colnames(power_traditional_tbl) <- toupper(names(power_traditional))
 rownames(power_traditional_tbl) <- "Power"
 
+# Print the table.
 knitr::kable(power_traditional_tbl, digits = 3, align = "c")
 ```
 

@@ -12,8 +12,13 @@ execute:
 #| label: setup
 #| include: false
 
+# For defining file paths
 library(here)
+
+# For CFA population models
 source(here("Scripts", "DataAppendixScripts", "models.R"))
+
+# For DRY (Don't repeat yourself) parameters
 source(here("Scripts", "DataAppendixScripts", "helpers.R"))
 ```
 
@@ -30,13 +35,15 @@ that follow [@jak2021; @moshagen2024].
 ```{r}
 #| label: compute-df
 
-# Compute df for standardized latent variables (std.lv = TRUE)
+# Compute df for standardized latent variables
 # 24 observed variables: p*(p+1)/2 = 300 non-redundant sample moments
 # analyzemodel: 24 loadings + 6 factor correlations + 1 residual covariance (Q3~~Q4) + 24 residual variances = 55 free parameters
 # Model degrees of freedom: df = 300 - 55 = 245
-df_model <- 245
+df_model <- semPower.getDf(analyzemodel)-4
+# Minus 4 because the 4 residual variances are fixed to 1 in analyzemodel, 
+# and in the foward analysis we use std.lv = TRUE (standardized latent variables). 
 
-cat("Model degrees of freedom (with std.lv = TRUE):", df_model, "\n")
+cat("Model degrees of freedom:", df_model, "\n")
 ```
 
 ## A priori power analysis: Determine N
@@ -68,10 +75,10 @@ $Mc$, $GFI$, and $AGFI$ [@moshagen2024].
 ap_rmsea <- semPower::semPower.aPriori(
   effect         = 0.05,      # RMSEA under H1
   effect.measure = "RMSEA",   # effect is expressed as RMSEA
-  alpha          = ALPHA,     # Type I error rate
-  power          = POWER,     # desired statistical power = 1 - beta
-  df             = df_model,  # model degrees of freedom (245)
-  p              = P          # only relevant for indices such as GFI/AGFI
+  alpha          = ALPHA,     # Type I error rate defined in helpers.R
+  power          = POWER,     # desired statistical power defined in helpers.R
+  df             = df_model,  # model degrees of freedom calculated in "compute-df" chunk
+  p              = P          # number of observed indicators defined in helpers.R
 )
 
 # Shows effect size, df, required N, critical chi-square,
@@ -104,12 +111,12 @@ against the saturated model, evaluating overall model misfit ($df = 245$).
 # cross-loadings in analyzemodel when data arise from h1model.
 
 ap_popmodel <- semPower::semPower.powerLav(
-  type       = "a-priori",
-  alpha      = ALPHA,
-  power      = POWER,
-  modelPop   = h1model,
-  modelH0    = analyzemodel,
-  lavOptions = list(std.lv = TRUE)
+  type       = "a-priori", # Type of power analysis
+  alpha      = ALPHA,      # Type I error rate defined in helpers.R
+  power      = POWER,      # desired statistical power defined in helpers.R
+  modelPop   = h1model,    # population model defined in "models.R"
+  modelH0    = analyzemodel, # analysis model defined in "models.R"
+  lavOptions = list(std.lv = TRUE) # Standardize latent variables
 )
 
 # Shows effect size, df, required N, critical chi-square,
@@ -141,12 +148,12 @@ global misspecification across a range of possible $N$ values
 
 # Plots statistical power against sample size N.
 semPower::semPower.powerPlot.byN(
-  effect         = 0.05,      # effect = 0.05 sets the target misfit in RMSEA units.
-  effect.measure = "RMSEA",
-  alpha          = ALPHA,     # alpha = ALPHA sets the Type I error rate.
-  df             = df_model,  # df = df_model sets the model degrees of freedom.
-  power.min      = 0.05,
-  power.max      = 0.99       # power.min and power.max define the y-axis range of curve.
+  effect         = 0.05,      # Target misfit in RMSEA units.
+  effect.measure = "RMSEA",   # Type of effect measure
+  alpha          = ALPHA,     # Type I error rate defined in helpers.R
+  df             = df_model,  # Model degrees of freedom calculated in "compute-df" chunk
+  power.min      = 0.05,      # Min. Power define the y-axis range
+  power.max      = 0.99       # Max. Power define the y-axis range
 )
 ```
 
@@ -190,6 +197,7 @@ and, in this case, more conservative [@wang2023; @feng2023].
 # Helper to safely extract a single numeric value from each result object
 safe_num <- function(x) if (length(x) == 0 || is.null(x)) NA else as.numeric(x)[1]
 
+# Create a summary table of the analytical power analysis results
 analytical_summary <- data.frame(
     Method = c(
         "Model-free a priori (RMSEA = .05)",
@@ -214,6 +222,6 @@ analytical_summary <- data.frame(
     check.names = FALSE
 )
 
-# Render the summary table with simple column alignment for reporting
+# Render the summary table with simple column alignment
 knitr::kable(analytical_summary, align = "lcccc")
 ```

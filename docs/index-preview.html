@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
     <meta name="author" content="Pablo Rogers">
-    <meta name="dcterms.date" content="2026-09-22">
+    <meta name="dcterms.date" content="2026-09-23">
     <meta name="keywords" content="Power Analysis, Confirmatory Factor Analysis, Structural Equation Modeling, Monte Carlo Simulation, semPower, simsem">
 
     <title>Power Analysis for Confirmatory Factor Analysis: A Practical Tutorial</title>
@@ -198,10 +198,10 @@
 ">
 <meta name="citation_keywords" content="Power Analysis,Confirmatory Factor Analysis,Structural Equation Modeling,Monte Carlo Simulation,semPower,simsem">
 <meta name="citation_author" content="Pablo Rogers">
-<meta name="citation_publication_date" content="2026-09-22">
-<meta name="citation_cover_date" content="2026-09-22">
+<meta name="citation_publication_date" content="2026-09-23">
+<meta name="citation_cover_date" content="2026-09-23">
 <meta name="citation_year" content="2026">
-<meta name="citation_online_date" content="2026-09-22">
+<meta name="citation_online_date" content="2026-09-23">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Simsem: SIMulated Structural Equation Modeling;,citation_author=Sunthud Pornprasertmanit;,citation_author=Patrick Miller;,citation_author=Alexander Schoemann;,citation_author=Terrence D. Jorgensen;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_fulltext_html_url=https://CRAN.R-project.org/package=simsem;">
 <meta name="citation_reference" content="citation_title=Validation of the factor structure of the WHOQOL-BREF using meta-analysis of exploratory factor analysis and social network analysis;,citation_author=Lin-Ching Lin;,citation_author=Grace Yao;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_issue=7;,citation_doi=10.1037/pas0001122;,citation_volume=34;,citation_journal_title=Psychological Assessment;">
@@ -282,7 +282,7 @@
                 <div>
             <div class="quarto-title-meta-heading">Published</div>
             <div class="quarto-title-meta-contents">
-              <p class="date">September 22, 2026</p>
+              <p class="date">September 23, 2026</p>
             </div>
           </div>
           
@@ -596,7 +596,7 @@ Attaching package: 'dplyr'</code></pre>
 <p>The <code>lavaan</code> syntax for this model is shown below; <a href="#fig-diagram-popmodel" class="quarto-xref">Figure&nbsp;1</a> provides a visual representation.</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\01_population_models.qmd" data-notebook-title="Population Models" data-notebook-cellid="cell-pop-model">
 <div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="pop-model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cat(popmodel) <span class="co"># Lin &amp; Yao (2022) population model specification</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cat(popmodel) <span class="co"># See object popmodel in models.R file.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings: empirical estimates from Lin &amp; Yao (2022) ────────────
@@ -681,7 +681,7 @@ Figure&nbsp;1: Path diagram of the popmodel
 </ul>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\01_population_models.qmd" data-notebook-title="Population Models" data-notebook-cellid="cell-naive-model">
 <div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="naive-model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cat(naivemodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cat(naivemodel) <span class="co"># See object naivemodel in models.R file.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
@@ -763,7 +763,7 @@ Figure&nbsp;2: Path diagram of the naivemodel
 </ul>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\01_population_models.qmd" data-notebook-title="Population Models" data-notebook-cellid="cell-opt-model">
 <div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="opt-model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>cat(optmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>cat(optmodel) <span class="co"># See object optmodel in models.R file.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
@@ -846,7 +846,7 @@ Figure&nbsp;3: Path diagram of the optmodel
 <p>Residual variances for cross-loaded items were recalculated to preserve total item variance: <span class="math inline">\(\theta = 1 - \lambda_{\text{primary}}^2 - \lambda_{\text{secondary}}^2 - 2\lambda_{\text{primary}}\lambda_{\text{secondary}}\phi\)</span>, where <span class="math inline">\(\phi = 0.20\)</span>.</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\01_population_models.qmd" data-notebook-title="Population Models" data-notebook-cellid="cell-h1-model">
 <div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="h1-model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>cat(h1model) <span class="co"># Plus three cross-loading in Lin &amp; Yao (2022) specification</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>cat(h1model) <span class="co"># See object h1model in models.R file.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings (with three cross-loadings) ───────────────────────────
@@ -924,33 +924,37 @@ Figure&nbsp;4: Path diagram of the h1model
 <p><a href="#tbl-pop-summary" class="quarto-xref">Table&nbsp;1</a> presents all parameters of the four population models. <a href="#tbl-pop-comparison" class="quarto-xref">Table&nbsp;2</a> summarizes key features across models — minimum and maximum factor loadings, mean loading, modal interfactor correlation, minimum and maximum residual variances, and the residual correlation between <span class="math inline">\(Q3\)</span> and <span class="math inline">\(Q4\)</span> — to facilitate direct comparison.</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\01_population_models.qmd" data-notebook-title="Population Models" data-notebook-cellid="cell-tbl-pop-summary">
 <div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>csv <span class="op">&lt;-</span> read.csv(</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  here(<span class="st">"Data"</span>, <span class="st">"InputData"</span>, <span class="st">"popmodels_parameters.csv"</span>),</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  quote <span class="op">=</span> <span class="st">""</span>,</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  check.names <span class="op">=</span> FALSE,</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  stringsAsFactors <span class="op">=</span> FALSE</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>names(csv) <span class="op">&lt;-</span> gsub(<span class="st">'"'</span>, <span class="st">''</span>, names(csv))</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>param_transp <span class="op">&lt;-</span> <span class="im">as</span>.data.frame(t(csv[<span class="op">-</span><span class="dv">1</span>]), stringsAsFactors <span class="op">=</span> FALSE)</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>names(param_transp) <span class="op">&lt;-</span> csv[[<span class="dv">1</span>]]</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>param_transp <span class="op">&lt;-</span> cbind(parameters <span class="op">=</span> names(csv)[<span class="op">-</span><span class="dv">1</span>], param_transp)</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>row.names(param_transp) <span class="op">&lt;-</span> NULL</span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Escape ~~ for Pandoc (prevents strikethrough in HTML); keep param_transp clean.</span></span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>display <span class="op">&lt;-</span> param_transp</span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>display$parameters <span class="op">&lt;-</span> gsub(<span class="st">"~~"</span>, <span class="st">"</span><span class="ch">\\</span><span class="st">~</span><span class="ch">\\</span><span class="st">~"</span>, display$parameters, fixed <span class="op">=</span> TRUE)</span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>display <span class="op">|&gt;</span></span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>  kable(</span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>    caption <span class="op">=</span> <span class="st">"CFA Population Models Parameter"</span>,</span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>    digits <span class="op">=</span> <span class="dv">4</span>,</span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>    align <span class="op">=</span> <span class="st">"lcccc"</span>,</span>
-<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>    booktabs <span class="op">=</span> TRUE,</span>
-<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>    escape <span class="op">=</span> FALSE,</span>
-<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>    col.names <span class="op">=</span> c(<span class="st">"parameters"</span>, <span class="st">"popmodel"</span>, <span class="st">"naivemodel"</span>, <span class="st">"optmodel"</span>, <span class="st">"h1model"</span>)</span>
-<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See popmodels_parameters.csv file in InputData folder.</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>csv <span class="op">&lt;-</span> read.csv(</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  here(<span class="st">"Data"</span>, <span class="st">"InputData"</span>, <span class="st">"popmodels_parameters.csv"</span>),</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  quote <span class="op">=</span> <span class="st">""</span>,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  check.names <span class="op">=</span> FALSE,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  stringsAsFactors <span class="op">=</span> FALSE</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove quotes from the column names</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>names(csv) <span class="op">&lt;-</span> gsub(<span class="st">'"'</span>, <span class="st">''</span>, names(csv))</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Transpose the data frame to have parameters as rows and models as columns</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>param_transp <span class="op">&lt;-</span> <span class="im">as</span>.data.frame(t(csv[<span class="op">-</span><span class="dv">1</span>]), stringsAsFactors <span class="op">=</span> FALSE)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>names(param_transp) <span class="op">&lt;-</span> csv[[<span class="dv">1</span>]]</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>param_transp <span class="op">&lt;-</span> cbind(parameters <span class="op">=</span> names(csv)[<span class="op">-</span><span class="dv">1</span>], param_transp)</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>row.names(param_transp) <span class="op">&lt;-</span> NULL</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Escape ~~ for Pandoc (prevents strikethrough in HTML); keep param_transp clean.</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>display <span class="op">&lt;-</span> param_transp</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>display$parameters <span class="op">&lt;-</span> gsub(<span class="st">"~~"</span>, <span class="st">"</span><span class="ch">\\</span><span class="st">~</span><span class="ch">\\</span><span class="st">~"</span>, display$parameters, fixed <span class="op">=</span> TRUE)</span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the parameters table</span></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>display <span class="op">|&gt;</span></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>  kable(</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>    caption <span class="op">=</span> <span class="st">"CFA Population Models Parameter"</span>,</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>    digits <span class="op">=</span> <span class="dv">4</span>,</span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>    align <span class="op">=</span> <span class="st">"lcccc"</span>,</span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>    booktabs <span class="op">=</span> TRUE,</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>    escape <span class="op">=</span> FALSE,</span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>    col.names <span class="op">=</span> c(<span class="st">"parameters"</span>, <span class="st">"popmodel"</span>, <span class="st">"naivemodel"</span>, <span class="st">"optmodel"</span>, <span class="st">"h1model"</span>)</span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="tbl-pop-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pop-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1457,12 +1461,14 @@ Table&nbsp;1: Summary of population models used for sensitivity analysis
 <span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Factor Correlations"</span>, <span class="st">"Residual Min"</span>, <span class="st">"Residual Max"</span>,</span>
 <span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Q3</span><span class="ch">\u2013</span><span class="st">Q4 Correlation"</span>)</span>
 <span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a>pop_summary_t <span class="op">&lt;-</span> cbind(</span>
-<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a>  data.frame(Metric <span class="op">=</span> metrics),</span>
-<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a>  setNames(data.frame(sapply(names(models), get_metrics)), models)</span>
-<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a>kable(pop_summary_t, align <span class="op">=</span> <span class="st">"lcccc"</span>, row.names <span class="op">=</span> FALSE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Build and transpose the summary table (metrics × models)</span></span>
+<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a>pop_summary_t <span class="op">&lt;-</span> cbind(</span>
+<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a>  data.frame(Metric <span class="op">=</span> metrics),</span>
+<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a>  setNames(data.frame(sapply(names(models), get_metrics)), models)</span>
+<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the metrics table</span></span>
+<span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a>kable(pop_summary_t, align <span class="op">=</span> <span class="st">"lcccc"</span>, row.names <span class="op">=</span> FALSE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div id="tbl-pop-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pop-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1561,7 +1567,7 @@ Table&nbsp;2: Comparison of model variants used for sensitivity analysis
 </ul>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\01_population_models.qmd" data-notebook-title="Population Models" data-notebook-cellid="cell-analysis-model">
 <div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div id="analysis-model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>cat(analyzemodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>cat(analyzemodel) <span class="co"># See object analyzemodel in models.R file.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   # ── Factor loadings: freely estimated ─────────────────────────────────────
@@ -1617,15 +1623,17 @@ Figure&nbsp;5: Path diagram of the analyzemodel
 <p>All analytical calculations in this section depend on the model degrees of freedom (<span class="math inline">\(df\)</span>) — the difference between the number of unique variances and covariances in the observed data and the number of freely estimated parameters. This quantity enters the non-central <span class="math inline">\(\chi^2\)</span> distribution directly and is therefore required before any a priori or post hoc power calculation can proceed:</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\02_analytical_power.qmd" data-notebook-title="Analytical Power Analysis" data-notebook-cellid="cell-compute-df">
 <div class="cell-container"><div class="cell-decorator"><pre>In [16]:</pre></div><div id="compute-df" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute df for standardized latent variables (std.lv = TRUE)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute df for standardized latent variables</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 24 observed variables: p*(p+1)/2 = 300 non-redundant sample moments</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># analyzemodel: 24 loadings + 6 factor correlations + 1 residual covariance (Q3~~Q4) + 24 residual variances = 55 free parameters</span></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model degrees of freedom: df = 300 - 55 = 245</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>df_model <span class="op">&lt;-</span> <span class="dv">245</span></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>cat(<span class="st">"Model degrees of freedom (with std.lv = TRUE):"</span>, df_model, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>df_model <span class="op">&lt;-</span> semPower.getDf(analyzemodel)<span class="op">-</span><span class="dv">4</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Minus 4 because the 4 residual variances are fixed to 1 in analyzemodel, </span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># and in the foward analysis we use std.lv = TRUE (standardized latent variables). </span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>cat(<span class="st">"Model degrees of freedom:"</span>, df_model, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Model degrees of freedom (with std.lv = TRUE): 245 </code></pre>
+<pre><code>Model degrees of freedom: 245 </code></pre>
 </div>
 </div></div>
 </div>
@@ -1645,10 +1653,10 @@ Figure&nbsp;5: Path diagram of the analyzemodel
 <span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>ap_rmsea <span class="op">&lt;-</span> semPower::semPower.aPriori(</span>
 <span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  effect         <span class="op">=</span> <span class="fl">0.05</span>,      <span class="co"># RMSEA under H1</span></span>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  effect.measure <span class="op">=</span> <span class="st">"RMSEA"</span>,   <span class="co"># effect is expressed as RMSEA</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  alpha          <span class="op">=</span> ALPHA,     <span class="co"># Type I error rate</span></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  power          <span class="op">=</span> POWER,     <span class="co"># desired statistical power = 1 - beta</span></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  df             <span class="op">=</span> df_model,  <span class="co"># model degrees of freedom (245)</span></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>  p              <span class="op">=</span> P          <span class="co"># only relevant for indices such as GFI/AGFI</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  alpha          <span class="op">=</span> ALPHA,     <span class="co"># Type I error rate defined in helpers.R</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  power          <span class="op">=</span> POWER,     <span class="co"># desired statistical power defined in helpers.R</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  df             <span class="op">=</span> df_model,  <span class="co"># model degrees of freedom calculated in "compute-df" chunk</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>  p              <span class="op">=</span> P          <span class="co"># number of observed indicators defined in helpers.R</span></span>
 <span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Shows effect size, df, required N, critical chi-square,</span></span>
@@ -1709,12 +1717,12 @@ Figure&nbsp;6: A priori power analysis for exact fit with RMSEA-based effect siz
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cross-loadings in analyzemodel when data arise from h1model.</span></span>
 <span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>ap_popmodel <span class="op">&lt;-</span> semPower::semPower.powerLav(</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">type</span>       <span class="op">=</span> <span class="st">"a-priori"</span>,</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  alpha      <span class="op">=</span> ALPHA,</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  power      <span class="op">=</span> POWER,</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  modelPop   <span class="op">=</span> h1model,</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  modelH0    <span class="op">=</span> analyzemodel,</span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  lavOptions <span class="op">=</span> <span class="bu">list</span>(std.lv <span class="op">=</span> TRUE)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">type</span>       <span class="op">=</span> <span class="st">"a-priori"</span>, <span class="co"># Type of power analysis</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  alpha      <span class="op">=</span> ALPHA,      <span class="co"># Type I error rate defined in helpers.R</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  power      <span class="op">=</span> POWER,      <span class="co"># desired statistical power defined in helpers.R</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  modelPop   <span class="op">=</span> h1model,    <span class="co"># population model defined in "models.R"</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  modelH0    <span class="op">=</span> analyzemodel, <span class="co"># analysis model defined in "models.R"</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  lavOptions <span class="op">=</span> <span class="bu">list</span>(std.lv <span class="op">=</span> TRUE) <span class="co"># Standardize latent variables</span></span>
 <span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Shows effect size, df, required N, critical chi-square,</span></span>
@@ -1765,12 +1773,12 @@ Figure&nbsp;7: A priori power analysis Model-based approach (h1model vs analyzem
 <div class="cell-container"><div class="cell-decorator"><pre>In [19]:</pre></div><div id="cell-fig-power-rmsea" class="cell" data-fig-width="8" data-fig-height="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots statistical power against sample size N.</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>semPower::semPower.powerPlot.byN(</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  effect         <span class="op">=</span> <span class="fl">0.05</span>,      <span class="co"># effect = 0.05 sets the target misfit in RMSEA units.</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  effect.measure <span class="op">=</span> <span class="st">"RMSEA"</span>,</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  alpha          <span class="op">=</span> ALPHA,     <span class="co"># alpha = ALPHA sets the Type I error rate.</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  df             <span class="op">=</span> df_model,  <span class="co"># df = df_model sets the model degrees of freedom.</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  power.<span class="bu">min</span>      <span class="op">=</span> <span class="fl">0.05</span>,</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  power.<span class="bu">max</span>      <span class="op">=</span> <span class="fl">0.99</span>       <span class="co"># power.min and power.max define the y-axis range of curve.</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  effect         <span class="op">=</span> <span class="fl">0.05</span>,      <span class="co"># Target misfit in RMSEA units.</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  effect.measure <span class="op">=</span> <span class="st">"RMSEA"</span>,   <span class="co"># Type of effect measure</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  alpha          <span class="op">=</span> ALPHA,     <span class="co"># Type I error rate defined in helpers.R</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  df             <span class="op">=</span> df_model,  <span class="co"># Model degrees of freedom calculated in "compute-df" chunk</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  power.<span class="bu">min</span>      <span class="op">=</span> <span class="fl">0.05</span>,      <span class="co"># Min. Power define the y-axis range</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  power.<span class="bu">max</span>      <span class="op">=</span> <span class="fl">0.99</span>       <span class="co"># Max. Power define the y-axis range</span></span>
 <span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-power-rmsea" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1817,38 +1825,39 @@ Figure&nbsp;9: Power as a function of sample size for the population model (popM
 </section>
 <section id="summary-table" class="level3" data-number="3.4">
 <h3 data-number="3.4" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">3.4</span> Summary table</h3>
-<p><a href="#tbl-analytical-summary" class="quarto-xref">Table&nbsp;3</a> compares the analytical power solutions. The model-based global fit test requires <span class="math inline">\(N = 106\)</span>, closely matching the model-free RMSEA-based target (<span class="math inline">\(N = 103\)</span>). This convergence occurs because the misspecification introduced by the three cross-loadings translates into an implied <span class="math inline">\(\text{RMSEA} = 0.0486\)</span>, almost identical to the generic <span class="math inline">\(0.05\)</span> threshold.</p>
+<p><a href="#tbl-analytical-summary" class="quarto-xref">Table&nbsp;3</a> compares the analytical power solutions. The model-based global fit test requires <span class="math inline">\(N = 106\)</span>, closely matching the model-free RMSEA-based target (<span class="math inline">\(N = 100\)</span>). This convergence occurs because the misspecification introduced by the three cross-loadings translates into an implied <span class="math inline">\(\text{RMSEA} = 0.0486\)</span>, almost identical to the generic <span class="math inline">\(0.05\)</span> threshold.</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\02_analytical_power.qmd" data-notebook-title="Analytical Power Analysis" data-notebook-cellid="cell-tbl-analytical-summary">
 <div class="cell-container"><div class="cell-decorator"><pre>In [21]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper to safely extract a single numeric value from each result object</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>safe_num <span class="op">&lt;-</span> function(x) <span class="cf">if</span> (length(x) <span class="op">==</span> <span class="dv">0</span> <span class="op">||</span> <span class="kw">is</span>.null(x)) NA <span class="cf">else</span> <span class="im">as</span>.numeric(x)[<span class="dv">1</span>]</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>analytical_summary <span class="op">&lt;-</span> data.frame(</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    Method <span class="op">=</span> c(</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Model-free a priori (RMSEA = .05)"</span>,</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Model-based global fit (h1model vs. saturated)"</span></span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    `N Required` <span class="op">=</span> c(</span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>        safe_num(ap_rmsea$requiredN),</span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>        safe_num(ap_popmodel$requiredN)</span>
-<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>    `Power` <span class="op">=</span> c(</span>
-<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">round</span>(safe_num(ap_rmsea$impliedPower), <span class="dv">4</span>),</span>
-<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">round</span>(safe_num(ap_popmodel$impliedPower), <span class="dv">4</span>)</span>
-<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>    `Implied RMSEA` <span class="op">=</span> c(</span>
-<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">round</span>(safe_num(ap_rmsea$rmsea), <span class="dv">4</span>),</span>
-<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">round</span>(safe_num(ap_popmodel$rmsea), <span class="dv">4</span>)</span>
-<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> c(</span>
-<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>        safe_num(ap_rmsea$df),</span>
-<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>        safe_num(ap_popmodel$df)</span>
-<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a>    check.names <span class="op">=</span> FALSE</span>
-<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Render the summary table with simple column alignment for reporting</span></span>
-<span id="cb51-29"><a href="#cb51-29" aria-hidden="true" tabindex="-1"></a>knitr::kable(analytical_summary, align <span class="op">=</span> <span class="st">"lcccc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a summary table of the analytical power analysis results</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>analytical_summary <span class="op">&lt;-</span> data.frame(</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    Method <span class="op">=</span> c(</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Model-free a priori (RMSEA = .05)"</span>,</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Model-based global fit (h1model vs. saturated)"</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>    `N Required` <span class="op">=</span> c(</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>        safe_num(ap_rmsea$requiredN),</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>        safe_num(ap_popmodel$requiredN)</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>    `Power` <span class="op">=</span> c(</span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">round</span>(safe_num(ap_rmsea$impliedPower), <span class="dv">4</span>),</span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">round</span>(safe_num(ap_popmodel$impliedPower), <span class="dv">4</span>)</span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>    `Implied RMSEA` <span class="op">=</span> c(</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">round</span>(safe_num(ap_rmsea$rmsea), <span class="dv">4</span>),</span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">round</span>(safe_num(ap_popmodel$rmsea), <span class="dv">4</span>)</span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> c(</span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>        safe_num(ap_rmsea$df),</span>
+<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a>        safe_num(ap_popmodel$df)</span>
+<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a>    check.names <span class="op">=</span> FALSE</span>
+<span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-29"><a href="#cb51-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Render the summary table with simple column alignment</span></span>
+<span id="cb51-30"><a href="#cb51-30" aria-hidden="true" tabindex="-1"></a>knitr::kable(analytical_summary, align <span class="op">=</span> <span class="st">"lcccc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [22]:</pre></div><div id="tbl-analytical-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-analytical-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1923,10 +1932,10 @@ Table&nbsp;3: Summary of analytical power analysis results
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\03_simulation_ideal.qmd" data-notebook-title="Simulation — Ideal Conditions" data-notebook-cellid="cell-fig-power-curve-ideal">
 <div class="cell-container"><div class="cell-decorator"><pre>In [23]:</pre></div><div id="cell-fig-power-curve-ideal" class="cell" data-fig-width="8" data-fig-height="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    popmodel_ideal,</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,   <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    popmodel_ideal,  <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,   <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS   <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
 <span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-power-curve-ideal" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1946,11 +1955,11 @@ Figure&nbsp;10: Power curves for fit indices under ideal conditions.
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\03_simulation_ideal.qmd" data-notebook-title="Simulation — Ideal Conditions" data-notebook-cellid="cell-fig-fit-curve-ideal">
 <div class="cell-container"><div class="cell-decorator"><pre>In [24]:</pre></div><div id="cell-fig-fit-curve-ideal" class="cell" data-fig-width="8" data-fig-height="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    popmodel_ideal,</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS,</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    logistic <span class="op">=</span> FALSE</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,    <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    popmodel_ideal,   <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,    <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS,   <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    logistic <span class="op">=</span> FALSE  <span class="co"># Display raw simulated points and cutoff lines instead of logistic curves</span></span>
 <span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-fit-curve-ideal" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1970,22 +1979,22 @@ Figure&nbsp;11: Power curves for fit indices under ideal conditions without logi
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\03_simulation_ideal.qmd" data-notebook-title="Simulation — Ideal Conditions" data-notebook-cellid="cell-tbl-power-cutoff-ideal">
 <div class="cell-container"><div class="cell-decorator"><pre>In [25]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model (h1model_ideal)</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using fit-index cutoffs implied by the null model at alpha = ALPHA and N = 231.</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using fit-index cutoffs implied by the null model (popmodel_ideal) at alpha = ALPHA and N = 231.</span></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>power_ideal <span class="op">&lt;-</span> getPowerFit(</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    nullObject <span class="op">=</span> popmodel_ideal,</span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    nVal <span class="op">=</span> <span class="dv">231</span>,</span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,                <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    nullObject <span class="op">=</span> popmodel_ideal,  <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,                <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    nVal <span class="op">=</span> <span class="dv">231</span>,                   <span class="co"># Sample size for analysis</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS                <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
 <span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive empirical cutoff values for the selected fit indices</span></span>
 <span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="co"># from the null-model sampling distribution under the same conditions.</span></span>
 <span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>cutoff_ideal <span class="op">&lt;-</span> getCutoff(</span>
-<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>    popmodel_ideal,</span>
-<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>    nVal <span class="op">=</span> <span class="dv">231</span>,</span>
-<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>    popmodel_ideal,               <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,                <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>    nVal <span class="op">=</span> <span class="dv">231</span>,                   <span class="co"># Sample size for analysis</span></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS                <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
 <span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine power and cutoff values into a compact summary table.</span></span>
@@ -1994,8 +2003,11 @@ Figure&nbsp;11: Power curves for fit indices under ideal conditions without logi
 <span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Cutoff"</span> <span class="op">=</span> <span class="im">as</span>.numeric(cutoff_ideal[<span class="dv">1</span>, ])</span>
 <span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a>colnames(power_cutoff_ideal) <span class="op">&lt;-</span> toupper(names(power_ideal)) <span class="co"># Standardize column names for presentation.</span></span>
-<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a>knitr::kable(power_cutoff_ideal, digits <span class="op">=</span> <span class="dv">3</span>, align <span class="op">=</span> <span class="st">"c"</span>) <span class="co"># Print the table.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize column names for presentation.</span></span>
+<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a>colnames(power_cutoff_ideal) <span class="op">&lt;-</span> toupper(names(power_ideal)) </span>
+<span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-29"><a href="#cb54-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table.</span></span>
+<span id="cb54-30"><a href="#cb54-30" aria-hidden="true" tabindex="-1"></a>knitr::kable(power_cutoff_ideal, digits <span class="op">=</span> <span class="dv">3</span>, align <span class="op">=</span> <span class="st">"c"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [26]:</pre></div><div id="tbl-power-cutoff-ideal" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2050,12 +2062,12 @@ Table&nbsp;4: Power and fit index cutoff values under ideal conditions at N = 23
 <span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co"># and the cutoff line, instead of a logistic-smoothed power curve</span></span>
 <span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,   <span class="co"># Simulated results under the misspecified model</span></span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>  popmodel_ideal,  <span class="co"># Reference model object used for comparison</span></span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  cutoff <span class="op">=</span> RULE_OF_THUMB, <span class="co"># Rule-of-thumb cutoff values for fit indices</span></span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA, <span class="co"># Significance level for determining power</span></span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS, <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display</span></span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>  logistic <span class="op">=</span> FALSE <span class="co"># Display raw simulated points and cutoff lines instead of logistic curves</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,          <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>  popmodel_ideal,         <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  cutoff <span class="op">=</span> RULE_OF_THUMB, <span class="co"># Rule-of-thumb cutoff values for fit indices (see helpers.R)</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,          <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS,         <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>  logistic <span class="op">=</span> FALSE        <span class="co"># Display raw simulated points and cutoff lines instead of logistic curves</span></span>
 <span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-fit-curve-traditional" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2074,24 +2086,27 @@ Figure&nbsp;12: Power curves using traditional fit index cutoffs under ideal con
 <p>The contrast with the empirical-cutoff results is instructive. SRMR is the only index that achieves clear visual discrimination under the traditional threshold, and only at <span class="math inline">\(N \approx 200\)</span> or larger. RMSEA shows some separation but would require a cutoff near <span class="math inline">\(0.04\)</span> rather than <span class="math inline">\(0.06\)</span> to make a meaningful distinction in this figure. CFI and TLI show essentially no discrimination at the <span class="math inline">\(0.95\)</span> threshold because both the reference and alternative point clouds cluster in the same region throughout the sample-size range (<a href="#fig-fit-curve-traditional" class="quarto-xref">Figure&nbsp;12</a>). The <a href="#tbl-power-cutoff-traditional-ideal" class="quarto-xref">Table&nbsp;5</a> summarizes the power for each fit index under the traditional cutoff values.</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\03_simulation_ideal.qmd" data-notebook-title="Simulation — Ideal Conditions" data-notebook-cellid="cell-tbl-power-cutoff-traditional-ideal">
 <div class="cell-container"><div class="cell-decorator"><pre>In [28]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>power_trad <span class="op">&lt;-</span> getPowerFit(</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    RULE_OF_THUMB,</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    nVal <span class="op">=</span> <span class="dv">231</span>,</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS</span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create horizontal table: Fit Index as column names, Power as single row</span></span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>power_df <span class="op">&lt;-</span> data.frame(</span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CFI"</span> <span class="op">=</span> <span class="bu">round</span>(<span class="im">as</span>.numeric(power_trad[<span class="st">"cfi"</span>]), <span class="dv">3</span>),</span>
-<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"TLI"</span> <span class="op">=</span> <span class="bu">round</span>(<span class="im">as</span>.numeric(power_trad[<span class="st">"tli"</span>]), <span class="dv">3</span>),</span>
-<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RMSEA"</span> <span class="op">=</span> <span class="bu">round</span>(<span class="im">as</span>.numeric(power_trad[<span class="st">"rmsea"</span>]), <span class="dv">3</span>),</span>
-<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SRMR"</span> <span class="op">=</span> power_trad[<span class="st">"srmr"</span>],  <span class="co"># Keep as string</span></span>
-<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>    row.names <span class="op">=</span> <span class="st">"Power"</span></span>
-<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>knitr::kable(power_df, digits <span class="op">=</span> <span class="dv">3</span>, align <span class="op">=</span> <span class="st">"c"</span>, col.names <span class="op">=</span> toupper(names(power_df)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model (h1model_ideal)</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using traditional rule-of-thumb cutoffs (RULE_OF_THUMB) at alpha = ALPHA and N = 231.</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>power_trad <span class="op">&lt;-</span> getPowerFit(</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    h1model_ideal,    <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    RULE_OF_THUMB,    <span class="co"># Rule-of-thumb cutoff values for fit indices (see helpers.R)</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,    <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>    nVal <span class="op">=</span> <span class="dv">231</span>,       <span class="co"># Sample size for analysis</span></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS    <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create horizontal table: Fit Index as column names, Power as single row</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>power_df <span class="op">&lt;-</span> data.frame(</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CFI"</span> <span class="op">=</span> <span class="bu">round</span>(<span class="im">as</span>.numeric(power_trad[<span class="st">"cfi"</span>]), <span class="dv">3</span>),</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"TLI"</span> <span class="op">=</span> <span class="bu">round</span>(<span class="im">as</span>.numeric(power_trad[<span class="st">"tli"</span>]), <span class="dv">3</span>),</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"RMSEA"</span> <span class="op">=</span> <span class="bu">round</span>(<span class="im">as</span>.numeric(power_trad[<span class="st">"rmsea"</span>]), <span class="dv">3</span>),</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SRMR"</span> <span class="op">=</span> power_trad[<span class="st">"srmr"</span>],</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>    row.names <span class="op">=</span> <span class="st">"Power"</span></span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table.</span></span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>knitr::kable(power_df, digits <span class="op">=</span> <span class="dv">3</span>, align <span class="op">=</span> <span class="st">"c"</span>, col.names <span class="op">=</span> toupper(names(power_df)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [29]:</pre></div><div id="tbl-power-cutoff-traditional-ideal" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-traditional-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2134,10 +2149,10 @@ Table&nbsp;5: Power for traditional fit index cutoffs under ideal conditions at 
 <div class="cell-container"><div class="cell-decorator"><pre>In [30]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute detailed parameter-recovery results for the fitted model.</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>param_ideal <span class="op">&lt;-</span> summaryParam(</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  digits <span class="op">=</span> <span class="dv">3</span>,</span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  detail <span class="op">=</span> TRUE</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  h1model_ideal,   <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,   <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  digits <span class="op">=</span> <span class="dv">3</span>,      <span class="co"># Number of decimal places for output</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  detail <span class="op">=</span> TRUE    <span class="co"># Display detailed parameter-recovery results</span></span>
 <span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the diagnostics used in the discussion.</span></span>
@@ -2690,10 +2705,10 @@ Table&nbsp;7: Sample size needed for 80% power under ideal conditions.
 <div class="cell-container"><div class="cell-decorator"><pre>In [34]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute detailed parameter-recovery results for the fitted model.</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>param_naive <span class="op">&lt;-</span> summaryParam(</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  naivemodel_ideal,</span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  digits <span class="op">=</span> <span class="dv">3</span>,</span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  detail <span class="op">=</span> TRUE</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  naivemodel_ideal,  <span class="co"># Simulation results from the naive population model (low loadings)</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,     <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  digits <span class="op">=</span> <span class="dv">3</span>,        <span class="co"># Number of digits to round the results to</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  detail <span class="op">=</span> TRUE      <span class="co"># Return detailed parameter-level results</span></span>
 <span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the diagnostics used in the discussion.</span></span>
@@ -2812,10 +2827,10 @@ Table&nbsp;8: Parameter estimates and required sample size for 80% power under n
 <div class="cell-container"><div class="cell-decorator"><pre>In [36]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute detailed parameter-recovery results for the fitted model.</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>param_opt <span class="op">&lt;-</span> summaryParam(</span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  optmodel_ideal,</span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  digits <span class="op">=</span> <span class="dv">3</span>,</span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>  detail <span class="op">=</span> TRUE</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  optmodel_ideal,   <span class="co"># Simulation results from the optimal population model (stronger factor loadings)</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,    <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  digits <span class="op">=</span> <span class="dv">3</span>,       <span class="co"># Number of digits to round the results to</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>  detail <span class="op">=</span> TRUE     <span class="co"># Return detailed parameter-level results</span></span>
 <span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the diagnostics used in the discussion.</span></span>
@@ -2891,19 +2906,12 @@ Table&nbsp;9: Parameter estimates and required sample size for 80% power under o
 <p>In this simulation, 10% of observations are set missing at random prior to each analysis. All other aspects of the design are unchanged from the ideal-condition analysis.</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\04_simulation_robust.qmd" data-notebook-title="Simulation — Realistic Scenarios" data-notebook-cellid="cell-fig-power-curve-missing">
 <div class="cell-container"><div class="cell-decorator"><pre>In [38]:</pre></div><div id="cell-fig-power-curve-missing" class="cell" data-fig-width="8" data-fig-height="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot model-based power as a function of N.</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The null object provides the reference cutoff distribution,</span></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and the alternative object represents the misspecified model.</span></span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co"># With logistic = TRUE, simsem smooths the rejection probability</span></span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co"># over N using logistic regression, which is useful for identifying</span></span>
-<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="co"># the sample size at which power approaches the target level.</span></span>
-<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
-<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>    h1model_miss,</span>
-<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>    popmodel_miss,</span>
-<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS</span>
-<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    h1model_miss,     <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>    popmodel_miss,    <span class="co"># Data simulated under H0 (reference model)</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,    <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS    <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-power-curve-missing" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2920,17 +2928,13 @@ Figure&nbsp;13: Power curves for fit indices under missing data conditions.
 </div>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\04_simulation_robust.qmd" data-notebook-title="Simulation — Realistic Scenarios" data-notebook-cellid="cell-fig-fit-curve-missing">
 <div class="cell-container"><div class="cell-decorator"><pre>In [39]:</pre></div><div id="cell-fig-fit-curve-missing" class="cell" data-fig-width="8" data-fig-height="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the same power information without logistic smoothing.</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Here the figure shows the simulated fit-index values directly across N,</span></span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co"># which helps visualize how the sampling distributions separate as sample size increases @simsem.</span></span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>    h1model_miss,</span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>    popmodel_miss,</span>
-<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS,</span>
-<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>    logistic <span class="op">=</span> FALSE</span>
-<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>    h1model_miss,     <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    popmodel_miss,    <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,    <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS,   <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>    logistic <span class="op">=</span> FALSE  <span class="co"># Display raw simulated points and cutoff lines instead of logistic curves</span></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-fit-curve-missing" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2948,23 +2952,23 @@ Figure&nbsp;14: Power curves for fit indices under missing data conditions witho
 <p>Both figures show the expected pattern: power curves shift rightward relative to the ideal condition, requiring larger <span class="math inline">\(N\)</span> to reach the same thresholds. The separation between distributions in the raw fit-index plots is less pronounced, especially for CFI and TLI, which show more overlap at small and intermediate sample sizes.</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\04_simulation_robust.qmd" data-notebook-title="Simulation — Realistic Scenarios" data-notebook-cellid="cell-tbl-power-cutoff-missing">
 <div class="cell-container"><div class="cell-decorator"><pre>In [40]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using fit-index cutoffs implied by the reference model at alpha = .05 and N = 359.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model (h1model_miss)</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using fit-index cutoffs implied by the null model (popmodel_miss) at alpha = ALPHA and N = 359.</span></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>power_miss <span class="op">&lt;-</span> getPowerFit(</span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>    h1model_miss,</span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>    nullObject <span class="op">=</span> popmodel_miss,</span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>    nVal <span class="op">=</span> <span class="dv">359</span>,</span>
-<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>    h1model_miss,                 <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>    nullObject <span class="op">=</span> popmodel_miss,   <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,                <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>    nVal <span class="op">=</span> <span class="dv">359</span>,                   <span class="co"># Sample size for analysis</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS                <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
 <span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive empirical cutoff values for the selected fit indices</span></span>
 <span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a><span class="co"># from the reference-model sampling distribution under the same conditions.</span></span>
 <span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>cutoff_miss <span class="op">&lt;-</span> getCutoff(</span>
-<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a>    popmodel_miss,</span>
-<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>    nVal <span class="op">=</span> <span class="dv">359</span>,</span>
-<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS</span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a>    popmodel_miss,                <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,                <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>    nVal <span class="op">=</span> <span class="dv">359</span>,                   <span class="co"># Sample size for analysis</span></span>
+<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS                <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
 <span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb66-20"><a href="#cb66-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine power and cutoff values into a compact summary table.</span></span>
@@ -2973,9 +2977,11 @@ Figure&nbsp;14: Power curves for fit indices under missing data conditions witho
 <span id="cb66-23"><a href="#cb66-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Cutoff"</span> <span class="op">=</span> <span class="im">as</span>.numeric(cutoff_miss[<span class="dv">1</span>, ])</span>
 <span id="cb66-24"><a href="#cb66-24" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb66-25"><a href="#cb66-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-26"><a href="#cb66-26" aria-hidden="true" tabindex="-1"></a>colnames(power_cutoff_miss) <span class="op">&lt;-</span> toupper(names(power_miss)) <span class="co"># Standardize column names for presentation.</span></span>
-<span id="cb66-27"><a href="#cb66-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-28"><a href="#cb66-28" aria-hidden="true" tabindex="-1"></a>knitr::kable(power_cutoff_miss, digits <span class="op">=</span> <span class="dv">3</span>, align <span class="op">=</span> <span class="st">"c"</span>) <span class="co"># Print the table.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb66-26"><a href="#cb66-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize column names for presentation.</span></span>
+<span id="cb66-27"><a href="#cb66-27" aria-hidden="true" tabindex="-1"></a>colnames(power_cutoff_miss) <span class="op">&lt;-</span> toupper(names(power_miss)) </span>
+<span id="cb66-28"><a href="#cb66-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-29"><a href="#cb66-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table.</span></span>
+<span id="cb66-30"><a href="#cb66-30" aria-hidden="true" tabindex="-1"></a>knitr::kable(power_cutoff_miss, digits <span class="op">=</span> <span class="dv">3</span>, align <span class="op">=</span> <span class="st">"c"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [41]:</pre></div><div id="tbl-power-cutoff-missing" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-missing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -3023,23 +3029,12 @@ Table&nbsp;10: Power and fit index cutoff values under missing data conditions a
 <p>Mild departures from normality — skewness in the range <span class="math inline">\([-1, +1]\)</span> and excess kurtosis in the range <span class="math inline">\([1, 2]\)</span> — are common in applied social science measurement and can affect the behavior of fit indices even when robust estimators are used <span class="citation" data-cites="irmer2024 kyriazos2018">(<a href="#ref-irmer2024" role="doc-biblioref">Irmer et al., 2024</a>; <a href="#ref-kyriazos2018" role="doc-biblioref">Kyriazos, 2018</a>)</span>. This analysis evaluates how such departures alter the power conclusions relative to the ideal condition.</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\04_simulation_robust.qmd" data-notebook-title="Simulation — Realistic Scenarios" data-notebook-cellid="cell-fig-power-curve-nnorm">
 <div class="cell-container"><div class="cell-decorator"><pre>In [42]:</pre></div><div id="cell-fig-power-curve-nnorm" class="cell" data-fig-width="8" data-fig-height="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot power as a function of N for the selected fit indices.</span></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># In simsem, plotPowerFit visualizes rejection power for a misspecified model</span></span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># using either cutoffs supplied directly or cutoffs implied by the null model</span></span>
-<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="co"># With nullObject = popmodel_nnorm, the cutoff for each index is taken from the</span></span>
-<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="co"># null-model sampling distribution rather than from fixed rules of thumb.</span></span>
-<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="co"># When a varying condition such as sample size is present and logistic = TRUE</span></span>
-<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a><span class="co"># (the default), the plotted curve is based on logistic regression smoothing</span></span>
-<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a><span class="co"># of the reject/retain decision over that varying condition.</span></span>
-<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
-<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a>  h1model_nnorm,</span>
-<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a>  popmodel_nnorm,</span>
-<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS</span>
-<span id="cb67-17"><a href="#cb67-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  h1model_nnorm,   <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  popmodel_nnorm,  <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,   <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS   <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-power-curve-nnorm" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -3057,17 +3052,13 @@ Figure&nbsp;15: Power curves for fit indices under non-normal conditions.
 <p>The ordering of sensitivity is stable: SRMR <span class="math inline">\(&gt;\)</span> RMSEA <span class="math inline">\(&gt;\)</span> CFI <span class="math inline">\(\approx\)</span> TLI. SRMR reaches near-ceiling power early in the sample-size range; RMSEA follows steadily; CFI and TLI rise more slowly and remain below the other two across most of the evaluated range.</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\04_simulation_robust.qmd" data-notebook-title="Simulation — Realistic Scenarios" data-notebook-cellid="cell-fig-fit-curve-nnorm">
 <div class="cell-container"><div class="cell-decorator"><pre>In [43]:</pre></div><div id="cell-fig-fit-curve-nnorm" class="cell" data-fig-width="8" data-fig-height="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproduce the same plot, but disable logistic smoothing.</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="co"># In simsem, logistic = FALSE overlays the raw simulated fit-index values and the</span></span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cutoff line, which is useful for checking dispersion and overlap across N</span></span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
-<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>  h1model_nnorm,</span>
-<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>  popmodel_nnorm,</span>
-<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS,</span>
-<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>  logistic <span class="op">=</span> FALSE</span>
-<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  h1model_nnorm,   <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  popmodel_nnorm,  <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,   <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS,  <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>  logistic <span class="op">=</span> FALSE <span class="co"># Display raw simulated points and cutoff lines instead of logistic curves</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-fit-curve-nnorm" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -3085,35 +3076,35 @@ Figure&nbsp;16: Power curves for fit indices under non-normal conditions without
 <p>The raw fit-index plots confirm the ordering. For RMSEA and SRMR, the two point clouds are increasingly distinct as <span class="math inline">\(N\)</span> grows; for CFI and TLI, overlap is more visible at lower and intermediate sample sizes and clears only at larger <span class="math inline">\(N\)</span>.</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\04_simulation_robust.qmd" data-notebook-title="Simulation — Realistic Scenarios" data-notebook-cellid="cell-tbl-power-cutoff-nnorm">
 <div class="cell-container"><div class="cell-decorator"><pre>In [44]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power to reject the misspecified model at N = 228.</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># getPowerFit returns the probability that each selected fit index classifies</span></span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the misspecified model as worse than the null-based cutoff</span></span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>power_nnorm <span class="op">&lt;-</span> getPowerFit(</span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>  h1model_nnorm,</span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>  nullObject <span class="op">=</span> popmodel_nnorm,</span>
-<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>  nVal <span class="op">=</span> <span class="dv">228</span>,</span>
-<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS</span>
-<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive empirical cutoff values from the null-model sampling distribution</span></span>
-<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a><span class="co"># under the same alpha level and sample size</span></span>
-<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a>cutoff_nnorm <span class="op">&lt;-</span> getCutoff(</span>
-<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a>  popmodel_nnorm,</span>
-<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb69-17"><a href="#cb69-17" aria-hidden="true" tabindex="-1"></a>  nVal <span class="op">=</span> <span class="dv">228</span>,</span>
-<span id="cb69-18"><a href="#cb69-18" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS</span>
-<span id="cb69-19"><a href="#cb69-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb69-20"><a href="#cb69-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-21"><a href="#cb69-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine operating characteristics (power) and decision thresholds (cutoffs)</span></span>
-<span id="cb69-22"><a href="#cb69-22" aria-hidden="true" tabindex="-1"></a><span class="co"># into a compact table for direct reporting</span></span>
-<span id="cb69-23"><a href="#cb69-23" aria-hidden="true" tabindex="-1"></a>power_cutoff_nnorm <span class="op">&lt;-</span> rbind(</span>
-<span id="cb69-24"><a href="#cb69-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Power"</span> <span class="op">=</span> <span class="im">as</span>.numeric(power_nnorm),</span>
-<span id="cb69-25"><a href="#cb69-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cutoff"</span> <span class="op">=</span> <span class="im">as</span>.numeric(cutoff_nnorm[<span class="dv">1</span>, ])</span>
-<span id="cb69-26"><a href="#cb69-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb69-27"><a href="#cb69-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-28"><a href="#cb69-28" aria-hidden="true" tabindex="-1"></a>colnames(power_cutoff_nnorm) <span class="op">&lt;-</span> toupper(names(power_nnorm))</span>
-<span id="cb69-29"><a href="#cb69-29" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model (h1model_nnorm)</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using fit-index cutoffs implied by the null model (popmodel_nnorm) at alpha = ALPHA and N = 228.</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>power_nnorm <span class="op">&lt;-</span> getPowerFit(</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>  h1model_nnorm,               <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>  nullObject <span class="op">=</span> popmodel_nnorm, <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,               <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>  nVal <span class="op">=</span> <span class="dv">228</span>,                  <span class="co"># Sample size for analysis</span></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS               <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive empirical cutoff values for the selected fit indices</span></span>
+<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a><span class="co"># from the null-model sampling distribution under the same conditions.</span></span>
+<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a>cutoff_nnorm <span class="op">&lt;-</span> getCutoff(</span>
+<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a>  popmodel_nnorm,              <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,               <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a>  nVal <span class="op">=</span> <span class="dv">228</span>,                  <span class="co"># Sample size for analysis</span></span>
+<span id="cb69-17"><a href="#cb69-17" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS               <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
+<span id="cb69-18"><a href="#cb69-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb69-19"><a href="#cb69-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-20"><a href="#cb69-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine power and cutoff values into a compact summary table.</span></span>
+<span id="cb69-21"><a href="#cb69-21" aria-hidden="true" tabindex="-1"></a>power_cutoff_nnorm <span class="op">&lt;-</span> rbind(</span>
+<span id="cb69-22"><a href="#cb69-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Power"</span> <span class="op">=</span> <span class="im">as</span>.numeric(power_nnorm),</span>
+<span id="cb69-23"><a href="#cb69-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cutoff"</span> <span class="op">=</span> <span class="im">as</span>.numeric(cutoff_nnorm[<span class="dv">1</span>, ])</span>
+<span id="cb69-24"><a href="#cb69-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb69-25"><a href="#cb69-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-26"><a href="#cb69-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize column names for presentation.</span></span>
+<span id="cb69-27"><a href="#cb69-27" aria-hidden="true" tabindex="-1"></a>colnames(power_cutoff_nnorm) <span class="op">&lt;-</span> toupper(names(power_nnorm))</span>
+<span id="cb69-28"><a href="#cb69-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-29"><a href="#cb69-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table.</span></span>
 <span id="cb69-30"><a href="#cb69-30" aria-hidden="true" tabindex="-1"></a>knitr::kable(power_cutoff_nnorm, digits <span class="op">=</span> <span class="dv">3</span>, align <span class="op">=</span> <span class="st">"c"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [45]:</pre></div><div id="tbl-power-cutoff-nnorm" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -3159,15 +3150,15 @@ Table&nbsp;11: Power and fit index cutoff values under non-normal conditions at 
 </section>
 <section id="sec-scenarios-fixed" class="level3" data-number="5.3">
 <h3 data-number="5.3" class="anchored" data-anchor-id="sec-scenarios-fixed"><span class="header-section-number">5.3</span> Simulation with fixed N</h3>
-<p>Having established minimum <span class="math inline">\(N\)</span> estimates under various conditions, the question becomes whether a single, fixed sample size performs reliably as a design choice. Fixing <span class="math inline">\(N = 350\)</span> — a conservative value anchored above the most demanding simulation result (<span class="math inline">\(N = 330\)</span> under the naive population) — allows us to ask: does this <span class="math inline">\(N\)</span> consistently separate the reference and misspecified models across many independent replications, including under realistic data conditions (10% MCAR + mild non-normality)?</p>
+<p>Having established minimum <span class="math inline">\(N\)</span> estimates under various conditions, the question becomes whether a single, fixed sample size performs reliably as a design choice. Fixing <span class="math inline">\(N = 350\)</span> — a conservative value anchored above the most demanding simulation result allows us to ask: does this <span class="math inline">\(N\)</span> consistently separate the reference and misspecified models across many independent replications, including under realistic data conditions (10% MCAR + mild non-normality)?</p>
 <p>This step also highlights the practical difference between empirical and traditional fit criteria. Empirical cutoffs are calibrated to the actual sampling distribution of the fitted model; traditional cutoffs are generic conventions. The two approaches can lead to very different conclusions about adequacy <span class="citation" data-cites="mcneish2021 simsem2021">(<a href="#ref-mcneish2021" role="doc-biblioref">McNeish &amp; Wolf, 2021</a>; <a href="#ref-simsem2021" role="doc-biblioref">Pornprasertmanit et al., 2021</a>)</span>.</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\05_model_comparison.qmd" data-notebook-title="Simulation — Fixed N" data-notebook-cellid="cell-fig-power-curve-fixed">
 <div class="cell-container"><div class="cell-decorator"><pre>In [46]:</pre></div><div id="cell-fig-power-curve-fixed" class="cell" data-fig-width="8" data-fig-height="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    h1model_fixed,</span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>    popmodel_fixed,</span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    h1model_fixed,    <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>    popmodel_fixed,   <span class="co"># Data simulated under H0 (null model)</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,    <span class="co"># Significance level for determining power (see helpers.R)</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS    <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
 <span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-power-curve-fixed" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -3189,34 +3180,35 @@ Figure&nbsp;17: Power curves for fit indices with fixed sample size.
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model (h1model_fixed)</span></span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using fit-index cutoffs implied by the null model.</span></span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>power_fixed <span class="op">&lt;-</span> getPowerFit(</span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  h1model_fixed,</span>
-<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  nullObject <span class="op">=</span> popmodel_fixed,</span>
-<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  h1model_fixed,                 <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  nullObject <span class="op">=</span> popmodel_fixed,   <span class="co"># Data simulated under H0 (null model)</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,                 <span class="co"># Significance level (see helpers.R)</span></span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS                 <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
 <span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive empirical cutoff values for the selected fit indices</span></span>
 <span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a><span class="co"># from the null-model sampling distribution under the same conditions.</span></span>
 <span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a>cutoff_fixed <span class="op">&lt;-</span> getCutoff(</span>
-<span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a>  popmodel_fixed,</span>
-<span id="cb71-14"><a href="#cb71-14" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb71-15"><a href="#cb71-15" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS</span>
+<span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a>  popmodel_fixed,     <span class="co"># Data simulated under H0 (null model)</span></span>
+<span id="cb71-14"><a href="#cb71-14" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,      <span class="co"># Significance level (see helpers.R)</span></span>
+<span id="cb71-15"><a href="#cb71-15" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS      <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
 <span id="cb71-16"><a href="#cb71-16" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb71-17"><a href="#cb71-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-18"><a href="#cb71-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset power to the four requested fit indices (FITS: rmsea, srmr, cfi, tli)</span></span>
-<span id="cb71-19"><a href="#cb71-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ensuring 1-to-1 alignment with cutoff_fixed and excluding TraditionalChi.</span></span>
-<span id="cb71-20"><a href="#cb71-20" aria-hidden="true" tabindex="-1"></a>power_fixed_clean <span class="op">&lt;-</span> power_fixed[FITS]</span>
-<span id="cb71-21"><a href="#cb71-21" aria-hidden="true" tabindex="-1"></a>cutoff_fixed_clean <span class="op">&lt;-</span> cutoff_fixed[<span class="dv">1</span>, FITS]</span>
-<span id="cb71-22"><a href="#cb71-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-23"><a href="#cb71-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine power and cutoff values into a compact summary table.</span></span>
-<span id="cb71-24"><a href="#cb71-24" aria-hidden="true" tabindex="-1"></a>power_cutoff_fixed <span class="op">&lt;-</span> rbind(</span>
-<span id="cb71-25"><a href="#cb71-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Power"</span>  <span class="op">=</span> <span class="im">as</span>.numeric(power_fixed_clean),</span>
-<span id="cb71-26"><a href="#cb71-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cutoff"</span> <span class="op">=</span> <span class="im">as</span>.numeric(cutoff_fixed_clean)</span>
-<span id="cb71-27"><a href="#cb71-27" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb71-28"><a href="#cb71-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-18"><a href="#cb71-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset power to the four requested fit indices</span></span>
+<span id="cb71-19"><a href="#cb71-19" aria-hidden="true" tabindex="-1"></a>power_fixed_clean <span class="op">&lt;-</span> power_fixed[FITS]</span>
+<span id="cb71-20"><a href="#cb71-20" aria-hidden="true" tabindex="-1"></a>cutoff_fixed_clean <span class="op">&lt;-</span> cutoff_fixed[<span class="dv">1</span>, FITS]</span>
+<span id="cb71-21"><a href="#cb71-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-22"><a href="#cb71-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine power and cutoff values into a compact summary table.</span></span>
+<span id="cb71-23"><a href="#cb71-23" aria-hidden="true" tabindex="-1"></a>power_cutoff_fixed <span class="op">&lt;-</span> rbind(</span>
+<span id="cb71-24"><a href="#cb71-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Power"</span>  <span class="op">=</span> <span class="im">as</span>.numeric(power_fixed_clean),</span>
+<span id="cb71-25"><a href="#cb71-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cutoff"</span> <span class="op">=</span> <span class="im">as</span>.numeric(cutoff_fixed_clean)</span>
+<span id="cb71-26"><a href="#cb71-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb71-27"><a href="#cb71-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-28"><a href="#cb71-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize column names for presentation.</span></span>
 <span id="cb71-29"><a href="#cb71-29" aria-hidden="true" tabindex="-1"></a>colnames(power_cutoff_fixed) <span class="op">&lt;-</span> toupper(FITS)</span>
 <span id="cb71-30"><a href="#cb71-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-31"><a href="#cb71-31" aria-hidden="true" tabindex="-1"></a>knitr::kable(power_cutoff_fixed, digits <span class="op">=</span> <span class="dv">3</span>, align <span class="op">=</span> <span class="st">"c"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb71-31"><a href="#cb71-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table.</span></span>
+<span id="cb71-32"><a href="#cb71-32" aria-hidden="true" tabindex="-1"></a>knitr::kable(power_cutoff_fixed, digits <span class="op">=</span> <span class="dv">3</span>, align <span class="op">=</span> <span class="st">"c"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [48]:</pre></div><div id="tbl-power-cutoff-fixed" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -3263,11 +3255,11 @@ Table&nbsp;12: Power and fit index cutoff values with fixed sample size.
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\05_model_comparison.qmd" data-notebook-title="Simulation — Fixed N" data-notebook-cellid="cell-fig-curve-fixed-traditional">
 <div class="cell-container"><div class="cell-decorator"><pre>In [49]:</pre></div><div id="cell-fig-curve-fixed-traditional" class="cell" data-fig-width="8" data-fig-height="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>    h1model_fixed,</span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>    popmodel_fixed,</span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>    cutoff <span class="op">=</span> RULE_OF_THUMB,</span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>    h1model_fixed,           <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>    popmodel_fixed,          <span class="co"># Data simulated under H0 (null model)</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>    cutoff <span class="op">=</span> RULE_OF_THUMB,  <span class="co"># Traditional fit-index cutoffs (see helpers.R)</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> ALPHA,           <span class="co"># Significance level (see helpers.R)</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>    usedFit <span class="op">=</span> FITS           <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
 <span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-curve-fixed-traditional" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -3287,19 +3279,21 @@ Figure&nbsp;18: Power curves using traditional fit index cutoffs with fixed samp
 <div class="cell-container"><div class="cell-decorator"><pre>In [50]:</pre></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power using traditional fit-index cutoffs.</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>power_traditional <span class="op">&lt;-</span> getPowerFit(</span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  h1model_fixed,</span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  RULE_OF_THUMB,</span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,</span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  h1model_fixed,     <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  RULE_OF_THUMB,     <span class="co"># Traditional fit-index cutoffs (see helpers.R)</span></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> ALPHA,     <span class="co"># Significance level (see helpers.R)</span></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>  usedFit <span class="op">=</span> FITS     <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
 <span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a one-row table with column headers.</span></span>
 <span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a>power_traditional_tbl <span class="op">&lt;-</span> t(<span class="im">as</span>.data.frame(power_traditional))</span>
 <span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a>colnames(power_traditional_tbl) <span class="op">&lt;-</span> toupper(names(power_traditional))</span>
-<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a>rownames(power_traditional_tbl) <span class="op">&lt;-</span> <span class="st">"Power"</span></span>
-<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a>knitr::kable(power_traditional_tbl, digits <span class="op">=</span> <span class="dv">3</span>, align <span class="op">=</span> <span class="st">"c"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize column names for presentation.</span></span>
+<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a>colnames(power_traditional_tbl) <span class="op">&lt;-</span> toupper(names(power_traditional))</span>
+<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a>rownames(power_traditional_tbl) <span class="op">&lt;-</span> <span class="st">"Power"</span></span>
+<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-16"><a href="#cb73-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the table.</span></span>
+<span id="cb73-17"><a href="#cb73-17" aria-hidden="true" tabindex="-1"></a>knitr::kable(power_traditional_tbl, digits <span class="op">=</span> <span class="dv">3</span>, align <span class="op">=</span> <span class="st">"c"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [51]:</pre></div><div id="tbl-power-cutoff-traditional-fixed" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-power-cutoff-traditional-fixed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -3345,17 +3339,12 @@ Table&nbsp;13: Power for traditional fit index cutoffs with fixed sample size.
 <p>The simulation-based strategy first fits the analysis model to the real data to obtain an empirically grounded reference structure. It then generates data from both the null model and the alternative model at the observed <span class="math inline">\(N\)</span> and quantifies how well the fit indices separate the two conditions. This approach is particularly informative when the effect of interest is defined in model terms, because the full parameterization — loadings, residual structure, latent correlations — shapes the discrepancy and therefore the power estimate <span class="citation" data-cites="wang2021 feng2023">(<a href="#ref-feng2023" role="doc-biblioref">Feng &amp; Hancock, 2023</a>; <a href="#ref-wang2021" role="doc-biblioref">Wang &amp; Rhemtulla, 2021</a>)</span>.</p>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\06_posthoc.qmd" data-notebook-title="Post Hoc Power Analysis" data-notebook-cellid="cell-fig-posthoc-plotpower">
 <div class="cell-container"><div class="cell-decorator"><pre>In [52]:</pre></div><div id="cell-fig-posthoc-plotpower" class="cell" data-fig-width="8" data-fig-height="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the fit-index distributions for the alternative model and compare them</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with cutoffs obtained from the null model at level alpha.</span></span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="co"># In simsem, this visualizes how well the selected global fit indices separate</span></span>
-<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="co"># data generated under the null and alternative conditions.</span></span>
-<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
-<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>    h1model_alt,</span>
-<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>    nullObject <span class="op">=</span> realmodel_null,</span>
-<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>    alpha      <span class="op">=</span> ALPHA,</span>
-<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>    usedFit    <span class="op">=</span> FITS</span>
-<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>plotPowerFit(</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>    h1model_alt,                  <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>    nullObject <span class="op">=</span> realmodel_null,  <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>    alpha      <span class="op">=</span> ALPHA,           <span class="co"># Significance level (see helpers.R)</span></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>    usedFit    <span class="op">=</span> FITS             <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-posthoc-plotpower" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -3372,28 +3361,25 @@ Figure&nbsp;19: Power curve for post hoc analysis based on simulation.
 </div>
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\06_posthoc.qmd" data-notebook-title="Post Hoc Power Analysis" data-notebook-cellid="cell-tbl-posthoc-power">
 <div class="cell-container"><div class="cell-decorator"><pre>In [53]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return post hoc power for each selected fit index.</span></span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The cutoffs are internally derived from the null-object distribution,</span></span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="co"># so the table summarizes the empirical rejection rate of the alternative model</span></span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="co"># under the chosen set of fit criteria.</span></span>
-<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>posthoc_pow <span class="op">&lt;-</span> getPowerFit(</span>
-<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>    h1model_alt,</span>
-<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>    nullObject <span class="op">=</span> realmodel_null,</span>
-<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>    alpha      <span class="op">=</span> ALPHA,</span>
-<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a>    usedFit    <span class="op">=</span> FITS</span>
-<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate power for rejecting the misspecified model (h1model_alt)</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using fit-index cutoffs implied by the null model.</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>posthoc_pow <span class="op">&lt;-</span> getPowerFit(</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>    h1model_alt,                 <span class="co"># Data simulated under H1 (with cross-loadings)</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>    nullObject <span class="op">=</span> realmodel_null, <span class="co"># Data simulated under H0 (no cross-loadings)</span></span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>    alpha      <span class="op">=</span> ALPHA,          <span class="co"># Significance level (see helpers.R)</span></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>    usedFit    <span class="op">=</span> FITS            <span class="co"># RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)</span></span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset power to the four requested fit indices</span></span>
+<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a>posthoc_pow_clean <span class="op">&lt;-</span> posthoc_pow[FITS]</span>
 <span id="cb75-12"><a href="#cb75-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-13"><a href="#cb75-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset power to the four requested fit indices (FITS: rmsea, srmr, cfi, tli)</span></span>
-<span id="cb75-14"><a href="#cb75-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ensuring TRADITIONALCHI is excluded.</span></span>
-<span id="cb75-15"><a href="#cb75-15" aria-hidden="true" tabindex="-1"></a>posthoc_pow_clean <span class="op">&lt;-</span> posthoc_pow[FITS]</span>
-<span id="cb75-16"><a href="#cb75-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-17"><a href="#cb75-17" aria-hidden="true" tabindex="-1"></a>knitr::kable(</span>
-<span id="cb75-18"><a href="#cb75-18" aria-hidden="true" tabindex="-1"></a>  <span class="im">as</span>.data.frame(t(<span class="im">as</span>.numeric(posthoc_pow_clean))),</span>
-<span id="cb75-19"><a href="#cb75-19" aria-hidden="true" tabindex="-1"></a>  col.names <span class="op">=</span> toupper(FITS),</span>
-<span id="cb75-20"><a href="#cb75-20" aria-hidden="true" tabindex="-1"></a>  digits <span class="op">=</span> <span class="dv">3</span>,</span>
-<span id="cb75-21"><a href="#cb75-21" aria-hidden="true" tabindex="-1"></a>  align <span class="op">=</span> <span class="st">"c"</span></span>
-<span id="cb75-22"><a href="#cb75-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb75-13"><a href="#cb75-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Return power values as a table</span></span>
+<span id="cb75-14"><a href="#cb75-14" aria-hidden="true" tabindex="-1"></a>knitr::kable(</span>
+<span id="cb75-15"><a href="#cb75-15" aria-hidden="true" tabindex="-1"></a>  <span class="im">as</span>.data.frame(t(<span class="im">as</span>.numeric(posthoc_pow_clean))),</span>
+<span id="cb75-16"><a href="#cb75-16" aria-hidden="true" tabindex="-1"></a>  col.names <span class="op">=</span> toupper(FITS),</span>
+<span id="cb75-17"><a href="#cb75-17" aria-hidden="true" tabindex="-1"></a>  digits <span class="op">=</span> <span class="dv">3</span>,</span>
+<span id="cb75-18"><a href="#cb75-18" aria-hidden="true" tabindex="-1"></a>  align <span class="op">=</span> <span class="st">"c"</span></span>
+<span id="cb75-19"><a href="#cb75-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [54]:</pre></div><div id="tbl-posthoc-power" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-posthoc-power-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -3429,7 +3415,7 @@ Table&nbsp;14: Power for post hoc analysis based on simulation.
 </section>
 <section id="with-analytical-solutions" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="with-analytical-solutions"><span class="header-section-number">6.2</span> With Analytical Solutions</h3>
-<p>Analytical post hoc power expresses the effect through <span class="math inline">\(F_0\)</span> or RMSEA and links it to the noncentrality-based framework of the likelihood-ratio test. This is computationally immediate and free from Monte Carlo sampling error, making it the preferred first-pass approach when the asymptotic assumptions underlying the chi-square test are credible <span class="citation" data-cites="jak2021 moshagen2024">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>. Three specifications are compared here, illustrating a spectrum from the most generic to the most substantively specific formulation.</p>
+<p>Analytical post hoc power expresses the effect through <span class="math inline">\(F_0\)</span> or RMSEA and links it to the noncentrality-based framework of the likelihood-ratio test. This is computationally immediate and free from Monte Carlo sampling error, making it the preferred first-pass approach when the asymptotic assumptions underlying the chi-square test are credible <span class="citation" data-cites="jak2021 moshagen2024">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>. Two specifications are compared here, illustrating a spectrum from the most generic to the most substantively specific formulation.</p>
 <section id="model-free-specification" class="level4" data-number="6.2.1">
 <h4 data-number="6.2.1" class="anchored" data-anchor-id="model-free-specification"><span class="header-section-number">6.2.1</span> Model-free specification</h4>
 <p>The first specification supplies <span class="math inline">\(\text{RMSEA} = 0.05\)</span> directly, treating misspecification as a generic level of global misfit per degree of freedom. This makes the analysis comparable across SEM families sharing the same <span class="math inline">\(df\)</span>, but it abstracts away from the particular covariance structure of the WHOQOL-BREF model <span class="citation" data-cites="maccallum1996 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-maccallum1996" role="doc-biblioref">MacCallum et al., 1996</a>)</span>.</p>
@@ -3437,17 +3423,17 @@ Table&nbsp;14: Power for post hoc analysis based on simulation.
 <div class="cell-container"><div class="cell-decorator"><pre>In [55]:</pre></div><div id="cell-fig-posthoc-rmsea" class="cell" data-fig-width="8" data-fig-height="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical post hoc power for a global fit test.</span></span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The target effect is fixed directly as RMSEA = 0.05.</span></span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="co"># H0 is exact fit, alpha is 0.05, and the sample size is 1,047.</span></span>
-<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>ph_rmsea <span class="op">&lt;-</span> semPower::semPower.postHoc(</span>
-<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>  effect         <span class="op">=</span> <span class="fl">0.05</span>,</span>
-<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>  effect.measure <span class="op">=</span> <span class="st">"RMSEA"</span>,  <span class="co"># Target discrepancy expressed as RMSEA</span></span>
-<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>  alpha          <span class="op">=</span> ALPHA,</span>
-<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a>  N              <span class="op">=</span> n_real,</span>
-<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a>  df             <span class="op">=</span> df_model,</span>
-<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>  p              <span class="op">=</span> P         <span class="co"># Only relevant for indices such as GFI and AGFI</span></span>
-<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>ph_rmsea <span class="op">&lt;-</span> semPower::semPower.postHoc(</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>  effect         <span class="op">=</span> <span class="fl">0.05</span>,        <span class="co"># RMSEA under H1</span></span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>  effect.measure <span class="op">=</span> <span class="st">"RMSEA"</span>,     <span class="co"># Target discrepancy expressed as RMSEA</span></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>  alpha          <span class="op">=</span> ALPHA,       <span class="co"># Significance level (see helpers.R)</span></span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>  N              <span class="op">=</span> n_real,      <span class="co"># Sample size from real data</span></span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a>  df             <span class="op">=</span> df_model,    <span class="co"># Degrees of freedom of the model</span></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a>  p              <span class="op">=</span> P            <span class="co"># Only relevant for indices such as GFI and AGFI</span></span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the power analysis</span></span>
 <span id="cb76-14"><a href="#cb76-14" aria-hidden="true" tabindex="-1"></a>summary(ph_rmsea)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -3491,20 +3477,18 @@ Figure&nbsp;20: Post hoc power analysis for RMSEA = 0.05.
 <div class="quarto-embed-nb-cell" data-notebook="E:\Github\cfa-power\Scripts\AnalysisScripts\06_posthoc.qmd" data-notebook-title="Post Hoc Power Analysis" data-notebook-cellid="cell-fig-posthoc-realmodel">
 <div class="cell-container"><div class="cell-decorator"><pre>In [56]:</pre></div><div id="cell-fig-posthoc-realmodel" class="cell" data-fig-width="8" data-fig-height="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical post hoc power based on lavaan models.</span></span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="co"># modelPop defines the population structure (h1model with cross-loadings).</span></span>
-<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="co"># modelH0 is the focal model to be tested.</span></span>
-<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Because modelH1 is omitted, the comparison is against the saturated model.</span></span>
-<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>ph_realmodel <span class="op">&lt;-</span> semPower::semPower.powerLav(</span>
-<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">type</span>       <span class="op">=</span> <span class="st">"post-hoc"</span>,</span>
-<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>  alpha      <span class="op">=</span> ALPHA,</span>
-<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>  N          <span class="op">=</span> n_real,</span>
-<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>  modelPop   <span class="op">=</span> h1model,</span>
-<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>  modelH0    <span class="op">=</span> fit_real,</span>
-<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a>  lavOptions <span class="op">=</span> <span class="bu">list</span>(std.lv <span class="op">=</span> TRUE)</span>
-<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a>summary(ph_realmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>ph_realmodel <span class="op">&lt;-</span> semPower::semPower.powerLav(</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">type</span>       <span class="op">=</span> <span class="st">"post-hoc"</span>,          <span class="co"># Post hoc power analysis</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>  alpha      <span class="op">=</span> ALPHA,               <span class="co"># Significance level (see helpers.R)</span></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>  N          <span class="op">=</span> n_real,              <span class="co"># Sample size from real data</span></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>  modelPop   <span class="op">=</span> h1model,             <span class="co"># Population model with cross loadings (see `models.R`)</span></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>  modelH0    <span class="op">=</span> fit_real,            <span class="co"># Fitted model from real data</span></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>  lavOptions <span class="op">=</span> <span class="bu">list</span>(std.lv <span class="op">=</span> TRUE)  <span class="co"># Standardized latent variables</span></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the power analysis</span></span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a>summary(ph_realmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  semPower: Post hoc power analysis

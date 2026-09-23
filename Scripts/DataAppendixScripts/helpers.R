@@ -7,18 +7,18 @@
 
 # --- Packages ----------------------------------------------------------------
 
-library(lavaan)
-library(semTools)
-library(semPower)
-library(semPlot)
-library(simsem)
-library(MASS)
-library(ggplot2)
-library(dplyr)
-library(here)
-library(knitr)
-library(quantreg)
-library(parallel)
+library(lavaan)   # For structural equation modeling (SEM)
+library(semTools) # For SEM tools (semPower-compatible functions)
+library(semPower) # For power analysis for SEM
+library(semPlot)  # For plotting SEM diagrams
+library(simsem)   # For simulation and power analysis for SEM
+library(MASS)     # For miscellaneous statistical functions
+library(ggplot2)  # For data visualization
+library(dplyr)    # For data manipulation
+library(here)     # For creating reproducible file paths
+library(knitr)    # For creating reproducible reports
+library(quantreg) # For quantile regression
+library(parallel) # For parallel computing
 
 # --- Configuration -----------------------------------------------------------
 
@@ -26,6 +26,7 @@ library(parallel)
 REP <- 1000 # Number of replications for final analysis.
 SEQ1 <- rep(51:350, each = 5) # Sample size sequence for varying-N simulations (5 per N).
 SEQ2 <- rep(201:500, each = 5) # Sample size sequence for varying-N simulations (5 per N).
+P_MCAR <- 0.10 # Proportion of missing completely at random data.
 
 #' Random seed for reproducibility across all simulations: simsem default is 123321.
 SEED <- 123321
