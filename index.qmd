@@ -24,13 +24,19 @@ number-sections: true
 
 ```{r}
 #| label: setup
+#| echo: false
 #| include: false
 
-library(here)
-source(here("Scripts", "DataAppendixScripts", "models.R"))
-source(here("Scripts", "DataAppendixScripts", "helpers.R"))
+# Note: The underlying objects and analytical calculations are defined and
+# documented in their respective dedicated .qmd files. They are sourced and
+# computed here, in this setup chunk, to support inline R expressions (`r ...`)
+# throughout the manuscript. In the other files, we have the objects and
+# calculations with comments.
 
-df_model <- 245
+source(here::here("Scripts", "DataAppendixScripts", "models.R"))
+source(here::here("Scripts", "DataAppendixScripts", "helpers.R"))
+
+df_model <- semPower.getDf(analyzemodel)-4
 
 ap_rmsea <- semPower::semPower.aPriori(
   effect         = 0.05,

@@ -12,20 +12,17 @@ execute:
 #| label: setup
 #| include: false
 
-# For defining file paths
-library(here)
-
 # For CFA population models
-source(here("Scripts", "DataAppendixScripts", "models.R"))
+source(here::here("Scripts", "DataAppendixScripts", "models.R"))
 
 # For DRY (Don't repeat yourself) parameters
-source(here("Scripts", "DataAppendixScripts", "helpers.R"))
+source(here::here("Scripts", "DataAppendixScripts", "helpers.R"))
 
 # For simulations caching
-source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
+source(here::here("Scripts", "DataAppendixScripts", "cache_utils.R"))
 
 # For loading existing simulations cache
-source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
+source(here::here("Scripts", "DataAppendixScripts", "cache_loader.R"))
 
 # Load existing simulations cache if available (cache_loader.R)
 cache_load_existing()
@@ -286,6 +283,7 @@ underpowered [@simsem2021; @moshagen2024].
 
 ```{r}
 #| label: tbl-power-n-ideal
+#| warning: false
 #| tbl-cap: "Sample size needed for 80% power under ideal conditions."
 
 # Obtain parameter-specific power estimates across sample sizes.
@@ -363,6 +361,8 @@ planning purposes [@simsem2021; @gagne2006].
 
 ```{r}
 #| label: tbl-power-n-naive
+#| warning: false
+#| message: false
 #| tbl-cap: "Parameter estimates and required sample size for 80% power under naive conditions."
 
 # Compute detailed parameter-recovery results for the fitted model.
@@ -451,6 +451,8 @@ $Q3 \sim\sim Q4$ appears in the table below, requiring $N = 139$ [@simsem2021; @
 
 ```{r}
 #| label: tbl-power-n-opt
+#| warning: false
+#| message: false
 #| tbl-cap: "Parameter estimates and required sample size for 80% power under optimal conditions."
 
 # Compute detailed parameter-recovery results for the fitted model.

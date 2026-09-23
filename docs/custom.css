@@ -1,0 +1,5 @@
+/* Hidden Article Notebook (index.qmd) link in the sidebar */
+.quarto-alternate-notebooks li:has(a[href*="index-preview.html"]),
+.quarto-alternate-notebooks li:has(a[href="index-preview.html"]) {
+    display: none !important;
+}

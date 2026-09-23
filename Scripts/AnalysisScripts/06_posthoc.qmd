@@ -12,20 +12,17 @@ execute:
 #| label: setup
 #| include: false
 
-# For defining file paths
-library(here)
-
 # For CFA population models
-source(here("Scripts", "DataAppendixScripts", "models.R"))
+source(here::here("Scripts", "DataAppendixScripts", "models.R"))
 
 # For DRY (Don't repeat yourself) parameters
-source(here("Scripts", "DataAppendixScripts", "helpers.R"))
+source(here::here("Scripts", "DataAppendixScripts", "helpers.R"))
 
 # For simulations caching
-source(here("Scripts", "DataAppendixScripts", "cache_utils.R"))
+source(here::here("Scripts", "DataAppendixScripts", "cache_utils.R"))
 
 # For loading existing simulations cache
-source(here("Scripts", "DataAppendixScripts", "cache_loader.R"))
+source(here::here("Scripts", "DataAppendixScripts", "cache_loader.R"))
 
 # Load existing simulations cache if available (cache_loader.R)
 cache_load_existing()

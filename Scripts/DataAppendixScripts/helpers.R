@@ -6,20 +6,20 @@
 # =============================================================================
 
 # --- Packages ----------------------------------------------------------------
-
-library(lavaan)   # For structural equation modeling (SEM)
-library(semTools) # For SEM tools (semPower-compatible functions)
-library(semPower) # For power analysis for SEM
-library(semPlot)  # For plotting SEM diagrams
-library(simsem)   # For simulation and power analysis for SEM
-library(MASS)     # For miscellaneous statistical functions
-library(ggplot2)  # For data visualization
-library(dplyr)    # For data manipulation
-library(here)     # For creating reproducible file paths
-library(knitr)    # For creating reproducible reports
-library(quantreg) # For quantile regression
-library(parallel) # For parallel computing
-
+suppressPackageStartupMessages({
+  library(lavaan)   # For structural equation modeling (SEM)
+  library(semTools) # For SEM tools (semPower-compatible functions)
+  library(semPower) # For power analysis for SEM
+  library(semPlot)  # For plotting SEM diagrams
+  library(simsem)   # For simulation and power analysis for SEM
+  library(MASS)     # For miscellaneous statistical functions
+  library(ggplot2)  # For data visualization
+  library(dplyr)    # For data manipulation
+  library(here)     # For creating reproducible file paths
+  library(knitr)    # For creating reproducible reports
+  library(quantreg) # For quantile regression
+  library(parallel) # For parallel computing
+})
 # --- Configuration -----------------------------------------------------------
 
 #' Monte Carlo Simulation.

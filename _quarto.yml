@@ -23,17 +23,17 @@ manuscript: # https://quarto.org/docs/manuscripts/authoring/rstudio.html
   meca-bundle: false # Generate MECA bundle for journal submission.
   notebooks:
     - notebook: Scripts/AnalysisScripts/01_population_models.qmd
-      title: "Population Models"
+      title: "1. Population Models"
     - notebook: Scripts/AnalysisScripts/02_analytical_power.qmd
-      title: "Analytical Power Analysis"
+      title: "2. Analytical Power Analysis"
     - notebook: Scripts/AnalysisScripts/03_simulation_ideal.qmd
-      title: "Simulation — Ideal Conditions"
+      title: "3. Simulation — Ideal Conditions"
     - notebook: Scripts/AnalysisScripts/04_simulation_robust.qmd
-      title: "Simulation — Realistic Scenarios"
+      title: "4. Simulation — Realistic Scenarios"
     - notebook: Scripts/AnalysisScripts/05_model_comparison.qmd
-      title: "Simulation — Fixed N"
+      title: "5. Simulation — Fixed N"
     - notebook: Scripts/AnalysisScripts/06_posthoc.qmd
-      title: "Post Hoc Power Analysis"
+      title: "6. Post Hoc Power Analysis"
 
 bibliography: references.bib # https://quarto.org/docs/authoring/citations.html
 # File containing the bibliographic references in BibTeX format.
@@ -43,6 +43,7 @@ format: # https://quarto.org/docs/reference/formats/html.html
   html:
     theme: spacelab # A clean, modern theme for HTML output.
     toc: true # Include a table of contents in the HTML output.
+    css: custom.css # Include custom CSS for HTML output.
     comments:
       hypothesis: true # Enable Hypothesis comments in the HTML output.
   docx: default # Use the default Word template for DOCX output.

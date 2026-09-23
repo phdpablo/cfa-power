@@ -12,14 +12,11 @@ execute:
 #| label: setup
 #| include: false
 
-# For defining file paths
-library(here)
-
 # For CFA population models
-source(here("Scripts", "DataAppendixScripts", "models.R"))
+source(here::here("Scripts", "DataAppendixScripts", "models.R"))
 
 # For plotting CFA population models
-source(here("Scripts", "DataAppendixScripts", "helpers.R"))
+source(here::here("Scripts", "DataAppendixScripts", "helpers.R"))
 ```
 
 ## Population model — Meta-analytic
