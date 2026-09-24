@@ -134,7 +134,6 @@ display$parameters <- gsub("~~", "\\~\\~", display$parameters, fixed = TRUE)
 # Display the parameters table
 display |>
   kable(
-    caption = "CFA Population Models Parameter",
     digits = 4,
     align = "lcccc",
     booktabs = TRUE,

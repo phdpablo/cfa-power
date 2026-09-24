@@ -412,7 +412,6 @@ Table&nbsp;1: Summary of population models used for sensitivity analysis
 <div aria-describedby="tbl-pop-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display cell-output-markdown">
 <table class="cell caption-top table table-sm table-striped small">
-<caption>CFA Population Models Parameter</caption>
 <colgroup>
 <col style="width: 37%">
 <col style="width: 14%">
@@ -993,14 +992,7 @@ Figure&nbsp;5: Path diagram of the analyzemodel
 <p>Before running any data collection, analytical power analysis answers a fundamental planning question: how large must <span class="math inline">\(N\)</span> be so that, if the model is wrong by at least a specified amount, we will reject it with acceptable probability? In SEM, the dominant analytical framework links misspecification to the non-central <span class="math inline">\(\chi^2\)</span> distribution through the noncentrality parameter <span class="math inline">\(\lambda\)</span>, which scales with both <span class="math inline">\(N\)</span> and the magnitude of model discrepancy <span class="citation" data-cites="maccallum1996 jak2021">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-maccallum1996" role="doc-biblioref">MacCallum et al., 1996</a>)</span>.</p>
 <section id="sec-df" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="sec-df"><span class="header-section-number">3.1</span> Model Degrees of Freedom</h3>
-<p>All analytical calculations in this section depend on the model degrees of freedom (<span class="math inline">\(df\)</span>) — the difference between the number of unique variances and covariances in the observed data and the number of freely estimated parameters. This quantity enters the non-central <span class="math inline">\(\chi^2\)</span> distribution directly and is therefore required before any a priori or post hoc power calculation can proceed:</p>
-<div class="quarto-embed-nb-cell">
-<div id="compute-df" class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Model degrees of freedom: 245 </code></pre>
-</div>
-</div>
-</div>
+<p>All analytical calculations in this section depend on the model degrees of freedom (<span class="math inline">\(df\)</span>) — the difference between the number of unique variances and covariances in the observed data and the number of freely estimated parameters. This quantity enters the non-central <span class="math inline">\(\chi^2\)</span> distribution directly and is therefore required before any a priori or post hoc power calculation can proceed <span class="citation" data-cites="jak2021 moshagen2024">(<a href="#ref-jak2021" role="doc-biblioref">Jak et al., 2021</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>. For the hypothesized four-factor WHOQOL-BREF CFA model analyzed here (comprising 24 observed indicators, yielding <span class="math inline">\(p(p + 1)/2 = 300\)</span> non-redundant sample moments and 55 freely estimated parameters under standardized latent variables), this yields <span class="math inline">\(df = 245\)</span>.</p>
 </section>
 <section id="sec-apriori" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="sec-apriori"><span class="header-section-number">3.2</span> A Priori: How Many Observations?</h3>

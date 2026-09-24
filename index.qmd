@@ -364,9 +364,11 @@ of freedom ($df$) — the difference between the number of unique
 variances and covariances in the observed data and the number of freely
 estimated parameters. This quantity enters the non-central $\chi^2$
 distribution directly and is therefore required before any a priori or
-post hoc power calculation can proceed:
-
-{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#compute-df >}}
+post hoc power calculation can proceed [@jak2021; @moshagen2024]. For the
+hypothesized four-factor WHOQOL-BREF CFA model analyzed here (comprising
+24 observed indicators, yielding $p(p + 1)/2 = 300$ non-redundant sample
+moments and 55 freely estimated parameters under standardized latent
+variables), this yields $df = `r df_model`$.
 
 ### A Priori: How Many Observations? {#sec-apriori}
 

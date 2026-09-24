@@ -424,46 +424,25 @@ Power for post hoc analysis based on simulation.
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">N              =</span> n_real,      <span class="co"># Sample size from real data</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">df             =</span> df_model,    <span class="co"># Degrees of freedom of the model</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">p              =</span> P            <span class="co"># Only relevant for indices such as GFI and AGFI</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard software output:</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calling summary() directly prints the full terminal summary table alongside the</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># central vs. non-central chi-square distribution plot. In an interactive R session,</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># executing summary(ph_rmsea) is sufficient to inspect analytical results immediately.</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ph_rmsea)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
- semPower: Post hoc power analysis
-                                      
- F0                       0.612500    
- RMSEA                    0.050000    
- Mc                       0.736203    
- GFI                      0.951437    
- AGFI                     0.940535    
-                                      
- df                       245         
- Num Observations         1047        
- NCP                      640.6750    
-                                      
- Critical Chi-Square      282.5114    
- Alpha                    0.050000    
- Beta                     3.070697e-47
- Power (1 - Beta)         &gt; 0.9999    
- Implied Alpha/Beta Ratio 1.628295e+45</code></pre>
-</div>
-<div class="cell-output-display">
-<div class="">
-<figure class="figure">
-<p class=""><a href="06_posthoc_files/figure-html/posthoc-rmsea-raw-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="06_posthoc_files/figure-html/posthoc-rmsea-raw-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<p>For formal manuscript presentation and publication rendering, the composite output above is decoupled into an academic table and an isolated distribution figure:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Standard software output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Calling <code>summary()</code> directly prints the full terminal summary table alongside the central vs.&nbsp;non-central chi-square distribution plot. In an interactive R session, executing <code>summary(ph_rmsea)</code> is sufficient to inspect analytical results immediately. For formal manuscript presentation and publication rendering, the composite output is decoupled into an academic table and an isolated distribution figure.</p>
+</div>
+</div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatted table extracting analytical post hoc power metrics for clean manuscript embedding</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table_sempower</span>(ph_rmsea) <span class="co"># See function definition in helpers.R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatted table extracting analytical post hoc power metrics for clean manuscript embedding</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table_sempower</span>(ph_rmsea) <span class="co"># See function definition in helpers.R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="tbl-posthoc-rmsea" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-posthoc-rmsea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -553,14 +532,14 @@ Analytical post hoc power parameters for RMSEA = 0.05
 </div></div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div id="cell-fig-posthoc-rmsea" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Isolated chi-square distribution plot for clean manuscript embedding</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_sempower</span>(ph_rmsea) <span class="co"># See function definition in helpers.R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Isolated chi-square distribution plot for clean manuscript embedding</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_sempower</span>(ph_rmsea) <span class="co"># See function definition in helpers.R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-posthoc-rmsea" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-posthoc-rmsea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="06_posthoc_files/figure-html/fig-posthoc-rmsea-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Post hoc power analysis for RMSEA = 0.05."><img src="06_posthoc_files/figure-html/fig-posthoc-rmsea-1.png" class="img-fluid figure-img" width="768"></a>
+<a href="06_posthoc_files/figure-html/fig-posthoc-rmsea-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Post hoc power analysis for RMSEA = 0.05."><img src="06_posthoc_files/figure-html/fig-posthoc-rmsea-1.png" class="img-fluid figure-img" width="768"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posthoc-rmsea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Post hoc power analysis for RMSEA = 0.05.
@@ -571,58 +550,35 @@ Post hoc power analysis for RMSEA = 0.05.
 </div></div>
 <p>In the model-based specification below, <code>semPower.powerLav()</code> fits the analysis model to the population-implied covariance matrix and translates the resulting discrepancy into the noncentrality parameter. Because <code>modelH1</code> is omitted, the comparison is against the saturated model, making this a global test of fit rather than a test of a specific restriction <span class="citation" data-cites="moshagen2024 jobst2023">(<a href="#ref-jobst2023" role="doc-biblioref">Jobst et al., 2023</a>; <a href="#ref-moshagen2024" role="doc-biblioref">Moshagen &amp; Bader, 2024</a>)</span>.</p>
 <div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical post hoc power based on lavaan models.</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ph_realmodel <span class="ot">&lt;-</span> semPower<span class="sc">::</span><span class="fu">semPower.powerLav</span>(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type       =</span> <span class="st">"post-hoc"</span>,          <span class="co"># Post hoc power analysis</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha      =</span> ALPHA,               <span class="co"># Significance level (see helpers.R)</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">N          =</span> n_real,              <span class="co"># Sample size from real data</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelPop   =</span> h1model,             <span class="co"># Population model with cross loadings (see `models.R`)</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelH0    =</span> fit_real,            <span class="co"># Fitted model from real data</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">lavOptions =</span> <span class="fu">list</span>(<span class="at">std.lv =</span> <span class="cn">TRUE</span>)  <span class="co"># Standardize latent variables</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard software output:</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calling summary() directly prints the full terminal summary table alongside the</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># central vs. non-central chi-square distribution plot. In interactive R sessions,</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># executing summary(ph_realmodel) is sufficient to inspect analytical results.</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ph_realmodel)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
- semPower: Post hoc power analysis
-                                      
- F0                       0.578978    
- RMSEA                    0.048612    
- SRMR                     0.066543    
- Mc                       0.748646    
- GFI                      0.953973    
- AGFI                     0.943640    
- CFI                      0.959955    
-                                      
- df                       245         
- Num Observations         1047        
- NCP                      605.6108    
-                                      
- Critical Chi-Square      282.5114    
- Alpha                    0.050000    
- Beta                     1.868864e-43
- Power (1 - Beta)         &gt; 0.9999    
- Implied Alpha/Beta Ratio 2.675422e+41</code></pre>
-</div>
-<div class="cell-output-display">
-<div class="">
-<figure class="figure">
-<p class=""><a href="06_posthoc_files/figure-html/posthoc-realmodel-raw-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="06_posthoc_files/figure-html/posthoc-realmodel-raw-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Analytical post hoc power based on lavaan models.</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ph_realmodel <span class="ot">&lt;-</span> semPower<span class="sc">::</span><span class="fu">semPower.powerLav</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type       =</span> <span class="st">"post-hoc"</span>,          <span class="co"># Post hoc power analysis</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha      =</span> ALPHA,               <span class="co"># Significance level (see helpers.R)</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">N          =</span> n_real,              <span class="co"># Sample size from real data</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelPop   =</span> h1model,             <span class="co"># Population model with cross loadings (see `models.R`)</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">modelH0    =</span> fit_real,            <span class="co"># Fitted model from real data</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">lavOptions =</span> <span class="fu">list</span>(<span class="at">std.lv =</span> <span class="cn">TRUE</span>)  <span class="co"># Standardize latent variables</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<p>For formal manuscript presentation, the composite output is decoupled into an academic table and an isolated distribution figure:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Standard software output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Calling <code>summary()</code> directly prints the full terminal summary table alongside the central vs.&nbsp;non-central chi-square distribution plot. In an interactive R session, executing <code>summary(ph_realmodel)</code> is sufficient to inspect analytical results immediately. For formal manuscript presentation and publication rendering, the composite output is decoupled into an academic table and an isolated distribution figure.</p>
+</div>
+</div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatted table extracting empirical model-based post hoc metrics for clean manuscript embedding</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table_sempower</span>(ph_realmodel) <span class="co"># See function definition in helpers.R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatted table extracting empirical model-based post hoc metrics for clean manuscript embedding</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table_sempower</span>(ph_realmodel) <span class="co"># See function definition in helpers.R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [15]:</pre></div><div id="tbl-posthoc-realmodel" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-posthoc-realmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -722,14 +678,14 @@ Analytical post hoc power parameters for empirical fitted model
 </div></div>
 </div></div>
 <div class="cell-container"><div class="cell-decorator"><pre>In [16]:</pre></div><div id="cell-fig-posthoc-realmodel" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Isolated chi-square distribution plot for clean manuscript embedding</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_sempower</span>(ph_realmodel) <span class="co"># See function definition in helpers.R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Isolated chi-square distribution plot for clean manuscript embedding</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_sempower</span>(ph_realmodel) <span class="co"># See function definition in helpers.R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-posthoc-realmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-posthoc-realmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="">
-<a href="06_posthoc_files/figure-html/fig-posthoc-realmodel-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Post hoc power analysis for the real model."><img src="06_posthoc_files/figure-html/fig-posthoc-realmodel-1.png" class="img-fluid figure-img" width="768"></a>
+<a href="06_posthoc_files/figure-html/fig-posthoc-realmodel-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Post hoc power analysis for the real model."><img src="06_posthoc_files/figure-html/fig-posthoc-realmodel-1.png" class="img-fluid figure-img" width="768"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posthoc-realmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Post hoc power analysis for the real model.

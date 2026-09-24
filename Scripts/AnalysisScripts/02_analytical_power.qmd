@@ -76,16 +76,13 @@ ap_rmsea <- semPower::semPower.aPriori(
   df             = df_model,  # model degrees of freedom calculated in "compute-df" chunk
   p              = P          # number of observed indicators defined in helpers.R
 )
-
-# Standard software output:
-# Calling summary() directly prints the full terminal summary table alongside the
-# central vs. non-central chi-square distribution plot. In an interactive R session,
-# executing summary(ap_rmsea) is sufficient to inspect analytical results immediately.
-summary(ap_rmsea)
 ```
 
-For formal manuscript presentation and publication rendering, the composite output
-above is decoupled into an academic table and an isolated distribution figure:
+
+::: {.callout-important}
+## Standard software output
+Calling `summary()` directly prints the full terminal summary table alongside the central vs. non-central chi-square distribution plot. In an interactive R session, executing `summary(ap_rmsea)` is sufficient to inspect analytical results immediately. For formal manuscript presentation and publication rendering, the composite output is decoupled into an academic table and an isolated distribution figure.
+:::
 
 ```{r}
 #| label: tbl-apriori-rmsea
@@ -136,16 +133,12 @@ ap_popmodel <- semPower::semPower.powerLav(
   modelH0    = analyzemodel, # analysis model defined in "models.R"
   lavOptions = list(std.lv = TRUE) # Standardize latent variables
 )
-
-# Standard software output:
-# Calling summary() directly prints the full terminal summary table alongside the
-# central vs. non-central chi-square distribution plot. In interactive R sessions,
-# executing summary(ap_popmodel) is sufficient to inspect analytical results.
-summary(ap_popmodel)
 ```
 
-For formal manuscript presentation, the composite output is decoupled into an
-academic table and an isolated distribution figure:
+::: {.callout-important}
+## Standard software output
+Calling `summary()` directly prints the full terminal summary table alongside the central vs. non-central chi-square distribution plot. In an interactive R session, executing `summary(ap_popmodel)` is sufficient to inspect analytical results immediately. For formal manuscript presentation and publication rendering, the composite output is decoupled into an academic table and an isolated distribution figure.
+:::
 
 ```{r}
 #| label: tbl-apriori-popmodel

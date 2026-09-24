@@ -196,16 +196,12 @@ ph_rmsea <- semPower::semPower.postHoc(
   df             = df_model,    # Degrees of freedom of the model
   p              = P            # Only relevant for indices such as GFI and AGFI
 )
-
-# Standard software output:
-# Calling summary() directly prints the full terminal summary table alongside the
-# central vs. non-central chi-square distribution plot. In an interactive R session,
-# executing summary(ph_rmsea) is sufficient to inspect analytical results immediately.
-summary(ph_rmsea)
 ```
 
-For formal manuscript presentation and publication rendering, the composite output
-above is decoupled into an academic table and an isolated distribution figure:
+::: {.callout-important}
+## Standard software output
+Calling `summary()` directly prints the full terminal summary table alongside the central vs. non-central chi-square distribution plot. In an interactive R session, executing `summary(ph_rmsea)` is sufficient to inspect analytical results immediately. For formal manuscript presentation and publication rendering, the composite output is decoupled into an academic table and an isolated distribution figure.
+:::
 
 ```{r}
 #| label: tbl-posthoc-rmsea
@@ -245,16 +241,12 @@ ph_realmodel <- semPower::semPower.powerLav(
   modelH0    = fit_real,            # Fitted model from real data
   lavOptions = list(std.lv = TRUE)  # Standardize latent variables
 )
-
-# Standard software output:
-# Calling summary() directly prints the full terminal summary table alongside the
-# central vs. non-central chi-square distribution plot. In interactive R sessions,
-# executing summary(ph_realmodel) is sufficient to inspect analytical results.
-summary(ph_realmodel)
 ```
 
-For formal manuscript presentation, the composite output is decoupled into an
-academic table and an isolated distribution figure:
+::: {.callout-important}
+## Standard software output
+Calling `summary()` directly prints the full terminal summary table alongside the central vs. non-central chi-square distribution plot. In an interactive R session, executing `summary(ph_realmodel)` is sufficient to inspect analytical results immediately. For formal manuscript presentation and publication rendering, the composite output is decoupled into an academic table and an isolated distribution figure.
+:::
 
 ```{r}
 #| label: tbl-posthoc-realmodel
