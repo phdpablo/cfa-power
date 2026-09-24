@@ -1,0 +1,69 @@
+/* =============================================================================
+   1. Sidebar Navigation
+   ============================================================================= */
+/* Hide the redundant Article Notebook (index.qmd) link in the sidebar */
+.quarto-alternate-notebooks li:has(a[href*="index-preview.html"]),
+.quarto-alternate-notebooks li:has(a[href="index-preview.html"]) {
+  display: none !important;
+}
+
+/* =============================================================================
+   2. Section Headings Vertical Spacing (Levels 1 to 4)
+   ============================================================================= */
+/* Generous top margin to separate from the preceding section, and comfortable bottom spacing */
+.level2>h2,
+h2.anchored {
+  margin-top: 2.6rem !important;
+  margin-bottom: 1.6rem !important;
+}
+
+.level3>h3,
+h3.anchored {
+  margin-top: 2.0rem !important;
+  margin-bottom: 1.4rem !important;
+}
+
+.level4>h4,
+h4.anchored {
+  margin-top: 1.6rem !important;
+  margin-bottom: 1.2rem !important;
+}
+
+/* =============================================================================
+   3. Callout Blocks Spacing (Notes, Warnings, Tips)
+   ============================================================================= */
+/* Adequate breathing room between callouts and surrounding narrative text */
+.callout {
+  margin-top: 2.0rem !important;
+  margin-bottom: 2.0rem !important;
+}
+
+/* =============================================================================
+   4. Figures and Illustrations Spacing
+   ============================================================================= */
+/* Vertical margin separating figure blocks from surrounding paragraphs */
+.quarto-figure,
+figure.quarto-float-fig {
+  margin-top: 1.0rem !important;
+  margin-bottom: 2.0rem !important;
+}
+
+/* Spacing between the figure image and its bottom caption */
+figcaption.quarto-float-caption-bottom {
+  margin-top: 0.75rem !important;
+}
+
+/* =============================================================================
+   5. Tables Spacing
+   ============================================================================= */
+/* Vertical margin separating table containers from surrounding paragraphs */
+.quarto-float-tbl,
+div[id^="tbl-"] {
+  margin-top: 2.4rem !important;
+  margin-bottom: 2.0rem !important;
+}
+
+/* Spacing between the top caption and the table header */
+figcaption.quarto-float-caption-top {
+  margin-bottom: 0.50rem !important;
+}

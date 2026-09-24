@@ -1,0 +1,1042 @@
+---
+title: "Power Analysis for Confirmatory Factor Analysis: A Practical Tutorial"
+subtitle: "Analytical and Simulation-Based Approaches"
+author:
+  - name: Pablo Rogers
+    orcid: 0000-0002-0093-3834
+    corresponding: true
+    email: pablorogers@ufu.br
+    affiliations:
+      - Universidade Federal de Uberlândia
+keywords:
+  - Power Analysis
+  - Confirmatory Factor Analysis
+  - Structural Equation Modeling
+  - Monte Carlo Simulation
+  - semPower
+  - simsem
+abstract: |
+  This tutorial presents a pedagogical introduction to statistical power analysis in Confirmatory Factor Analysis (CFA). Proper sample size planning requires assessing the probability of detecting overall model misfit, either through analytical methods or simulation-based approaches. Standard analytical tools rely on asymptotic normal theory, which can break down under non-normality or missing data. This tutorial demonstrates both strategies — analytical (using semPower with lavaan syntax) and Monte Carlo simulation (using simsem) — side by side, using the WHOQOL-BREF four-factor model as a unifying case study. We illustrate how simulation complements analytical calculations by enabling researchers to evaluate parameter-level power, coverage, and relative bias under realistic scenarios involving model misspecification, missing data, and non-normal continuous indicators. We argue that analytical methods provide a fast and theoretically grounded starting point for sample size planning, while simulation-based approaches allow those conclusions to be stress-tested against the specific population structure, misspecification form, and data conditions of the study at hand.
+date: last-modified
+bibliography: references.bib
+number-sections: true
+---
+
+```{r}
+#| label: setup
+#| echo: false
+#| include: false
+
+# Note: The underlying objects and analytical calculations are defined and
+# documented in their respective dedicated .qmd files. They are sourced and
+# computed here, in this setup chunk, to support inline R expressions (`r ...`)
+# throughout the manuscript. In the other files, we have the objects and
+# calculations with comments.
+
+source(here::here("Scripts", "DataAppendixScripts", "models.R"))
+source(here::here("Scripts", "DataAppendixScripts", "helpers.R"))
+
+df_model <- semPower.getDf(analyzemodel)-4
+
+ap_rmsea <- semPower::semPower.aPriori(
+  effect         = 0.05,
+  effect.measure = "RMSEA",
+  alpha          = ALPHA,
+  power          = POWER,
+  df             = df_model,
+  p              = P
+)
+
+ap_popmodel <- semPower::semPower.powerLav(
+  type       = "a-priori",
+  alpha      = ALPHA,
+  power      = POWER,
+  modelPop   = h1model,
+  modelH0    = analyzemodel,
+  lavOptions = list(std.lv = TRUE)
+)
+
+cache_dir <- here("Data", "IntermediateData")
+
+popmodel_ideal   <- readRDS(file.path(cache_dir, "popmodel_ideal.rds"))
+h1model_ideal    <- readRDS(file.path(cache_dir, "h1model_ideal.rds"))
+naivemodel_ideal <- readRDS(file.path(cache_dir, "naivemodel_ideal.rds"))
+optmodel_ideal   <- readRDS(file.path(cache_dir, "optmodel_ideal.rds"))
+
+power_ideal  <- as.list(getPowerFit(
+  h1model_ideal, nullObject = popmodel_ideal,
+  alpha = ALPHA, nVal = 231, usedFit = FITS
+))
+cutoff_ideal <- as.list(getCutoff(
+  popmodel_ideal, alpha = ALPHA, nVal = 231, usedFit = FITS
+))
+
+n_h1    <- as.list(findPower(getPower(h1model_ideal,    alpha = ALPHA), "N", 0.80))
+n_naive <- as.list(findPower(getPower(naivemodel_ideal, alpha = ALPHA), "N", 0.80))
+n_opt   <- as.list(findPower(getPower(optmodel_ideal,   alpha = ALPHA), "N", 0.80))
+
+popmodel_miss    <- readRDS(file.path(cache_dir, "popmodel_miss.rds"))
+h1model_miss     <- readRDS(file.path(cache_dir, "h1model_miss.rds"))
+
+power_miss <- getPowerFit(
+  h1model_miss, nullObject = popmodel_miss,
+  alpha = ALPHA, nVal = 359, usedFit = FITS
+)
+cutoff_miss <- getCutoff(
+  popmodel_miss, alpha = ALPHA, nVal = 359, usedFit = FITS
+)
+power_cutoff_miss <- rbind(
+  "Power"  = as.numeric(power_miss),
+  "Cutoff" = as.numeric(cutoff_miss[1, ])
+)
+colnames(power_cutoff_miss) <- toupper(names(power_miss))
+
+popmodel_nnorm   <- readRDS(file.path(cache_dir, "popmodel_nnorm.rds"))
+h1model_nnorm    <- readRDS(file.path(cache_dir, "h1model_nnorm.rds"))
+
+power_nnorm <- getPowerFit(
+  h1model_nnorm, nullObject = popmodel_nnorm,
+  alpha = ALPHA, nVal = 228, usedFit = FITS
+)
+cutoff_nnorm <- getCutoff(
+  popmodel_nnorm, alpha = ALPHA, nVal = 228, usedFit = FITS
+)
+power_cutoff_nnorm <- rbind(
+  "Power"  = as.numeric(power_nnorm),
+  "Cutoff" = as.numeric(cutoff_nnorm[1, ])
+)
+colnames(power_cutoff_nnorm) <- toupper(names(power_nnorm))
+
+url_data <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/b58a7054-4978-4239-81db-00f9efd86e44/WHOQOL_Data.dat"
+realdata <- read.table(url_data)
+
+url_labels <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/ae2a5c01-2fc2-43e5-b31c-8db8cc5bff8a/WHOQOL_Labels.txt"
+column_labels <- read.table(url_labels)
+column_labels <- column_labels$V1
+names(realdata) <- gsub("_[FPSA]$", "", column_labels)
+n_real <- nrow(realdata)
+
+fit_real <- lavaan::cfa(
+  analyzemodel,
+  data      = realdata,
+  estimator = "mlr",
+  std.lv = TRUE
+)
+
+ph_rmsea <- semPower::semPower.postHoc(
+  effect         = 0.05,
+  effect.measure = "RMSEA",
+  alpha          = ALPHA,
+  N              = n_real,
+  df             = df_model,
+  p              = P
+)
+
+ph_realmodel <- semPower::semPower.powerLav(
+  type       = "post-hoc",
+  alpha      = ALPHA,
+  N          = n_real,
+  modelPop   = h1model,
+  modelH0    = fit_real,
+  lavOptions = list(std.lv = TRUE)
+)
+
+```
+
+## Introduction {#sec-intro}
+
+Statistical power in CFA is the probability of correctly rejecting a
+misspecified model — or of detecting a parameter of interest when it is
+truly non-zero in the population [@maccallum1996]. Despite its
+importance, power is rarely reported in applied CFA work: researchers
+frequently fall back on arbitrary rules of thumb linking required sample
+size to the number of observed variables or estimated parameters, rather
+than conducting formal prospective calculations [@wolf2013;
+@aguirre-urreta2024].
+
+Two main paradigms address power analysis in CFA:
+
+1.  **Analytical methods**: Rely on the non-central $\chi^2$
+    distribution to determine the sample size required for detecting
+    global or local model misfit, typically quantified through the RMSEA
+    [@maccallum1996; @jak2021].
+2.  **Simulation-based methods**: Use Monte Carlo data generation to
+    estimate power, bias, and coverage for specific parameters or
+    overall fit indices across varying sample sizes, without relying on
+    the asymptotic assumptions that constrain analytical solutions
+    [@simsem2021; @muthen2002a].
+
+This document provides a comprehensive tutorial covering both paradigms:
+analytical power analysis using the `semPower` package, and Monte Carlo
+simulation using the `simsem` package [@moshagen2024; @simsem2021].
+
+::: {.callout-note}
+## Reproducibility Note
+For local development and computational convenience, simulations in this
+tutorial use 1,500 replications. Production-quality applied research
+should increase this to 5,000 or more. Results throughout this tutorial
+therefore carry more sampling variability than would be expected in a
+final study. All analytical and simulation parameters are centrally
+defined in `helpers.R` and `models.R` in `Scripts/DataAppendixScripts`.
+:::
+
+## The Running Example: WHOQOL-BREF Population CFA Model {#sec-popmodel}
+
+All power analyses in this tutorial are anchored in the World Health
+Organization Quality of Life-BREF (WHOQOL-BREF) four-factor measurement
+model [@lin2022; @mosqueirataipe2026]. Meaningful power analysis requires an explicit population
+model — a formal representation of the "true" covariance structure from
+which data are presumed to be generated [@feng2023]. By grounding this
+model in meta-analytic evidence rather than in arbitrary parameter
+choices, we ensure that sample size targets reflect realistic
+measurement conditions [@lin2022; @mosqueirataipe2026].
+
+We specify four population variants to support sensitivity analyses:
+
+1.  **Meta-analytic** (`popmodel`): Loadings and residual variances
+    matching the pooled estimates from @lin2022.
+2.  **Naive** (`naivemodel`): A pessimistic baseline derived from the
+    lowest reported reliability values per domain
+    [@mosqueirataipe2026].
+3.  **Optimistic** (`optmodel`): A best-case scenario derived from the
+    highest reported reliability values per domain
+    [@mosqueirataipe2026].
+4.  **Misspecification** (`h1model`): A cross-loading model representing
+    the alternative hypothesis $H_1$, with three additional
+    cross-loadings based on the meta-EFA results of @lin2022.
+
+### Population model
+
+The primary population model (`popmodel`) operationalizes a
+meta-analytic scenario based on @lin2022, whose pooled EFA estimates
+across 16 international studies provide the factor loadings ($\lambda$).
+Key features of this model are:
+
+-   **Interfactor correlations ($\phi$)**: Fixed at $0.20$, a
+    conservative midpoint of the reported range $0.08$–$0.31$
+    [@lin2022].
+-   **Residual covariance**: Items $Q3$ and $Q4$ share a residual
+    covariance ($r_{Q3, Q4 \mid \text{physical}} = 0.30$), preserving
+    the subfactor signal identified in the five-factor EFA solution
+    [@lin2022].
+-   **Factor structure**: Item $Q8$ is retained in the Environmental
+    domain despite loading more strongly on the Psychological domain in
+    the meta-EFA. This constitutes the null hypothesis ($H_0$)
+    version of the population, strictly maintaining the original
+    four-factor structure without cross-loadings.
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-popmodel >}}
+
+### Naive model
+
+The naive model provides an empirically grounded pessimistic scenario.
+Factor loadings are derived via the Spearman-Brown prediction formula
+from the lowest Cronbach's $\alpha$ values identified in the literature
+[@mosqueirataipe2026], yielding conservative parameter estimates that
+push sample size requirements upward:
+
+-   **Approach**: Assuming equal loadings within each domain,
+    $\lambda = \sqrt{\alpha / (k - \alpha(k-1))}$ and
+    $\theta = 1 - \lambda^2$.
+-   **Alpha sources**: Lowest domain alphas from a single study
+    identified in the systematic review by @mosqueirataipe2026
+    (Physical $\alpha = 0.672$; Psychological $\alpha = 0.704$; Social
+    $\alpha = 0.630$; Environmental $\alpha = 0.709$), all within the
+    $M - 1SD$ range reported by @lin2022.
+-   **Interfactor correlations ($\phi$)**: Fixed at $0.30$ (the upper
+    bound from @lin2022), making factors harder to distinguish and
+    yielding a deliberately conservative power estimate.
+-   **Derived parameters**: Physical ($\lambda = 0.4758$,
+    $\theta = 0.7736$); Psychological ($\lambda = 0.5328$,
+    $\theta = 0.7161$); Social ($\lambda = 0.6017$,
+    $\theta = 0.6379$); Environmental ($\lambda = 0.4832$,
+    $\theta = 0.7665$). The residual covariance between $Q3$ and $Q4$
+    is adjusted to $0.2321$.
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-naivemodel >}}
+
+### Optimistic model
+
+The optimistic model applies the same Spearman-Brown derivation but
+draws on the highest observed Cronbach's $\alpha$ values per domain,
+producing stronger loadings and lower residual variances relative to the
+naive model [@mosqueirataipe2026]:
+
+-   **Alpha sources**: Maximum domain alphas from the literature
+    [@mosqueirataipe2026] (Physical $\alpha = 0.860$; Psychological
+    $\alpha = 0.860$; Social $\alpha = 0.810$; Environmental
+    $\alpha = 0.849$), all confirmed within the $M + 1SD$ range from @lin2022.
+-   **Interfactor correlations ($\phi$)**: Fixed at $0.08$ (the lower
+    bound from @lin2022), so that factors are well distinguished and
+    sample size requirements are reduced.
+-   **Derived parameters**: Physical ($\lambda = 0.6837$,
+    $\theta = 0.5326$); Psychological ($\lambda = 0.7113$,
+    $\theta = 0.4941$); Social ($\lambda = 0.7661$,
+    $\theta = 0.4130$); Environmental ($\lambda = 0.6424$,
+    $\theta = 0.5873$). The residual covariance between $Q3$ and $Q4$
+    is adjusted to $0.1598$.
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-optmodel >}}
+
+### Misspecification model
+
+This model defines the alternative hypothesis ($H_1$): a cross-loading
+variant of the four-factor structure in which three empirically
+motivated cross-loadings are added based on the meta-EFA results of
+@lin2022 and the systematic review evidence in @mosqueirataipe2026:
+
+-   **Cross-loading 1**: Item $Q8$ on the Psychological factor
+    ($\lambda = 0.55$). This item showed the highest betweenness
+    centrality ($40.50$) and was assigned to the Psychological factor
+    in 9 of 16 studies [@lin2022].
+-   **Cross-loading 2**: Item $Q9$ on the Psychological factor
+    ($\lambda = 0.21$), identified as a secondary loading in the
+    five-factor EFA solution.
+-   **Cross-loading 3**: Item $Q15$ on the Environmental factor
+    ($\lambda = 0.24$). "Mobility" conceptually bridges physical
+    ability and environmental access, and this item showed the
+    second-highest betweenness centrality ($36.50$) [@lin2022].
+
+Residual variances for cross-loaded items were recalculated to preserve
+total item variance:
+$\theta = 1 - \lambda_{\text{primary}}^2 - \lambda_{\text{secondary}}^2 - 2\lambda_{\text{primary}}\lambda_{\text{secondary}}\phi$,
+where $\phi = 0.20$.
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-h1model >}}
+
+### Summary of population models
+
+@tbl-pop-summary presents all parameters of the four population models.
+@tbl-pop-comparison summarizes key features across models — minimum and
+maximum factor loadings, mean loading, modal interfactor correlation,
+minimum and maximum residual variances, and the residual correlation
+between $Q3$ and $Q4$ — to facilitate direct comparison.
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#tbl-pop-summary >}}
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#tbl-pop-comparison >}}
+
+### Analysis model
+
+The analysis model (`analyzemodel`) serves dual purposes depending on
+the simulation paradigm:
+
+-   **Misspecification detection**: When data are generated from the
+    misspecification model (`h1model`), the analysis model acts as the
+    null hypothesis ($H_0$) by omitting the three cross-loadings.
+    Power is then the probability of correctly rejecting this
+    under-parameterized model.
+-   **Parameter recovery**: When data are generated from the
+    meta-analytic, naive, or optimistic population models, the same
+    structure is used to estimate the four-factor model with the
+    $Q3$–$Q4$ residual covariance, and power reflects the ability to
+    recover individual parameters.
+
+Key specification choices:
+
+-   **Identification**: Factor variances fixed to $1$ (marker-free
+    scaling), allowing all first-indicator loadings to be freely
+    estimated.
+-   **Residual covariance**: The $Q3$–$Q4$ covariance is freely
+    estimated, which is both theoretically justified and empirically
+    supported [@lin2022; @mosqueirataipe2026].
+-   **Omitted cross-loadings**: The deliberate exclusion of
+    cross-loadings for $Q8$, $Q9$, and $Q15$ defines the
+    misspecification that this tutorial's main analysis is designed to
+    detect.
+
+{{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-analyzemodel >}}
+
+## Analytical Power Analysis {#sec-analytical}
+
+Before running any data collection, analytical power analysis answers
+a fundamental planning question: how large must $N$ be so that, if
+the model is wrong by at least a specified amount, we will reject it
+with acceptable probability? In SEM, the dominant analytical framework
+links misspecification to the non-central $\chi^2$ distribution through
+the noncentrality parameter $\lambda$, which scales with both $N$ and
+the magnitude of model discrepancy [@maccallum1996; @jak2021].
+
+### Model Degrees of Freedom {#sec-df}
+
+All analytical calculations in this section depend on the model degrees
+of freedom ($df$) — the difference between the number of unique
+variances and covariances in the observed data and the number of freely
+estimated parameters. This quantity enters the non-central $\chi^2$
+distribution directly and is therefore required before any a priori or
+post hoc power calculation can proceed [@jak2021; @moshagen2024]. For the
+hypothesized four-factor WHOQOL-BREF CFA model analyzed here (comprising
+24 observed indicators, yielding $p(p + 1)/2 = 300$ non-redundant sample
+moments and 55 freely estimated parameters under standardized latent
+variables), this yields $df = `r df_model`$.
+
+### A Priori: How Many Observations? {#sec-apriori}
+
+#### Model-free approach (RMSEA-based)
+
+The simplest analytical strategy sets the target effect through the
+RMSEA, a noncentrality-based index that expresses misfit per degree of
+freedom and is therefore comparable across models of different
+complexity [@maccallum1996]. Because RMSEA is directly linked to the
+population minimum of the fitting function through
+$F_0 = \text{RMSEA}^2 \times df$, specifying a target RMSEA is
+sufficient to define the entire noncentrality-based framework needed for
+the power calculation. The approach is "model-free" in the sense that no
+explicit population model needs to be specified: the required sample
+size depends only on $\text{RMSEA}$, $\alpha$, desired power, and $df$
+[@jak2021; @jobst2023].
+
+This strategy is most appropriate when the objective is to plan sample
+size for detecting overall model misspecification in a global
+chi-square test of fit, rather than for testing an individual parameter
+restriction [@wang2023; @moshagen2024].
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#tbl-apriori-rmsea >}}
+
+The analytical solution reported in @tbl-apriori-rmsea indicates the minimum $N$ required to detect misfit of
+$\text{RMSEA} = 0.05$ with power $\approx 0.80$ at $\alpha = 0.05$.
+Note that $0.05$ refers to the misspecification level to be detected
+under the alternative hypothesis, not to a tolerated misfit level under
+the null [@maccallum1996; @jak2021].
+
+The table presents several equivalent representations of the same target
+effect. The value $F_0$ = `r round(ap_rmsea$fmin, 3)` is the population
+minimum of the fitting function, obtained from
+$F_0 = df \cdot \text{RMSEA}^2$ = `r ap_rmsea$df` $\cdot$ $0.05^2$.
+Alongside it, the summary also reports $Mc$ = `r round(ap_rmsea$mc, 3)`,
+$GFI$ = `r round(ap_rmsea$gfi, 3)`, and
+$AGFI$ = `r round(ap_rmsea$agfi, 3)`. These are not distinct effect sizes
+but alternative summaries of the same degree of model misfit, expressed
+in the metrics used by `semPower` [@moshagen2024].
+
+The key conversion is:
+
+$$
+\lambda = (N - 1)F_0 = (N - 1)\,df\,\text{RMSEA}^2
+$$
+
+which translates the chosen misfit into the noncentrality parameter used
+to locate the alternative $\chi^2$ distribution [@maccallum1996; @jak2021].
+
+With $df$ = `r ap_rmsea$df`, the a priori solution is
+$N$ = `r ap_rmsea$requiredN`. At that $N$, the noncentrality parameter
+is $\lambda$ = `r round(ap_rmsea$impliedNCP, 3)` and the critical value
+is $\chi^2_c$ = `r round(ap_rmsea$chiCrit, 3)`. The implied $\beta$
+$\approx$ `r round(ap_rmsea$impliedBeta, 3)` corresponds to power
+$1 - \beta$ $\approx$ `r round(ap_rmsea$impliedPower, 3)`, confirming
+that $N$ = `r ap_rmsea$requiredN` is the minimum sample size at which
+the target operating characteristics are met [@jobst2023].
+
+In @fig-apriori-rmsea, the solid red curve is the central $\chi^2$ under exact
+fit, the dashed blue curve is the noncentral $\chi^2$ under the target
+misspecification, and the vertical dotted line at
+$\chi^2$ = `r round(ap_rmsea$chiCrit, 3)` is the decision threshold
+[@jak2021; @moshagen2024].
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-apriori-rmsea >}}
+
+#### Model-based approach
+
+When substantive theory specifies the population structure, a
+model-based power analysis is more informative: rather than setting
+misfit to a generic RMSEA value, the effect is implied by the
+discrepancy between an explicitly defined population model and the
+restricted analysis model [@wang2023; @feng2023]. This makes the
+sample size estimate dependent on the hypothesized parameter
+configuration rather than on a conventional threshold.
+
+`semPower.powerLav()` implements this by fitting the null model to the
+population-implied covariance matrix and translating the resulting
+discrepancy into $F_0$ and then into $\lambda = (N - 1)F_0$. When
+`modelH1` is omitted, the null model is evaluated against the saturated
+model, making the analysis a global test of fit rather than a test of
+any single restriction [@moshagen2024; @jobst2023]. Because the effect
+is generated from the full model specification, any change to loadings,
+factor correlations, or residual variances will alter the required $N$
+— an important point when conducting sensitivity analyses [@buchberger2024].
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#tbl-apriori-popmodel >}}
+
+The model-based analytical solution in @tbl-apriori-popmodel reports a population discrepancy of
+$F_0$ = `r round(ap_popmodel$fmin, 3)`, equivalently expressed as
+$\text{RMSEA}$ = `r round(ap_popmodel$rmsea, 3)` and
+$Mc$ = `r round(ap_popmodel$mc, 3)`. With
+$df$ = `r ap_popmodel$df`, the required sample size is
+$N$ = `r ap_popmodel$requiredN`, and the corresponding critical
+chi-square is `r round(ap_popmodel$chiCrit, 3)`. The noncentrality
+parameter is $\lambda$ = `r round(ap_popmodel$impliedNCP, 3)`,
+consistent with $(N - 1)F_0$ at the obtained solution. The error rates
+are $\alpha$ = `r round(ap_popmodel$alpha, 3)`,
+$\beta$ = `r round(ap_popmodel$impliedBeta, 3)`, and
+power = `r round(ap_popmodel$impliedPower, 3)`, confirming that the
+design conditions are met at $N$ = `r ap_popmodel$requiredN`. The corresponding
+distribution curves are displayed in @fig-apriori-popmodel:
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-apriori-popmodel >}}
+
+### Power Curves {#sec-power-curves}
+
+Power curves visualize the relationship between sample size and the
+probability of detecting a prespecified degree of model misspecification,
+holding $\alpha$ and $df$ constant. They serve as a planning aid by
+showing at a glance which $N$ values are underpowered and where
+additional observations yield diminishing returns [@moshagen2024].
+
+#### Model-free approach (RMSEA-based)
+
+In the model-free setup, the power function depends entirely on
+$\text{RMSEA}$, $df$, and $\alpha$ — not on any substantive model
+parameters. Representing this function graphically answers a direct
+planning question: for a model with fixed $df$, how large must $N$ be to
+achieve a sufficiently high probability of detecting misfit of at least
+the target magnitude [@jak2021; @jobst2023]? This visualization is
+especially useful when the research objective concerns global fit rather
+than individual parameter restrictions, and it also makes it easy to
+communicate design justification to reviewers or funding agencies
+[@wang2023; @moshagen2024].
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-power-rmsea >}}
+
+Power increases monotonically with $N$. At the lower end of the range,
+the curve is well below the target threshold, indicating insufficient
+sensitivity to detect the prespecified misspecification; at higher $N$,
+it approaches the ceiling. The crossing point between the curve and
+the target power level identifies the minimum adequate sample size,
+and the shape of the curve shows how quickly additional observations
+convert into detection probability in this particular setting.
+
+#### Model-based approach
+
+When the effect is grounded in an explicitly specified population model,
+the power curve traces the same monotonic pattern but now reflects the
+particular covariance structure implied by the substantive hypotheses
+[@feng2023; @buchberger2024]. `semPower.powerPlot()` evaluates the
+previously specified model-based effect at each $N$ in the grid,
+so the curve is a design-oriented summary of how sensitivity changes as
+sample size grows — without re-estimating any parameters
+[@moshagen2024].
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-power-popmodel >}}
+
+The plot titled Power for $F_0$ = `r round(ap_popmodel$fmin, 3)` shows
+a clear monotonic increase. At the lower end, power hovers near $0.07$–$0.10$,
+indicating inadequate sensitivity for small samples. A period of
+rapid growth occurs between roughly $N = 60$ and $N = 120$, where
+each additional observation translates into a substantial gain. The
+conventional $0.80$ threshold is crossed at approximately
+$N \approx 106$, and power approaches $0.95$ around $N \approx 140$,
+with further gains becoming marginal above that.
+
+### Summary table
+
+@tbl-analytical-summary compares the analytical power solutions. The
+model-based global fit test requires $N = 106$, closely matching the
+model-free RMSEA-based target ($N = 100$). This convergence occurs
+because the misspecification introduced by the three cross-loadings
+translates into an implied $\text{RMSEA} = 0.0486$, almost identical to
+the generic $0.05$ threshold.
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#tbl-analytical-summary >}}
+
+::: {.callout-important}
+## Limitations of the Analytical Approach
+The RMSEA/$\chi^2$-based analytical method assumes continuous,
+multivariate normal data and Maximum Likelihood estimation. It can
+yield biased sample size estimates when distributions are non-normal,
+data are ordinal, or missing data reduce estimation efficiency.
+Furthermore, because power is framed around global misfit, the
+analytical approach provides no information about whether $N$ is
+sufficient to detect specific weak loadings, factor correlations, or
+structural paths. These limitations motivate the simulation-based
+extensions developed in subsequent sections.
+:::
+
+## Monte Carlo Simulation: Ideal Conditions {#sec-sim-ideal}
+
+Simulation-based power analysis in SEM operates on a different logic
+from its analytical counterpart. Rather than deriving power from the
+non-central $\chi^2$ distribution, the approach repeatedly generates
+data from an assumed population model, fits the analysis model to each
+replicate, and summarizes rejection rates empirically. This makes the
+framework far more flexible: it can accommodate complex data conditions,
+evaluate multiple fit criteria simultaneously, and quantify estimation
+quality — bias, standard error accuracy, and coverage — alongside
+power [@simsem2021; @muthen2002a].
+
+The central distinction in the design is between the *data-generating
+model* and the *analysis model* [@feng2023]. The former defines the
+population from which replicated samples are drawn; the latter defines
+the structure that is repeatedly fit to each sample. Statistical power
+in SEM depends not only on $N$, but on the discrepancy between these
+two models, so this separation is essential [@jobst2023; @feng2023].
+
+In the main analysis, the reference condition uses data generated from
+`popmodel`, while the alternative condition uses data generated from
+`h1model` — a structurally equivalent model with three additional
+cross-loadings. The analysis model (`analyzemodel`) omits those
+cross-loadings, so power reflects the probability that global fit
+indices flag this deliberate misspecification. Varying $N$ across a
+predefined sequence turns the simulation into a sample size planning
+exercise: as $N$ grows, the sampling distributions under the reference
+and alternative conditions separate, and the probability of correctly
+flagging the misspecified condition increases [@feng2023; @jobst2023].
+
+Power based on fit indices is therefore interpreted as the probability
+that a rejection rule — calibrated from the reference distribution at
+$\alpha$ — classifies data generated under the alternative as showing
+worse fit than expected under the well-fitting model. Practically,
+this shifts the inferential focus from testing a single parameter to
+evaluating whether global fit criteria are sensitive enough to detect
+a substantively meaningful form of misspecification across plausible
+sample sizes [@wang2023; @liang2024].
+
+### Main analysis under ideal conditions
+
+The @fig-fit-curve-ideal and @fig-power-curve-ideal present the main results for the comparison between
+`popmodel` and `h1model` under ideal conditions (multivariate
+normality, no missing data).
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-power-curve-ideal >}}
+
+Power increases monotonically with $N$ for all four indices. At the
+lower end of the sample-size sequence, every index falls below the
+target threshold, indicating insufficient sensitivity. As $N$ grows,
+the curves diverge: some indices reach the $0.80$ target earlier than
+others, reflecting different degrees of sensitivity to the imposed
+cross-loading misspecification. The most conservative planning decision
+is therefore anchored in the last index to cross the target —
+the index whose detection requires the largest $N$.
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-fit-curve-ideal >}}
+
+The @fig-fit-curve-ideal makes the discrimination mechanism visible. At small
+$N$, the sampling distributions of each fit index under the reference
+and alternative conditions overlap substantially, so the indices cannot
+reliably distinguish the two scenarios. As $N$ increases, the
+alternative-condition distribution shifts toward worse fit while the
+reference distribution remains stable, widening the gap between them.
+This growing separation is the empirical basis for the power gains
+shown in the @fig-power-curve-ideal, and it provides an intuitive picture of how
+fit indices work as decision variables rather than mere descriptive
+summaries [@simsem2021; @mcneish2021].
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-cutoff-ideal >}}
+
+At $N = 231$, power was `r round(power_ideal$rmsea, 3)` for RMSEA,
+`r round(power_ideal$srmr, 3)` for SRMR, and
+`r round(power_ideal$cfi, 3)` for both CFI and TLI. The ordering
+SRMR > RMSEA > CFI $\approx$ TLI is consistent across the power curves.
+The empirical cutoffs were `r round(cutoff_ideal$rmsea, 3)` for RMSEA,
+`r round(cutoff_ideal$srmr, 3)` for SRMR,
+`r round(cutoff_ideal$cfi, 3)` for CFI, and
+`r round(cutoff_ideal$tli, 3)` for TLI, defining the data-driven
+rejection boundaries at this $N$. Taken together, the results confirm
+that $N = 231$ is sufficient for all four indices to achieve at least
+$0.80$ power in the ideal scenario, with SRMR and RMSEA providing a
+comfortable margin and CFI/TLI operating near the minimum threshold
+[@mcneish2021; @jobst2023].
+
+### Traditional cutoff values for fit indices
+
+When traditional thresholds are applied — $\text{RMSEA} \le .06$,
+$\text{CFI} \ge .95$, $\text{TLI} \ge .95$, $\text{SRMR} \le .06$ —
+power is defined as the proportion of replications in which the
+misspecified model crosses those fixed boundaries in the direction of
+worse fit. This mirrors common applied practice, but a key limitation
+is that these thresholds were derived under specific simulation
+conditions and may not be universally valid across different model
+structures and sample sizes [@mcneish2021; @kyriazos2018].
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#fig-fit-curve-traditional >}}
+
+The contrast with the empirical-cutoff results is instructive. SRMR
+is the only index that achieves clear visual discrimination under the
+traditional threshold, and only at $N \approx 200$ or larger. RMSEA
+shows some separation but would require a cutoff near $0.04$ rather
+than $0.06$ to make a meaningful distinction in this figure. CFI and
+TLI show essentially no discrimination at the $0.95$ threshold because
+both the reference and alternative point clouds cluster in the same
+region throughout the sample-size range (@fig-fit-curve-traditional). The @tbl-power-cutoff-traditional-ideal summarizes the power for each fit index under the traditional cutoff values.
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-cutoff-traditional-ideal >}}
+
+### Targeting specific parameters
+
+The previous analyses focused on global fit. However, power is always
+tied to a specific hypothesis, and different parameters within the same
+model can require markedly different $N$ to reach the same target
+[@moshagen2024; @wang2023]. This section evaluates power at the
+parameter level to identify which parts of the model are hardest to
+recover and should therefore anchor the sample size decision.
+
+In `simsem`, parameter-level summaries include relative bias,
+standard-error bias, CI coverage, and detection power. These four
+indicators are not redundant: a parameter may show high power while
+still being poorly estimated, and estimation quality should always be
+verified alongside detection rates [@simsem2021; @wang2021].
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-param-estimate-ideal >}}
+
+Primary factor loadings for `psycho`, `physical`, and `social`
+recover very well: high power, minimal bias, modest SE distortion,
+and coverage close to nominal. Two exceptions stand out. The loading
+of $Q8$ on `environment` and its residual variance are easily detected
+but not well recovered — the model would flag this parameter as
+non-zero while still estimating it with noticeable distortion. Item
+$Q15$ shows a secondary warning on the same dimensions. Among the
+latent parameters, interfactor covariances — particularly those
+involving `social` and `environment` — are harder to recover than
+loadings, with lower power and weaker coverage. The residual covariance
+$Q3 \sim\sim Q4$ stands out as the most demanding residual parameter,
+behaving more like a latent covariance than a measurement parameter
+in terms of inferential difficulty.
+
+The required $N$ for each parameter follows directly from these
+patterns [@moshagen2024; @jobst2023], as shown in @tbl-power-n-ideal.
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-n-ideal >}}
+
+Many primary loadings and residual variances reach the target power
+at the low end of the simulated range. Latent covariances and the
+residual covariance $Q3 \sim\sim Q4$ require substantially larger
+samples. In practice, the sample size decision should be driven by
+the hardest-to-detect parameters, not by the easiest ones — a
+principle that pushes the practical reference toward $N \approx 200$
+rather than $N \approx 50$ [@simsem2021; @wang2021]. Specifically,
+the `psycho~~social` covariance requires
+$N$ = `r n_h1[['psycho~~social']]`, which sets the effective ceiling
+for parameter-level planning in this model.
+
+### Recovering population parameters
+
+#### Parameter-level power under the naive model
+
+Examining parameter recovery under the naive model serves as a
+conservative benchmark for the measurement structure: because this population
+assumes the weakest factor loadings ($\lambda \approx 0.40$), indicator
+communalities are low, which increases estimation uncertainty for the
+measurement parameters [@mosqueirataipe2026]. Concurrently, its interfactor
+correlations are moderate ($\phi = 0.30$). For detecting latent covariances,
+a larger effect size ($\phi = 0.30$) requires a substantially smaller sample
+size than a near-zero correlation, allowing all six factor correlations to
+reach $80\%$ power within $N \le 90$ [@wang2021; @simsem2021].
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-n-naive >}}
+
+Most factor loadings reach the $0.80$ target with $N < 60$, confirming
+that the loading structure is not the binding constraint. The binding
+constraint is the set of latent covariances. Their required sample
+sizes are: $\text{psycho} \sim\sim \text{physical}$ = `r n_naive[['psycho~~physical']]`,
+$\text{psycho} \sim\sim \text{social}$ = `r n_naive[['psycho~~social']]`,
+$\text{psycho} \sim\sim \text{environment}$ = `r n_naive[['psycho~~environment']]`,
+$\text{physical} \sim\sim \text{social}$ = `r n_naive[['physical~~social']]`,
+$\text{physical} \sim\sim \text{environment}$ = `r n_naive[['physical~~environment']]`,
+and $\text{social} \sim\sim \text{environment}$ = `r n_naive[['social~~environment']]`.
+The residual covariance $Q3 \sim\sim Q4$ requires $N$ = `r n_naive[['Q3~~Q4']]`,
+placing it between the loadings and the latent covariances in difficulty.
+The largest required $N$ is $\text{physical} \sim\sim \text{social}$ =
+`r n_naive[['physical~~social']]`, which therefore governs the minimum
+sample size for the naive scenario.
+
+#### Parameter-level power under the optimistic model
+
+Under the optimistic model, stronger loadings ($\lambda \approx 0.80$) and lower interfactor
+correlations ($\phi = 0.08$) yield two sharply contrasting patterns [@mosqueirataipe2026].
+Because the measurement structure is exceptionally strong, all primary factor loadings and
+residual variances reach $0.80$ power at the lowest simulated sample size ($N \le 51$) with
+negligible bias. Conversely, because the true interfactor correlations are very weak ($\phi = 0.08$),
+detecting them as statistically different from zero requires substantially larger samples:
+analytical power calculations indicate that reaching $80\%$ power for $\phi = 0.08$ requires
+$N > 1,200$. Within the simulated sample-size range ($N \in [51, 350]$), power for these correlations
+never crosses $0.80$, leading `findPower` to return `NA`.
+
+{{< embed Scripts/AnalysisScripts/03_simulation_ideal.qmd#tbl-power-n-opt >}}
+
+Among parameters with finite required $N$ above 60, only the residual covariance $Q3 \sim\sim Q4$
+appears in @tbl-power-n-opt, requiring $N$ = `r n_opt[['Q3~~Q4']]`. Rather than implying that the
+entire model is powered at $N = 51$, this analysis reveals that weak latent correlations represent an
+acute bottleneck for parameter-level hypothesis testing, even when measurement quality is optimal
+[@buchberger2024; @simsem2021]. The contrast between the naive and
+optimistic results demonstrates how sensitive $N$ recommendations are
+to the assumed population: the same model structure implies very
+different requirements depending on which parameter set is used,
+reinforcing the importance of sensitivity analyses across population
+variants [@buchberger2024; @irmer2024].
+
+## Monte Carlo Simulation: Realistic Scenarios {#sec-sim-robust}
+
+The ideal-condition analyses establish a theoretical baseline, but
+actual data collection rarely conforms to multivariate normality with
+complete observations. When non-normality or missing data are
+anticipated, analytical power estimates may be optimistic, and the
+required $N$ should be reassessed under more realistic assumptions
+[@feng2023; @wang2023]. Monte Carlo simulation is especially valuable
+here because it can encode precisely the data conditions expected in
+practice — including the missing-data mechanism, the distributional
+shape, and the estimator — and propagate them through to the power
+estimate [@irmer2024; @schoemann2014].
+
+The goal of this section is not to replace the ideal-condition results
+but to probe how sensitive they are to two common violations: missing
+data and non-normality. Both analyses follow the same design logic as
+before — reference data from `popmodel`, alternative data from
+`h1model`, analysis model `analyzemodel` — so the results remain
+directly comparable [@jobst2023; @moshagen2024].
+
+### Missing Data (MCAR) {#sec-missing}
+
+Missing data reduce the amount of usable information per participant
+and therefore generally lower estimation efficiency and statistical
+power, even when data are missing completely at random (MCAR) and
+the analysis model handles missingness correctly via full information
+maximum likelihood [@jak2021; @wolf2013]. The relevant design question
+is not only how many cases are planned but how much information survives
+the anticipated missing-data process [@feng2023].
+
+In this simulation, 10% of observations are set missing at random
+prior to each analysis. All other aspects of the design are unchanged
+from the ideal-condition analysis.
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#fig-power-curve-missing >}}
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#fig-fit-curve-missing >}}
+
+Both figures show the expected pattern: power curves shift rightward
+relative to the ideal condition, requiring larger $N$ to reach the
+same thresholds. The separation between distributions in the raw
+fit-index plots is less pronounced, especially for CFI and TLI, which
+show more overlap at small and intermediate sample sizes.
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#tbl-power-cutoff-missing >}}
+
+At $N = 359$, power was `r round(power_cutoff_miss[1,1], 3)` for RMSEA,
+`r round(power_cutoff_miss[1,2], 3)` for SRMR,
+`r round(power_cutoff_miss[1,3], 3)` for CFI, and
+`r round(power_cutoff_miss[1,4], 3)` for TLI. SRMR remains the
+strongest index and RMSEA is close behind; CFI and TLI are adequate
+but marginally so. The empirical cutoffs were
+`r round(power_cutoff_miss[2,1], 3)` for RMSEA,
+`r round(power_cutoff_miss[2,2], 3)` for SRMR,
+`r round(power_cutoff_miss[2,3], 3)` for CFI, and
+`r round(power_cutoff_miss[2,4], 3)` for TLI. The values above $1.00$
+for CFI and TLI indicate that the classification boundary from the
+simulation falls at the upper edge of the index scale, which explains
+why their power is only marginally above $0.80$ at this $N$ [@mcneish2021].
+Comparing $N = 231$ (ideal) with $N = 359$ (10% MCAR) makes the
+information cost of missing data concrete: approximately 128 additional
+participants are needed to restore the same level of detection
+performance.
+
+### Non-Normality {#sec-nonnormal}
+
+Mild departures from normality — skewness in the range $[-1, +1]$ and
+excess kurtosis in the range $[1, 2]$ — are common in applied social
+science measurement and can affect the behavior of fit indices even
+when robust estimators are used [@irmer2024; @kyriazos2018]. This
+analysis evaluates how such departures alter the power conclusions
+relative to the ideal condition.
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#fig-power-curve-nnorm >}}
+
+The ordering of sensitivity is stable: SRMR $>$ RMSEA $>$ CFI
+$\approx$ TLI. SRMR reaches near-ceiling power early in the sample-size
+range; RMSEA follows steadily; CFI and TLI rise more slowly and remain
+below the other two across most of the evaluated range.
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#fig-fit-curve-nnorm >}}
+
+The raw fit-index plots confirm the ordering. For RMSEA and SRMR,
+the two point clouds are increasingly distinct as $N$ grows; for CFI
+and TLI, overlap is more visible at lower and intermediate sample
+sizes and clears only at larger $N$.
+
+{{< embed Scripts/AnalysisScripts/04_simulation_robust.qmd#tbl-power-cutoff-nnorm >}}
+
+At $N = 228$, power was `r round(power_cutoff_nnorm[1,1], 3)` for RMSEA,
+`r round(power_cutoff_nnorm[1,2], 3)` for SRMR,
+`r round(power_cutoff_nnorm[1,3], 3)` for CFI, and
+`r round(power_cutoff_nnorm[1,4], 3)` for TLI. Notably, this result is
+almost identical to the ideal-condition estimate of $N = 231$,
+suggesting that mild non-normality introduces negligible additional cost
+under the current design and model structure [@irmer2024]. The empirical
+cutoffs at $N = 228$ were
+`r round(power_cutoff_nnorm[2,1], 3)` (RMSEA),
+`r round(power_cutoff_nnorm[2,2], 3)` (SRMR),
+`r round(power_cutoff_nnorm[2,3], 3)` (CFI), and
+`r round(power_cutoff_nnorm[2,4], 3)` (TLI), consistent with the
+discrimination patterns in the figures.
+
+### Simulation with fixed N {#sec-scenarios-fixed}
+
+Having established minimum sample size thresholds across individual analytical
+and simulation conditions — where requirements largely converged between $N = 100$
+and $N = 231$ — the planning focus naturally shifts from searching for the smallest
+sufficient $N$ to evaluating a candidate recruitment target. In applied research,
+sample sizes are frequently shaped by budgetary, temporal, and logistical
+feasibility.
+
+Fixing $N = 250$ represents a realistic, well-powered target sample size that
+comfortably exceeds both the ideal ($N = 231$) and non-normal ($N = 228$)
+benchmarks. This section subjects this planned sample size to a rigorous Monte Carlo
+stress test: evaluating 1,000 independent replications under compound realistic
+disturbances simultaneously (10% MCAR missing data and mild non-normality with
+robust MLR estimation). The goal is to determine whether a planned study with
+$N = 250$ reliably discriminates the true from the misspecified model under combined
+real-world imperfections.
+
+This step also highlights the practical difference between empirical
+and traditional fit criteria. Empirical cutoffs are calibrated to the
+actual sampling distribution of the fitted model; traditional cutoffs
+are generic conventions. The two approaches can lead to very different
+conclusions about adequacy [@mcneish2021; @simsem2021].
+
+{{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#fig-power-curve-fixed >}}
+
+With $N = 250$, the main analysis achieves power = 1.000 for all
+four fit indices using empirical cutoffs. The distributions of the
+reference and alternative conditions are completely separated in
+every panel, confirming that this sample size provides essentially
+perfect discrimination under the target design [@liang2024; @moshagen2024].
+The empirical cutoffs at $N = 250$ serve as data-driven benchmarks
+for this specific population-analysis model combination, and their
+values (@tbl-power-cutoff-fixed) differ noticeably from conventional
+thresholds — which underscores the value of deriving rejection rules
+from the simulation rather than from generic recommendations.
+
+{{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#tbl-power-cutoff-fixed >}}
+
+#### Power analysis with traditional cutoffs
+
+Applying traditional rule-of-thumb thresholds to the same fixed-$N$
+simulation produces a strikingly different picture. Power remains
+high for SRMR, falls substantially for CFI and TLI, and drops to
+zero for RMSEA — not because the sample is inadequate, but because the
+conventional $\text{RMSEA} \le 0.05$ threshold is misaligned with
+the empirical distribution of this specific model [@mcneish2021;
+@kyriazos2018]. This contrast is one of the clearest illustrations
+in this tutorial of why power conclusions depend on how the rejection
+criterion is defined, not only on $N$.
+
+{{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#fig-curve-fixed-traditional >}}
+
+{{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#tbl-power-cutoff-traditional-fixed >}}
+
+Taken together, the fixed-$N$ results support $N = 250$ as a
+conservative, stable design choice for the main comparison: it delivers
+perfect discrimination when empirical cutoffs are used, and its
+failures under traditional cutoffs reveal a limitation of those cutoffs
+rather than of the design itself [@simsem2021; @liang2024].
+
+## Post Hoc Power Analysis {#sec-post-hoc}
+
+Post hoc power analysis evaluates the detection capacity of a study
+design after the data have been collected, using the observed $N$,
+the fitted model, and a specified reference structure. In SEM, this is
+meaningful only with respect to a clearly defined comparison: power
+is always the probability of rejecting a specific model under a specific
+alternative, not a general property of a dataset or a software routine
+[@jobst2023; @moshagen2024]. In this section, we evaluate post hoc
+power against an empirical dataset from Mendeley [@rogers2022], fitting `analyzemodel`
+to real WHOQOL-BREF data and assessing how reliably the collected $N$
+would have rejected meaningful misspecification.
+
+### With Simulation
+
+The simulation-based strategy first fits the analysis model to the
+real data to obtain an empirically grounded reference structure. It
+then generates data from both the null model and the alternative model
+at the observed $N$ and quantifies how well the fit indices separate
+the two conditions. This approach is particularly informative when the
+effect of interest is defined in model terms, because the full
+parameterization — loadings, residual structure, latent correlations —
+shapes the discrepancy and therefore the power estimate
+[@wang2021; @feng2023].
+
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#fig-posthoc-plotpower >}}
+
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#tbl-posthoc-power >}}
+
+All four fit indices reached power equal to $1.00$. In the figure,
+every panel shows complete separation between the null and alternative
+distributions, with the red cutoff line falling cleanly between them
+and no visible overlap. For RMSEA, the null distribution concentrates
+near zero while the alternative is centered around $0.05$. For SRMR,
+the null clusters near $0.01$–$0.02$ and the alternative near
+$0.06$–$0.08$. For CFI and TLI, the null is close to $1.00$ and the
+alternative centers around $0.95$–$0.97$. The complete discrimination
+in every panel confirms that the observed $N$ would have been fully
+adequate to detect the target misspecification [@simsem2021]. Note
+that some indices are operating below their conventional thresholds,
+which is a consequence of the empirical cutoffs derived from the
+null distribution in this specific setting — not an indication that
+model fit is poor.
+
+### With Analytical Solutions
+
+Analytical post hoc power expresses the effect through $F_0$ or RMSEA
+and links it to the noncentrality-based framework of the likelihood-ratio
+test. This is computationally immediate and free from Monte Carlo
+sampling error, making it the preferred first-pass approach when the
+asymptotic assumptions underlying the chi-square test are credible
+[@jak2021; @moshagen2024]. Two specifications are compared here,
+illustrating a spectrum from the most generic to the most
+substantively specific formulation.
+
+#### Model-free specification
+
+The first specification supplies $\text{RMSEA} = 0.05$ directly,
+treating misspecification as a generic level of global misfit per
+degree of freedom. This makes the analysis comparable across SEM
+families sharing the same $df$, but it abstracts away from the
+particular covariance structure of the WHOQOL-BREF model
+[@maccallum1996; @jak2021].
+
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#tbl-posthoc-rmsea >}}
+
+The post hoc power parameters in @tbl-posthoc-rmsea demonstrate that with
+$F_0$ = `r round(ph_rmsea$fmin, 3)`, $\text{RMSEA}$ =
+`r round(ph_rmsea$rmsea, 3)`, $df$ = `r ph_rmsea$df`, and
+$N$ = `r ph_rmsea$N`, the noncentrality parameter reached
+$\text{NCP}$ = `r round(ph_rmsea$ncp, 3)`, far exceeding the critical
+value $\chi^2_{\text{crit}}$ = `r round(ph_rmsea$chiCrit, 3)`. Power
+was effectively `r round(ph_rmsea$power, 3)`. As illustrated in @fig-posthoc-rmsea,
+the noncentral $\chi^2$ curve lies far to the right of the critical value, and
+the shaded $\beta$ region is negligible [@maccallum1996; @jobst2023].
+
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#fig-posthoc-rmsea >}}
+
+#### Model-based specification: global fit
+
+The second specification derives the effect from the discrepancy
+between `h1model` (incorporating the cross-loadings) and the fitted analysis model, evaluating the null
+model against the saturated model. This tests global fit rather than
+an isolated restriction, so it is sensitive to any source of
+misspecification in the analysis model, not only the cross-loadings
+[@wang2023; @moshagen2024].
+
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#tbl-posthoc-realmodel >}}
+
+With $F_0$ = `r round(ph_realmodel$fmin, 3)`, $\text{RMSEA}$ =
+`r round(ph_realmodel$rmsea, 3)`, $df$ = `r ph_realmodel$df`, and
+$N$ = `r ph_realmodel$N`, the noncentrality reached
+$\text{NCP}$ = `r round(ph_realmodel$ncp, 3)` against a critical value
+of $\chi^2_{\text{crit}}$ = `r round(ph_realmodel$chiCrit, 3)`. Power
+was `r round(ph_realmodel$power, 3)`, confirming that the observed
+sample size provides complete statistical power to detect the misspecification (@tbl-posthoc-realmodel; @fig-posthoc-realmodel).
+
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#fig-posthoc-realmodel >}}
+
+However, post hoc power must always be interpreted with methodological caution.
+Calculating power retrospectively from observed sample statistics after finding
+a non-significant result constitutes the well-known "observed power fallacy"
+[@maccallum1996; @jobst2023; @zhang2018], where low power is simply a tautological
+re-expression of an unremarkable $p$-value. Post hoc power analysis remains legitimate
+only when framed prospective-retrospectively: asking whether the collected $N$
+possessed adequate sensitivity to reject a pre-specified, theoretically grounded
+alternative ($H_1$) that was determined prior to inspecting data-derived effects
+[@moshagen2024; @wang2023].
+
+## References {.unnumbered}
+
+::: {#refs}
+:::
