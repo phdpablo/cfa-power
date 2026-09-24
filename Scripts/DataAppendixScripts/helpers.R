@@ -27,6 +27,7 @@ REP <- 1000 # Number of replications for final analysis.
 SEQ1 <- rep(51:350, each = 5) # Sample size sequence for varying-N simulations (5 per N).
 SEQ2 <- rep(201:500, each = 5) # Sample size sequence for varying-N simulations (5 per N).
 P_MCAR <- 0.10 # Proportion of missing completely at random data.
+N_TARGET <- 250 # Target sample size for fixed N simulations.
 
 #' Random seed for reproducibility across all simulations: simsem default is 123321.
 SEED <- 123321
@@ -151,3 +152,63 @@ plot_free <- function(model) {
     mar = c(2, 1.5, 2, 1.5)
   )
 }
+
+# --- semPower Output Decoupling Helpers ----------------------------------------
+
+# Helper to format numeric values with appropriate precision or scientific notation
+format_metric_val <- function(x, digits = 3) {
+  if (is.null(x) || length(x) == 0 || is.na(x)) return(NA_character_)
+  if (abs(x) < 1e-4 && x > 0) return(formatC(x, format = "e", digits = 2))
+  formatC(x, format = "f", digits = digits)
+}
+
+#' Extract and tidy analytical power parameters from semPower objects.
+#' Compatible with both model-free (semPower.aPriori, semPower.postHoc) and
+#' model-based (semPower.powerLav) result objects.
+tidy_sempower <- function(object) {
+  is_apriori <- inherits(object, "semPower.aPriori") || identical(object[["type"]], "a-priori")
+  n_label <- if (is_apriori) "Required sample size" else "Observed sample size"
+  n_val   <- if (is_apriori) object[["requiredN"]] else object[["N"]]
+  ncp_val <- if (is_apriori) object[["impliedNCP"]] else object[["ncp"]]
+  beta_val  <- if (is_apriori) object[["impliedBeta"]] else object[["beta"]]
+  power_val <- if (is_apriori) object[["impliedPower"]] else object[["power"]]
+
+  res <- list(
+    c("Population discrepancy", "$F_0$", format_metric_val(object[["fmin"]])),
+    c("Root mean square error of approximation", "$\\text{RMSEA}$", format_metric_val(object[["rmsea"]])),
+    c("McDonald centrality index", "$Mc$", format_metric_val(object[["mc"]])),
+    if (!is.null(object[["gfi"]])) c("Goodness-of-fit index", "$\\text{GFI}$", format_metric_val(object[["gfi"]])),
+    if (!is.null(object[["agfi"]])) c("Adjusted goodness-of-fit index", "$\\text{AGFI}$", format_metric_val(object[["agfi"]])),
+    if (!is.null(object[["srmr"]])) c("Standardized root mean square residual", "$\\text{SRMR}$", format_metric_val(object[["srmr"]])),
+    if (!is.null(object[["cfi"]])) c("Comparative fit index", "$\\text{CFI}$", format_metric_val(object[["cfi"]])),
+    c("Degrees of freedom", "$df$", as.character(object[["df"]])),
+    c(n_label, "$N$", as.character(n_val)),
+    c("Critical chi-square", "$\\chi^2_{\\text{crit}}$", format_metric_val(object[["chiCrit"]])),
+    c("Noncentrality parameter", "$\\lambda$", format_metric_val(ncp_val)),
+    c("Significance level (alpha)", "$\\alpha$", format_metric_val(object[["alpha"]])),
+    c("Type II error rate (beta)", "$\\beta$", format_metric_val(beta_val, digits = 4)),
+    c("Statistical power", "$1 - \\beta$", if (power_val > 0.9999) "> 0.9999" else format_metric_val(power_val, digits = 4))
+  )
+  res <- do.call(rbind, res[!sapply(res, is.null)])
+  colnames(res) <- c("Metric", "Symbol", "Value")
+  as.data.frame(res, stringsAsFactors = FALSE)
+}
+
+#' Render an academic knitr::kable table for semPower analytical power results.
+table_sempower <- function(object, align = c("l", "c", "r")) {
+  df_tidy <- tidy_sempower(object)
+  knitr::kable(df_tidy, align = align)
+}
+
+#' Plot central vs. non-central chi-square distribution from semPower object without console text.
+plot_sempower <- function(object, linewidth = 1.2, show_labels = TRUE) {
+  ncp <- if (!is.null(object[["impliedNCP"]])) object[["impliedNCP"]] else object[["ncp"]]
+  semPower::semPower.showPlot(
+    chiCrit    = object[["chiCrit"]],
+    ncp        = ncp,
+    df         = object[["df"]],
+    linewidth  = linewidth,
+    showLabels = show_labels
+  )
+}
+

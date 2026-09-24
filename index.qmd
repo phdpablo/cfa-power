@@ -389,15 +389,15 @@ size for detecting overall model misspecification in a global
 chi-square test of fit, rather than for testing an individual parameter
 restriction [@wang2023; @moshagen2024].
 
-{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-apriori-rmsea >}}
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#tbl-apriori-rmsea >}}
 
-This output reports the minimum $N$ required to detect misfit of
+The analytical solution reported in @tbl-apriori-rmsea indicates the minimum $N$ required to detect misfit of
 $\text{RMSEA} = 0.05$ with power $\approx 0.80$ at $\alpha = 0.05$.
 Note that $0.05$ refers to the misspecification level to be detected
 under the alternative hypothesis, not to a tolerated misfit level under
 the null [@maccallum1996; @jak2021].
 
-The output presents several equivalent representations of the same target
+The table presents several equivalent representations of the same target
 effect. The value $F_0$ = `r round(ap_rmsea$fmin, 3)` is the population
 minimum of the fitting function, obtained from
 $F_0 = df \cdot \text{RMSEA}^2$ = `r ap_rmsea$df` $\cdot$ $0.05^2$.
@@ -431,6 +431,8 @@ misspecification, and the vertical dotted line at
 $\chi^2$ = `r round(ap_rmsea$chiCrit, 3)` is the decision threshold
 [@jak2021; @moshagen2024].
 
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-apriori-rmsea >}}
+
 #### Model-based approach
 
 When substantive theory specifies the population structure, a
@@ -451,9 +453,9 @@ is generated from the full model specification, any change to loadings,
 factor correlations, or residual variances will alter the required $N$
 — an important point when conducting sensitivity analyses [@buchberger2024].
 
-{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-apriori-popmodel >}}
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#tbl-apriori-popmodel >}}
 
-The output reports a population discrepancy of
+The model-based analytical solution in @tbl-apriori-popmodel reports a population discrepancy of
 $F_0$ = `r round(ap_popmodel$fmin, 3)`, equivalently expressed as
 $\text{RMSEA}$ = `r round(ap_popmodel$rmsea, 3)` and
 $Mc$ = `r round(ap_popmodel$mc, 3)`. With
@@ -465,7 +467,10 @@ consistent with $(N - 1)F_0$ at the obtained solution. The error rates
 are $\alpha$ = `r round(ap_popmodel$alpha, 3)`,
 $\beta$ = `r round(ap_popmodel$impliedBeta, 3)`, and
 power = `r round(ap_popmodel$impliedPower, 3)`, confirming that the
-design conditions are met at $N$ = `r ap_popmodel$requiredN`.
+design conditions are met at $N$ = `r ap_popmodel$requiredN`. The corresponding
+distribution curves are displayed in @fig-apriori-popmodel:
+
+{{< embed Scripts/AnalysisScripts/02_analytical_power.qmd#fig-apriori-popmodel >}}
 
 ### Power Curves {#sec-power-curves}
 
@@ -861,13 +866,21 @@ discrimination patterns in the figures.
 
 ### Simulation with fixed N {#sec-scenarios-fixed}
 
-Having established minimum $N$ estimates under various conditions, the
-question becomes whether a single, fixed sample size performs reliably
-as a design choice. Fixing $N = 350$ — a conservative value anchored
-above the most demanding simulation result allows us to ask: does this $N$ consistently separate
-the reference and misspecified models across many independent
-replications, including under realistic data conditions (10% MCAR +
-mild non-normality)?
+Having established minimum sample size thresholds across individual analytical
+and simulation conditions — where requirements largely converged between $N = 100$
+and $N = 231$ — the planning focus naturally shifts from searching for the smallest
+sufficient $N$ to evaluating a candidate recruitment target. In applied research,
+sample sizes are frequently shaped by budgetary, temporal, and logistical
+feasibility.
+
+Fixing $N = 250$ represents a realistic, well-powered target sample size that
+comfortably exceeds both the ideal ($N = 231$) and non-normal ($N = 228$)
+benchmarks. This section subjects this planned sample size to a rigorous Monte Carlo
+stress test: evaluating 1,000 independent replications under compound realistic
+disturbances simultaneously (10% MCAR missing data and mild non-normality with
+robust MLR estimation). The goal is to determine whether a planned study with
+$N = 250$ reliably discriminates the true from the misspecified model under combined
+real-world imperfections.
 
 This step also highlights the practical difference between empirical
 and traditional fit criteria. Empirical cutoffs are calibrated to the
@@ -877,12 +890,12 @@ conclusions about adequacy [@mcneish2021; @simsem2021].
 
 {{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#fig-power-curve-fixed >}}
 
-With $N = 350$, the main analysis achieves power = 1.000 for all
+With $N = 250$, the main analysis achieves power = 1.000 for all
 four fit indices using empirical cutoffs. The distributions of the
 reference and alternative conditions are completely separated in
 every panel, confirming that this sample size provides essentially
 perfect discrimination under the target design [@liang2024; @moshagen2024].
-The empirical cutoffs at $N = 350$ serve as data-driven benchmarks
+The empirical cutoffs at $N = 250$ serve as data-driven benchmarks
 for this specific population-analysis model combination, and their
 values (@tbl-power-cutoff-fixed) differ noticeably from conventional
 thresholds — which underscores the value of deriving rejection rules
@@ -906,7 +919,7 @@ criterion is defined, not only on $N$.
 
 {{< embed Scripts/AnalysisScripts/05_model_comparison.qmd#tbl-power-cutoff-traditional-fixed >}}
 
-Taken together, the fixed-$N$ results support $N = 350$ as a
+Taken together, the fixed-$N$ results support $N = 250$ as a
 conservative, stable design choice for the main comparison: it delivers
 perfect discrimination when empirical cutoffs are used, and its
 failures under traditional cutoffs reveal a limitation of those cutoffs
@@ -976,16 +989,19 @@ families sharing the same $df$, but it abstracts away from the
 particular covariance structure of the WHOQOL-BREF model
 [@maccallum1996; @jak2021].
 
-{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#fig-posthoc-rmsea >}}
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#tbl-posthoc-rmsea >}}
 
-With $F_0$ = `r round(ph_rmsea$fmin, 3)`, $\text{RMSEA}$ =
+The post hoc power parameters in @tbl-posthoc-rmsea demonstrate that with
+$F_0$ = `r round(ph_rmsea$fmin, 3)`, $\text{RMSEA}$ =
 `r round(ph_rmsea$rmsea, 3)`, $df$ = `r ph_rmsea$df`, and
 $N$ = `r ph_rmsea$N`, the noncentrality parameter reached
 $\text{NCP}$ = `r round(ph_rmsea$ncp, 3)`, far exceeding the critical
 value $\chi^2_{\text{crit}}$ = `r round(ph_rmsea$chiCrit, 3)`. Power
-was effectively `r round(ph_rmsea$power, 3)`. The noncentral $\chi^2$
-curve lies far to the right of the critical value in the figure, and
+was effectively `r round(ph_rmsea$power, 3)`. As illustrated in @fig-posthoc-rmsea,
+the noncentral $\chi^2$ curve lies far to the right of the critical value, and
 the shaded $\beta$ region is negligible [@maccallum1996; @jobst2023].
+
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#fig-posthoc-rmsea >}}
 
 #### Model-based specification: global fit
 
@@ -996,7 +1012,7 @@ an isolated restriction, so it is sensitive to any source of
 misspecification in the analysis model, not only the cross-loadings
 [@wang2023; @moshagen2024].
 
-{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#fig-posthoc-realmodel >}}
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#tbl-posthoc-realmodel >}}
 
 With $F_0$ = `r round(ph_realmodel$fmin, 3)`, $\text{RMSEA}$ =
 `r round(ph_realmodel$rmsea, 3)`, $df$ = `r ph_realmodel$df`, and
@@ -1004,7 +1020,9 @@ $N$ = `r ph_realmodel$N`, the noncentrality reached
 $\text{NCP}$ = `r round(ph_realmodel$ncp, 3)` against a critical value
 of $\chi^2_{\text{crit}}$ = `r round(ph_realmodel$chiCrit, 3)`. Power
 was `r round(ph_realmodel$power, 3)`, confirming that the observed
-sample size provides complete statistical power to detect the misspecification.
+sample size provides complete statistical power to detect the misspecification (@tbl-posthoc-realmodel; @fig-posthoc-realmodel).
+
+{{< embed Scripts/AnalysisScripts/06_posthoc.qmd#fig-posthoc-realmodel >}}
 
 However, post hoc power must always be interpreted with methodological caution.
 Calculating power retrospectively from observed sample statistics after finding

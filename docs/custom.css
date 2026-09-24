@@ -44,8 +44,8 @@ h4.anchored {
 /* Vertical margin separating figure blocks from surrounding paragraphs */
 .quarto-figure,
 figure.quarto-float-fig {
-  margin-top: 2.4rem !important;
-  margin-bottom: 2.4rem !important;
+  margin-top: 1.0rem !important;
+  margin-bottom: 2.0rem !important;
 }
 
 /* Spacing between the figure image and its bottom caption */

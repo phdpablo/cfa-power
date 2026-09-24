@@ -32,7 +32,7 @@ All analyses are anchored in the World Health Organization Quality of Life-BREF 
 - **Parameter-Level Power & Finite-Sample Diagnostics**: Moving beyond global fit to assess parameter-specific power, relative parameter bias, relative standard error bias, and 95% confidence interval coverage.
 - **Sensitivity Analysis**: Benchmarking sample size requirements across pessimistic (*naive*) and optimistic population variants.
 - **Realistic Data Violations**: Evaluating the information cost of 10% MCAR missing data (handled via Full Information Maximum Likelihood — FIML) and mild continuous non-normality (handled via robust MLR estimation).
-- **Cutoff Sensitivity**: Contrasting empirical, null-derived decision cutoffs with conventional rule-of-thumb thresholds at a fixed sample size ($N = 350$).
+- **Cutoff Sensitivity**: Contrasting empirical, null-derived decision cutoffs with conventional rule-of-thumb thresholds at a fixed sample size ($N = 250$).
 - **Post Hoc Evaluation**: Conducting post hoc power analysis on real empirical survey data ($N = 1,047$) while addressing the methodological limitations of retrospective power.
 
 ---

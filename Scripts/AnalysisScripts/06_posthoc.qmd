@@ -183,10 +183,7 @@ the second is model-based and derives the effect from the discrepancy
 between the misspecified population model (`h1model`) and the empirically fitted model [@moshagen2024; @jak2021].
 
 ```{r}
-#| label: fig-posthoc-rmsea
-#| fig-cap: "Post hoc power analysis for RMSEA = 0.05."
-#| fig-width: 8
-#| fig-height: 5
+#| label: posthoc-rmsea-raw
 
 # Analytical post hoc power for a global fit test.
 # The target effect is fixed directly as RMSEA = 0.05.
@@ -200,8 +197,32 @@ ph_rmsea <- semPower::semPower.postHoc(
   p              = P            # Only relevant for indices such as GFI and AGFI
 )
 
-# Summary of the power analysis
+# Standard software output:
+# Calling summary() directly prints the full terminal summary table alongside the
+# central vs. non-central chi-square distribution plot. In an interactive R session,
+# executing summary(ph_rmsea) is sufficient to inspect analytical results immediately.
 summary(ph_rmsea)
+```
+
+For formal manuscript presentation and publication rendering, the composite output
+above is decoupled into an academic table and an isolated distribution figure:
+
+```{r}
+#| label: tbl-posthoc-rmsea
+#| tbl-cap: "Analytical post hoc power parameters for RMSEA = 0.05"
+
+# Formatted table extracting analytical post hoc power metrics for clean manuscript embedding
+table_sempower(ph_rmsea) # See function definition in helpers.R
+```
+
+```{r}
+#| label: fig-posthoc-rmsea
+#| fig-cap: "Post hoc power analysis for RMSEA = 0.05."
+#| fig-width: 8
+#| fig-height: 5
+
+# Isolated chi-square distribution plot for clean manuscript embedding
+plot_sempower(ph_rmsea) # See function definition in helpers.R
 ```
 
 In the model-based specification below, `semPower.powerLav()` fits the
@@ -212,10 +233,7 @@ making this a global test of fit rather than a test of a specific
 restriction [@moshagen2024; @jobst2023].
 
 ```{r}
-#| label: fig-posthoc-realmodel
-#| fig-cap: "Post hoc power analysis for the real model."
-#| fig-width: 8
-#| fig-height: 5
+#| label: posthoc-realmodel-raw
 
 # Analytical post hoc power based on lavaan models.
 
@@ -225,11 +243,35 @@ ph_realmodel <- semPower::semPower.powerLav(
   N          = n_real,              # Sample size from real data
   modelPop   = h1model,             # Population model with cross loadings (see `models.R`)
   modelH0    = fit_real,            # Fitted model from real data
-  lavOptions = list(std.lv = TRUE)  # Standardized latent variables
+  lavOptions = list(std.lv = TRUE)  # Standardize latent variables
 )
 
-# Summary of the power analysis
+# Standard software output:
+# Calling summary() directly prints the full terminal summary table alongside the
+# central vs. non-central chi-square distribution plot. In interactive R sessions,
+# executing summary(ph_realmodel) is sufficient to inspect analytical results.
 summary(ph_realmodel)
+```
+
+For formal manuscript presentation, the composite output is decoupled into an
+academic table and an isolated distribution figure:
+
+```{r}
+#| label: tbl-posthoc-realmodel
+#| tbl-cap: "Analytical post hoc power parameters for empirical fitted model"
+
+# Formatted table extracting empirical model-based post hoc metrics for clean manuscript embedding
+table_sempower(ph_realmodel) # See function definition in helpers.R
+```
+
+```{r}
+#| label: fig-posthoc-realmodel
+#| fig-cap: "Post hoc power analysis for the real model."
+#| fig-width: 8
+#| fig-height: 5
+
+# Isolated chi-square distribution plot for clean manuscript embedding
+plot_sempower(ph_realmodel) # See function definition in helpers.R
 ```
 
 

@@ -62,8 +62,7 @@ with equivalent representations of the same effect in terms of $F_0$,
 $Mc$, $GFI$, and $AGFI$ [@moshagen2024].
 
 ```{r}
-#| label: fig-apriori-rmsea
-#| fig-cap: "A priori power analysis for exact fit with RMSEA-based effect size"
+#| label: apriori-rmsea-raw
 
 # Analytical a priori power analysis for the global chi-square test.
 # The goal is to determine the minimum N required to detect
@@ -78,9 +77,32 @@ ap_rmsea <- semPower::semPower.aPriori(
   p              = P          # number of observed indicators defined in helpers.R
 )
 
-# Shows effect size, df, required N, critical chi-square,
-# noncentrality parameter, and implied alpha/beta results.
+# Standard software output:
+# Calling summary() directly prints the full terminal summary table alongside the
+# central vs. non-central chi-square distribution plot. In an interactive R session,
+# executing summary(ap_rmsea) is sufficient to inspect analytical results immediately.
 summary(ap_rmsea)
+```
+
+For formal manuscript presentation and publication rendering, the composite output
+above is decoupled into an academic table and an isolated distribution figure:
+
+```{r}
+#| label: tbl-apriori-rmsea
+#| tbl-cap: "Analytical a priori power parameters for RMSEA = 0.05"
+
+# Formatted table extracting analytical power metrics for clean manuscript embedding
+table_sempower(ap_rmsea) # See function definition in helpers.R
+```
+
+```{r}
+#| label: fig-apriori-rmsea
+#| fig-cap: "A priori power analysis for exact fit with RMSEA-based effect size"
+#| fig-width: 8
+#| fig-height: 5
+
+# Isolated chi-square distribution plot for clean manuscript embedding
+plot_sempower(ap_rmsea) # See function definition in helpers.R
 ```
 
 ### Model-based approach (with lavaan syntax)
@@ -100,8 +122,7 @@ Because `modelH1` is not specified, the comparison is
 against the saturated model, evaluating overall model misfit ($df = 245$).
 
 ```{r}
-#| label: fig-apriori-popmodel
-#| fig-cap: "A priori power analysis Model-based approach (h1model vs analyzemodel)"
+#| label: apriori-popmodel-raw
 
 # A priori power analysis:
 # computes the minimum N needed to detect the omission of the three
@@ -116,9 +137,32 @@ ap_popmodel <- semPower::semPower.powerLav(
   lavOptions = list(std.lv = TRUE) # Standardize latent variables
 )
 
-# Shows effect size, df, required N, critical chi-square,
-# noncentrality parameter, and implied alpha/beta results.
+# Standard software output:
+# Calling summary() directly prints the full terminal summary table alongside the
+# central vs. non-central chi-square distribution plot. In interactive R sessions,
+# executing summary(ap_popmodel) is sufficient to inspect analytical results.
 summary(ap_popmodel)
+```
+
+For formal manuscript presentation, the composite output is decoupled into an
+academic table and an isolated distribution figure:
+
+```{r}
+#| label: tbl-apriori-popmodel
+#| tbl-cap: "Analytical a priori power parameters for model-based approach (h1model vs analyzemodel)"
+
+# Formatted table extracting model-based power metrics for clean manuscript embedding
+table_sempower(ap_popmodel) # See function definition in helpers.R
+```
+
+```{r}
+#| label: fig-apriori-popmodel
+#| fig-cap: "A priori power analysis Model-based approach (h1model vs analyzemodel)"
+#| fig-width: 8
+#| fig-height: 5
+
+# Isolated chi-square distribution plot for clean manuscript embedding
+plot_sempower(ap_popmodel) # See function definition in helpers.R
 ```
 
 ## Power curves
