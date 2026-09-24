@@ -305,64 +305,6 @@ window.Quarto = {
 <li><strong>Residual covariance</strong>: Items <span class="math inline">\(Q3\)</span> and <span class="math inline">\(Q4\)</span> share a residual covariance (<span class="math inline">\(r_{Q3, Q4 \mid \text{physical}} = 0.30\)</span>), preserving the subfactor signal identified in the five-factor EFA solution <span class="citation" data-cites="lin2022">(<a href="#ref-lin2022" role="doc-biblioref">Lin &amp; Yao, 2022</a>)</span>.</li>
 <li><strong>Factor structure</strong>: Item <span class="math inline">\(Q8\)</span> is retained in the Environmental domain despite loading more strongly on the Psychological domain in the meta-EFA. This constitutes the null hypothesis (<span class="math inline">\(H_0\)</span>) version of the population, strictly maintaining the original four-factor structure without cross-loadings.</li>
 </ul>
-<p>The <code>lavaan</code> syntax for this model is shown below; <a href="#fig-diagram-popmodel" class="quarto-xref">Figure&nbsp;1</a> provides a visual representation.</p>
-<div class="quarto-embed-nb-cell">
-<div id="pop-model" class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  # ── Factor loadings: empirical estimates from Lin &amp; Yao (2022) ────────────
-  psycho      =~ 0.92*Q5  + 0.81*Q6  + 0.94*Q7  +
-                 0.73*Q11 + 0.75*Q19 + 0.63*Q26
-
-  physical    =~ 0.84*Q3  + 0.83*Q4  + 0.63*Q10 +
-                 0.71*Q15 + 0.68*Q16 + 0.89*Q17  + 0.61*Q18
-
-  social      =~ 0.94*Q20 + 0.89*Q21 + 0.78*Q22
-
-  environment =~ 0.37*Q8  + 0.49*Q9  + 0.79*Q12 + 0.81*Q13 +
-                 0.77*Q14 + 0.75*Q23  + 0.64*Q24 + 0.73*Q25
-
-  # ── Residual covariance Q3~~Q4 ────────────────────────────────────────────
-  # r(Q3,Q4|physical) = 0.30 (method bias / conceptual proximity)
-  # cov = 0.30 × sqrt(1-0.84²) × sqrt(1-0.83²) = 0.0908
-  Q4 ~~ 0.0908*Q3
-
-  # ── Factor variances (=1) and interfactor correlations ────────────────────
-  # Range reported in Lin &amp; Yao (2022): 0.08 to 0.31
-  # Conservative midpoint = 0.20 for all pairs
-  psycho      ~~ 1*psycho      + 0.2*physical + 0.2*social + 0.2*environment
-  physical    ~~ 1*physical    + 0.2*social   + 0.2*environment
-  social      ~~ 1*social      + 0.2*environment
-  environment ~~ 1*environment
-
-  # ── Residual variances: θ = 1 − λ² (standardised indicators) ─────────────
-  Q5  ~~ 0.1536*Q5    # 1 − 0.92²
-  Q6  ~~ 0.3439*Q6    # 1 − 0.81²
-  Q7  ~~ 0.1164*Q7    # 1 − 0.94²
-  Q11 ~~ 0.4671*Q11   # 1 − 0.73²
-  Q19 ~~ 0.4375*Q19   # 1 − 0.75²
-  Q26 ~~ 0.6031*Q26   # 1 − 0.63²
-  Q3  ~~ 0.2944*Q3    # 1 − 0.84²
-  Q4  ~~ 0.3111*Q4    # 1 − 0.83²
-  Q10 ~~ 0.6031*Q10   # 1 − 0.63²
-  Q15 ~~ 0.4959*Q15   # 1 − 0.71²
-  Q16 ~~ 0.5376*Q16   # 1 − 0.68²
-  Q17 ~~ 0.2079*Q17   # 1 − 0.89²
-  Q18 ~~ 0.6279*Q18   # 1 − 0.61²
-  Q20 ~~ 0.1164*Q20   # 1 − 0.94²
-  Q21 ~~ 0.2079*Q21   # 1 − 0.89²
-  Q22 ~~ 0.3916*Q22   # 1 − 0.78²
-  Q8  ~~ 0.8631*Q8    # 1 − 0.37² — lowest loading; bridge item (betweenness=40.5)
-  Q9  ~~ 0.7599*Q9    # 1 − 0.49²
-  Q12 ~~ 0.3759*Q12   # 1 − 0.79²
-  Q13 ~~ 0.3439*Q13   # 1 − 0.81²
-  Q14 ~~ 0.4071*Q14   # 1 − 0.77²
-  Q23 ~~ 0.4375*Q23   # 1 − 0.75²
-  Q24 ~~ 0.5904*Q24   # 1 − 0.64²
-  Q25 ~~ 0.4671*Q25   # 1 − 0.73²</code></pre>
-</div>
-</div>
-</div>
 <div class="quarto-embed-nb-cell">
 <div id="cell-fig-diagram-popmodel" class="cell" data-fig-width="8" data-fig-height="7">
 <div class="cell-output cell-output-display">
@@ -390,61 +332,6 @@ Figure&nbsp;1: Path diagram of the popmodel
 <li><strong>Derived parameters</strong>: Physical (<span class="math inline">\(\lambda = 0.4758\)</span>, <span class="math inline">\(\theta = 0.7736\)</span>); Psychological (<span class="math inline">\(\lambda = 0.5328\)</span>, <span class="math inline">\(\theta = 0.7161\)</span>); Social (<span class="math inline">\(\lambda = 0.6017\)</span>, <span class="math inline">\(\theta = 0.6379\)</span>); Environmental (<span class="math inline">\(\lambda = 0.4832\)</span>, <span class="math inline">\(\theta = 0.7665\)</span>). The residual covariance between <span class="math inline">\(Q3\)</span> and <span class="math inline">\(Q4\)</span> is adjusted to <span class="math inline">\(0.2321\)</span>.</li>
 </ul>
 <div class="quarto-embed-nb-cell">
-<div id="naive-model" class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
-  psycho      =~ 0.5328*Q5  + 0.5328*Q6  + 0.5328*Q7  +
-                 0.5328*Q11 + 0.5328*Q19 + 0.5328*Q26
-
-  physical    =~ 0.4758*Q3  + 0.4758*Q4  + 0.4758*Q10 +
-                 0.4758*Q15 + 0.4758*Q16 + 0.4758*Q17  + 0.4758*Q18
-
-  social      =~ 0.6017*Q20 + 0.6017*Q21 + 0.6017*Q22
-
-  environment =~ 0.4832*Q8  + 0.4832*Q9  + 0.4832*Q12 + 0.4832*Q13 +
-                 0.4832*Q14 + 0.4832*Q23  + 0.4832*Q24 + 0.4832*Q25
-
-  # ── Residual covariance Q3~~Q4 ────────────────────────────────────────────
-  # r(Q3,Q4|physical) = 0.30; cov = 0.30 × (1 − 0.4758²) = 0.2321
-  Q4 ~~ 0.2321*Q3
-
-  # ── Factor variances (=1) and interfactor correlations ────────────────────
-  # φ = 0.30: upper bound of Lin &amp; Yao (2022) range — pessimistic scenario
-  psycho      ~~ 1*psycho      + 0.3*physical + 0.3*social + 0.3*environment
-  physical    ~~ 1*physical    + 0.3*social   + 0.3*environment
-  social      ~~ 1*social      + 0.3*environment
-  environment ~~ 1*environment
-
-  # ── Residual variances: θ = 1 − λ² per domain ────────────────────────────
-  Q5  ~~ 0.7161*Q5    # Psychological: θ = 1 − 0.5328² = 0.7161
-  Q6  ~~ 0.7161*Q6
-  Q7  ~~ 0.7161*Q7
-  Q11 ~~ 0.7161*Q11
-  Q19 ~~ 0.7161*Q19
-  Q26 ~~ 0.7161*Q26
-  Q3  ~~ 0.7736*Q3    # Physical: θ = 1 − 0.4758² = 0.7736
-  Q4  ~~ 0.7736*Q4
-  Q10 ~~ 0.7736*Q10
-  Q15 ~~ 0.7736*Q15
-  Q16 ~~ 0.7736*Q16
-  Q17 ~~ 0.7736*Q17
-  Q18 ~~ 0.7736*Q18
-  Q20 ~~ 0.6379*Q20   # Social: θ = 1 − 0.6017² = 0.6379
-  Q21 ~~ 0.6379*Q21
-  Q22 ~~ 0.6379*Q22
-  Q8  ~~ 0.7665*Q8    # Environmental: θ = 1 − 0.4832² = 0.7665
-  Q9  ~~ 0.7665*Q9
-  Q12 ~~ 0.7665*Q12
-  Q13 ~~ 0.7665*Q13
-  Q14 ~~ 0.7665*Q14
-  Q23 ~~ 0.7665*Q23
-  Q24 ~~ 0.7665*Q24
-  Q25 ~~ 0.7665*Q25</code></pre>
-</div>
-</div>
-</div>
-<div class="quarto-embed-nb-cell">
 <div id="cell-fig-diagram-naivemodel" class="cell" data-fig-width="8" data-fig-height="7">
 <div class="cell-output cell-output-display">
 <div id="fig-diagram-naivemodel" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -469,61 +356,6 @@ Figure&nbsp;2: Path diagram of the naivemodel
 <li><strong>Interfactor correlations (<span class="math inline">\(\phi\)</span>)</strong>: Fixed at <span class="math inline">\(0.08\)</span> (the lower bound from <span class="citation" data-cites="lin2022">Lin &amp; Yao (<a href="#ref-lin2022" role="doc-biblioref">2022</a>)</span>), so that factors are well distinguished and sample size requirements are reduced.</li>
 <li><strong>Derived parameters</strong>: Physical (<span class="math inline">\(\lambda = 0.6837\)</span>, <span class="math inline">\(\theta = 0.5326\)</span>); Psychological (<span class="math inline">\(\lambda = 0.7113\)</span>, <span class="math inline">\(\theta = 0.4941\)</span>); Social (<span class="math inline">\(\lambda = 0.7661\)</span>, <span class="math inline">\(\theta = 0.4130\)</span>); Environmental (<span class="math inline">\(\lambda = 0.6424\)</span>, <span class="math inline">\(\theta = 0.5873\)</span>). The residual covariance between <span class="math inline">\(Q3\)</span> and <span class="math inline">\(Q4\)</span> is adjusted to <span class="math inline">\(0.1598\)</span>.</li>
 </ul>
-<div class="quarto-embed-nb-cell">
-<div id="opt-model" class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  # ── Factor loadings: tau-equivalent (uniform λ per domain) ───────────────
-  psycho      =~ 0.7113*Q5  + 0.7113*Q6  + 0.7113*Q7  +
-                 0.7113*Q11 + 0.7113*Q19 + 0.7113*Q26
-
-  physical    =~ 0.6837*Q3  + 0.6837*Q4  + 0.6837*Q10 +
-                 0.6837*Q15 + 0.6837*Q16 + 0.6837*Q17  + 0.6837*Q18
-
-  social      =~ 0.7661*Q20 + 0.7661*Q21 + 0.7661*Q22
-
-  environment =~ 0.6424*Q8  + 0.6424*Q9  + 0.6424*Q12 + 0.6424*Q13 +
-                 0.6424*Q14 + 0.6424*Q23  + 0.6424*Q24 + 0.6424*Q25
-
-  # ── Residual covariance Q3~~Q4 ────────────────────────────────────────────
-  # r(Q3,Q4|physical) = 0.30; cov = 0.30 × (1 − 0.6837²) = 0.1598
-  Q4 ~~ 0.1598*Q3
-
-  # ── Factor variances (=1) and interfactor correlations ────────────────────
-  # φ = 0.08: lower bound of Lin &amp; Yao (2022) range — optimistic scenario
-  psycho      ~~ 1*psycho      + 0.08*physical + 0.08*social + 0.08*environment
-  physical    ~~ 1*physical    + 0.08*social   + 0.08*environment
-  social      ~~ 1*social      + 0.08*environment
-  environment ~~ 1*environment
-
-  # ── Residual variances: θ = 1 − λ² per domain ────────────────────────────
-  Q5  ~~ 0.4941*Q5    # Psychological: θ = 1 − 0.7113² = 0.4941
-  Q6  ~~ 0.4941*Q6
-  Q7  ~~ 0.4941*Q7
-  Q11 ~~ 0.4941*Q11
-  Q19 ~~ 0.4941*Q19
-  Q26 ~~ 0.4941*Q26
-  Q3  ~~ 0.5326*Q3    # Physical: θ = 1 − 0.6837² = 0.5326
-  Q4  ~~ 0.5326*Q4
-  Q10 ~~ 0.5326*Q10
-  Q15 ~~ 0.5326*Q15
-  Q16 ~~ 0.5326*Q16
-  Q17 ~~ 0.5326*Q17
-  Q18 ~~ 0.5326*Q18
-  Q20 ~~ 0.4130*Q20   # Social: θ = 1 − 0.7661² = 0.4130
-  Q21 ~~ 0.4130*Q21
-  Q22 ~~ 0.4130*Q22
-  Q8  ~~ 0.5873*Q8    # Environmental: θ = 1 − 0.6424² = 0.5873
-  Q9  ~~ 0.5873*Q9
-  Q12 ~~ 0.5873*Q12
-  Q13 ~~ 0.5873*Q13
-  Q14 ~~ 0.5873*Q14
-  Q23 ~~ 0.5873*Q23
-  Q24 ~~ 0.5873*Q24
-  Q25 ~~ 0.5873*Q25</code></pre>
-</div>
-</div>
-</div>
 <div class="quarto-embed-nb-cell">
 <div id="cell-fig-diagram-optmodel" class="cell" data-fig-width="8" data-fig-height="7">
 <div class="cell-output cell-output-display">
@@ -550,62 +382,6 @@ Figure&nbsp;3: Path diagram of the optmodel
 <li><strong>Cross-loading 3</strong>: Item <span class="math inline">\(Q15\)</span> on the Environmental factor (<span class="math inline">\(\lambda = 0.24\)</span>). “Mobility” conceptually bridges physical ability and environmental access, and this item showed the second-highest betweenness centrality (<span class="math inline">\(36.50\)</span>) <span class="citation" data-cites="lin2022">(<a href="#ref-lin2022" role="doc-biblioref">Lin &amp; Yao, 2022</a>)</span>.</li>
 </ul>
 <p>Residual variances for cross-loaded items were recalculated to preserve total item variance: <span class="math inline">\(\theta = 1 - \lambda_{\text{primary}}^2 - \lambda_{\text{secondary}}^2 - 2\lambda_{\text{primary}}\lambda_{\text{secondary}}\phi\)</span>, where <span class="math inline">\(\phi = 0.20\)</span>.</p>
-<div class="quarto-embed-nb-cell">
-<div id="h1-model" class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  # ── Factor loadings (with three cross-loadings) ───────────────────────────
-  psycho      =~ 0.92*Q5  + 0.81*Q6  + 0.94*Q7  +
-                 0.73*Q11 + 0.75*Q19 + 0.63*Q26  +
-                 0.55*Q8  +                             # cross-load (1)
-                 0.21*Q9                                # cross-load (2)
-
-  physical    =~ 0.84*Q3  + 0.83*Q4  + 0.63*Q10 +
-                 0.71*Q15 + 0.68*Q16 + 0.89*Q17  + 0.61*Q18
-
-  social      =~ 0.94*Q20 + 0.89*Q21 + 0.78*Q22
-
-  environment =~ 0.37*Q8  + 0.49*Q9  + 0.79*Q12 + 0.81*Q13 +
-                 0.77*Q14 + 0.75*Q23  + 0.64*Q24 + 0.73*Q25 +
-                 0.24*Q15                               # cross-load (3)
-
-  # ── Residual covariance Q3~~Q4 (fixed in both P2 and analyzeModel) ────────
-  Q4 ~~ 0.0908*Q3
-
-  # ── Factor variances (=1) and interfactor correlations ────────────────────
-  psycho      ~~ 1*psycho      + 0.2*physical + 0.2*social + 0.2*environment
-  physical    ~~ 1*physical    + 0.2*social   + 0.2*environment
-  social      ~~ 1*social      + 0.2*environment
-  environment ~~ 1*environment
-
-  # ── Residual variances ────────────────────────────────────────────────────
-  Q5  ~~ 0.1536*Q5
-  Q6  ~~ 0.3439*Q6
-  Q7  ~~ 0.1164*Q7
-  Q11 ~~ 0.4671*Q11
-  Q19 ~~ 0.4375*Q19
-  Q26 ~~ 0.6031*Q26
-  Q3  ~~ 0.2944*Q3
-  Q4  ~~ 0.3111*Q4
-  Q10 ~~ 0.6031*Q10
-  Q15 ~~ 0.3701*Q15   # UPDATED: was 0.4959 — cross-load on environment
-  Q16 ~~ 0.5376*Q16
-  Q17 ~~ 0.2079*Q17
-  Q18 ~~ 0.6279*Q18
-  Q20 ~~ 0.1164*Q20
-  Q21 ~~ 0.2079*Q21
-  Q22 ~~ 0.3916*Q22
-  Q8  ~~ 0.4792*Q8    # UPDATED: was 0.8631 — cross-load on psycho
-  Q9  ~~ 0.6746*Q9    # UPDATED: was 0.7599 — cross-load on psycho
-  Q12 ~~ 0.3759*Q12
-  Q13 ~~ 0.3439*Q13
-  Q14 ~~ 0.4071*Q14
-  Q23 ~~ 0.4375*Q23
-  Q24 ~~ 0.5904*Q24
-  Q25 ~~ 0.4671*Q25</code></pre>
-</div>
-</div>
-</div>
 <div class="quarto-embed-nb-cell">
 <div id="cell-fig-diagram-h1model" class="cell" data-fig-width="8" data-fig-height="7">
 <div class="cell-output cell-output-display">
@@ -1194,36 +970,6 @@ Table&nbsp;2: Comparison of model variants used for sensitivity analysis
 <li><strong>Residual covariance</strong>: The <span class="math inline">\(Q3\)</span>–<span class="math inline">\(Q4\)</span> covariance is freely estimated, which is both theoretically justified and empirically supported <span class="citation" data-cites="lin2022 mosqueirataipe2026">(<a href="#ref-lin2022" role="doc-biblioref">Lin &amp; Yao, 2022</a>; <a href="#ref-mosqueirataipe2026" role="doc-biblioref"><span class="nocase">Mosqueira Taipe et al.</span>, 2026</a>)</span>.</li>
 <li><strong>Omitted cross-loadings</strong>: The deliberate exclusion of cross-loadings for <span class="math inline">\(Q8\)</span>, <span class="math inline">\(Q9\)</span>, and <span class="math inline">\(Q15\)</span> defines the misspecification that this tutorial’s main analysis is designed to detect.</li>
 </ul>
-<div class="quarto-embed-nb-cell">
-<div id="analysis-model" class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  # ── Factor loadings: freely estimated ─────────────────────────────────────
-  psycho      =~ Q5  + Q6  + Q7  + Q11 + Q19 + Q26
-  physical    =~ Q3  + Q4  + Q10 + Q15 + Q16 + Q17 + Q18
-  social      =~ Q20 + Q21 + Q22
-  environment =~ Q8  + Q9  + Q12 + Q13 + Q14 + Q23 + Q24 + Q25
-
-  # ── Factor variances (=1) and free interfactor correlations ───────────────
-  psycho      ~~ 1*psycho      + physical + social + environment
-  physical    ~~ 1*physical    + social   + environment
-  social      ~~ 1*social      + environment
-  environment ~~ 1*environment
-
-  # ── Residual covariance Q3~~Q4: freely estimated ──────────────────────────
-  Q4 ~~ Q3
-
-  # ── Residual variances: freely estimated ──────────────────────────────────
-  Q5  ~~ Q5;  Q6  ~~ Q6;  Q7  ~~ Q7
-  Q11 ~~ Q11; Q19 ~~ Q19; Q26 ~~ Q26
-  Q3  ~~ Q3;  Q4  ~~ Q4;  Q10 ~~ Q10
-  Q15 ~~ Q15; Q16 ~~ Q16; Q17 ~~ Q17; Q18 ~~ Q18
-  Q20 ~~ Q20; Q21 ~~ Q21; Q22 ~~ Q22
-  Q8  ~~ Q8;  Q9  ~~ Q9;  Q12 ~~ Q12; Q13 ~~ Q13
-  Q14 ~~ Q14; Q23 ~~ Q23; Q24 ~~ Q24; Q25 ~~ Q25</code></pre>
-</div>
-</div>
-</div>
 <div class="quarto-embed-nb-cell">
 <div id="cell-fig-diagram-analyzemodel" class="cell" data-fig-width="8" data-fig-height="7">
 <div class="cell-output cell-output-display">

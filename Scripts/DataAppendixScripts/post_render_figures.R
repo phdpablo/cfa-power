@@ -14,6 +14,31 @@ out_figs_dir <- file.path(root_dir, "Output", "Results", "Figures")
 
 dir.create(out_figs_dir, recursive = TRUE, showWarnings = FALSE)
 
+# ==============================================================================
+# 0. Ensure docs/index_files/figure-html is populated (Quarto Freeze Bug Workaround)
+# In Quarto Manuscripts with Knitr, frozen renders frequently fail to restore
+# cached figures from _freeze/index/figure-html/ into docs/index_files/figure-html/.
+# We ensure the folder exists, restore from _freeze, and clean root index_files.
+# ==============================================================================
+freeze_figs_dir <- file.path(root_dir, "_freeze", "index", "figure-html")
+if (dir.exists(freeze_figs_dir)) {
+  dir.create(index_figs_dir, recursive = TRUE, showWarnings = FALSE)
+  freeze_files <- list.files(freeze_figs_dir, full.names = TRUE)
+  if (length(freeze_files) > 0) {
+    file.copy(freeze_files, index_figs_dir, overwrite = TRUE)
+  }
+}
+
+root_index_files <- file.path(root_dir, "index_files")
+if (dir.exists(root_index_files)) {
+  root_figs <- list.files(file.path(root_index_files, "figure-html"), full.names = TRUE)
+  if (length(root_figs) > 0) {
+    dir.create(index_figs_dir, recursive = TRUE, showWarnings = FALSE)
+    file.copy(root_figs, index_figs_dir, overwrite = TRUE)
+  }
+  unlink(root_index_files, recursive = TRUE)
+}
+
 if (dir.exists(docs_scripts_dir)) {
   preview_files <- list.files(docs_scripts_dir, pattern = "-preview\\.html$", full.names = TRUE)
   index_files <- if (dir.exists(index_figs_dir)) list.files(index_figs_dir, full.names = TRUE) else character(0)

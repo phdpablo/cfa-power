@@ -295,7 +295,7 @@ n_h1 <- findPower(pow_h1, "N", 0.80)
 # Convert to a data frame for reporting.
 n_df <- data.frame(
   Parameter = names(n_h1),
-  N = as.integer(n_h1),
+  N = suppressWarnings(as.integer(n_h1)),
   stringsAsFactors = FALSE
 )
 
@@ -385,7 +385,7 @@ pow_naive <- getPower(naivemodel_ideal, alpha = ALPHA)
 n_naive <- findPower(pow_naive, "N", 0.80)
 
 # Add required N to the subset.
-param_subset$N <- as.integer(n_naive[rownames(param_subset)])
+param_subset$N <- suppressWarnings(as.integer(n_naive[rownames(param_subset)]))
 
 # Filter to keep only finite N values greater than 60.
 filtered_subset <- subset(param_subset, is.finite(N) & N > 60)
@@ -475,7 +475,7 @@ pow_opt <- getPower(optmodel_ideal, alpha = ALPHA)
 n_opt <- findPower(pow_opt, "N", 0.80)
 
 # Add required N to the subset.
-param_subset$N <- as.integer(n_opt[rownames(param_subset)])
+param_subset$N <- suppressWarnings(as.integer(n_opt[rownames(param_subset)]))
 
 # Filter to keep only finite N values greater than 60.
 filtered_subset <- subset(param_subset, is.finite(N) & N > 60)

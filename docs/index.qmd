@@ -225,11 +225,6 @@ Key features of this model are:
     version of the population, strictly maintaining the original
     four-factor structure without cross-loadings.
 
-The `lavaan` syntax for this model is shown below; @fig-diagram-popmodel
-provides a visual representation.
-
-{{< embed Scripts/AnalysisScripts/01_population_models.qmd#pop-model >}}
-
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-popmodel >}}
 
 ### Naive model
@@ -258,8 +253,6 @@ push sample size requirements upward:
     $\theta = 0.7665$). The residual covariance between $Q3$ and $Q4$
     is adjusted to $0.2321$.
 
-{{< embed Scripts/AnalysisScripts/01_population_models.qmd#naive-model >}}
-
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-naivemodel >}}
 
 ### Optimistic model
@@ -282,8 +275,6 @@ naive model [@mosqueirataipe2026]:
     $\theta = 0.4130$); Environmental ($\lambda = 0.6424$,
     $\theta = 0.5873$). The residual covariance between $Q3$ and $Q4$
     is adjusted to $0.1598$.
-
-{{< embed Scripts/AnalysisScripts/01_population_models.qmd#opt-model >}}
 
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-optmodel >}}
 
@@ -310,8 +301,6 @@ Residual variances for cross-loaded items were recalculated to preserve
 total item variance:
 $\theta = 1 - \lambda_{\text{primary}}^2 - \lambda_{\text{secondary}}^2 - 2\lambda_{\text{primary}}\lambda_{\text{secondary}}\phi$,
 where $\phi = 0.20$.
-
-{{< embed Scripts/AnalysisScripts/01_population_models.qmd#h1-model >}}
 
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-h1model >}}
 
@@ -355,8 +344,6 @@ Key specification choices:
     cross-loadings for $Q8$, $Q9$, and $Q15$ defines the
     misspecification that this tutorial's main analysis is designed to
     detect.
-
-{{< embed Scripts/AnalysisScripts/01_population_models.qmd#analysis-model >}}
 
 {{< embed Scripts/AnalysisScripts/01_population_models.qmd#fig-diagram-analyzemodel >}}
 
