@@ -1,6 +1,6 @@
-# Power Analysis for Confirmatory Factor Analysis: A Practical Tutorial
+# Power Analysis for Confirmatory Factor Analysis
 
-### Analytical and Simulation-Based Approaches
+### A Practical Tutorial
 
 **Author**: Pablo Rogers  
 *Universidade Federal de Uberlândia (UFU)*  
@@ -11,9 +11,11 @@
 ## Quick Access
 
 - 🌐 **Interactive Web Manuscript**: [https://phdpablo.github.io/cfa-power/](https://phdpablo.github.io/cfa-power/)  
-  *(Deployed continuously via GitHub Pages from the `main` branch and `/docs` folder)*
-- 📄 **Manuscript in PDF**: [`docs/index.pdf`](https://phdpablo.github.io/cfa-power/index.pdf)
-- 📝 **Manuscript in Word (DOCX)**: [`docs/index.docx`](https://phdpablo.github.io/cfa-power/index.docx)
+  *(Deployed continuously via GitHub Pages from the `gh-pages` branch)*
+- 📑 **Preprint & DOI (SSRN)**: [https://doi.org/10.2139/ssrn.7518418](https://doi.org/10.2139/ssrn.7518418)
+- 📦 **Replication Compendium (Zenodo)**: [https://doi.org/10.5281/zenodo.22939926](https://doi.org/10.5281/zenodo.22939926)
+- 📄 **Manuscript in PDF**: [index.pdf](https://phdpablo.github.io/cfa-power/index.pdf)
+- 📝 **Manuscript in Word (DOCX)**: [index.docx](https://phdpablo.github.io/cfa-power/index.docx)
 
 ---
 
@@ -87,12 +89,12 @@ cfa-power/
 │   ├── Results/                    # Standalone empirical replication products
 │   │   ├── README.md               # Complete mapping of figures and tables
 │   │   ├── Figures/                # 21 high-resolution plots (.png)
-│   │   └── Tables/                 # 14 publication-ready tables (.csv)
+│   │   └── Tables/                 # 18 publication-ready tables (.csv)
 │   └── DataAppendixOutput/         # Supplementary data documentation
 │       └── README.md
-│
-└── docs/                           # Compiled web manuscript deployed to GitHub Pages
 ```
+
+> **Note on Web Deployment**: The compiled web manuscript is generated in `docs/` during local rendering and deployed exclusively to the dedicated `gh-pages` branch, keeping the `main` branch strictly aligned with the canonical TIER Protocol 4.0 directory architecture.
 
 ---
 
@@ -147,7 +149,7 @@ quarto render
 2. **Execution**: Quarto renders the companion notebooks in `Scripts/AnalysisScripts/` and compiles the main manuscript `index.qmd` into `docs/`.
 3. **Post-render**: 
    - `post_render_figures.R` mirrors all 21 generated plots into [`Output/Results/Figures/`](Output/Results/Figures/).
-   - `post_render_tables.R` parses all rendered HTML tables and writes 14 clean datasets into [`Output/Results/Tables/`](Output/Results/Tables/).
+   - `post_render_tables.R` parses all rendered HTML tables and writes 18 clean datasets into [`Output/Results/Tables/`](Output/Results/Tables/).
 
 > [!TIP]
 > **Fast Rendering with Precomputed Caches**:  
@@ -161,23 +163,37 @@ quarto render
 
 If you only wish to inspect the empirical results without installing R or Quarto:
 - Read the complete interactive publication online: [https://phdpablo.github.io/cfa-power/](https://phdpablo.github.io/cfa-power/)
-- Browse the 14 standalone tables in CSV format: [`Output/Results/Tables/`](Output/Results/Tables/)
+- Browse the 18 standalone tables in CSV format: [`Output/Results/Tables/`](Output/Results/Tables/)
 - View the 21 figures in high-resolution PNG format: [`Output/Results/Figures/`](Output/Results/Figures/)
 
 ---
 
 ## 6. Citation
 
-If you use this tutorial, code, or simulation framework in your research, please cite:
+If you use this tutorial, empirical framework, or replication compendium in your research, please cite:
 
+### Article / Preprint (APA 7th Edition)
+```text
+Rogers, P. (2026). Power Analysis for Confirmatory Factor Analysis: A Practical Tutorial. SSRN Electronic Journal. https://doi.org/10.2139/ssrn.7518418
+```
+
+### BibTeX
 ```bibtex
-@article{rogers2026cfapower,
-  author    = {Rogers, Pablo},
-  title     = {Power Analysis for Confirmatory Factor Analysis: A Practical Tutorial},
-  subtitle  = {Analytical and Simulation-Based Approaches},
-  year      = {2026},
-  url       = {https://phdpablo.github.io/cfa-power/},
+@article{rogers2026,
+  author       = {Rogers, Pablo},
+  title        = {Power Analysis for Confirmatory Factor Analysis},
+  subtitle     = {A Practical Tutorial},
+  journal      = {SSRN Electronic Journal},
+  year         = {2026},
+  month        = {9},
+  doi          = {10.2139/ssrn.7518418},
+  url          = {https://doi.org/10.2139/ssrn.7518418}
 }
+```
+
+### Computational Replication Compendium (Zenodo)
+```text
+Rogers, P. (2026). cfa-power: Replication Compendium for CFA Power Analysis (Version v1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22939926
 ```
 
 ---

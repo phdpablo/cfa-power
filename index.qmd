@@ -8,6 +8,12 @@ author:
     email: pablorogers@ufu.br
     affiliations:
       - Universidade Federal de Uberlândia
+doi: 10.2139/ssrn.7518418
+citation:
+  type: article
+  container-title: "SSRN Electronic Journal"
+  doi: 10.2139/ssrn.7518418
+  url: https://doi.org/10.2139/ssrn.7518418
 keywords:
   - Power Analysis
   - Confirmatory Factor Analysis
@@ -15,6 +21,7 @@ keywords:
   - Monte Carlo Simulation
   - semPower
   - simsem
+  - lavaan
 abstract: |
   This tutorial presents a pedagogical introduction to statistical power analysis in Confirmatory Factor Analysis (CFA). Proper sample size planning requires assessing the probability of detecting overall model misfit, either through analytical methods or simulation-based approaches. Standard analytical tools rely on asymptotic normal theory, which can break down under non-normality or missing data. This tutorial demonstrates both strategies — analytical (using semPower with lavaan syntax) and Monte Carlo simulation (using simsem) — side by side, using the WHOQOL-BREF four-factor model as a unifying case study. We illustrate how simulation complements analytical calculations by enabling researchers to evaluate parameter-level power, coverage, and relative bias under realistic scenarios involving model misspecification, missing data, and non-normal continuous indicators. We argue that analytical methods provide a fast and theoretically grounded starting point for sample size planning, while simulation-based approaches allow those conclusions to be stress-tested against the specific population structure, misspecification form, and data conditions of the study at hand.
 date: last-modified

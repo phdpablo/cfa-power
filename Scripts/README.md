@@ -25,4 +25,4 @@ quarto render
    - Executes the companion notebooks (`Scripts/AnalysisScripts/01_*.qmd` through `06_*.qmd`) and the main manuscript (`index.qmd`), drawing shared functions from `Scripts/DataAppendixScripts/models.R` and `helpers.R`.
 3. **Post-Render**:
    - Runs `Scripts/DataAppendixScripts/post_render_figures.R` to mirror all 21 PNG figures to [`Output/Results/Figures/`](file:///e:/Github/cfa-power/Output/Results/Figures/).
-   - Runs `Scripts/DataAppendixScripts/post_render_tables.R` to extract all 14 tabular outputs to [`Output/Results/Tables/`](file:///e:/Github/cfa-power/Output/Results/Tables/) in clean CSV format.
+   - Runs `Scripts/DataAppendixScripts/post_render_tables.R` to extract all 18 tabular outputs to [`Output/Results/Tables/`](file:///e:/Github/cfa-power/Output/Results/Tables/) in clean CSV format.
