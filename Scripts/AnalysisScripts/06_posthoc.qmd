@@ -266,4 +266,9 @@ table_sempower(ph_realmodel) # See function definition in helpers.R
 plot_sempower(ph_realmodel) # See function definition in helpers.R
 ```
 
+## References {.unnumbered}
+
+::: {#refs}
+:::
+
 

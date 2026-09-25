@@ -197,4 +197,9 @@ rownames(power_traditional_tbl) <- "Power"
 knitr::kable(power_traditional_tbl, digits = 3, align = "c")
 ```
 
+## References {.unnumbered}
+
+::: {#refs}
+:::
+
 

@@ -304,3 +304,8 @@ colnames(power_cutoff_nnorm) <- toupper(names(power_nnorm))
 # Print the table.
 knitr::kable(power_cutoff_nnorm, digits = 3, align = "c")
 ```
+
+## References {.unnumbered}
+
+::: {#refs}
+:::

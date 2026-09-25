@@ -259,3 +259,8 @@ analytical_summary <- data.frame(
 # Render the summary table with simple column alignment
 knitr::kable(analytical_summary, align = "lcccc")
 ```
+
+## References {.unnumbered}
+
+::: {#refs}
+:::

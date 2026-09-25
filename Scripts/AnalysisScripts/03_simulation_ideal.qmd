@@ -508,3 +508,8 @@ knitr::kable(
 )
 ```
 
+## References {.unnumbered}
+
+::: {#refs}
+:::
+
