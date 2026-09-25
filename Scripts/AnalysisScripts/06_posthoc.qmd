@@ -1,0 +1,269 @@
+---
+title: "Post Hoc Power Analysis"
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Setup
+
+```{r}
+#| label: setup
+#| include: false
+
+# For CFA population models
+source(here::here("Scripts", "DataAppendixScripts", "models.R"))
+
+# For DRY (Don't repeat yourself) parameters
+source(here::here("Scripts", "DataAppendixScripts", "helpers.R"))
+
+# For simulations caching
+source(here::here("Scripts", "DataAppendixScripts", "cache_utils.R"))
+
+# For loading existing simulations cache
+source(here::here("Scripts", "DataAppendixScripts", "cache_loader.R"))
+
+# Load existing simulations cache if available (cache_loader.R)
+cache_load_existing()
+```
+
+The post hoc analysis is based on the real dataset from @rogers2022,
+publicly available in Mendeley Data. The data contain WHOQOL-BREF
+responses from 1,047 participants and are loaded directly from the
+repository URL. The sample size is extracted from the object and
+reused throughout this section, and the model degrees of freedom are
+computed from `analyzemodel` as a required input for the analytical
+functions.
+
+```{r}
+#| label: load-realdata
+
+# Load the real dataset from Mendeley Data
+url_data <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/b58a7054-4978-4239-81db-00f9efd86e44/WHOQOL_Data.dat"
+realdata <- read.table(url_data)
+
+# Load the corresponding labels for the real dataset
+url_labels <- "https://data.mendeley.com/datasets/rdky78bk8r/2/files/ae2a5c01-2fc2-43e5-b31c-8db8cc5bff8a/WHOQOL_Labels.txt"
+column_labels <- read.table(url_labels)
+
+# Assign the column labels to the real dataset
+column_labels <- column_labels$V1
+names(realdata) <- gsub("_[FPSA]$", "", column_labels)
+
+# Extract the sample size from the real dataset
+n_real <- nrow(realdata)
+
+# Compute the model degrees of freedom from `analyzemodel`
+df_model <- semPower.getDf(analyzemodel)-4 # See `02_analytical_power.qmd`
+```
+
+## Post hoc power analysis
+
+### With simulation
+
+Post hoc simulation-based power analysis follows four steps: fit the
+analysis model to the real data to obtain the empirical parameter
+estimates; simulate data from that fitted model to construct the null
+reference distribution; simulate data from the misspecified model to
+construct the alternative distribution; and evaluate how well each fit
+index separates the two distributions at the observed $N$
+[@simsem2021; @wang2021].
+
+Grounding the reference distribution in the fitted model rather than in
+the theoretical population model is what distinguishes this from the a
+priori analyses above: here, the population structure is implied by the
+data rather than specified in advance, which makes the power estimate
+reflect the evidence actually available in the collected sample
+[@feng2023; @jobst2023].
+
+```{r}
+#| label: realdata-model
+
+fit_real <- cfa(
+  analyzemodel,           # Model to analyze (see `models.R`)
+  data      = realdata,   # Real data from Mendeley Data
+  estimator = "mlr",      # Robust maximum likelihood estimator
+  std.lv    = TRUE        # Standardized latent variables
+)
+```
+
+```{r}
+#| label: sim-null-posthoc
+
+realmodel_null <- cache_or_run("realmodel_null", {
+  sim(
+      nRep      = REP,        # Number of replications (defined in helpers.R)
+      n         = n_real,     # Sample size of the real data
+      analyzemodel,           # Model to analyze (see `models.R`)
+      generate  = fit_real,   # Fitted model from real data
+      std.lv    = TRUE,       # Standardized latent variables
+      lavaanfun = "cfa",      # Use confirmatory factor analysis (CFA) function
+      estimator = "mlr",      # Robust maximum likelihood estimator
+      seed      = SEED,       # Random seed for reproducibility (defined in helpers.R) 
+      multicore = TRUE        # Use multiple cores for parallel processing
+  )
+})
+```
+
+```{r}
+#| label: sim-alt-posthoc
+
+h1model_alt <- cache_or_run("h1model_alt", {
+  sim(
+      nRep      = REP,        # Number of replications (defined in helpers.R)
+      n         = n_real,     # Sample size of the real data
+      analyzemodel,           # Model to analyze (see `models.R`)
+      generate  = h1model,    # Population model with misspecification (see `models.R`)
+      std.lv    = TRUE,       # Standardized latent variables
+      lavaanfun = "cfa",      # Use confirmatory factor analysis (CFA) function
+      estimator = "mlr",      # Robust maximum likelihood estimator
+      seed      = SEED,       # Random seed for reproducibility (defined in helpers.R) 
+      multicore = TRUE        # Use multiple cores for parallel processing
+  )
+})
+```
+
+The figure below displays the fit-index distributions for the
+alternative and null conditions, alongside the empirical cutoff derived
+from the reference model at $\alpha$. The degree of visual separation
+between the two distributions provides an intuitive picture of whether
+the observed $N$ is sufficient to support reliable model discrimination
+[@simsem2021; @mcneish2021].
+
+```{r}
+#| label: fig-posthoc-plotpower
+#| fig-cap: "Power curve for post hoc analysis based on simulation."
+#| fig-width: 8
+#| fig-height: 5
+
+plotPowerFit(
+    h1model_alt,                  # Data simulated under H1 (with cross-loadings)
+    nullObject = realmodel_null,  # Data simulated under H0 (no cross-loadings)
+    alpha      = ALPHA,           # Significance level (see helpers.R)
+    usedFit    = FITS             # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
+)
+```
+
+The table below reports the corresponding power values for each index:
+the proportion of alternative-condition replications that fall beyond
+the null-model cutoff at the chosen $\alpha$ level [@simsem2021;
+@wang2023].
+
+```{r}
+#| label: tbl-posthoc-power
+#| tbl-cap: "Power for post hoc analysis based on simulation."
+
+# Estimate power for rejecting the misspecified model (h1model_alt)
+# using fit-index cutoffs implied by the null model.
+posthoc_pow <- getPowerFit(
+    h1model_alt,                 # Data simulated under H1 (with cross-loadings)
+    nullObject = realmodel_null, # Data simulated under H0 (no cross-loadings)
+    alpha      = ALPHA,          # Significance level (see helpers.R)
+    usedFit    = FITS            # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
+)
+
+# Subset power to the four requested fit indices
+posthoc_pow_clean <- posthoc_pow[FITS]
+
+# Return power values as a table
+knitr::kable(
+  as.data.frame(t(as.numeric(posthoc_pow_clean))),
+  col.names = toupper(FITS),
+  digits = 3,
+  align = "c"
+)
+```
+
+### With semPower
+
+For comparison, the same post hoc question is addressed analytically
+through two specifications. The first is model-free and sets the target discrepancy at $\text{RMSEA} = 0.05$;
+the second is model-based and derives the effect from the discrepancy
+between the misspecified population model (`h1model`) and the empirically fitted model [@moshagen2024; @jak2021].
+
+```{r}
+#| label: posthoc-rmsea-raw
+
+# Analytical post hoc power for a global fit test.
+# The target effect is fixed directly as RMSEA = 0.05.
+
+ph_rmsea <- semPower::semPower.postHoc(
+  effect         = 0.05,        # RMSEA under H1
+  effect.measure = "RMSEA",     # Target discrepancy expressed as RMSEA
+  alpha          = ALPHA,       # Significance level (see helpers.R)
+  N              = n_real,      # Sample size from real data
+  df             = df_model,    # Degrees of freedom of the model
+  p              = P            # Only relevant for indices such as GFI and AGFI
+)
+```
+
+::: {.callout-important}
+## Standard software output
+Calling `summary()` directly prints the full terminal summary table alongside the central vs. non-central chi-square distribution plot. In an interactive R session, executing `summary(ph_rmsea)` is sufficient to inspect analytical results immediately. For formal manuscript presentation and publication rendering, the composite output is decoupled into an academic table and an isolated distribution figure.
+:::
+
+```{r}
+#| label: tbl-posthoc-rmsea
+#| tbl-cap: "Analytical post hoc power parameters for RMSEA = 0.05"
+
+# Formatted table extracting analytical post hoc power metrics for clean manuscript embedding
+table_sempower(ph_rmsea) # See function definition in helpers.R
+```
+
+```{r}
+#| label: fig-posthoc-rmsea
+#| fig-cap: "Post hoc power analysis for RMSEA = 0.05."
+#| fig-width: 8
+#| fig-height: 5
+
+# Isolated chi-square distribution plot for clean manuscript embedding
+plot_sempower(ph_rmsea) # See function definition in helpers.R
+```
+
+In the model-based specification below, `semPower.powerLav()` fits the
+analysis model to the population-implied covariance matrix and translates
+the resulting discrepancy into the noncentrality parameter. Because
+`modelH1` is omitted, the comparison is against the saturated model,
+making this a global test of fit rather than a test of a specific
+restriction [@moshagen2024; @jobst2023].
+
+```{r}
+#| label: posthoc-realmodel-raw
+
+# Analytical post hoc power based on lavaan models.
+
+ph_realmodel <- semPower::semPower.powerLav(
+  type       = "post-hoc",          # Post hoc power analysis
+  alpha      = ALPHA,               # Significance level (see helpers.R)
+  N          = n_real,              # Sample size from real data
+  modelPop   = h1model,             # Population model with cross loadings (see `models.R`)
+  modelH0    = fit_real,            # Fitted model from real data
+  lavOptions = list(std.lv = TRUE)  # Standardize latent variables
+)
+```
+
+::: {.callout-important}
+## Standard software output
+Calling `summary()` directly prints the full terminal summary table alongside the central vs. non-central chi-square distribution plot. In an interactive R session, executing `summary(ph_realmodel)` is sufficient to inspect analytical results immediately. For formal manuscript presentation and publication rendering, the composite output is decoupled into an academic table and an isolated distribution figure.
+:::
+
+```{r}
+#| label: tbl-posthoc-realmodel
+#| tbl-cap: "Analytical post hoc power parameters for empirical fitted model"
+
+# Formatted table extracting empirical model-based post hoc metrics for clean manuscript embedding
+table_sempower(ph_realmodel) # See function definition in helpers.R
+```
+
+```{r}
+#| label: fig-posthoc-realmodel
+#| fig-cap: "Post hoc power analysis for the real model."
+#| fig-width: 8
+#| fig-height: 5
+
+# Isolated chi-square distribution plot for clean manuscript embedding
+plot_sempower(ph_realmodel) # See function definition in helpers.R
+```
+
+

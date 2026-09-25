@@ -1,0 +1,510 @@
+---
+title: "Simulation — Ideal Conditions"
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Setup
+
+```{r}
+#| label: setup
+#| include: false
+
+# For CFA population models
+source(here::here("Scripts", "DataAppendixScripts", "models.R"))
+
+# For DRY (Don't repeat yourself) parameters
+source(here::here("Scripts", "DataAppendixScripts", "helpers.R"))
+
+# For simulations caching
+source(here::here("Scripts", "DataAppendixScripts", "cache_utils.R"))
+
+# For loading existing simulations cache
+source(here::here("Scripts", "DataAppendixScripts", "cache_loader.R"))
+
+# Load existing simulations cache if available (cache_loader.R)
+cache_load_existing()
+```
+
+## Main misspecification simulation
+
+Simulate data from the ideal population model and fit the analysis CFA
+model across the sample-size grid in `SEQ1` (see `helpers.R`). This yields the reference
+sampling distribution of fit indices under the correctly specified
+condition.
+
+```{r}
+#| label: sim-ideal-popmodel
+
+popmodel_ideal <- cache_or_run("popmodel_ideal", {
+  sim(
+    NULL,                  # Number of replications is defined by SEQ1
+    n = SEQ1,              # Sample sizes defined in SEQ1 (see helpers.R)
+    analyzemodel,          # Model used for analysis (see models.R)
+    generate = popmodel,   # Population model (see models.R)
+    std.lv = TRUE,         # Standardize latent variables
+    lavaanfun = "cfa",     # Use cfa() function for analysis
+    seed = SEED,           # Seed for reproducibility (see helpers.R)
+    multicore = TRUE       # Use multiple cores for parallel processing
+)
+})
+```
+
+Simulate data from the alternative population model and fit the same
+analysis CFA model across the same sample-size grid. This creates the
+sampling distribution of fit indices under misspecification, which is
+later contrasted with the reference condition to evaluate power.
+
+```{r}
+#| label: sim-ideal-h1model
+
+h1model_ideal <- cache_or_run("h1model_ideal", {
+  sim(
+    NULL,               # Number of replications is defined by SEQ1 
+    n = SEQ1,           # Sample sizes defined in SEQ1
+    analyzemodel,       # Model used for analysis
+    generate = h1model, # Population model (plus 3 cross-loadings)
+    std.lv = TRUE,      # Standardize latent variables
+    lavaanfun = "cfa",  # Use cfa() function for analysis
+    seed = SEED,        # Seed for reproducibility
+    multicore = TRUE    # Use multiple cores for parallel processing
+)
+})
+```
+
+## Main misspecification outputs
+
+### Power curves for fit indices
+
+`plotPowerFit()` displays how the probability of rejecting the
+misspecified condition changes as sample size increases, using the
+logistic-smoothed relationship between $N$ and the reject/retain
+decision for each index [@simsem2021]. The curves cross the target
+power level at different sample sizes, reflecting each index's
+sensitivity to the imposed cross-loading misspecification.
+
+```{r}
+#| label: fig-power-curve-ideal
+#| fig-cap: "Power curves for fit indices under ideal conditions."
+#| fig-width: 8
+#| fig-height: 5
+
+plotPowerFit(
+    h1model_ideal,   # Data simulated under H1 (with cross-loadings)
+    popmodel_ideal,  # Data simulated under H0 (no cross-loadings)
+    alpha = ALPHA,   # Significance level for determining power (see helpers.R)
+    usedFit = FITS   # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
+)
+```
+
+The unsmoothed version below overlays the raw simulated fit-index
+values from both conditions across the sample-size sequence. This
+display is useful for inspecting how the two sampling distributions
+separate as $N$ grows, before that separation is summarized into
+logistic power curves [@simsem2021; @mcneish2021].
+
+```{r}
+#| label: fig-fit-curve-ideal
+#| fig-cap: "Power curves for fit indices under ideal conditions without logistic smoothing."
+#| fig-width: 8
+#| fig-height: 5
+
+plotPowerFit(
+    h1model_ideal,    # Data simulated under H1 (with cross-loadings)
+    popmodel_ideal,   # Data simulated under H0 (no cross-loadings)
+    alpha = ALPHA,    # Significance level for determining power (see helpers.R)
+    usedFit = FITS,   # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
+    logistic = FALSE  # Display raw simulated points and cutoff lines instead of logistic curves
+)
+```
+
+### Power and cutoff values for fit indices
+
+`getPowerFit()` evaluates how often the alternative model is rejected
+at a given $N$, whereas `getCutoff()` derives the index-specific
+decision boundaries from the null-model sampling distribution at the
+same $\alpha$ level. Reading power and cutoffs together is more
+informative than either alone: the cutoff defines how stringent each
+rejection rule is, and the power shows how often that rule succeeds
+[@jobst2023; @wang2023].
+
+```{r}
+#| label: tbl-power-cutoff-ideal
+#| tbl-cap: "Power and fit index cutoff values under ideal conditions at N = 231."
+
+# Estimate power for rejecting the misspecified model (h1model_ideal)
+# using fit-index cutoffs implied by the null model (popmodel_ideal) at alpha = ALPHA and N = 231.
+power_ideal <- getPowerFit(
+    h1model_ideal,                # Data simulated under H1 (with cross-loadings)
+    nullObject = popmodel_ideal,  # Data simulated under H0 (no cross-loadings)
+    alpha = ALPHA,                # Significance level for determining power (see helpers.R)
+    nVal = 231,                   # Sample size for analysis
+    usedFit = FITS                # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
+)
+
+# Derive empirical cutoff values for the selected fit indices
+# from the null-model sampling distribution under the same conditions.
+cutoff_ideal <- getCutoff(
+    popmodel_ideal,               # Data simulated under H0 (no cross-loadings)
+    alpha = ALPHA,                # Significance level for determining power (see helpers.R)
+    nVal = 231,                   # Sample size for analysis
+    usedFit = FITS                # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
+)
+
+# Combine power and cutoff values into a compact summary table.
+power_cutoff_ideal <- rbind(
+    "Power" = as.numeric(power_ideal),
+    "Cutoff" = as.numeric(cutoff_ideal[1, ])
+)
+
+# Standardize column names for presentation.
+colnames(power_cutoff_ideal) <- toupper(names(power_ideal)) 
+
+# Print the table.
+knitr::kable(power_cutoff_ideal, digits = 3, align = "c") 
+```
+
+### Traditional cutoff values for fit indices
+
+The same analysis is repeated using fixed rule-of-thumb thresholds in
+place of empirically derived cutoffs. This serves as a direct
+illustration of how the choice of decision criterion — not $N$ alone —
+affects power conclusions in simulation-based CFA evaluation
+[@mcneish2021; @kyriazos2018].
+
+```{r}
+#| label: fig-fit-curve-traditional
+#| fig-cap: "Power curves using traditional fit index cutoffs under ideal conditions."
+#| fig-width: 8
+#| fig-height: 5
+
+# Plot fit-index results from the misspecified model across sample sizes.
+# The cutoff object applies traditional rule-of-thumb thresholds
+# (e.g., RMSEA, SRMR, CFI, and TLI cutoffs) for rejection decisions.
+# logistic = FALSE requests the scatterplot-style display of simulated values
+# and the cutoff line, instead of a logistic-smoothed power curve
+
+plotPowerFit(
+  h1model_ideal,          # Data simulated under H1 (with cross-loadings)
+  popmodel_ideal,         # Data simulated under H0 (no cross-loadings)
+  cutoff = RULE_OF_THUMB, # Rule-of-thumb cutoff values for fit indices (see helpers.R)
+  alpha = ALPHA,          # Significance level for determining power (see helpers.R)
+  usedFit = FITS,         # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
+  logistic = FALSE        # Display raw simulated points and cutoff lines instead of logistic curves
+)
+```
+
+The table below summarizes detection rates at $N = 231$ under the same
+traditional thresholds, providing a direct comparison with the
+empirical-cutoff results from the previous block.
+
+```{r}
+#| label: tbl-power-cutoff-traditional-ideal
+#| tbl-cap: "Power for traditional fit index cutoffs under ideal conditions at N = 231."
+
+# Estimate power for rejecting the misspecified model (h1model_ideal)
+# using traditional rule-of-thumb cutoffs (RULE_OF_THUMB) at alpha = ALPHA and N = 231.
+power_trad <- getPowerFit(
+    h1model_ideal,    # Data simulated under H1 (with cross-loadings)
+    RULE_OF_THUMB,    # Rule-of-thumb cutoff values for fit indices (see helpers.R)
+    alpha = ALPHA,    # Significance level for determining power (see helpers.R)
+    nVal = 231,       # Sample size for analysis
+    usedFit = FITS    # RMSEA, SRMR, CFI, and TLI fit indices to display (see helpers.R)
+)
+
+# Create horizontal table: Fit Index as column names, Power as single row
+power_df <- data.frame(
+    "CFI" = round(as.numeric(power_trad["cfi"]), 3),
+    "TLI" = round(as.numeric(power_trad["tli"]), 3),
+    "RMSEA" = round(as.numeric(power_trad["rmsea"]), 3),
+    "SRMR" = power_trad["srmr"],
+    row.names = "Power"
+)
+
+# Print the table.
+knitr::kable(power_df, digits = 3, align = "c", col.names = toupper(names(power_df)))
+```
+
+### Target parameter estimates
+
+Monte Carlo summaries in `simsem` go beyond detection rates: relative
+bias, relative SE bias, and CI coverage jointly indicate whether each
+estimator is well-calibrated in finite samples. A parameter may show
+high detection power while still being recovered with noticeable bias
+or poorly estimated uncertainty, so all four indicators should be
+read together rather than treating power alone as the criterion of
+interest [@wang2021; @simsem2021].
+
+```{r}
+#| label: tbl-param-estimate-ideal
+#| tbl-cap: "Summary of parameter estimates under ideal conditions."
+
+# Compute detailed parameter-recovery results for the fitted model.
+param_ideal <- summaryParam(
+  h1model_ideal,   # Data simulated under H1 (with cross-loadings)
+  alpha = ALPHA,   # Significance level for determining power (see helpers.R)
+  digits = 3,      # Number of decimal places for output
+  detail = TRUE    # Display detailed parameter-recovery results
+)
+
+# Keep only the diagnostics used in the discussion.
+param_subset <- param_ideal[, c("Rel Bias", "Rel SE Bias", "Coverage", "Power (Not equal 0)")]
+
+# Move parameter labels to an explicit first column.
+param_subset <- cbind(
+  Parameter = rownames(param_subset),
+  param_subset,
+  row.names = NULL
+)
+
+# Escape ~~ for Pandoc (prevents strikethrough in HTML); matches tbl-pop-summary
+param_subset$Parameter <- gsub("~~", "\\~\\~", param_subset$Parameter, fixed = TRUE)
+
+# Print the table.
+knitr::kable(
+  param_subset,
+  digits = 3,
+  align = c("l", "c", "c", "c", "c"),
+  booktabs = TRUE,
+  escape = FALSE,
+  row.names = FALSE
+)
+```
+
+`getPower()` returns parameter-specific power estimates across the
+simulated values of $N$, and `findPower()` identifies the first $N$
+in the grid that exceeds the target level. The resulting values should
+be read as practical planning thresholds: the most demanding parameters
+determine the minimum adequate sample size, since planning around the
+easiest effects to detect would leave the hardest ones systematically
+underpowered [@simsem2021; @moshagen2024].
+
+```{r}
+#| label: tbl-power-n-ideal
+#| warning: false
+#| tbl-cap: "Sample size needed for 80% power under ideal conditions."
+
+# Obtain parameter-specific power estimates across sample sizes.
+pow_h1 <- getPower(h1model_ideal, alpha = ALPHA)
+
+# Find the minimum N in the simulated grid that reaches the target power of 0.80.
+n_h1 <- findPower(pow_h1, "N", 0.80)
+
+# Convert to a data frame for reporting.
+n_df <- data.frame(
+  Parameter = names(n_h1),
+  N = suppressWarnings(as.integer(n_h1)),
+  stringsAsFactors = FALSE
+)
+
+# Remove parameters for which no finite N was returned.
+n_df <- subset(n_df, is.finite(N))
+
+# Escape ~~ for Pandoc (prevents strikethrough in HTML); matches tbl-pop-summary
+n_df$Parameter <- gsub("~~", "\\~\\~", n_df$Parameter, fixed = TRUE)
+
+# Print the table without row numbers.
+knitr::kable(
+  n_df,
+  col.names = c("Parameter", "N"),
+  align = c("l", "c"),
+  booktabs = TRUE,
+  escape = FALSE,
+  row.names = FALSE
+)
+```
+
+### Recovering the population parameters
+
+Parameter recovery is a complementary perspective on sample size
+planning: instead of asking whether a misspecification can be detected
+globally, it asks whether individual model parameters can be
+accurately estimated under the assumed data-generating conditions
+[@wang2021; @feng2023]. Although primary loadings are typically easy
+to recover even at modest $N$, latent covariances and residual
+covariances may require substantially larger samples, making them
+the practical bottleneck for many CFA designs [@moshagen2024; @gagne2006].
+
+The analyses below use the naive and optimal population models as
+sensitivity benchmarks. Because these models differ from the main
+meta-analytic population in their loading magnitudes and interfactor
+correlations, comparing their recovery profiles clarifies how
+sensitive the sample size recommendation is to the assumed parameter
+values.
+
+#### Naive model
+
+```{r}
+#| label: sim-ideal-naivemodel
+
+naivemodel_ideal <- cache_or_run("naivemodel_ideal", {
+  sim(
+    NULL,                   # Number of replications is defined by SEQ1
+    n = SEQ1,               # Sample sizes defined in SEQ1 (see helpers.R)
+    analyzemodel,           # Model used for analysis (see models.R)
+    generate = naivemodel,  # Naive population model (see models.R)
+    std.lv = TRUE,          # Standardized latent variables
+    lavaanfun = "cfa",      # Use CFA function from lavaan
+    seed = SEED,            # Seed for reproducibility (see helpers.R)
+    multicore = TRUE        # Use multicore processing
+)
+})
+```
+
+The table below reports parameter-level diagnostics and the minimum $N$
+required for each parameter to reach $.80$ power under the naive
+population. Only parameters with a finite required $N$ above 60 are
+shown, as smaller requirements are of limited practical interest for
+planning purposes [@simsem2021; @gagne2006].
+
+```{r}
+#| label: tbl-power-n-naive
+#| warning: false
+#| message: false
+#| tbl-cap: "Parameter estimates and required sample size for 80% power under naive conditions."
+
+# Compute detailed parameter-recovery results for the fitted model.
+param_naive <- summaryParam(
+  naivemodel_ideal,  # Simulation results from the naive population model (low loadings)
+  alpha = ALPHA,     # Significance level for determining power (see helpers.R)
+  digits = 3,        # Number of digits to round the results to
+  detail = TRUE      # Return detailed parameter-level results
+)
+
+# Keep only the diagnostics used in the discussion.
+param_subset <- as.data.frame(
+  param_naive[, c("Rel Bias", "Rel SE Bias", "Coverage", "Power (Not equal 0)")]
+)
+
+# Compute parameter-level power across the simulated values of N.
+pow_naive <- getPower(naivemodel_ideal, alpha = ALPHA)
+
+# Extract the minimum N that reaches the target power of .80 for each parameter.
+n_naive <- findPower(pow_naive, "N", 0.80)
+
+# Add required N to the subset.
+param_subset$N <- suppressWarnings(as.integer(n_naive[rownames(param_subset)]))
+
+# Filter to keep only finite N values greater than 60.
+filtered_subset <- subset(param_subset, is.finite(N) & N > 60)
+
+# Move parameter labels to an explicit first column.
+filtered_subset <- cbind(
+  Parameter = rownames(filtered_subset),
+  filtered_subset,
+  row.names = NULL
+)
+
+# Escape ~~ for Pandoc (prevents strikethrough in HTML); matches tbl-pop-summary
+filtered_subset$Parameter <- gsub("~~", "\\~\\~", filtered_subset$Parameter, fixed = TRUE)
+
+# Print the combined table.
+knitr::kable(
+  filtered_subset,
+  digits = 3,
+  align = c("l", "c", "c", "c", "c", "c"),
+  booktabs = TRUE,
+  escape = FALSE,
+  col.names = c(
+    "Parameter",
+    "Rel Bias",
+    "Rel SE Bias",
+    "Coverage",
+    "Power (Not equal 0)",
+    "Required N"
+  )
+)
+```
+
+#### Optimal model
+
+```{r}
+#| label: sim-ideal-optmodel
+
+optmodel_ideal <- cache_or_run("optmodel_ideal", {
+  sim(
+    NULL,                   # Number of replications is defined by SEQ1
+    n = SEQ1,               # Sample sizes defined in SEQ1 (see helpers.R)
+    analyzemodel,           # Model used for analysis (see models.R)
+    generate = optmodel,    # Optimal population model (see models.R)
+    std.lv = TRUE,          # Standardized latent variables
+    lavaanfun = "cfa",      # Use CFA function from lavaan
+    seed = SEED,            # Seed for reproducibility (see helpers.R)
+    multicore = TRUE        # Use multicore processing
+)
+})
+```
+
+The same parameter-level analysis is applied to the optimal model.
+Because this population uses stronger loadings ($\lambda \approx 0.80$)
+and lower interfactor correlations ($\phi = 0.08$), two contrasting phenomena
+emerge. On the one hand, primary factor loadings and residual variances reach
+the target power of $0.80$ at minimal sample sizes ($N \le 51$) with negligible bias.
+On the other hand, the very small interfactor correlations ($\phi = 0.08$) create
+an acute bottleneck: detecting such weak associations with $80\%$ power requires
+$N > 1,200$, far exceeding the simulated range ($N \in [51, 350]$), which causes
+`findPower` to return `NA` for all factor correlations. Consequently, among parameters
+with finite sample size requirements above 60, only the residual covariance
+$Q3 \sim\sim Q4$ appears in the table below, requiring $N = 139$ [@simsem2021; @buchberger2024].
+
+```{r}
+#| label: tbl-power-n-opt
+#| warning: false
+#| message: false
+#| tbl-cap: "Parameter estimates and required sample size for 80% power under optimal conditions."
+
+# Compute detailed parameter-recovery results for the fitted model.
+param_opt <- summaryParam(
+  optmodel_ideal,   # Simulation results from the optimal population model (stronger factor loadings)
+  alpha = ALPHA,    # Significance level for determining power (see helpers.R)
+  digits = 3,       # Number of digits to round the results to
+  detail = TRUE     # Return detailed parameter-level results
+)
+
+# Keep only the diagnostics used in the discussion.
+param_subset <- as.data.frame(
+  param_opt[, c("Rel Bias", "Rel SE Bias", "Coverage", "Power (Not equal 0)")]
+)
+
+# Compute parameter-level power across the simulated values of N.
+pow_opt <- getPower(optmodel_ideal, alpha = ALPHA)
+
+# Extract the minimum N that reaches the target power of .80 for each parameter.
+n_opt <- findPower(pow_opt, "N", 0.80)
+
+# Add required N to the subset.
+param_subset$N <- suppressWarnings(as.integer(n_opt[rownames(param_subset)]))
+
+# Filter to keep only finite N values greater than 60.
+filtered_subset <- subset(param_subset, is.finite(N) & N > 60)
+
+# Move parameter labels to an explicit first column.
+filtered_subset <- cbind(
+  Parameter = rownames(filtered_subset),
+  filtered_subset,
+  row.names = NULL
+)
+
+# Escape ~~ for Pandoc (prevents strikethrough in HTML); matches tbl-pop-summary
+filtered_subset$Parameter <- gsub("~~", "\\~\\~", filtered_subset$Parameter, fixed = TRUE)
+
+# Print the combined table.
+knitr::kable(
+  filtered_subset,
+  digits = 3,
+  align = c("l", "c", "c", "c", "c", "c"),
+  booktabs = TRUE,
+  escape = FALSE,
+  col.names = c(
+    "Parameter",
+    "Rel Bias",
+    "Rel SE Bias",
+    "Coverage",
+    "Power (Not equal 0)",
+    "Required N"
+  )
+)
+```
+
